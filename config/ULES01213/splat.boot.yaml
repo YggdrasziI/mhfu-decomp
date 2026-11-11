@@ -1,0 +1,70 @@
+# splat config for PSP_GAME/SYSDIR/BOOT.BIN (ULES01213, Europe)
+#
+# BOOT.BIN is a static ELF (ET_EXEC, not a PRX): one program header loaded at
+# 0x08804000, no relocations, so splat reads the file as is
+# (python tools/psp/prx_info.py). File layout:
+#   0x000000  ELF header + 300 program headers (1 PT_LOAD, then the overlay slots)
+#   0x0025B4  program header 0 (vram 0x08804000, filesz 0x1C7A90)
+#   0x1CA044  section headers (620), .shstrtab, .comment
+# The overlays named by the section headers (*_task.ovl, emXX.ovl, stageNNN.ovl,
+# debug.elf) have no data in this file (notes/OVERLAYS.md).
+options:
+  platform: psp
+  basename: BOOT
+  base_path: ../..
+  target_path: orig/ULES01213/BOOT.BIN
+  compiler: GCC # splat output style only; the compiler is Metrowerks (notes/COMPILER.md)
+  ld_script_path: build/ULES01213/boot.ld
+  asm_path: asm/ULES01213/boot
+  src_path: src
+  build_path: build/ULES01213
+  asset_path: build/ULES01213/bin
+  cache_path: build/ULES01213/.splat_cache
+  symbol_addrs_path:
+    - config/ULES01213/symbol_addrs.boot.txt
+    - config/ULES01213/symbol_addrs.txt
+  undefined_funcs_auto_path: build/ULES01213/undefined_funcs_auto.txt
+  undefined_syms_auto_path: build/ULES01213/undefined_syms_auto.txt
+  # .rodata.sceModuleInfo: gp
+  gp_value: 0x089D3A80
+  add_set_gp_64: false
+  section_order: [.text, .rodata, .data, .bss]
+  find_file_boundaries: false
+  migrate_rodata_to_functions: true
+  disassemble_all: true
+  disasm_unknown: true
+  use_legacy_include_asm: false
+  asm_jtbl_label_macro: jlabel
+  ld_bss_is_noload: true
+  ld_align_segment_vram_end: false
+  ld_align_section_vram_end: false
+  ld_generate_symbol_per_data_segment: true
+  create_undefined_funcs_auto: true
+  create_undefined_syms_auto: true
+  string_encoding: ASCII
+  data_string_encoding: ASCII
+  rodata_string_guesser_level: 2
+  data_string_guesser_level: 2
+
+segments:
+  - [0x0, bin, elf_header]
+
+  # Program header 0
+  - name: main
+    type: code
+    start: 0x25B4
+    vram: 0x08804000
+    bss_size: 0x13999F0       # memsz - filesz: .bss, then the overlay area
+    subalign: null
+    align: 4
+    subsegments:
+      - [0x25B4, asm, text]               # .text
+      - [0x10C3EC, asm, scestub]          # .sceStub.text (system imports)
+      - [0x10CC6C, rodata, lib]           # .lib.ent*, .lib.stub*
+      - [0x10CF34, rodata, sceresident]   # .rodata.sceModuleInfo, .rodata.sceResident
+      - [0x10D22C, rodata, scenid]        # .rodata.sceNid
+      - [0x10DEAC, data, data]            # .data
+      - { start: 0x1CA044, type: bss, vram: 0x089CBA90, name: bss }
+
+  - [0x1CA044, bin, elf_tail]
+  - [0x1D251C]

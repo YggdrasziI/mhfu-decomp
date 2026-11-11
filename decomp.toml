@@ -1,0 +1,22 @@
+# Project settings read by tools/psp (see tools/psp/project.py)
+
+title = "Monster Hunter Freedom Unite"
+
+# First one is the default version
+versions = [
+    "ULES01213",  # Europe, Monster Hunter Freedom Unite
+    "ULUS10391",  # USA, Monster Hunter Freedom Unite (not supported yet)
+    "ULJM05500",  # Japan, Monster Hunter Portable 2nd G (not supported yet)
+]
+
+binutils_prefix = "mips-ps2-decompals-"
+
+# Main executable: PSP_GAME/SYSDIR/BOOT.BIN, a plain static ELF (ET_EXEC). The
+# encrypted EBOOT.BIN holds the same image (notes/PROVENANCE.md).
+[modules.boot]
+file = "BOOT.BIN"
+splat = "splat.boot.yaml"
+relocatable = false
+
+[traces]
+allow = ["decompile this for me"]

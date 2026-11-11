@@ -1,0 +1,68 @@
+name: Build
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  traces:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: true
+
+      # Local paths and attribution trailers, in the files and in the pushed commits
+      - name: Check traces
+        env:
+          TRACE_PATTERNS: ${{ vars.TRACE_PATTERNS }}
+          RANGE: ${{ github.event_name == 'push' && github.event.before != '0000000000000000000000000000000000000000' && format('{0}..{1}', github.event.before, github.sha) || github.sha }}
+        run: |
+          python3 tools/psp/check_traces.py
+          python3 tools/psp/check_traces.py --log "$RANGE"
+
+  build:
+    # This is a *private* build container (YggdrasziI/mhfu-decomp-build):
+    # it holds the extracted game files in /orig.
+    container:
+      image: ghcr.io/yggdraszii/mhfu-decomp-build:main
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        version: [ULES01213]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      # Copy the extracted files to the workspace
+      - name: Prepare
+        run: cp -a /orig/. ./orig/
+
+      - name: Python packages
+        run: pip install -r tools/requirements.txt
+
+      # splat, assemble, link, SHA-1 check
+      - name: Build
+        run: |
+          python tools/configure.py --version ${{ matrix.version }}
+          ninja
+
+      # objdiff report of the units
+      - name: Report
+        run: ninja report
+
+      - name: Upload report
+        uses: actions/upload-artifact@v4
+        with:
+          name: report-${{ matrix.version }}
+          path: build/${{ matrix.version }}/report.json

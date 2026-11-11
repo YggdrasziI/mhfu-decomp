@@ -1,0 +1,46 @@
+# IDE folders
+.idea/
+.vs/
+*.code-workspace
+
+# Caches
+__pycache__
+.mypy_cache
+.cache/
+
+# Original files (ISO, executables, extracted contents)
+*.iso
+*.ISO
+*.prx
+*.PRX
+*.BIN
+*.bin
+orig/*/*
+!orig/*/.gitkeep
+
+# Generated assembly (game code)
+asm/
+
+# Build files
+build/
+.ninja_*
+build.ninja
+*.o
+*.elf
+*.map
+
+# Downloaded tools
+/objdiff-cli*
+tools/binutils/
+tools/compilers/
+tools/wibo
+
+# Ghidra projects live outside the repo, but never commit one by accident
+*.gpr
+*.rep/
+
+# Generated files
+objdiff.json
+compile_commands.json
+*.ctx.c
+ctx.c
