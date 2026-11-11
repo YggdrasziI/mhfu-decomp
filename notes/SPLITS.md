@@ -82,6 +82,16 @@ Other hints that these regions are libraries (not proven): C string functions at
 `"libc:%s: should be called from main thread\n"` at 0x0890F900 and 0x0890F908); the
 second region holds the entry point.
 
+## Units
+
+All in the Metrowerks region; bounds are hypotheses until neighbours are split.
+
+| Unit | Range | Content | Status |
+|---|---|---|---|
+| `unit_0885148C` | 0x0885148C-0x088516A4 | section and entry lookup in the block at `D_089CC440`, 21 wrappers with a fixed section number | 23/23 functions, 100 % |
+| `unit_08866284` | 0x08866284-0x088662B8 | one function (switch on a byte field) | 100 % |
+| `unit_088A6024` | 0x088A6024-0x088A6040 | one function (table store) | 100 % |
+
 ## Method
 
 Throw-away scripts over `asm/ULES01213/boot/text*.s` (one function per `glabel`);
