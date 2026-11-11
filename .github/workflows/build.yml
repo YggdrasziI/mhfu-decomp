@@ -17,7 +17,8 @@ jobs:
       # Local paths and attribution trailers, in the files and in the pushed commits
       - name: Check traces
         env:
-          TRACE_PATTERNS: ${{ vars.TRACE_PATTERNS }}
+          # a secret, so the patterns stay masked in the public logs
+          TRACE_PATTERNS: ${{ secrets.TRACE_PATTERNS }}
           RANGE: ${{ github.event_name == 'push' && github.event.before != '0000000000000000000000000000000000000000' && format('{0}..{1}', github.event.before, github.sha) || github.sha }}
         run: |
           python3 tools/psp/check_traces.py
