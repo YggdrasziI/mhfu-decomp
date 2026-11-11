@@ -102,7 +102,8 @@ string functions. All six matching probes are at 0x08822990 or above. Hypothesis
 the start of `.text` is library code built with another compiler or version;
 `notes/SPLITS.md` maps it (0x08804000 to about 0x08811C00, and a second such region
 from about 0x08904000 to the end of `.text`) and probes it: no mwccpsp build and not
-SNC 1.2.7503.0; GCC 3.x fits the frame layout and tail calls (not run yet).
+SNC 1.2.7503.0; GCC (psp-gcc 1.3.1 / 1.7.1 at `-O2 -G0`) reproduces one function and
+comes within two instructions of another, but is not the exact version.
 
 ## Candidates
 

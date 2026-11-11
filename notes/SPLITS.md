@@ -50,7 +50,11 @@ bucket, `func_0880EDF8` string length). 2026-11-11:
 |---|---|---|
 | `mwccpsp_3.0.1` builds 121, 134, 139, 147, 219 | `-O1` to `-O4`, `-O4,s` (with `-sdatathreshold 0`) | 0/5 |
 | `pspsnc_1.2.7503.0` (from the sibling project) | `-O1`, `-O2`, `-O3`, `-O2 -g` | 0/5 |
-| `psp-gcc` 1.3.1 / 1.7.1 (decomp.me archive) | - | not run: Linux binaries only |
+| `psp-gcc-1.3.1` (GCC 3.3.3, allegrex 2.2.1), decomp.me archive | `-O1`, `-O2`, `-O3`, `-Os` (with `-G0`), `-O2 -G0 -fno-optimize-sibling-calls` | **1/5 at `-O2`**: `func_0880B420` identical; `func_0880C53C` identical but for 2 swapped instructions |
+| `psp-gcc-1.7.1` (GCC 3.3.3, allegrex 2.2.2), assembler of 1.3.1 | same | same output as 1.3.1 |
+
+psp-gcc is Linux-only (32-bit x86): it runs in the manual `Compiler probe` workflow
+(`.github/workflows/probe.yml`, inputs `compiler`, `as_from`, `probe`, `flags`).
 
 What rules each one out, or not:
 
@@ -62,10 +66,16 @@ What rules each one out, or not:
   prefers `$a0`-`$a3`; `BOOT.BIN` has no `or $rd, $rs, $zero` at all (moves are
   `addu $rd, $rs, $zero`, 2131 in the outer regions) and the original uses
   `$v0`/`$v1`. Another SNC version is not excluded.
-- **GCC 3.x** (inference from GCC's MIPS frame layout, not run): saved registers sit
-  at the bottom of a frame rounded up to 16, `$ra` highest, so `$ra` alone lands at
-  0 and `func_0880B244` (frame 0x20, `$ra` at 0x1C, `$s0` at 0) fits; sibling calls
-  become `j` from `-O2`; gas assembles `move` as `addu`. Best candidate.
+- **GCC** (psp-gcc 1.3.1 / 1.7.1 at `-O2 -G0`): the same family. Frame layout
+  (`$ra` alone at 0 in a 16-byte frame), `lui $v1` / `lw $v0, ($v1)` for a global
+  load and `addu` moves all match; `func_0880B420` is identical and `func_0880C53C`
+  only orders `lw $ra` before the last `sw` where the original does the opposite.
+  Not the same version: these GCC 3.3.3 builds never turn the final call of
+  `func_0880C578` into `j sceKernelCpuResumeIntr` (the original has no frame at
+  all there), even at `-O3`. A later GCC (one that emits MIPS sibling calls) is
+  the next candidate; none is in the decomp.me archive.
+- `func_0880D97C` and `func_0880EDF8` still differ in register choice with every
+  compiler; their source shape may be wrong too.
 
 Other hints that these regions are libraries (not proven): C string functions at
 0x0880ED04-0x0880EE10; `.data` starts with libc strings (`"_exit"`,
