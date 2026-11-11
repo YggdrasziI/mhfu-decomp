@@ -49,6 +49,7 @@ compare in an array of structs).
 | 2026-11-11 | `mwccpsp_3.0.1` builds 147, 151, 180, 192, 201, 205, 210, 219 | `-O4` | 5/7, identical output |
 | 2026-11-11 | `mwccpsp_3.0.1` builds 121, 134, 139 | `-O4` | 3/7 (worse code for the byte test, the float compare and the switch) |
 | 2026-11-11 | `mwccpsp_3.0.1_219` | `-O4 -char unsigned` | breaks the float compare (`lb` becomes `lbu`): plain `char` is signed |
+| 2026-11-11 | `mwccpsp_3.0.1` builds 147 to 219 | `-O3`, `-O4`, `-O4,p`, `-O4,s`, `-O3,s`, `-opt full`, `-opt level=4,space`, `-g`, `-sdatathreshold 0` | **6/7** after the switch fix; still all identical |
 
 Findings so far:
 
@@ -57,10 +58,15 @@ Findings so far:
   on 5 of 7 functions.
 - Build 147 or later, optimisation `-O3` or higher (the probes do not separate the
   builds from 147 on, nor `-O3` from `-O4`).
-- The two misses are most likely source shape: `func_0880EDF8` (string length: same
-  instructions, `$v0`/`$v1` swapped; maybe the library's `strlen`, built separately)
-  and `func_08866284` (switch on 0/1/2 lowered differently). 15 source variants
-  tried, none matches.
+- `switch` cases are compared in reverse source order: `func_08866284` compares
+  with 2, 1, then 0, so its source lists `case 0`, `case 1`, `case 2` (matches).
+- `func_0880EDF8` (string length) still misses: same instructions, the loaded byte
+  and the start pointer swap `$v0`/`$v1`. About 30 source forms tried (pointer and
+  index loops, `do`/`while`/`for`, MSL's `len = -1` form, C++ and C99 modes), none
+  matches. It sits among library string functions (a word-at-a-time `strcpy` with
+  the 0x80808080 / 0xFEFEFEFF constants at 0x0880ED70, a case-insensitive compare
+  through a character-class table at 0x0880EE10), so it may come from a prebuilt C
+  library built with another compiler or version (hypothesis, not checked).
 
 Running mwccpsp natively on Windows: `tools/psp/lmgr_patch.py` (applied by the
 compiler download) stubs the FLEXlm checkout like wibo does.

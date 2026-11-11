@@ -48,18 +48,18 @@ int func_088303B8(int unused, unsigned short i, unsigned char j) {
     return D_0893AACC[j][i];
 }
 
+/* the compares come out in reverse source order: 2, 1, then 0 */
 int func_08866284(unsigned char *p) {
     int r;
-    int m = p[0x1E9];
-    switch (m) {
-    case 2:
-        r = 0x40;
+    switch (p[0x1E9]) {
+    case 0:
+        r = 0x20;
         break;
     case 1:
         r = 0x40;
         break;
-    case 0:
-        r = 0x20;
+    case 2:
+        r = 0x40;
         break;
     default:
         r = 0xE0;
