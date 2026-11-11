@@ -59,8 +59,11 @@ gives an ELF size of 0x1D251C bytes and the entry 0x08906934, both those of
   `max`, `clz`, `madd`, `wsbw`...) into `.word`, and NaN floats into their bytes.
 - objdiff-cli **v3.8.3** (report, diff), objdiff GUI.
 - m2c for a first C draft.
-- Compiler: Metrowerks CodeWarrior for PSP. The exact build (2.4.1.01) is not
-  available; the closest one on decomp.me is tried first (`notes/COMPILER.md`).
+- Compiler: Metrowerks CodeWarrior for PSP, `mwccpsp_3.0.1_219` at `-O4` (decomp.me
+  compiler archive, downloaded by `ninja`). Probes match builds 147 to 219 at `-O3`
+  or higher on 5 of 7 functions (`notes/COMPILER.md`). On Windows the compiler runs
+  natively once `tools/psp/lmgr_patch.py` has stubbed its license check (done by the
+  download).
 - Shared tools: the `tools/psp` submodule
   ([psp-decomp-tools](https://github.com/YggdrasziI/psp-decomp-tools)), configured by
   `decomp.toml`.
