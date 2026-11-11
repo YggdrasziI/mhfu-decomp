@@ -90,6 +90,8 @@ All in the Metrowerks region; bounds are hypotheses until neighbours are split.
 |---|---|---|---|
 | `unit_0885148C` | 0x0885148C-0x088516A4 | section and entry lookup in the block at `D_089CC440`, 21 wrappers with a fixed section number | 23/23 functions, 100 % |
 | `unit_08866284` | 0x08866284-0x088662B8 | one function (switch on a byte field) | 100 % |
+| `unit_0887FDAC` | 0x0887FDAC-0x0887FE5C | 7 getters on an array of 20-byte entries | 100 % |
+| `unit_08886048` | 0x08886048-0x088860A0 | 8 field getters and setters | 100 % |
 | `unit_08898350` | 0x08898350-0x0889842C | 13 setters of global pointers | 100 % |
 | `unit_0889EA4C` | 0x0889EA4C-0x0889EAE8 | 19 forwarders (tail calls) | 100 % |
 | `unit_0889EC78` | 0x0889EC78-0x0889ECB8 | 8 forwarders | 100 % |
