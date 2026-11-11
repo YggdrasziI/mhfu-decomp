@@ -5,8 +5,8 @@ title = "Monster Hunter Freedom Unite"
 # First one is the default version
 versions = [
     "ULES01213",  # Europe, Monster Hunter Freedom Unite
-    "ULUS10391",  # USA, Monster Hunter Freedom Unite (not supported yet)
-    "ULJM05500",  # Japan, Monster Hunter Portable 2nd G (not supported yet)
+    "ULUS10391",  # USA, Monster Hunter Freedom Unite
+    "ULJM05500",  # Japan, Monster Hunter Portable 2nd G
 ]
 
 binutils_prefix = "mips-ps2-decompals-"

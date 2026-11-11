@@ -20,8 +20,14 @@ VERSIONS = {
         "iso_sha1": "b67f57e2ea0d5a31d3c58eb0c7e54c4ef47ea838",
         "files": ["PSP_GAME/SYSDIR/BOOT.BIN"],
     },
-    "ULUS10391": {"iso_sha1": None, "files": ["PSP_GAME/SYSDIR/BOOT.BIN"]},
-    "ULJM05500": {"iso_sha1": None, "files": ["PSP_GAME/SYSDIR/BOOT.BIN"]},
+    "ULUS10391": {
+        "iso_sha1": "f5cb0eaebbf5008bd8d486832229ae97a16bbee6",
+        "files": ["PSP_GAME/SYSDIR/BOOT.BIN"],
+    },
+    "ULJM05500": {
+        "iso_sha1": "951d1a360eec83af294a7a51ec4bba08f8633a6e",
+        "files": ["PSP_GAME/SYSDIR/BOOT.BIN"],
+    },
 }
 
 

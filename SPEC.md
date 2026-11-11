@@ -13,11 +13,21 @@ Out of scope: a port, game assets, any redistribution of game files.
 | Version | Release | Status |
 |---|---|---|
 | `ULES01213` | Europe, `DISC_VERSION 1.01`, `PSP_SYSTEM_VER 5.03` | active |
-| `ULUS10391` | USA | later |
-| `ULJM05500` | Japan, Monster Hunter Portable 2nd G | later |
+| `ULUS10391` | USA, `DISC_VERSION 1.01`, `PSP_SYSTEM_VER 5.03` | all-assembly build matches |
+| `ULJM05500` | Japan, Monster Hunter Portable 2nd G | all-assembly build matches |
 
-Each version has its own `config/<version>/` and `orig/<version>/`; the European one
-comes first and the others follow once its layout is understood.
+Each version has its own `config/<version>/` and `orig/<version>/`; decompilation
+work targets the European one first.
+
+| Version | ISO SHA-1 | `BOOT.BIN` | Notes |
+|---|---|---|---|
+| `ULUS10391` | `f5cb0eaebbf5008bd8d486832229ae97a16bbee6` (886702080 bytes) | 1910332 bytes, SHA-1 `518673c61ef41b4906cedfbe93811d2a974be793` | same layout as `ULES01213`, `.text` 0x120 bytes longer |
+| `ULJM05500` | `951d1a360eec83af294a7a51ec4bba08f8633a6e` (895582208 bytes) | 1889772 bytes, SHA-1 `de96bd007ef69b59af9188bee5e7de53987ea2b6` | `.text` 0x1078E0 bytes, 33 import libraries (290 functions); `.data` starts at 0x0890D38C, not 8-aligned, so its first word is a separate splat piece |
+
+A Korean disc (ISO SHA-1 `8d48f800cbe735dab83b3f165101a6a2e3f31ba7`) carries the same
+disc ID `ULUS10391` and `DISC_VERSION 1.01`, with `PSP_SYSTEM_VER 5.50`. Its `BOOT.BIN`
+is all zeros and its `EBOOT.BIN` (1910672 bytes, same size as the US one) is
+encrypted differently: it can only be compared once `EBOOT.BIN` is decrypted.
 
 ## Target (ULES01213)
 

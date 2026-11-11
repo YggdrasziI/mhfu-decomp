@@ -37,7 +37,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        version: [ULES01213]
+        version: [ULES01213, ULUS10391, ULJM05500]
 
     steps:
       - name: Checkout

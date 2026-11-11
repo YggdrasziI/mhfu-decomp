@@ -1,0 +1,71 @@
+# splat config for PSP_GAME/SYSDIR/BOOT.BIN (ULJM05500, Japan, Monster Hunter Portable 2nd G)
+#
+# BOOT.BIN is a static ELF (ET_EXEC, not a PRX): one program header loaded at
+# 0x08804000, no relocations, so splat reads the file as is
+# (python tools/psp/prx_info.py). File layout:
+#   0x000000  ELF header + 300 program headers (1 PT_LOAD, then the overlay slots)
+#   0x0025B4  program header 0 (vram 0x08804000, filesz 0x1C2B60)
+#   0x1C5114  section headers (620), .shstrtab, .comment
+# The overlays named by the section headers (*_task.ovl, emXX.ovl, stageNNN.ovl,
+# debug.elf) have no data in this file (notes/OVERLAYS.md).
+options:
+  platform: psp
+  basename: BOOT
+  base_path: ../..
+  target_path: orig/ULJM05500/BOOT.BIN
+  compiler: GCC # splat output style only; the compiler is Metrowerks (notes/COMPILER.md)
+  ld_script_path: build/ULJM05500/boot.ld
+  asm_path: asm/ULJM05500/boot
+  src_path: src
+  build_path: build/ULJM05500
+  asset_path: build/ULJM05500/bin
+  cache_path: build/ULJM05500/.splat_cache
+  symbol_addrs_path:
+    - config/ULJM05500/symbol_addrs.boot.txt
+    - config/ULJM05500/symbol_addrs.txt
+  undefined_funcs_auto_path: build/ULJM05500/undefined_funcs_auto.txt
+  undefined_syms_auto_path: build/ULJM05500/undefined_syms_auto.txt
+  # .rodata.sceModuleInfo: gp
+  gp_value: 0x089CEB50
+  add_set_gp_64: false
+  section_order: [.text, .rodata, .data, .bss]
+  find_file_boundaries: false
+  migrate_rodata_to_functions: true
+  disassemble_all: true
+  disasm_unknown: true
+  use_legacy_include_asm: false
+  asm_jtbl_label_macro: jlabel
+  ld_bss_is_noload: true
+  ld_align_segment_vram_end: false
+  ld_align_section_vram_end: false
+  ld_generate_symbol_per_data_segment: true
+  create_undefined_funcs_auto: true
+  create_undefined_syms_auto: true
+  string_encoding: ASCII
+  data_string_encoding: ASCII
+  rodata_string_guesser_level: 2
+  data_string_guesser_level: 2
+
+segments:
+  - [0x0, bin, elf_header]
+
+  # Program header 0
+  - name: main
+    type: code
+    start: 0x25B4
+    vram: 0x08804000
+    bss_size: 0x13998A0       # memsz - filesz: .bss, then the overlay area
+    subalign: null
+    align: 4
+    subsegments:
+      - [0x25B4, asm, text]               # .text
+      - [0x109E94, asm, scestub]          # .sceStub.text (system imports)
+      - [0x10A7A4, rodata, lib]           # .lib.ent*, .lib.stub*
+      - [0x10AA58, rodata, sceresident]   # .rodata.sceModuleInfo, .rodata.sceResident
+      - [0x10AD50, rodata, scenid]        # .rodata.sceNid
+      - [0x10B940, data, data_head]       # .data, first 4 bytes: .data is not 8-aligned here
+      - [0x10B944, data, data]            # .data from 0x0890D390 (16-aligned)
+      - { start: 0x1C5114, type: bss, vram: 0x089C6B60, name: bss }
+
+  - [0x1C5114, bin, elf_tail]
+  - [0x1CD5EC]

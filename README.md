@@ -25,8 +25,10 @@ Version   | Release | Input | SHA1 hash
 --------- | ------- | ----- | ------------------------------------------
 ULES01213 | Monster Hunter Freedom Unite (Europe), `DISC_VERSION 1.01` | ISO | `b67f57e2ea0d5a31d3c58eb0c7e54c4ef47ea838`
 ULES01213 | | `PSP_GAME/SYSDIR/BOOT.BIN` | `439f0a3454c14225dcbaa457d3102f5be65f1690`
-ULUS10391 | Monster Hunter Freedom Unite (USA) | | not supported yet
-ULJM05500 | Monster Hunter Portable 2nd G (Japan) | | not supported yet
+ULUS10391 | Monster Hunter Freedom Unite (USA), `DISC_VERSION 1.01` | ISO | `f5cb0eaebbf5008bd8d486832229ae97a16bbee6`
+ULUS10391 | | `PSP_GAME/SYSDIR/BOOT.BIN` | `518673c61ef41b4906cedfbe93811d2a974be793`
+ULJM05500 | Monster Hunter Portable 2nd G (Japan) | ISO | `951d1a360eec83af294a7a51ec4bba08f8633a6e`
+ULJM05500 | | `PSP_GAME/SYSDIR/BOOT.BIN` | `de96bd007ef69b59af9188bee5e7de53987ea2b6`
 
 Progress
 ========
@@ -34,8 +36,8 @@ Progress
 | Release | Disc ID | Progress |
 |---|---|---|
 | Monster Hunter Freedom Unite (Europe) | `ULES01213` | not measured yet: the whole executable is still assembly |
-| Monster Hunter Freedom Unite (USA) | `ULUS10391` | not supported yet |
-| Monster Hunter Portable 2nd G (Japan) | `ULJM05500` | not supported yet |
+| Monster Hunter Freedom Unite (USA) | `ULUS10391` | not measured yet |
+| Monster Hunter Portable 2nd G (Japan) | `ULJM05500` | not measured yet |
 
 Dependencies
 ============
@@ -59,17 +61,18 @@ Building
    git clone --recursive https://github.com/YggdrasziI/mhfu-decomp.git
    ```
 
-2. Copy the ISO to `orig/ULES01213/` (any file name ending in `.iso`).
+2. Copy the ISO to `orig/<version>/` (any file name ending in `.iso`).
 3. Run:
 
    ```
-   python tools/extract.py
-   python tools/configure.py
+   python tools/extract.py --version <version>
+   python tools/configure.py --version <version>
    ninja
    ```
 
-   A build ends with `build/ULES01213/BOOT.BIN: OK`.
-4. `ninja report` writes the objdiff report (`build/ULES01213/report.json`);
+   A build ends with `build/<version>/BOOT.BIN: OK`. The version defaults to
+   `ULES01213`.
+4. `ninja report` writes the objdiff report (`build/<version>/report.json`);
    `objdiff.json` is there for the objdiff GUI.
 
 Contributors: `python tools/psp/check_traces.py --install-hooks` installs the
