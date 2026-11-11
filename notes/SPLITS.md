@@ -495,16 +495,26 @@ Throw-away scripts over `asm/ULES01213/boot/text*.s` (one function per `glabel`)
 re-run them after any change of the splat config. A tool for this belongs in
 `tools/psp` once a second use appears.
 
-Units of "small functions" (up to 0x80 bytes, at most two calls, no VFPU): m2c
-`--valid-syntax` drafts, each field access written as `*(type *)(p + offset)`, compiled
-as they are, kept only when every instruction matches and the unit file as a whole
-still matches; then a mechanical clean-up and a full build. When m2c calls a
-function with no arguments because the caller passes its own incoming registers
-unchanged, the call gets the caller's first arguments, as many as the callee reads
-(`$a0`-`$a3` read before written in a straight-line scan of the callee, following tail
-jumps). The compiled code is the same whatever that count, so it is a reading aid,
-not evidence. Drafts still calling a function without a prototype are left out.
-Contiguous matching functions share a unit; the bounds are no more than that.
+Units of "small functions" come from `tools/psp/batch_units.py` (its docstring has
+the details; settings in `[batch]` of `decomp.toml`): m2c `--valid-syntax` drafts,
+each field access written as `*(type *)(p + offset)`, compiled as they are, kept
+only when every instruction matches and the unit file as a whole still matches;
+then a mechanical clean-up and a full build. When m2c calls a function with no
+arguments because the caller passes its own incoming registers unchanged, the call
+gets the caller's first arguments, as many as the callee reads
+(argument registers `$a0`-`$a3` and `$t0`-`$t3` read before written in a
+straight-line scan of the callee, delay slots included, following tail jumps). The
+compiled code is the same whatever that count, so it is a reading aid, not evidence.
+Drafts still calling a function without a prototype are left out. Contiguous
+matching functions share a unit; the bounds are no more than that.
+
+The first scan counted `$a0`-`$a3` only and missed delay slots: the counts of
+`func_08812B9C`, `func_0886AD0C`, `func_088B1584` (too many: floats go in `$f12`-),
+`func_088A4BE8` and `func_088D5C2C` (too few: `$t0`-`$t3`) were fixed. The pass-through
+counts of `func_0887FFE0`, `func_088802F4`, `func_08886898`, `func_0889F9A0`,
+`func_088A40D4`, `func_088A7368`, `func_088A7370`, `func_088A73A8`, `func_088A73B0`
+and `func_088AB1A0` are assumptions: their callee ends in a call whose arguments are
+not known (a system import or a deeper chain).
 
 m2c misses tail calls (`j f` with the argument set in the delay slot) and leaves out
 unused arguments below the last used one. Straight-line functions ending in a tail
