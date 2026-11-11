@@ -35,9 +35,16 @@ Progress
 
 | Release | Disc ID | Progress |
 |---|---|---|
-| Monster Hunter Freedom Unite (Europe) | `ULES01213` | not measured yet: the whole executable is still assembly |
+| Monster Hunter Freedom Unite (Europe) | `ULES01213` | [![Fuzzy](progress/ULES01213/fuzzy.svg)](notes/PROGRESS.md) [![Perfect](progress/ULES01213/perfect.svg)](notes/PROGRESS.md) [![Linked](progress/ULES01213/linked.svg)](notes/PROGRESS.md) |
 | Monster Hunter Freedom Unite (USA) | `ULUS10391` | not measured yet |
 | Monster Hunter Portable 2nd G (Japan) | `ULJM05500` | not measured yet |
+
+[![Progress card](progress/ULES01213/card.svg)](notes/PROGRESS.md)
+
+`BOOT.BIN` only (the overlays are not extracted yet). After `ninja report`,
+`python tools/psp/progress_badges.py --record` redraws `progress/ULES01213/` and adds
+the current commit to `progress/ULES01213/history.csv`; `notes/PROGRESS.md` logs the
+milestones.
 
 Dependencies
 ============
