@@ -99,8 +99,9 @@ The two probe misses are both near the start of `.text`: `func_0880B420` (global
 getter: `lui $v1` / `lw $v0, ($v1)`, mwccpsp uses `$v0` for both) and
 `func_0880EDF8` (string length, the same kind of register swap), next to library
 string functions. All six matching probes are at 0x08822990 or above. Hypothesis:
-the start of `.text` is library code built with another compiler or version.
-Where that region ends is not known yet.
+the start of `.text` is library code built with another compiler or version;
+`notes/SPLITS.md` maps it (0x08804000 to about 0x08811C00, and a second such region
+from about 0x08904000 to the end of `.text`).
 
 ## Candidates
 
