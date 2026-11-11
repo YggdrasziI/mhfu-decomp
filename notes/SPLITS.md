@@ -88,19 +88,45 @@ All in the Metrowerks region; bounds are hypotheses until neighbours are split.
 
 | Unit | Range | Content | Status |
 |---|---|---|---|
+| `unit_088129B8` | 0x088129B8-0x088129F8 | 1 function (calls func_0890BFA4 on the object when the flag is positive, returns it) | 100 % |
+| `unit_088131B8` | 0x088131B8-0x088131FC | 1 field update guarded by a bool comparison (C++) | 100 % |
 | `unit_08813574` | 0x08813574-0x08813594 | 1 function (flag set once) | 100 % |
 | `unit_088140C4` | 0x088140C4-0x08814104 | 2 vector copies | 100 % |
 | `unit_088167F4` | 0x088167F4-0x08816818 | 1 function (16-bit string length) | 100 % |
+| `unit_08816AE4` | 0x08816AE4-0x08816B64 | 2 functions with the shape of func_088129B8 | 100 % |
+| `unit_0881CAC8` | 0x0881CAC8-0x0881CB0C | 1 reset (call, byte and flag clear) | 100 % |
 | `unit_0881CB0C` | 0x0881CB0C-0x0881CB2C | 1 function (clears flags) | 100 % |
+| `unit_08825104` | 0x08825104-0x08825148 | 1 section-0 entry lookup through a table | 100 % |
+| `unit_08826688` | 0x08826688-0x088266CC | 1 field reset | 100 % |
+| `unit_08826F80` | 0x08826F80-0x08826FCC | 1 count of used slots, divided | 100 % |
+| `unit_088298E4` | 0x088298E4-0x08829928 | 1 pointer chosen by a bool flag (C++) | 100 % |
+| `unit_0882A248` | 0x0882A248-0x0882A28C | 1 free-slot search | 100 % |
+| `unit_0882A8B8` | 0x0882A8B8-0x0882A8FC | 1 state code from a byte field | 100 % |
+| `unit_08830354` | 0x08830354-0x088303A0 | 1 colour lookup through two tables | 100 % |
+| `unit_088306DC` | 0x088306DC-0x08830728 | 1 reset (bytes, clear, copy) | 100 % |
+| `unit_08832838` | 0x08832838-0x08832884 | 1 flag test and clear with a call | 100 % |
+| `unit_088344FC` | 0x088344FC-0x08834548 | 1 two-way step on a byte field | 100 % |
+| `unit_088345B8` | 0x088345B8-0x088345FC | 1 call guarded by another call | 100 % |
+| `unit_0883AB4C` | 0x0883AB4C-0x0883AB8C | 1 forwarder with fixed arguments | 100 % |
+| `unit_08844654` | 0x08844654-0x0884469C | 1 test on a call result | 100 % |
+| `unit_0884B010` | 0x0884B010-0x0884B058 | 1 function (stores a table address in the object, then a call when the flag is positive) | 100 % |
+| `unit_0884F3FC` | 0x0884F3FC-0x0884F440 | 1 comparison of a 20-byte entry | 100 % |
+| `unit_0884F510` | 0x0884F510-0x0884F5F4 | 3 tests with a fallback call | 100 % |
 | `unit_0884FC74` | 0x0884FC74-0x0884FC94 | 1 table lookup | 100 % |
 | `unit_08850704` | 0x08850704-0x08850724 | 1 entry test | 100 % |
 | `unit_0885148C` | 0x0885148C-0x088516A4 | section and entry lookup in the block at `D_089CC440`, 21 wrappers with a fixed section number | 23/23 functions, 100 % |
+| `unit_0885205C` | 0x0885205C-0x088520A8 | 1 byte table lookup | 100 % |
 | `unit_088520A8` | 0x088520A8-0x088520C8 | 1 entry getter | 100 % |
+| `unit_088520D0` | 0x088520D0-0x08852114 | 1 non-zero 16-bit counter | 100 % |
 | `unit_08852DF8` | 0x08852DF8-0x08852E38 | 1 slot scan | 100 % |
+| `unit_0885683C` | 0x0885683C-0x08856884 | 1 state set with two calls | 100 % |
 | `unit_08856D60` | 0x08856D60-0x08856DA0 | 1 byte search | 100 % |
 | `unit_088571C8` | 0x088571C8-0x088571E8 | 1 bit test | 100 % |
 | `unit_08857D2C` | 0x08857D2C-0x08857D6C | 1 bit clear | 100 % |
 | `unit_08859728` | 0x08859728-0x08859768 | 1 display-list enqueue | 100 % |
+| `unit_0885FBB4` | 0x0885FBB4-0x0885FBF4 | 1 lookup then call | 100 % |
+| `unit_08860710` | 0x08860710-0x08860758 | 1 function with the shape of func_0884B010 | 100 % |
+| `unit_0886159C` | 0x0886159C-0x088615E4 | 1 function with the shape of func_0884B010 | 100 % |
 | `unit_088615E4` | 0x088615E4-0x08861604 | 1 table-address initialiser | 100 % |
 | `unit_0886421C` | 0x0886421C-0x0886423C | 1 element address | 100 % |
 | `unit_08865A9C` | 0x08865A9C-0x08865ADC | 1 flag clear | 100 % |

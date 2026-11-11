@@ -106,6 +106,33 @@ from about 0x08904000 to the end of `.text`) and probes it: no mwccpsp build and
 SNC 1.2.7503.0; GCC (psp-gcc 1.3.1 / 1.7.1 at `-O2 -G0`) reproduces one function and
 comes within two instructions of another, but is not the exact version.
 
+## C and C++
+
+At least some of the game code is C++. `func_088131B8` and `func_088298E4` turn a
+comparison into a value (`xor`/`sltiu` or `sltu`) and then compare that value with 1:
+
+```
+lhu   $a3, 0x1E6($a1)        lw    $v0, -0x50EC($v0)
+lbu   $a2, 0x28($a2)         andi  $v0, $v0, 0x1
+addiu $v1, $zero, 0x1        sltu  $v0, $zero, $v0
+xor   $a2, $a3, $a2          bnel  $v0, $v1, ...
+sltiu $a2, $a2, 0x1
+bne   $a2, $v1, ...
+```
+
+In C, mwccpsp folds `(a == b) == 1` and `((x & 1) != 0) != 1` into one branch,
+whatever the form tried (local variable, `inline` helper). Compiled as C++, with
+`(a == b) == true` and `(bool)(x & 1) == true`, both functions match
+(`src/unit_088131B8.cpp`, `src/unit_088298E4.cpp`). So these comparisons involve a
+C++ `bool`. Every other unit matches as C as well as C++, so the units stay `.c`
+unless C++ is needed. Function names are not mangled because the binary has no
+symbols at all, so they are kept as `func_<addr>` with `extern "C"`.
+
+Other C++ shapes, not proven: functions that store a table address in their first
+argument and call `func_0890BFA4` on it when a 16-bit flag is positive
+(`func_0884B010`, `func_08860710`, `func_0886159C`; `func_088129B8` without the
+store) look like Metrowerks destructors (`this`, `__dtor` flag, `operator delete`).
+
 ## Candidates
 
 | Compiler | Where | Status |
@@ -122,4 +149,4 @@ compares each one with `BOOT.BIN`, relocated fields masked.
 
 - Exact build among 147-219 and whether `-O3` or `-O4`: needs probes that tell them
   apart (larger functions, loops, inlining).
-- Whether the code is C or C++ (no mangled names seen yet).
+- Which parts are C++ (two functions proven, see C and C++), and which are C.
