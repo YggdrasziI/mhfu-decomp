@@ -90,13 +90,17 @@ All in the Metrowerks region; bounds are hypotheses until neighbours are split.
 |---|---|---|---|
 | `unit_0885148C` | 0x0885148C-0x088516A4 | section and entry lookup in the block at `D_089CC440`, 21 wrappers with a fixed section number | 23/23 functions, 100 % |
 | `unit_08866284` | 0x08866284-0x088662B8 | one function (switch on a byte field) | 100 % |
+| `unit_08867008` | 0x08867008-0x08867058 | 4 forwarders building a byte index | 100 % |
 | `unit_0887FDAC` | 0x0887FDAC-0x0887FE5C | 7 getters on an array of 20-byte entries | 100 % |
+| `unit_088803C4` | 0x088803C4-0x088803FC | 4 setters | 100 % |
 | `unit_08886048` | 0x08886048-0x088860A0 | 8 field getters and setters | 100 % |
 | `unit_08898350` | 0x08898350-0x0889842C | 13 setters of global pointers | 100 % |
 | `unit_0889EA4C` | 0x0889EA4C-0x0889EAE8 | 19 forwarders (tail calls) | 100 % |
 | `unit_0889EC78` | 0x0889EC78-0x0889ECB8 | 8 forwarders | 100 % |
 | `unit_0889EE40` | 0x0889EE40-0x0889EEA0 | 12 forwarders | 100 % |
+| `unit_088A0BE4` | 0x088A0BE4-0x088A0C10 | 3 forwarders, 1 flag setter | 100 % |
 | `unit_088A6024` | 0x088A6024-0x088A6040 | one function (table store) | 100 % |
+| `unit_088AEFCC` | 0x088AEFCC-0x088AF020 | 4 tests and getters on small globals | 100 % |
 | `unit_088CC4D8` | 0x088CC4D8-0x088CC508 | six functions returning 0 | 100 % |
 | `unit_088DC6E8` | 0x088DC6E8-0x088DC720 | 6 accessors | 100 % |
 | `unit_088EF348` | 0x088EF348-0x088EF380 | 4 forwarders with a fixed first argument, 1 empty function | 100 % |
