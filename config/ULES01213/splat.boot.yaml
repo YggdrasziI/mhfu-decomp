@@ -59,6 +59,8 @@ segments:
     align: 4
     subsegments:
       - [0x25B4, asm, text]               # .text
+      - [0xA45D8, c, unit_088A6024]
+      - [0xA45F4, asm, text_088A6040]
       - [0x10C3EC, asm, scestub]          # .sceStub.text (system imports)
       - [0x10CC6C, rodata, lib]           # .lib.ent*, .lib.stub*
       - [0x10CF34, rodata, sceresident]   # .rodata.sceModuleInfo, .rodata.sceResident
