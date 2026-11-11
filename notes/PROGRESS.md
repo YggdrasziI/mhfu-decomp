@@ -19,3 +19,4 @@ Commits before `15e9c9d` (first units, from `unit_088A6024` on) were not measure
 | 2026-11-11 | `1da47ed` | 15496 / 1089072 bytes (1.42 %) | 556 / 3573 | 375 | Tail-call forwarders written from their assembly |
 | 2026-11-11 | `69ab44c` | 16080 / 1089072 bytes (1.48 %) | 569 / 3573 | 386 | Indexed accesses as arrays, unsigned stores |
 | 2026-11-11 | `dba09a7` | 16332 / 1089072 bytes (1.50 %) | 584 / 3573 | 400 | More tail-call forwarders |
+| 2026-11-11 | `cd81dfe` | 22692 / 1089072 bytes (2.08 %) | 664 / 3573 | 472 | First batch from `tools/psp/batch_units.py` (m2c prototypes kept) |
