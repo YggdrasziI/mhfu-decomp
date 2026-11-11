@@ -1,0 +1,67 @@
+name: Compiler probe
+
+# Manual run: compile a probe file with a decomp.me compiler that only exists for
+# Linux and compare each func_XXXXXXXX with BOOT.BIN (tools/psp/compiler_probe.py).
+# The log shows OK/DIFF per function and the probe's own disassembly, no game bytes.
+
+on:
+  workflow_dispatch:
+    inputs:
+      compiler:
+        description: decomp.me compiler id
+        default: psp-gcc-1.3.1
+      probe:
+        description: probe source
+        default: tools/probes/lib_leaf.c
+      flags:
+        description: flag sets, separated by ';'
+        default: -O1 -G0;-O2 -G0;-O3 -G0;-Os -G0;-O2 -G0 -fno-optimize-sibling-calls
+
+jobs:
+  probe:
+    # private build container (YggdrasziI/mhfu-decomp-build): game files in /orig
+    container:
+      image: ghcr.io/yggdraszii/mhfu-decomp-build:main
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Prepare
+        run: |
+          cp -a /orig/. ./orig/
+          pip install -r tools/requirements.txt
+          python tools/configure.py
+          ninja
+
+      - name: Compiler
+        run: |
+          python tools/psp/download_tool.py compiler "${{ inputs.compiler }}" --path "tools/compilers/${{ inputs.compiler }}"
+          chmod -R u+x "tools/compilers/${{ inputs.compiler }}"
+          ls "tools/compilers/${{ inputs.compiler }}" "tools/compilers/${{ inputs.compiler }}/bin" || true
+
+      - name: Probe
+        env:
+          COMPILER: ${{ inputs.compiler }}
+          PROBE: ${{ inputs.probe }}
+          FLAGS: ${{ inputs.flags }}
+        run: |
+          cc=$(find "tools/compilers/$COMPILER" -path '*/bin/*' \( -name 'psp-gcc' -o -name '*gcc' \) -type f | head -n 1)
+          echo "compiler: $cc"; "$cc" --version | head -n 1
+          IFS=';'
+          for f in $FLAGS; do
+            echo "=== $f"
+            IFS=' '
+            python tools/psp/compiler_probe.py "$PROBE" --cc "$cc" -- $f || true
+            echo "::group::disassembly ($f)"
+            tools/binutils/mips-ps2-decompals-objdump -d --no-show-raw-insn "${PROBE%.*}.o" || true
+            IFS=';'
+            echo "::endgroup::"
+          done
