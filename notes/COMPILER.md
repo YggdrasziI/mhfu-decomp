@@ -129,9 +129,11 @@ unless C++ is needed. Function names are not mangled because the binary has no
 symbols at all, so they are kept as `func_<addr>` with `extern "C"`.
 
 Other C++ shapes, not proven: functions that store a table address in their first
-argument and call `func_0890BFA4` on it when a 16-bit flag is positive
-(`func_0884B010`, `func_08860710`, `func_0886159C`; `func_088129B8` without the
-store) look like Metrowerks destructors (`this`, `__dtor` flag, `operator delete`).
+argument and then, when a 16-bit flag is positive, pass it to another function
+(`func_0884B010` to `func_08897298`, `func_08860710` to `func_08860760`,
+`func_0886159C` to `func_0890BFA4`; `func_088129B8`, `func_08816AE4` and
+`func_08816B24` without the store, to `func_0890BFA4`) look like destructors
+(`this`, deletion flag, vtable pointer, `operator delete`).
 
 ## Candidates
 
