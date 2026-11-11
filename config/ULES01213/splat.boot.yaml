@@ -77,6 +77,14 @@ segments:
       - [0x9D454, asm, text_0889EEA0]
       - [0xA45D8, c, unit_088A6024]
       - [0xA45F4, asm, text_088A6040]
+      - [0xCAA8C, c, unit_088CC4D8]
+      - [0xCAABC, asm, text_088CC508]
+      - [0xDAC9C, c, unit_088DC6E8]
+      - [0xDACD4, asm, text_088DC720]
+      - [0xED8FC, c, unit_088EF348]
+      - [0xED934, asm, text_088EF380]
+      - [0xEDA3C, c, unit_088EF488]
+      - [0xEDA5C, asm, text_088EF4A8]
       - [0x10C3EC, asm, scestub]          # .sceStub.text (system imports)
       - [0x10CC6C, rodata, lib]           # .lib.ent*, .lib.stub*
       - [0x10CF34, rodata, sceresident]   # .rodata.sceModuleInfo, .rodata.sceResident

@@ -97,6 +97,10 @@ All in the Metrowerks region; bounds are hypotheses until neighbours are split.
 | `unit_0889EC78` | 0x0889EC78-0x0889ECB8 | 8 forwarders | 100 % |
 | `unit_0889EE40` | 0x0889EE40-0x0889EEA0 | 12 forwarders | 100 % |
 | `unit_088A6024` | 0x088A6024-0x088A6040 | one function (table store) | 100 % |
+| `unit_088CC4D8` | 0x088CC4D8-0x088CC508 | six functions returning 0 | 100 % |
+| `unit_088DC6E8` | 0x088DC6E8-0x088DC720 | 6 accessors | 100 % |
+| `unit_088EF348` | 0x088EF348-0x088EF380 | 4 forwarders with a fixed first argument, 1 empty function | 100 % |
+| `unit_088EF488` | 0x088EF488-0x088EF4A8 | 4 empty callbacks | 100 % |
 
 ## Method
 
