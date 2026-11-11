@@ -1,4 +1,4 @@
-/* unit_088803C4: 0x088803C4-0x088803FC (ULES01213)
+/* unit_08880384: 0x08880384-0x088803FC (ULES01213)
  *
  * Bounds (hypothesis): small setters between unrelated code. Field and global
  * names are not known.
@@ -20,6 +20,25 @@ typedef struct {
 extern int D_089B24D8;
 extern int D_09A0DA8C;
 extern void func_0889EA8C(void *p);
+extern void func_0889EA84(int x, int v, int t);
+
+void func_08880384(void *unused, int x, int t) {
+    if (t != 0) {
+        t = 0x10000000 / t;
+    } else {
+        t = 0x10000000;
+    }
+    func_0889EA84(x, 0x7F, t);
+}
+
+void func_088803A4(void *unused, int x, int t) {
+    if (t != 0) {
+        t = 0x10000000 / t;
+    } else {
+        t = 0x10000000;
+    }
+    func_0889EA84(x, 0, t);
+}
 
 void func_088803C4(Obj *o, u16 a, u16 b, u16 c) {
     o->unk174 = a;
