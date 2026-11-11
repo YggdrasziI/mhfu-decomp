@@ -39,14 +39,38 @@ Probes: the two functions mwccpsp 3.0.1 does not reproduce (`func_0880B420`,
 `func_0880EDF8`) are in the first outer region; the six it reproduces are at
 0x08822990 and above.
 
-## Hypotheses (not proven)
+## Compiler of the outer regions
 
-- The outer regions are libraries linked before and after the game objects: the
-  first holds C string functions (0x0880ED04-0x0880EE10, `notes/COMPILER.md`) and
-  `.data` starts with libc strings (`"_exit"`, `"libc:%s: should be called from main
-  thread\n"` at 0x0890F900 and 0x0890F908); the second holds the entry point.
-- They were built by another compiler or another `mwccpsp` version. Which one is not
-  known; no candidate has been probed on them yet.
+Probe: `tools/probes/lib_leaf.c`, 5 small functions of the first outer region
+(`func_0880B420` global getter, `func_0880C53C` / `func_0880C578` interrupt
+suspend and resume around a nesting counter, `func_0880D97C` push on a hash
+bucket, `func_0880EDF8` string length). 2026-11-11:
+
+| Compiler | Flags | Result |
+|---|---|---|
+| `mwccpsp_3.0.1` builds 121, 134, 139, 147, 219 | `-O1` to `-O4`, `-O4,s` (with `-sdatathreshold 0`) | 0/5 |
+| `pspsnc_1.2.7503.0` (from the sibling project) | `-O1`, `-O2`, `-O3`, `-O2 -g` | 0/5 |
+| `psp-gcc` 1.3.1 / 1.7.1 (decomp.me archive) | - | not run: Linux binaries only |
+
+What rules each one out, or not:
+
+- **mwccpsp**: saves `$ra` at the top of the frame (`sw $ra, 0xC($sp)` in a 16-byte
+  frame) and does not turn a final call into a jump; the original has
+  `sw $ra, 0x0($sp)` and `j sceKernelCpuResumeIntr`.
+- **SNC 1.2.7503.0**: same frame as the original (`$ra` at 0), same instruction
+  shapes on `func_0880D97C`, but it writes moves as `or $rd, $rs, $zero` and
+  prefers `$a0`-`$a3`; `BOOT.BIN` has no `or $rd, $rs, $zero` at all (moves are
+  `addu $rd, $rs, $zero`, 2131 in the outer regions) and the original uses
+  `$v0`/`$v1`. Another SNC version is not excluded.
+- **GCC 3.x** (inference from GCC's MIPS frame layout, not run): saved registers sit
+  at the bottom of a frame rounded up to 16, `$ra` highest, so `$ra` alone lands at
+  0 and `func_0880B244` (frame 0x20, `$ra` at 0x1C, `$s0` at 0) fits; sibling calls
+  become `j` from `-O2`; gas assembles `move` as `addu`. Best candidate.
+
+Other hints that these regions are libraries (not proven): C string functions at
+0x0880ED04-0x0880EE10; `.data` starts with libc strings (`"_exit"`,
+`"libc:%s: should be called from main thread\n"` at 0x0890F900 and 0x0890F908); the
+second region holds the entry point.
 
 ## Method
 
