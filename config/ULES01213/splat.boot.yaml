@@ -59,6 +59,8 @@ segments:
     align: 4
     subsegments:
       - [0x25B4, asm, text]               # .text
+      - [0x64838, c, unit_08866284]
+      - [0x6486C, asm, text_088662B8]
       - [0xA45D8, c, unit_088A6024]
       - [0xA45F4, asm, text_088A6040]
       - [0x10C3EC, asm, scestub]          # .sceStub.text (system imports)
