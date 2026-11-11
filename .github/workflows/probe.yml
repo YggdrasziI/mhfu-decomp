@@ -43,6 +43,9 @@ jobs:
 
       - name: Compiler
         run: |
+          # the psp-gcc archives hold 32-bit x86 binaries
+          dpkg --add-architecture i386
+          apt-get update -qq && apt-get install -y -qq --no-install-recommends libc6:i386 file >/dev/null
           python tools/psp/download_tool.py compiler "${{ inputs.compiler }}" --path "tools/compilers/${{ inputs.compiler }}"
           chmod -R u+x "tools/compilers/${{ inputs.compiler }}"
           ls "tools/compilers/${{ inputs.compiler }}" "tools/compilers/${{ inputs.compiler }}/bin" || true
@@ -53,8 +56,8 @@ jobs:
           PROBE: ${{ inputs.probe }}
           FLAGS: ${{ inputs.flags }}
         run: |
-          cc=$(find "tools/compilers/$COMPILER" -path '*/bin/*' \( -name 'psp-gcc' -o -name '*gcc' \) -type f | head -n 1)
-          echo "compiler: $cc"; "$cc" --version | head -n 1
+          cc="tools/compilers/$COMPILER/bin/psp-gcc"
+          echo "compiler: $cc"; file "$cc"; "$cc" --version | head -n 1
           IFS=';'
           for f in $FLAGS; do
             echo "=== $f"
