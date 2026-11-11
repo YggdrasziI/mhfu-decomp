@@ -90,6 +90,7 @@ All in the Metrowerks region; bounds are hypotheses until neighbours are split.
 |---|---|---|---|
 | `unit_08813574` | 0x08813574-0x08813594 | 1 function (flag set once) | 100 % |
 | `unit_088140C4` | 0x088140C4-0x08814104 | 2 vector copies | 100 % |
+| `unit_088167F4` | 0x088167F4-0x08816818 | 1 function (16-bit string length) | 100 % |
 | `unit_0881CB0C` | 0x0881CB0C-0x0881CB2C | 1 function (clears flags) | 100 % |
 | `unit_0884FC74` | 0x0884FC74-0x0884FC94 | 1 table lookup | 100 % |
 | `unit_08850704` | 0x08850704-0x08850724 | 1 entry test | 100 % |
@@ -105,13 +106,25 @@ All in the Metrowerks region; bounds are hypotheses until neighbours are split.
 | `unit_08880384` | 0x08880384-0x088803FC | 2 forwarders with a computed step, 4 setters | 100 % |
 | `unit_0888076C` | 0x0888076C-0x0888078C | 1 forwarder | 100 % |
 | `unit_08886048` | 0x08886048-0x088860A0 | 8 field getters and setters | 100 % |
+| `unit_088865B0` | 0x088865B0-0x088865D0 | 1 entry reset | 100 % |
+| `unit_08886618` | 0x08886618-0x08886638 | 1 entry setter | 100 % |
+| `unit_0888E1F8` | 0x0888E1F8-0x0888E218 | 1 dot product (x, z) | 100 % |
+| `unit_08890080` | 0x08890080-0x088900A0 | 1 setter | 100 % |
 | `unit_08898350` | 0x08898350-0x0889842C | 13 setters of global pointers | 100 % |
+| `unit_0889A024` | 0x0889A024-0x0889A064 | 2 flag + callback registrations | 100 % |
 | `unit_0889EA4C` | 0x0889EA4C-0x0889EAE8 | 19 forwarders (tail calls) | 100 % |
 | `unit_0889EC78` | 0x0889EC78-0x0889ECB8 | 8 forwarders | 100 % |
 | `unit_0889EE40` | 0x0889EE40-0x0889EEA0 | 12 forwarders | 100 % |
+| `unit_0889EF20` | 0x0889EF20-0x0889EF40 | 1 semaphore wait | 100 % |
+| `unit_0889F744` | 0x0889F744-0x0889F764 | 1 element address | 100 % |
+| `unit_088A0938` | 0x088A0938-0x088A0958 | 1 initialiser | 100 % |
 | `unit_088A0BE4` | 0x088A0BE4-0x088A0C10 | 3 forwarders, 1 flag setter | 100 % |
 | `unit_088A6024` | 0x088A6024-0x088A6040 | one function (table store) | 100 % |
+| `unit_088A8028` | 0x088A8028-0x088A8048 | 1 setter | 100 % |
+| `unit_088AB490` | 0x088AB490-0x088AB4B0 | 1 bit set | 100 % |
 | `unit_088AEFCC` | 0x088AEFCC-0x088AF020 | 4 tests and getters on small globals | 100 % |
+| `unit_088B650C` | 0x088B650C-0x088B652C | 1 counter increment | 100 % |
+| `unit_088B7958` | 0x088B7958-0x088B7978 | 1 global reset | 100 % |
 | `unit_088CC4D8` | 0x088CC4D8-0x088CC508 | six functions returning 0 | 100 % |
 | `unit_088DC6E8` | 0x088DC6E8-0x088DC720 | 6 accessors | 100 % |
 | `unit_088EF348` | 0x088EF348-0x088EF380 | 4 forwarders with a fixed first argument, 1 empty function | 100 % |
