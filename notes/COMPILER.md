@@ -77,8 +77,9 @@ compiler download) stubs the FLEXlm checkout like wibo does.
   `($gp)`), although `.rodata.sceModuleInfo` gives a gp value (0x089D3A80). By
   default mwccpsp addresses small globals through `$gp` (`.sbss`, `R_MIPS_GPREL16`);
   `-sdatathreshold 0` turns that off (`%hi`/`%lo` pairs instead). The build uses it
-  (`tools/configure.py`). No probe proves it yet: the only small global getter
-  found (`func_0880B420`) misses on a register (below).
+  (`tools/configure.py`). Proof (2026-11-11): the four functions of
+  `src/unit_088AEFCC.c` (tests and getters on `u16` / `s8` globals) match with
+  `-sdatathreshold 0` and all differ without it (0/4).
 - mwccpsp sections, seen on a test object: string literals in `.data` (strings are
   writable by default, `-str readonly` changes it), `const` tables and switch jump
   tables in `.rodata`, one `.text`/`.data`/`.rodata` group per function.
