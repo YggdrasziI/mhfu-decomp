@@ -63,6 +63,12 @@ segments:
       - [0x4FC58, asm, text_088516A4]
       - [0x64838, c, unit_08866284]
       - [0x6486C, asm, text_088662B8]
+      - [0x9D000, c, unit_0889EA4C]
+      - [0x9D09C, asm, text_0889EAE8]
+      - [0x9D22C, c, unit_0889EC78]
+      - [0x9D26C, asm, text_0889ECB8]
+      - [0x9D3F4, c, unit_0889EE40]
+      - [0x9D454, asm, text_0889EEA0]
       - [0xA45D8, c, unit_088A6024]
       - [0xA45F4, asm, text_088A6040]
       - [0x10C3EC, asm, scestub]          # .sceStub.text (system imports)
