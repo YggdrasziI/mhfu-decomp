@@ -141,6 +141,7 @@ All in the Metrowerks region; bounds are hypotheses until neighbours are split.
 | `unit_088490C8` | 0x088490C8-0x08849120 | 1 small function | 100 % |
 | `unit_0884B010` | 0x0884B010-0x0884B058 | 1 function (stores a table address in the object, then a call when the flag is positive) | 100 % |
 | `unit_0884B19C` | 0x0884B19C-0x0884B234 | 1 small function | 100 % |
+| `unit_0884D754` | 0x0884D754-0x0884D790 | 1 small function | 100 % |
 | `unit_0884DE34` | 0x0884DE34-0x0884DE3C | 1 small function | 100 % |
 | `unit_0884E858` | 0x0884E858-0x0884E884 | 1 small function | 100 % |
 | `unit_0884ECAC` | 0x0884ECAC-0x0884ED24 | 1 small function | 100 % |
@@ -237,9 +238,11 @@ All in the Metrowerks region; bounds are hypotheses until neighbours are split.
 | `unit_0886D5E4` | 0x0886D5E4-0x0886D644 | 1 small function | 100 % |
 | `unit_0886DFAC` | 0x0886DFAC-0x0886E000 | 1 small function | 100 % |
 | `unit_0886E000` | 0x0886E000-0x0886E008 | 1 small function | 100 % |
+| `unit_0886E008` | 0x0886E008-0x0886E060 | 1 small function | 100 % |
 | `unit_0886F78C` | 0x0886F78C-0x0886F79C | 1 small function | 100 % |
 | `unit_08870194` | 0x08870194-0x0887019C | 1 small function | 100 % |
 | `unit_0887019C` | 0x0887019C-0x088701D8 | 1 small function | 100 % |
+| `unit_08870D30` | 0x08870D30-0x08870D40 | 1 small function | 100 % |
 | `unit_08872E2C` | 0x08872E2C-0x08872E48 | 1 small function | 100 % |
 | `unit_08872E84` | 0x08872E84-0x08872ED4 | 3 small functions | 100 % |
 | `unit_08873980` | 0x08873980-0x088739A4 | 1 small function | 100 % |
@@ -253,7 +256,9 @@ All in the Metrowerks region; bounds are hypotheses until neighbours are split.
 | `unit_0887D0B4` | 0x0887D0B4-0x0887D0D0 | 1 small function | 100 % |
 | `unit_0887FAB4` | 0x0887FAB4-0x0887FAEC | 1 small function | 100 % |
 | `unit_0887FBBC` | 0x0887FBBC-0x0887FBC4 | 1 small function | 100 % |
+| `unit_0887FBC4` | 0x0887FBC4-0x0887FBF8 | 1 small function | 100 % |
 | `unit_0887FCBC` | 0x0887FCBC-0x0887FD04 | 3 small functions | 100 % |
+| `unit_0887FD04` | 0x0887FD04-0x0887FD64 | 3 small functions | 100 % |
 | `unit_0887FDAC` | 0x0887FDAC-0x0887FE5C | 7 getters on an array of 20-byte entries | 100 % |
 | `unit_0887FF1C` | 0x0887FF1C-0x0887FF24 | 1 small function | 100 % |
 | `unit_0887FF24` | 0x0887FF24-0x0887FF74 | 1 small function | 100 % |
@@ -275,12 +280,14 @@ All in the Metrowerks region; bounds are hypotheses until neighbours are split.
 | `unit_08885530` | 0x08885530-0x0888553C | 1 small function | 100 % |
 | `unit_088855C4` | 0x088855C4-0x088855D0 | 1 small function | 100 % |
 | `unit_08885D80` | 0x08885D80-0x08885DB0 | 1 small function | 100 % |
+| `unit_08885E00` | 0x08885E00-0x08885E3C | 1 small function | 100 % |
 | `unit_08886048` | 0x08886048-0x088860A0 | 8 field getters and setters | 100 % |
 | `unit_08886124` | 0x08886124-0x0888617C | 4 small functions | 100 % |
 | `unit_08886530` | 0x08886530-0x08886568 | 1 small function | 100 % |
 | `unit_088865B0` | 0x088865B0-0x088865D0 | 1 entry reset | 100 % |
 | `unit_08886618` | 0x08886618-0x08886638 | 1 entry setter | 100 % |
 | `unit_08886638` | 0x08886638-0x0888664C | 1 small function | 100 % |
+| `unit_0888664C` | 0x0888664C-0x08886664 | 1 small function | 100 % |
 | `unit_08886664` | 0x08886664-0x08886674 | 1 small function | 100 % |
 | `unit_0888670C` | 0x0888670C-0x08886734 | 2 small functions | 100 % |
 | `unit_08886734` | 0x08886734-0x08886780 | 1 small function | 100 % |
@@ -364,6 +371,7 @@ All in the Metrowerks region; bounds are hypotheses until neighbours are split.
 | `unit_088AD12C` | 0x088AD12C-0x088AD134 | 1 small function | 100 % |
 | `unit_088ADE7C` | 0x088ADE7C-0x088ADEAC | 1 small function | 100 % |
 | `unit_088ADEF0` | 0x088ADEF0-0x088ADF58 | 2 small functions | 100 % |
+| `unit_088AE020` | 0x088AE020-0x088AE074 | 1 small function | 100 % |
 | `unit_088AE0BC` | 0x088AE0BC-0x088AE0C8 | 1 small function | 100 % |
 | `unit_088AE1D4` | 0x088AE1D4-0x088AE1EC | 1 small function | 100 % |
 | `unit_088AE25C` | 0x088AE25C-0x088AE274 | 1 small function | 100 % |
@@ -400,6 +408,7 @@ All in the Metrowerks region; bounds are hypotheses until neighbours are split.
 | `unit_088BA860` | 0x088BA860-0x088BA870 | 1 small function | 100 % |
 | `unit_088C0200` | 0x088C0200-0x088C022C | 1 small function | 100 % |
 | `unit_088C2F88` | 0x088C2F88-0x088C2FD8 | 1 small function | 100 % |
+| `unit_088C3138` | 0x088C3138-0x088C3180 | 1 small function | 100 % |
 | `unit_088C33E0` | 0x088C33E0-0x088C33E8 | 1 small function | 100 % |
 | `unit_088C6AC8` | 0x088C6AC8-0x088C6AD4 | 1 small function | 100 % |
 | `unit_088C6AD4` | 0x088C6AD4-0x088C6ADC | 1 small function | 100 % |
@@ -422,6 +431,7 @@ All in the Metrowerks region; bounds are hypotheses until neighbours are split.
 | `unit_088D6488` | 0x088D6488-0x088D64E0 | 1 small function | 100 % |
 | `unit_088D71F0` | 0x088D71F0-0x088D722C | 1 small function | 100 % |
 | `unit_088D81E4` | 0x088D81E4-0x088D81F0 | 1 small function | 100 % |
+| `unit_088D81F0` | 0x088D81F0-0x088D81FC | 1 small function | 100 % |
 | `unit_088D88F0` | 0x088D88F0-0x088D8900 | 2 small functions | 100 % |
 | `unit_088DAA98` | 0x088DAA98-0x088DAAA0 | 1 small function | 100 % |
 | `unit_088DAE98` | 0x088DAE98-0x088DAEB0 | 2 small functions | 100 % |
@@ -436,6 +446,7 @@ All in the Metrowerks region; bounds are hypotheses until neighbours are split.
 | `unit_088DCD94` | 0x088DCD94-0x088DCDEC | 1 small function | 100 % |
 | `unit_088DD264` | 0x088DD264-0x088DD26C | 1 small function | 100 % |
 | `unit_088DD3E4` | 0x088DD3E4-0x088DD3EC | 1 small function | 100 % |
+| `unit_088DD7C4` | 0x088DD7C4-0x088DD7D8 | 1 small function | 100 % |
 | `unit_088DD7D8` | 0x088DD7D8-0x088DD7E8 | 1 small function | 100 % |
 | `unit_088DD838` | 0x088DD838-0x088DD868 | 1 small function | 100 % |
 | `unit_088DEA14` | 0x088DEA14-0x088DEA1C | 1 small function | 100 % |
@@ -485,3 +496,8 @@ m2c misses tail calls (`j f` with the argument set in the delay slot) and leaves
 unused arguments below the last used one. Straight-line functions ending in a tail
 jump are written from their assembly instead (stores in source order, then the call;
 the orders of up to three stores are tried), and missing leading arguments are added.
+An indexed access compiles to `addu index, base` only when written as an array
+access (`((u16 *)(p + off))[i]`, or `((E8 *)(p + off))[i]` with
+`typedef struct { char b[8]; } E8` for a stride other than the element size);
+pointer arithmetic gives `addu base, index`. A 16-bit store of 0xFFFF compiles to
+`ori` only through an unsigned type.
