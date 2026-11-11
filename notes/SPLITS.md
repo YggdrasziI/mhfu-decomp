@@ -96,15 +96,22 @@ All in the Metrowerks region; bounds are hypotheses until neighbours are split.
 | `unit_08850704` | 0x08850704-0x08850724 | 1 entry test | 100 % |
 | `unit_0885148C` | 0x0885148C-0x088516A4 | section and entry lookup in the block at `D_089CC440`, 21 wrappers with a fixed section number | 23/23 functions, 100 % |
 | `unit_088520A8` | 0x088520A8-0x088520C8 | 1 entry getter | 100 % |
+| `unit_08852DF8` | 0x08852DF8-0x08852E38 | 1 slot scan | 100 % |
+| `unit_08856D60` | 0x08856D60-0x08856DA0 | 1 byte search | 100 % |
 | `unit_088571C8` | 0x088571C8-0x088571E8 | 1 bit test | 100 % |
+| `unit_08857D2C` | 0x08857D2C-0x08857D6C | 1 bit clear | 100 % |
+| `unit_08859728` | 0x08859728-0x08859768 | 1 display-list enqueue | 100 % |
 | `unit_088615E4` | 0x088615E4-0x08861604 | 1 table-address initialiser | 100 % |
 | `unit_0886421C` | 0x0886421C-0x0886423C | 1 element address | 100 % |
+| `unit_08865A9C` | 0x08865A9C-0x08865ADC | 1 flag clear | 100 % |
 | `unit_08866284` | 0x08866284-0x088662B8 | one function (switch on a byte field) | 100 % |
 | `unit_08867008` | 0x08867008-0x08867058 | 4 forwarders building a byte index | 100 % |
+| `unit_0886A73C` | 0x0886A73C-0x0886A77C | 1 counter | 100 % |
 | `unit_0886D26C` | 0x0886D26C-0x0886D28C | 1 forwarder | 100 % |
+| `unit_08879158` | 0x08879158-0x08879198 | 1 sum | 100 % |
 | `unit_0887FDAC` | 0x0887FDAC-0x0887FE5C | 7 getters on an array of 20-byte entries | 100 % |
 | `unit_08880384` | 0x08880384-0x088803FC | 2 forwarders with a computed step, 4 setters | 100 % |
-| `unit_0888076C` | 0x0888076C-0x0888078C | 1 forwarder | 100 % |
+| `unit_0888076C` | 0x0888076C-0x0888080C | 3 forwarders | 100 % |
 | `unit_08886048` | 0x08886048-0x088860A0 | 8 field getters and setters | 100 % |
 | `unit_088865B0` | 0x088865B0-0x088865D0 | 1 entry reset | 100 % |
 | `unit_08886618` | 0x08886618-0x08886638 | 1 entry setter | 100 % |
@@ -116,13 +123,16 @@ All in the Metrowerks region; bounds are hypotheses until neighbours are split.
 | `unit_0889EC78` | 0x0889EC78-0x0889ECB8 | 8 forwarders | 100 % |
 | `unit_0889EE40` | 0x0889EE40-0x0889EEA0 | 12 forwarders | 100 % |
 | `unit_0889EF20` | 0x0889EF20-0x0889EF40 | 1 semaphore wait | 100 % |
+| `unit_0889F47C` | 0x0889F47C-0x0889F4BC | 1 list cursor step | 100 % |
 | `unit_0889F744` | 0x0889F744-0x0889F764 | 1 element address | 100 % |
 | `unit_088A0938` | 0x088A0938-0x088A0958 | 1 initialiser | 100 % |
 | `unit_088A0BE4` | 0x088A0BE4-0x088A0C10 | 3 forwarders, 1 flag setter | 100 % |
+| `unit_088A0D70` | 0x088A0D70-0x088A0DB0 | 1 entry reset | 100 % |
 | `unit_088A6024` | 0x088A6024-0x088A6040 | one function (table store) | 100 % |
 | `unit_088A8028` | 0x088A8028-0x088A8048 | 1 setter | 100 % |
 | `unit_088AB490` | 0x088AB490-0x088AB4B0 | 1 bit set | 100 % |
 | `unit_088AEFCC` | 0x088AEFCC-0x088AF020 | 4 tests and getters on small globals | 100 % |
+| `unit_088B0044` | 0x088B0044-0x088B0084 | 1 big-endian append | 100 % |
 | `unit_088B650C` | 0x088B650C-0x088B652C | 1 counter increment | 100 % |
 | `unit_088B7958` | 0x088B7958-0x088B7978 | 1 global reset | 100 % |
 | `unit_088CC4D8` | 0x088CC4D8-0x088CC508 | six functions returning 0 | 100 % |
