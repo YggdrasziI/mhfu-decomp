@@ -60,11 +60,17 @@ jobs:
           cc="tools/compilers/$COMPILER/bin/psp-gcc"
           [ -f "$cc" ] || cc=$(find "tools/compilers/$COMPILER" -type f \( -name 'psp-gcc' -o -name 'gcc' \) | head -n 1)
           echo "compiler: $cc"; file "$cc"; "$cc" --version | head -n 1
+          # drivers that do not find their passes: point -B at cc1 and as
+          extra=""
+          for p in $(find "tools/compilers/$COMPILER" -type f \( -name cc1 -o -name as \) -exec dirname {} \; | sort -u); do
+            extra="$extra -B$(pwd)/$p/"
+          done
+          echo "extra:$extra"
           IFS=';'
           for f in $FLAGS; do
             echo "=== $f"
             IFS=' '
-            python tools/psp/compiler_probe.py "$PROBE" --cc "$cc" -- $f || true
+            python tools/psp/compiler_probe.py "$PROBE" --cc "$cc" -- $extra $f || true
             echo "::group::disassembly ($f)"
             tools/binutils/mips-ps2-decompals-objdump -d --no-show-raw-insn "${PROBE%.*}.o" || true
             IFS=';'

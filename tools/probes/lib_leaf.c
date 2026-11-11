@@ -21,9 +21,10 @@ int func_0880EDF8(const unsigned char *s) {
 
 void func_0880C53C(void) {
     int s = sceKernelCpuSuspendIntr();
-    if (D_089CBAD8++ == 0) {
+    if (D_089CBAD8 == 0) {
         D_089CBAD4 = s;
     }
+    D_089CBAD8++;
 }
 
 void func_0880C578(void) {
