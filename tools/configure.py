@@ -33,11 +33,10 @@ BINUTILS_TAG = "v0.10"  # decompals/binutils-mips-ps2-decompals
 BINUTILS_PREFIX = project.BINUTILS_PREFIX
 OBJDIFF_VERSION = "v3.8.3"
 WIBO_VERSION = "1.2.0"  # runs the Windows compiler on Linux and macOS
-# Metrowerks for PSP: the probes match mwccpsp 3.0.1 build 147 or later at -O3+
-# (notes/COMPILER.md)
-COMPILER = "mwccpsp_3.0.1_219"  # builds 147-219 give the same code on the probes
-CC_EXE = "mwccpsp.exe"
-CC_FLAGS = "-O4 -sdatathreshold 0 -Iinclude -Isrc"  # -O3 and above match the probes (notes/COMPILER.md)
+# Metrowerks for PSP ([compiler] of decomp.toml, notes/COMPILER.md)
+COMPILER = project.CONFIG["compiler"]["name"]
+CC_EXE = project.CONFIG["compiler"]["exe"]
+CC_FLAGS = project.CONFIG["compiler"]["flags"] + " -Iinclude -Isrc"
 
 AS_FLAGS = "-EL -march=mips32r2 -mabi=32 -G0 -no-pad-sections -Iinclude"
 LD_FLAGS = "-EL --no-check-sections"

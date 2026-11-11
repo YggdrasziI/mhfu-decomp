@@ -18,5 +18,20 @@ file = "BOOT.BIN"
 splat = "splat.boot.yaml"
 relocatable = false
 
+# Compiler of the C/C++ units (tools/configure.py, tools/psp/batch_units.py):
+# mwccpsp 3.0.1, builds 147-219 give the same code on the probes, -O3 and above
+# match them (notes/COMPILER.md). Downloaded to tools/compilers/<name>/.
+[compiler]
+name = "mwccpsp_3.0.1_219"
+exe = "mwccpsp.exe"
+flags = "-O4 -sdatathreshold 0"
+
+# tools/psp/batch_units.py: the Metrowerks region of .text (notes/SPLITS.md)
+[batch]
+splits = "notes/SPLITS.md"
+
+[batch.ranges]
+ULES01213 = [[0x08811C00, 0x08904000]]
+
 [traces]
 allow = ["decompile this for me"]
