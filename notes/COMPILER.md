@@ -71,6 +71,37 @@ Findings so far:
 Running mwccpsp natively on Windows: `tools/psp/lmgr_patch.py` (applied by the
 compiler download) stubs the FLEXlm checkout like wibo does.
 
+## Small data and read-only data
+
+- No `$gp`-relative access anywhere in `.text` (0 of the loads and stores use
+  `($gp)`), although `.rodata.sceModuleInfo` gives a gp value (0x089D3A80). By
+  default mwccpsp addresses small globals through `$gp` (`.sbss`, `R_MIPS_GPREL16`);
+  `-sdatathreshold 0` turns that off (`%hi`/`%lo` pairs instead). The build uses it
+  (`tools/configure.py`). No probe proves it yet: the only small global getter
+  found (`func_0880B420`) misses on a register (below).
+- mwccpsp sections, seen on a test object: string literals in `.data` (strings are
+  writable by default, `-str readonly` changes it), `const` tables and switch jump
+  tables in `.rodata`, one `.text`/`.data`/`.rodata` group per function.
+- `BOOT.BIN` has no `.rodata` section: jump tables, float constants and strings all
+  sit in `.data` (0x0890F8F8-0x089CBA90). The addresses of the float constants grow
+  with the address of the code that loads them (from 0x0890FB38 for code at
+  0x0880xxxx up to 0x089B9230 for code at 0x0890xxxx), so the linker seems to lay
+  out each object's data in the same order as its code, `.rodata` merged into
+  `.data` (inference from the reference pattern, not proven).
+- Jump tables (splat `jtbl_`): 5 at 0x08910490-0x08910928, 144 at
+  0x08930968-0x0893325C.
+- `.data` from 0x089BB8F8 to its end is mostly pointers into `.text` (function
+  tables).
+
+## Code at the start of `.text`
+
+The two probe misses are both near the start of `.text`: `func_0880B420` (global
+getter: `lui $v1` / `lw $v0, ($v1)`, mwccpsp uses `$v0` for both) and
+`func_0880EDF8` (string length, the same kind of register swap), next to library
+string functions. All six matching probes are at 0x08822990 or above. Hypothesis:
+the start of `.text` is library code built with another compiler or version.
+Where that region ends is not known yet.
+
 ## Candidates
 
 | Compiler | Where | Status |
@@ -88,4 +119,3 @@ compares each one with `BOOT.BIN`, relocated fields masked.
 - Exact build among 147-219 and whether `-O3` or `-O4`: needs probes that tell them
   apart (larger functions, loops, inlining).
 - Whether the code is C or C++ (no mangled names seen yet).
-- Location of the read-only data.
