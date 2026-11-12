@@ -8,7 +8,7 @@ typedef int s32;
 
 extern char D_089B4F1C;
 extern char func_088C2FD8;
-extern s32 sceKernelCreateThread(char *, char *, s32, s32, s32, s32);
+extern s32 sceKernelCreateThread(const char *, void *, int, int, unsigned int, void *);
 extern int sceKernelStartThread(s32, s32, char **);
 
 void func_088C3054(char *arg0) {
