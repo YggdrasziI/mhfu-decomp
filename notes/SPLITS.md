@@ -351,6 +351,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08862710` | 0x08862710-0x08862768 | 4 small functions | 100 % |
 | `unit_088627AC` | 0x088627AC-0x088627B4 | 1 small function | 100 % |
 | `unit_08862E54` | 0x08862E54-0x08862E64 | 1 small function | 100 % |
+| `unit_08863D58` | 0x08863D58-0x08863DF4 | 1 small function | 100 % |
 | `unit_088641C0` | 0x088641C0-0x0886421C | 1 small function | 100 % |
 | `unit_0886421C` | 0x0886421C-0x0886423C | 1 element address | 100 % |
 | `unit_088642FC` | 0x088642FC-0x08864348 | 1 small function | 100 % |
@@ -927,10 +928,12 @@ not matter: `(i * 2) + p` and `p + (i * 2)` compile the same, and so do `a & b`
 and `b & a` (func_0884FF24, func_08852F1C). With an `s32` base the offset has to be
 added to a `char *` (`((u16 *)((char *)p + off))[i]`): `(u16 *)(p + off)` is an
 integer sum and costs one more instruction (11 functions, the batch tries both).
-In func_08852F1C the operands of `and` follow from the parameter type instead
-(`unsigned char` rather than `arg1 & 0xFF`, or the mask in a local), together with
-a `char *` first argument and a byte array access. The batch tries each `s32`
-parameter masked the same way at every use as `u8` / `u16` without the masks, and
-a local that only copies it replaced by the parameter (3 functions; 70 of the 397
-same-length functions narrow an argument register). A 16-bit store of 0xFFFF
-compiles to `ori` only through an unsigned type.
+The `and` of func_08852F1C is still swapped (`and $v0, $v0, $a0` against
+`$a0, $v0`) with a `u8` parameter, a `char *` base, a byte array access or the mask
+in a local: not solved. The batch tries each `s32` parameter masked the same way at
+every use as `u8` / `u16` without the masks, a local that only copies it replaced
+by the parameter (3 functions: func_0881C240, func_088493A4, func_088DDFE8; 70 of
+the 397 same-length functions narrow an argument register), and byte accesses
+through a sum of two terms as byte arrays, each term tried as the index (1
+function: func_08863D58; 65 such functions). A 16-bit store of 0xFFFF compiles to
+`ori` only through an unsigned type.
