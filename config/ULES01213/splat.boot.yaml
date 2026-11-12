@@ -1206,6 +1206,18 @@ segments:
       - [0xFB724, asm, text_088FD170]
       - [0x101F04, c, unit_08903950]
       - [0x101F60, asm, text_089039AC]
+      - [0x10A3B4, c, unit_0890BE00]
+      - [0x10A408, asm, text_0890BE54]
+      - [0x10A820, cpp, unit_0890C26C]
+      - [0x10A83C, asm, text_0890C288]
+      - [0x10A88C, c, unit_0890C2D8]
+      - [0x10A8B0, asm, text_0890C2FC]
+      - [0x10B118, c, unit_0890CB64]
+      - [0x10B174, asm, text_0890CBC0]
+      - [0x10BF04, c, unit_0890D950]
+      - [0x10BF10, asm, text_0890D95C]
+      - [0x10C3C0, c, unit_0890DE0C]
+      - [0x10C3C8, asm, text_0890DE14]
       - [0x10C3EC, asm, scestub]          # .sceStub.text (system imports)
       - [0x10CC6C, rodata, lib]           # .lib.ent*, .lib.stub*
       - [0x10CF34, rodata, sceresident]   # .rodata.sceModuleInfo, .rodata.sceResident

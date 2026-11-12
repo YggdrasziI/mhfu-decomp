@@ -782,6 +782,12 @@ All in the Metrowerks region; bounds are hypotheses until neighbours are split.
 | `unit_088FC5F8` | 0x088FC5F8-0x088FC62C | 1 small function | 100 % |
 | `unit_088FD168` | 0x088FD168-0x088FD170 | 1 small function | 100 % |
 | `unit_08903950` | 0x08903950-0x089039AC | 1 small function | 100 % |
+| `unit_0890BE00` | 0x0890BE00-0x0890BE54 | 2 small functions | 100 % |
+| `unit_0890C26C` | 0x0890C26C-0x0890C288 | 1 small function (C++) | 100 % |
+| `unit_0890C2D8` | 0x0890C2D8-0x0890C2FC | 1 small function | 100 % |
+| `unit_0890CB64` | 0x0890CB64-0x0890CBC0 | 1 small function | 100 % |
+| `unit_0890D950` | 0x0890D950-0x0890D95C | 1 small function | 100 % |
+| `unit_0890DE0C` | 0x0890DE0C-0x0890DE14 | 1 small function | 100 % |
 
 ## Method
 
