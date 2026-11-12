@@ -59,6 +59,30 @@ libc strings (`_exit`, `libc:%s: should be called from main thread`).
 | 0x089090A0 - 0x0890BE00 | unidentified, display-list code | `sceKernelDcacheWritebackAll` (0x089090A0, 0x0890A7B0, 0x0890B35C, 0x0890B918) |
 | 0x0890BE00 - 0x0890DE38 | C++ runtime | `exception`, `bad_exception`, `!std::exception!!std::bad_exception!!` (Metrowerks exception type strings, hypothesis); 0x0890BEC0 takes (block, constructor, destructor, size, count) from game code (array construction shape); 0x0890C3D8 called 42 times; 0x0890DD9C cache flush (`sceKernelDcacheWritebackAll`, `sceKernelIcacheInvalidateAll`) |
 
+### Against the Japanese build (2026-11-12)
+
+ULJM05500 is linked with SDK 3.70, ULES01213 with SDK 5.00-5.05 (`notes/COMPILER.md`).
+Each function still in assembly in ULES01213 was looked up in the ULJM05500
+assembly with every symbol, label and `%hi`/`%lo` operand masked (addresses differ;
+registers, opcodes and literals kept), so "same code" means the same instructions,
+not the same bytes:
+
+| Region | Functions | Same code in ULJM05500 |
+|---|---|---|
+| C library glue, math, conversions, reentrancy, `vfprintf` (0x08804000-0x08811C84) | 170 | 165 (68 of 76 KB) |
+| game, Metrowerks (0x08811C84-0x08903A94) | 2281 | 1990 (87 %) |
+| unidentified VFPU (0x08903A94-0x08906934) | 33 | 32 |
+| start-up (0x08906934-0x08906D08) | 3 | 2 |
+| GU library (0x08906D08-0x089090A0) | 79 | 2 (16 bytes) |
+| display-list code (0x089090A0-0x0890BE00) | 36 | 0 |
+| C++ runtime (0x0890BE00-0x0890DE38) | 30 | 30 |
+
+The C library is the same code under both SDKs. The GU library and the display-list
+code that follows it have no counterpart: ULJM05500 never calls `sceGeDrawSync` or
+`sceGeListUpdateStallAddr`, and calls `sceDisplaySetFrameBuf` from one function of
+the game region only (0x088591C8). That code (about 20.7 KB) was added to the Western
+builds.
+
 ## Evidence (first measures, 2026-11-11)
 
 Three measures over the splat output, all pointing to the same two outer regions:
