@@ -281,6 +281,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08852A50` | 0x08852A50-0x08852A60 | 1 small function | 100 % |
 | `unit_08852DF8` | 0x08852DF8-0x08852E38 | 1 slot scan | 100 % |
 | `unit_08853004` | 0x08853004-0x088530C4 | 2 small functions | 100 % |
+| `unit_08854BAC` | 0x08854BAC-0x08854BEC | 1 small function | 100 % |
 | `unit_08854D64` | 0x08854D64-0x08854D88 | 1 small function | 100 % |
 | `unit_08854E44` | 0x08854E44-0x08854EB0 | 3 small functions | 100 % |
 | `unit_08854FCC` | 0x08854FCC-0x08855038 | 3 small functions | 100 % |
@@ -305,6 +306,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08857D6C` | 0x08857D6C-0x08857D88 | 1 small function | 100 % |
 | `unit_08857E6C` | 0x08857E6C-0x08857E74 | 1 small function | 100 % |
 | `unit_08858008` | 0x08858008-0x08858010 | 1 small function | 100 % |
+| `unit_088588BC` | 0x088588BC-0x08858904 | 1 small function | 100 % |
 | `unit_08859174` | 0x08859174-0x08859188 | 1 small function | 100 % |
 | `unit_08859218` | 0x08859218-0x08859224 | 1 small function | 100 % |
 | `unit_08859224` | 0x08859224-0x088592A8 | 1 small function | 100 % |
@@ -749,6 +751,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088BFE54` | 0x088BFE54-0x088BFEF8 | 1 small function | 100 % |
 | `unit_088C0198` | 0x088C0198-0x088C0200 | 1 small function | 100 % |
 | `unit_088C0200` | 0x088C0200-0x088C022C | 1 small function | 100 % |
+| `unit_088C0594` | 0x088C0594-0x088C05FC | 1 small function | 100 % |
 | `unit_088C13E8` | 0x088C13E8-0x088C1430 | 1 small function | 100 % |
 | `unit_088C14C8` | 0x088C14C8-0x088C1828 | 2 small functions | 100 % |
 | `unit_088C2F88` | 0x088C2F88-0x088C2FD8 | 1 small function | 100 % |
@@ -946,5 +949,12 @@ prototype), its caret sits under the `)` of the call, not under the argument: th
 batch casts each argument in turn, pointer-looking ones first, until the error
 leaves the line (44 of the 102 functions without a compiling draft stopped there;
 +6 functions). A `sce*` prototype guessed by m2c is then replaced by the pspsdk one
-(`sceKernelStopModule` in unit_088B86D4). A 16-bit store of 0xFFFF compiles to
+(`sceKernelStopModule` in unit_088B86D4). m2c declares only the first field of a
+stack structure passed by address (`u16 sp10;`, `&sp10`) and uses the others
+undeclared (`sp12`, `unksp2E`): the batch makes that local an array of its type up
+to the next local passed by address or the frame top, the other fields its
+elements (or casts at the width the function loads them). 26 of the 64 functions
+without a compiling draft had such names; +3, all three a `ScePspDateTime` filled
+by `sceRtcGetCurrentClockLocalTime`, then written with the pspsdk structure
+(layout from pspsdk `psptypes.h`). A 16-bit store of 0xFFFF compiles to
 `ori` only through an unsigned type.
