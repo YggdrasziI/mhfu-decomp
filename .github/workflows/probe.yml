@@ -52,6 +52,7 @@ jobs:
           case "${{ inputs.compiler }}" in
             pspdev-*)
               # prebuilt pspdev toolchain (homebrew GCC, github.com/pspdev/pspdev releases)
+              apt-get install -y -qq --no-install-recommends libmpc3 libmpfr6 libgmp10 libisl23 libzstd1 zlib1g >/dev/null
               tag="${{ inputs.compiler }}"; tag="${tag#pspdev-}"
               if [ "$tag" = latest ]; then base=latest/download; else base="download/$tag"; fi
               mkdir -p "tools/compilers/${{ inputs.compiler }}"
