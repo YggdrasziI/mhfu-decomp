@@ -7,25 +7,27 @@
  * arguments, which compiles to the same code.
  */
 
-extern void func_088A65D4();
-extern void func_088A6628();
-extern void func_088A6798();
-extern void func_088A67D8();
-extern void func_088A6818();
-extern void func_088A6868();
-extern void func_088A68B8();
-extern void func_088A68FC();
-extern void func_088A6940();
-extern void func_088A69DC();
-extern void func_088A6BA0();
-extern void func_088A6C48();
+typedef int s32;
 
-void func_0889EE40(void) {
-    func_088A65D4();
+extern void func_088A65D4(s32);
+extern void func_088A6628(s32, s32, s32);
+extern void func_088A6798(void);
+extern void func_088A67D8(void);
+extern void func_088A6818(s32);
+extern void func_088A6868(s32);
+extern void func_088A68B8(s32);
+extern void func_088A68FC(s32);
+extern void func_088A6940(s32, s32, s32);
+extern void func_088A69DC(s32, s32, s32);
+extern void func_088A6BA0(s32, s32, s32, s32);
+extern void func_088A6C48(s32);
+
+void func_0889EE40(s32 arg0) {
+    func_088A65D4(arg0);
 }
 
-void func_0889EE48(void) {
-    func_088A6628();
+void func_0889EE48(s32 arg0, s32 arg1, s32 arg2) {
+    func_088A6628(arg0, arg1, arg2);
 }
 
 void func_0889EE50(void) {
@@ -36,34 +38,34 @@ void func_0889EE58(void) {
     func_088A67D8();
 }
 
-void func_0889EE60(void) {
-    func_088A6818();
+void func_0889EE60(s32 arg0) {
+    func_088A6818(arg0);
 }
 
-void func_0889EE68(void) {
-    func_088A6868();
+void func_0889EE68(s32 arg0) {
+    func_088A6868(arg0);
 }
 
-void func_0889EE70(void) {
-    func_088A68B8();
+void func_0889EE70(s32 arg0) {
+    func_088A68B8(arg0);
 }
 
-void func_0889EE78(void) {
-    func_088A68FC();
+void func_0889EE78(s32 arg0) {
+    func_088A68FC(arg0);
 }
 
-void func_0889EE80(void) {
-    func_088A6940();
+void func_0889EE80(s32 arg0, s32 arg1, s32 arg2) {
+    func_088A6940(arg0, arg1, arg2);
 }
 
-void func_0889EE88(void) {
-    func_088A69DC();
+void func_0889EE88(s32 arg0, s32 arg1, s32 arg2) {
+    func_088A69DC(arg0, arg1, arg2);
 }
 
-void func_0889EE90(void) {
-    func_088A6BA0();
+void func_0889EE90(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    func_088A6BA0(arg0, arg1, arg2, arg3);
 }
 
-void func_0889EE98(void) {
-    func_088A6C48();
+void func_0889EE98(s32 arg0) {
+    func_088A6C48(arg0);
 }

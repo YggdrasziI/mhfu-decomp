@@ -10,7 +10,7 @@ extern char *D_08A62C60;
 extern s32 D_08A62C6C;
 extern s32 D_08A62C74;
 
-s32 func_0884FB6C(void) {
+s32 func_0884FB6C(s32 arg0) {
     s32 var_v0;
 
     var_v0 = 0;

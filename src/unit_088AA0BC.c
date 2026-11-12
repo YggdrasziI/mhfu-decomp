@@ -16,7 +16,7 @@ extern int func_088A84B4(char *, s32, s32);
 extern int func_088AAE10(char *);
 extern int func_088AB028(char *);
 
-void func_088AA0BC(void) {
+void func_088AA0BC(s32 arg0, s32 arg1, s32 arg2) {
     char *var_s1;
     s32 var_s0;
 

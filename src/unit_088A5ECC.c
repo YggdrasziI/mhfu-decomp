@@ -5,11 +5,11 @@
 
 typedef int s32;
 
-s32 func_088A4654();
+s32 func_088A4654(s32, s32, s32);
 
-s32 func_088A5ECC(s32 arg0) {
+s32 func_088A5ECC(s32 arg0, s32 arg1, s32 arg2) {
     if (arg0 != 0x309) {
         return 0;
     }
-    return func_088A4654();
+    return func_088A4654(arg0, arg1, arg2);
 }

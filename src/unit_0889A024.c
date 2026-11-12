@@ -3,9 +3,11 @@
  * Bounds (hypothesis): two functions that set a flag and register a callback, between unrelated code.
  */
 
+typedef int s32;
+
 extern void func_088B1708(int kind, void (*callback)(), void *arg);
-extern void func_0889AA08();
-extern void func_0889AACC();
+extern void func_0889AA08(s32);
+extern void func_0889AACC(s32);
 
 void func_0889A024(char *o) {
     *(int *)(o + 0x12C0) |= 0x800;

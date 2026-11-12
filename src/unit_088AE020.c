@@ -8,7 +8,7 @@ typedef unsigned char u8;
 typedef unsigned short u16;
 typedef int s32;
 
-s32 sceNetAdhocctlScan();
+s32 sceNetAdhocctlScan(void);
 extern s8 D_09A1FDE8;
 
 void func_088AE020(char *arg0) {

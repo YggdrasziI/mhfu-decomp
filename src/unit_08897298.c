@@ -3,5 +3,7 @@
  * Bounds (hypothesis): 1 small function between code still in assembly.
  */
 
-void func_08897298(void) {
+typedef int s32;
+
+void func_08897298(s32 arg0) {
 }

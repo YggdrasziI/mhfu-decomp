@@ -19,7 +19,7 @@ s32 func_088ADEF0(s32 arg0, s32 arg1, char *arg2) {
     return 0;
 }
 
-s32 func_088ACB1C();
+s32 func_088ACB1C(void);
 
 void func_088ADF24(char *arg0) {
     if (*(u8 *)(arg0 + 0xC) != 0) {

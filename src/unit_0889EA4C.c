@@ -7,100 +7,102 @@
  * arguments, which compiles to the same code.
  */
 
+typedef int s32;
+
 typedef unsigned short u16;
 
-extern void func_0889ECB8(int a, int b);
-extern void func_0889EC78();
-extern void func_0889EC80();
-extern void func_0889EC88();
-extern void func_0889EC90();
-extern void func_0889EC98();
+extern void func_0889ECB8(int a, int b, s32);
+extern void func_0889EC78(void);
+extern void func_0889EC80(void);
+extern void func_0889EC88(s32, s32, s32, s32, s32, s32, s32, s32);
+extern void func_0889EC90(s32, s32);
+extern void func_0889EC98(s32);
 extern int func_0889ECA0(int i, int v);
-extern void func_0889ECA8();
-extern void func_0889ECB0();
-extern void func_0889EE48();
-extern void func_0889EE50();
-extern void func_0889EE58();
-extern void func_0889EE60();
-extern void func_0889EE68();
-extern void func_0889EE70();
-extern void func_0889EE78();
-extern void func_0889EE88();
-extern void func_0889EE90();
-extern void func_0889EE98();
+extern void func_0889ECA8(s32);
+extern void func_0889ECB0(s32, s32, s32);
+extern void func_0889EE48(s32, s32, s32);
+extern void func_0889EE50(void);
+extern void func_0889EE58(void);
+extern void func_0889EE60(s32);
+extern void func_0889EE68(s32);
+extern void func_0889EE70(s32);
+extern void func_0889EE78(s32);
+extern void func_0889EE88(s32, s32, s32);
+extern void func_0889EE90(s32, s32, s32, s32);
+extern void func_0889EE98(s32);
 
 void func_0889EA4C(void) {
     func_0889EC78();
 }
 
-void func_0889EA54(void) {
+void func_0889EA54(s32 arg0) {
     func_0889EC80();
 }
 
-void func_0889EA5C(void) {
-    func_0889EC88();
+void func_0889EA5C(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6, s32 arg7) {
+    func_0889EC88(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
 }
 
-void func_0889EA64(void) {
-    func_0889EC90();
+void func_0889EA64(s32 arg0, s32 arg1) {
+    func_0889EC90(arg0, arg1);
 }
 
 int func_0889EA6C(int i, int v) {
     return func_0889ECA0(i, v);
 }
 
-void func_0889EA74(void) {
-    func_0889ECA8();
+void func_0889EA74(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    func_0889ECA8(arg0);
 }
 
-void func_0889EA7C(void) {
-    func_0889ECB0();
+void func_0889EA7C(s32 arg0, s32 arg1, s32 arg2) {
+    func_0889ECB0(arg0, arg1, arg2);
 }
 
-void func_0889EA84(void) {
-    func_0889EE48();
+void func_0889EA84(s32 arg0, s32 arg1, s32 arg2) {
+    func_0889EE48(arg0, arg1, arg2);
 }
 
-void func_0889EA8C(void) {
-    func_0889EE98();
+void func_0889EA8C(s32 arg0) {
+    func_0889EE98(arg0);
 }
 
-void func_0889EA94(void) {
+void func_0889EA94(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     func_0889EE50();
 }
 
-void func_0889EA9C(void) {
-    func_0889EE60();
+void func_0889EA9C(s32 arg0) {
+    func_0889EE60(arg0);
 }
 
-void func_0889EAA4(void) {
-    func_0889EE70();
+void func_0889EAA4(s32 arg0) {
+    func_0889EE70(arg0);
 }
 
-void func_0889EAAC(void) {
+void func_0889EAAC(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     func_0889EE58();
 }
 
-void func_0889EAB4(void) {
-    func_0889EE68();
+void func_0889EAB4(s32 arg0) {
+    func_0889EE68(arg0);
 }
 
-void func_0889EABC(void) {
-    func_0889EE78();
+void func_0889EABC(s32 arg0) {
+    func_0889EE78(arg0);
 }
 
-void func_0889EAC4(void) {
-    func_0889EE88();
+void func_0889EAC4(s32 arg0, s32 arg1, s32 arg2) {
+    func_0889EE88(arg0, arg1, arg2);
 }
 
-void func_0889EACC(void) {
-    func_0889EE90();
+void func_0889EACC(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
+    func_0889EE90(arg0, arg1, arg2, arg3);
 }
 
-void func_0889EAD4(void) {
-    func_0889EC98();
+void func_0889EAD4(s32 arg0) {
+    func_0889EC98(arg0);
 }
 
-void func_0889EADC(u16 a, u16 b) {
-    func_0889ECB8(a, b);
+void func_0889EADC(u16 a, u16 b, s32 arg2) {
+    func_0889ECB8(a, b, arg2);
 }

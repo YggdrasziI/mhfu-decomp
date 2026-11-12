@@ -3,10 +3,12 @@
  * Bounds (hypothesis): 3 tests with a fallback call, between unrelated code.
  */
 
+typedef int s32;
+
 typedef unsigned char u8;
 
-extern int func_088B863C(void *p);
-extern int func_088B8688(void *p);
+extern int func_088B863C(void *p, s32);
+extern int func_088B8688(void *p, s32);
 extern int func_088B8624(void *p);
 
 int func_0884F510(char *p) {
@@ -16,16 +18,16 @@ int func_0884F510(char *p) {
     return func_088B8624(p);
 }
 
-int func_0884F55C(char *p) {
+int func_0884F55C(char *p, s32 arg1) {
     if (*(u8 *)(p + 0x2FBDC) != 0 && *(int *)(p + 0x2FBE0) != 0) {
         return 1;
     }
-    return func_088B863C(p);
+    return func_088B863C(p, arg1);
 }
 
-int func_0884F5A8(char *p) {
+int func_0884F5A8(char *p, s32 arg1) {
     if (*(u8 *)(p + 0x2FBDC) != 0 && *(int *)(p + 0x2FBE0) != 0) {
         return 1;
     }
-    return func_088B8688(p);
+    return func_088B8688(p, arg1);
 }

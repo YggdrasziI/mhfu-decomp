@@ -9,11 +9,11 @@ extern s32 D_089CC438;
 extern int func_0880C084(s32, s32, s32);
 extern s32 func_08856884(s32, s32);
 
-void func_088D8900(void) {
+void func_088D8900(s32 arg0) {
     func_0880C084(D_089CC438 + 0x43C8, func_08856884(D_089CC438, 0), 0x60);
 }
 
-void func_088D893C(void) {
+void func_088D893C(s32 arg0) {
     s32 temp_s0;
 
     temp_s0 = D_089CC438;

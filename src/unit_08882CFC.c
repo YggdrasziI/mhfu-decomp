@@ -5,9 +5,9 @@
 
 typedef int s32;
 
-s32 func_0888670C(s32);
+s32 func_0888670C(s32, s32);
 extern s32 D_08A62D94;
 
-s32 func_08882CFC(void) {
-    return func_0888670C(D_08A62D94) & 0xFFFF;
+s32 func_08882CFC(s32 arg0, s32 arg1) {
+    return func_0888670C(D_08A62D94, arg1) & 0xFFFF;
 }

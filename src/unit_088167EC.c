@@ -3,8 +3,10 @@
  * Bounds (hypothesis): 1 small function between code still in assembly.
  */
 
-extern void func_088167D4(void);
+typedef int s32;
 
-void func_088167EC(void) {
-    func_088167D4();
+extern void func_088167D4(s32, s32);
+
+void func_088167EC(s32 arg0, s32 arg1) {
+    func_088167D4(arg0, arg1);
 }

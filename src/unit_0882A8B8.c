@@ -3,12 +3,14 @@
  * Bounds (hypothesis): 1 state code from a byte field, between unrelated code.
  */
 
+typedef int s32;
+
 typedef unsigned char u8;
 
-extern char *func_0883B3D4(void);
+extern char *func_0883B3D4(s32, s32);
 
-int func_0882A8B8(void) {
-    char *p = func_0883B3D4();
+int func_0882A8B8(s32 arg0, s32 arg1) {
+    char *p = func_0883B3D4(arg0, arg1);
 
     if (p == 0) {
         return 3;

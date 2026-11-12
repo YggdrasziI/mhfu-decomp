@@ -18,8 +18,6 @@ char *func_0886272C(char *arg0, s32 arg1) {
     return arg0 + *(s32 *)(arg0 + 0x20) + (arg1 * 0x18);
 }
 
-char *func_0886272C();
-
-u8 func_08862748(void) {
-    return *(u8 *)((char *)(func_0886272C()) + 0x10);
+u8 func_08862748(s32 arg0, s32 arg1) {
+    return *(u8 *)((char *)(func_0886272C((char *)arg0, arg1)) + 0x10);
 }

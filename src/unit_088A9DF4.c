@@ -5,7 +5,7 @@
 
 typedef int s32;
 
-s32 func_088A9CFC();
+s32 func_088A9CFC(void);
 extern s32 D_09A1D6FC;
 
 void func_088A9DF4(char *arg0) {

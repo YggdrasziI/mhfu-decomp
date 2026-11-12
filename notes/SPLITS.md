@@ -682,6 +682,18 @@ counts of `func_0887FFE0`, `func_088802F4`, `func_08886898`, `func_0889F9A0`,
 and `func_088AB1A0` are assumptions: their callee ends in a call whose arguments are
 not known (a system import or a deeper chain).
 
+Each function has one argument count across all files, checked by
+`tools/psp/prototypes.py` (0 problems). The count is the largest of: the C
+definition, the declarations, the calls, and the argument registers the function
+reads anywhere before writing them (a lower bound; variadic functions, which store
+`$t3` on the stack, are skipped). Counts were only raised, never lowered: an argument
+that looks passed through may sit in a register the compiler had to fill. Raising a
+count gives definitions unused `s32` parameters and calls the caller's own
+parameters (pass-through), which compiles to the same code. One exception:
+`func_088B6B14` reads one argument; three tail callers that passed two more of their
+own were cut back to one, as the other callers cannot pass them. Declarations without
+a prototype (`f();`) became prototypes with explicit pass-through arguments.
+
 m2c misses tail calls (`j f` with the argument set in the delay slot) and leaves out
 unused arguments below the last used one. Straight-line functions ending in a tail
 jump are written from their assembly instead (stores in source order, then the call;

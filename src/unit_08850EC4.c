@@ -5,7 +5,7 @@
 
 typedef short s16;
 
-s16 func_08850E58();
+s16 func_08850E58(void);
 
 s16 func_08850EC4(void) {
     return (s16) (func_08850E58() * 0x64);

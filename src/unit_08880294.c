@@ -18,7 +18,7 @@ void func_08880294(s32 arg0, s32 arg1, s32 arg2) {
     func_0889EABC(arg1);
 }
 
-void func_088802C4(s32 arg0, s32 arg1, s32 arg2) {
+void func_088802C4(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
     if (arg2 != 0) {
         func_0889EA9C(arg1);
         return;

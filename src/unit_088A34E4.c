@@ -11,7 +11,7 @@ extern int func_08897A08(s32, s32);
 extern int func_08897A78(s32, s32, s32);
 extern int func_08897B48(s32, s32);
 
-void func_088A34E4(void) {
+void func_088A34E4(s32 arg0) {
     if (D_09A0DA88 == 1) {
         func_08897A08(D_09A0DA74, 0x100);
         func_08897A78(D_09A0DA74, 0x8000, 0x8000);

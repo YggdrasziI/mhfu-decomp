@@ -6,10 +6,10 @@
 typedef int s32;
 
 extern s32 D_08A62D84;
-extern int func_08880294(s32);
+extern int func_08880294(s32, s32, s32);
 
-void func_088854A0(s32 arg0, s32 arg1) {
+void func_088854A0(s32 arg0, s32 arg1, s32 arg2) {
     if (arg1 != 0) {
-        func_08880294(D_08A62D84);
+        func_08880294(D_08A62D84, arg1, arg2);
     }
 }

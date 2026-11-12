@@ -7,9 +7,9 @@ typedef int s32;
 
 extern char D_08A631B8;
 extern s32 D_08A8B1E0;
-extern int func_08859C40(char *);
+extern int func_08859C40(char *, s32);
 
 void func_08892F88(s32 arg0, char *arg1) {
     D_08A8B1E0 -= *(s32 *)(arg1 + -0x10) * 0x10;
-    func_08859C40(&D_08A631B8);
+    func_08859C40(&D_08A631B8, (s32)arg1);
 }
