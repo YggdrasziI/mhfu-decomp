@@ -190,6 +190,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08816B6C` | 0x08816B6C-0x08816BE4 | 1 small function | 100 % |
 | `unit_0881A8E0` | 0x0881A8E0-0x0881A8F8 | 1 small function | 100 % |
 | `unit_0881C240` | 0x0881C240-0x0881C2E4 | 1 small function | 100 % |
+| `unit_0881C884` | 0x0881C884-0x0881C944 | 1 small function (C++) | 100 % |
 | `unit_0881CAC8` | 0x0881CAC8-0x0881CB0C | 1 reset (call, byte and flag clear) | 100 % |
 | `unit_0881CB0C` | 0x0881CB0C-0x0881CB2C | 1 function (clears flags) | 100 % |
 | `unit_0881E8F8` | 0x0881E8F8-0x0881E92C | 1 small function | 100 % |
@@ -205,6 +206,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0882693C` | 0x0882693C-0x088269C0 | 1 small function | 100 % |
 | `unit_08826EEC` | 0x08826EEC-0x08826EF4 | 1 small function | 100 % |
 | `unit_08826F80` | 0x08826F80-0x08826FCC | 1 count of used slots, divided | 100 % |
+| `unit_08828884` | 0x08828884-0x08828938 | 1 small function (C++) | 100 % |
 | `unit_088298E4` | 0x088298E4-0x08829928 | 1 pointer chosen by a bool flag (C++) | 100 % |
 | `unit_08829E6C` | 0x08829E6C-0x08829EEC | 1 small function | 100 % |
 | `unit_08829EEC` | 0x08829EEC-0x08829F04 | 2 small functions | 100 % |
@@ -239,6 +241,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08844654` | 0x08844654-0x0884469C | 1 test on a call result | 100 % |
 | `unit_0884469C` | 0x0884469C-0x088446CC | 1 small function | 100 % |
 | `unit_0884860C` | 0x0884860C-0x08848630 | 2 small functions | 100 % |
+| `unit_08848D30` | 0x08848D30-0x08848E04 | 1 small function (C++) | 100 % |
 | `unit_088490C8` | 0x088490C8-0x08849120 | 1 small function | 100 % |
 | `unit_088493A4` | 0x088493A4-0x08849404 | 1 small function | 100 % |
 | `unit_08849B6C` | 0x08849B6C-0x08849BCC | 1 small function | 100 % |
@@ -292,8 +295,10 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0885683C` | 0x0885683C-0x08856884 | 1 state set with two calls | 100 % |
 | `unit_08856884` | 0x08856884-0x088568AC | 1 small function | 100 % |
 | `unit_088568AC` | 0x088568AC-0x08856920 | 1 small function | 100 % |
+| `unit_08856BC8` | 0x08856BC8-0x08856C94 | 2 small functions (C++) | 100 % |
 | `unit_08856C94` | 0x08856C94-0x08856CA0 | 1 small function | 100 % |
 | `unit_08856D60` | 0x08856D60-0x08856DA0 | 1 byte search | 100 % |
+| `unit_08856E34` | 0x08856E34-0x08856E8C | 1 small function (C++) | 100 % |
 | `unit_08856FF4` | 0x08856FF4-0x08857058 | 1 small function | 100 % |
 | `unit_088571C8` | 0x088571C8-0x088571E8 | 1 bit test | 100 % |
 | `unit_088571E8` | 0x088571E8-0x088571F8 | 1 small function | 100 % |
@@ -377,6 +382,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08866284` | 0x08866284-0x088662B8 | one function (switch on a byte field) | 100 % |
 | `unit_088662B8` | 0x088662B8-0x088664A8 | 1 small function | 100 % |
 | `unit_088664A8` | 0x088664A8-0x088664F8 | 1 small function | 100 % |
+| `unit_08866708` | 0x08866708-0x0886678C | 1 small function (C++) | 100 % |
 | `unit_08866AAC` | 0x08866AAC-0x08866B5C | 1 small function | 100 % |
 | `unit_08866B8C` | 0x08866B8C-0x08866BD4 | 1 small function | 100 % |
 | `unit_08866C04` | 0x08866C04-0x08866CB8 | 1 small function | 100 % |
@@ -485,6 +491,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08882F64` | 0x08882F64-0x08882FA4 | 1 small function | 100 % |
 | `unit_08883268` | 0x08883268-0x0888334C | 3 small functions | 100 % |
 | `unit_08883374` | 0x08883374-0x08883384 | 1 small function | 100 % |
+| `unit_08883988` | 0x08883988-0x08883B54 | 2 small functions | 100 % |
 | `unit_08884CD4` | 0x08884CD4-0x08884CE4 | 1 small function | 100 % |
 | `unit_08885494` | 0x08885494-0x088854A0 | 1 small function | 100 % |
 | `unit_088854A0` | 0x088854A0-0x088854C4 | 1 small function | 100 % |
@@ -545,6 +552,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08893390` | 0x08893390-0x08893444 | 1 small function | 100 % |
 | `unit_08894B00` | 0x08894B00-0x08894B0C | 1 small function | 100 % |
 | `unit_0889560C` | 0x0889560C-0x08895644 | 1 small function | 100 % |
+| `unit_08895EA0` | 0x08895EA0-0x08895F3C | 1 small function (C++) | 100 % |
 | `unit_08895F3C` | 0x08895F3C-0x08895FFC | 1 small function | 100 % |
 | `unit_0889645C` | 0x0889645C-0x08896484 | 1 small function | 100 % |
 | `unit_08896A50` | 0x08896A50-0x08896AD4 | 1 small function | 100 % |
@@ -973,5 +981,10 @@ by `sceRtcGetCurrentClockLocalTime`, then written with the pspsdk structure
 (`lui` + `ori`); added to a `char *` (`*(s32 *)((char *)p + 0x5623D0)`) it is split
 between `lui` and the load or store offset, as in the original (func_08880864).
 51 of the 626 functions of the wrong length had that sum, 46 of them with the extra
-`ori`; +13. A 16-bit store of 0xFFFF compiles to
+`ori`; +13. Flag tests compiled as `andi`, `sltu $v0, $zero, $v0`, then a branch
+on 0 or 1 are a C++ `bool` compared with 0 or 1 (an inlined `bool` getter, probably):
+`(bool) (x & 1) == 0` matches where `!(x & 1)` and `((x & 1) != 0) == 0` do not
+(C folds the comparison away). The batch tries `!(A & K)`, `(A & K) == 0` and
+`(A & K) == 1` that way in C++; 35 of the 626 functions of the wrong length lacked
+that `sltu`; +10 (func_0881C884, func_08828884, ...). A 16-bit store of 0xFFFF compiles to
 `ori` only through an unsigned type.
