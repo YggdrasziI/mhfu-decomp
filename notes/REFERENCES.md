@@ -8,6 +8,10 @@
 - [objdiff](https://github.com/encounter/objdiff), [m2c](https://github.com/matt-kempster/m2c),
   [decomp-permuter](https://github.com/simonlindholm/decomp-permuter).
 - [decomp.me compiler archive](https://github.com/decompme/compilers) (`mwccpsp`, `pspsnc`, `psp-gcc` builds).
+- [pspdev/gcc](https://github.com/pspdev/gcc) and the prebuilt
+  [pspdev toolchain](https://github.com/pspdev/pspdev/releases) (GPL): homebrew GCC
+  for the PSP, branches from GCC 4.6.4 to 15.x; not the Sony SDK lineage. Run by the
+  `Compiler probe` workflow (`compiler: pspdev-<release tag>`).
 - [wibo](https://github.com/decompals/wibo) to run the Windows compiler on Linux.
 - [Ghidra](https://github.com/NationalSecurityAgency/ghidra) with
   [ghidra-allegrex](https://github.com/kotcrab/ghidra-allegrex).

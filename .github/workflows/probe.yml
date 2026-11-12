@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
     inputs:
       compiler:
-        description: decomp.me compiler id
+        description: decomp.me compiler id, or pspdev-<release tag> (pspdev-latest) for the pspdev toolchain
         default: psp-gcc-1.3.1
       probe:
         description: probe source
@@ -49,7 +49,20 @@ jobs:
           # the psp-gcc archives hold 32-bit x86 binaries
           dpkg --add-architecture i386
           apt-get update -qq && apt-get install -y -qq --no-install-recommends libc6:i386 file >/dev/null
-          python tools/psp/download_tool.py compiler "${{ inputs.compiler }}" --path "tools/compilers/${{ inputs.compiler }}"
+          case "${{ inputs.compiler }}" in
+            pspdev-*)
+              # prebuilt pspdev toolchain (homebrew GCC, github.com/pspdev/pspdev releases)
+              tag="${{ inputs.compiler }}"; tag="${tag#pspdev-}"
+              if [ "$tag" = latest ]; then base=latest/download; else base="download/$tag"; fi
+              mkdir -p "tools/compilers/${{ inputs.compiler }}"
+              python -c "import sys, urllib.request; urllib.request.urlretrieve(sys.argv[1], sys.argv[2])" \
+                "https://github.com/pspdev/pspdev/releases/$base/pspdev-ubuntu-latest-x86_64.tar.gz" /tmp/pspdev.tar.gz
+              tar -xzf /tmp/pspdev.tar.gz -C "tools/compilers/${{ inputs.compiler }}" --strip-components=1
+              ;;
+            *)
+              python tools/psp/download_tool.py compiler "${{ inputs.compiler }}" --path "tools/compilers/${{ inputs.compiler }}"
+              ;;
+          esac
           chmod -R u+x "tools/compilers/${{ inputs.compiler }}"
           if [ -n "${{ inputs.as_from }}" ]; then
             python tools/psp/download_tool.py compiler "${{ inputs.as_from }}" --path "tools/compilers/${{ inputs.as_from }}"
