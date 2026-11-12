@@ -256,6 +256,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0884F2CC` | 0x0884F2CC-0x0884F2E0 | 1 small function | 100 % |
 | `unit_0884F3FC` | 0x0884F3FC-0x0884F440 | 1 comparison of a 20-byte entry | 100 % |
 | `unit_0884F510` | 0x0884F510-0x0884F5F4 | 3 tests with a fallback call | 100 % |
+| `unit_0884F5F4` | 0x0884F5F4-0x0884F670 | 1 small function | 100 % |
 | `unit_0884F86C` | 0x0884F86C-0x0884F8D4 | 2 small functions | 100 % |
 | `unit_0884FA0C` | 0x0884FA0C-0x0884FA5C | 1 small function | 100 % |
 | `unit_0884FB6C` | 0x0884FB6C-0x0884FBA4 | 1 small function | 100 % |
@@ -382,6 +383,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08867008` | 0x08867008-0x08867058 | 4 forwarders building a byte index | 100 % |
 | `unit_08867EC8` | 0x08867EC8-0x08867F34 | 1 small function | 100 % |
 | `unit_08868678` | 0x08868678-0x08868680 | 1 small function | 100 % |
+| `unit_088688C8` | 0x088688C8-0x088689F4 | 2 small functions | 100 % |
 | `unit_088689F4` | 0x088689F4-0x088689FC | 1 small function | 100 % |
 | `unit_08868F0C` | 0x08868F0C-0x08868F50 | 1 small function | 100 % |
 | `unit_08869564` | 0x08869564-0x08869570 | 1 small function | 100 % |
@@ -411,6 +413,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0886F78C` | 0x0886F78C-0x0886F79C | 1 small function | 100 % |
 | `unit_08870194` | 0x08870194-0x0887019C | 1 small function | 100 % |
 | `unit_0887019C` | 0x0887019C-0x088701D8 | 1 small function | 100 % |
+| `unit_08870AC4` | 0x08870AC4-0x08870AEC | 1 small function | 100 % |
 | `unit_08870D30` | 0x08870D30-0x08870D40 | 1 small function | 100 % |
 | `unit_08872B2C` | 0x08872B2C-0x08872B40 | 1 small function | 100 % |
 | `unit_08872DC4` | 0x08872DC4-0x08872DF4 | 3 small functions | 100 % |
@@ -457,6 +460,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08880324` | 0x08880324-0x08880350 | 1 small function | 100 % |
 | `unit_08880378` | 0x08880378-0x08880384 | 1 small function | 100 % |
 | `unit_08880384` | 0x08880384-0x088803FC | 2 forwarders with a computed step, 4 setters | 100 % |
+| `unit_08880498` | 0x08880498-0x0888051C | 1 small function | 100 % |
 | `unit_08880760` | 0x08880760-0x0888076C | 1 small function | 100 % |
 | `unit_0888076C` | 0x0888076C-0x0888080C | 3 forwarders | 100 % |
 | `unit_088813E0` | 0x088813E0-0x08881438 | 1 small function | 100 % |
@@ -729,6 +733,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088B7A38` | 0x088B7A38-0x088B7A5C | 2 small functions | 100 % |
 | `unit_088B8404` | 0x088B8404-0x088B8460 | 1 small function | 100 % |
 | `unit_088B863C` | 0x088B863C-0x088B86D4 | 2 small functions | 100 % |
+| `unit_088B86D4` | 0x088B86D4-0x088B871C | 1 small function | 100 % |
 | `unit_088B89A8` | 0x088B89A8-0x088B89B0 | 1 small function | 100 % |
 | `unit_088B8A0C` | 0x088B8A0C-0x088B8A58 | 1 small function | 100 % |
 | `unit_088B97A0` | 0x088B97A0-0x088B97BC | 1 small function | 100 % |
@@ -935,5 +940,11 @@ every use as `u8` / `u16` without the masks, a local that only copies it replace
 by the parameter (3 functions: func_0881C240, func_088493A4, func_088DDFE8; 70 of
 the 397 same-length functions narrow an argument register), and byte accesses
 through a sum of two terms as byte arrays, each term tried as the index (1
-function: func_08863D58; 65 such functions). A 16-bit store of 0xFFFF compiles to
+function: func_08863D58; 65 such functions). When mwccpsp rejects an implicit
+conversion in a call (a pointer passed to an `s32` parameter of a guessed
+prototype), its caret sits under the `)` of the call, not under the argument: the
+batch casts each argument in turn, pointer-looking ones first, until the error
+leaves the line (44 of the 102 functions without a compiling draft stopped there;
++6 functions). A `sce*` prototype guessed by m2c is then replaced by the pspsdk one
+(`sceKernelStopModule` in unit_088B86D4). A 16-bit store of 0xFFFF compiles to
 `ori` only through an unsigned type.
