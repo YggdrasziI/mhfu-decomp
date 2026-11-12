@@ -6,6 +6,7 @@
 |---|---|
 | Metrowerks CodeWarrior MIPS toolchain | `.comment` of `BOOT.BIN` in all three versions: `MW MIPS C Compiler (2.4.1.01)` then `PSP` (ULES01213: file 0x1D24F8) |
 | Static executable linked by the SDK linker layout | `.sceStub.text`, `.lib.ent*`, `.lib.stub*`, `.rodata.sceModuleInfo`, `.rodata.sceResident`, `.rodata.sceNid`, `.rodata.sceVstub` sections |
+| Sony SDK of each version | start-up code calls `sceKernelSetCompiledSdkVersion500_505` in ULES01213 and ULUS10391 (SDK 5.00-5.05), `sceKernelSetCompiledSdkVersion370` in ULJM05500 (SDK 3.70): the library regions of `notes/SPLITS.md` may differ between the Japanese and the Western builds |
 | No separate `.rodata` | section headers: read-only data sits in `.text` or `.data` (to be located) |
 | No source file paths in the strings | `strings BOOT.BIN` |
 
