@@ -29,6 +29,7 @@ flags = "-O4 -sdatathreshold 0"
 # tools/psp/batch_units.py: the Metrowerks region of .text (notes/SPLITS.md)
 [batch]
 splits = "notes/SPLITS.md"
+jobs = 8  # parallel workers; also run ninja -j 8
 
 [batch.ranges]
 ULES01213 = [[0x08811C00, 0x08904000]]
