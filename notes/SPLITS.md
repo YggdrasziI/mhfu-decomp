@@ -189,6 +189,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08816B64` | 0x08816B64-0x08816B6C | 1 small function | 100 % |
 | `unit_08816B6C` | 0x08816B6C-0x08816BE4 | 1 small function | 100 % |
 | `unit_0881A8E0` | 0x0881A8E0-0x0881A8F8 | 1 small function | 100 % |
+| `unit_0881C240` | 0x0881C240-0x0881C2E4 | 1 small function | 100 % |
 | `unit_0881CAC8` | 0x0881CAC8-0x0881CB0C | 1 reset (call, byte and flag clear) | 100 % |
 | `unit_0881CB0C` | 0x0881CB0C-0x0881CB2C | 1 function (clears flags) | 100 % |
 | `unit_0881E8F8` | 0x0881E8F8-0x0881E92C | 1 small function | 100 % |
@@ -239,6 +240,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0884469C` | 0x0884469C-0x088446CC | 1 small function | 100 % |
 | `unit_0884860C` | 0x0884860C-0x08848630 | 2 small functions | 100 % |
 | `unit_088490C8` | 0x088490C8-0x08849120 | 1 small function | 100 % |
+| `unit_088493A4` | 0x088493A4-0x08849404 | 1 small function | 100 % |
 | `unit_08849B6C` | 0x08849B6C-0x08849BCC | 1 small function | 100 % |
 | `unit_0884B010` | 0x0884B010-0x0884B058 | 1 function (stores a table address in the object, then a call when the flag is positive) | 100 % |
 | `unit_0884B058` | 0x0884B058-0x0884B0B4 | 1 small function | 100 % |
@@ -819,6 +821,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088DD838` | 0x088DD838-0x088DD868 | 1 small function | 100 % |
 | `unit_088DD868` | 0x088DD868-0x088DD8A8 | 1 small function | 100 % |
 | `unit_088DDF50` | 0x088DDF50-0x088DDF94 | 1 small function | 100 % |
+| `unit_088DDFE8` | 0x088DDFE8-0x088DE014 | 1 small function | 100 % |
 | `unit_088DE4BC` | 0x088DE4BC-0x088DE520 | 1 small function | 100 % |
 | `unit_088DE6A0` | 0x088DE6A0-0x088DE6EC | 1 small function | 100 % |
 | `unit_088DEA14` | 0x088DEA14-0x088DEA1C | 1 small function | 100 % |
@@ -925,5 +928,9 @@ and `b & a` (func_0884FF24, func_08852F1C). With an `s32` base the offset has to
 added to a `char *` (`((u16 *)((char *)p + off))[i]`): `(u16 *)(p + off)` is an
 integer sum and costs one more instruction (11 functions, the batch tries both).
 In func_08852F1C the operands of `and` follow from the parameter type instead
-(`unsigned char` rather than `arg1 & 0xFF`, or the mask in a local). A 16-bit store of 0xFFFF compiles to
-`ori` only through an unsigned type.
+(`unsigned char` rather than `arg1 & 0xFF`, or the mask in a local), together with
+a `char *` first argument and a byte array access. The batch tries each `s32`
+parameter masked the same way at every use as `u8` / `u16` without the masks, and
+a local that only copies it replaced by the parameter (3 functions; 70 of the 397
+same-length functions narrow an argument register). A 16-bit store of 0xFFFF
+compiles to `ori` only through an unsigned type.
