@@ -385,6 +385,8 @@ segments:
       - [0x60D68, asm, text_088627B4]
       - [0x61408, c, unit_08862E54]
       - [0x61418, asm, text_08862E64]
+      - [0x6230C, c, unit_08863D58]
+      - [0x623A8, asm, text_08863DF4]
       - [0x62774, c, unit_088641C0]
       - [0x627D0, c, unit_0886421C]
       - [0x627F0, asm, text_0886423C]
