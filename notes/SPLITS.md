@@ -308,6 +308,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08858008` | 0x08858008-0x08858010 | 1 small function | 100 % |
 | `unit_088588BC` | 0x088588BC-0x08858904 | 1 small function | 100 % |
 | `unit_08859174` | 0x08859174-0x08859188 | 1 small function | 100 % |
+| `unit_08859188` | 0x08859188-0x08859218 | 1 small function | 100 % |
 | `unit_08859218` | 0x08859218-0x08859224 | 1 small function | 100 % |
 | `unit_08859224` | 0x08859224-0x088592A8 | 1 small function | 100 % |
 | `unit_088592A8` | 0x088592A8-0x088592E4 | 1 small function | 100 % |
@@ -463,21 +464,28 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08880378` | 0x08880378-0x08880384 | 1 small function | 100 % |
 | `unit_08880384` | 0x08880384-0x088803FC | 2 forwarders with a computed step, 4 setters | 100 % |
 | `unit_08880498` | 0x08880498-0x0888051C | 1 small function | 100 % |
+| `unit_08880708` | 0x08880708-0x08880760 | 1 small function | 100 % |
 | `unit_08880760` | 0x08880760-0x0888076C | 1 small function | 100 % |
 | `unit_0888076C` | 0x0888076C-0x0888080C | 3 forwarders | 100 % |
+| `unit_08880864` | 0x08880864-0x08880884 | 2 small functions | 100 % |
 | `unit_088813E0` | 0x088813E0-0x08881438 | 1 small function | 100 % |
+| `unit_088817E8` | 0x088817E8-0x08881824 | 1 small function | 100 % |
 | `unit_08881824` | 0x08881824-0x08881840 | 1 small function | 100 % |
 | `unit_08882B4C` | 0x08882B4C-0x08882B68 | 2 small functions | 100 % |
 | `unit_08882B68` | 0x08882B68-0x08882BB8 | 1 small function | 100 % |
 | `unit_08882C90` | 0x08882C90-0x08882C9C | 1 small function | 100 % |
 | `unit_08882C9C` | 0x08882C9C-0x08882CFC | 1 small function | 100 % |
 | `unit_08882CFC` | 0x08882CFC-0x08882D20 | 1 small function | 100 % |
+| `unit_08882D20` | 0x08882D20-0x08882D9C | 1 small function | 100 % |
+| `unit_08882E24` | 0x08882E24-0x08882EA0 | 1 small function | 100 % |
 | `unit_08882EA0` | 0x08882EA0-0x08882F04 | 1 small function | 100 % |
 | `unit_08882F04` | 0x08882F04-0x08882F10 | 1 small function | 100 % |
 | `unit_08882F10` | 0x08882F10-0x08882F58 | 1 small function | 100 % |
 | `unit_08882F58` | 0x08882F58-0x08882F64 | 1 small function | 100 % |
 | `unit_08882F64` | 0x08882F64-0x08882FA4 | 1 small function | 100 % |
 | `unit_08883268` | 0x08883268-0x0888334C | 3 small functions | 100 % |
+| `unit_08883374` | 0x08883374-0x08883384 | 1 small function | 100 % |
+| `unit_08884CD4` | 0x08884CD4-0x08884CE4 | 1 small function | 100 % |
 | `unit_08885494` | 0x08885494-0x088854A0 | 1 small function | 100 % |
 | `unit_088854A0` | 0x088854A0-0x088854C4 | 1 small function | 100 % |
 | `unit_088854C4` | 0x088854C4-0x088854D0 | 1 small function | 100 % |
@@ -518,6 +526,9 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0888D708` | 0x0888D708-0x0888D734 | 1 small function | 100 % |
 | `unit_0888E1F8` | 0x0888E1F8-0x0888E218 | 1 dot product (x, z) | 100 % |
 | `unit_08890080` | 0x08890080-0x088900A0 | 1 setter | 100 % |
+| `unit_088900A0` | 0x088900A0-0x088900C4 | 1 small function | 100 % |
+| `unit_08890430` | 0x08890430-0x08890494 | 1 small function | 100 % |
+| `unit_088905B0` | 0x088905B0-0x088905EC | 1 small function | 100 % |
 | `unit_088907D8` | 0x088907D8-0x088908FC | 1 small function | 100 % |
 | `unit_08890B38` | 0x08890B38-0x08890BBC | 1 small function | 100 % |
 | `unit_08890C94` | 0x08890C94-0x08890CE0 | 1 small function | 100 % |
@@ -548,6 +559,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088984B8` | 0x088984B8-0x08898510 | 1 small function | 100 % |
 | `unit_08898510` | 0x08898510-0x08898540 | 3 small functions | 100 % |
 | `unit_08898540` | 0x08898540-0x08898590 | 1 small function | 100 % |
+| `unit_0889885C` | 0x0889885C-0x08898898 | 1 small function | 100 % |
 | `unit_088988EC` | 0x088988EC-0x08898948 | 1 small function | 100 % |
 | `unit_08898948` | 0x08898948-0x08898980 | 1 small function | 100 % |
 | `unit_0889990C` | 0x0889990C-0x08899954 | 2 small functions | 100 % |
@@ -956,5 +968,10 @@ to the next local passed by address or the frame top, the other fields its
 elements (or casts at the width the function loads them). 26 of the 64 functions
 without a compiling draft had such names; +3, all three a `ScePspDateTime` filled
 by `sceRtcGetCurrentClockLocalTime`, then written with the pspsdk structure
-(layout from pspsdk `psptypes.h`). A 16-bit store of 0xFFFF compiles to
+(layout from pspsdk `psptypes.h`). A large field offset written as an integer sum
+(`*(s32 *)((0x5623D0 + (s32) p))`, m2c) makes mwccpsp build the constant whole
+(`lui` + `ori`); added to a `char *` (`*(s32 *)((char *)p + 0x5623D0)`) it is split
+between `lui` and the load or store offset, as in the original (func_08880864).
+51 of the 626 functions of the wrong length had that sum, 46 of them with the extra
+`ori`; +13. A 16-bit store of 0xFFFF compiles to
 `ori` only through an unsigned type.
