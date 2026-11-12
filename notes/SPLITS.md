@@ -118,6 +118,7 @@ bucket, `func_0880EDF8` string length). 2026-11-11:
 | `pspsnc_1.2.7503.0` (from the sibling project) | `-O1`, `-O2`, `-O3`, `-O2 -g` | 0/5 |
 | `psp-gcc-1.3.1` (GCC 3.3.3, allegrex 2.2.1), decomp.me archive | `-O1`, `-O2`, `-O3`, `-Os` (with `-G0`), `-O2 -G0 -fno-optimize-sibling-calls` | **1/5 at `-O2`**: `func_0880B420` identical; `func_0880C53C` identical but for 2 swapped instructions |
 | `psp-gcc-1.7.1` (GCC 3.3.3, allegrex 2.2.2), assembler of 1.3.1 | same | same output as 1.3.1 |
+| pspdev `psp-gcc` 15.2.0 (release v20261101, homebrew), 2026-11-12 | `-O1`, `-O2`, `-O3`, `-Os` (with `-G0`), `-O2 -G0 -fno-schedule-insns2` | **1/5 at `-O2`, `-O3`**: `func_0880C578` identical (the tail jump GCC 3.3.3 misses); `func_0880B420`, identical with 3.3.3, differs at 2 of 3 instructions |
 
 psp-gcc is Linux-only (32-bit x86): it runs in the manual `Compiler probe` workflow
 (`.github/workflows/probe.yml`, inputs `compiler`, `as_from`, `probe`, `flags`).
@@ -139,7 +140,9 @@ What rules each one out, or not:
   Not the same version: these GCC 3.3.3 builds never turn the final call of
   `func_0880C578` into `j sceKernelCpuResumeIntr` (the original has no frame at
   all there), even at `-O3`. A later GCC (one that emits MIPS sibling calls) is
-  the next candidate; none is in the decomp.me archive.
+  the next candidate; none is in the decomp.me archive. pspdev GCC 15.2.0 gives
+  that tail jump but loses the global getter and the four others: the original
+  sits between the two, a GCC later than 3.3.3 and much older than 15 (hypothesis).
 - `func_0880D97C` and `func_0880EDF8` still differ in register choice with every
   compiler; their source shape may be wrong too.
 
