@@ -232,6 +232,8 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0884FB6C` | 0x0884FB6C-0x0884FBA4 | 1 small function | 100 % |
 | `unit_0884FC74` | 0x0884FC74-0x0884FC94 | 1 table lookup | 100 % |
 | `unit_0884FC94` | 0x0884FC94-0x0884FCB0 | 1 small function | 100 % |
+| `unit_0884FF24` | 0x0884FF24-0x0884FF4C | 2 small functions | 100 % |
+| `unit_0884FFB8` | 0x0884FFB8-0x0884FFE0 | 2 small functions | 100 % |
 | `unit_08850044` | 0x08850044-0x08850078 | 1 small function | 100 % |
 | `unit_0885028C` | 0x0885028C-0x088503F8 | 2 small functions | 100 % |
 | `unit_0885057C` | 0x0885057C-0x0885058C | 1 small function | 100 % |
@@ -298,6 +300,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0885CCD0` | 0x0885CCD0-0x0885CCE8 | 1 small function | 100 % |
 | `unit_0885CCE8` | 0x0885CCE8-0x0885CD18 | 1 small function | 100 % |
 | `unit_0885CE00` | 0x0885CE00-0x0885CE38 | 2 small functions | 100 % |
+| `unit_0885E244` | 0x0885E244-0x0885E270 | 1 small function | 100 % |
 | `unit_0885E9F8` | 0x0885E9F8-0x0885EA08 | 1 small function | 100 % |
 | `unit_0885EE48` | 0x0885EE48-0x0885EEA4 | 1 small function | 100 % |
 | `unit_0885F82C` | 0x0885F82C-0x0885F848 | 1 small function | 100 % |
@@ -379,6 +382,8 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08870194` | 0x08870194-0x0887019C | 1 small function | 100 % |
 | `unit_0887019C` | 0x0887019C-0x088701D8 | 1 small function | 100 % |
 | `unit_08870D30` | 0x08870D30-0x08870D40 | 1 small function | 100 % |
+| `unit_08872B2C` | 0x08872B2C-0x08872B40 | 1 small function | 100 % |
+| `unit_08872DC4` | 0x08872DC4-0x08872DF4 | 3 small functions | 100 % |
 | `unit_08872E2C` | 0x08872E2C-0x08872E48 | 1 small function | 100 % |
 | `unit_08872E84` | 0x08872E84-0x08872ED4 | 3 small functions | 100 % |
 | `unit_08872FB8` | 0x08872FB8-0x08873044 | 1 small function | 100 % |
@@ -755,6 +760,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088D81F0` | 0x088D81F0-0x088D81FC | 1 small function | 100 % |
 | `unit_088D88F0` | 0x088D88F0-0x088D8900 | 2 small functions | 100 % |
 | `unit_088D8900` | 0x088D8900-0x088D897C | 2 small functions | 100 % |
+| `unit_088DA150` | 0x088DA150-0x088DA168 | 1 small function | 100 % |
 | `unit_088DA2C4` | 0x088DA2C4-0x088DA324 | 1 small function | 100 % |
 | `unit_088DAA98` | 0x088DAA98-0x088DAAA0 | 1 small function | 100 % |
 | `unit_088DACA4` | 0x088DACA4-0x088DACF8 | 1 small function | 100 % |
@@ -763,6 +769,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088DB49C` | 0x088DB49C-0x088DB4C8 | 1 small function | 100 % |
 | `unit_088DB4C8` | 0x088DB4C8-0x088DB4D4 | 1 small function | 100 % |
 | `unit_088DB4D4` | 0x088DB4D4-0x088DB534 | 1 small function | 100 % |
+| `unit_088DB534` | 0x088DB534-0x088DB5C0 | 1 small function | 100 % |
 | `unit_088DB5C0` | 0x088DB5C0-0x088DB5D8 | 2 small functions | 100 % |
 | `unit_088DB5D8` | 0x088DB5D8-0x088DB608 | 1 small function | 100 % |
 | `unit_088DBB5C` | 0x088DBB5C-0x088DBBBC | 1 small function | 100 % |
@@ -885,5 +892,11 @@ the orders of up to three stores are tried), and missing leading arguments are a
 An indexed access compiles to `addu index, base` only when written as an array
 access (`((u16 *)(p + off))[i]`, or `((E8 *)(p + off))[i]` with
 `typedef struct { char b[8]; } E8` for a stride other than the element size);
-pointer arithmetic gives `addu base, index`. A 16-bit store of 0xFFFF compiles to
+pointer arithmetic gives `addu base, index`. The order written in the source does
+not matter: `(i * 2) + p` and `p + (i * 2)` compile the same, and so do `a & b`
+and `b & a` (func_0884FF24, func_08852F1C). With an `s32` base the offset has to be
+added to a `char *` (`((u16 *)((char *)p + off))[i]`): `(u16 *)(p + off)` is an
+integer sum and costs one more instruction (11 functions, the batch tries both).
+In func_08852F1C the operands of `and` follow from the parameter type instead
+(`unsigned char` rather than `arg1 & 0xFF`, or the mask in a local). A 16-bit store of 0xFFFF compiles to
 `ori` only through an unsigned type.
