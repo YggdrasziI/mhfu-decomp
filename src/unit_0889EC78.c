@@ -12,7 +12,7 @@ typedef int s32;
 extern int func_088A6024(int i, int v);
 extern void func_088A4B5C(void);
 extern void func_088A4BC4(void);
-extern void func_088A4BE8(s32, s32, s32, s32, s32, s32, s32, s32);
+extern void func_088A4BE8(s32);
 extern void func_088A4BF0(s32, s32);
 extern void func_088A4CB0(s32, s32, s32);
 extern void func_088A59C4(s32);
@@ -26,8 +26,8 @@ void func_0889EC80(void) {
     func_088A4BC4();
 }
 
-void func_0889EC88(s32 arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5, s32 arg6, s32 arg7) {
-    func_088A4BE8(arg0, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
+void func_0889EC88(s32 arg0) {
+    func_088A4BE8(arg0);
 }
 
 void func_0889EC90(s32 arg0, s32 arg1) {
