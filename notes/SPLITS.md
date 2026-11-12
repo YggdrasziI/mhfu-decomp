@@ -5,19 +5,61 @@
 
 ## Regions
 
-| Range (approximate) | Code | Evidence |
+| Range | Code | Evidence |
 |---|---|---|
-| 0x08804000 - ~0x08811C00 | not Metrowerks style (library code, hypothesis) | below |
-| ~0x08811C00 - ~0x08904000 | Metrowerks `mwccpsp` (game and engine) | 6 probe functions match (`notes/COMPILER.md`) |
-| ~0x08904000 - 0x0890DE38 | not Metrowerks style; holds the entry point 0x08906934 | below |
+| 0x08804000 - 0x08811C84 | SDK C library (hypothesis), not Metrowerks | below; contents in "Outer regions" |
+| 0x08811C84 - 0x08903A94 | Metrowerks `mwccpsp` (game and engine) | 923 functions linked from C; style markers |
+| 0x08903A94 - 0x0890BE00 (edge between 0x0890BD68 and 0x0890BE00) | not Metrowerks: unidentified VFPU code, start-up code (entry point 0x08906934), GU graphics library | style markers; imports and strings below |
+| 0x0890BE00 - 0x0890DE38 | Metrowerks, C++ runtime (hypothesis) | 7 functions linked from C (2026-11-12); `std::exception` strings |
 
-The edges are only known to a few functions: the first edge lies between
-0x08811B3C and 0x08811C84, the second between 0x08903ED0 and 0x089040A0. A few
-functions inside the middle region also have the outer style (0x08901FDC,
-0x089030D8, 0x08903A94, 0x08903C64), so the edges may be ragged or the measures
-noisy.
+Edges (2026-11-12): the last function of the first region is `func_08811B3C`
+(ends 0x08811C84); the last Metrowerks-style function before the second region is
+`func_089039AC` (ends 0x08903A94), the first non-Metrowerks one `func_08903A94`.
+Inside the Metrowerks region, 58 functions carry a marker that mwccpsp never
+produces (see "Markers"): two neighbours at 0x08901FDC-0x0890383C (no VFPU,
+`$ra` saved after other registers) and scattered single functions (18 with only
+`ext`, 18 with only a late `$ra` save, 8 with VFPU or FPU code). They look like
+single objects from another compiler or assembly sources; not split yet.
 
-## Evidence
+## Markers
+
+Measured on the 923 functions linked from C (Metrowerks for sure) against the 353
+functions of the outer regions (0x08804000-0x08811B40, 0x089040A0-end), then
+checked with mwccpsp itself (probe of bit-fields, `max`, a conditional select and
+frames with 5 saved registers or float registers: shifts and branches, `$ra`
+saved first):
+
+| Marker | Metrowerks | Outer regions |
+|---|---|---|
+| `ext`, `ins`, `min`, `max`, `movn`, `movz` | 0 % | 7 %, 21 %, 2 %, 1 %, 7 %, 4 % |
+| `$ra` saved at offset 0 of the frame | 0 % | 7 % |
+| `$ra` saved after another register | 0 % | 31 % |
+| `$ra` saved first | 25 % | 12 % |
+| `jal` with a `nop` delay slot | 7 % | 25 % |
+
+The first three are exclusive (a function with one of them is not mwccpsp output
+at these flags); the others only lean one way.
+
+## Outer regions
+
+From the system calls each function makes (names from the NID tables) and the
+strings it addresses. Library names are hypotheses (no symbols); J&D has the same
+libc strings (`_exit`, `libc:%s: should be called from main thread`).
+
+| Range (approximate) | Content | Evidence |
+|---|---|---|
+| 0x08804000 - 0x088046E0 | C library system glue | `sceIoOpen`/`Read`/`Write`/`Close`/`Lseek`/`Rename` with `sceKernelStdin`/`Stdout`/`Stderr`; `_exit` + `libc:%s: should be called from main thread` (0x088041C8); `UserSbrk` + `sceKernelAllocPartitionMemory` (0x08804290); `sceKernelLibcClock`/`Time`/`Gettimeofday`; sub-interrupt handlers (0x08804678) |
+| 0x088046E0 - 0x08808F34 | floating-point math | float constants; `powf` error name (0x088085A4) |
+| 0x08808F34 - 0x0880C5A0 | number conversion and memory/string helpers | `Infinity` (0x08808F34); 0x0880C084 and 0x0880C464 called 106 and 242 times from the game (0x0880C464 clears memory after allocation: memset shape, not named) |
+| 0x0880C5A0 - 0x0880F68C | reentrancy, locks, string functions | `libc:%s: no reent structure found`, `_getmodreent` (0x0880C5A0); `sceKernelCpuSuspendIntr`/`ResumeIntr`; string functions 0x0880ED04-0x0880EE10 |
+| 0x0880F68C - 0x08811C84 | formatted output, locale | `bug in vfprintf: bad base` (0x0880F68C, BSD vfprintf wording); `C-UTF-8`, `C-SJIS`, `C-EUCJP` (0x088117C4) |
+| 0x08903A94 - 0x08906934 | unidentified, VFPU code called from the game | 24 of 33 functions with exclusive markers; few game callers each |
+| 0x08906934 - 0x08906D08 | start-up | entry point 0x08906934: `user_main` thread, `sceKernelSetCompiledSdkVersion500_505` (SDK 5.00-5.05); 0x08906A48 exit (`sceKernelExitThread`) |
+| 0x08906D08 - 0x089090A0 | GU graphics library (Sony libgu, hypothesis) | `SceGuSignal`; `sceGeListEnQueue`, `sceGeListUpdateStallAddr`, `sceGeDrawSync`, `sceGeSetCallback`, `sceDisplaySetFrameBuf`, `sceDisplaySetMode` |
+| 0x089090A0 - 0x0890BE00 | unidentified, display-list code | `sceKernelDcacheWritebackAll` (0x089090A0, 0x0890A7B0, 0x0890B35C, 0x0890B918) |
+| 0x0890BE00 - 0x0890DE38 | C++ runtime | `exception`, `bad_exception`, `!std::exception!!std::bad_exception!!` (Metrowerks exception type strings, hypothesis); 0x0890BEC0 takes (block, constructor, destructor, size, count) from game code (array construction shape); 0x0890C3D8 called 42 times; 0x0890DD9C cache flush (`sceKernelDcacheWritebackAll`, `sceKernelIcacheInvalidateAll`) |
+
+## Evidence (first measures, 2026-11-11)
 
 Three measures over the splat output, all pointing to the same two outer regions:
 
@@ -84,7 +126,7 @@ second region holds the entry point.
 
 ## Units
 
-All in the Metrowerks region; bounds are hypotheses until neighbours are split.
+All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 
 | Unit | Range | Content | Status |
 |---|---|---|---|

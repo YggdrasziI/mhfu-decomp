@@ -26,13 +26,14 @@ name = "mwccpsp_3.0.1_219"
 exe = "mwccpsp.exe"
 flags = "-O4 -sdatathreshold 0"
 
-# tools/psp/batch_units.py: the Metrowerks region of .text (notes/SPLITS.md)
+# tools/psp/batch_units.py: the Metrowerks regions of .text (notes/SPLITS.md):
+# game and engine, then the C++ runtime at the end of .text
 [batch]
 splits = "notes/SPLITS.md"
 jobs = 8  # parallel workers; also run ninja -j 8
 
 [batch.ranges]
-ULES01213 = [[0x08811C00, 0x08904000]]
+ULES01213 = [[0x08811C84, 0x08903A94], [0x0890BE00, 0x0890DE38]]
 
 [traces]
 allow = ["decompile this for me"]
