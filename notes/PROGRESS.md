@@ -24,3 +24,4 @@ Commits before `15e9c9d` (first units, from `unit_088A6024` on) were not measure
 | 2026-11-11 | `82bbd44` | 34092 / 1089072 bytes (3.13 %) | 774 / 3573 | 566 | Drafts with unknown types kept (as `int`) |
 | 2026-11-12 | `73fedbd` | 37140 / 1089072 bytes (3.41 %) | 804 / 3573 | 591 | One argument count per function (`tools/psp/prototypes.py`); known prototypes given to m2c as context |
 | 2026-11-12 | `ba091ee` | 40060 / 1089072 bytes (3.68 %) | 847 / 3573 | 624 | Callees still in assembly given to m2c with the argument count they read |
+| 2026-11-12 | `b05ac32` | 41020 / 1089072 bytes (3.77 %) | 858 / 3573 | 633 | Indexed loads from a symbol typed by element size |
