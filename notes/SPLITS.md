@@ -194,6 +194,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0881CAC8` | 0x0881CAC8-0x0881CB0C | 1 reset (call, byte and flag clear) | 100 % |
 | `unit_0881CB0C` | 0x0881CB0C-0x0881CB2C | 1 function (clears flags) | 100 % |
 | `unit_0881E8F8` | 0x0881E8F8-0x0881E92C | 1 small function | 100 % |
+| `unit_0881EAF8` | 0x0881EAF8-0x0881EB60 | 1 small function | 100 % |
 | `unit_08822990` | 0x08822990-0x088229B8 | 1 small function | 100 % |
 | `unit_08823A50` | 0x08823A50-0x08823AE4 | 1 small function | 100 % |
 | `unit_08823DB0` | 0x08823DB0-0x08823DEC | 1 small function | 100 % |
@@ -255,6 +256,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0884DBA8` | 0x0884DBA8-0x0884DBB8 | 1 small function | 100 % |
 | `unit_0884DE34` | 0x0884DE34-0x0884DE3C | 1 small function | 100 % |
 | `unit_0884E858` | 0x0884E858-0x0884E884 | 1 small function | 100 % |
+| `unit_0884E884` | 0x0884E884-0x0884E998 | 1 small function | 100 % |
 | `unit_0884ECAC` | 0x0884ECAC-0x0884ED24 | 1 small function | 100 % |
 | `unit_0884F2CC` | 0x0884F2CC-0x0884F2E0 | 1 small function | 100 % |
 | `unit_0884F3FC` | 0x0884F3FC-0x0884F440 | 1 comparison of a 20-byte entry | 100 % |
@@ -379,6 +381,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08865DC4` | 0x08865DC4-0x08865DD4 | 1 small function | 100 % |
 | `unit_08865E40` | 0x08865E40-0x08865E78 | 2 small functions | 100 % |
 | `unit_08865EC0` | 0x08865EC0-0x08865F24 | 1 small function | 100 % |
+| `unit_08865F68` | 0x08865F68-0x08865F8C | 1 small function | 100 % |
 | `unit_08865F8C` | 0x08865F8C-0x08866050 | 1 small function | 100 % |
 | `unit_08866284` | 0x08866284-0x088662B8 | one function (switch on a byte field) | 100 % |
 | `unit_088662B8` | 0x088662B8-0x088664A8 | 1 small function | 100 % |
@@ -532,6 +535,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08888B84` | 0x08888B84-0x08888B98 | 1 small function | 100 % |
 | `unit_08889C90` | 0x08889C90-0x08889CAC | 1 small function | 100 % |
 | `unit_0888A164` | 0x0888A164-0x0888A190 | 1 small function | 100 % |
+| `unit_0888A190` | 0x0888A190-0x0888A1D0 | 1 small function | 100 % |
 | `unit_0888A1D0` | 0x0888A1D0-0x0888A1FC | 1 small function | 100 % |
 | `unit_0888D708` | 0x0888D708-0x0888D734 | 1 small function | 100 % |
 | `unit_0888E1F8` | 0x0888E1F8-0x0888E218 | 1 dot product (x, z) | 100 % |
@@ -788,12 +792,20 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088C3054` | 0x088C3054-0x088C30B8 | 1 small function | 100 % |
 | `unit_088C3138` | 0x088C3138-0x088C3180 | 1 small function | 100 % |
 | `unit_088C3180` | 0x088C3180-0x088C31D0 | 1 small function | 100 % |
+| `unit_088C31D0` | 0x088C31D0-0x088C3290 | 1 small function | 100 % |
 | `unit_088C3290` | 0x088C3290-0x088C32E8 | 1 small function | 100 % |
 | `unit_088C3324` | 0x088C3324-0x088C3364 | 1 small function | 100 % |
 | `unit_088C33E0` | 0x088C33E0-0x088C33E8 | 1 small function | 100 % |
 | `unit_088C351C` | 0x088C351C-0x088C354C | 1 small function | 100 % |
+| `unit_088C354C` | 0x088C354C-0x088C3948 | 4 small functions | 100 % |
+| `unit_088C3A64` | 0x088C3A64-0x088C3C54 | 2 small functions | 100 % |
+| `unit_088C3F18` | 0x088C3F18-0x088C493C | 10 small functions | 100 % |
+| `unit_088C4ABC` | 0x088C4ABC-0x088C6234 | 23 small functions | 100 % |
+| `unit_088C635C` | 0x088C635C-0x088C671C | 4 small functions | 100 % |
+| `unit_088C684C` | 0x088C684C-0x088C6A3C | 2 small functions | 100 % |
 | `unit_088C6AC8` | 0x088C6AC8-0x088C6AD4 | 1 small function | 100 % |
 | `unit_088C6AD4` | 0x088C6AD4-0x088C6ADC | 1 small function | 100 % |
+| `unit_088C7064` | 0x088C7064-0x088C70D8 | 1 small function | 100 % |
 | `unit_088C7764` | 0x088C7764-0x088C7774 | 1 small function | 100 % |
 | `unit_088C77D8` | 0x088C77D8-0x088C7814 | 1 small function | 100 % |
 | `unit_088C7814` | 0x088C7814-0x088C7914 | 2 small functions | 100 % |
@@ -1000,3 +1012,14 @@ on 0 or 1 are a C++ `bool` compared with 0 or 1 (an inlined `bool` getter, proba
 `(A & K) == 1` that way in C++; 35 of the 626 functions of the wrong length lacked
 that `sltu`; +10 (func_0881C884, func_08828884, ...). A 16-bit store of 0xFFFF compiles to
 `ori` only through an unsigned type.
+An allocation followed by an inlined constructor (`p = func_08859B44(heap, size,
+align); if (p != 0) { ... } else { p = 0; }`, 50 of the 1136 functions tried) keeps
+in the original a dead `p = 0` after a `b`; with m2c's single variable mwccpsp drops
+it. The result in a temporary copied to `p` at the end of the then block gives the
+`b` (func_088C354C). In the same functions the heap address (`arg0 + 0x2294 +
+0x7FF8`) is computed again at each call in the original: passed through an `(int)`
+cast to an `s32` parameter, mwccpsp computes it once into a saved register; passed
+uncast to a `void *` parameter (`char *` argument), it does not. A `= *argN;` of a
+`char *` argument read with `lw` is read through `(s32 *)`. The batch tries the
+three together: +51 functions in one batch run (a first trial on the first
+compiling drafts gave 40 of the 52 allocation functions and 3 others).
