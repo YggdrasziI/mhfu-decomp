@@ -184,6 +184,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088167EC` | 0x088167EC-0x088167F4 | 1 small function | 100 % |
 | `unit_088167F4` | 0x088167F4-0x08816818 | 1 function (16-bit string length) | 100 % |
 | `unit_08816900` | 0x08816900-0x08816930 | 1 small function | 100 % |
+| `unit_08816930` | 0x08816930-0x088169FC | 1 small function | 100 % |
 | `unit_08816A60` | 0x08816A60-0x08816AE4 | 1 small function | 100 % |
 | `unit_08816AE4` | 0x08816AE4-0x08816B64 | 2 functions with the shape of func_088129B8 | 100 % |
 | `unit_08816B64` | 0x08816B64-0x08816B6C | 1 small function | 100 % |
@@ -247,6 +248,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08848D30` | 0x08848D30-0x08848E04 | 1 small function (C++) | 100 % |
 | `unit_088490C8` | 0x088490C8-0x08849120 | 1 small function | 100 % |
 | `unit_088493A4` | 0x088493A4-0x08849404 | 1 small function | 100 % |
+| `unit_08849404` | 0x08849404-0x08849478 | 1 small function | 100 % |
 | `unit_08849B6C` | 0x08849B6C-0x08849BCC | 1 small function | 100 % |
 | `unit_0884B010` | 0x0884B010-0x0884B058 | 1 function (stores a table address in the object, then a call when the flag is positive) | 100 % |
 | `unit_0884B058` | 0x0884B058-0x0884B0B4 | 1 small function | 100 % |
@@ -411,6 +413,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0886A2D8` | 0x0886A2D8-0x0886A30C | 1 small function | 100 % |
 | `unit_0886A30C` | 0x0886A30C-0x0886A35C | 1 small function | 100 % |
 | `unit_0886A444` | 0x0886A444-0x0886A4CC | 1 small function | 100 % |
+| `unit_0886A58C` | 0x0886A58C-0x0886A60C | 1 small function | 100 % |
 | `unit_0886A60C` | 0x0886A60C-0x0886A648 | 1 small function | 100 % |
 | `unit_0886A73C` | 0x0886A73C-0x0886A77C | 1 counter | 100 % |
 | `unit_0886AD0C` | 0x0886AD0C-0x0886AD58 | 1 small function | 100 % |
@@ -518,6 +521,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08886048` | 0x08886048-0x088860A0 | 8 field getters and setters | 100 % |
 | `unit_08886124` | 0x08886124-0x0888617C | 4 small functions | 100 % |
 | `unit_0888617C` | 0x0888617C-0x088862A8 | 1 small function | 100 % |
+| `unit_088862A8` | 0x088862A8-0x0888637C | 1 small function | 100 % |
 | `unit_0888637C` | 0x0888637C-0x088863BC | 1 small function | 100 % |
 | `unit_088863BC` | 0x088863BC-0x0888640C | 1 small function | 100 % |
 | `unit_0888640C` | 0x0888640C-0x08886468 | 1 small function | 100 % |
@@ -566,6 +570,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08892FB0` | 0x08892FB0-0x088930A0 | 1 small function | 100 % |
 | `unit_088930A0` | 0x088930A0-0x088930A8 | 1 small function | 100 % |
 | `unit_08893390` | 0x08893390-0x08893444 | 1 small function | 100 % |
+| `unit_08894874` | 0x08894874-0x08894988 | 1 small function | 100 % |
 | `unit_08894B00` | 0x08894B00-0x08894B0C | 1 small function | 100 % |
 | `unit_0889560C` | 0x0889560C-0x08895644 | 1 small function | 100 % |
 | `unit_08895EA0` | 0x08895EA0-0x08895F3C | 1 small function (C++) | 100 % |
@@ -583,6 +588,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088984B8` | 0x088984B8-0x08898510 | 1 small function | 100 % |
 | `unit_08898510` | 0x08898510-0x08898540 | 3 small functions | 100 % |
 | `unit_08898540` | 0x08898540-0x08898590 | 1 small function | 100 % |
+| `unit_08898694` | 0x08898694-0x08898748 | 1 function (table of 12-byte entries, written by hand) | 100 % |
 | `unit_0889885C` | 0x0889885C-0x08898898 | 1 small function | 100 % |
 | `unit_088988EC` | 0x088988EC-0x08898948 | 1 small function | 100 % |
 | `unit_08898948` | 0x08898948-0x08898980 | 1 small function | 100 % |
@@ -815,9 +821,12 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088C351C` | 0x088C351C-0x088C354C | 1 small function | 100 % |
 | `unit_088C354C` | 0x088C354C-0x088C3948 | 4 small functions | 100 % |
 | `unit_088C3A64` | 0x088C3A64-0x088C3C54 | 2 small functions | 100 % |
+| `unit_088C3C54` | 0x088C3C54-0x088C3F18 | 2 small functions | 100 % |
 | `unit_088C3F18` | 0x088C3F18-0x088C493C | 10 small functions | 100 % |
+| `unit_088C493C` | 0x088C493C-0x088C4ABC | 1 small function | 100 % |
 | `unit_088C4ABC` | 0x088C4ABC-0x088C6234 | 23 small functions | 100 % |
 | `unit_088C635C` | 0x088C635C-0x088C671C | 4 small functions | 100 % |
+| `unit_088C671C` | 0x088C671C-0x088C684C | 1 small function | 100 % |
 | `unit_088C684C` | 0x088C684C-0x088C6A3C | 2 small functions | 100 % |
 | `unit_088C6AC8` | 0x088C6AC8-0x088C6AD4 | 1 small function | 100 % |
 | `unit_088C6AD4` | 0x088C6AD4-0x088C6ADC | 1 small function | 100 % |
@@ -1048,3 +1057,11 @@ original computes the address as `addu t, (i * K), p`; every sum form gives
 in a local gives the original order (inlined index: computed again at each access).
 The batch tries it with the local as `s32` and as the index's leading cast type: +2
 of 50 drafts with that temporary (the others differ elsewhere).
+m2c merges identical block tails with a `goto` to a label inside a later block;
+the original repeats the tail in each branch (func_088C3C54: `if (a == 0) {...}
+else if (a == 1) {...}`, each branch storing its own result). The batch writes each
+`goto` out as a copy of the tail, with and without chaining the next `if` as
+`else if`: +9 (179 of the first drafts had a `goto`). An entry of a table of
+structures far from the base (`*(s32 *)(0x83C034 + p + i * 12)`, func_08898694)
+matches only as a member access through a structure array (`p->entries[i].f`), not
+through the stride form above.
