@@ -35,5 +35,13 @@ jobs = 8  # parallel workers; also run ninja -j 8
 [batch.ranges]
 ULES01213 = [[0x08811C84, 0x08903A94], [0x0890BE00, 0x0890DE38]]
 
+# Code regions of the progress card (tools/psp/progress_badges.py), bounds and
+# contents from notes/SPLITS.md (approximate, library names are hypotheses)
+[regions.ULES01213]
+"C library" = [[0x08804000, 0x08811C84]]
+"Game (Metrowerks)" = [[0x08811C84, 0x08903A94]]
+"VFPU, start-up, graphics" = [[0x08903A94, 0x0890BE00]]
+"C++ runtime" = [[0x0890BE00, 0x0890DE38]]
+
 [traces]
 allow = ["decompile this for me"]
