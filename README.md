@@ -19,16 +19,14 @@ Hunter Portable 2nd G) for the PlayStation Portable, built with
 This repository does **not** contain any game assets or assembly whatsoever. An
 existing copy of the game is required.
 
-Supported versions:
+Supported versions (the ISO is the only input; `tools/extract.py` takes
+`PSP_GAME/SYSDIR/BOOT.BIN` out of it, and the build rebuilds that file):
 
-Version   | Release | Input | SHA1 hash
---------- | ------- | ----- | ------------------------------------------
-ULES01213 | Monster Hunter Freedom Unite (Europe), `DISC_VERSION 1.01` | ISO | `b67f57e2ea0d5a31d3c58eb0c7e54c4ef47ea838`
-ULES01213 | | `PSP_GAME/SYSDIR/BOOT.BIN` | `439f0a3454c14225dcbaa457d3102f5be65f1690`
-ULUS10391 | Monster Hunter Freedom Unite (USA), `DISC_VERSION 1.01` | ISO | `f5cb0eaebbf5008bd8d486832229ae97a16bbee6`
-ULUS10391 | | `PSP_GAME/SYSDIR/BOOT.BIN` | `518673c61ef41b4906cedfbe93811d2a974be793`
-ULJM05500 | Monster Hunter Portable 2nd G (Japan) | ISO | `951d1a360eec83af294a7a51ec4bba08f8633a6e`
-ULJM05500 | | `PSP_GAME/SYSDIR/BOOT.BIN` | `de96bd007ef69b59af9188bee5e7de53987ea2b6`
+Version   | Release | ISO SHA1 | Built `BOOT.BIN` SHA1
+--------- | ------- | -------- | ---------------------
+ULES01213 | Monster Hunter Freedom Unite (Europe), `DISC_VERSION 1.01` | `b67f57e2ea0d5a31d3c58eb0c7e54c4ef47ea838` | `439f0a3454c14225dcbaa457d3102f5be65f1690`
+ULUS10391 | Monster Hunter Freedom Unite (USA), `DISC_VERSION 1.01` | `f5cb0eaebbf5008bd8d486832229ae97a16bbee6` | `518673c61ef41b4906cedfbe93811d2a974be793`
+ULJM05500 | Monster Hunter Portable 2nd G (Japan) | `951d1a360eec83af294a7a51ec4bba08f8633a6e` | `de96bd007ef69b59af9188bee5e7de53987ea2b6`
 
 Progress
 ========
