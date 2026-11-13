@@ -221,6 +221,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088303A0` | 0x088303A0-0x088303B8 | 1 small function | 100 % |
 | `unit_088303B8` | 0x088303B8-0x088303E8 | 1 small function | 100 % |
 | `unit_088306DC` | 0x088306DC-0x08830728 | 1 reset (bytes, clear, copy) | 100 % |
+| `unit_08830728` | 0x08830728-0x088307BC | 1 small function | 100 % |
 | `unit_08832838` | 0x08832838-0x08832884 | 1 flag test and clear with a call | 100 % |
 | `unit_08832A9C` | 0x08832A9C-0x08832B98 | 1 small function | 100 % |
 | `unit_08832C60` | 0x08832C60-0x08832CE4 | 1 small function | 100 % |
@@ -406,6 +407,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0886A2D8` | 0x0886A2D8-0x0886A30C | 1 small function | 100 % |
 | `unit_0886A30C` | 0x0886A30C-0x0886A35C | 1 small function | 100 % |
 | `unit_0886A444` | 0x0886A444-0x0886A4CC | 1 small function | 100 % |
+| `unit_0886A60C` | 0x0886A60C-0x0886A648 | 1 small function | 100 % |
 | `unit_0886A73C` | 0x0886A73C-0x0886A77C | 1 counter | 100 % |
 | `unit_0886AD0C` | 0x0886AD0C-0x0886AD58 | 1 small function | 100 % |
 | `unit_0886AEEC` | 0x0886AEEC-0x0886AF2C | 1 small function | 100 % |
@@ -1023,3 +1025,10 @@ uncast to a `void *` parameter (`char *` argument), it does not. A `= *argN;` of
 `char *` argument read with `lw` is read through `(s32 *)`. The batch tries the
 three together: +51 functions in one batch run (a first trial on the first
 compiling drafts gave 40 of the 52 allocation functions and 3 others).
+m2c writes an element of an array of structures as `t = (i * K) + p;` then
+`*(T *)(t + off)`. In func_08830728 (and the inverted early return, see above) the
+original computes the address as `addu t, (i * K), p`; every sum form gives
+`addu p, (i * K)`. The element form `*(T *) &((E<K> *) (p + off))[i]` with the index
+in a local gives the original order (inlined index: computed again at each access).
+The batch tries it with the local as `s32` and as the index's leading cast type: +2
+of 50 drafts with that temporary (the others differ elsewhere).
