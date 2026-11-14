@@ -4,3 +4,6 @@
 __ptmf_scall = 0x0890C370; // type:func size:0x34
 __ptmf_cmpr = 0x0890C3A4; // type:func size:0x34
 __ptmf_test = 0x0890C3D8; // type:func size:0x1C
+
+// Read by func_0884AF84 (first word of a 12-byte constant); splat left the reference raw
+D_0893B7A4 = 0x0893B7A4;
