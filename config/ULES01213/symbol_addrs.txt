@@ -1,0 +1,6 @@
+// Metrowerks C++ runtime, pointer-to-member functions (notes/COMPILER.md): mwccpsp
+// calls these names with this argument layout for `(this->*pmf)()`, `if (pmf)` and
+// `pmf == pmf2`
+__ptmf_scall = 0x0890C370; // type:func size:0x34
+__ptmf_cmpr = 0x0890C3A4; // type:func size:0x34
+__ptmf_test = 0x0890C3D8; // type:func size:0x1C

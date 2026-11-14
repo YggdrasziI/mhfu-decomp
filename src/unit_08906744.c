@@ -16,7 +16,7 @@ extern float D_089B9220;
 extern float D_089B9224;
 extern char D_089BAB98;
 extern char D_089BAEC8;
-extern s32 func_0890C3D8(void *);
+extern s32 __ptmf_test(void *);
 extern void func_08897298(s32);
 
 char *func_08906744(char *arg0) {
@@ -25,7 +25,7 @@ char *func_08906744(char *arg0) {
     t.a = ((float *)&D_089B9218)[1];
     t.b = D_089B9220;
     t.c = D_089B9224;
-    if (func_0890C3D8(&t)) {
+    if (__ptmf_test(&t)) {
         *(T *)(arg0 + 4) = t;
     }
     *(char **)arg0 = &D_089BAEC8;

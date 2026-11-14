@@ -143,6 +143,24 @@ C++ virtual call; a C call through a function pointer read from the same place u
 the call going to the third one: the first slot is at vtable offset 8
 (`src/unit_088DC774.cpp`). 108 functions still in assembly call through `$t9`.
 
+Pointers to member functions (2026-11-14). Compiled from a C++ member function
+pointer, mwccpsp emits calls to its runtime by name, and the original has the same
+calls to 0x0890C370 and 0x0890C3D8:
+
+| Source | mwccpsp output | Original (e.g. func_08864634) |
+|---|---|---|
+| `if (pmf)` | `addiu $a0, this, off`, `jal __ptmf_test` | `jal func_0890C3D8` with `$a0 = this + 0x3FC` |
+| `(this->*pmf)()` | `addu $a0, this`, `jal __ptmf_scall`, `addiu $t9, this, off` (delay slot) | `jal func_0890C370`, `addiu $t9, $s0, 0x3FC` |
+| `pmf == pmf2` | `jal __ptmf_cmpr` (`$a0`, `$a1` the two), then `sltu`, `xori` | no caller; 0x0890C3A4 xors the three words of `$a0` and `$a1` and returns `!= 0` |
+| `pmf = &A::f` | three `lwc1`/`swc1` from a compiler constant, one `lui` per word | func_08906744, func_0890682C (12-byte constants {0, 0x10 or -1, 0 or a code address}) |
+
+The pointer is three words {this offset, vtable offset, function}: 0x0890C370 adds the
+first to `this`, then calls the function directly when the vtable offset is negative,
+else through the vtable. So these are named `__ptmf_scall`, `__ptmf_cmpr`, `__ptmf_test`
+(config/ULES01213/symbol_addrs.txt); splat had joined `__ptmf_cmpr` to `__ptmf_scall`
+(no caller). `(bool) (flags & 1) != 0` gives the `andi`/`sltu`/`beqz` flag test seen
+with them.
+
 ## Candidates
 
 | Compiler | Where | Status |

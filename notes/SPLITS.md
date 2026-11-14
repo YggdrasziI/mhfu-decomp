@@ -10,7 +10,7 @@
 | 0x08804000 - 0x08811C84 | SDK C library (hypothesis), not Metrowerks | below; contents in "Outer regions" |
 | 0x08811C84 - 0x08903A94 | Metrowerks `mwccpsp` (game and engine) | 923 functions linked from C; style markers |
 | 0x08903A94 - 0x08906744 | not Metrowerks: unidentified VFPU code | style markers |
-| 0x08906744 - 0x08906934 | Metrowerks, one game object (hypothesis) | 3 functions, `$ra` saved first, no exclusive marker; they call game code and 0x0890C3D8 (C++ runtime); 2 linked from C (2026-11-14) |
+| 0x08906744 - 0x08906934 | Metrowerks, one game object (hypothesis) | 3 functions, `$ra` saved first, no exclusive marker; they call game code and `__ptmf_test` (C++ runtime); 2 linked from C (2026-11-14) |
 | 0x08906934 - 0x0890BE00 (edge between 0x0890BD68 and 0x0890BE00) | not Metrowerks: start-up code (entry point 0x08906934), GU graphics library | style markers; imports and strings below |
 | 0x0890BE00 - 0x0890DE38 | Metrowerks, C++ runtime (hypothesis) | 7 functions linked from C (2026-11-12); `std::exception` strings |
 
@@ -56,11 +56,11 @@ libc strings (`_exit`, `libc:%s: should be called from main thread`).
 | 0x0880C5A0 - 0x0880F68C | reentrancy, locks, string functions | `libc:%s: no reent structure found`, `_getmodreent` (0x0880C5A0); `sceKernelCpuSuspendIntr`/`ResumeIntr`; string functions 0x0880ED04-0x0880EE10 |
 | 0x0880F68C - 0x08811C84 | formatted output, locale | `bug in vfprintf: bad base` (0x0880F68C, BSD vfprintf wording); `C-UTF-8`, `C-SJIS`, `C-EUCJP` (0x088117C4) |
 | 0x08903A94 - 0x08906744 | unidentified, VFPU code called from the game | 24 of 30 functions with exclusive markers; few game callers each |
-| 0x08906744 - 0x08906934 | Metrowerks game object (3 functions) | `func_08906744` sets vtable D_089BAB98, copies a 12-byte constant if 0x0890C3D8 accepts it, then sets vtable D_089BAEC8 (constructor shape); `func_089067D0` destructor shape (vtables reset, delete when the flag is > 0); `func_0890682C` state machine on +0x1C |
+| 0x08906744 - 0x08906934 | Metrowerks game object (3 functions) | `func_08906744` sets vtable D_089BAB98, copies a pointer-to-member constant (12 bytes) if `__ptmf_test` finds it non-null, then sets vtable D_089BAEC8 (constructor shape); `func_089067D0` destructor shape (vtables reset, delete when the flag is > 0); `func_0890682C` state machine on +0x1C |
 | 0x08906934 - 0x08906D08 | start-up | entry point 0x08906934: `user_main` thread, `sceKernelSetCompiledSdkVersion500_505` (SDK 5.00-5.05); 0x08906A48 exit (`sceKernelExitThread`) |
 | 0x08906D08 - 0x089090A0 | GU graphics library (Sony libgu, hypothesis) | `SceGuSignal`; `sceGeListEnQueue`, `sceGeListUpdateStallAddr`, `sceGeDrawSync`, `sceGeSetCallback`, `sceDisplaySetFrameBuf`, `sceDisplaySetMode` |
 | 0x089090A0 - 0x0890BE00 | unidentified, display-list code | `sceKernelDcacheWritebackAll` (0x089090A0, 0x0890A7B0, 0x0890B35C, 0x0890B918) |
-| 0x0890BE00 - 0x0890DE38 | C++ runtime | `exception`, `bad_exception`, `!std::exception!!std::bad_exception!!` (Metrowerks exception type strings, hypothesis); 0x0890BEC0 takes (block, constructor, destructor, size, count) from game code (array construction shape); 0x0890C3D8 called 42 times; 0x0890DD9C cache flush (`sceKernelDcacheWritebackAll`, `sceKernelIcacheInvalidateAll`) |
+| 0x0890BE00 - 0x0890DE38 | C++ runtime | `exception`, `bad_exception`, `!std::exception!!std::bad_exception!!` (Metrowerks exception type strings, hypothesis); 0x0890BEC0 takes (block, constructor, destructor, size, count) from game code (array construction shape); pointer-to-member helpers `__ptmf_scall` (0x0890C370), `__ptmf_cmpr` (0x0890C3A4), `__ptmf_test` (0x0890C3D8, called 42 times), see notes/COMPILER.md; 0x0890DD9C cache flush (`sceKernelDcacheWritebackAll`, `sceKernelIcacheInvalidateAll`) |
 
 ### Against the Japanese build (2026-11-12)
 
