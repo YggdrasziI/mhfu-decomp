@@ -5,11 +5,11 @@
 
 typedef int s32;
 
-extern void func_088AA054(s32, s32, s32, s32);
+extern void func_088AA054(void);
 extern void func_088AA0BC(s32, s32, s32);
 
-void func_088A7368(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
-    func_088AA054(arg0, arg1, arg2, arg3);
+void func_088A7368(void) {
+    func_088AA054();
 }
 
 void func_088A7370(s32 arg0, s32 arg1, s32 arg2) {
