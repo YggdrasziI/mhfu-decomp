@@ -205,6 +205,11 @@ def main() -> None:
                     units.append({"name": f"asm/{module.name}/{Path(src).stem}", "target_path": obj,
                                   "metadata": {"complete": False, "auto_generated": True}})
                     unit_objs.append(obj)
+                elif Path(src).parent.name == "data" and not src.endswith(".bss.s"):
+                    # data not moved into units yet (.data, .rodata): counted in the report
+                    units.append({"name": f"asm/{module.name}/data/{Path(src).stem}", "target_path": obj,
+                                  "metadata": {"complete": False, "auto_generated": True}})
+                    unit_objs.append(obj)
             elif src.endswith((".c", ".cpp")):
                 source = src[len(posix(build_dir)) + 1:]
                 n.build(obj, "cc", source, implicit=cc_deps + [posix(binutils_stamp)])
