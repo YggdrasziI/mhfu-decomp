@@ -136,6 +136,13 @@ argument and then, when a 16-bit flag is positive, pass it to another function
 `func_08816B24` without the store, to `func_0890BFA4`) look like destructors
 (`this`, deletion flag, vtable pointer, `operator delete`).
 
+Virtual calls (2026-11-14): mwccpsp loads the target of a call through a vtable
+into `$t9` (`lw $t9, 0($a0)`, `lw $t9, 0x10($t9)`, `jalr $t9`) when the source is a
+C++ virtual call; a C call through a function pointer read from the same place uses
+`$v0`. `func_088DC774` only matches as C++ with a class of three virtual functions,
+the call going to the third one: the first slot is at vtable offset 8
+(`src/unit_088DC774.cpp`). 108 functions still in assembly call through `$t9`.
+
 ## Candidates
 
 | Compiler | Where | Status |
