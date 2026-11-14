@@ -173,6 +173,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08812F90` | 0x08812F90-0x08813158 | 3 small functions | 100 % |
 | `unit_08813188` | 0x08813188-0x088131B8 | 1 small function (C++) | 100 % |
 | `unit_088131B8` | 0x088131B8-0x088131FC | 1 field update guarded by a bool comparison (C++) | 100 % |
+| `unit_08813320` | 0x08813320-0x08813388 | 1 small function | 100 % |
 | `unit_08813558` | 0x08813558-0x08813560 | 1 small function | 100 % |
 | `unit_08813560` | 0x08813560-0x08813574 | 1 small function | 100 % |
 | `unit_08813574` | 0x08813574-0x08813594 | 1 function (flag set once) | 100 % |
@@ -188,6 +189,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088140C4` | 0x088140C4-0x08814104 | 2 vector copies | 100 % |
 | `unit_08814984` | 0x08814984-0x08814A14 | 1 small function | 100 % |
 | `unit_08815348` | 0x08815348-0x08815384 | 1 small function | 100 % |
+| `unit_08816060` | 0x08816060-0x088160F0 | 2 small functions | 100 % |
 | `unit_08816264` | 0x08816264-0x0881629C | 1 small function | 100 % |
 | `unit_088167D4` | 0x088167D4-0x088167EC | 2 small functions | 100 % |
 | `unit_088167EC` | 0x088167EC-0x088167F4 | 1 small function | 100 % |
@@ -205,6 +207,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0881CB0C` | 0x0881CB0C-0x0881CB2C | 1 function (clears flags) | 100 % |
 | `unit_0881E8F8` | 0x0881E8F8-0x0881E92C | 1 small function | 100 % |
 | `unit_0881EAF8` | 0x0881EAF8-0x0881EB60 | 1 small function | 100 % |
+| `unit_08821B58` | 0x08821B58-0x08821BD4 | 1 small function | 100 % |
 | `unit_08822990` | 0x08822990-0x088229B8 | 1 small function | 100 % |
 | `unit_08823A50` | 0x08823A50-0x08823AE4 | 1 small function | 100 % |
 | `unit_08823DB0` | 0x08823DB0-0x08823DEC | 1 small function | 100 % |
@@ -242,6 +245,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08834548` | 0x08834548-0x088345B8 | 1 small function | 100 % |
 | `unit_088345B8` | 0x088345B8-0x088345FC | 1 call guarded by another call | 100 % |
 | `unit_088345FC` | 0x088345FC-0x08834664 | 1 small function | 100 % |
+| `unit_08834664` | 0x08834664-0x088346D8 | 1 small function | 100 % |
 | `unit_088346D8` | 0x088346D8-0x08834730 | 1 small function | 100 % |
 | `unit_08838E0C` | 0x08838E0C-0x08838E30 | 1 small function | 100 % |
 | `unit_0883AB44` | 0x0883AB44-0x0883AB4C | 1 small function | 100 % |
@@ -278,6 +282,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0884E858` | 0x0884E858-0x0884E884 | 1 small function | 100 % |
 | `unit_0884E884` | 0x0884E884-0x0884E998 | 1 small function | 100 % |
 | `unit_0884EB00` | 0x0884EB00-0x0884EC3C | 1 small function | 100 % |
+| `unit_0884EC3C` | 0x0884EC3C-0x0884ECAC | 1 small function | 100 % |
 | `unit_0884ECAC` | 0x0884ECAC-0x0884ED24 | 1 small function | 100 % |
 | `unit_0884ED94` | 0x0884ED94-0x0884EDC8 | 1 small function | 100 % |
 | `unit_0884F2CC` | 0x0884F2CC-0x0884F2E0 | 1 small function | 100 % |
@@ -371,9 +376,11 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0885E988` | 0x0885E988-0x0885E9F8 | 1 small function | 100 % |
 | `unit_0885E9F8` | 0x0885E9F8-0x0885EA08 | 1 small function | 100 % |
 | `unit_0885EE48` | 0x0885EE48-0x0885EEA4 | 1 small function | 100 % |
+| `unit_0885EEA4` | 0x0885EEA4-0x0885EF20 | 1 small function | 100 % |
 | `unit_0885F82C` | 0x0885F82C-0x0885F848 | 1 small function | 100 % |
 | `unit_0885F9A0` | 0x0885F9A0-0x0885FA0C | 1 small function | 100 % |
 | `unit_0885FBB4` | 0x0885FBB4-0x0885FBF4 | 1 lookup then call | 100 % |
+| `unit_088606D0` | 0x088606D0-0x08860710 | 3 small functions | 100 % |
 | `unit_08860710` | 0x08860710-0x08860758 | 1 function with the shape of func_0884B010 | 100 % |
 | `unit_08860758` | 0x08860758-0x08860760 | 1 small function | 100 % |
 | `unit_08860760` | 0x08860760-0x08860768 | 1 small function | 100 % |
@@ -405,6 +412,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088646B4` | 0x088646B4-0x088646F0 | 1 small function | 100 % |
 | `unit_088646F0` | 0x088646F0-0x0886477C | 1 small function | 100 % |
 | `unit_08865A24` | 0x08865A24-0x08865A2C | 1 small function | 100 % |
+| `unit_08865A2C` | 0x08865A2C-0x08865A64 | 1 small function | 100 % |
 | `unit_08865A9C` | 0x08865A9C-0x08865ADC | 1 flag clear | 100 % |
 | `unit_08865BAC` | 0x08865BAC-0x08865BD0 | 1 small function | 100 % |
 | `unit_08865CB8` | 0x08865CB8-0x08865CEC | 1 small function | 100 % |
@@ -432,6 +440,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08868680` | 0x08868680-0x08868778 | 1 small function | 100 % |
 | `unit_088688C8` | 0x088688C8-0x088689F4 | 2 small functions | 100 % |
 | `unit_088689F4` | 0x088689F4-0x088689FC | 1 small function | 100 % |
+| `unit_08868C04` | 0x08868C04-0x08868CE8 | 1 small function | 100 % |
 | `unit_08868F0C` | 0x08868F0C-0x08868F50 | 1 small function | 100 % |
 | `unit_08869564` | 0x08869564-0x08869570 | 1 small function | 100 % |
 | `unit_088698B8` | 0x088698B8-0x088698EC | 1 small function | 100 % |
@@ -471,6 +480,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08870AC4` | 0x08870AC4-0x08870AEC | 1 small function | 100 % |
 | `unit_08870D30` | 0x08870D30-0x08870D40 | 1 small function | 100 % |
 | `unit_08872B2C` | 0x08872B2C-0x08872B40 | 1 small function | 100 % |
+| `unit_08872D74` | 0x08872D74-0x08872DC4 | 1 small function | 100 % |
 | `unit_08872DC4` | 0x08872DC4-0x08872DF4 | 3 small functions | 100 % |
 | `unit_08872E2C` | 0x08872E2C-0x08872E48 | 1 small function | 100 % |
 | `unit_08872E84` | 0x08872E84-0x08872ED4 | 3 small functions | 100 % |
@@ -485,6 +495,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0887941C` | 0x0887941C-0x0887959C | 2 small functions | 100 % |
 | `unit_0887B7C4` | 0x0887B7C4-0x0887B7E0 | 1 small function | 100 % |
 | `unit_0887C708` | 0x0887C708-0x0887C724 | 1 small function | 100 % |
+| `unit_0887CA08` | 0x0887CA08-0x0887CA4C | 1 small function (C++) | 100 % |
 | `unit_0887CCAC` | 0x0887CCAC-0x0887CD04 | 1 small function | 100 % |
 | `unit_0887D0B4` | 0x0887D0B4-0x0887D0D0 | 1 small function | 100 % |
 | `unit_0887DD88` | 0x0887DD88-0x0887DDD0 | 1 small function | 100 % |
@@ -541,6 +552,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08883268` | 0x08883268-0x0888334C | 3 small functions | 100 % |
 | `unit_08883374` | 0x08883374-0x08883384 | 1 small function | 100 % |
 | `unit_08883988` | 0x08883988-0x08883B54 | 2 small functions | 100 % |
+| `unit_08884C9C` | 0x08884C9C-0x08884CD4 | 1 small function | 100 % |
 | `unit_08884CD4` | 0x08884CD4-0x08884CE4 | 1 small function | 100 % |
 | `unit_08885494` | 0x08885494-0x088854A0 | 1 small function | 100 % |
 | `unit_088854A0` | 0x088854A0-0x088854C4 | 1 small function | 100 % |
@@ -611,6 +623,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0889560C` | 0x0889560C-0x08895644 | 1 small function | 100 % |
 | `unit_08895EA0` | 0x08895EA0-0x08895F3C | 1 small function (C++) | 100 % |
 | `unit_08895F3C` | 0x08895F3C-0x08895FFC | 1 small function | 100 % |
+| `unit_0889615C` | 0x0889615C-0x08896228 | 1 small function (C++) | 100 % |
 | `unit_0889645C` | 0x0889645C-0x08896484 | 1 small function | 100 % |
 | `unit_08896A50` | 0x08896A50-0x08896AD4 | 1 small function | 100 % |
 | `unit_08896C10` | 0x08896C10-0x08896C2C | 1 small function | 100 % |
@@ -640,6 +653,9 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0889A008` | 0x0889A008-0x0889A024 | 1 small function | 100 % |
 | `unit_0889A024` | 0x0889A024-0x0889A064 | 2 flag + callback registrations | 100 % |
 | `unit_0889A064` | 0x0889A064-0x0889A09C | 2 small functions | 100 % |
+| `unit_0889A09C` | 0x0889A09C-0x0889A138 | 1 small function | 100 % |
+| `unit_0889ABA4` | 0x0889ABA4-0x0889AC14 | 1 small function | 100 % |
+| `unit_0889AEF4` | 0x0889AEF4-0x0889AF48 | 1 small function | 100 % |
 | `unit_0889C518` | 0x0889C518-0x0889C524 | 1 small function | 100 % |
 | `unit_0889D7E8` | 0x0889D7E8-0x0889D8A8 | 2 small functions | 100 % |
 | `unit_0889E1BC` | 0x0889E1BC-0x0889E1E0 | 1 small function | 100 % |
@@ -721,6 +737,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088A9CDC` | 0x088A9CDC-0x088A9CFC | 2 small functions | 100 % |
 | `unit_088A9DF4` | 0x088A9DF4-0x088A9E28 | 1 small function | 100 % |
 | `unit_088A9E28` | 0x088A9E28-0x088A9EF4 | 3 small functions | 100 % |
+| `unit_088A9F4C` | 0x088A9F4C-0x088A9FF8 | 1 small function | 100 % |
 | `unit_088A9FF8` | 0x088A9FF8-0x088AA0BC | 2 small functions | 100 % |
 | `unit_088AA0BC` | 0x088AA0BC-0x088AA14C | 1 small function | 100 % |
 | `unit_088AA368` | 0x088AA368-0x088AA370 | 1 small function | 100 % |
@@ -733,7 +750,9 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088ACC54` | 0x088ACC54-0x088ACC60 | 1 small function | 100 % |
 | `unit_088ACD38` | 0x088ACD38-0x088ACD60 | 1 small function | 100 % |
 | `unit_088AD00C` | 0x088AD00C-0x088AD064 | 1 small function | 100 % |
+| `unit_088AD0D4` | 0x088AD0D4-0x088AD0F0 | 1 small function | 100 % |
 | `unit_088AD0F0` | 0x088AD0F0-0x088AD0F8 | 1 small function | 100 % |
+| `unit_088AD0F8` | 0x088AD0F8-0x088AD12C | 1 small function | 100 % |
 | `unit_088AD12C` | 0x088AD12C-0x088AD134 | 1 small function | 100 % |
 | `unit_088AD134` | 0x088AD134-0x088AD188 | 1 small function | 100 % |
 | `unit_088AD188` | 0x088AD188-0x088AD1EC | 2 small functions | 100 % |
@@ -743,6 +762,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088ADEF0` | 0x088ADEF0-0x088ADF58 | 2 small functions | 100 % |
 | `unit_088ADFD4` | 0x088ADFD4-0x088AE020 | 1 small function | 100 % |
 | `unit_088AE020` | 0x088AE020-0x088AE074 | 1 small function | 100 % |
+| `unit_088AE074` | 0x088AE074-0x088AE0BC | 1 small function | 100 % |
 | `unit_088AE0BC` | 0x088AE0BC-0x088AE0C8 | 1 small function | 100 % |
 | `unit_088AE0C8` | 0x088AE0C8-0x088AE0D4 | 1 small function | 100 % |
 | `unit_088AE16C` | 0x088AE16C-0x088AE1D4 | 1 small function | 100 % |
@@ -782,6 +802,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088B0DBC` | 0x088B0DBC-0x088B0E04 | 1 small function | 100 % |
 | `unit_088B0E04` | 0x088B0E04-0x088B0E2C | 1 small function | 100 % |
 | `unit_088B0FAC` | 0x088B0FAC-0x088B0FF8 | 1 small function | 100 % |
+| `unit_088B118C` | 0x088B118C-0x088B11EC | 1 small function | 100 % |
 | `unit_088B11EC` | 0x088B11EC-0x088B11F8 | 1 small function | 100 % |
 | `unit_088B11F8` | 0x088B11F8-0x088B1204 | 1 small function | 100 % |
 | `unit_088B1584` | 0x088B1584-0x088B158C | 1 small function | 100 % |
@@ -795,6 +816,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088B3118` | 0x088B3118-0x088B3124 | 1 small function | 100 % |
 | `unit_088B3124` | 0x088B3124-0x088B3130 | 1 small function | 100 % |
 | `unit_088B31AC` | 0x088B31AC-0x088B31F8 | 1 small function | 100 % |
+| `unit_088B31F8` | 0x088B31F8-0x088B3234 | 1 small function | 100 % |
 | `unit_088B3234` | 0x088B3234-0x088B32A0 | 1 small function | 100 % |
 | `unit_088B32A0` | 0x088B32A0-0x088B32AC | 1 small function | 100 % |
 | `unit_088B32AC` | 0x088B32AC-0x088B32B8 | 1 small function | 100 % |
@@ -856,6 +878,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088C13E8` | 0x088C13E8-0x088C1430 | 1 small function | 100 % |
 | `unit_088C1430` | 0x088C1430-0x088C14C8 | 1 small function (C++) | 100 % |
 | `unit_088C14C8` | 0x088C14C8-0x088C1828 | 2 small functions | 100 % |
+| `unit_088C2F48` | 0x088C2F48-0x088C2F88 | 1 small function | 100 % |
 | `unit_088C2F88` | 0x088C2F88-0x088C2FD8 | 1 small function | 100 % |
 | `unit_088C2FD8` | 0x088C2FD8-0x088C3054 | 2 small functions | 100 % |
 | `unit_088C3054` | 0x088C3054-0x088C30B8 | 1 small function | 100 % |
@@ -884,6 +907,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088C6AD4` | 0x088C6AD4-0x088C6ADC | 1 small function | 100 % |
 | `unit_088C6D2C` | 0x088C6D2C-0x088C6DF8 | 1 small function (C++) | 100 % |
 | `unit_088C7064` | 0x088C7064-0x088C70D8 | 1 small function | 100 % |
+| `unit_088C7130` | 0x088C7130-0x088C7184 | 1 small function | 100 % |
 | `unit_088C7764` | 0x088C7764-0x088C7774 | 1 small function | 100 % |
 | `unit_088C77D8` | 0x088C77D8-0x088C7814 | 1 small function | 100 % |
 | `unit_088C7814` | 0x088C7814-0x088C7914 | 2 small functions | 100 % |
@@ -933,6 +957,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088DA150` | 0x088DA150-0x088DA168 | 1 small function | 100 % |
 | `unit_088DA2C4` | 0x088DA2C4-0x088DA324 | 1 small function | 100 % |
 | `unit_088DA940` | 0x088DA940-0x088DA974 | 1 small function | 100 % |
+| `unit_088DA974` | 0x088DA974-0x088DAA54 | 1 small function | 100 % |
 | `unit_088DAA54` | 0x088DAA54-0x088DAA98 | 1 small function (C++) | 100 % |
 | `unit_088DAA98` | 0x088DAA98-0x088DAAA0 | 1 small function | 100 % |
 | `unit_088DACA4` | 0x088DACA4-0x088DACF8 | 1 small function | 100 % |
