@@ -1149,7 +1149,7 @@ segments:
       - [0xC24CC, c, unit_088C3F18]
       - [0xC2EF0, c, unit_088C493C]
       - [0xC3070, c, unit_088C4ABC]
-      - [0xC47E8, asm, text_088C6234]
+      - [0xC47E8, c, unit_088C6234]
       - [0xC4910, c, unit_088C635C]
       - [0xC4CD0, c, unit_088C671C]
       - [0xC4E00, c, unit_088C684C]

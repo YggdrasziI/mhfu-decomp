@@ -835,6 +835,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088C3F18` | 0x088C3F18-0x088C493C | 10 small functions | 100 % |
 | `unit_088C493C` | 0x088C493C-0x088C4ABC | 1 small function | 100 % |
 | `unit_088C4ABC` | 0x088C4ABC-0x088C6234 | 23 small functions | 100 % |
+| `unit_088C6234` | 0x088C6234-0x088C635C | 1 function (float argument) | 100 % |
 | `unit_088C635C` | 0x088C635C-0x088C671C | 4 small functions | 100 % |
 | `unit_088C671C` | 0x088C671C-0x088C684C | 1 small function | 100 % |
 | `unit_088C684C` | 0x088C684C-0x088C6A3C | 2 small functions | 100 % |
