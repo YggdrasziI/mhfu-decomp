@@ -9,7 +9,9 @@
 |---|---|---|
 | 0x08804000 - 0x08811C84 | SDK C library (hypothesis), not Metrowerks | below; contents in "Outer regions" |
 | 0x08811C84 - 0x08903A94 | Metrowerks `mwccpsp` (game and engine) | 923 functions linked from C; style markers |
-| 0x08903A94 - 0x0890BE00 (edge between 0x0890BD68 and 0x0890BE00) | not Metrowerks: unidentified VFPU code, start-up code (entry point 0x08906934), GU graphics library | style markers; imports and strings below |
+| 0x08903A94 - 0x08906744 | not Metrowerks: unidentified VFPU code | style markers |
+| 0x08906744 - 0x08906934 | Metrowerks, one game object (hypothesis) | 3 functions, `$ra` saved first, no exclusive marker; they call game code and 0x0890C3D8 (C++ runtime); 2 linked from C (2026-11-14) |
+| 0x08906934 - 0x0890BE00 (edge between 0x0890BD68 and 0x0890BE00) | not Metrowerks: start-up code (entry point 0x08906934), GU graphics library | style markers; imports and strings below |
 | 0x0890BE00 - 0x0890DE38 | Metrowerks, C++ runtime (hypothesis) | 7 functions linked from C (2026-11-12); `std::exception` strings |
 
 Edges (2026-11-12): the last function of the first region is `func_08811B3C`
@@ -53,7 +55,8 @@ libc strings (`_exit`, `libc:%s: should be called from main thread`).
 | 0x08808F34 - 0x0880C5A0 | number conversion and memory/string helpers | `Infinity` (0x08808F34); 0x0880C084 and 0x0880C464 called 106 and 242 times from the game (0x0880C464 clears memory after allocation: memset shape, not named) |
 | 0x0880C5A0 - 0x0880F68C | reentrancy, locks, string functions | `libc:%s: no reent structure found`, `_getmodreent` (0x0880C5A0); `sceKernelCpuSuspendIntr`/`ResumeIntr`; string functions 0x0880ED04-0x0880EE10 |
 | 0x0880F68C - 0x08811C84 | formatted output, locale | `bug in vfprintf: bad base` (0x0880F68C, BSD vfprintf wording); `C-UTF-8`, `C-SJIS`, `C-EUCJP` (0x088117C4) |
-| 0x08903A94 - 0x08906934 | unidentified, VFPU code called from the game | 24 of 33 functions with exclusive markers; few game callers each |
+| 0x08903A94 - 0x08906744 | unidentified, VFPU code called from the game | 24 of 30 functions with exclusive markers; few game callers each |
+| 0x08906744 - 0x08906934 | Metrowerks game object (3 functions) | `func_08906744` sets vtable D_089BAB98, copies a 12-byte constant if 0x0890C3D8 accepts it, then sets vtable D_089BAEC8 (constructor shape); `func_089067D0` destructor shape (vtables reset, delete when the flag is > 0); `func_0890682C` state machine on +0x1C |
 | 0x08906934 - 0x08906D08 | start-up | entry point 0x08906934: `user_main` thread, `sceKernelSetCompiledSdkVersion500_505` (SDK 5.00-5.05); 0x08906A48 exit (`sceKernelExitThread`) |
 | 0x08906D08 - 0x089090A0 | GU graphics library (Sony libgu, hypothesis) | `SceGuSignal`; `sceGeListEnQueue`, `sceGeListUpdateStallAddr`, `sceGeDrawSync`, `sceGeSetCallback`, `sceDisplaySetFrameBuf`, `sceDisplaySetMode` |
 | 0x089090A0 - 0x0890BE00 | unidentified, display-list code | `sceKernelDcacheWritebackAll` (0x089090A0, 0x0890A7B0, 0x0890B35C, 0x0890B918) |
@@ -948,6 +951,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088FC5F8` | 0x088FC5F8-0x088FC62C | 1 small function | 100 % |
 | `unit_088FD168` | 0x088FD168-0x088FD170 | 1 small function | 100 % |
 | `unit_08903950` | 0x08903950-0x089039AC | 1 small function | 100 % |
+| `unit_08906744` | 0x08906744-0x0890682C | 2 small functions | 100 % |
 | `unit_0890BE00` | 0x0890BE00-0x0890BE54 | 2 small functions | 100 % |
 | `unit_0890C26C` | 0x0890C26C-0x0890C288 | 1 small function (C++) | 100 % |
 | `unit_0890C2D8` | 0x0890C2D8-0x0890C2FC | 1 small function | 100 % |

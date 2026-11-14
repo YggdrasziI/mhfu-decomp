@@ -27,20 +27,21 @@ exe = "mwccpsp.exe"
 flags = "-O4 -sdatathreshold 0"
 
 # tools/psp/batch_units.py: the Metrowerks regions of .text (notes/SPLITS.md):
-# game and engine, then the C++ runtime at the end of .text
+# game and engine, one game object before the start-up code, then the C++
+# runtime at the end of .text
 [batch]
 splits = "notes/SPLITS.md"
 jobs = 8  # parallel workers; also run ninja -j 8
 
 [batch.ranges]
-ULES01213 = [[0x08811C84, 0x08903A94], [0x0890BE00, 0x0890DE38]]
+ULES01213 = [[0x08811C84, 0x08903A94], [0x08906744, 0x08906934], [0x0890BE00, 0x0890DE38]]
 
 # Code regions of the progress card (tools/psp/progress_badges.py), bounds and
 # contents from notes/SPLITS.md (approximate, library names are hypotheses)
 [regions.ULES01213]
 "C library" = [[0x08804000, 0x08811C84]]
-"Game (Metrowerks)" = [[0x08811C84, 0x08903A94]]
-"VFPU code (unidentified)" = [[0x08903A94, 0x08906934]]
+"Game (Metrowerks)" = [[0x08811C84, 0x08903A94], [0x08906744, 0x08906934]]
+"VFPU code (unidentified)" = [[0x08903A94, 0x08906744]]
 "Start-up" = [[0x08906934, 0x08906D08]]
 "Graphics library" = [[0x08906D08, 0x0890BE00]]
 "C++ runtime" = [[0x0890BE00, 0x0890DE38]]

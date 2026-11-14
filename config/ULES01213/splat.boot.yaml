@@ -1344,6 +1344,8 @@ segments:
       - [0xFB724, asm, text_088FD170]
       - [0x101F04, c, unit_08903950]
       - [0x101F60, asm, text_089039AC]
+      - [0x104CF8, c, unit_08906744]
+      - [0x104DE0, asm, text_0890682C]
       - [0x10A3B4, c, unit_0890BE00]
       - [0x10A408, asm, text_0890BE54]
       - [0x10A820, cpp, unit_0890C26C]
