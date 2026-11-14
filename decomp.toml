@@ -31,7 +31,7 @@ flags = "-O4 -sdatathreshold 0"
 # runtime at the end of .text
 [batch]
 splits = "notes/SPLITS.md"
-jobs = 8  # parallel workers; also run ninja -j 8
+jobs = 8  # parallel workers (ninja itself runs with -j 24)
 
 [batch.ranges]
 ULES01213 = [[0x08811C84, 0x08903A94], [0x08906744, 0x08906934], [0x0890BE00, 0x0890DE38]]
