@@ -760,6 +760,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088A6040` | 0x088A6040-0x088A6088 | 1 small function | 100 % |
 | `unit_088A6780` | 0x088A6780-0x088A6798 | 2 small functions | 100 % |
 | `unit_088A6A78` | 0x088A6A78-0x088A6BA0 | 1 small function | 100 % |
+| `unit_088A713C` | 0x088A713C-0x088A72F0 | 1 function (state machine), C++ | 100 % |
 | `unit_088A72F0` | 0x088A72F0-0x088A7308 | 3 small functions | 100 % |
 | `unit_088A7308` | 0x088A7308-0x088A7368 | 2 small functions | 100 % |
 | `unit_088A7368` | 0x088A7368-0x088A7378 | 2 small functions | 100 % |
