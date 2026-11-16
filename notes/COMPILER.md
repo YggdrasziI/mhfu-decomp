@@ -161,6 +161,15 @@ else through the vtable. So these are named `__ptmf_scall`, `__ptmf_cmpr`, `__pt
 (no caller). `(bool) (flags & 1) != 0` gives the `andi`/`sltu`/`beqz` flag test seen
 with them.
 
+## Registers kept across a call (2026-11-16)
+
+func_088A6BA0 calls func_088A6A78(&r, x), then func_088A6E44(&r, 0x10000003)
+without loading `&r` into $a0 again: the original relies on func_088A6A78 leaving
+$a0 alone. mwccpsp 3.0.1 (build 219) reloads it, even with func_088A6A78 defined
+earlier in the same file, and has no `-ipa` option. Hypothesis: the original
+compiler (2.4.1.01) tracks the registers a callee compiled earlier in the file
+uses; if so, other calls between functions of one object will show the same gap.
+
 ## Candidates
 
 | Compiler | Where | Status |
