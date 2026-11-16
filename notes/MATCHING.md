@@ -119,7 +119,6 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 
 - $a0 not reloaded after a call to a function that leaves it alone
   (func_088A6BA0, notes/COMPILER.md).
-
 - Register-only differences (two registers swapped, result kept in `$v0` then copied
   to a saved register: func_088C3948, func_0884FDC4).
 - Scheduling: a load placed before / after an index computation (func_088307BC,
