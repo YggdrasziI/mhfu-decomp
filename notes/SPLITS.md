@@ -897,6 +897,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088B8374` | 0x088B8374-0x088B8404 | 1 small function | 100 % |
 | `unit_088B8404` | 0x088B8404-0x088B8460 | 1 small function | 100 % |
 | `unit_088B8460` | 0x088B8460-0x088B8548 | 1 small function | 100 % |
+| `unit_088B8548` | 0x088B8548-0x088B85CC | 1 function (GE eDRAM range, semaphore) | 100 % |
 | `unit_088B85CC` | 0x088B85CC-0x088B85F8 | 1 small function | 100 % |
 | `unit_088B85F8` | 0x088B85F8-0x088B863C | 2 functions on the 128-entry ring (`include/unk_queue.h`), C++ | 100 % |
 | `unit_088B863C` | 0x088B863C-0x088B86D4 | 2 small functions | 100 % |

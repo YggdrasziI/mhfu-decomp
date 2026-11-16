@@ -1200,7 +1200,7 @@ segments:
       - [0xB6928, c, unit_088B8374]
       - [0xB69B8, c, unit_088B8404]
       - [0xB6A14, c, unit_088B8460]
-      - [0xB6AFC, asm, text_088B8548]
+      - [0xB6AFC, c, unit_088B8548]
       - [0xB6B80, c, unit_088B85CC]
       - [0xB6BAC, cpp, unit_088B85F8]
       - [0xB6BF0, c, unit_088B863C]
