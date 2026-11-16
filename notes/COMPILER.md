@@ -179,7 +179,7 @@ but not on all, and both kinds exist in the game:
 |---|---|---|---|
 | func_0889EB84 (16-word fill loop) | unrolled by 8 | one store per pass | identical |
 | func_088A7E44 (`0.000001 * x` in double) | constant as `lui`/`ori` pairs | constant read from the data | identical |
-| byte-wise clear of include/unk_msg.h (25 functions) | one byte per pass | identical | unrolled by 8 |
+| byte-wise clear of include/unk_msg.h (every user) | one byte per pass | identical | unrolled by 8 |
 
 With `-O4,p` for the whole build, 23 matching functions stop matching (all the
 users of the clear helper, func_088662B8, func_088C2CE0); `#pragma opt_unroll_loops
