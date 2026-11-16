@@ -18,6 +18,10 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - `if (C) {A} else {B}` with the branch-likely sense reversed (`bnel` vs `beql`, the
   `else` value in the delay slot): swap the blocks, `if (!C) {B} else {A}`
   (func_0881CA34, func_08841520) (`swap_else`).
+- A `switch` whose cases compare in reverse source order (3, 2, 1, 0): write the
+  cases 0..3 in order, with fall-through where a case ends in the next one's code
+  (state machines func_088B996C, func_088B9BF8). A branch with the long block
+  first in the source: `if ((x & 0xFF) == 0) { A } else { B }` (no `bool`).
 - `return E != 0;` where the original has `sltu` after a shared tail: it was
   `if (!(E)) return 0; return 1;` (func_08854D88, C++ and C) (`bool_returns`).
 - m2c's `goto block_N` of a merged tail: write the tail out in each branch, `else if`
@@ -67,6 +71,12 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   (func_088B85F8, include/unk_queue.h).
 - A structure assignment is copied member by member (`lhu`/`sh`, `lw`/`sw`,
   `lbu`/`sb`) in C++ only; C copies it by words (func_088B88F8).
+- Float constants read from a symbol splat typed `char` (`((float *) &D_X)[1]`)
+  load in another order than from a `float D_X[2]` declaration: declare the symbol
+  with its real element type (func_088B996C).
+- A member-pointer constant copied to a member when `__ptmf_test` accepts it: a
+  local `struct { float v[3]; }` copied as a whole (`*(T *)(p + 4) = t`); with three
+  float fields the copy interleaves loads and stores (func_088B97BC, func_088B996C).
 - A constant 12-byte object split by splat (`D_089B9228` + 8 vs `D_089B9230`) must be
   one symbol before a structure copy can match (func_0890682C).
 
