@@ -143,6 +143,10 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   has the last case, even empty (`case 8: break;`); the table then has its entry
   (func_088A748C).
 
+- `andi x, 0xFF` repeated at each compare of an argument (not factored): the
+  parameter itself is `u8`; `(u8) arg` casts of an `int` parameter are computed
+  once (func_088A84B4).
+
 ## Calls and allocation
 
 - PSP EABI: arguments 5-8 in `$t0-$t3`, float arguments in `$f12-$f19` counted apart

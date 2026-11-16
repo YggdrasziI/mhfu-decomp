@@ -53,6 +53,11 @@ typedef struct {
     u16 unk118[4];
     char unk120[0x14];
     float unk134;
+    char unk138[0x10];
+    void (*unk148)(s32, s32);
+    s32 unk14C;
+    void (*unk150)(s32, s32);
+    s32 unk154;
 } Session;
 
 typedef struct {
@@ -66,6 +71,14 @@ typedef struct {
     s32 cap;
     char *buf;
 } Store;
+
+typedef struct {
+    u8 len;
+    u8 type;
+    u8 from;
+    u8 seq;
+    u16 n;
+} Header;
 
 typedef struct {
     u8 len;

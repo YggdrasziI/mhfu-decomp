@@ -791,6 +791,8 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088A7F6C` | 0x088A7F6C-0x088A8018 | 1 small function | 100 % |
 | `unit_088A8018` | 0x088A8018-0x088A8028 | 1 small function | 100 % |
 | `unit_088A8028` | 0x088A8028-0x088A8048 | 1 setter | 100 % |
+| `unit_088A8048` | 0x088A8048-0x088A812C | 1 function (appends a headed record to the store) | 100 % |
+| `unit_088A84B4` | 0x088A84B4-0x088A8570 | 1 function (peer state change with callbacks) | 100 % |
 | `unit_088A8570` | 0x088A8570-0x088A85F4 | 1 small function | 100 % |
 | `unit_088A91F4` | 0x088A91F4-0x088A920C | 1 small function | 100 % |
 | `unit_088A9334` | 0x088A9334-0x088A93A4 | 1 small function | 100 % |
