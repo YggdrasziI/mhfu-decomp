@@ -174,7 +174,8 @@ def main() -> None:
 
     n.rule("as", f"$python {psp}/assemble.py {posix(tool('as'))} $in $out $as_flags",
            description="AS $in")
-    n.rule("cc", f"$python {psp}/compile.py {posix(tool('objcopy'))} $out {posix(cc_command)} -c $cc_flags -o $out $in",
+    renames = "".join(f"--rename-section {r} " for r in project.CONFIG["compiler"].get("rename_sections", []))
+    n.rule("cc", f"$python {psp}/compile.py {renames}{posix(tool('objcopy'))} $out {posix(cc_command)} -c $cc_flags -o $out $in",
            description="CC $in")
     n.rule("bin", f"{tool('objcopy')} -I binary -O elf32-littlemips -B mips $in $out",
            description="BIN $in")

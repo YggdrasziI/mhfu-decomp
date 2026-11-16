@@ -25,6 +25,9 @@ relocatable = false
 name = "mwccpsp_3.0.1_219"
 exe = "mwccpsp.exe"
 flags = "-O4 -sdatathreshold 0"
+# BOOT.BIN has no .rodata: the link merged it into .data (notes/COMPILER.md), so
+# each object does the same and its tables can be placed in the .data layout
+rename_sections = [".rodata=.data"]
 
 # tools/psp/batch_units.py: the Metrowerks regions of .text (notes/SPLITS.md):
 # game and engine, one game object before the start-up code, then the C++

@@ -92,6 +92,17 @@ compiler download) stubs the FLEXlm checkout like wibo does.
   `.data` (inference from the reference pattern, not proven).
 - Jump tables (splat `jtbl_`): 5 at 0x08910490-0x08910928, 144 at
   0x08930968-0x0893325C.
+- A unit's own data (2026-11-16): each object's `.rodata` is renamed `.data`
+  (`rename_sections` in decomp.toml, done by tools/psp/compile.py) and the splat
+  yaml gives the unit a `.data` subsegment at the address of its data, cut out of
+  the `data` piece (`[0x1306A8, .data, unit_088ADDF4]`, then
+  `[0x1306D8, data, data_08932124]`). First case: the two jump tables of
+  `unit_088ADDF4` (0x089320F4-0x08932124), linked from the C object, `BOOT.BIN`
+  identical. The tables of its two functions follow each other in code order, and
+  the next table (0x08932124) belongs to the next function with a `switch`
+  (func_088ADEAC): same order as the code, as inferred above. A data piece may now
+  start at an address that is not a multiple of 8: tools/psp/assemble.py writes
+  `.double` as two words so that the assembler does not align the piece on 8.
 - `.data` from 0x089BB8F8 to its end is mostly pointers into `.text` (function
   tables).
 
