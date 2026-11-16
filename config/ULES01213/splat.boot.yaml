@@ -648,7 +648,7 @@ segments:
       - [0x7D134, asm, text_0887EB80]
       - [0x7DA18, c, unit_0887F464]
       - [0x7DAA4, c, unit_0887F4F0]
-      - [0x7DB00, asm, text_0887F54C]
+      - [0x7DB00, cpp, unit_0887F54C]
       - [0x7DD48, c, unit_0887F794]
       - [0x7DDAC, c, unit_0887F7F8]
       - [0x7DDFC, asm, text_0887F848]

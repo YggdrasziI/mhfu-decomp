@@ -529,6 +529,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0887EB20` | 0x0887EB20-0x0887EB80 | 1 small function | 100 % |
 | `unit_0887F464` | 0x0887F464-0x0887F4F0 | 1 small function | 100 % |
 | `unit_0887F4F0` | 0x0887F4F0-0x0887F54C | 1 small function | 100 % |
+| `unit_0887F54C` | 0x0887F54C-0x0887F794 | 1 function (state machine, two member-pointer constants), C++ | 100 % |
 | `unit_0887F794` | 0x0887F794-0x0887F7F8 | 1 small function | 100 % |
 | `unit_0887F7F8` | 0x0887F7F8-0x0887F848 | 1 small function | 100 % |
 | `unit_0887F8D4` | 0x0887F8D4-0x0887F934 | 1 small function | 100 % |
