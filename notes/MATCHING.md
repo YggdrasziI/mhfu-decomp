@@ -81,6 +81,9 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   unsigned count) is an inline helper `clear(char *q, u32 n)` with a `do while`;
   `void *` for the pointer or a signed count gives other registers or `bgtz`
   (include/unk_msg.h).
+- Two floats loaded then both stored (`lwc1 f1`, `lwc1 f0`, `swc1 f1`, `swc1 f0`)
+  inside a member-by-member C++ copy: they are a sub-structure of two floats;
+  as two float members each is stored right after its load (func_088AB6D0).
 - A 0x1C-byte record copied as four then three float registers: two members of 16
   and 12 bytes copied one after the other (a C copy of the whole record is a word
   loop; C++ copies member by member) (func_088A6CC4).
@@ -180,6 +183,14 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
     (func_08869424);
   - a store followed by the store of the next case is kept when it falls
     through: `x = 5;` then `case 0: x = 0;` (func_088A2244).
+  - the result register cleared in the delay slot of the out-of-range `beqz`
+    and no `return 0` block: `ret = 0;` before the `switch`, `ret = f(); break;`
+    in the cases, `return ret;` after it. A `u16 ret` gives the `andi 0xFFFF` in
+    each `b` delay slot (func_08849120, func_08849214, func_088DED1C);
+  - a size set in each case, kept in `$v0` and copied to the argument register
+    after the `switch` (`addu $a2, $v0, $zero`), also on the paths that leave
+    it unset: an uninitialised local assigned before the copy in each case,
+    `size = 0xC; msg.a = *(A *) p; break;` (func_088AB6D0).
 - `addu v1, a0, v1` (index first) for a byte in a table of a global object:
   the member is used directly twice (`if (g->t[i] < 0xFF) { g->t[i]++; }`), not
   through a pointer local (func_08869424).
