@@ -128,6 +128,17 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   returned after it: the function returns that value
   (`n = p[0]; g->pos += n; return n;`, func_088A7A68).
 
+- `addiu $v0, $zero, 0xFF` + `addiu $s3, $v0, -6` (a constant not folded): two
+  statements, `room = 0xFF; room -= 6;` (func_088A7860).
+- A global structure reached through one saved register from its first store on:
+  a `u8 *` to it; a structure pointer sends the stores before the first call
+  straight to the symbol (func_088A7860).
+- Stack locals in another order than ours: the declaration order sets the
+  offsets, try the permutations (func_088A7BDC: `hdr`, `addr`, `port`).
+- A search loop leaving by `beqz` to the exit then `b` to the next pass:
+  `if (cmp(...) != 0) { break; } goto found;` inside the `switch` case, not
+  `if (cmp(...) == 0) goto found; break;` (func_088A7BDC).
+
 ## Calls and allocation
 
 - PSP EABI: arguments 5-8 in `$t0-$t3`, float arguments in `$f12-$f19` counted apart
