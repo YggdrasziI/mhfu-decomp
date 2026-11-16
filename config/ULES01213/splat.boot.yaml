@@ -1213,6 +1213,7 @@ segments:
       - [0xB7C8C, c, unit_088B96D8]
       - [0xB7D54, c, unit_088B97A0]
       - [0xB7D70, asm, text_088B97BC]
+      - [0xB7E38, c, unit_088B9884]
       - [0xB7EC4, c, unit_088B9910]
       - [0xB7F20, asm, text_088B996C]
       - [0xB80C0, c, unit_088B9B0C]
