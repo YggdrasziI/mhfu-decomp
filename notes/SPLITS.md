@@ -763,6 +763,9 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088A6040` | 0x088A6040-0x088A6088 | 1 small function | 100 % |
 | `unit_088A6780` | 0x088A6780-0x088A6798 | 2 small functions | 100 % |
 | `unit_088A6A78` | 0x088A6A78-0x088A6BA0 | 1 small function | 100 % |
+| `unit_088A6BA0` | 0x088A6BA0-0x088A6C48 | 1 function (message of include/unk_msg.h) | NonMatching |
+| `unit_088A6C48` | 0x088A6C48-0x088A6FEC | 5 functions building and sending the messages of include/unk_msg.h | 100 % |
+| `unit_088A6FEC` | 0x088A6FEC-0x088A7090 | 1 function (constructor shape), C++ | NonMatching |
 | `unit_088A7090` | 0x088A7090-0x088A713C | 1 small function | 100 % |
 | `unit_088A713C` | 0x088A713C-0x088A72F0 | 1 function (state machine), C++ | 100 % |
 | `unit_088A72F0` | 0x088A72F0-0x088A7308 | 3 small functions | 100 % |

@@ -991,6 +991,8 @@ segments:
       - [0xA4D4C, asm, text_088A6798]
       - [0xA502C, c, unit_088A6A78]
       - [0xA5154, asm, text_088A6BA0]
+      - [0xA51FC, c, unit_088A6C48]
+      - [0xA55A0, asm, text_088A6FEC]
       - [0xA5644, c, unit_088A7090]
       - [0xA56F0, cpp, unit_088A713C]
       - [0xA58A4, c, unit_088A72F0]
