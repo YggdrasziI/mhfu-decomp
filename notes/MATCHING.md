@@ -77,6 +77,18 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - A member-pointer constant copied to a member when `__ptmf_test` accepts it: a
   local `struct { float v[3]; }` copied as a whole (`*(T *)(p + 4) = t`); with three
   float fields the copy interleaves loads and stores (func_088B97BC, func_088B996C).
+- A local cleared byte by byte (`beqz p` guard, `sb $zero` loop, `bnez` on an
+  unsigned count) is an inline helper `clear(char *q, u32 n)` with a `do while`;
+  `void *` for the pointer or a signed count gives other registers or `bgtz`
+  (include/unk_msg.h).
+- A 0x1C-byte record copied as four then three float registers: two members of 16
+  and 12 bytes copied one after the other (a C copy of the whole record is a word
+  loop; C++ copies member by member) (func_088A6CC4).
+- A `char **this` (destructor shapes) used with a member address `this + 0x1C`:
+  m2c scales it by 4; it is `(char *) this + 0x1C` (`byte_offsets`).
+- Constructor shapes that store `(this + 0x1C) - 0x1C` to a global (a base at
+  +0x1C cast back): not solved; every form tried folds it (func_088B97BC,
+  func_088CC568, func_088A6FEC).
 - A constant 12-byte object split by splat (`D_089B9228` + 8 vs `D_089B9230`) must be
   one symbol before a structure copy can match (func_0890682C).
 
@@ -104,6 +116,9 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   (`tools/psp/prototypes.py`).
 
 ## Open symptoms
+
+- $a0 not reloaded after a call to a function that leaves it alone
+  (func_088A6BA0, notes/COMPILER.md).
 
 - Register-only differences (two registers swapped, result kept in `$v0` then copied
   to a saved register: func_088C3948, func_0884FDC4).
