@@ -121,6 +121,13 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   is optimized for speed; put `#pragma optimize_for_size off` at the top of the
   unit (func_0889EB84, func_088A7E44; notes/COMPILER.md, "Speed and space").
 
+- A compare through `$at` (`slt $at, a, b` + `bnez $at`) where ours uses `$v0`:
+  the source says `b <= a` / `a > b`; `a >= b` and `!(a < b)` go through `$v0`
+  (func_088A7AF0).
+- The last load in `$v0` instead of an argument register although nothing is
+  returned after it: the function returns that value
+  (`n = p[0]; g->pos += n; return n;`, func_088A7A68).
+
 ## Calls and allocation
 
 - PSP EABI: arguments 5-8 in `$t0-$t3`, float arguments in `$f12-$f19` counted apart
