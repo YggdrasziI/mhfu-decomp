@@ -170,6 +170,19 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
     func_088D5B54); they can be written after the others;
   - a `return 0` block that no table entry reaches, placed last, is a `default:
     return 0;` at the end of the `switch` (func_08850868).
+  - after a call in a case, `b end` with the `lw ra` of the epilogue in its delay
+    slot is `return f();`; `b end; nop` to the `lw ra` itself is `ret = f();
+    break;` with `return ret;` after the `switch` and `default: return 0;`
+    inside it (func_0885DD38). With `return f();` in every case only the first
+    case gets the `lw ra` copy, the others keep `b; nop` (func_0885C968);
+  - cases that only leave (`b end; nop` block of their own, last) together with
+    the out-of-range values: `case 0: ... case 25: default: return;`
+    (func_08869424);
+  - a store followed by the store of the next case is kept when it falls
+    through: `x = 5;` then `case 0: x = 0;` (func_088A2244).
+- `addu v1, a0, v1` (index first) for a byte in a table of a global object:
+  the member is used directly twice (`if (g->t[i] < 0xFF) { g->t[i]++; }`), not
+  through a pointer local (func_08869424).
 
 ## Calls and allocation
 
