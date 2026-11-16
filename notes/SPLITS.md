@@ -911,8 +911,10 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088B97BC` | 0x088B97BC-0x088B9884 | 1 function (constructor shape), C++ | NonMatching |
 | `unit_088B9884` | 0x088B9884-0x088B9910 | 1 function (destructor shape) | 100 % |
 | `unit_088B9910` | 0x088B9910-0x088B996C | 1 small function | 100 % |
+| `unit_088B996C` | 0x088B996C-0x088B9B0C | 1 function (state machine, member-pointer reset), C++ | 100 % |
 | `unit_088B9B0C` | 0x088B9B0C-0x088B9B9C | 1 small function | 100 % |
 | `unit_088B9B9C` | 0x088B9B9C-0x088B9BF8 | 1 small function | 100 % |
+| `unit_088B9BF8` | 0x088B9BF8-0x088B9DA8 | 1 function (same shape as unit_088B996C), C++ | 100 % |
 | `unit_088B9DA8` | 0x088B9DA8-0x088B9E34 | 1 small function | 100 % |
 | `unit_088B9E34` | 0x088B9E34-0x088B9E90 | 1 small function | 100 % |
 | `unit_088BA0BC` | 0x088BA0BC-0x088BA148 | 1 small function | 100 % |
