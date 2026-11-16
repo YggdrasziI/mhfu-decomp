@@ -781,6 +781,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088A7378` | 0x088A7378-0x088A73A8 | 1 small function | 100 % |
 | `unit_088A73A8` | 0x088A73A8-0x088A73B8 | 2 small functions | 100 % |
 | `unit_088A73B8` | 0x088A73B8-0x088A748C | 1 function (fills the peer table of include/unk_peer.h) | 100 % |
+| `unit_088A748C` | 0x088A748C-0x088A7788 | 1 function (peer state machine, jump table at 0x08931F9C) | NonMatching |
 | `unit_088A7788` | 0x088A7788-0x088A7860 | 1 function (walks the peer table) | 100 % |
 | `unit_088A7860` | 0x088A7860-0x088A7A68 | 1 function (builds and sends a packet from the send buffer) | NonMatching |
 | `unit_088A7A68` | 0x088A7A68-0x088A7BDC | 2 functions (append to the send buffer, sequence check) | 100 % |

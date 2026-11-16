@@ -139,6 +139,10 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   `if (cmp(...) != 0) { break; } goto found;` inside the `switch` case, not
   `if (cmp(...) == 0) goto found; break;` (func_088A7BDC).
 
+- A jump-table bound one above ours (`sltiu $at, $v0, 9` against 8): the source
+  has the last case, even empty (`case 8: break;`); the table then has its entry
+  (func_088A748C).
+
 ## Calls and allocation
 
 - PSP EABI: arguments 5-8 in `$t0-$t3`, float arguments in `$f12-$f19` counted apart

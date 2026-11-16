@@ -45,9 +45,14 @@ typedef struct {
     s32 unkA8;
     s32 unkAC[4];
     u32 unkBC[4];
-    char unkCC[0x48];
+    char unkCC[0xC];
+    char unkD8[2];
+    s16 unkDA;
+    char unkDC[0x38];
     u8 unk114[4];
     u16 unk118[4];
+    char unk120[0x14];
+    float unk134;
 } Session;
 
 typedef struct {
