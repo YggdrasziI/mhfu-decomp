@@ -147,6 +147,12 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   parameter itself is `u8`; `(u8) arg` casts of an `int` parameter are computed
   once (func_088A84B4).
 
+- A `switch` with a jump table: the table moves into the unit with a `.data`
+  subsegment at its address in the splat yaml (notes/COMPILER.md, "A unit's own
+  data"). An out-of-range value that runs the same code as the last cases
+  (`beql` with the statement in the delay slot) is `case 5: default:` on one
+  block, not two blocks with the same statement (func_088ADDF4).
+
 ## Calls and allocation
 
 - PSP EABI: arguments 5-8 in `$t0-$t3`, float arguments in `$f12-$f19` counted apart
