@@ -62,8 +62,21 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - A stack local passed by address: an array up to the next such local / the frame
   top, so the frame size matches (`stack_arrays`); a `ScePspDateTime` filled by
   `sceRtcGetCurrentClockLocalTime` is the pspsdk structure.
+- A ring or table indexed by a field (`sll` + `addu idx, base`): a real structure
+  with an array member, `q->entries[q->head]`, rather than m2c's shifted sum
+  (func_088B85F8, include/unk_queue.h).
+- A structure assignment is copied member by member (`lhu`/`sh`, `lw`/`sw`,
+  `lbu`/`sb`) in C++ only; C copies it by words (func_088B88F8).
 - A constant 12-byte object split by splat (`D_089B9228` + 8 vs `D_089B9230`) must be
   one symbol before a structure copy can match (func_0890682C).
+
+## Registers and loops
+
+- Two locals in swapped registers: the declaration order of the locals sets them
+  (func_088B871C: the entry pointer declared before the counter).
+- `for` loops compile with a jump to the test at the bottom; a loop the original
+  enters without that `b` is a `do { } while` (with `break` for the early exits,
+  func_088B87B0), or `if (c) do { } while (c)` (func_088B88F8).
 
 ## Calls and allocation
 
