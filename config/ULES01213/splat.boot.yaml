@@ -94,9 +94,9 @@ segments:
       - [0x12360, c, unit_08813DAC]
       - [0x1238C, asm, text_08813DD8]
       - [0x123C4, c, unit_08813E10]
-      - [0x123D4, asm, text_08813E20]
+      - [0x123D4, c, unit_08813E20]
       - [0x12424, c, unit_08813E70]
-      - [0x12444, asm, text_08813E90]
+      - [0x12444, c, unit_08813E90]
       - [0x124B8, c, unit_08813F04]
       - [0x125FC, cpp, unit_08814048]
       - [0x12634, c, unit_08814080]
@@ -206,6 +206,8 @@ segments:
       - [0x32C18, c, unit_08834664]
       - [0x32C8C, c, unit_088346D8]
       - [0x32CE4, asm, text_08834730]
+      - [0x37068, c, unit_08838AB4]
+      - [0x370BC, asm, text_08838B08]
       - [0x373C0, c, unit_08838E0C]
       - [0x373E4, asm, text_08838E30]
       - [0x390F8, c, unit_0883AB44]
@@ -286,7 +288,8 @@ segments:
       - [0x4DE20, c, unit_0884F86C]
       - [0x4DE88, asm, text_0884F8D4]
       - [0x4DFC0, c, unit_0884FA0C]
-      - [0x4E010, asm, text_0884FA5C]
+      - [0x4E010, c, unit_0884FA5C]
+      - [0x4E078, asm, text_0884FAC4]
       - [0x4E120, c, unit_0884FB6C]
       - [0x4E158, asm, text_0884FBA4]
       - [0x4E228, c, unit_0884FC74]
@@ -821,7 +824,8 @@ segments:
       - [0x91944, c, unit_08893390]
       - [0x919F8, asm, text_08893444]
       - [0x92E28, c, unit_08894874]
-      - [0x92F3C, asm, text_08894988]
+      - [0x92F3C, c, unit_08894988]
+      - [0x92FA0, asm, text_088949EC]
       - [0x930B4, c, unit_08894B00]
       - [0x930C0, asm, text_08894B0C]
       - [0x93BC0, c, unit_0889560C]
@@ -1547,7 +1551,16 @@ segments:
       - [0x10CF34, rodata, sceresident]   # .rodata.sceModuleInfo, .rodata.sceResident
       - [0x10D22C, rodata, scenid]        # .rodata.sceNid
       - [0x10DEAC, data, data]            # .data
-      - [0x1306A8, .data, unit_088ADDF4]  # jump tables of the unit
+      - [0x10EE74, .data, unit_08813E20]  # jump tables of the units, in address order
+      - [0x10EEDC, .data, unit_08813E90]
+      - [0x10EF1C, data, data_08910968]
+      - [0x12F6A4, .data, unit_08838AB4]
+      - [0x12F6D8, data, data_08931124]
+      - [0x12F928, .data, unit_0884FA5C]
+      - [0x12F940, data, data_0893138C]
+      - [0x130360, .data, unit_08894988]
+      - [0x130378, data, data_08931DC4]
+      - [0x1306A8, .data, unit_088ADDF4]
       - [0x1306D8, .data, unit_088ADEAC]
       - [0x1306F0, data, data_0893213C]
       - { start: 0x1CA044, type: bss, vram: 0x089CBA90, name: bss }

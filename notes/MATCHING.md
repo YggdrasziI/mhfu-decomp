@@ -153,6 +153,19 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   (`beql` with the statement in the delay slot) is `case 5: default:` on one
   block, not two blocks with the same statement (func_088ADDF4).
 
+- Reading a jump-table `switch` back from its table and blocks:
+  - the blocks are in source order: the `case` whose block comes first in the
+    code is written first, whatever its value (func_0884FA5C: `case 4: case 6:
+    case 7: case 8:` before `case 3:` and `case 5:`);
+  - a block reached both from the table and from the out-of-range `beql` (the
+    statement copied in its delay slot) is `case N: default:` together, also for
+    a `return` (func_08838AB4, func_08813E90, func_08894988 with `case 0:
+    default: return 9;`);
+  - an out-of-range `beqz` to a `return 0` shared with the code after the
+    `switch` has no `default`: the cases `break` or the `switch` sits inside the
+    `if` (func_08813E20, func_0884FA5C);
+  - 26 cases that all return 1 are still a table: every `case` is written out.
+
 ## Calls and allocation
 
 - PSP EABI: arguments 5-8 in `$t0-$t3`, float arguments in `$f12-$f19` counted apart
