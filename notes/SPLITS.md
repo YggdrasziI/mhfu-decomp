@@ -990,6 +990,8 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088CC4D8` | 0x088CC4D8-0x088CC508 | six functions returning 0 | 100 % |
 | `unit_088CC508` | 0x088CC508-0x088CC558 | 2 small functions (C++) | 100 % |
 | `unit_088CC558` | 0x088CC558-0x088CC568 | 2 small functions | 100 % |
+| `unit_088CC568` | 0x088CC568-0x088CC604 | 1 function (constructor shape), C++ | NonMatching |
+| `unit_088CC604` | 0x088CC604-0x088CC828 | 2 functions (destructor shape, state machine), C++ | 100 % |
 | `unit_088CDCB0` | 0x088CDCB0-0x088CDCC8 | 1 small function | 100 % |
 | `unit_088CDCF4` | 0x088CDCF4-0x088CDD24 | 1 small function | 100 % |
 | `unit_088CE05C` | 0x088CE05C-0x088CE1AC | 1 small function | 100 % |
