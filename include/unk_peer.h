@@ -48,12 +48,16 @@ typedef struct {
     char unkCC[0xC];
     char unkD8[2];
     s16 unkDA;
-    char unkDC[0x38];
+    char unkDC[4];
+    float unkE0[4];
+    char unkF0[0x24];
     u8 unk114[4];
     u16 unk118[4];
     char unk120[0x14];
     float unk134;
-    char unk138[0x10];
+    char unk138[8];
+    s32 (*unk140)(s32, s32, s32);
+    s32 unk144;
     void (*unk148)(s32, s32);
     s32 unk14C;
     void (*unk150)(s32, s32);

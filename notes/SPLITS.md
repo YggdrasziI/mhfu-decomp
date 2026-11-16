@@ -794,6 +794,9 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088A8048` | 0x088A8048-0x088A812C | 1 function (appends a headed record to the store) | 100 % |
 | `unit_088A84B4` | 0x088A84B4-0x088A8570 | 1 function (peer state change with callbacks) | 100 % |
 | `unit_088A8570` | 0x088A8570-0x088A85F4 | 1 small function | 100 % |
+| `unit_088A85F4` | 0x088A85F4-0x088A874C | 5 functions (append to a store, four packet builders ending in it) | 100 % |
+| `unit_088A88C4` | 0x088A88C4-0x088A88E0 | 1 function (callback through the session) | 100 % |
+| `unit_088A88E0` | 0x088A88E0-0x088A8988 | 1 function (peer activity time stamp) | NonMatching |
 | `unit_088A91F4` | 0x088A91F4-0x088A920C | 1 small function | 100 % |
 | `unit_088A9334` | 0x088A9334-0x088A93A4 | 1 small function | 100 % |
 | `unit_088A9CDC` | 0x088A9CDC-0x088A9CFC | 2 small functions | 100 % |

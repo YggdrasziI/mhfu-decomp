@@ -15,3 +15,8 @@ __truncdfsf2 = 0x089066E0; // type:func size:0x64
 
 // Read by func_0884AF84 (first word of a 12-byte constant); splat left the reference raw
 D_0893B7A4 = 0x0893B7A4;
+
+// func_088A88C4 ends with a jump through a pointer (`jr $v0`); splat joined the next
+// function to it once they were split into their own piece
+func_088A88C4 = 0x088A88C4; // type:func size:0x1C
+func_088A88E0 = 0x088A88E0; // type:func size:0xA8
