@@ -226,6 +226,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0882693C` | 0x0882693C-0x088269C0 | 1 small function | 100 % |
 | `unit_08826EEC` | 0x08826EEC-0x08826EF4 | 1 small function | 100 % |
 | `unit_08826F80` | 0x08826F80-0x08826FCC | 1 count of used slots, divided | 100 % |
+| `unit_08828658` | 0x08828658-0x088286E4 | 1 function (maps a byte 17-22 to a signed amount); jump table 0x08930AF8-0x08930B10 in the unit | 100 % |
 | `unit_08828884` | 0x08828884-0x08828938 | 1 small function (C++) | 100 % |
 | `unit_0882900C` | 0x0882900C-0x088290A4 | 1 small function | 100 % |
 | `unit_088298E4` | 0x088298E4-0x08829928 | 1 pointer chosen by a bool flag (C++) | 100 % |
@@ -317,6 +318,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0885028C` | 0x0885028C-0x088503F8 | 2 small functions | 100 % |
 | `unit_0885057C` | 0x0885057C-0x0885058C | 1 small function | 100 % |
 | `unit_08850704` | 0x08850704-0x08850724 | 1 entry test | 100 % |
+| `unit_08850868` | 0x08850868-0x08850910 | 1 function (stores an index by kind of a 12-byte entry); jump table 0x0893138C-0x089313A8 in the unit | 100 % |
 | `unit_08850C9C` | 0x08850C9C-0x08850D04 | 1 small function | 100 % |
 | `unit_08850EC4` | 0x08850EC4-0x08850EFC | 1 small function | 100 % |
 | `unit_0885100C` | 0x0885100C-0x08851078 | 1 small function | 100 % |
@@ -395,6 +397,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0885CCE8` | 0x0885CCE8-0x0885CD18 | 1 small function | 100 % |
 | `unit_0885CDB8` | 0x0885CDB8-0x0885CE00 | 1 small function | 100 % |
 | `unit_0885CE00` | 0x0885CE00-0x0885CE38 | 2 small functions | 100 % |
+| `unit_0885DD38` | 0x0885DD38-0x0885DD9C | 1 function (dispatch to two functions on a byte); jump table 0x08931584-0x089315A0 still in the data assembly | NonMatching |
 | `unit_0885E244` | 0x0885E244-0x0885E270 | 1 small function | 100 % |
 | `unit_0885E988` | 0x0885E988-0x0885E9F8 | 1 small function | 100 % |
 | `unit_0885E9F8` | 0x0885E9F8-0x0885EA08 | 1 small function | 100 % |
@@ -638,6 +641,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08890080` | 0x08890080-0x088900A0 | 1 setter | 100 % |
 | `unit_088900A0` | 0x088900A0-0x088900C4 | 1 small function | 100 % |
 | `unit_08890114` | 0x08890114-0x08890144 | 1 small function | 100 % |
+| `unit_088903BC` | 0x088903BC-0x08890430 | 1 function (maps 0-6 to another number); jump table 0x08931AA0-0x08931ABC in the unit | 100 % |
 | `unit_08890430` | 0x08890430-0x08890494 | 1 small function | 100 % |
 | `unit_088905B0` | 0x088905B0-0x088905EC | 1 small function | 100 % |
 | `unit_088907D8` | 0x088907D8-0x088908FC | 1 small function | 100 % |
@@ -840,6 +844,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088AE0C8` | 0x088AE0C8-0x088AE0D4 | 1 small function | 100 % |
 | `unit_088AE16C` | 0x088AE16C-0x088AE1D4 | 1 small function | 100 % |
 | `unit_088AE1D4` | 0x088AE1D4-0x088AE1EC | 1 small function | 100 % |
+| `unit_088AE1EC` | 0x088AE1EC-0x088AE25C | 1 function (`switch` on a result); jump table 0x0893213C-0x08932154 in the unit | 100 % |
 | `unit_088AE25C` | 0x088AE25C-0x088AE274 | 1 small function | 100 % |
 | `unit_088AE274` | 0x088AE274-0x088AE2C0 | 1 small function | 100 % |
 | `unit_088AE2C0` | 0x088AE2C0-0x088AE354 | 1 small function | 100 % |
@@ -1042,6 +1047,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088D2BEC` | 0x088D2BEC-0x088D2C14 | 1 small function | 100 % |
 | `unit_088D2E04` | 0x088D2E04-0x088D2E18 | 1 small function | 100 % |
 | `unit_088D3A84` | 0x088D3A84-0x088D3ADC | 1 small function | 100 % |
+| `unit_088D5B54` | 0x088D5B54-0x088D5BD4 | 1 function (`switch` with 11 cases); jump table 0x08932418-0x08932444 in the unit | 100 % |
 | `unit_088D5C2C` | 0x088D5C2C-0x088D5C34 | 1 small function | 100 % |
 | `unit_088D5C34` | 0x088D5C34-0x088D5C74 | 1 small function | 100 % |
 | `unit_088D5C74` | 0x088D5C74-0x088D5C7C | 1 small function | 100 % |

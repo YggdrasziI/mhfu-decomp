@@ -165,6 +165,11 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
     `switch` has no `default`: the cases `break` or the `switch` sits inside the
     `if` (func_08813E20, func_0884FA5C);
   - 26 cases that all return 1 are still a table: every `case` is written out.
+  - table entries that point at the end of the `switch` are cases with an empty
+    `break` (`case 0: case 1: case 4: case 5: break;`, func_088AE1EC,
+    func_088D5B54); they can be written after the others;
+  - a `return 0` block that no table entry reaches, placed last, is a `default:
+    return 0;` at the end of the `switch` (func_08850868).
 
 ## Calls and allocation
 
