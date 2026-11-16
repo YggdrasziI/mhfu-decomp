@@ -12,6 +12,13 @@ Pipeline for each module of decomp.toml (SPEC.md, "Build"):
 objdiff: each C unit is compared with a target object assembled from the splat
 assembly of its functions; the remaining assembly files are target-only units, so
 the report covers the whole module.
+
+NonMatching units: a `src/unit_<addr>.c` that the splat yaml does not name (the code
+is still the assembly subsegment `text_<addr>`, which must start at the same address
+and end with the unit) is compiled and compared with that piece for the report, but
+not linked: its functions show their match percentage in objdiff while the image
+keeps the original code. The unit is switched to a `c` subsegment once every
+function matches.
 """
 
 import argparse
@@ -189,6 +196,7 @@ def main() -> None:
     outputs = []
     units = []
     unit_objs = []
+    nonmatching = []
     for module in project.MODULES.values():
         ld_script = build_dir / f"{module.name}.ld"
         if not args.no_split or not (ROOT / ld_script).exists():
@@ -227,6 +235,29 @@ def main() -> None:
                 unit_objs.append(obj)
             else:
                 n.build(obj, "bin", src, implicit=[posix(binutils_stamp)])
+        # NonMatching units: a source of src/ the linker script does not name. Its
+        # functions stay linked from the assembly piece that starts at the same address
+        # (`text_<addr>.s`, its own subsegment in the splat yaml); the source is compiled
+        # for the report only, compared with that piece.
+        linked = {Path(o[:-2]).relative_to(build_dir).as_posix() for o in objs}
+        asm_dir = Path("asm") / version / module.name
+        for source in sorted(p.relative_to(ROOT).as_posix() for ext in ("c", "cpp")
+                             for p in (ROOT / "src").rglob(f"unit_*.{ext}")):
+            if source in linked:
+                continue
+            addr = Path(source).stem[len("unit_"):]
+            piece = posix(asm_dir / f"text_{addr}.s")
+            target_obj = posix(build_dir / piece) + ".o"
+            if target_obj not in objs:
+                continue  # another module's, or no piece starts there yet
+            obj = posix(build_dir / source) + ".o"
+            n.build(obj, "cc", source, implicit=cc_deps + [posix(binutils_stamp)])
+            unit = Path(source).with_suffix("").relative_to("src").as_posix()
+            units = [u for u in units if u.get("target_path") != target_obj]
+            units.append({"name": unit, "base_path": obj, "target_path": target_obj,
+                          "metadata": {"complete": False, "source_path": source}})
+            unit_objs.append(obj)
+            nonmatching.append(source)
         elf = build_dir / f"{module.name}.elf"
         undefined = [build_dir / "undefined_syms_auto.txt", build_dir / "undefined_funcs_auto.txt"]
         n.build(posix(elf), "ld", objs, implicit=[posix(ld_script)] + [posix(u) for u in undefined],
@@ -257,7 +288,7 @@ def main() -> None:
     n.build("build.ninja", "configure", implicit=["tools/configure.py", "decomp.toml"] + split_inputs)
     n.build("all", "phony", ["check"])
     n.default("all")
-    print("build.ninja written")
+    print("build.ninja written" + (f" ({len(nonmatching)} NonMatching units)" if nonmatching else ""))
 
 
 main()
