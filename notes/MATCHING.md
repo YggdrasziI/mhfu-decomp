@@ -84,6 +84,14 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - A 0x1C-byte record copied as four then three float registers: two members of 16
   and 12 bytes copied one after the other (a C copy of the whole record is a word
   loop; C++ copies member by member) (func_088A6CC4).
+- A `bnel` to the next instruction with the operation in its delay slot
+  (`bnel a, K` / `andi a, a, 0xF`): `x = (a == K) ? a : (a & 0xF);`; the `if` forms
+  and the ternary of the other sense give a `beql` over the next statement
+  (func_088A6628).
+- A mask repeated at each call inside a loop (`andi $a2, $s1, 0xFF`) instead of
+  once before it: the callee's parameter is `u8` and the caller passes its `int`
+  unmasked; an explicit `& 0xFF` or `(u8)` is hoisted out of the loop
+  (func_088A6690).
 - A `char **this` (destructor shapes) used with a member address `this + 0x1C`:
   m2c scales it by 4; it is `(char *) this + 0x1C` (`byte_offsets`).
 - Constructor shapes that store `(this + 0x1C) - 0x1C` to a global (a base at

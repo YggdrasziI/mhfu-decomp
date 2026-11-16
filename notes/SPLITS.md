@@ -761,7 +761,9 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088A600C` | 0x088A600C-0x088A6024 | 2 small functions | 100 % |
 | `unit_088A6024` | 0x088A6024-0x088A6040 | one function (table store) | 100 % |
 | `unit_088A6040` | 0x088A6040-0x088A6088 | 1 small function | 100 % |
+| `unit_088A658C` | 0x088A658C-0x088A6780 | 4 functions building messages (byte-wise clear of include/unk_msg.h) | 100 % |
 | `unit_088A6780` | 0x088A6780-0x088A6798 | 2 small functions | 100 % |
+| `unit_088A6798` | 0x088A6798-0x088A6A78 | 8 functions filling a record of include/unk_msg.h for func_088A6E44 | 100 % |
 | `unit_088A6A78` | 0x088A6A78-0x088A6BA0 | 1 small function | 100 % |
 | `unit_088A6BA0` | 0x088A6BA0-0x088A6C48 | 1 function (message of include/unk_msg.h) | NonMatching |
 | `unit_088A6C48` | 0x088A6C48-0x088A6FEC | 5 functions building and sending the messages of include/unk_msg.h | 100 % |

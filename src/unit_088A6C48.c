@@ -102,7 +102,7 @@ s32 func_088A6E44(R *r, s32 type) {
     return func_088A5B50(1, &m, sizeof(M24));
 }
 
-void func_088A6F30(R *a, R *b) {
+s32 func_088A6F30(R *a, R *b) {
     M40 m;
 
     clear((char *) &m, sizeof(M40));
@@ -112,5 +112,5 @@ void func_088A6F30(R *a, R *b) {
     m.b.t = a->t;
     m.a.h = b->h;
     m.a.t = b->t;
-    func_088A5B50(1, &m, sizeof(M40));
+    return func_088A5B50(1, &m, sizeof(M40));
 }
