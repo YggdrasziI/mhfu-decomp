@@ -10,7 +10,7 @@ extern char D_089B2634;
 extern char D_089B263C;
 extern char D_089B2644;
 extern char D_09A0EB10;
-extern int func_0880D9EC(char *);
+extern int func_0880D9EC(char *, ...);
 
 s32 func_088A4BF0(u32 arg0, s32 arg1) {
     if (arg0 >= 0x10U) {

@@ -700,12 +700,16 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0889E670` | 0x0889E670-0x0889E6A4 | 1 small function | 100 % |
 | `unit_0889E9D4` | 0x0889E9D4-0x0889E9DC | 1 small function | 100 % |
 | `unit_0889EA4C` | 0x0889EA4C-0x0889EAE8 | 19 forwarders (tail calls) | 100 % |
+| `unit_0889EAE8` | 0x0889EAE8-0x0889EB84 | 1 function (record of include/unk_msg.h) | 100 % |
+| `unit_0889EB84` | 0x0889EB84-0x0889EC14 | 1 function (table reset, loop unrolled by 8) | NonMatching |
 | `unit_0889EC14` | 0x0889EC14-0x0889EC50 | 1 small function | 100 % |
 | `unit_0889EC50` | 0x0889EC50-0x0889EC78 | 1 small function | 100 % |
 | `unit_0889EC78` | 0x0889EC78-0x0889ECB8 | 8 forwarders | 100 % |
+| `unit_0889ECB8` | 0x0889ECB8-0x0889EE40 | 1 function (copies the fields named by a bit mask) | 100 % |
 | `unit_0889EE40` | 0x0889EE40-0x0889EEA0 | 12 forwarders | 100 % |
 | `unit_0889EF04` | 0x0889EF04-0x0889EF20 | 1 small function | 100 % |
 | `unit_0889EF20` | 0x0889EF20-0x0889EF40 | 1 semaphore wait | 100 % |
+| `unit_0889EF40` | 0x0889EF40-0x0889F018 | 1 function (virtual timer creation) | 100 % |
 | `unit_0889F018` | 0x0889F018-0x0889F07C | 2 small functions | 100 % |
 | `unit_0889F07C` | 0x0889F07C-0x0889F0D8 | 1 small function | 100 % |
 | `unit_0889F42C` | 0x0889F42C-0x0889F444 | 2 small functions | 100 % |

@@ -9,7 +9,7 @@
 
 extern s32 func_088A5B50(s32, void *, s32);
 extern void *func_088A5EF8(s32, void *, s32);
-extern int func_0880D9EC(void *);
+extern int func_0880D9EC(char *, ...);
 extern char D_089B2788;
 extern char D_089B2790;
 extern char D_089B2798;

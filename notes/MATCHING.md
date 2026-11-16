@@ -108,6 +108,10 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   enters without that `b` is a `do { } while` (with `break` for the early exits,
   func_088B87B0), or `if (c) do { } while (c)` (func_088B88F8).
 
+- A loop whose first test branches (`beqz`) with the counter's initial value in
+  the delay slot: the initialisation comes before the test,
+  `bit = 1; if (flags != 0) { do { } while (flags != 0); }` (func_0889ECB8).
+
 ## Calls and allocation
 
 - PSP EABI: arguments 5-8 in `$t0-$t3`, float arguments in `$f12-$f19` counted apart
@@ -125,6 +129,9 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 
 ## Open symptoms
 
+- A constant fill loop unrolled by 8 in the original (eight stores per pass,
+  counter += 8): -O4 keeps one store per pass, `#pragma opt_unroll_loops on` changes
+  nothing (func_0889EB84).
 - $a0 not reloaded after a call to a function that leaves it alone
   (func_088A6BA0, notes/COMPILER.md).
 - Register-only differences (two registers swapped, result kept in `$v0` then copied
