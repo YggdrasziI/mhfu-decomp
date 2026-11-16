@@ -715,6 +715,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0889F42C` | 0x0889F42C-0x0889F444 | 2 small functions | 100 % |
 | `unit_0889F47C` | 0x0889F47C-0x0889F4BC | 1 list cursor step | 100 % |
 | `unit_0889F4BC` | 0x0889F4BC-0x0889F4F0 | 1 small function | 100 % |
+| `unit_0889F6A0` | 0x0889F6A0-0x0889F744 | 1 function (resets a table of 32 0x48-byte entries) | 100 % |
 | `unit_0889F744` | 0x0889F744-0x0889F764 | 1 element address | 100 % |
 | `unit_0889F9A0` | 0x0889F9A0-0x0889F9C4 | 1 small function | 100 % |
 | `unit_088A00B0` | 0x088A00B0-0x088A00D0 | 1 small function | 100 % |
@@ -907,6 +908,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088B7958` | 0x088B7958-0x088B7978 | 1 global reset | 100 % |
 | `unit_088B7A10` | 0x088B7A10-0x088B7A38 | 1 small function | 100 % |
 | `unit_088B7A38` | 0x088B7A38-0x088B7A5C | 2 small functions | 100 % |
+| `unit_088B826C` | 0x088B826C-0x088B8320 | 1 function (fills a 0x3C-byte record, float argument) | 100 % |
 | `unit_088B8320` | 0x088B8320-0x088B8374 | 1 small function | 100 % |
 | `unit_088B8374` | 0x088B8374-0x088B8404 | 1 small function | 100 % |
 | `unit_088B8404` | 0x088B8404-0x088B8460 | 1 small function | 100 % |

@@ -112,11 +112,19 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   the delay slot: the initialisation comes before the test,
   `bit = 1; if (flags != 0) { do { } while (flags != 0); }` (func_0889ECB8).
 
+- A counter and a pointer stepped together in swapped registers:
+  `for (i = 0, p = table; i < n; i++, p++)` with `i` declared before `p`
+  (func_0889F6A0).
+
 ## Calls and allocation
 
 - PSP EABI: arguments 5-8 in `$t0-$t3`, float arguments in `$f12-$f19` counted apart
   from the integer ones (the float parameter may come before the 4th integer one,
   func_088C6234).
+- The copy of a float argument to `$f20` placed before the copies of the integer
+  arguments: the float parameter is declared first; passing it explicitly to a
+  callee that has it still in `$f12` costs no instruction (func_088B826C,
+  func_088B8320).
 - Allocation + inlined constructor: `p = func_08859B44(heap, size, 16); if (p) {...}
   else p = 0;` with the result in a temporary (keeps the dead `p = 0` after a `b`),
   the heap sum passed uncast to a `void *` parameter, `*(s32 *) argN` for a `char *`
