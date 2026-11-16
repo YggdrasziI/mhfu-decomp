@@ -701,7 +701,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0889E9D4` | 0x0889E9D4-0x0889E9DC | 1 small function | 100 % |
 | `unit_0889EA4C` | 0x0889EA4C-0x0889EAE8 | 19 forwarders (tail calls) | 100 % |
 | `unit_0889EAE8` | 0x0889EAE8-0x0889EB84 | 1 function (record of include/unk_msg.h) | 100 % |
-| `unit_0889EB84` | 0x0889EB84-0x0889EC14 | 1 function (table reset, loop unrolled by 8) | NonMatching |
+| `unit_0889EB84` | 0x0889EB84-0x0889EC14 | 1 function (table reset, loop unrolled by 8: optimized for speed) | 100 % |
 | `unit_0889EC14` | 0x0889EC14-0x0889EC50 | 1 small function | 100 % |
 | `unit_0889EC50` | 0x0889EC50-0x0889EC78 | 1 small function | 100 % |
 | `unit_0889EC78` | 0x0889EC78-0x0889ECB8 | 8 forwarders | 100 % |
@@ -778,8 +778,10 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088A72F0` | 0x088A72F0-0x088A7308 | 3 small functions | 100 % |
 | `unit_088A7308` | 0x088A7308-0x088A7368 | 2 small functions | 100 % |
 | `unit_088A7368` | 0x088A7368-0x088A7378 | 2 small functions | 100 % |
+| `unit_088A7378` | 0x088A7378-0x088A73A8 | 1 small function | 100 % |
 | `unit_088A73A8` | 0x088A73A8-0x088A73B8 | 2 small functions | 100 % |
 | `unit_088A7DC0` | 0x088A7DC0-0x088A7E44 | 1 small function | 100 % |
+| `unit_088A7E44` | 0x088A7E44-0x088A7F6C | 1 function (elapsed time in seconds, double arithmetic; optimized for speed) | 100 % |
 | `unit_088A7F6C` | 0x088A7F6C-0x088A8018 | 1 small function | 100 % |
 | `unit_088A8018` | 0x088A8018-0x088A8028 | 1 small function | 100 % |
 | `unit_088A8028` | 0x088A8028-0x088A8048 | 1 setter | 100 % |

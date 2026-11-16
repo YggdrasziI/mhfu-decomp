@@ -170,6 +170,32 @@ earlier in the same file, and has no `-ipa` option. Hypothesis: the original
 compiler (2.4.1.01) tracks the registers a callee compiled earlier in the file
 uses; if so, other calls between functions of one object will show the same gap.
 
+## Speed and space (2026-11-16)
+
+`-O4` alone and `-O4,p` (`-opt speed`) give the same code on almost every function,
+but not on all, and both kinds exist in the game:
+
+| Function | Original | `-O4` | `-O4,p` |
+|---|---|---|---|
+| func_0889EB84 (16-word fill loop) | unrolled by 8 | one store per pass | identical |
+| func_088A7E44 (`0.000001 * x` in double) | constant as `lui`/`ori` pairs | constant read from the data | identical |
+| byte-wise clear of include/unk_msg.h (25 functions) | one byte per pass | identical | unrolled by 8 |
+
+With `-O4,p` for the whole build, 23 matching functions stop matching (all the
+users of the clear helper, func_088662B8, func_088C2CE0); `#pragma opt_unroll_loops
+off` around the helper does not bring them back. func_0889EB84 sits between two
+users of the helper (func_0889EAE8, func_0889ECB8), so the setting changes inside
+what looks like one object (hypothesis: pragmas in the source or in a header, not
+the command line). The build keeps `-O4`; a unit that needs the speed setting says
+`#pragma optimize_for_size off` at its top, with the reason in its header comment.
+
+mwccpsp calls `__extendsfdf2`, `__muldf3`, `__adddf3` and `__truncdfsf2` for
+`(double) f`, `d * d`, `d + d` and `(float) d`; func_088A7E44 calls 0x08905294,
+0x08905B10, 0x08905AA4 and 0x089066E0 at those places, so these addresses carry the
+names (config/ULES01213/symbol_addrs.txt). They sit in the region labelled "VFPU
+code (unidentified)" in notes/SPLITS.md, which therefore also holds the soft-float
+library.
+
 ## Candidates
 
 | Compiler | Where | Status |

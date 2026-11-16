@@ -5,5 +5,13 @@ __ptmf_scall = 0x0890C370; // type:func size:0x34
 __ptmf_cmpr = 0x0890C3A4; // type:func size:0x34
 __ptmf_test = 0x0890C3D8; // type:func size:0x1C
 
+// Soft-float double routines: mwccpsp calls these names for `(double) f`, `d * d`,
+// `d + d` and `(float) d` where func_088A7E44 calls these addresses
+// (notes/COMPILER.md)
+__extendsfdf2 = 0x08905294; // type:func size:0x48
+__adddf3 = 0x08905AA4; // type:func size:0x6C
+__muldf3 = 0x08905B10; // type:func size:0x38C
+__truncdfsf2 = 0x089066E0; // type:func size:0x64
+
 // Read by func_0884AF84 (first word of a 12-byte constant); splat left the reference raw
 D_0893B7A4 = 0x0893B7A4;

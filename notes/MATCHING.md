@@ -116,6 +116,11 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   `for (i = 0, p = table; i < n; i++, p++)` with `i` declared before `p`
   (func_0889F6A0).
 
+- A constant loop unrolled by 8 (eight stores per pass, counter += 8), or a double
+  constant loaded as two `lui`/`ori` pairs instead of from the data: the function
+  is optimized for speed; put `#pragma optimize_for_size off` at the top of the
+  unit (func_0889EB84, func_088A7E44; notes/COMPILER.md, "Speed and space").
+
 ## Calls and allocation
 
 - PSP EABI: arguments 5-8 in `$t0-$t3`, float arguments in `$f12-$f19` counted apart
@@ -137,9 +142,6 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 
 ## Open symptoms
 
-- A constant fill loop unrolled by 8 in the original (eight stores per pass,
-  counter += 8): -O4 keeps one store per pass, `#pragma opt_unroll_loops on` changes
-  nothing (func_0889EB84).
 - $a0 not reloaded after a call to a function that leaves it alone
   (func_088A6BA0, notes/COMPILER.md).
 - Register-only differences (two registers swapped, result kept in `$v0` then copied
