@@ -906,6 +906,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088B89A8` | 0x088B89A8-0x088B89B0 | 1 small function | 100 % |
 | `unit_088B89B0` | 0x088B89B0-0x088B8A0C | 1 small function | 100 % |
 | `unit_088B8A0C` | 0x088B8A0C-0x088B8A58 | 1 small function | 100 % |
+| `unit_088B96D8` | 0x088B96D8-0x088B97A0 | 1 function (switch setting flag bits) | 100 % |
 | `unit_088B97A0` | 0x088B97A0-0x088B97BC | 1 small function | 100 % |
 | `unit_088B9910` | 0x088B9910-0x088B996C | 1 small function | 100 % |
 | `unit_088B9B0C` | 0x088B9B0C-0x088B9B9C | 1 small function | 100 % |
