@@ -1068,7 +1068,7 @@ segments:
       - [0xAC370, c, unit_088ADDBC]
       - [0xAC3A8, c, unit_088ADDF4]
       - [0xAC430, c, unit_088ADE7C]
-      - [0xAC460, asm, text_088ADEAC]
+      - [0xAC460, c, unit_088ADEAC]
       - [0xAC4A4, c, unit_088ADEF0]
       - [0xAC50C, asm, text_088ADF58]
       - [0xAC588, c, unit_088ADFD4]
@@ -1548,7 +1548,8 @@ segments:
       - [0x10D22C, rodata, scenid]        # .rodata.sceNid
       - [0x10DEAC, data, data]            # .data
       - [0x1306A8, .data, unit_088ADDF4]  # jump tables of the unit
-      - [0x1306D8, data, data_08932124]
+      - [0x1306D8, .data, unit_088ADEAC]
+      - [0x1306F0, data, data_0893213C]
       - { start: 0x1CA044, type: bss, vram: 0x089CBA90, name: bss }
 
   - [0x1CA044, bin, elf_tail]
