@@ -898,8 +898,10 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088B8404` | 0x088B8404-0x088B8460 | 1 small function | 100 % |
 | `unit_088B8460` | 0x088B8460-0x088B8548 | 1 small function | 100 % |
 | `unit_088B85CC` | 0x088B85CC-0x088B85F8 | 1 small function | 100 % |
+| `unit_088B85F8` | 0x088B85F8-0x088B863C | 2 functions on the 128-entry ring (`include/unk_queue.h`), C++ | 100 % |
 | `unit_088B863C` | 0x088B863C-0x088B86D4 | 2 small functions | 100 % |
 | `unit_088B86D4` | 0x088B86D4-0x088B871C | 1 small function | 100 % |
+| `unit_088B871C` | 0x088B871C-0x088B89A8 | 3 functions on the same ring (clear, drop by tag, remove one), C++ | 100 % |
 | `unit_088B89A8` | 0x088B89A8-0x088B89B0 | 1 small function | 100 % |
 | `unit_088B89B0` | 0x088B89B0-0x088B8A0C | 1 small function | 100 % |
 | `unit_088B8A0C` | 0x088B8A0C-0x088B8A58 | 1 small function | 100 % |
