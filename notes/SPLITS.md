@@ -577,6 +577,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0887D65C` | 0x0887D65C-0x0887D884 | 1 function (countdown state machine on +0xA4); jump table 0x08931910-0x08931934 in the unit | 100 % |
 | `unit_0887D884` | 0x0887D884-0x0887DD88 | 1 function (draws the lines of the same screen, cases falling through); jump table 0x08931934-0x08931954 and initialised array 0x089A89E4-0x089A89F2 (`.data`) in the unit; optimized for speed | 100 % |
 | `unit_0887DD88` | 0x0887DD88-0x0887DDD0 | 1 small function | 100 % |
+| `unit_0887E030` | 0x0887E030-0x0887E320 | 1 function (same shape as func_0887D884 with a 4-way falling switch); initialised array 0x089A8A00-0x089A8A0E (`.data`) in the unit; optimized for speed | 100 % |
 | `unit_0887E9AC` | 0x0887E9AC-0x0887EA88 | 1 function (C++; value / 10, halved or * 150 / 100 by flags); optimized for speed | 100 % |
 | `unit_0887EA88` | 0x0887EA88-0x0887EB20 | 1 small function | 100 % |
 | `unit_0887EB20` | 0x0887EB20-0x0887EB80 | 1 small function | 100 % |

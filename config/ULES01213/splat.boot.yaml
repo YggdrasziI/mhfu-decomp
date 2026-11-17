@@ -708,6 +708,8 @@ segments:
       - [0x7BE38, c, unit_0887D884]
       - [0x7C33C, c, unit_0887DD88]
       - [0x7C384, asm, text_0887DDD0]
+      - [0x7C5E4, c, unit_0887E030]
+      - [0x7C8D4, asm, text_0887E320]
       - [0x7CF60, cpp, unit_0887E9AC]
       - [0x7D03C, c, unit_0887EA88]
       - [0x7D0D4, c, unit_0887EB20]
@@ -1735,6 +1737,8 @@ segments:
       - [0x1A6F40, data, data_089A898C]
       - [0x1A6F98, .data, unit_0887D884]
       - [0x1A6FA8, data, data_089A89F4]
+      - [0x1A6FB4, .data, unit_0887E030]
+      - [0x1A6FC4, data, data_089A8A10]
       - [0x1B0FE8, .data, unit_088B01BC]
       - [0x1B0FF0, data, data_089B2A3C]
       - { start: 0x1CA044, type: bss, vram: 0x089CBA90, name: bss }
