@@ -1266,7 +1266,7 @@ segments:
       - [0xB27A0, c, unit_088B41EC]
       - [0xB27AC, asm, text_088B41F8]
       - [0xB2828, c, unit_088B4274]
-      - [0xB2874, asm, text_088B42C0]
+      - [0xB2874, c, unit_088B42C0]
       - [0xB2ADC, c, unit_088B4528]
       - [0xB2B10, c, unit_088B455C]
       - [0xB2B64, c, unit_088B45B0]

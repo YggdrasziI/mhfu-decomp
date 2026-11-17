@@ -102,6 +102,13 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   func_088CC568, func_088A6FEC).
 - A constant 12-byte object split by splat (`D_089B9228` + 8 vs `D_089B9230`) must be
   one symbol before a structure copy can match (func_0890682C).
+- A structure copied member by member where small byte arrays are copied two bytes
+  per pass (`lb`/`lb`/`sb`/`sb` loop) and the members one by one: a whole-structure
+  assignment, or `d->arr = s->arr` on a 4-aligned member, copies a 6-byte array as
+  a word and a halfword. Write each member, and each byte array as a cast copy
+  `*(B6 *) d = *(B6 *) s` (`B6` = `struct { s8 b[6]; }`). Two `u8` members after a
+  `u16` at a 2-aligned offset merge into an unaligned `lwl`/`lwr` copy unless
+  written through `u8 *` (func_088B42C0, C, not C++).
 
 ## Registers and loops
 
