@@ -685,7 +685,7 @@ segments:
       - [0x7505C, cpp, unit_08876AA8]
       - [0x75580, asm, text_08876FCC]
       - [0x756B4, c, unit_08877100]
-      - [0x75BA4, asm, text_088775F0]
+      - [0x75BA4, cpp, unit_088775F0]
       - [0x7619C, c, unit_08877BE8]
       - [0x761B8, c, unit_08877C04]
       - [0x764A4, cpp, unit_08877EF0]
@@ -1708,7 +1708,7 @@ segments:
       - [0x12FC90, data, data_089316DC]
       - { start: 0x12FD94, type: .rodata, name: unit_08876AA8, linker_section_order: .data }
       - { start: 0x12FDB0, type: .rodata, name: unit_08877100, linker_section_order: .data }
-      - [0x12FDC8, data, data_08931814]
+      - { start: 0x12FDC8, type: .rodata, name: unit_088775F0, linker_section_order: .data }
       - { start: 0x12FDE0, type: .rodata, name: unit_088785CC, linker_section_order: .data }
       - [0x12FE4C, data, data_08931898]
       - { start: 0x12FE68, type: .rodata, name: unit_0887A34C, linker_section_order: .data }
@@ -1758,7 +1758,10 @@ segments:
       - [0x1A4134, .data, unit_0885E664]
       - [0x1A4144, data, data_089A5B90]
       - [0x1A6D9C, .data, unit_08876AA8]
+      - [0x1A6DBA, pad, pad_089A8806]     # 2 bytes of padding after the second s16[7] table
       - [0x1A6DBC, data, data_089A8808]
+      - [0x1A6E04, .data, unit_088775F0]
+      - [0x1A6E24, data, data_089A8870]
       - [0x1A6E54, .data, unit_08877EF0]
       - [0x1A6E62, pad, pad_089A88AE]
       - [0x1A6E64, .data, unit_08879198]
