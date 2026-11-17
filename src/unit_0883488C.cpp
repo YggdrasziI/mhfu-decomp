@@ -9,7 +9,8 @@
  * func_088915B0 is variadic (it stores $t1-$t3). Its second parameter is
  * declared s32 here (with s16 the `lb` of the mark is scheduled one load
  * earlier) and s16 in unit_08832C60 (with s32 that unit's last argument load
- * moves): the real type is not settled.
+ * moves): the real type is not settled. Its fourth parameter is s32 here and
+ * s8 in unit_08818C94, for the same reason.
  */
 
 #pragma optimize_for_size off
@@ -46,8 +47,8 @@ extern u16 D_09B051AE[];
 extern char *func_0885151C(char *, u16);
 extern int func_0880E8F0(char *, char *, ...);
 extern void func_0882FA24(Box *, char *, char *, s32, s32);
-extern void func_0882F580(char *, Box *, char *, u8, s32, s32);
-extern void func_0882FB38(char *, Box *, u8, s32, s32, s32);
+extern void func_0882F580(char *, Box *, char *, s32, s32, s32);
+extern void func_0882FB38(char *, Box *, u16, u16, s32, s32);
 extern s32 func_08838AB4(s32, u8, u8);
 extern char *func_09A7B790(s32, u16);
 extern int func_088915B0(char *, s32, s16, s32, char *, ...);

@@ -122,6 +122,8 @@ segments:
       - [0x15118, c, unit_08816B64]
       - [0x15120, c, unit_08816B6C]
       - [0x15198, asm, text_08816BE4]
+      - [0x17248, cpp, unit_08818C94]
+      - [0x17528, asm, text_08818F74]
       - [0x18E94, c, unit_0881A8E0]
       - [0x18EAC, cpp, unit_0881A8F8]
       - [0x18F8C, asm, text_0881A9D8]
@@ -221,6 +223,8 @@ segments:
       - [0x332F0, cpp, unit_08834D3C]
       - [0x3364C, c, unit_08835098]
       - [0x337A4, asm, text_088351F0]
+      - [0x36308, asm, text_08837D54]
+      - [0x365B8, asm, text_08838004]
       - [0x37068, c, unit_08838AB4]
       - [0x370BC, asm, text_08838B08]
       - [0x373C0, c, unit_08838E0C]
@@ -681,7 +685,7 @@ segments:
       - [0x7619C, c, unit_08877BE8]
       - [0x761B8, c, unit_08877C04]
       - [0x764A4, cpp, unit_08877EF0]
-      - [0x76B80, asm, text_088785CC]
+      - [0x76B80, c, unit_088785CC]
       - [0x77114, c, unit_08878B60]
       - [0x77174, c, unit_08878BC0]
       - [0x77190, c, unit_08878BDC]
@@ -791,7 +795,8 @@ segments:
       - [0x81938, asm, text_08883384]
       - [0x81E64, c, unit_088838B0]
       - [0x81F3C, c, unit_08883988]
-      - [0x82108, asm, text_08883B54]
+      - [0x82108, c, unit_08883B54]
+      - [0x82398, asm, text_08883DE4]
       - [0x82CFC, c, unit_08884748]
       - [0x82ED0, asm, text_0888491C]
       - [0x83250, c, unit_08884C9C]
@@ -1694,6 +1699,8 @@ segments:
       - [0x12FBDC, data, data_08931628]
       - { start: 0x12FC10, type: .rodata, name: unit_08869424, linker_section_order: .data }
       - [0x12FC90, data, data_089316DC]
+      - { start: 0x12FDE0, type: .rodata, name: unit_088785CC, linker_section_order: .data }
+      - [0x12FE4C, data, data_08931898]
       - { start: 0x12FEC4, type: .rodata, name: unit_0887D65C, linker_section_order: .data }
       - { start: 0x12FEE8, type: .rodata, name: unit_0887D884, linker_section_order: .data }
       - [0x12FF08, data, data_08931954]

@@ -204,6 +204,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08816AE4` | 0x08816AE4-0x08816B64 | 2 functions with the shape of func_088129B8 | 100 % |
 | `unit_08816B64` | 0x08816B64-0x08816B6C | 1 small function | 100 % |
 | `unit_08816B6C` | 0x08816B6C-0x08816BE4 | 1 small function | 100 % |
+| `unit_08818C94` | 0x08818C94-0x08818F74 | 1 function (C++, speed: draws a 6-entry list with marks, page from the byte at +0x57D divided by 6; calls func_0883488C in the other mode) | 100 % |
 | `unit_0881A8E0` | 0x0881A8E0-0x0881A8F8 | 1 small function | 100 % |
 | `unit_0881A8F8` | 0x0881A8F8-0x0881A9D8 | 1 function (C++; prints a time / 30 as two numbers, / 60 and the rest); optimized for speed | 100 % |
 | `unit_0881C240` | 0x0881C240-0x0881C2E4 | 1 small function | 100 % |
@@ -266,6 +267,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08834D04` | 0x08834D04-0x08834D3C | 1 function (returns the halfword at +0x111E, or func_0884FB6C when the flag at +0x111D is clear) | 100 % |
 | `unit_08834D3C` | 0x08834D3C-0x08835098 | 1 function (C++, dispatch on a byte to 13 cases); jump table 0x08930F74-0x08930FA8 in the unit | 100 % |
 | `unit_08835098` | 0x08835098-0x088351F0 | 1 function (dispatch to 12 functions on a byte, 16-bit result); jump table 0x08930FA8-0x08930FDC in the unit | 100 % |
+| `unit_08837D54` | 0x08837D54-0x08838004 | 1 function, NonMatching (C++, 84.6 %: the record table D_08939850 is not kept in a register); formats a number with one of three formats, then draws two items | not linked |
 | `unit_08838AB4` | 0x08838AB4-0x08838B08 | 1 function (`switch` on a byte argument); jump table 0x089310F0-0x08931124 in the unit | 100 % |
 | `unit_08838E0C` | 0x08838E0C-0x08838E30 | 1 small function | 100 % |
 | `unit_0883AB44` | 0x0883AB44-0x0883AB4C | 1 small function | 100 % |
@@ -563,7 +565,8 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08876574` | 0x08876574-0x088765C0 | 1 small function | 100 % |
 | `unit_08877BE8` | 0x08877BE8-0x08877C04 | 1 small function | 100 % |
 | `unit_08877C04` | 0x08877C04-0x08877EF0 | 1 function (same shape as func_08878F08; prints a formatted line for each of 61 entries accepted by func_08874278); optimized for speed | 100 % |
-| `unit_08877EF0` | 0x08877EF0-0x088785CC, .data 0x089A88A0-0x089A88AE | 1 function (C++; draws one entry panel, positions from the D_089A8874.. table); `.data` is the initializer of its local `s16[7]` table (2 bytes of padding follow); optimized for speed; the rest of the old segment stays `text_088785CC` (asm, jump table) | 100 % |
+| `unit_08877EF0` | 0x08877EF0-0x088785CC, .data 0x089A88A0-0x089A88AE | 1 function (C++; draws one entry panel, positions from the D_089A8874.. table); `.data` is the initializer of its local `s16[7]` table (2 bytes of padding follow); optimized for speed | 100 % |
+| `unit_088785CC` | 0x088785CC-0x08878B60 | 1 function (27 conditions on a halfword of D_089CC438 and on the results of func_08850520 / func_088570D8 / func_0884FE80 / func_0884FF4C); jump table 0x0893182C-0x08931898 in the unit | 100 % |
 | `unit_08878B60` | 0x08878B60-0x08878BC0 | 1 function (returns 1 when one of the 27 conditions of func_088785CC holds) | 100 % |
 | `unit_08878BC0` | 0x08878BC0-0x08878BDC | 1 small function | 100 % |
 | `unit_08878BDC` | 0x08878BDC-0x08878EEC | 1 function (same shape as func_08878F08; prints two lines for the first two of 27 entries accepted by func_088785CC); optimized for speed | 100 % |
@@ -647,6 +650,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08883374` | 0x08883374-0x08883384 | 1 small function | 100 % |
 | `unit_088838B0` | 0x088838B0-0x08883988 | 1 function (forwards to func_0887FFE8 with its last argument * n / 100); optimized for speed | 100 % |
 | `unit_08883988` | 0x08883988-0x08883B54 | 2 small functions | 100 % |
+| `unit_08883B54` | 0x08883B54-0x08883DE4 | 1 function (speed: looks an entry up with func_088840A8, then calls func_088800C0 or func_088838B0 depending on func_0887FBBC) | 100 % |
 | `unit_08884748` | 0x08884748-0x0888491C | 1 function (stores its last argument at +0x562438, then calls func_088801E8 or func_088801A0 with arg7 * r / 100); optimized for speed | 100 % |
 | `unit_08884C9C` | 0x08884C9C-0x08884CD4 | 1 small function | 100 % |
 | `unit_08884CD4` | 0x08884CD4-0x08884CE4 | 1 small function | 100 % |

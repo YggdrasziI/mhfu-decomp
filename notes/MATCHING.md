@@ -421,6 +421,25 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   passed on unmasked: an `int` parameter tested as `(s8) arg1` (func_0883488C).
 - Stack arrays placed in the reverse of their declaration order: declare the
   highest one first (func_0883488C: `box`, `marks`, `text` for `text` at 0x20).
+- A stack argument computed before the one stored below it (`arg8 + base`
+  ready before `*(p + K) + 0x2000`): the sum is its own statement before the
+  call, `arg8 += base; f(..., x + 0x2000, arg8);` (func_08883B54).
+- A `seh` of a variable into its own register just before one use (`seh s0,
+  s0` then `subu a3, v0, s0`), the variable already extended when set: an
+  `s32` local set with `(s16) (q * 6)` and the statement `first = (s16)
+  first;` before the call; an `s16` local extends into a temporary at each use
+  (func_08818C94).
+- A `for` loop whose second variable is updated after the pointer steps
+  (`addiu s1` / `addiu s0` before the `seh` of `y` in the delay slot): the
+  update goes last in the increment list, `i++, ids++, m++, y += box.h`
+  (func_08818C94).
+- A guard that leaves with `bnezl` + `addu v0, zero, zero` and a `switch`
+  whose out-of-range `beqz` keeps its `nop`: the `switch` sits inside `if
+  (f() == 0) { ... } return 0;`; `if (f() != 0) return 0;` gives `beqzl`
+  (func_088785CC).
+- An initialised `u16 r[4]` local stays on the stack and is read back with
+  `lhu`; a structure with the same initializer is kept in registers
+  (func_08837D54, NonMatching).
 
 ## Calls and allocation
 
@@ -457,3 +476,6 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - Scheduling: a load placed before / after an index computation (func_088307BC,
   func_0884424C `trunc.w.s`).
 - Unfilled `jal` delay slot (func_08813CF8).
+- A constant table address kept in a saved register and read at +4 / +6
+  (`lui s3` / `addiu s3` once), where ours loads `lui` + `lh` at each use:
+  func_08837D54 (pointer locals, `volatile`, inline helper tried).
