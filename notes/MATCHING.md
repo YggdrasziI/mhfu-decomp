@@ -361,6 +361,10 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - A stack buffer argument (`addiu a2, sp, N`) set after a constant argument
   where ours sets it before: the parameter is a pointer, not `s32` with a cast
   (func_0887941C called from func_08878F08).
+- A mask in two registers shifted with `sll` / `srl 31` / `or` and tested
+  against two words: a `u64` (`unsigned long long`) mask, `*(u64 *)(p + N) &
+  mask`, `mask <<= 1`; initialise it before the counter (`for (mask = 1, i =
+  0; ...)`) (func_0887B8D8).
 - A format string that is sometimes the result of a call: the callee's parameter
   is a `char *` and the lookup returns `char *`; with an `s32` parameter and
   `(s32) &D_X` the `addiu %lo` is scheduled before the other arguments

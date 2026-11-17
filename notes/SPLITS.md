@@ -563,6 +563,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08879158` | 0x08879158-0x08879198 | 1 sum | 100 % |
 | `unit_0887941C` | 0x0887941C-0x0887959C | 2 small functions | 100 % |
 | `unit_0887B7C4` | 0x0887B7C4-0x0887B7E0 | 1 small function | 100 % |
+| `unit_0887B8D8` | 0x0887B8D8-0x0887BB48 | 1 function (same shape as func_08878F08; prints a line for each set bit of the 64-bit mask at +0xF8, 48 bits); optimized for speed | 100 % |
 | `unit_0887C708` | 0x0887C708-0x0887C724 | 1 small function | 100 % |
 | `unit_0887C81C` | 0x0887C81C-0x0887CA08 | 1 function (same shape as func_08878F08, s16 at +0xAA); optimized for speed | 100 % |
 | `unit_0887CA08` | 0x0887CA08-0x0887CA4C | 1 small function (C++) | 100 % |
