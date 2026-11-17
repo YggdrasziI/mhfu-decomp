@@ -217,6 +217,36 @@ names (config/ULES01213/symbol_addrs.txt). They sit in the region labelled "VFPU
 code (unidentified)" in notes/SPLITS.md, which therefore also holds the soft-float
 library.
 
+## VFPU in `asm` blocks (2026-11-17)
+
+mwccpsp_3.0.1_219 assembles VFPU mnemonics inside an `asm { }` block, with C
+pointer locals as base registers:
+
+```c
+static inline float sin_vfpu(float x) {
+    float r;
+    float *px = &x;
+    float *pr = &r;
+    asm {
+        lv.s S000, 0(px)
+        vcst.s S001, VFPU_2_PI
+        vmul.s S000, S000, S001
+        vsin.s S010, S000
+        sv.s S010, 0(pr)
+    }
+    return r;
+}
+```
+
+The object holds the same words as func_088429EC at 0x08842A5C-0x08842A6C
+(`lv.s` 0xC8400000, `vcst.s` 0xD0650020, `vmul.s` 0x64200000, `vsin.s`
+0xD0120001, `sv.s` 0xE8410000), with the same frame shape: the operand stored
+to one stack slot, both slot addresses taken first, the result read back with
+`lwc1`. `src/unit_088429EC.c` reaches 99.9 % this way (NonMatching on a
+`mul.s` operand order, not on the VFPU part). So VFPU code no longer has to stay
+in assembly: write it as an inline helper with an `asm` block. Not checked yet:
+matrix and vector forms (`lv.q`, `vmmul`), VFPU register allocation across
+several blocks.
 ## Candidates
 
 | Compiler | Where | Status |
