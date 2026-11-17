@@ -1287,6 +1287,7 @@ segments:
       - [0xB3560, asm, text_088B4FAC]
       - [0xB3B14, c, unit_088B5560]
       - [0xB3B1C, asm, text_088B5568]
+      - [0xB3D54, asm, text_088B57A0]
       - [0xB42F0, asm, text_088B5D3C]
       - [0xB4490, asm, text_088B5EDC]
       - [0xB457C, cpp, unit_088B5FC8]
