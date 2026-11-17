@@ -351,6 +351,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08854E44` | 0x08854E44-0x08854EB0 | 3 small functions | 100 % |
 | `unit_08854EB0` | 0x08854EB0-0x08854FCC | 3 small functions | 100 % |
 | `unit_08854FCC` | 0x08854FCC-0x08855038 | 3 small functions | 100 % |
+| `unit_08855160` | 0x08855160-0x088551F0 | 1 function (checks a zero-ended list of 29 ids with func_0884FE80); initialised array 0x0899CBC0-0x0899CBFC (`.data`) in the unit | 100 % |
 | `unit_088553DC` | 0x088553DC-0x08855410 | 1 small function | 100 % |
 | `unit_08855410` | 0x08855410-0x08855428 | 1 small function | 100 % |
 | `unit_08856550` | 0x08856550-0x0885658C | 2 small functions | 100 % |
@@ -552,6 +553,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0887B7C4` | 0x0887B7C4-0x0887B7E0 | 1 small function | 100 % |
 | `unit_0887C708` | 0x0887C708-0x0887C724 | 1 small function | 100 % |
 | `unit_0887CA08` | 0x0887CA08-0x0887CA4C | 1 small function (C++) | 100 % |
+| `unit_0887CBAC` | 0x0887CBAC-0x0887CC28 | 1 function (checks a list of 16 ids ended by -1 with func_0884FF4C); initialised array 0x089A8968-0x089A898A (`.data`) in the unit | 100 % |
 | `unit_0887CC28` | 0x0887CC28-0x0887CCAC | 1 small function | 100 % |
 | `unit_0887CCAC` | 0x0887CCAC-0x0887CD04 | 1 small function | 100 % |
 | `unit_0887D0B4` | 0x0887D0B4-0x0887D0D0 | 1 small function | 100 % |
@@ -902,6 +904,8 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088B0044` | 0x088B0044-0x088B0084 | 1 big-endian append | 100 % |
 | `unit_088B0084` | 0x088B0084-0x088B00DC | 1 small function | 100 % |
 | `unit_088B00DC` | 0x088B00DC-0x088B012C | 1 small function | 100 % |
+| `unit_088B012C` | 0x088B012C-0x088B01BC | 1 function, NonMatching (87.7 %, argument scheduling); initialised array 0x089B2A2C-0x089B2A32 | not linked |
+| `unit_088B01BC` | 0x088B01BC-0x088B0240 | 1 function (copies a 6-byte address, all 0xFF when the flag is 0, to D_09A202B8); initialised array 0x089B2A34-0x089B2A3A (`.data`) in the unit | 100 % |
 | `unit_088B0240` | 0x088B0240-0x088B0318 | 3 small functions | 100 % |
 | `unit_088B0318` | 0x088B0318-0x088B0324 | 1 small function | 100 % |
 | `unit_088B0324` | 0x088B0324-0x088B03BC | 2 small functions | 100 % |

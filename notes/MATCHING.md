@@ -296,6 +296,17 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   result goes to an unsigned local first, `n = f(); return n / 10 * t[i];`;
   casts in one expression and a local for the table entry give the other order
   (func_0885E664).
+- Stack offsets of an initialised array and a buffer swapped: the array is
+  declared first (func_088B01BC).
+- A list walked with its first element tested before the loop (`lhu a1` /
+  `beqz`) and the element kept in `` for the call: an `int` local,
+  `id = *p; if (id != 0) { do { f(x, id); p++; id = *p; } while (id != 0); }`;
+  `while (*p)` jumps to the test and a `u16` local is masked again
+  (func_08855160).
+- The constant of an initialised array whose size is not a multiple of 4 is
+  followed by padding in the image: a `pad` entry in the splat yaml after the
+  unit's `.data` entry when the next piece does not align itself
+  (unit_0887CBAC).
 - A format string that is sometimes the result of a call: the callee's parameter
   is a `char *` and the lookup returns `char *`; with an `s32` parameter and
   `(s32) &D_X` the `addiu %lo` is scheduled before the other arguments

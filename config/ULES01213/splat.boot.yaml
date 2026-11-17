@@ -359,6 +359,8 @@ segments:
       - [0x53464, c, unit_08854EB0]
       - [0x53580, c, unit_08854FCC]
       - [0x535EC, asm, text_08855038]
+      - [0x53714, c, unit_08855160]
+      - [0x537A4, asm, text_088551F0]
       - [0x53990, c, unit_088553DC]
       - [0x539C4, c, unit_08855410]
       - [0x539DC, asm, text_08855428]
@@ -675,6 +677,7 @@ segments:
       - [0x7ACD8, asm, text_0887C724]
       - [0x7AFBC, cpp, unit_0887CA08]
       - [0x7B000, asm, text_0887CA4C]
+      - [0x7B160, c, unit_0887CBAC]
       - [0x7B1DC, c, unit_0887CC28]
       - [0x7B260, c, unit_0887CCAC]
       - [0x7B2B8, asm, text_0887CD04]
@@ -1165,6 +1168,7 @@ segments:
       - [0xAE638, c, unit_088B0084]
       - [0xAE690, c, unit_088B00DC]
       - [0xAE6E0, asm, text_088B012C]
+      - [0xAE770, c, unit_088B01BC]
       - [0xAE7F4, c, unit_088B0240]
       - [0xAE8CC, c, unit_088B0318]
       - [0xAE8D8, c, unit_088B0324]
@@ -1681,10 +1685,17 @@ segments:
       - [0x130A10, data, data_0893245C]
       - { start: 0x130A70, type: .rodata, name: unit_088DED1C, linker_section_order: .data }
       - [0x130A9C, data, data_089324E8]
+      - [0x19B174, .data, unit_08855160]
+      - [0x19B1B0, data, data_0899CBFC]
       - [0x1A4134, .data, unit_0885E664]
       - [0x1A4144, data, data_089A5B90]
+      - [0x1A6F1C, .data, unit_0887CBAC]
+      - [0x1A6F3E, pad, pad_089A898A]     # 2 bytes of padding after the 0x22-byte array
+      - [0x1A6F40, data, data_089A898C]
       - [0x1A6F98, .data, unit_0887D884]
       - [0x1A6FA8, data, data_089A89F4]
+      - [0x1B0FE8, .data, unit_088B01BC]
+      - [0x1B0FF0, data, data_089B2A3C]
       - { start: 0x1CA044, type: bss, vram: 0x089CBA90, name: bss }
 
   - [0x1CA044, bin, elf_tail]
