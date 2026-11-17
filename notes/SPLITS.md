@@ -560,6 +560,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08877BE8` | 0x08877BE8-0x08877C04 | 1 small function | 100 % |
 | `unit_08877C04` | 0x08877C04-0x08877EF0 | 1 function (same shape as func_08878F08; prints a formatted line for each of 61 entries accepted by func_08874278); optimized for speed | 100 % |
 | `unit_08877EF0` | 0x08877EF0-0x088785CC, .data 0x089A88A0-0x089A88AE | 1 function (C++; draws one entry panel, positions from the D_089A8874.. table); `.data` is the initializer of its local `s16[7]` table (2 bytes of padding follow); optimized for speed; the rest of the old segment stays `text_088785CC` (asm, jump table) | 100 % |
+| `unit_08878B60` | 0x08878B60-0x08878BC0 | 1 function (returns 1 when one of the 27 conditions of func_088785CC holds) | 100 % |
 | `unit_08878BC0` | 0x08878BC0-0x08878BDC | 1 small function | 100 % |
 | `unit_08878BDC` | 0x08878BDC-0x08878EEC | 1 function (same shape as func_08878F08; prints two lines for the first two of 27 entries accepted by func_088785CC); optimized for speed | 100 % |
 | `unit_08878EEC` | 0x08878EEC-0x08878F08 | 1 small function | 100 % |

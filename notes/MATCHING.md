@@ -152,6 +152,9 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   callee `s32` parameters instead of `s16`/`u16`, or type the global as the
   original loads it (`lhu`: `u16`); a `seh` after `andi 0xFFFF` on a `u16`
   value passed on is an explicit `(s16)` cast (func_08877EF0).
+- `sltu $v0, $zero, $v0; xori $v0, 1; bnel` on a call result in C: `if (!!f())`;
+  a counted loop entered without a jump to its test: a `do { } while` loop
+  (func_08878B60).
 
 - A constant loop unrolled by 8 (eight stores per pass, counter += 8), or a double
   constant loaded as two `lui`/`ori` pairs instead of from the data: the function
