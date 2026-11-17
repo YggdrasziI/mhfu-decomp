@@ -16,7 +16,7 @@ extern char *D_08A631A8;
 extern s32 func_0882A9DC(s32, s32, s32, s32);
 extern void *func_0885151C(int, u16);
 extern void func_08890DE8(void *, s8, u8);
-extern int func_088915B0(char *, s16, s16, s32, char *);
+extern int func_088915B0(char *, s16, s16, s32, char *, ...);
 
 void func_08832C60(s32 arg0, s32 arg1) {
     char *temp_s0;

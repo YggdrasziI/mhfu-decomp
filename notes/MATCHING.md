@@ -412,6 +412,15 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   (func_0887D884).
 - Variadic callees (they store `$t0`-`$t3` at the top of their frame) are
   declared with `...` (func_08892004, func_088920A8, func_08891474).
+- One argument load scheduled before another where the original has it after
+  (`lb a3` before `lh a1`): the type of a callee parameter moves it; an `s16`
+  member passed to an `s32` parameter (func_0883488C calling func_088915B0).
+- A quotient / remainder masked once when computed (`andi s1, 0xFF`) and again
+  at each use: `s32` locals assigned `(u8) (n / 7)` and passed or tested as
+  `(u8) q`; `u8` locals drop the second mask. A parameter tested with `seb` but
+  passed on unmasked: an `int` parameter tested as `(s8) arg1` (func_0883488C).
+- Stack arrays placed in the reverse of their declaration order: declare the
+  highest one first (func_0883488C: `box`, `marks`, `text` for `text` at 0x20).
 
 ## Calls and allocation
 
