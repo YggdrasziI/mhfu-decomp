@@ -679,7 +679,7 @@ segments:
       - [0x761B8, c, unit_08877C04]
       - [0x764A4, asm, text_08877EF0]
       - [0x77174, c, unit_08878BC0]
-      - [0x77190, asm, text_08878BDC]
+      - [0x77190, c, unit_08878BDC]
       - [0x774A0, c, unit_08878EEC]
       - [0x774BC, c, unit_08878F08]
       - [0x776A8, asm, text_088790F4]
