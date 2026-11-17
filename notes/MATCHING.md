@@ -276,6 +276,26 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - `sum += f();` with a `s8` sum and a callee declared `s32` adds a `seb` of the
   result before the sum: the callee returns `s8` (func_0885CF9C).
 
+- A `switch` whose out-of-range values run a block that no table entry reaches,
+  placed first and falling into the cases (7, 6, ... 1 in code order, case 0 at
+  the end of the `switch`): `default:` written first, then `case 7:` ... `case
+  1:` without `break`, `case 0: break;` (func_0887D884).
+- A division by a constant compiled as a multiplication (`lui` / `ori
+  0x88888889`, `mult`, `mfhi`) where ours has `div`: the unit is optimized for
+  speed (`#pragma optimize_for_size off`); `% 60` stays a `div` (func_0887D884).
+- A loop copying a constant to the stack by halfwords (`lh` / `sh`, count 7 down
+  to 0, `bgtz`): a local array with an initialiser, `s16 t[7] = {0, 0, 0, 0, 0,
+  0x1C, 0};`, declared in a block at the place of the loop. A structure copy
+  of the same bytes goes through `lwc1` / `swc1`. The constant is the unit's own
+  `.data`: it needs a `.data` entry at its address in the splat yaml
+  (func_0887D884, notes/COMPILER.md, "Two data streams").
+- A format string that is sometimes the result of a call: the callee's parameter
+  is a `char *` and the lookup returns `char *`; with an `s32` parameter and
+  `(s32) &D_X` the `addiu %lo` is scheduled before the other arguments
+  (func_0887D884).
+- Variadic callees (they store `$t0`-`$t3` at the top of their frame) are
+  declared with `...` (func_08892004, func_088920A8, func_08891474).
+
 ## Calls and allocation
 
 - PSP EABI: arguments 5-8 in `$t0-$t3`, float arguments in `$f12-$f19` counted apart

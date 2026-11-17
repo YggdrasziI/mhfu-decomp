@@ -39,7 +39,7 @@ void func_0887941C(s32 arg0, s32 arg1, s32 arg2) {
     func_088920A8(D_08A631A8, (s16) (0xF0 - ((s32) (func_08890F70(D_08A631A8, arg2) * 8) >> 1)), arg1, &D_089A8870, arg2);
 }
 
-void func_08879488(void) {
+void func_08879488(char *arg0) {
     func_08832548(D_089CBBEC, 0);
     func_0882DCA0(D_089CBBEC, D_089A88D0, D_089A88D2, D_089A88D4, D_089A88D6, 0xFF);
     func_0882DCA0(D_089CBBEC, D_089A88C8, D_089A88CA, D_089A88CC, D_089A88CE, 0xFF);
