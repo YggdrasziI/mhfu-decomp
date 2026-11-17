@@ -103,6 +103,16 @@ compiler download) stubs the FLEXlm checkout like wibo does.
   (func_088ADEAC): same order as the code, as inferred above. A data piece may now
   start at an address that is not a multiple of 8: tools/psp/assemble.py writes
   `.double` as two words so that the assembler does not align the piece on 8.
+- Two data streams per object (2026-11-17): mwccpsp puts switch jump tables in
+  `.rodata` and the constant of an initialised local array
+  (`s16 t[7] = {...}`, copied to the stack by a loop) in `.data`. In the image
+  both follow the code order, the jump tables first (0x08910490-0x0893325C),
+  the `.data` constants later, among the strings (`func_0887D884`: table at
+  0x08931934, array at 0x089A89E4). So the sections are no longer renamed: a
+  unit's jump tables are a `.rodata` entry placed in the `.data` group of the
+  linker script (`{ start: 0x12FEE8, type: .rodata, name: unit_0887D884,
+  linker_section_order: .data }`) and its `.data` a second entry at its own
+  address (`[0x1A6F98, .data, unit_0887D884]`).
 - `.data` from 0x089BB8F8 to its end is mostly pointers into `.text` (function
   tables).
 
