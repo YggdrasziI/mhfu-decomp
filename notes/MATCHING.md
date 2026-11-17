@@ -209,7 +209,16 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
     with `u16 ret = arg2;` before the `switch` (func_08835098);
   - a two-value test before the table (`beq x, 1` then `beql x, 0`, the block
     of 0 first): an outer `switch` with `case 0:` and `case 1:`, the inner
-    `switch` in `case 1` (func_08834730).
+    `switch` in `case 1` (func_08834730);
+  - the out-of-range jump filled with the shared `return 0` (`b end` with
+    `addu $v0` in its delay slot) while the later branches to it keep their
+    `nop`: only the first branch to a label is filled this way, so the
+    `switch` has no `default: return 0;` of its own (func_0883F0CC); the same
+    for a first case written like the others, `if (x >= 0) return 1; break;`
+    (func_08857A80);
+  - `addiu $a0, $a0, 0x4A0` kept in the delay slot of the bound test (ours
+    folds the offset into every load): the sub-object is a typed pointer
+    local, `Unk4A0 *p = (Unk4A0 *) (arg0 + 0x4A0);` (func_08857A80).
 - A constant stored and then used as an argument from the same register
   (`addiu $a2, $zero, 1` / `sw $a2`), or the argument's `addiu` before the
   store: the local is assigned before the member (`lang = 1; p->x = 1;`)
@@ -217,9 +226,21 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - A member of the records of a table addressed by its own symbol
   (`D_08973839` = `D_08973834` + 5): declare the table at its base and read
   the member; the linked bytes are the same (include/unk_tables.h).
+- A table pointer loaded before the index is scaled (`lw` then `sll` / `addu`
+  / `sll`; ours scales first): two statements, `rec = tbl[kind]; rec += id;`.
+  `rec = tbl[kind] + id`, `&tbl[kind][id]` and a pointer local for the table
+  all scale first (func_0885CF9C).
 - `addu v1, a0, v1` (index first) for a byte in a table of a global object:
   the member is used directly twice (`if (g->t[i] < 0xFF) { g->t[i]++; }`), not
   through a pointer local (func_08869424).
+
+- Saved registers of a loop's pointer and counter (wanted `$s3` / `$s4` after
+  the result and the parameters; ours gave the pointer `$s0`): the order of the
+  declarations changes nothing; the two are declared with initialisers in a
+  block around a `do while`, `{ s32 i = 0; u16 *p = (u16 *) arg1; do { ...;
+  i++; p++; } while (i < 3); }` (func_0885CF9C).
+- `sum += f();` with a `s8` sum and a callee declared `s32` adds a `seb` of the
+  result before the sum: the callee returns `s8` (func_0885CF9C).
 
 ## Calls and allocation
 

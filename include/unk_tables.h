@@ -11,7 +11,11 @@ typedef struct {
     unsigned char unk5;
     char unk6[2];
     int unk8;
-    char unkC[0x1C];
+    char unkC[0x12];
+    struct {
+        unsigned char unk0;
+        signed char unk1;
+    } unk1E[5];
 } UnkRec40;
 
 typedef struct {
@@ -37,5 +41,8 @@ extern UnkRec40 D_0896B814[];
 extern UnkRec40 D_0896F84C[];
 extern UnkRec24 D_08959FCC[];
 extern UnkRec28 D_08960B9C[];
+
+/* The 40-byte tables again, by kind (0-4). */
+extern UnkRec40 *D_08978474[];
 
 #endif

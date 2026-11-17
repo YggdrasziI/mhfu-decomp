@@ -268,6 +268,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0883D0EC` | 0x0883D0EC-0x0883D184 | 1 small function | 100 % |
 | `unit_0883D274` | 0x0883D274-0x0883D290 | 1 small function | 100 % |
 | `unit_0883D66C` | 0x0883D66C-0x0883D6D0 | 1 small function | 100 % |
+| `unit_0883F0CC` | 0x0883F0CC-0x0883F270 | 1 function (three-step state at +0x1198, virtual calls; C++); jump table 0x08931144-0x0893115C in the unit | 100 % |
 | `unit_0883F9F8` | 0x0883F9F8-0x0883FAD4 | 1 small function | 100 % |
 | `unit_0883FD44` | 0x0883FD44-0x0883FDF4 | 1 small function | 100 % |
 | `unit_08840BC0` | 0x08840BC0-0x08840C24 | 1 small function | 100 % |
@@ -365,6 +366,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08857294` | 0x08857294-0x088572B0 | 1 small function | 100 % |
 | `unit_088572B0` | 0x088572B0-0x088572E8 | 1 small function | 100 % |
 | `unit_088577E0` | 0x088577E0-0x088578A0 | 1 small function | 100 % |
+| `unit_08857A80` | 0x08857A80-0x08857C18 | 1 function (compares a 16-bit count with a level 0-14); jump table 0x089313F0-0x0893142C in the unit | 100 % |
 | `unit_08857C18` | 0x08857C18-0x08857C2C | 2 small functions | 100 % |
 | `unit_08857C2C` | 0x08857C2C-0x08857C38 | 1 small function | 100 % |
 | `unit_08857C38` | 0x08857C38-0x08857C98 | 1 small function | 100 % |
@@ -407,8 +409,10 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0885CCE8` | 0x0885CCE8-0x0885CD18 | 1 small function | 100 % |
 | `unit_0885CDB8` | 0x0885CDB8-0x0885CE00 | 1 small function | 100 % |
 | `unit_0885CE00` | 0x0885CE00-0x0885CE38 | 2 small functions | 100 % |
+| `unit_0885CF9C` | 0x0885CF9C-0x0885D134 | 1 function (sums the signed bytes of a 40-byte record that carry a given key, then three sub-entries, `include/unk_tables.h`); jump table 0x08931514-0x08931530 in the unit | 100 % |
 | `unit_0885DC30` | 0x0885DC30-0x0885DD38 | 1 function (low 4 bits of a 40-byte entry from one of five tables); jump table 0x08931568-0x08931584 in the unit | 100 % |
 | `unit_0885DD38` | 0x0885DD38-0x0885DD9C | 1 function (dispatch to two functions on a byte); jump table 0x08931584-0x089315A0 in the unit | 100 % |
+| `unit_0885DD9C` | 0x0885DD9C-0x0885DF38 | 1 function (tests a mask against a byte of a 40-byte entry from one of five tables); jump table 0x089315A0-0x089315BC in the unit | 100 % |
 | `unit_0885E244` | 0x0885E244-0x0885E270 | 1 small function | 100 % |
 | `unit_0885E988` | 0x0885E988-0x0885E9F8 | 1 small function | 100 % |
 | `unit_0885E9F8` | 0x0885E9F8-0x0885EA08 | 1 small function | 100 % |
@@ -481,6 +485,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08868680` | 0x08868680-0x08868778 | 1 small function | 100 % |
 | `unit_088688C8` | 0x088688C8-0x088689F4 | 2 small functions | 100 % |
 | `unit_088689F4` | 0x088689F4-0x088689FC | 1 small function | 100 % |
+| `unit_088689FC` | 0x088689FC-0x08868B6C | 1 function (two byte mappings by `switch`); jump tables 0x089315DC-0x08931628 in the unit | 100 % |
 | `unit_08868C04` | 0x08868C04-0x08868CE8 | 1 small function | 100 % |
 | `unit_08868F0C` | 0x08868F0C-0x08868F50 | 1 small function | 100 % |
 | `unit_08869424` | 0x08869424-0x08869504 | 1 function (maps a kind to one of 14 saturating byte counters); jump table 0x0893165C-0x089316DC in the unit | 100 % |
@@ -924,6 +929,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088B32AC` | 0x088B32AC-0x088B32B8 | 1 small function | 100 % |
 | `unit_088B3718` | 0x088B3718-0x088B3744 | 1 small function | 100 % |
 | `unit_088B3A3C` | 0x088B3A3C-0x088B3A68 | 1 small function | 100 % |
+| `unit_088B3A68` | 0x088B3A68-0x088B3BE4 | 1 function (checks a state, copies a 100-byte and a 22-byte structure, starts a request); jump table 0x08932188-0x089321A4 in the unit | 100 % |
 | `unit_088B40B8` | 0x088B40B8-0x088B4120 | 1 small function | 100 % |
 | `unit_088B4120` | 0x088B4120-0x088B4184 | 1 small function | 100 % |
 | `unit_088B4184` | 0x088B4184-0x088B41B4 | 1 small function | 100 % |
