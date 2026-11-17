@@ -289,6 +289,13 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   of the same bytes goes through `lwc1` / `swc1`. The constant is the unit's own
   `.data`: it needs a `.data` entry at its address in the splat yaml
   (func_0887D884, notes/COMPILER.md, "Two data streams").
+- An initialised local array of up to 16 bytes (`s32 t[4] = {2, 3, 8, 15};`) is
+  copied through `lwc1` / `swc1` pairs from its constant, like a structure
+  copy (func_0885E664); larger ones by a loop (func_0887D884).
+- `mult v0, v1` with the quotient of a call first (ours: `mult v1, v0`): the
+  result goes to an unsigned local first, `n = f(); return n / 10 * t[i];`;
+  casts in one expression and a local for the table entry give the other order
+  (func_0885E664).
 - A format string that is sometimes the result of a call: the callee's parameter
   is a `char *` and the lookup returns `char *`; with an `s32` parameter and
   `(s32) &D_X` the `addiu %lo` is scheduled before the other arguments

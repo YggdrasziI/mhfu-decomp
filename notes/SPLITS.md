@@ -271,6 +271,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0883F0CC` | 0x0883F0CC-0x0883F270 | 1 function (three-step state at +0x1198, virtual calls; C++); jump table 0x08931144-0x0893115C in the unit | 100 % |
 | `unit_0883F9F8` | 0x0883F9F8-0x0883FAD4 | 1 small function | 100 % |
 | `unit_0883FD44` | 0x0883FD44-0x0883FDF4 | 1 small function | 100 % |
+| `unit_0884054C` | 0x0884054C-0x088405E4 | 1 function (forwards its argument / 1800 / 5 * 0x1555 to func_0882D470); optimized for speed | 100 % |
 | `unit_08840BC0` | 0x08840BC0-0x08840C24 | 1 small function | 100 % |
 | `unit_08841520` | 0x08841520-0x088415D0 | 1 small function | 100 % |
 | `unit_08844390` | 0x08844390-0x088443EC | 1 small function | 100 % |
@@ -328,6 +329,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08850868` | 0x08850868-0x08850910 | 1 function (stores an index by kind of a 12-byte entry); jump table 0x0893138C-0x089313A8 in the unit | 100 % |
 | `unit_08850C9C` | 0x08850C9C-0x08850D04 | 1 small function | 100 % |
 | `unit_08850EC4` | 0x08850EC4-0x08850EFC | 1 small function | 100 % |
+| `unit_08850EFC` | 0x08850EFC-0x08850FB8 | 1 function (value / 100 limited by func_08850E58, remainder kept); optimized for speed | 100 % |
 | `unit_0885100C` | 0x0885100C-0x08851078 | 1 small function | 100 % |
 | `unit_08851144` | 0x08851144-0x0885115C | 1 small function | 100 % |
 | `unit_0885148C` | 0x0885148C-0x088516A4 | section and entry lookup in the block at `D_089CC440`, 21 wrappers with a fixed section number | 23/23 functions, 100 % |
@@ -415,6 +417,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0885DD38` | 0x0885DD38-0x0885DD9C | 1 function (dispatch to two functions on a byte); jump table 0x08931584-0x089315A0 in the unit | 100 % |
 | `unit_0885DD9C` | 0x0885DD9C-0x0885DF38 | 1 function (tests a mask against a byte of a 40-byte entry from one of five tables); jump table 0x089315A0-0x089315BC in the unit | 100 % |
 | `unit_0885E244` | 0x0885E244-0x0885E270 | 1 small function | 100 % |
+| `unit_0885E664` | 0x0885E664-0x0885E718 | 1 function; initialised array 0x089A5B80-0x089A5B90 (`.data`) in the unit; optimized for speed | 100 % |
 | `unit_0885E988` | 0x0885E988-0x0885E9F8 | 1 small function | 100 % |
 | `unit_0885E9F8` | 0x0885E9F8-0x0885EA08 | 1 small function | 100 % |
 | `unit_0885EE48` | 0x0885EE48-0x0885EEA4 | 1 small function | 100 % |
@@ -456,6 +459,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088646A4` | 0x088646A4-0x088646B4 | 2 small functions | 100 % |
 | `unit_088646B4` | 0x088646B4-0x088646F0 | 1 small function | 100 % |
 | `unit_088646F0` | 0x088646F0-0x0886477C | 1 small function | 100 % |
+| `unit_08865254` | 0x08865254-0x088652DC | 1 function (record lookup by id % 1000); optimized for speed | 100 % |
 | `unit_08865934` | 0x08865934-0x08865A24 | 1 small function (C++) | 100 % |
 | `unit_08865A24` | 0x08865A24-0x08865A2C | 1 small function | 100 % |
 | `unit_08865A2C` | 0x08865A2C-0x08865A64 | 1 small function | 100 % |
@@ -556,6 +560,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0887DD88` | 0x0887DD88-0x0887DDD0 | 1 small function | 100 % |
 | `unit_0887EA88` | 0x0887EA88-0x0887EB20 | 1 small function | 100 % |
 | `unit_0887EB20` | 0x0887EB20-0x0887EB80 | 1 small function | 100 % |
+| `unit_0887EB80` | 0x0887EB80-0x0887EBFC | 1 function (difference / 30, rounded up); optimized for speed | 100 % |
 | `unit_0887F464` | 0x0887F464-0x0887F4F0 | 1 small function | 100 % |
 | `unit_0887F4F0` | 0x0887F4F0-0x0887F54C | 1 small function | 100 % |
 | `unit_0887F54C` | 0x0887F54C-0x0887F794 | 1 function (state machine, two member-pointer constants), C++ | 100 % |
@@ -1104,6 +1109,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088DAA98` | 0x088DAA98-0x088DAAA0 | 1 small function | 100 % |
 | `unit_088DACA4` | 0x088DACA4-0x088DACF8 | 1 small function | 100 % |
 | `unit_088DAE98` | 0x088DAE98-0x088DAEB0 | 2 small functions | 100 % |
+| `unit_088DAEB0` | 0x088DAEB0-0x088DAF18 | 1 function (C++); optimized for speed | 100 % |
 | `unit_088DAF18` | 0x088DAF18-0x088DAFC8 | 1 small function | 100 % |
 | `unit_088DAFC8` | 0x088DAFC8-0x088DB068 | 1 small function | 100 % |
 | `unit_088DB068` | 0x088DB068-0x088DB0A0 | 1 small function (C++) | 100 % |
