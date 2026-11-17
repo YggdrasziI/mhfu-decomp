@@ -580,6 +580,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0887941C` | 0x0887941C-0x0887959C | 2 small functions | 100 % |
 | `unit_0887A34C` | 0x0887A34C-0x0887A838, .data 0x089A88FC-0x089A891C | 1 function (C++, speed: draws a panel; a `switch` on the halfword at +0xA4 whose cases fall through, `default` first); jump table 0x089318B4-0x089318CC and the initializers of its two local `s16[7]` tables in the unit | 100 % |
 | `unit_0887A950` | 0x0887A950-0x0887AFB8 | 1 function (C++, speed: a 9-state machine on the halfword at +0xA4; returns 1 when state 8 ends); jump table 0x089318CC-0x089318F0 in the unit | 100 % |
+| `unit_0887AFB8` | 0x0887AFB8-0x0887B7C4 | 1 function, NonMatching (C++, 98.3 %: two register choices); draws a panel with two proportional bars; its jump table 0x089318F0-0x08931910 and .data 0x089A8920-0x089A8948 stay in the data pieces | not linked |
 | `unit_0887B7C4` | 0x0887B7C4-0x0887B7E0 | 1 small function | 100 % |
 | `unit_0887B8D8` | 0x0887B8D8-0x0887BB48 | 1 function (same shape as func_08878F08; prints a line for each set bit of the 64-bit mask at +0xF8, 48 bits); optimized for speed | 100 % |
 | `unit_0887C708` | 0x0887C708-0x0887C724 | 1 small function | 100 % |
