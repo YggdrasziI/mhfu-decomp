@@ -216,6 +216,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0881EAF8` | 0x0881EAF8-0x0881EB60 | 1 small function | 100 % |
 | `unit_0881ED64` | 0x0881ED64-0x0881EE84 | 1 function (C++; fills a 12-byte record from one of six sources); jump table 0x089309BC-0x089309D4 in the unit | 100 % |
 | `unit_08821B58` | 0x08821B58-0x08821BD4 | 1 small function | 100 % |
+| `unit_0882232C` | 0x0882232C-0x08822594 | 1 function, NonMatching (speed, 94.7 %: register allocation); draws a header, then one line per entry with func_08892148 | not linked |
 | `unit_08822990` | 0x08822990-0x088229B8 | 1 small function | 100 % |
 | `unit_08823A50` | 0x08823A50-0x08823AE4 | 1 small function | 100 % |
 | `unit_08823CBC` | 0x08823CBC-0x08823DB0 | 1 function (calls func_0882DCA0 with four values of its array, then formats and prints a number); initialised array 0x08938614-0x08938620 (`.data`) in the unit | 100 % |
