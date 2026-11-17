@@ -324,6 +324,20 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   first loaded only after the list's first element is tested: both written out
   (`if (ids[0] != 0) { id = g->id; p = ids; do { ... } while (*p != 0); }`);
   an inline helper evaluates its argument before the test (func_08858F1C).
+- A byte loop copying 6 bytes two per pass (`lb` / `lb` / `sb` / `sb`,
+  count 3) then two `lbu` / `sb`: the 6 bytes are a structure holding only
+  `s8 unk0[6]`, assigned through casts (`*(Addr6 *) &D_X = *(Addr6 *) &local;`),
+  the two bytes after it are assigned one by one. Assigning the whole 8-byte
+  structure copies a word and a halfword (func_088B27C8).
+- A sort that reads a record's fields again for the move (`lhu` / `sh`,
+  `lh` / `sh`) after comparing them: C++ structure assignments
+  (`t = a[i]; a[j + h] = a[j];`); field by field in C the loads are shared
+  (func_0885C5DC).
+- A wait loop `lbu` / `sltu` / `xori 1` / `beqz` with two `nop` in its
+  body: C, the negation kept in an `int`, `wait = !flag; if (wait) { do { asm
+  { nop; nop } wait = !flag; } while (wait); }` on a `volatile u8`; a plain
+  `while (!flag)` folds the first test into a `bnez` and C++ adds an `andi
+  0xFF` (func_088597BC).
 - A format string that is sometimes the result of a call: the callee's parameter
   is a `char *` and the lookup returns `char *`; with an `s32` parameter and
   `(s32) &D_X` the `addiu %lo` is scheduled before the other arguments
@@ -365,5 +379,4 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   to a saved register: func_088C3948, func_0884FDC4).
 - Scheduling: a load placed before / after an index computation (func_088307BC,
   func_0884424C `trunc.w.s`).
-- Extra `nop`s in a wait loop (func_088597BC), unfilled `jal` delay slot
-  (func_08813CF8).
+- Unfilled `jal` delay slot (func_08813CF8).
