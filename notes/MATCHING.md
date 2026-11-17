@@ -338,6 +338,15 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   { nop; nop } wait = !flag; } while (wait); }` on a `volatile u8`; a plain
   `while (!flag)` folds the first test into a `bnez` and C++ adds an `andi
   0xFF` (func_088597BC).
+- With the speed setting, a `for` / `while (cond)` loop is rotated (test at
+  the bottom). An original loop with the test at the top and a `b` back is
+  `while (1) { if (!cond) { break; } ...; step; }` (func_0886DB0C).
+- `addu v0, s1, zero` at the return where ours sign-extends (`seh`): the
+  function returns `s16`, not `s32` (func_0885CE38). `val = val + base / 10`,
+  not `val += base / 10`, for the order of the `mfhi` and shift registers.
+- Two tests leading to the same store, the store shared: ``if (a() != 0 ||
+  b() != 1) { x = 100; } else { x = ...; }`; the `&&` form with the branches
+  swapped duplicates the store (func_0886DB0C).
 - A format string that is sometimes the result of a call: the callee's parameter
   is a `char *` and the lookup returns `char *`; with an `s32` parameter and
   `(s32) &D_X` the `addiu %lo` is scheduled before the other arguments

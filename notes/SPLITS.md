@@ -420,6 +420,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0885CCE8` | 0x0885CCE8-0x0885CD18 | 1 small function | 100 % |
 | `unit_0885CDB8` | 0x0885CDB8-0x0885CE00 | 1 small function | 100 % |
 | `unit_0885CE00` | 0x0885CE00-0x0885CE38 | 2 small functions | 100 % |
+| `unit_0885CE38` | 0x0885CE38-0x0885CF9C | 1 function (value of a kind-6 item from the tables D_08960BA4, D_08979448; base / 10 or / 15 added); optimized for speed | 100 % |
 | `unit_0885CF9C` | 0x0885CF9C-0x0885D134 | 1 function (sums the signed bytes of a 40-byte record that carry a given key, then three sub-entries, `include/unk_tables.h`); jump table 0x08931514-0x08931530 in the unit | 100 % |
 | `unit_0885DC30` | 0x0885DC30-0x0885DD38 | 1 function (low 4 bits of a 40-byte entry from one of five tables); jump table 0x08931568-0x08931584 in the unit | 100 % |
 | `unit_0885DD38` | 0x0885DD38-0x0885DD9C | 1 function (dispatch to two functions on a byte); jump table 0x08931584-0x089315A0 in the unit | 100 % |
@@ -529,6 +530,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0886D4D8` | 0x0886D4D8-0x0886D524 | 1 small function | 100 % |
 | `unit_0886D5E4` | 0x0886D5E4-0x0886D644 | 1 small function | 100 % |
 | `unit_0886D644` | 0x0886D644-0x0886DB0C | 2 small functions | 100 % |
+| `unit_0886DB0C` | 0x0886DB0C-0x0886DC68 | 1 function (walks 0x10-byte entries and their 0x3C-byte records, sets the s16 at +0x30 of each record); optimized for speed | 100 % |
 | `unit_0886DFAC` | 0x0886DFAC-0x0886E000 | 1 small function | 100 % |
 | `unit_0886E000` | 0x0886E000-0x0886E008 | 1 small function | 100 % |
 | `unit_0886E008` | 0x0886E008-0x0886E060 | 1 small function | 100 % |
