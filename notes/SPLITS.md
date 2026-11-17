@@ -258,6 +258,8 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088345FC` | 0x088345FC-0x08834664 | 1 small function | 100 % |
 | `unit_08834664` | 0x08834664-0x088346D8 | 1 small function | 100 % |
 | `unit_088346D8` | 0x088346D8-0x08834730 | 1 small function | 100 % |
+| `unit_08834730` | 0x08834730-0x0883488C | 1 function (dispatch to 13 functions on the bytes at +0x1118 / +0x111C); jump table 0x08930F40-0x08930F74 in the unit | 100 % |
+| `unit_08835098` | 0x08835098-0x088351F0 | 1 function (dispatch to 12 functions on a byte, 16-bit result); jump table 0x08930FA8-0x08930FDC in the unit | 100 % |
 | `unit_08838AB4` | 0x08838AB4-0x08838B08 | 1 function (`switch` on a byte argument); jump table 0x089310F0-0x08931124 in the unit | 100 % |
 | `unit_08838E0C` | 0x08838E0C-0x08838E30 | 1 small function | 100 % |
 | `unit_0883AB44` | 0x0883AB44-0x0883AB4C | 1 small function | 100 % |
@@ -1049,6 +1051,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088CC558` | 0x088CC558-0x088CC568 | 2 small functions | 100 % |
 | `unit_088CC568` | 0x088CC568-0x088CC604 | 1 function (constructor shape), C++ | NonMatching |
 | `unit_088CC604` | 0x088CC604-0x088CC828 | 2 functions (destructor shape, state machine), C++ | 100 % |
+| `unit_088CD804` | 0x088CD804-0x088CD964 | 1 function (handles an entry by the kind byte at +6 of its record); jump table 0x08932380-0x089323B0 in the unit | 100 % |
 | `unit_088CDCB0` | 0x088CDCB0-0x088CDCC8 | 1 small function | 100 % |
 | `unit_088CDCF4` | 0x088CDCF4-0x088CDD24 | 1 small function | 100 % |
 | `unit_088CE05C` | 0x088CE05C-0x088CE1AC | 1 small function | 100 % |

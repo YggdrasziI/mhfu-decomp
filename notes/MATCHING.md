@@ -203,6 +203,13 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
     first in the data (func_08832548);
   - the selector re-masked before the bound test (`andi` + `sltiu`): it is an
     `int` local loaded from the byte, not a `u8` local (func_08832548).
+  - a case with a `b end` + `nop` block of its own in the middle of the cases
+    (an empty `case N: break;` points the table at the end instead): the case
+    assigns the result its initial value again, `case 11: ret = arg2; break;`
+    with `u16 ret = arg2;` before the `switch` (func_08835098);
+  - a two-value test before the table (`beq x, 1` then `beql x, 0`, the block
+    of 0 first): an outer `switch` with `case 0:` and `case 1:`, the inner
+    `switch` in `case 1` (func_08834730).
 - A constant stored and then used as an argument from the same register
   (`addiu $a2, $zero, 1` / `sw $a2`), or the argument's `addiu` before the
   store: the local is assigned before the member (`lang = 1; p->x = 1;`)
