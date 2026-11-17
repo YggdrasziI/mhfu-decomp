@@ -563,6 +563,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08873980` | 0x08873980-0x088739A4 | 1 small function | 100 % |
 | `unit_08874A94` | 0x08874A94-0x08874AB0 | 1 small function | 100 % |
 | `unit_08876574` | 0x08876574-0x088765C0 | 1 small function | 100 % |
+| `unit_08877100` | 0x08877100-0x088775F0 | 1 function (speed: a state machine on the halfword at +0xA4; returns 1 when state 5 ends); jump table 0x089317FC-0x08931814 in the unit | 100 % |
 | `unit_08877BE8` | 0x08877BE8-0x08877C04 | 1 small function | 100 % |
 | `unit_08877C04` | 0x08877C04-0x08877EF0 | 1 function (same shape as func_08878F08; prints a formatted line for each of 61 entries accepted by func_08874278); optimized for speed | 100 % |
 | `unit_08877EF0` | 0x08877EF0-0x088785CC, .data 0x089A88A0-0x089A88AE | 1 function (C++; draws one entry panel, positions from the D_089A8874.. table); `.data` is the initializer of its local `s16[7]` table (2 bytes of padding follow); optimized for speed | 100 % |
