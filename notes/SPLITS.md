@@ -282,6 +282,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08844654` | 0x08844654-0x0884469C | 1 test on a call result | 100 % |
 | `unit_0884469C` | 0x0884469C-0x088446CC | 1 small function | 100 % |
 | `unit_0884860C` | 0x0884860C-0x08848630 | 2 small functions | 100 % |
+| `unit_08848630` | 0x08848630-0x088487B8 | 1 function (moves the index at +0x20 of D_08A62CB4 within (count - 1) / 10 + 1 values on input bits 0x80 / 0x20); optimized for speed | 100 % |
 | `unit_08848D30` | 0x08848D30-0x08848E04 | 1 small function (C++) | 100 % |
 | `unit_088490C8` | 0x088490C8-0x08849120 | 1 small function | 100 % |
 | `unit_08849120` | 0x08849120-0x08849300 | 2 functions (dispatch to 11 functions on a byte, one returning their result as 16 bits); jump tables 0x089311A0-0x089311FC in the unit | 100 % |
@@ -932,6 +933,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088B0DBC` | 0x088B0DBC-0x088B0E04 | 1 small function | 100 % |
 | `unit_088B0E04` | 0x088B0E04-0x088B0E2C | 1 small function | 100 % |
 | `unit_088B0FAC` | 0x088B0FAC-0x088B0FF8 | 1 small function | 100 % |
+| `unit_088B0FF8` | 0x088B0FF8-0x088B118C | 1 function (C++; copies the 0xC8-byte structure D_09A2887C to the stack member by member) | 100 % |
 | `unit_088B118C` | 0x088B118C-0x088B11EC | 1 small function | 100 % |
 | `unit_088B11EC` | 0x088B11EC-0x088B11F8 | 1 small function | 100 % |
 | `unit_088B11F8` | 0x088B11F8-0x088B1204 | 1 small function | 100 % |
@@ -1214,6 +1216,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0890C26C` | 0x0890C26C-0x0890C288 | 1 small function (C++) | 100 % |
 | `unit_0890C2D8` | 0x0890C2D8-0x0890C2FC | 1 small function | 100 % |
 | `unit_0890CB64` | 0x0890CB64-0x0890CBC0 | 1 small function | 100 % |
+| `unit_0890D7BC` | 0x0890D7BC-0x0890D950 | 1 function (binary search of an address in 12-byte range records, then walks a list read with func_0890C3F4); optimized for speed | 100 % |
 | `unit_0890D950` | 0x0890D950-0x0890D95C | 1 small function | 100 % |
 | `unit_0890DE0C` | 0x0890DE0C-0x0890DE14 | 1 small function | 100 % |
 

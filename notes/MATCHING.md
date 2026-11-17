@@ -347,6 +347,12 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - Two tests leading to the same store, the store shared: ``if (a() != 0 ||
   b() != 1) { x = 100; } else { x = ...; }`; the `&&` form with the branches
   swapped duplicates the store (func_0886DB0C).
+- A local structure 4 bytes higher on the stack than the original: its size or
+  alignment is short (func_088B0FF8: 0xC8 bytes with a 4-byte tail, not 0xC4).
+- Binary search with `lo` / `hi` in swapped registers: declare `lo` first
+  (`s32 lo = 0; s32 hi = n;`); `sltu at` at a loop end where ours uses a value
+  register: the test operands are written the other way (`while (off > acc)`)
+  (func_0890D7BC).
 - A format string that is sometimes the result of a call: the callee's parameter
   is a `char *` and the lookup returns `char *`; with an `s32` parameter and
   `(s32) &D_X` the `addiu %lo` is scheduled before the other arguments
