@@ -217,6 +217,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08821B58` | 0x08821B58-0x08821BD4 | 1 small function | 100 % |
 | `unit_08822990` | 0x08822990-0x088229B8 | 1 small function | 100 % |
 | `unit_08823A50` | 0x08823A50-0x08823AE4 | 1 small function | 100 % |
+| `unit_08823CBC` | 0x08823CBC-0x08823DB0 | 1 function (draws a box and a formatted number); initialised array 0x08938614-0x08938620 (`.data`) in the unit | 100 % |
 | `unit_08823DB0` | 0x08823DB0-0x08823DEC | 1 small function | 100 % |
 | `unit_08823DEC` | 0x08823DEC-0x08823E18 | 1 small function | 100 % |
 | `unit_08825104` | 0x08825104-0x08825148 | 1 section-0 entry lookup through a table | 100 % |
@@ -269,6 +270,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0883D0EC` | 0x0883D0EC-0x0883D184 | 1 small function | 100 % |
 | `unit_0883D274` | 0x0883D274-0x0883D290 | 1 small function | 100 % |
 | `unit_0883D66C` | 0x0883D66C-0x0883D6D0 | 1 small function | 100 % |
+| `unit_0883E400` | 0x0883E400-0x0883E4B8 | 1 function (draws a box and a formatted number); initialised array 0x0893B474-0x0893B480 (`.data`) in the unit | 100 % |
 | `unit_0883F0CC` | 0x0883F0CC-0x0883F270 | 1 function (three-step state at +0x1198, virtual calls; C++); jump table 0x08931144-0x0893115C in the unit | 100 % |
 | `unit_0883F8B4` | 0x0883F8B4-0x0883F988 | 1 function (steps four s16 counters at +0x56C); optimized for speed | 100 % |
 | `unit_0883F9F8` | 0x0883F9F8-0x0883FAD4 | 1 small function | 100 % |
@@ -381,6 +383,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08857E6C` | 0x08857E6C-0x08857E74 | 1 small function | 100 % |
 | `unit_08858008` | 0x08858008-0x08858010 | 1 small function | 100 % |
 | `unit_088588BC` | 0x088588BC-0x08858904 | 1 small function | 100 % |
+| `unit_08858F1C` | 0x08858F1C-0x08858FF4 | 1 function (C++; replaces the id at +0x682 of D_08A62C7C when the new one comes earlier in a list of 19 ids); initialised array 0x0899CCFC-0x0899CD24 (`.data`) in the unit | 100 % |
 | `unit_08859174` | 0x08859174-0x08859188 | 1 small function | 100 % |
 | `unit_08859188` | 0x08859188-0x08859218 | 1 small function | 100 % |
 | `unit_08859218` | 0x08859218-0x08859224 | 1 small function | 100 % |

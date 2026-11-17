@@ -6,7 +6,7 @@
 typedef int s32;
 
 extern char D_0899A1B8;
-extern int func_0880E8F0(char *, char *);
+extern int func_0880E8F0(char *, char *, ...);
 extern s32 func_0884F670(s32, s32);
 extern int sceIoDclose(s32);
 extern s32 sceIoDopen(char *);

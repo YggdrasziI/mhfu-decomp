@@ -315,6 +315,15 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - A loop counter in `` and the stepped pointer in `` (ours swapped
   when the parameter itself is stepped): a pointer local declared after the
   counter, `s32 i = 0; char *p = arg0;` (func_0883F8B4).
+- `arg ? 0xA : 0` compiled `bnezl` with the 0xA in the delay slot and the 0
+  after it: written `arg == 0 ? 0 : 0xA` (func_08823CBC).
+- The load of a global first argument placed before the stack loads of the
+  other arguments (ours: after them): the callee's parameters are `u16`, not
+  `s32` (func_0882DCA0 called from func_0883E400).
+- Two searches of the same list one after the other, the searched id of the
+  first loaded only after the list's first element is tested: both written out
+  (`if (ids[0] != 0) { id = g->id; p = ids; do { ... } while (*p != 0); }`);
+  an inline helper evaluates its argument before the test (func_08858F1C).
 - A format string that is sometimes the result of a call: the callee's parameter
   is a `char *` and the lookup returns `char *`; with an `s32` parameter and
   `(s32) &D_X` the `addiu %lo` is scheduled before the other arguments
