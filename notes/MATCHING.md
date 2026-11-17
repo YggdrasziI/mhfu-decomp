@@ -437,6 +437,19 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   whose out-of-range `beqz` keeps its `nop`: the `switch` sits inside `if
   (f() == 0) { ... } return 0;`; `if (f() != 0) return 0;` gives `beqzl`
   (func_088785CC).
+- `slti at, v0, 0xB` + `bnez at` (instead of `slti v0` + `bnez v0`): write the
+  test as `x > 10`, not `x >= 0xB` (func_088775F0).
+- `(bool) (x & 1)` tested with `sltu` then `beqz`: `if ((bool) (x & 1) != 0)` in
+  C++; without `!= 0` the `sltu` disappears, `== 1` gives a `bne` (func_0887A950).
+- Argument loads scheduled in the wrong order around a global pointer
+  (D_089CC438 loaded too early or too late): change the callee's parameter
+  types (`char *` vs `s32` first parameter, `s32` vs `u16` for halfwords
+  passed through) before touching the statements (func_08877100,
+  func_088775F0).
+- A data piece that follows a unit's `.data` aligns only to what it
+  contains: once a split leaves it with `.short` only, it is linked right
+  after the unit's last table and the 2 bytes of padding are lost. Give the
+  padding its own `pad` entry (func_08876AA8, pad_089A8806).
 - A 6-byte global copied to a stack member two bytes per pass (`lb` / `sb`
   loop, count 3): `rec.unk0 = *(B6 *) &D_X;`. With `D_X` declared `B6` the
   plain `rec.unk0 = D_X;` is copied as a word and a halfword (func_088B3778).
