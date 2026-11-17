@@ -668,6 +668,7 @@ segments:
       - [0x6F0A0, asm, text_08870AEC]
       - [0x6F2E4, c, unit_08870D30]
       - [0x6F2F4, asm, text_08870D40]
+      - [0x6FAAC, asm, text_088714F8]
       - [0x70380, cpp, unit_08871DCC]
       - [0x706BC, c, unit_08872108]
       - [0x707D0, c, unit_0887221C]

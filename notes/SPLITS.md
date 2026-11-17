@@ -557,6 +557,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08870AC4` | 0x08870AC4-0x08870AEC | 1 small function | 100 % |
 | `unit_08870AEC` | 0x08870AEC-0x08870D30 | 1 function (C++; NonMatching 90.7 %: picks a u16 from the three-level table D_089A7CE8 by id and starts a load through D_089CC434's virtual calls) | 100 % |
 | `unit_08870D30` | 0x08870D30-0x08870D40 | 1 small function | 100 % |
+| `unit_088714F8` | 0x088714F8-0x0887184C | 1 function, NonMatching (C++, speed, 99.3 %: two search loops); virtual calls over 20 objects, entity update, two table lookups in initialised local tables | not linked |
 | `unit_08871DCC` | 0x08871DCC-0x08872108 | 1 function (C++, speed: sibling of func_0887221C with a virtual call and a maximum per record) | 100 % |
 | `unit_08872108` | 0x08872108-0x0887221C | 1 function (same family: one slot's colours to func_08880D64 and func_08881114) | 100 % |
 | `unit_0887221C` | 0x0887221C-0x08872444 | 1 function (speed: fills three `u16[4]` and one `u8[4]` local arrays from the slots at D_09A4F0D0 and the table D_09BC8400, then hands them to func_08880E50) | 100 % |
