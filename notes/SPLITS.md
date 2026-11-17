@@ -557,6 +557,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08874A94` | 0x08874A94-0x08874AB0 | 1 small function | 100 % |
 | `unit_08876574` | 0x08876574-0x088765C0 | 1 small function | 100 % |
 | `unit_08877BE8` | 0x08877BE8-0x08877C04 | 1 small function | 100 % |
+| `unit_08877C04` | 0x08877C04-0x08877EF0 | 1 function (same shape as func_08878F08; prints a formatted line for each of 61 entries accepted by func_08874278); optimized for speed | 100 % |
 | `unit_08878BC0` | 0x08878BC0-0x08878BDC | 1 small function | 100 % |
 | `unit_08878EEC` | 0x08878EEC-0x08878F08 | 1 small function | 100 % |
 | `unit_08878F08` | 0x08878F08-0x088790F4 | 1 function (draws a panel with three texts from func_09A63198 and the s16 at +0xAC / 30); optimized for speed | 100 % |
