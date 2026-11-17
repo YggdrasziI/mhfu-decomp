@@ -278,6 +278,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0884054C` | 0x0884054C-0x088405E4 | 1 function (forwards its argument / 1800 / 5 * 0x1555 to func_0882D470); optimized for speed | 100 % |
 | `unit_08840BC0` | 0x08840BC0-0x08840C24 | 1 small function | 100 % |
 | `unit_08841520` | 0x08841520-0x088415D0 | 1 small function | 100 % |
+| `unit_08842D3C` | 0x08842D3C-0x08842EE8 | 1 function (draws value / 10 as a number and value % 10 as icons spaced 0xE apart, or calls func_0882A9DC when the slot is 0xFF); optimized for speed | 100 % |
 | `unit_08844390` | 0x08844390-0x088443EC | 1 small function | 100 % |
 | `unit_08844654` | 0x08844654-0x0884469C | 1 test on a call result | 100 % |
 | `unit_0884469C` | 0x0884469C-0x088446CC | 1 small function | 100 % |
@@ -979,6 +980,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088B4D78` | 0x088B4D78-0x088B4E54 | 1 function (C++; stores a checked 8-byte address in D_09A29CD0) | 100 % |
 | `unit_088B4FA4` | 0x088B4FA4-0x088B4FAC | 1 small function | 100 % |
 | `unit_088B5560` | 0x088B5560-0x088B5568 | 1 small function | 100 % |
+| `unit_088B5D3C` | 0x088B5D3C-0x088B5EDC | 1 function (C++; NonMatching 96.1 %: copies a 0xC8-byte structure to D_09A28BFC member by member, two registers swapped) | 100 % |
 | `unit_088B5FC8` | 0x088B5FC8-0x088B608C | 1 function (C++; clears D_09A28BFC and stores an 8-byte address in it) | 100 % |
 | `unit_088B608C` | 0x088B608C-0x088B60E8 | 1 small function | 100 % |
 | `unit_088B6338` | 0x088B6338-0x088B63A4 | 1 small function | 100 % |

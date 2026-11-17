@@ -353,6 +353,11 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   (`s32 lo = 0; s32 hi = n;`); `sltu at` at a loop end where ours uses a value
   register: the test operands are written the other way (`while (off > acc)`)
   (func_0890D7BC).
+- Three byte arguments that are either table bytes or one constant, loaded
+  straight into the argument registers with no `andi`: `s32` locals set in an
+  `if` / `else` (`r = g = b = 0x80`) before a single call. A `u16` loop
+  variable passed with an extra `andi 0xFFFF`: the parameter is `u16`
+  (func_08842D3C).
 - A format string that is sometimes the result of a call: the callee's parameter
   is a `char *` and the lookup returns `char *`; with an `s32` parameter and
   `(s32) &D_X` the `addiu %lo` is scheduled before the other arguments
