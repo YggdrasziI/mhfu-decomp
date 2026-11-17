@@ -7,6 +7,6 @@ typedef int s32;
 
 extern char *D_08A62C7C;
 
-s32 func_08855410(void) {
+s32 func_08855410(char *arg0) {
     return (*(s32 *)(D_08A62C7C + 0x28) & 0x10) != 0;
 }

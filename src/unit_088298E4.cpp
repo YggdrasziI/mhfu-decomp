@@ -13,7 +13,7 @@ extern char *D_089CC438;
 extern char *D_08A62C7C;
 extern char D_09B03F40[];
 
-char *func_088298E4(void) {
+char *func_088298E4(int arg0) {
     if ((bool)(*(u32 *)(D_089CC438 + 0x6AF14) & 1) == true) {
         return D_09B03F40;
     }

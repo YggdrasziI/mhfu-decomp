@@ -307,6 +307,14 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   followed by padding in the image: a `pad` entry in the splat yaml after the
   unit's `.data` entry when the next piece does not align itself
   (unit_0887CBAC).
+- Speed setting, quotient and remainder: `m / 60` and `m % 60` of a call
+  result give the multiplication and a `div` for the remainder
+  (func_0887D884); a remainder computed as `m - q * 60` from the quotient
+  (`sll 4` / `subu` / `sll 2` / `subu`) is written that way, `h = m / 60;
+  f(h, m - h * 60);` (func_0881A8F8).
+- A loop counter in `` and the stepped pointer in `` (ours swapped
+  when the parameter itself is stepped): a pointer local declared after the
+  counter, `s32 i = 0; char *p = arg0;` (func_0883F8B4).
 - A format string that is sometimes the result of a call: the callee's parameter
   is a `char *` and the lookup returns `char *`; with an `s32` parameter and
   `(s32) &D_X` the `addiu %lo` is scheduled before the other arguments
