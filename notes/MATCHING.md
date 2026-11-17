@@ -141,6 +141,11 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   local takes a slot even when it lives in a register (`Rec rec2`).
 - `x * 1728` added last in the other operand order: written `x * 12 * 12 * 12`
   (func_0887E320, base-12 digits).
+- Unsigned bounds: `x >= 1000000000` puts the constant in a register, the
+  original's `sltu $at` comes from `x > 999999999`; a loop bottom test
+  `sltiu $at, i, 0x1EA` (instead of `$v0`) from `i <= 0x1E9` (func_0887EBFC).
+- A sum of seven halfwords started from a zero register: seven `sum +=`
+  statements, not a loop (func_0887EBFC).
 
 - A constant loop unrolled by 8 (eight stores per pass, counter += 8), or a double
   constant loaded as two `lui`/`ori` pairs instead of from the data: the function

@@ -586,6 +586,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0887EA88` | 0x0887EA88-0x0887EB20 | 1 small function | 100 % |
 | `unit_0887EB20` | 0x0887EB20-0x0887EB80 | 1 small function | 100 % |
 | `unit_0887EB80` | 0x0887EB80-0x0887EBFC | 1 function (difference / 30, rounded up); optimized for speed | 100 % |
+| `unit_0887EBFC` | 0x0887EBFC-0x0887F464 | 1 function (posts result messages through func_088585E8 from the counters of D_08A62C7C and D_089CC438); optimized for speed | 100 % |
 | `unit_0887F464` | 0x0887F464-0x0887F4F0 | 1 small function | 100 % |
 | `unit_0887F4F0` | 0x0887F4F0-0x0887F54C | 1 small function | 100 % |
 | `unit_0887F54C` | 0x0887F54C-0x0887F794 | 1 function (state machine, two member-pointer constants), C++ | 100 % |

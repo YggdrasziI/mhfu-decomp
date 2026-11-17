@@ -714,7 +714,7 @@ segments:
       - [0x7D03C, c, unit_0887EA88]
       - [0x7D0D4, c, unit_0887EB20]
       - [0x7D134, c, unit_0887EB80]
-      - [0x7D1B0, asm, text_0887EBFC]
+      - [0x7D1B0, c, unit_0887EBFC]
       - [0x7DA18, c, unit_0887F464]
       - [0x7DAA4, c, unit_0887F4F0]
       - [0x7DB00, cpp, unit_0887F54C]
