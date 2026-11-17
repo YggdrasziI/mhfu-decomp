@@ -709,7 +709,7 @@ segments:
       - [0x7C33C, c, unit_0887DD88]
       - [0x7C384, asm, text_0887DDD0]
       - [0x7C5E4, c, unit_0887E030]
-      - [0x7C8D4, asm, text_0887E320]
+      - [0x7C8D4, cpp, unit_0887E320]
       - [0x7CF60, cpp, unit_0887E9AC]
       - [0x7D03C, c, unit_0887EA88]
       - [0x7D0D4, c, unit_0887EB20]

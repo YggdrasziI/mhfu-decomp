@@ -126,6 +126,22 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   `for (i = 0, p = table; i < n; i++, p++)` with `i` declared before `p`
   (func_0889F6A0).
 
+- Several loops in one function with registers shifted from the second loop on:
+  give each loop its own counter variables (func_0887E320: `i` for the first
+  loop, `m`/`j` and `m2`/`j2` for the next two), then try declaration orders. A
+  small script that shuffles the declaration lines, then swaps them two by two
+  while the objdiff score rises, found the order in a few minutes (the stack
+  locals stay first so the frame does not move).
+- A local array indexed by the loop counter, `d[i] = k`: mwcc turns it into a
+  pointer stepped by 4 (one more saved register, frame larger); the original
+  recomputes `i * 4 + sp` each pass when the index is `d[(u32) i]`
+  (func_0887E320).
+- Gap between two stack locals in the original frame: the array between them is
+  larger than the words used (`s32 d[6]` with 4 used, func_0887E320); a `struct`
+  local takes a slot even when it lives in a register (`Rec rec2`).
+- `x * 1728` added last in the other operand order: written `x * 12 * 12 * 12`
+  (func_0887E320, base-12 digits).
+
 - A constant loop unrolled by 8 (eight stores per pass, counter += 8), or a double
   constant loaded as two `lui`/`ori` pairs instead of from the data: the function
   is optimized for speed; put `#pragma optimize_for_size off` at the top of the
