@@ -212,6 +212,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0881CB0C` | 0x0881CB0C-0x0881CB2C | 1 function (clears flags) | 100 % |
 | `unit_0881E8F8` | 0x0881E8F8-0x0881E92C | 1 small function | 100 % |
 | `unit_0881EAF8` | 0x0881EAF8-0x0881EB60 | 1 small function | 100 % |
+| `unit_0881ED64` | 0x0881ED64-0x0881EE84 | 1 function (C++; fills a 12-byte record from one of six sources); jump table 0x089309BC-0x089309D4 in the unit | 100 % |
 | `unit_08821B58` | 0x08821B58-0x08821BD4 | 1 small function | 100 % |
 | `unit_08822990` | 0x08822990-0x088229B8 | 1 small function | 100 % |
 | `unit_08823A50` | 0x08823A50-0x08823AE4 | 1 small function | 100 % |
@@ -226,6 +227,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0882693C` | 0x0882693C-0x088269C0 | 1 small function | 100 % |
 | `unit_08826EEC` | 0x08826EEC-0x08826EF4 | 1 small function | 100 % |
 | `unit_08826F80` | 0x08826F80-0x08826FCC | 1 count of used slots, divided | 100 % |
+| `unit_08828524` | 0x08828524-0x08828658 | 1 function (searches up to 5 bytes of a table row for a class of 15 values); jump table 0x08930ABC-0x08930AF8 in the unit | 100 % |
 | `unit_08828658` | 0x08828658-0x088286E4 | 1 function (maps a byte 17-22 to a signed amount); jump table 0x08930AF8-0x08930B10 in the unit | 100 % |
 | `unit_08828884` | 0x08828884-0x08828938 | 1 small function (C++) | 100 % |
 | `unit_0882900C` | 0x0882900C-0x088290A4 | 1 small function | 100 % |
@@ -393,8 +395,11 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0885C580` | 0x0885C580-0x0885C5BC | 1 small function | 100 % |
 | `unit_0885C5BC` | 0x0885C5BC-0x0885C5DC | 2 small functions | 100 % |
 | `unit_0885C818` | 0x0885C818-0x0885C83C | 1 small function | 100 % |
+| `unit_0885C83C` | 0x0885C83C-0x0885C968 | 1 function (byte member of a record of one of seven tables, `include/unk_tables.h`); jump table 0x0893148C-0x089314A8 in the unit | 100 % |
 | `unit_0885C968` | 0x0885C968-0x0885CA50 | 1 function (dispatch to seven lookups on a byte); jump table 0x089314A8-0x089314C4 in the unit | 100 % |
+| `unit_0885CA50` | 0x0885CA50-0x0885CB68 | 1 function (address of a record of one of the seven tables); jump table 0x089314C4-0x089314E0 in the unit | 100 % |
 | `unit_0885CB68` | 0x0885CB68-0x0885CB98 | 1 small function | 100 % |
+| `unit_0885CB98` | 0x0885CB98-0x0885CCD0 | 1 function (word member of a record of one of the seven tables); jump table 0x089314E0-0x089314FC in the unit | 100 % |
 | `unit_0885CCD0` | 0x0885CCD0-0x0885CCE8 | 1 small function | 100 % |
 | `unit_0885CCE8` | 0x0885CCE8-0x0885CD18 | 1 small function | 100 % |
 | `unit_0885CDB8` | 0x0885CDB8-0x0885CE00 | 1 small function | 100 % |
@@ -645,6 +650,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08890080` | 0x08890080-0x088900A0 | 1 setter | 100 % |
 | `unit_088900A0` | 0x088900A0-0x088900C4 | 1 small function | 100 % |
 | `unit_08890114` | 0x08890114-0x08890144 | 1 small function | 100 % |
+| `unit_088902A8` | 0x088902A8-0x088903BC | 1 function (maps a setting 0-6 to the arguments of sceImposeSetLanguageMode); jump table 0x08931A84-0x08931AA0 in the unit | 100 % |
 | `unit_088903BC` | 0x088903BC-0x08890430 | 1 function (maps 0-6 to another number); jump table 0x08931AA0-0x08931ABC in the unit | 100 % |
 | `unit_08890430` | 0x08890430-0x08890494 | 1 small function | 100 % |
 | `unit_088905B0` | 0x088905B0-0x088905EC | 1 small function | 100 % |
@@ -751,6 +757,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088A18B8` | 0x088A18B8-0x088A18E8 | 1 small function | 100 % |
 | `unit_088A1914` | 0x088A1914-0x088A198C | 1 small function | 100 % |
 | `unit_088A2068` | 0x088A2068-0x088A20E4 | 1 small function | 100 % |
+| `unit_088A20E4` | 0x088A20E4-0x088A2204 | 1 function (state step on +0x54); jump table 0x08931F20-0x08931F38 in the unit | 100 % |
 | `unit_088A2204` | 0x088A2204-0x088A2244 | 1 small function | 100 % |
 | `unit_088A2244` | 0x088A2244-0x088A232C | 1 function (state step with fall-through cases); jump table 0x08931F38-0x08931F50 in the unit | 100 % |
 | `unit_088A232C` | 0x088A232C-0x088A2338 | 1 small function | 100 % |
@@ -901,6 +908,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088B1C28` | 0x088B1C28-0x088B1C34 | 1 small function | 100 % |
 | `unit_088B1DA8` | 0x088B1DA8-0x088B1DB0 | 1 small function | 100 % |
 | `unit_088B2024` | 0x088B2024-0x088B2058 | 1 small function | 100 % |
+| `unit_088B2B28` | 0x088B2B28-0x088B2BC0 | 1 function (dispatch to six functions on the byte at +0x22); jump table 0x08932154-0x0893216C in the unit | 100 % |
 | `unit_088B2BC0` | 0x088B2BC0-0x088B2C20 | 1 small function | 100 % |
 | `unit_088B30CC` | 0x088B30CC-0x088B3118 | 1 small function | 100 % |
 | `unit_088B3118` | 0x088B3118-0x088B3124 | 1 small function | 100 % |

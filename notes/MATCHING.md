@@ -191,6 +191,16 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
     after the `switch` (`addu $a2, $v0, $zero`), also on the paths that leave
     it unset: an uninitialised local assigned before the copy in each case,
     `size = 0xC; msg.a = *(A *) p; break;` (func_088AB6D0).
+  - a `switch` inside a loop entered by `blezl n` (no jump to the test): `i = 0;
+    if (n > 0) { p = row; do { switch (*p) {...} i++; p++; } while (i < n); }`;
+    the `for` form adds the `b` to the test (func_08828524).
+- A constant stored and then used as an argument from the same register
+  (`addiu $a2, $zero, 1` / `sw $a2`), or the argument's `addiu` before the
+  store: the local is assigned before the member (`lang = 1; p->x = 1;`)
+  (func_088902A8).
+- A member of the records of a table addressed by its own symbol
+  (`D_08973839` = `D_08973834` + 5): declare the table at its base and read
+  the member; the linked bytes are the same (include/unk_tables.h).
 - `addu v1, a0, v1` (index first) for a byte in a table of a global object:
   the member is used directly twice (`if (g->t[i] < 0xFF) { g->t[i]++; }`), not
   through a pointer local (func_08869424).
