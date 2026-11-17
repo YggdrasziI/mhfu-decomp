@@ -563,6 +563,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08878EEC` | 0x08878EEC-0x08878F08 | 1 small function | 100 % |
 | `unit_08878F08` | 0x08878F08-0x088790F4 | 1 function (draws a panel with three texts from func_09A63198 and the s16 at +0xAC / 30); optimized for speed | 100 % |
 | `unit_08879158` | 0x08879158-0x08879198 | 1 sum | 100 % |
+| `unit_08879198` | 0x08879198-0x0887941C | 1 function (two loops over 24 slots and 90 u16 counters at +0x29C / +0x350 of D_08A62C7C); initialised array 0x089A88B0-0x089A88C8 (`.data`) in the unit; optimized for speed | 100 % |
 | `unit_0887941C` | 0x0887941C-0x0887959C | 2 small functions | 100 % |
 | `unit_0887B7C4` | 0x0887B7C4-0x0887B7E0 | 1 small function | 100 % |
 | `unit_0887B8D8` | 0x0887B8D8-0x0887BB48 | 1 function (same shape as func_08878F08; prints a line for each set bit of the 64-bit mask at +0xF8, 48 bits); optimized for speed | 100 % |

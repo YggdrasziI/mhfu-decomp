@@ -365,6 +365,10 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   against two words: a `u64` (`unsigned long long`) mask, `*(u64 *)(p + N) &
   mask`, `mask <<= 1`; initialise it before the counter (`for (mask = 1, i =
   0; ...)`) (func_0887B8D8).
+- A value of a second loop held in the register of the first loop's counter,
+  the second counter in a new register: the first counter variable is reused
+  for the value (`i = a[j] + b[j];`) and the second loop has its own counter
+  (func_08879198).
 - A format string that is sometimes the result of a call: the callee's parameter
   is a `char *` and the lookup returns `char *`; with an `s32` parameter and
   `(s32) &D_X` the `addiu %lo` is scheduled before the other arguments
