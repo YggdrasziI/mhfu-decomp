@@ -554,6 +554,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08870AC4` | 0x08870AC4-0x08870AEC | 1 small function | 100 % |
 | `unit_08870AEC` | 0x08870AEC-0x08870D30 | 1 function (C++; NonMatching 90.7 %: picks a u16 from the three-level table D_089A7CE8 by id and starts a load through D_089CC434's virtual calls) | 100 % |
 | `unit_08870D30` | 0x08870D30-0x08870D40 | 1 small function | 100 % |
+| `unit_0887221C` | 0x0887221C-0x08872444 | 1 function (speed: fills three `u16[4]` and one `u8[4]` local arrays from the slots at D_09A4F0D0 and the table D_09BC8400, then hands them to func_08880E50) | 100 % |
 | `unit_08872B2C` | 0x08872B2C-0x08872B40 | 1 small function | 100 % |
 | `unit_08872BFC` | 0x08872BFC-0x08872CC0 | 1 small function | 100 % |
 | `unit_08872D74` | 0x08872D74-0x08872DC4 | 1 small function | 100 % |
