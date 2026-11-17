@@ -77,7 +77,7 @@ extern s32 func_088B04EC(char *arg0);
 extern s32 func_088B0514(char *arg0, char *arg1);
 extern void func_088B6B14(s32);
 
-/* NonMatching, 96.1 %: from unk1A on, the original loads each pair of members
+/* NonMatching, 97.2 %: from unk1A on, the original loads each pair of members
  * into $v1 then $a0 where this loads $a0 then $v1 (same instructions
  * otherwise). Tried: statement orders, temporaries, a pointer to the local,
  * nested structures assigned whole (word copies), casts. */

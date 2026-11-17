@@ -559,6 +559,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08877BE8` | 0x08877BE8-0x08877C04 | 1 small function | 100 % |
 | `unit_08878BC0` | 0x08878BC0-0x08878BDC | 1 small function | 100 % |
 | `unit_08878EEC` | 0x08878EEC-0x08878F08 | 1 small function | 100 % |
+| `unit_08878F08` | 0x08878F08-0x088790F4 | 1 function (draws a panel with three texts from func_09A63198 and the s16 at +0xAC / 30); optimized for speed | 100 % |
 | `unit_08879158` | 0x08879158-0x08879198 | 1 sum | 100 % |
 | `unit_0887941C` | 0x0887941C-0x0887959C | 2 small functions | 100 % |
 | `unit_0887B7C4` | 0x0887B7C4-0x0887B7E0 | 1 small function | 100 % |
@@ -629,6 +630,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08883374` | 0x08883374-0x08883384 | 1 small function | 100 % |
 | `unit_088838B0` | 0x088838B0-0x08883988 | 1 function (forwards to func_0887FFE8 with its last argument * n / 100); optimized for speed | 100 % |
 | `unit_08883988` | 0x08883988-0x08883B54 | 2 small functions | 100 % |
+| `unit_08884748` | 0x08884748-0x0888491C | 1 function (stores its last argument at +0x562438, then calls func_088801E8 or func_088801A0 with arg7 * r / 100); optimized for speed | 100 % |
 | `unit_08884C9C` | 0x08884C9C-0x08884CD4 | 1 small function | 100 % |
 | `unit_08884CD4` | 0x08884CD4-0x08884CE4 | 1 small function | 100 % |
 | `unit_08885494` | 0x08885494-0x088854A0 | 1 small function | 100 % |
@@ -980,7 +982,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088B4D78` | 0x088B4D78-0x088B4E54 | 1 function (C++; stores a checked 8-byte address in D_09A29CD0) | 100 % |
 | `unit_088B4FA4` | 0x088B4FA4-0x088B4FAC | 1 small function | 100 % |
 | `unit_088B5560` | 0x088B5560-0x088B5568 | 1 small function | 100 % |
-| `unit_088B5D3C` | 0x088B5D3C-0x088B5EDC | 1 function (C++; NonMatching 96.1 %: copies a 0xC8-byte structure to D_09A28BFC member by member, two registers swapped) | 100 % |
+| `unit_088B5D3C` | 0x088B5D3C-0x088B5EDC | 1 function (C++; NonMatching 97.2 %: copies a 0xC8-byte structure to D_09A28BFC member by member, two registers swapped) | 100 % |
 | `unit_088B5FC8` | 0x088B5FC8-0x088B608C | 1 function (C++; clears D_09A28BFC and stores an 8-byte address in it) | 100 % |
 | `unit_088B608C` | 0x088B608C-0x088B60E8 | 1 small function | 100 % |
 | `unit_088B6338` | 0x088B6338-0x088B63A4 | 1 small function | 100 % |
