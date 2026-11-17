@@ -545,6 +545,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08870194` | 0x08870194-0x0887019C | 1 small function | 100 % |
 | `unit_0887019C` | 0x0887019C-0x088701D8 | 1 small function | 100 % |
 | `unit_08870AC4` | 0x08870AC4-0x08870AEC | 1 small function | 100 % |
+| `unit_08870AEC` | 0x08870AEC-0x08870D30 | 1 function (C++; NonMatching 90.7 %: picks a u16 from the three-level table D_089A7CE8 by id and starts a load through D_089CC434's virtual calls) | 100 % |
 | `unit_08870D30` | 0x08870D30-0x08870D40 | 1 small function | 100 % |
 | `unit_08872B2C` | 0x08872B2C-0x08872B40 | 1 small function | 100 % |
 | `unit_08872BFC` | 0x08872BFC-0x08872CC0 | 1 small function | 100 % |
