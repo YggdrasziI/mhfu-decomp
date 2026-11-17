@@ -218,7 +218,19 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
     (func_08857A80);
   - `addiu $a0, $a0, 0x4A0` kept in the delay slot of the bound test (ours
     folds the offset into every load): the sub-object is a typed pointer
-    local, `Unk4A0 *p = (Unk4A0 *) (arg0 + 0x4A0);` (func_08857A80).
+    local, `Unk4A0 *p = (Unk4A0 *) (arg0 + 0x4A0);` (func_08857A80);
+  - a case, or the body of an `if`, that is only `b end` + `nop` in a `void`
+    function (an empty `case N: break;` points the table at the end, an empty
+    `if` and a dead assignment are dropped with their test): it is a
+    `return;`, `case 1: return;` and `if (a != b) { return; } break;`
+    (func_088AB7D8);
+  - few cases compiled as a chain of compares where the original has a table:
+    the cases that do nothing are written out, `case 0: case 3: ... break;`
+    (func_088AB7D8);
+  - a loop around the `switch` with the test only at the bottom (`sltiu` /
+    `bnez` / `nop`; the `for` form jumps to the test first and gives `bnezl`):
+    `i = 0; do { ...; switch (...) {...} i++; } while (i < 0x40);`
+    (func_0889F9C4).
 - A constant stored and then used as an argument from the same register
   (`addiu $a2, $zero, 1` / `sw $a2`), or the argument's `addiu` before the
   store: the local is assigned before the member (`lang = 1; p->x = 1;`)
@@ -226,6 +238,18 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - A member of the records of a table addressed by its own symbol
   (`D_08973839` = `D_08973834` + 5): declare the table at its base and read
   the member; the linked bytes are the same (include/unk_tables.h).
+- `addu a2, v1, a3` (scaled index first) for a record of an array at the start
+  of a global object: `D_089CC438->unk0[i].m` with the object declared as a
+  structure holding the array; `((Rec *) D_089CC438)[i].m` and a `rec` pointer
+  local give the base first. For an array inside a `char *` parameter,
+  `((s16 *) (arg0 + 0xA))[i]` gives the index first (func_088AB7D8,
+  func_088AB514).
+- A message filled on the stack, C++: a structure of eight `s8` members is
+  copied member by member (`lb` / `sb` pairs); the same structure holding
+  `s8 unk0[8]` is copied by a loop (func_088AB514).
+- Scheduling of a constant and a load in one case (`size` in `$v0`): the
+  order of the two statements decides it, `size = 8;` before the store that
+  needs the load (func_088AB514).
 - A table pointer loaded before the index is scaled (`lw` then `sll` / `addu`
   / `sll`; ours scales first): two statements, `rec = tbl[kind]; rec += id;`.
   `rec = tbl[kind] + id`, `&tbl[kind][id]` and a pointer local for the table

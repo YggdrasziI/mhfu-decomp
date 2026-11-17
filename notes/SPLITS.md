@@ -745,6 +745,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0889F6A0` | 0x0889F6A0-0x0889F744 | 1 function (resets a table of 32 0x48-byte entries) | 100 % |
 | `unit_0889F744` | 0x0889F744-0x0889F764 | 1 element address | 100 % |
 | `unit_0889F9A0` | 0x0889F9A0-0x0889F9C4 | 1 small function | 100 % |
+| `unit_0889F9C4` | 0x0889F9C4-0x0889FB94 | 1 function (reads up to 64 messages under the interrupt lock and dispatches them by id 0x10000000-0x1000000D); jump table 0x08931EE8-0x08931F20 in the unit | 100 % |
 | `unit_088A00B0` | 0x088A00B0-0x088A00D0 | 1 small function | 100 % |
 | `unit_088A0938` | 0x088A0938-0x088A0958 | 1 initialiser | 100 % |
 | `unit_088A0A80` | 0x088A0A80-0x088A0A90 | 1 small function | 100 % |
@@ -841,7 +842,9 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088AB490` | 0x088AB490-0x088AB4B0 | 1 bit set | 100 % |
 | `unit_088AB4B0` | 0x088AB4B0-0x088AB4DC | 1 small function | 100 % |
 | `unit_088AB500` | 0x088AB500-0x088AB514 | 1 small function | 100 % |
+| `unit_088AB514` | 0x088AB514-0x088AB6D0 | 1 function (builds a message by kind 0-13 and sends it with func_088AB4DC; C++); jump table 0x0893203C-0x08932074 in the unit | 100 % |
 | `unit_088AB6D0` | 0x088AB6D0-0x088AB7D8 | 1 function (C++; copies a 12- or 8-byte record to the stack and sends it); jump table 0x08932074-0x08932098 in the unit | 100 % |
+| `unit_088AB7D8` | 0x088AB7D8-0x088AB980 | 1 function (applies a received message by kind 0-13); jump table 0x08932098-0x089320D0 in the unit | 100 % |
 | `unit_088AC0D0` | 0x088AC0D0-0x088AC0E8 | 3 small functions | 100 % |
 | `unit_088ACC54` | 0x088ACC54-0x088ACC60 | 1 small function | 100 % |
 | `unit_088ACD38` | 0x088ACD38-0x088ACD60 | 1 small function | 100 % |
