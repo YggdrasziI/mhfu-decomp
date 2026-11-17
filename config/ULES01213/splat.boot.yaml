@@ -145,6 +145,7 @@ segments:
       - [0x20188, asm, text_08821BD4]
       - [0x208E0, asm, text_0882232C]
       - [0x20B48, asm, text_08822594]
+      - [0x20CA4, c, unit_088226F0]
       - [0x20F44, c, unit_08822990]
       - [0x20F6C, asm, text_088229B8]
       - [0x22004, c, unit_08823A50]
