@@ -564,10 +564,12 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0887941C` | 0x0887941C-0x0887959C | 2 small functions | 100 % |
 | `unit_0887B7C4` | 0x0887B7C4-0x0887B7E0 | 1 small function | 100 % |
 | `unit_0887C708` | 0x0887C708-0x0887C724 | 1 small function | 100 % |
+| `unit_0887C81C` | 0x0887C81C-0x0887CA08 | 1 function (same shape as func_08878F08, s16 at +0xAA); optimized for speed | 100 % |
 | `unit_0887CA08` | 0x0887CA08-0x0887CA4C | 1 small function (C++) | 100 % |
 | `unit_0887CBAC` | 0x0887CBAC-0x0887CC28 | 1 function (checks a list of 16 ids ended by -1 with func_0884FF4C); initialised array 0x089A8968-0x089A898A (`.data`) in the unit | 100 % |
 | `unit_0887CC28` | 0x0887CC28-0x0887CCAC | 1 small function | 100 % |
 | `unit_0887CCAC` | 0x0887CCAC-0x0887CD04 | 1 small function | 100 % |
+| `unit_0887CDFC` | 0x0887CDFC-0x0887D02C | 1 function (same shape as func_08878F08 with three formatted lines); optimized for speed | 100 % |
 | `unit_0887D0B4` | 0x0887D0B4-0x0887D0D0 | 1 small function | 100 % |
 | `unit_0887D65C` | 0x0887D65C-0x0887D884 | 1 function (countdown state machine on +0xA4); jump table 0x08931910-0x08931934 in the unit | 100 % |
 | `unit_0887D884` | 0x0887D884-0x0887DD88 | 1 function (draws the lines of the same screen, cases falling through); jump table 0x08931934-0x08931954 and initialised array 0x089A89E4-0x089A89F2 (`.data`) in the unit; optimized for speed | 100 % |
