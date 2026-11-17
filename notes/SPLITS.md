@@ -921,6 +921,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088AEFCC` | 0x088AEFCC-0x088AF020 | 4 tests and getters on small globals | 100 % |
 | `unit_088AF978` | 0x088AF978-0x088AFA2C | 1 small function | 100 % |
 | `unit_088AFC28` | 0x088AFC28-0x088AFC34 | 1 small function | 100 % |
+| `unit_088AFC34` | 0x088AFC34-0x088AFE78 | 1 function (takes the next packet from the receive buffer D_09A20618, filtered by sender address and type); initialised array 0x089B2A24-0x089B2A2A (`.data`) in the unit | 100 % |
 | `unit_088AFE78` | 0x088AFE78-0x088AFE90 | 2 small functions | 100 % |
 | `unit_088AFFBC` | 0x088AFFBC-0x088AFFD0 | 1 small function | 100 % |
 | `unit_088AFFD0` | 0x088AFFD0-0x088B0010 | 2 small functions | 100 % |

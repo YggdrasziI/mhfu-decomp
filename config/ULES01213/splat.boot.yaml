@@ -1185,7 +1185,7 @@ segments:
       - [0xADF2C, c, unit_088AF978]
       - [0xADFE0, asm, text_088AFA2C]
       - [0xAE1DC, c, unit_088AFC28]
-      - [0xAE1E8, asm, text_088AFC34]
+      - [0xAE1E8, c, unit_088AFC34]
       - [0xAE42C, c, unit_088AFE78]
       - [0xAE444, asm, text_088AFE90]
       - [0xAE570, c, unit_088AFFBC]
@@ -1741,6 +1741,9 @@ segments:
       - [0x1A6FA8, data, data_089A89F4]
       - [0x1A6FB4, .data, unit_0887E030]
       - [0x1A6FC4, data, data_089A8A10]
+      - [0x1B0FD8, .data, unit_088AFC34]
+      - [0x1B0FDE, pad, pad_089B2A2A]     # 2 bytes of padding after the 6-byte array
+      - [0x1B0FE0, data, data_089B2A2C]
       - [0x1B0FE8, .data, unit_088B01BC]
       - [0x1B0FF0, data, data_089B2A3C]
       - { start: 0x1CA044, type: bss, vram: 0x089CBA90, name: bss }
