@@ -246,6 +246,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088306DC` | 0x088306DC-0x08830728 | 1 reset (bytes, clear, copy) | 100 % |
 | `unit_08830728` | 0x08830728-0x088307BC | 1 small function | 100 % |
 | `unit_08830F74` | 0x08830F74-0x08830FAC | 1 small function | 100 % |
+| `unit_08832548` | 0x08832548-0x08832684 | 1 function (sets the byte at +0x534 from a kind, calls, then sets it back from its old value); jump tables 0x08930BAC-0x08930BDC in the unit | 100 % |
 | `unit_08832838` | 0x08832838-0x08832884 | 1 flag test and clear with a call | 100 % |
 | `unit_08832A9C` | 0x08832A9C-0x08832B98 | 1 small function | 100 % |
 | `unit_08832C60` | 0x08832C60-0x08832CE4 | 1 small function | 100 % |
@@ -829,6 +830,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088AA368` | 0x088AA368-0x088AA370 | 1 small function | 100 % |
 | `unit_088AB028` | 0x088AB028-0x088AB068 | 1 small function | 100 % |
 | `unit_088AB1A0` | 0x088AB1A0-0x088AB1CC | 1 small function | 100 % |
+| `unit_088AB35C` | 0x088AB35C-0x088AB490 | 1 function (C++; routes a received message by its kind); jump table 0x08932010-0x0893203C in the unit | 100 % |
 | `unit_088AB490` | 0x088AB490-0x088AB4B0 | 1 bit set | 100 % |
 | `unit_088AB4B0` | 0x088AB4B0-0x088AB4DC | 1 small function | 100 % |
 | `unit_088AB500` | 0x088AB500-0x088AB514 | 1 small function | 100 % |
@@ -1054,6 +1056,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088CE754` | 0x088CE754-0x088CE75C | 1 small function | 100 % |
 | `unit_088CF1B0` | 0x088CF1B0-0x088CF210 | 2 small functions | 100 % |
 | `unit_088D1DD0` | 0x088D1DD0-0x088D1E40 | 1 small function (C++) | 100 % |
+| `unit_088D2674` | 0x088D2674-0x088D27BC | 1 function (maps a 16-bit kind 0-8 to an argument of func_09C6EF18); jump table 0x089323C8-0x089323EC in the unit | 100 % |
 | `unit_088D27BC` | 0x088D27BC-0x088D27CC | 1 small function | 100 % |
 | `unit_088D27CC` | 0x088D27CC-0x088D27F4 | 1 small function | 100 % |
 | `unit_088D27F4` | 0x088D27F4-0x088D286C | 2 small functions | 100 % |

@@ -194,6 +194,15 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   - a `switch` inside a loop entered by `blezl n` (no jump to the test): `i = 0;
     if (n > 0) { p = row; do { switch (*p) {...} i++; p++; } while (i < n); }`;
     the `for` form adds the `b` to the test (func_08828524).
+  - a test before the `switch` that leaves by `beq` + `nop` to the shared
+    `return 0` (ours: `beql` with the `addu $v0` copied in its delay slot): the
+    `switch` is the `else if` of the test before it, `if (k == 7) { f(); } else
+    if (a != b) { switch (k) {...} } return 0;`; an early `return 0;` in the
+    first `if` and a plain `if (a != b)` give the `beql` (func_088AB35C);
+  - two `switch` statements in one function: the table of the second comes
+    first in the data (func_08832548);
+  - the selector re-masked before the bound test (`andi` + `sltiu`): it is an
+    `int` local loaded from the byte, not a `u8` local (func_08832548).
 - A constant stored and then used as an argument from the same register
   (`addiu $a2, $zero, 1` / `sw $a2`), or the argument's `addiu` before the
   store: the local is assigned before the member (`lang = 1; p->x = 1;`)
