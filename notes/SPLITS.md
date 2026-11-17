@@ -284,6 +284,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0884054C` | 0x0884054C-0x088405E4 | 1 function (forwards its argument / 1800 / 5 * 0x1555 to func_0882D470); optimized for speed | 100 % |
 | `unit_08840BC0` | 0x08840BC0-0x08840C24 | 1 small function | 100 % |
 | `unit_08841520` | 0x08841520-0x088415D0 | 1 small function | 100 % |
+| `unit_088429EC` | 0x088429EC-0x08842BE4 | 1 function, NonMatching (99.9 %: one `mul.s` operand order); VFPU sine in an `asm` block, draws an item with a pulsing alpha; its .data 0x0893B5D4-0x0893B5EC stays in the data piece | not linked |
 | `unit_08842D3C` | 0x08842D3C-0x08842EE8 | 1 function (draws value / 10 as a number and value % 10 as icons spaced 0xE apart, or calls func_0882A9DC when the slot is 0xFF); optimized for speed | 100 % |
 | `unit_08844390` | 0x08844390-0x088443EC | 1 small function | 100 % |
 | `unit_08844654` | 0x08844654-0x0884469C | 1 test on a call result | 100 % |
