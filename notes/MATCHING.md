@@ -230,7 +230,10 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   - a loop around the `switch` with the test only at the bottom (`sltiu` /
     `bnez` / `nop`; the `for` form jumps to the test first and gives `bnezl`):
     `i = 0; do { ...; switch (...) {...} i++; } while (i < 0x40);`
-    (func_0889F9C4).
+    (func_0889F9C4);
+  - a small `switch` compiled as a chain of compares tests the cases in the
+    reverse of their source order: `beq 4`, `3`, `1`, `2`, `0` is `case 0:`
+    ... `case 2: case 1: case 3: case 4: break;` (func_088B3BE4, func_0883F0CC).
 - A constant stored and then used as an argument from the same register
   (`addiu $a2, $zero, 1` / `sw $a2`), or the argument's `addiu` before the
   store: the local is assigned before the member (`lang = 1; p->x = 1;`)
@@ -289,11 +292,18 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - Virtual calls (`jalr $t9`): C++ with a class of virtual functions,
   `((Vxx *) X)->vfunc_xx(X, ...)` (`virtual_calls`). Pointer-to-member calls go
   through `__ptmf_test` / `__ptmf_scall` (notes/COMPILER.md).
+- A parameter still in its argument register is passed on without a move
+  (no `addu $a1, $s4, $zero` before the `jal`): the callee does take it,
+  `func_08851F20(g, arg1)` (func_088DBBBC, `tools/psp/prototypes.py` counts
+  the arguments the callee reads).
 - A pass-through argument count is a reading aid: counts only go up
   (`tools/psp/prototypes.py`).
 
 ## Open symptoms
 
+- A global pointer loaded again for the first call of a case although a local
+  copy made at the top of the function is still live (ours passes the copy;
+  after a call both reload): func_088DBBBC.
 - $a0 not reloaded after a call to a function that leaves it alone
   (func_088A6BA0, notes/COMPILER.md).
 - Register-only differences (two registers swapped, result kept in `$v0` then copied

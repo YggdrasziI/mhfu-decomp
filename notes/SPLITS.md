@@ -934,6 +934,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088B3718` | 0x088B3718-0x088B3744 | 1 small function | 100 % |
 | `unit_088B3A3C` | 0x088B3A3C-0x088B3A68 | 1 small function | 100 % |
 | `unit_088B3A68` | 0x088B3A68-0x088B3BE4 | 1 function (checks a state, copies a 100-byte and a 22-byte structure, starts a request); jump table 0x08932188-0x089321A4 in the unit | 100 % |
+| `unit_088B3BE4` | 0x088B3BE4-0x088B3DE4 | 1 function (ends or restarts a request by state, sibling of func_088B3A68); jump table 0x089321A4-0x089321C0 in the unit | 100 % |
 | `unit_088B40B8` | 0x088B40B8-0x088B4120 | 1 small function | 100 % |
 | `unit_088B4120` | 0x088B4120-0x088B4184 | 1 small function | 100 % |
 | `unit_088B4184` | 0x088B4184-0x088B41B4 | 1 small function | 100 % |
@@ -1115,6 +1116,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088DB5C0` | 0x088DB5C0-0x088DB5D8 | 2 small functions | 100 % |
 | `unit_088DB5D8` | 0x088DB5D8-0x088DB608 | 1 small function | 100 % |
 | `unit_088DBB5C` | 0x088DBB5C-0x088DBBBC | 1 small function | 100 % |
+| `unit_088DBBBC` | 0x088DBBBC-0x088DBD98 | 1 function (per-slot step 0-7 sending values of a 0x8C-byte record, jump table at 0x0893249C) | NonMatching |
 | `unit_088DBE28` | 0x088DBE28-0x088DBE70 | 1 small function | 100 % |
 | `unit_088DBE70` | 0x088DBE70-0x088DBE80 | 1 small function | 100 % |
 | `unit_088DBE80` | 0x088DBE80-0x088DBEE0 | 1 small function | 100 % |
