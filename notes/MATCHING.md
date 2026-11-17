@@ -46,6 +46,15 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   `tools/psp/prototypes.py`).
 - `if (x >= 2.1474836e9f)` around a conversion is mwccpsp's own `(u32) x`
   (`unsigned_casts`).
+- A small constant passed to an `s8` parameter without `seb` in the original:
+  keep the value in an `s8` local, not an `s32` (func_088226F0's colours).
+
+## Symbol names in the report
+
+- splat names a field address it sees loaded on its own (`D_09BC8402`), and
+  objdiff counts `D_09BC8400+0x2` against it. Declare that name as its own
+  `extern` and index it (`D_09BC8402[id][0]`): same code, 100 % in the report
+  (func_08872108).
 
 ## Addresses, arrays and structures
 
@@ -55,7 +64,13 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   `addu base, index`. With an `s32` base the offset must go on a `char *`.
   Operand order of `+` / `&` in the source does not matter.
 - Structure arrays: `*(T *) &((E<K> *) (p + off))[i]` with the index in a local
-  (func_08830728) (`stride_arrays`).
+  (func_08830728) (`stride_arrays`). Two fields of one element at large offsets
+  (`lb 0x787(r)`, `lbu 0x77C(v)` from one `addu index, base`): write both as
+  `((Blk *) (p + off))[i]` with their own offset (func_08872108).
+- Separate pointer induction variables for the stores and the loads of the same
+  arrays (some spilled): the stores use another index than the loads, e.g.
+  `a[count] = ...` then `f(a[i])` with `count` and `i` both incremented
+  (func_08871DCC).
 - A symbol read word by word with one `lui` each: type it as a structure of floats
   (`F<n>`) (`float_structs`). Stack structure copies through `lwc1`/`swc1`: up to 16
   bytes one copy, larger in a loop, so one copy per member (`stack_copies`).
