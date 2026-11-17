@@ -262,6 +262,9 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088346D8` | 0x088346D8-0x08834730 | 1 small function | 100 % |
 | `unit_08834730` | 0x08834730-0x0883488C | 1 function (dispatch to 13 functions on the bytes at +0x1118 / +0x111C); jump table 0x08930F40-0x08930F74 in the unit | 100 % |
 | `unit_0883488C` | 0x0883488C-0x08834B0C | 1 function (C++, speed: draws a 7-entry list with marks, page / index from the byte at +0x111C divided by 7) | 100 % |
+| `unit_08834B0C` | 0x08834B0C-0x08834D04 | 1 function (input handler of the state at +0x1118, plays sounds 0x13-0x15) | 100 % |
+| `unit_08834D04` | 0x08834D04-0x08834D3C | 1 function (returns the halfword at +0x111E, or func_0884FB6C when the flag at +0x111D is clear) | 100 % |
+| `unit_08834D3C` | 0x08834D3C-0x08835098 | 1 function (C++, dispatch on a byte to 13 cases); jump table 0x08930F74-0x08930FA8 in the unit | 100 % |
 | `unit_08835098` | 0x08835098-0x088351F0 | 1 function (dispatch to 12 functions on a byte, 16-bit result); jump table 0x08930FA8-0x08930FDC in the unit | 100 % |
 | `unit_08838AB4` | 0x08838AB4-0x08838B08 | 1 function (`switch` on a byte argument); jump table 0x089310F0-0x08931124 in the unit | 100 % |
 | `unit_08838E0C` | 0x08838E0C-0x08838E30 | 1 small function | 100 % |
