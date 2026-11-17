@@ -2,7 +2,8 @@
  *
  * Bounds (hypothesis): 1 small function between code still in assembly.
  *
- * C++: the code only matches when compiled as C++.
+ * C++: the code only matches when compiled as C++. The parameter is unused;
+ * func_08876AA8 passes its own argument.
  */
 
 typedef unsigned char u8;
@@ -13,7 +14,7 @@ extern "C" {
 extern char *D_08A631A0;
 extern char *D_09A0B544;
 
-s32 func_0887CA08(void) {
+s32 func_0887CA08(char *arg0) {
     if ((bool) (*(s32 *)((char *)D_08A631A0 + 0xF7A57C) & 1) == 0) {
         return 1;
     }
