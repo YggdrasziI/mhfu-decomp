@@ -982,6 +982,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088B32A0` | 0x088B32A0-0x088B32AC | 1 small function | 100 % |
 | `unit_088B32AC` | 0x088B32AC-0x088B32B8 | 1 small function | 100 % |
 | `unit_088B3718` | 0x088B3718-0x088B3744 | 1 small function | 100 % |
+| `unit_088B3778` | 0x088B3778-0x088B3A3C | 1 function (rejects with 0x8013 unless the state D_09A2886C is 0, then fills D_09A28B98 / D_09A291BC from its argument and a local copy of the D_09A2887C fields); jump table 0x0893216C-0x08932188 in the unit | 100 % |
 | `unit_088B3A3C` | 0x088B3A3C-0x088B3A68 | 1 small function | 100 % |
 | `unit_088B3A68` | 0x088B3A68-0x088B3BE4 | 1 function (checks a state, copies a 100-byte and a 22-byte structure, starts a request); jump table 0x08932188-0x089321A4 in the unit | 100 % |
 | `unit_088B3BE4` | 0x088B3BE4-0x088B3DE4 | 1 function (ends or restarts a request by state, sibling of func_088B3A68); jump table 0x089321A4-0x089321C0 in the unit | 100 % |

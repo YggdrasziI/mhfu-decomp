@@ -437,6 +437,12 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   whose out-of-range `beqz` keeps its `nop`: the `switch` sits inside `if
   (f() == 0) { ... } return 0;`; `if (f() != 0) return 0;` gives `beqzl`
   (func_088785CC).
+- A 6-byte global copied to a stack member two bytes per pass (`lb` / `sb`
+  loop, count 3): `rec.unk0 = *(B6 *) &D_X;`. With `D_X` declared `B6` the
+  plain `rec.unk0 = D_X;` is copied as a word and a halfword (func_088B3778).
+- Several fields of one global record that splat named one by one
+  (`D_09A2887C`, `D_09A28882`, ...): declare each symbol with its type, so the
+  relocations name the same symbols (func_088B3778).
 - An initialised `u16 r[4]` local stays on the stack and is read back with
   `lhu`; a structure with the same initializer is kept in registers
   (func_08837D54, NonMatching).
