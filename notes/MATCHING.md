@@ -250,6 +250,13 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - Scheduling of a constant and a load in one case (`size` in `$v0`): the
   order of the two statements decides it, `size = 8;` before the store that
   needs the load (func_088AB514).
+- A pointer local computed in `$v1` with the result's `addiu $v0, $zero, -1`
+  before its last `addiu` (ours computes it in `$v0` and copies): the result
+  is declared and initialised first, `s32 ret = -1; Sub30 *p = (Sub30 *)
+  (arg0 + arg1 * 0x8C + 0x30);` (func_0885187C).
+- A member at +2 of the 40-byte records addressed by its own symbol
+  (`D_08973836`) next to the base symbol: both are declared as tables of the
+  same 40-byte type holding a `u16` (unit_088516A4).
 - A table pointer loaded before the index is scaled (`lw` then `sll` / `addu`
   / `sll`; ours scales first): two statements, `rec = tbl[kind]; rec += id;`.
   `rec = tbl[kind] + id`, `&tbl[kind][id]` and a pointer local for the table

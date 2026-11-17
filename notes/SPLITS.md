@@ -331,6 +331,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0885100C` | 0x0885100C-0x08851078 | 1 small function | 100 % |
 | `unit_08851144` | 0x08851144-0x0885115C | 1 small function | 100 % |
 | `unit_0885148C` | 0x0885148C-0x088516A4 | section and entry lookup in the block at `D_089CC440`, 21 wrappers with a fixed section number | 23/23 functions, 100 % |
+| `unit_088516A4` | 0x088516A4-0x08851C3C | 3 functions (16-bit value of a 40-byte record by kind 0-5, from arguments, from a 0x8C-byte record, from the object at +0x4A0); jump tables 0x089313A8-0x089313F0 in the unit | 100 % |
 | `unit_08851C3C` | 0x08851C3C-0x08851D3C | 2 small functions | 100 % |
 | `unit_0885205C` | 0x0885205C-0x088520A8 | 1 byte table lookup | 100 % |
 | `unit_088520A8` | 0x088520A8-0x088520C8 | 1 entry getter | 100 % |
