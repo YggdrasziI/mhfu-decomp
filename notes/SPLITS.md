@@ -575,6 +575,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08879158` | 0x08879158-0x08879198 | 1 sum | 100 % |
 | `unit_08879198` | 0x08879198-0x0887941C | 1 function (two loops over 24 slots and 90 u16 counters at +0x29C / +0x350 of D_08A62C7C); initialised array 0x089A88B0-0x089A88C8 (`.data`) in the unit; optimized for speed | 100 % |
 | `unit_0887941C` | 0x0887941C-0x0887959C | 2 small functions | 100 % |
+| `unit_0887A34C` | 0x0887A34C-0x0887A838, .data 0x089A88FC-0x089A891C | 1 function (C++, speed: draws a panel; a `switch` on the halfword at +0xA4 whose cases fall through, `default` first); jump table 0x089318B4-0x089318CC and the initializers of its two local `s16[7]` tables in the unit | 100 % |
 | `unit_0887B7C4` | 0x0887B7C4-0x0887B7E0 | 1 small function | 100 % |
 | `unit_0887B8D8` | 0x0887B8D8-0x0887BB48 | 1 function (same shape as func_08878F08; prints a line for each set bit of the 64-bit mask at +0xF8, 48 bits); optimized for speed | 100 % |
 | `unit_0887C708` | 0x0887C708-0x0887C724 | 1 small function | 100 % |
