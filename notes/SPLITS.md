@@ -905,11 +905,14 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088A9660` | 0x088A9660-0x088A9914 | 1 function (per-frame session state machine; switch table jtbl_08931FC0 stays in the data piece) | NonMatching (97.6 %) |
 | `unit_088A9914` | 0x088A9914-0x088A9CDC | 1 function (starts a session, attaches the static buffers) | 100 % |
 | `unit_088A9CDC` | 0x088A9CDC-0x088A9CFC | 2 small functions | 100 % |
+| `unit_088A9CFC` | 0x088A9CFC-0x088A9DF4 | 2 functions (session status queries) | 100 % |
 | `unit_088A9DF4` | 0x088A9DF4-0x088A9E28 | 1 small function | 100 % |
 | `unit_088A9E28` | 0x088A9E28-0x088A9EF4 | 3 small functions | 100 % |
+| `unit_088A9EF4` | 0x088A9EF4-0x088A9F4C | 1 small function (session step in modes 1 and 2) | 100 % |
 | `unit_088A9F4C` | 0x088A9F4C-0x088A9FF8 | 1 small function | 100 % |
 | `unit_088A9FF8` | 0x088A9FF8-0x088AA0BC | 2 small functions | 100 % |
 | `unit_088AA0BC` | 0x088AA0BC-0x088AA14C | 1 small function | 100 % |
+| `unit_088AA14C` | 0x088AA14C-0x088AA368 | 2 functions (system error code mapping, buffer reset) | 100 % |
 | `unit_088AA368` | 0x088AA368-0x088AA370 | 1 small function | 100 % |
 | `unit_088AB028` | 0x088AB028-0x088AB068 | 1 small function | 100 % |
 | `unit_088AB1A0` | 0x088AB1A0-0x088AB1CC | 1 small function | 100 % |
