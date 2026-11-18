@@ -207,7 +207,10 @@ users of the clear helper, func_088662B8, func_088C2CE0); `#pragma opt_unroll_lo
 off` around the helper does not bring them back. func_0889EB84 sits between two
 users of the helper (func_0889EAE8, func_0889ECB8), so the setting changes inside
 what looks like one object (hypothesis: pragmas in the source or in a header, not
-the command line). The build keeps `-O4`; a unit that needs the speed setting says
+the command line). func_088FB2B0 (NonMatching) points the same way: in speed
+mode the compiler unrolls its `v /= 12` loop by 8 while the original divides once
+per pass; `#pragma opt_unroll_loops off` gives the original loop (hypothesis: the
+original source turned unrolling off there). The build keeps `-O4`; a unit that needs the speed setting says
 `#pragma optimize_for_size off` at its top, with the reason in its header comment.
 
 mwccpsp calls `__extendsfdf2`, `__muldf3`, `__adddf3` and `__truncdfsf2` for

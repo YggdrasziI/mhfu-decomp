@@ -1257,6 +1257,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088EFFD8` | 0x088EFFD8-0x088F0018 | 1 small function | 100 % |
 | `unit_088F0018` | 0x088F0018-0x088F0020 | 1 small function | 100 % |
 | `unit_088F0020` | 0x088F0020-0x088F0088 | 1 small function | 100 % |
+| `unit_088FB2B0` | 0x088FB2B0-0x088FBC3C | 1 function, NonMatching (97.7 %, registers); 20-entry list with a VFPU sine for the cursor, then a 5-row table of times | not linked |
 | `unit_088FC5F8` | 0x088FC5F8-0x088FC62C | 1 small function | 100 % |
 | `unit_088FD168` | 0x088FD168-0x088FD170 | 1 small function | 100 % |
 | `unit_08901924` | 0x08901924-0x08901A60 | 1 small function | 100 % |

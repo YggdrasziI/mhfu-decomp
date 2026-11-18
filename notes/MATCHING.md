@@ -200,6 +200,9 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   constant loaded as two `lui`/`ori` pairs instead of from the data: the function
   is optimized for speed; put `#pragma optimize_for_size off` at the top of the
   unit (func_0889EB84, func_088A7E44; notes/COMPILER.md, "Speed and space").
+- The opposite in a speed unit (our loop unrolled by 8, the original one pass per
+  iteration, e.g. a variable-count `v /= 12` loop): add `#pragma opt_unroll_loops
+  off` after `optimize_for_size off` (func_088FB2B0, 90 % → 97.7 %).
 
 - A compare through `$at` (`slt $at, a, b` + `bnez $at`) where ours uses `$v0`:
   the source says `b <= a` / `a > b`; `a >= b` and `!(a < b)` go through `$v0`

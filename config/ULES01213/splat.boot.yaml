@@ -1660,6 +1660,8 @@ segments:
       - [0xEE5CC, c, unit_088F0018]
       - [0xEE5D4, c, unit_088F0020]
       - [0xEE63C, asm, text_088F0088]
+      - [0xF9864, asm, text_088FB2B0]
+      - [0xFA1F0, asm, text_088FBC3C]
       - [0xFABAC, c, unit_088FC5F8]
       - [0xFABE0, asm, text_088FC62C]
       - [0xFB71C, c, unit_088FD168]
