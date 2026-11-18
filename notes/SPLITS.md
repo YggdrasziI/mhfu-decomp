@@ -921,6 +921,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088AA9B4` | 0x088AA9B4-0x088AAC80 | 1 function (state of a connected socket from the TCP / PTP status list); jump table 0x08931FE4-0x08932010 in the unit | 100 % |
 | `unit_088AAC80` | 0x088AAC80-0x088AAD58 | 1 function (receive; `opt_rebuildconditionals off`) | 100 % |
 | `unit_088AAD58` | 0x088AAD58-0x088AAE10 | 1 function (send) | NonMatching (64.8 %) |
+| `unit_088AAE10` | 0x088AAE10-0x088AB028 | 4 functions (socket close, PDP create / receive / send; `opt_rebuildconditionals off`) | 100 % |
 | `unit_088AB028` | 0x088AB028-0x088AB068 | 1 small function | 100 % |
 | `unit_088AB1A0` | 0x088AB1A0-0x088AB1CC | 1 small function | 100 % |
 | `unit_088AB35C` | 0x088AB35C-0x088AB490 | 1 function (C++; routes a received message by its kind); jump table 0x08932010-0x0893203C in the unit | 100 % |
