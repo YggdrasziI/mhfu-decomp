@@ -57,6 +57,11 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - A list walk `beqzl p` before the loop (no jump to the test) and `bnezl p` at
   the bottom: `p = head; if (p != 0) { do { ... p = p->next; } while (p !=
   0); } return -1;` (func_088AA9B4).
+- A loop whose exit test comes first and whose found case falls through after a
+  `bnel` back to the top (no jump to a bottom test): `for (;;) { if (end) { ...;
+  return; } ...; if (found) { ...; return; } step; }`; a `while` rotates the test
+  to the bottom and a `break` moves the found block after the loop
+  (func_088AD46C).
 - A slot search whose test reads through a pointer that steps by the record
   size while the stores after it recompute `base + i * size`: test `q->sock`
   with `q++` and `i++` in a `do`/`while`, store through `tbl[i]`; the pointer

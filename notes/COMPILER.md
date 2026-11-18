@@ -191,6 +191,11 @@ earlier in the same file, and has no `-ipa` option. Hypothesis: the original
 compiler (2.4.1.01) tracks the registers a callee compiled earlier in the file
 uses; if so, other calls between functions of one object will show the same gap.
 
+Second case: func_088AD378 keeps a list pointer in $a3 across its call to
+func_088AD2FC (same heap code); with func_088AD2FC defined earlier in the same
+file, mwccpsp 3.0.1 still moves the pointer to a saved register (NonMatching
+unit_088AD378, 92.87 %).
+
 ## Speed and space (2026-11-16)
 
 `-O4` alone and `-O4,p` (`-opt speed`) give the same code on almost every function,

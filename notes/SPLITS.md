@@ -956,6 +956,9 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088AD134` | 0x088AD134-0x088AD188 | 1 small function | 100 % |
 | `unit_088AD188` | 0x088AD188-0x088AD1EC | 2 small functions | 100 % |
 | `unit_088AD2FC` | 0x088AD2FC-0x088AD348 | 1 small function | 100 % |
+| `unit_088AD348` | 0x088AD348-0x088AD378 | 1 function (heap: block lookup by address) | 100 % |
+| `unit_088AD378` | 0x088AD378-0x088AD46C | 1 function (heap: allocation) | NonMatching (92.87 %) |
+| `unit_088AD46C` | 0x088AD46C-0x088AD4EC | 1 function (heap: release) | 100 % |
 | `unit_088ADD80` | 0x088ADD80-0x088ADDBC | 1 small function | 100 % |
 | `unit_088ADDBC` | 0x088ADDBC-0x088ADDF4 | 1 small function | 100 % |
 | `unit_088ADDF4` | 0x088ADDF4-0x088ADE7C | 2 functions (state tests with a `switch`); jump tables 0x089320F4-0x08932124 in the unit | 100 % |
