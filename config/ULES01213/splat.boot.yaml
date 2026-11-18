@@ -1276,7 +1276,7 @@ segments:
       - [0xAE444, c, unit_088AFE90]
       - [0xAE570, c, unit_088AFFBC]
       - [0xAE584, c, unit_088AFFD0]
-      - [0xAE5C4, asm, text_088B0010]
+      - [0xAE5C4, c, unit_088B0010]
       - [0xAE5F8, c, unit_088B0044]
       - [0xAE638, c, unit_088B0084]
       - [0xAE690, c, unit_088B00DC]

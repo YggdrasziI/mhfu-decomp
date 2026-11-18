@@ -1035,6 +1035,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088AFE90` | 0x088AFE90-0x088AFFBC | 1 function (message header from the kind tables) | 100 % |
 | `unit_088AFFBC` | 0x088AFFBC-0x088AFFD0 | 1 small function | 100 % |
 | `unit_088AFFD0` | 0x088AFFD0-0x088B0010 | 2 small functions | 100 % |
+| `unit_088B0010` | 0x088B0010-0x088B0044 | 1 function (appends a big-endian 16-bit value) | 100 % |
 | `unit_088B0044` | 0x088B0044-0x088B0084 | 1 big-endian append | 100 % |
 | `unit_088B0084` | 0x088B0084-0x088B00DC | 1 small function | 100 % |
 | `unit_088B00DC` | 0x088B00DC-0x088B012C | 1 small function | 100 % |
