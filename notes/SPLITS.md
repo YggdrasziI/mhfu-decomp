@@ -1005,6 +1005,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088AEDA0` | 0x088AEDA0-0x088AEE04 | 1 function (check of 18 entries, `do`/`while`) | 100 % |
 | `unit_088AEE04` | 0x088AEE04-0x088AEEB8 | 1 function (request 0x8006) | 100 % |
 | `unit_088AEEB8` | 0x088AEEB8-0x088AEF64 | 1 small function | 100 % |
+| `unit_088AEF64` | 0x088AEF64-0x088AEF98 | 1 function (8-byte copy from D_09A202C0) | 100 % |
 | `unit_088AEFCC` | 0x088AEFCC-0x088AF020 | 4 tests and getters on small globals | 100 % |
 | `unit_088AF978` | 0x088AF978-0x088AFA2C | 1 small function | 100 % |
 | `unit_088AFC28` | 0x088AFC28-0x088AFC34 | 1 small function | 100 % |
