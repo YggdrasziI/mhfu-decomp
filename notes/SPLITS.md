@@ -1072,6 +1072,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088B0E04` | 0x088B0E04-0x088B0E2C | 1 small function | 100 % |
 | `unit_088B0E2C` | 0x088B0E2C-0x088B0EC8 | 1 function (slots in use copied out) | 100 % |
 | `unit_088B0EC8` | 0x088B0EC8-0x088B0EFC | 1 function (record copy from D_09A28AD0) | 100 % |
+| `unit_088B0EFC` | 0x088B0EFC-0x088B0F30 | 1 function (key copy from D_09A28AD0) | 100 % |
 | `unit_088B0FAC` | 0x088B0FAC-0x088B0FF8 | 1 small function | 100 % |
 | `unit_088B0FF8` | 0x088B0FF8-0x088B118C | 1 function (C++; copies the 0xC8-byte structure D_09A2887C to the stack member by member) | 100 % |
 | `unit_088B118C` | 0x088B118C-0x088B11EC | 1 small function | 100 % |
