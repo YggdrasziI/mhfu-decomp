@@ -1139,7 +1139,7 @@ segments:
       - [0xA73F0, asm, text_088A8E3C]
       - [0xA7638, c, unit_088A9084]
       - [0xA77A8, c, unit_088A91F4]
-      - [0xA77C0, asm, text_088A920C]
+      - [0xA77C0, c, unit_088A920C]
       - [0xA78E8, c, unit_088A9334]
       - [0xA7958, asm, text_088A93A4]
       - [0xA8290, c, unit_088A9CDC]
