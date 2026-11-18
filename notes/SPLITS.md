@@ -1052,6 +1052,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088B04EC` | 0x088B04EC-0x088B0554 | 3 small functions | 100 % |
 | `unit_088B0554` | 0x088B0554-0x088B059C | 1 function (wireless address) | 100 % |
 | `unit_088B059C` | 0x088B059C-0x088B05B8 | 1 function (peer list length) | 100 % |
+| `unit_088B05B8` | 0x088B05B8-0x088B0604 | 1 function (peer addresses written out) | 100 % |
 | `unit_088B099C` | 0x088B099C-0x088B09A4 | 1 small function | 100 % |
 | `unit_088B09A4` | 0x088B09A4-0x088B09D0 | 1 small function | 100 % |
 | `unit_088B0C68` | 0x088B0C68-0x088B0C8C | 1 small function | 100 % |
