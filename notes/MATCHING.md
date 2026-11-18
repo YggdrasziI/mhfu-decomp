@@ -380,7 +380,12 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   its own `lui` / `lbu %lo(D+0x20)`: declare the symbol `extern char D[];`
   and cast, `Rec *r = (Rec *) D;`. A structure symbol, a structure array,
   an inline helper and an early return all fold (func_088ADF58,
-  func_088AE0D4, func_088AE380).
+  func_088AE0D4, func_088AE380). The same for member addresses passed as
+  arguments (`addiu a0, s0, 0x62`): a structure pointer local on the
+  `char[]` symbol, `m = (Msg *) D;`, passing `m->tail`; a `char *` local
+  still folds. Where the original rebuilds the address after a call
+  (`lui s0` again), assign the local after that call (func_088AE514,
+  func_088AE814).
 - A member of the records of a table addressed by its own symbol
   (`D_08973839` = `D_08973834` + 5): declare the table at its base and read
   the member; the linked bytes are the same (include/unk_tables.h).
