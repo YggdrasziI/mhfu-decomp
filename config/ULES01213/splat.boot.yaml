@@ -1204,6 +1204,8 @@ segments:
       - [0xABBF0, c, unit_088AD63C]
       - [0xABCBC, c, unit_088AD708]
       - [0xABE30, asm, text_088AD87C]
+      - [0xABFF8, asm, text_088ADA44]
+      - [0xAC158, asm, text_088ADBA4]
       - [0xAC334, c, unit_088ADD80]
       - [0xAC370, c, unit_088ADDBC]
       - [0xAC3A8, c, unit_088ADDF4]
