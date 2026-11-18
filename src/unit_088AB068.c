@@ -66,9 +66,9 @@ typedef struct {
 
 extern int func_0880C084(void *, void *, s32);
 extern void func_088A9914(Config *);
-extern void func_088AB35C();
-extern void func_088AB490();
-extern void func_088AB4B0();
+extern s32 func_088AB35C(s32, s32, s32);
+extern void func_088AB490(u8, u8 *);
+extern void func_088AB4B0(s32, char *);
 
 void func_088AB068(Lobby *lobby, Members *m) {
     Member *p;
