@@ -22,6 +22,9 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   cases 0..3 in order, with fall-through where a case ends in the next one's code
   (state machines func_088B996C, func_088B9BF8). A branch with the long block
   first in the source: `if ((x & 0xFF) == 0) { A } else { B }` (no `bool`).
+- `bltzl r` to a block placed after the code for `r == 1` and `r == 0` (each
+  a `beql` with its value in the delay slot): `if (r >= 0) { switch (r) { case
+  0: ...; case 1: ...; } } else { ... }` (func_088198E4).
 - `return E != 0;` where the original has `sltu` after a shared tail: it was
   `if (!(E)) return 0; return 1;` (func_08854D88, C++ and C) (`bool_returns`).
 - m2c's `goto block_N` of a merged tail: write the tail out in each branch, `else if`
@@ -48,6 +51,12 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   (`unsigned_casts`).
 - A small constant passed to an `s8` parameter without `seb` in the original:
   keep the value in an `s8` local, not an `s32` (func_088226F0's colours).
+- A `u8` field shifted with `srl` instead of `sra`: cast it, `(u32) *(u8 *) p >> 3`
+  (func_08816F24).
+- A struct field read with `lhu` for `x + 0x72` and with `lh` when passed as
+  an `s16`: the field is `u16` (func_088198E4).
+- `subu` with its operands loaded in the other order (`b` into `$v0` before
+  `a + 1` into `$v1`): `(s32) (a + 1) - b` (func_08816F24).
 
 ## Symbol names in the report
 
