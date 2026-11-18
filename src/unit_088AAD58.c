@@ -1,7 +1,7 @@
 /* unit_088AAD58: 0x088AAD58-0x088AAE10 (ULES01213)
  *
  * Bounds (hypothesis): 1 function between unit_088AAC80 and func_088AAE10
- * (still in assembly). NonMatching (64.8 %): the code stays in the asm
+ * (still in assembly). NonMatching (85.2 %): the code stays in the asm
  * piece text_088AAD58.
  *
  * Sends on a socket of func_088AA370 / func_088AA83C (inet, or PTP in ad
@@ -10,9 +10,11 @@
  * Gap: the original keeps the length argument unextended in $s0 and
  * sign-extends it at each use (twice in the inet branch, once in place in
  * the ad hoc one); ours extends it once at entry for both branches, which
- * also changes the first branch. Tried: an `s32` parameter with `(s16)`
- * casts, a local copy, conditional expressions for the returns, and every
- * `opt_*` pragma of the compiler on top of opt_rebuildconditionals off.
+ * also changes the first branch. `ret != len` tested first took it from
+ * 64.8 to 85.2 %. Tried: an `s32` or `u16` parameter with `(s16)` casts,
+ * block-scoped copies in each branch, conditional expressions for the
+ * returns, the ad hoc branch first, and every `opt_*` pragma of the
+ * compiler on top of opt_rebuildconditionals off.
  */
 
 #pragma opt_rebuildconditionals off
@@ -32,13 +34,13 @@ s32 func_088AAD58(s32 sock, void *buf, s16 len) {
 
     if (D_09A1D728 != 1) {
         ret = sceNetInetSend(sock, buf, len, 0);
-        if (ret == len) {
-            return len;
+        if (ret != len) {
+            if (ret < 0) {
+                return func_088AA14C(sceNetInetGetPspError());
+            }
+            return func_088AA14C(0x8001000C);
         }
-        if (ret < 0) {
-            return func_088AA14C(sceNetInetGetPspError());
-        }
-        return func_088AA14C(0x8001000C);
+        return len;
     }
     n = len;
     ret = func_088AA14C(sceNetAdhocPtpSend(sock, buf, &n, 0, 0));
