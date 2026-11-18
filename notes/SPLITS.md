@@ -1046,6 +1046,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088B0324` | 0x088B0324-0x088B03BC | 2 small functions | 100 % |
 | `unit_088B03BC` | 0x088B03BC-0x088B03CC | 1 small function | 100 % |
 | `unit_088B03CC` | 0x088B03CC-0x088B040C | 2 small functions | 100 % |
+| `unit_088B040C` | 0x088B040C-0x088B047C | 1 function (reads a length-prefixed field) | 100 % |
 | `unit_088B047C` | 0x088B047C-0x088B04B4 | 1 small function | 100 % |
 | `unit_088B04B4` | 0x088B04B4-0x088B04EC | 1 small function | 100 % |
 | `unit_088B04EC` | 0x088B04EC-0x088B0554 | 3 small functions | 100 % |
