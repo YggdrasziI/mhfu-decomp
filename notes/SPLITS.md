@@ -1001,6 +1001,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088AE718` | 0x088AE718-0x088AE814 | 1 function (request 0xC, 20-byte reply copied out) | 100 % |
 | `unit_088AE814` | 0x088AE814-0x088AE894 | 1 function (message 11 built at D_09A29E58) | 100 % |
 | `unit_088AE894` | 0x088AE894-0x088AE988 | 1 small function | 100 % |
+| `unit_088AE988` | 0x088AE988-0x088AEB80 | 1 function (header kept in globals, dispatch) | NonMatching (96.90 %) |
 | `unit_088AEB80` | 0x088AEB80-0x088AEC3C | 1 function (handler table lookup, speed) | 100 % |
 | `unit_088AEC3C` | 0x088AEC3C-0x088AED80 | 1 function (update of the 18-entry list at D_09A1FE08) | 100 % |
 | `unit_088AED80` | 0x088AED80-0x088AEDA0 | 1 small function | 100 % |
