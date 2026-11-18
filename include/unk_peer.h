@@ -41,10 +41,12 @@ typedef struct {
     char addr[4][0x10];
     s32 unk64;
     u8 unk68[4];
-    char unk6C[0xC];
+    char unk6C[4];
+    char unk70[8];
     float unk78;
     float unk7C;
-    char unk80[0xC];
+    float unk80;
+    char unk84[8];
     s32 unk8C;
     s32 unk90;
     s32 unk94;
