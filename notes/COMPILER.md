@@ -194,7 +194,8 @@ uses; if so, other calls between functions of one object will show the same gap.
 Second case: func_088AD378 keeps a list pointer in $a3 across its call to
 func_088AD2FC (same heap code); with func_088AD2FC defined earlier in the same
 file, mwccpsp 3.0.1 still moves the pointer to a saved register (NonMatching
-unit_088AD378, 92.87 %).
+unit_088AD378, 92.87 %). func_088AD4EC passes the heap to func_088AD378 in $a0
+left by func_088AD348 (NonMatching unit_088AD4EC, 97.98 %).
 
 ## Speed and space (2026-11-16)
 
