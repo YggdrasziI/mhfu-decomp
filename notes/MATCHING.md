@@ -536,6 +536,11 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   test as `x > 10`, not `x >= 0xB` (func_088775F0).
 - `(bool) (x & 1)` tested with `sltu` then `beqz`: `if ((bool) (x & 1) != 0)` in
   C++; without `!= 0` the `sltu` disappears, `== 1` gives a `bne` (func_0887A950).
+- Test-and-clear of a flag bit where the original computes both `and`s before the
+  store and keeps the `sltu`: an inline C++ helper that takes the bool first,
+  `bool set = (*f & (1 << n)) != 0; *f &= (u8) ~(1 << n); return set;`, called in
+  the `if`; the same statements written in the loop drop the `sltu` or move the
+  store up (func_088ABE58).
 - Argument loads scheduled in the wrong order around a global pointer
   (D_089CC438 loaded too early or too late): change the callee's parameter
   types (`char *` vs `s32` first parameter, `s32` vs `u16` for halfwords

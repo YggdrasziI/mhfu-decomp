@@ -1175,6 +1175,7 @@ segments:
       - [0xA9C84, cpp, unit_088AB6D0]
       - [0xA9D8C, c, unit_088AB7D8]
       - [0xA9F34, asm, text_088AB980]
+      - [0xAA40C, cpp, unit_088ABE58]
       - [0xAA600, cpp, unit_088AC04C]
       - [0xAA684, c, unit_088AC0D0]
       - [0xAA69C, c, unit_088AC0E8]
