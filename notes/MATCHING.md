@@ -62,6 +62,21 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   with `q++` and `i++` in a `do`/`while`, store through `tbl[i]`; the pointer
   copied in the delay slot of the test is `c = q;` before the `if`
   (func_088AA370, func_088AA9B4).
+- A single `== 1` test compiled as `beql` to the block placed after a `b end`
+  (ours: `bne` over it): `switch (x) { case 1: ...; break; }`
+  (func_088ACC60, func_088ACCE8).
+- A byte stored then read back from memory after a store to a neighbour,
+  where ours reuses the stored register: the two are fields of one object
+  (`State.mode`, `State.unkC`), not separate `extern`s splat named
+  (func_088ACC60).
+- `addu v1, v1, base` (index first) for `g[cur].field` but `addu v1, base,
+  v1` in the loop: index a typed array of records, not `g + i * size`
+  (func_088AC04C).
+- Two loops over the same table with the counter and the pointer in
+  different saved registers: give the second loop its own counter and
+  pointer, then search the declaration order (func_088AC0E8).
+- A float constant stored as `lui` / `ori` (not read from the data) and a
+  copy loop that steps two pointers: speed mode (func_088AB068).
 
 ## Booleans (C++ only)
 
