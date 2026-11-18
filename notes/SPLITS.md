@@ -1020,6 +1020,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088AF454` | 0x088AF454-0x088AF500 | 1 function (handler: 0xC8-byte record) | 100 % |
 | `unit_088AF500` | 0x088AF500-0x088AF5E4 | 1 function (handler: 0xC8-byte record, request 6 answer) | 100 % |
 | `unit_088AF5E4` | 0x088AF5E4-0x088AF6EC | 1 function (request 6 with a status, 20-byte reply copied out) | 100 % |
+| `unit_088AF6EC` | 0x088AF6EC-0x088AF75C | 1 function (handler: unknown key) | 100 % |
 | `unit_088AF978` | 0x088AF978-0x088AFA2C | 1 small function | 100 % |
 | `unit_088AFC28` | 0x088AFC28-0x088AFC34 | 1 small function | 100 % |
 | `unit_088AFC34` | 0x088AFC34-0x088AFE78 | 1 function (takes the next packet from the receive buffer D_09A20618, filtered by sender address and type); initialised array 0x089B2A24-0x089B2A2A (`.data`) in the unit | 100 % |
