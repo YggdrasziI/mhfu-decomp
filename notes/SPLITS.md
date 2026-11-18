@@ -1026,6 +1026,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088AF848` | 0x088AF848-0x088AF978 | 1 function (store a record in one of four slots) | 100 % |
 | `unit_088AF978` | 0x088AF978-0x088AFA2C | 1 small function | 100 % |
 | `unit_088AFA2C` | 0x088AFA2C-0x088AFAD0 | 1 function (body copied into a matching slot) | 100 % |
+| `unit_088AFAD0` | 0x088AFAD0-0x088AFB48 | 1 function (slot marked) | 100 % |
 | `unit_088AFC28` | 0x088AFC28-0x088AFC34 | 1 small function | 100 % |
 | `unit_088AFC34` | 0x088AFC34-0x088AFE78 | 1 function (takes the next packet from the receive buffer D_09A20618, filtered by sender address and type); initialised array 0x089B2A24-0x089B2A2A (`.data`) in the unit | 100 % |
 | `unit_088AFE78` | 0x088AFE78-0x088AFE90 | 2 small functions | 100 % |
