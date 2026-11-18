@@ -73,7 +73,7 @@ s32 func_088AA14C(s32 err) {
     return err;
 }
 
-s32 func_088AA304(s32 arg0) {
+s32 func_088AA304(s32 arg0, s32 arg1) {
     if (arg0 != 0) {
         D_09A1D728 = 2;
     } else {
