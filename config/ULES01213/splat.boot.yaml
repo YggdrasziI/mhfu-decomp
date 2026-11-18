@@ -1019,6 +1019,7 @@ segments:
       - [0x9DF54, c, unit_0889F9A0]
       - [0x9DF78, c, unit_0889F9C4]
       - [0x9E148, asm, text_0889FB94]
+      - [0x9E2BC, asm, text_0889FD08]
       - [0x9E664, c, unit_088A00B0]
       - [0x9E684, asm, text_088A00D0]
       - [0x9EEEC, c, unit_088A0938]

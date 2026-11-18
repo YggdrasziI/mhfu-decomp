@@ -807,6 +807,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0889F744` | 0x0889F744-0x0889F764 | 1 element address | 100 % |
 | `unit_0889F9A0` | 0x0889F9A0-0x0889F9C4 | 1 small function | 100 % |
 | `unit_0889F9C4` | 0x0889F9C4-0x0889FB94 | 1 function (reads up to 64 messages under the interrupt lock and dispatches them by id 0x10000000-0x1000000D); jump table 0x08931EE8-0x08931F20 in the unit | 100 % |
+| `unit_0889FD08` | 0x0889FD08-0x088A00B0 | 1 function, NonMatching (speed, 98.8 %: register allocation); one voice's volume, pan and pitch written to its output block | not linked |
 | `unit_088A00B0` | 0x088A00B0-0x088A00D0 | 1 small function | 100 % |
 | `unit_088A0938` | 0x088A0938-0x088A0958 | 1 initialiser | 100 % |
 | `unit_088A0A80` | 0x088A0A80-0x088A0A90 | 1 small function | 100 % |
