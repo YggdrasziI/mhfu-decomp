@@ -50,7 +50,8 @@ typedef struct {
     s16 unkDA;
     char unkDC[4];
     float unkE0[4];
-    char unkF0[0x24];
+    char unkF0[0x20];
+    u8 unk110[4];
     u8 unk114[4];
     u16 unk118[4];
     char unk120[0x14];
