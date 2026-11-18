@@ -1212,7 +1212,7 @@ segments:
       - [0xAC430, c, unit_088ADE7C]
       - [0xAC460, c, unit_088ADEAC]
       - [0xAC4A4, c, unit_088ADEF0]
-      - [0xAC50C, asm, text_088ADF58]
+      - [0xAC50C, c, unit_088ADF58]
       - [0xAC588, c, unit_088ADFD4]
       - [0xAC5D4, c, unit_088AE020]
       - [0xAC628, c, unit_088AE074]
