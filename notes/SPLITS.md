@@ -977,6 +977,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088AE074` | 0x088AE074-0x088AE0BC | 1 small function | 100 % |
 | `unit_088AE0BC` | 0x088AE0BC-0x088AE0C8 | 1 small function | 100 % |
 | `unit_088AE0C8` | 0x088AE0C8-0x088AE0D4 | 1 small function | 100 % |
+| `unit_088AE0D4` | 0x088AE0D4-0x088AE16C | 1 function (phase dispatch of the record at D_09A43FCC) | 100 % |
 | `unit_088AE16C` | 0x088AE16C-0x088AE1D4 | 1 small function | 100 % |
 | `unit_088AE1D4` | 0x088AE1D4-0x088AE1EC | 1 small function | 100 % |
 | `unit_088AE1EC` | 0x088AE1EC-0x088AE25C | 1 function (`switch` on a result); jump table 0x0893213C-0x08932154 in the unit | 100 % |
