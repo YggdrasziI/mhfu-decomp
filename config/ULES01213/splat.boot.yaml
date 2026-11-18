@@ -1188,7 +1188,7 @@ segments:
       - [0xAB2EC, c, unit_088ACD38]
       - [0xAB314, c, unit_088ACD60]
       - [0xAB5C0, c, unit_088AD00C]
-      - [0xAB618, asm, text_088AD064]
+      - [0xAB618, c, unit_088AD064]
       - [0xAB688, c, unit_088AD0D4]
       - [0xAB6A4, c, unit_088AD0F0]
       - [0xAB6AC, c, unit_088AD0F8]

@@ -948,6 +948,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088ACD38` | 0x088ACD38-0x088ACD60 | 1 small function | 100 % |
 | `unit_088ACD60` | 0x088ACD60-0x088AD00C | 4 functions (network state accessor and reset, exit and power callbacks) | 100 % |
 | `unit_088AD00C` | 0x088AD00C-0x088AD064 | 1 small function | 100 % |
+| `unit_088AD064` | 0x088AD064-0x088AD0D4 | 2 functions (callback registration and removal) | 100 % |
 | `unit_088AD0D4` | 0x088AD0D4-0x088AD0F0 | 1 small function | 100 % |
 | `unit_088AD0F0` | 0x088AD0F0-0x088AD0F8 | 1 small function | 100 % |
 | `unit_088AD0F8` | 0x088AD0F8-0x088AD12C | 1 small function | 100 % |
