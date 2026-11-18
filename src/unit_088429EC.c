@@ -8,17 +8,11 @@
  *
  * Optimized for speed: the float constants are built as immediates.
  *
- * Its .data would be the initializer of the local s16[4][3] table
- * (0x0893B5D4-0x0893B5EC).
+ * .data: the initializer of the local s16[4][3] table (0x0893B5D4-0x0893B5EC).
  *
- * NonMatching: func_088429EC 99.8 %. Only the operands of the `mul.s` that
- * scales the phase are swapped: the original multiplies constant * phase
- * (`mul.s f0, f0, f1`), ours phase * constant. Every source order gives
- * ours: `k * x`, `x * k`, `x *= k`, a `float` or `static const` local for
- * the constant, the product inside an inline helper (u32 or float
- * parameter), C++. One-expression forms hoist the constant before the
- * conversion; size mode loads the constant from memory; `x / (1 / k)` gives a
- * `div.s`; integer bit patterns go through the stack.
+ * `ang = K * (float) ang;`: the redundant cast keeps the constant as the first
+ * operand of the `mul.s` (`ang *= K` or `K * ang` swap them; `K * (float)
+ * phase` loads the constant before the conversion).
  */
 
 #pragma optimize_for_size off
@@ -62,7 +56,7 @@ void func_088429EC(char *arg0, s32 arg1) {
 
     phase = (u16) ((*(s32 *)(D_08A631A0 + 0xF7A554) & 0x1F) << 11);
     ang = phase;
-    ang *= 9.58737992e-05f;
+    ang = 9.58737992e-05f * (float) ang;
     alpha = (s8) (96.0f * sin_vfpu(ang)) + 0x9F;
     if (*(s8 *)(arg0 + 0x57B) != 0) {
         x = D_0893B5B4[arg1 * 5];
