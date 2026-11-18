@@ -375,6 +375,12 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   (`addiu $a2, $zero, 1` / `sw $a2`), or the argument's `addiu` before the
   store: the local is assigned before the member (`lang = 1; p->x = 1;`)
   (func_088902A8).
+- A global record address built once (`lui a0` / `addiu a0`) and read at
+  small offsets from it (`lbu 0x20(a0)`), where ours folds each member into
+  its own `lui` / `lbu %lo(D+0x20)`: declare the symbol `extern char D[];`
+  and cast, `Rec *r = (Rec *) D;`. A structure symbol, a structure array,
+  an inline helper and an early return all fold (func_088ADF58,
+  func_088AE0D4, func_088AE380).
 - A member of the records of a table addressed by its own symbol
   (`D_08973839` = `D_08973834` + 5): declare the table at its base and read
   the member; the linked bytes are the same (include/unk_tables.h).
