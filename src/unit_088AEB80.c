@@ -1,7 +1,7 @@
 /* unit_088AEB80: 0x088AEB80-0x088AEC3C (ULES01213)
  *
- * Bounds (hypothesis): 1 function between func_088AE988 and func_088AEC3C
- * (both still in assembly).
+ * Bounds (hypothesis): 1 function between unit_088AE988 (NonMatching, still
+ * in assembly) and unit_088AEC3C.
  *
  * Looks up the 16-bit code arg0 (high byte in D_089B284C, low byte in
  * D_089B2874) with the kind arg1 (D_089B289C) in a table of 38 entries
