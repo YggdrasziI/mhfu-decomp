@@ -288,6 +288,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0883FD44` | 0x0883FD44-0x0883FDF4 | 1 small function | 100 % |
 | `unit_0884054C` | 0x0884054C-0x088405E4 | 1 function (forwards its argument / 1800 / 5 * 0x1555 to func_0882D470); optimized for speed | 100 % |
 | `unit_08840BC0` | 0x08840BC0-0x08840C24 | 1 small function | 100 % |
+| `unit_08841100` | 0x08841100-0x08841520 | 1 function (C++, speed: `switch` on the mode byte at +0x1E8, two VFPU sines in an `asm` block for pulsing alphas) | 100 % |
 | `unit_08841520` | 0x08841520-0x088415D0 | 1 small function | 100 % |
 | `unit_088415D0` | 0x088415D0-0x08841908 | 1 function, NonMatching (speed, 89.7 %: saved registers); draws up to five icons from D_0893ACD0 / D_0893ACE0, divisions by 7, a float scale | not linked |
 | `unit_088429EC` | 0x088429EC-0x08842BE4 | 1 function, NonMatching (99.9 %: one `mul.s` operand order); VFPU sine in an `asm` block, draws an item with a pulsing alpha; its .data 0x0893B5D4-0x0893B5EC stays in the data piece | not linked |

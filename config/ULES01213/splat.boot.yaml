@@ -262,6 +262,7 @@ segments:
       - [0x3EB98, asm, text_088405E4]
       - [0x3F174, c, unit_08840BC0]
       - [0x3F1D8, asm, text_08840C24]
+      - [0x3F6B4, cpp, unit_08841100]
       - [0x3FAD4, c, unit_08841520]
       - [0x3FB84, asm, text_088415D0]
       - [0x40FA0, asm, text_088429EC]
