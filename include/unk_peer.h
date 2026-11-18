@@ -40,7 +40,9 @@ typedef struct {
     u8 unk68[4];
     char unk6C[0xC];
     float unk78;
-    char unk7C[0x28];
+    char unk7C[0x14];
+    s32 unk90;
+    char unk94[0x10];
     s32 unkA4;
     s32 unkA8;
     s32 unkAC[4];
