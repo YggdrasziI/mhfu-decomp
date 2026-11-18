@@ -49,6 +49,13 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   `tools/psp/prototypes.py`).
 - `if (x >= 2.1474836e9f)` around a conversion is mwccpsp's own `(u32) x`
   (`unsigned_casts`).
+- `mul.s` with a constant as first operand, loaded after the int-to-float
+  conversion: `x = n; x = K * (float) x;`. The redundant cast stops the swap that
+  `K * x` gets; `K * (float) n` loads the constant before the conversion
+  (func_088429EC, func_08841100).
+- A VFPU result read back (`lwc1`) after the argument loads of the next call:
+  store it in a local first, `s = sin_vfpu(a); f(..., 64.0f * s ...)`
+  (func_08841100).
 - A small constant passed to an `s8` parameter without `seb` in the original:
   keep the value in an `s8` local, not an `s32` (func_088226F0's colours).
 - A `u8` field shifted with `srl` instead of `sra`: cast it, `(u32) *(u8 *) p >> 3`
@@ -73,6 +80,9 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - A copy loop whose destination pointer starts inside the element (`d + 0x10`):
   the fields belong to a nested structure reached through its own pointer,
   `Info *di = &d->info;` (func_088C0E58).
+- `lui at` / `ori at` / `addu` for a large offset where ours folds it into the
+  load (`lui 0xF8` / `lw -0x5AAC`): the address is read twice in the function;
+  declare the locals of each read in its own block (func_08841100).
 - A large offset (`lui` + `addu` then a small one) is `(char *) p + off`, not an
   integer sum (`pointer_offsets`).
 - Array access gives `addu index, base`; the pointer sum `p + i * k` gives
