@@ -1,18 +1,15 @@
 /* unit_088AA83C: 0x088AA83C-0x088AA9B4 (ULES01213)
  *
- * Bounds (hypothesis): 1 function between unit_088AA67C and func_088AA9B4
- * (still in assembly). NonMatching (99.8 %): the code stays in the asm
- * piece text_088AA83C.
+ * Bounds (hypothesis): 1 function between unit_088AA67C and unit_088AA9B4.
  *
  * Accepts a connection on a socket of func_088AA67C, returns the peer
  * address and port, and records the inet socket in the 16-slot table of
  * func_088AA370 (ad hoc: PTP accept).
- *
- * Gap: one branch, the same as func_088AA520. On error 0x8001000B the
- * original branches straight to the epilogue; here it branches to the
- * join after the func_088AA14C call. Tried: `if` then `return`, a
- * conditional expression, the inverted test, and speed mode.
  */
+
+/* Each `return` branches straight to the epilogue: conditional rebuilding
+ * off, as in unit_088AAC80 (notes/MATCHING.md). */
+#pragma opt_rebuildconditionals off
 
 typedef unsigned char u8;
 typedef unsigned short u16;

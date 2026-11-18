@@ -1,18 +1,14 @@
 /* unit_088AA520: 0x088AA520-0x088AA67C (ULES01213)
  *
- * Bounds (hypothesis): 1 function between unit_088AA370 and func_088AA67C
- * (still in assembly). NonMatching (99.8 %): the code stays in the asm
- * piece text_088AA520.
+ * Bounds (hypothesis): 1 function between unit_088AA370 and unit_088AA67C.
  *
  * Connects a socket opened by func_088AA370 to the address recorded in
  * its table slot (inet), or connects a PTP socket (ad hoc).
- *
- * Gap: one branch. On error 0x8001007F the original branches straight to
- * the epilogue; here it branches to the join after the func_088AA14C call.
- * Tried: `return 0` before or after the other checks, `else if` chain,
- * `err != 0x8001007F` test, a single result variable, a switch on the
- * error, and an explicit unsigned range test for 0x80010077-0x80010078.
  */
+
+/* Each `return` branches straight to the epilogue: conditional rebuilding
+ * off, as in unit_088AAC80 (notes/MATCHING.md). */
+#pragma opt_rebuildconditionals off
 
 typedef unsigned char u8;
 typedef unsigned short u16;
@@ -67,13 +63,13 @@ s32 func_088AA520(s32 sock) {
         sa.port = D_09A1D72C[i].port;
         if (sceNetInetConnect(sock, &sa, 0x10) < 0) {
             err = sceNetInetGetPspError();
-            if ((unsigned int) (err - 0x80010077) < 2) {
+            if (err == 0x80010077 || err == 0x80010078) {
                 return -1;
-            } else if (err == 0x8001007F) {
-                return 0;
-            } else {
-                return func_088AA14C(err);
             }
+            if (err == 0x8001007F) {
+                return 0;
+            }
+            return func_088AA14C(err);
         }
         return 0;
     }
@@ -82,8 +78,5 @@ s32 func_088AA520(s32 sock) {
         return -1;
     }
     err = func_088AA14C(err);
-    if (err < 0) {
-        return err;
-    }
-    return 0;
+    return err < 0 ? err : 0;
 }
