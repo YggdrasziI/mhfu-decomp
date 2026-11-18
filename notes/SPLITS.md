@@ -929,6 +929,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088AB35C` | 0x088AB35C-0x088AB490 | 1 function (C++; routes a received message by its kind); jump table 0x08932010-0x0893203C in the unit | 100 % |
 | `unit_088AB490` | 0x088AB490-0x088AB4B0 | 1 bit set | 100 % |
 | `unit_088AB4B0` | 0x088AB4B0-0x088AB4DC | 1 small function | 100 % |
+| `unit_088AB4DC` | 0x088AB4DC-0x088AB500 | 1 small function (message header, then func_088A72F0) | 100 % |
 | `unit_088AB500` | 0x088AB500-0x088AB514 | 1 small function | 100 % |
 | `unit_088AB514` | 0x088AB514-0x088AB6D0 | 1 function (builds a message by kind 0-13 and sends it with func_088AB4DC; C++); jump table 0x0893203C-0x08932074 in the unit | 100 % |
 | `unit_088AB6D0` | 0x088AB6D0-0x088AB7D8 | 1 function (C++; copies a 12- or 8-byte record to the stack and sends it); jump table 0x08932074-0x08932098 in the unit | 100 % |

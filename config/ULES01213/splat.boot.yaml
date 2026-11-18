@@ -1169,7 +1169,7 @@ segments:
       - [0xA9910, cpp, unit_088AB35C]
       - [0xA9A44, c, unit_088AB490]
       - [0xA9A64, c, unit_088AB4B0]
-      - [0xA9A90, asm, text_088AB4DC]
+      - [0xA9A90, c, unit_088AB4DC]
       - [0xA9AB4, c, unit_088AB500]
       - [0xA9AC8, cpp, unit_088AB514]
       - [0xA9C84, cpp, unit_088AB6D0]

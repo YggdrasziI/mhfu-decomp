@@ -9,7 +9,7 @@ extern void func_088A9CE8(void);
 extern void func_088A9E28(s32);
 extern void func_088A9E60(void);
 
-void func_088A72F0(s32 arg0) {
+void func_088A72F0(s32 arg0, s32 arg1) {
     func_088A9E28(arg0);
 }
 
