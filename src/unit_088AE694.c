@@ -1,6 +1,6 @@
 /* unit_088AE694: 0x088AE694-0x088AE718 (ULES01213)
  *
- * Bounds (hypothesis): 1 function between func_088AE610 and unit_088AE718.
+ * Bounds (hypothesis): 1 function between unit_088AE610 and unit_088AE718.
  *
  * Clears the 0x6C-byte message at D_09A29DEC, fills its header
  * (func_088AEF64, func_088B0324), its trailer at +0x62
