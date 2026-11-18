@@ -925,6 +925,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088AB028` | 0x088AB028-0x088AB068 | 1 small function | 100 % |
 | `unit_088AB068` | 0x088AB068-0x088AB1A0 | 1 function (starts a session for a member list, speed mode) | 100 % |
 | `unit_088AB1A0` | 0x088AB1A0-0x088AB1CC | 1 small function | 100 % |
+| `unit_088AB1CC` | 0x088AB1CC-0x088AB35C | 2 functions (C++; per-frame step and restart of the session object) | 100 % |
 | `unit_088AB35C` | 0x088AB35C-0x088AB490 | 1 function (C++; routes a received message by its kind); jump table 0x08932010-0x0893203C in the unit | 100 % |
 | `unit_088AB490` | 0x088AB490-0x088AB4B0 | 1 bit set | 100 % |
 | `unit_088AB4B0` | 0x088AB4B0-0x088AB4DC | 1 small function | 100 % |
