@@ -30,6 +30,14 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - m2c's `goto block_N` of a merged tail: write the tail out in each branch, `else if`
   chained (`inline_gotos`).
 - Loop heads `beqz` vs `beqzl`: not solved (func_088C33E8).
+- A state tested against several values that all return 0, compared as
+  `beql 6` / `beq 5` / `beqz` (one `b` to the rest): `switch (st) { case 0:
+  case 5: return 0; case 6: return 0; }` (func_088A8988, 74 % → 95 %; the
+  separate `v0 = 0; b end` block of the original is still open).
+- A loop entered by `blez n` and tested at the bottom, with the counter update
+  in the delay slot of the call before it: `if (n > 0) do { ... n -= 6;
+  call(...); ... } while (n > 0);` with the update written before the call
+  (func_088A8C78).
 
 ## Booleans (C++ only)
 
@@ -502,6 +510,12 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - An initialised `u16 r[4]` local stays on the stack and is read back with
   `lhu`; a structure with the same initializer is kept in registers
   (func_08837D54, NonMatching).
+- In a speed unit, `*(s32 *)((char *) p + 0x90) += r` inside a loop: the address
+  is hoisted into a saved register (`addiu s7, s5, 0x90`); a structure field
+  keeps the `lw`/`sw 0x90(s5)` of the original (func_088A8E3C).
+- A per-iteration pointer into a global array written `st = &T[i];` at the top
+  of the body (not `st++` in the `for`): the induction pointers are then
+  updated in the original order (func_088A8E3C, 97 % → 99 %).
 
 ## Calls and allocation
 

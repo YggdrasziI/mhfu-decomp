@@ -892,6 +892,11 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088A85F4` | 0x088A85F4-0x088A874C | 5 functions (append to a store, four packet builders ending in it) | 100 % |
 | `unit_088A88C4` | 0x088A88C4-0x088A88E0 | 1 function (callback through the session) | 100 % |
 | `unit_088A88E0` | 0x088A88E0-0x088A8988 | 1 function (peer activity time stamp) | NonMatching |
+| `unit_088A8988` | 0x088A8988-0x088A8B98 | 1 function (splits a received buffer into packets, one handler per type) | NonMatching (95.4 %) |
+| `unit_088A8B98` | 0x088A8B98-0x088A8C78 | 1 function (sequence number and counter of a sender) | 100 % |
+| `unit_088A8C78` | 0x088A8C78-0x088A8D74 | 1 function (reads a 6-byte packet header from a buffer) | 100 % |
+| `unit_088A8D74` | 0x088A8D74-0x088A8E3C | 1 function (handles the complete packets of a buffer, moves the rest) | 100 % |
+| `unit_088A8E3C` | 0x088A8E3C-0x088A9084 | 1 function (receives from each peer, queues its packets by type) | NonMatching (99.0 %) |
 | `unit_088A91F4` | 0x088A91F4-0x088A920C | 1 small function | 100 % |
 | `unit_088A9334` | 0x088A9334-0x088A93A4 | 1 small function | 100 % |
 | `unit_088A9CDC` | 0x088A9CDC-0x088A9CFC | 2 small functions | 100 % |
