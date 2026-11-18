@@ -79,6 +79,11 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   objdiff counts `D_09BC8400+0x2` against it. Declare that name as its own
   `extern` and index it (`D_09BC8402[id][0]`): same code, 100 % in the report
   (func_08872108).
+- Not always needed: func_088A9914 writes fields of `extern Session
+  D_09A1D5D0` and of four `Store` externs whose field addresses splat named
+  (`D_09A1D5EC`, `D_09A1D594`...). `asm_compare.py` shows those names as
+  differences (99.05 %), but the objdiff report gives 100 %. Read the report
+  before splitting the externs.
 
 ## Addresses, arrays and structures
 

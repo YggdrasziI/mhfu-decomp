@@ -897,8 +897,13 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088A8C78` | 0x088A8C78-0x088A8D74 | 1 function (reads a 6-byte packet header from a buffer) | 100 % |
 | `unit_088A8D74` | 0x088A8D74-0x088A8E3C | 1 function (handles the complete packets of a buffer, moves the rest) | 100 % |
 | `unit_088A8E3C` | 0x088A8E3C-0x088A9084 | 1 function (receives from each peer, queues its packets by type) | NonMatching (99.0 %) |
+| `unit_088A9084` | 0x088A9084-0x088A91F4 | 1 function (counts each peer's lag, drops it past a threshold, rolls the byte counters) | 100 % |
 | `unit_088A91F4` | 0x088A91F4-0x088A920C | 1 small function | 100 % |
+| `unit_088A920C` | 0x088A920C-0x088A9334 | 1 function (drops the peers whose timers ran out) | 100 % |
 | `unit_088A9334` | 0x088A9334-0x088A93A4 | 1 small function | 100 % |
+| `unit_088A93A4` | 0x088A93A4-0x088A9660 | 1 function (one step of the session wait) | 100 % |
+| `unit_088A9660` | 0x088A9660-0x088A9914 | 1 function (per-frame session state machine; switch table jtbl_08931FC0 stays in the data piece) | NonMatching (97.6 %) |
+| `unit_088A9914` | 0x088A9914-0x088A9CDC | 1 function (starts a session, attaches the static buffers) | 100 % |
 | `unit_088A9CDC` | 0x088A9CDC-0x088A9CFC | 2 small functions | 100 % |
 | `unit_088A9DF4` | 0x088A9DF4-0x088A9E28 | 1 small function | 100 % |
 | `unit_088A9E28` | 0x088A9E28-0x088A9EF4 | 3 small functions | 100 % |
