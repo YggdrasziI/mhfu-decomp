@@ -27,7 +27,10 @@ typedef struct {
 } SendBuf;
 
 typedef struct {
-    char unk0[8];
+    s16 unk0;
+    s16 unk2;
+    s16 unk4;
+    char unk6[2];
     s32 unk8[4];
     s32 unk18;
     char unk1C[4];
@@ -36,11 +39,12 @@ typedef struct {
     u8 count;
     u8 self;
     char addr[4][0x10];
-    char unk64[4];
+    s32 unk64;
     u8 unk68[4];
     char unk6C[0xC];
     float unk78;
-    char unk7C[0x10];
+    float unk7C;
+    char unk80[0xC];
     s32 unk8C;
     s32 unk90;
     s32 unk94;
