@@ -1273,7 +1273,7 @@ segments:
       - [0xAE1DC, c, unit_088AFC28]
       - [0xAE1E8, c, unit_088AFC34]
       - [0xAE42C, c, unit_088AFE78]
-      - [0xAE444, asm, text_088AFE90]
+      - [0xAE444, c, unit_088AFE90]
       - [0xAE570, c, unit_088AFFBC]
       - [0xAE584, c, unit_088AFFD0]
       - [0xAE5C4, asm, text_088B0010]

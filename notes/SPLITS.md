@@ -1032,6 +1032,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088AFC28` | 0x088AFC28-0x088AFC34 | 1 small function | 100 % |
 | `unit_088AFC34` | 0x088AFC34-0x088AFE78 | 1 function (takes the next packet from the receive buffer D_09A20618, filtered by sender address and type); initialised array 0x089B2A24-0x089B2A2A (`.data`) in the unit | 100 % |
 | `unit_088AFE78` | 0x088AFE78-0x088AFE90 | 2 small functions | 100 % |
+| `unit_088AFE90` | 0x088AFE90-0x088AFFBC | 1 function (message header from the kind tables) | 100 % |
 | `unit_088AFFBC` | 0x088AFFBC-0x088AFFD0 | 1 small function | 100 % |
 | `unit_088AFFD0` | 0x088AFFD0-0x088B0010 | 2 small functions | 100 % |
 | `unit_088B0044` | 0x088B0044-0x088B0084 | 1 big-endian append | 100 % |
