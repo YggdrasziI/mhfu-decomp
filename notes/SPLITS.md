@@ -999,6 +999,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088AE610` | 0x088AE610-0x088AE694 | 1 function (message 9 built at D_09A29E58) | 100 % |
 | `unit_088AE694` | 0x088AE694-0x088AE718 | 1 function (message 10 built at D_09A29DEC) | 100 % |
 | `unit_088AE718` | 0x088AE718-0x088AE814 | 1 function (request 0xC, 20-byte reply copied out) | 100 % |
+| `unit_088AE814` | 0x088AE814-0x088AE894 | 1 function (message 11 built at D_09A29E58) | 100 % |
 | `unit_088AE894` | 0x088AE894-0x088AE988 | 1 small function | 100 % |
 | `unit_088AED80` | 0x088AED80-0x088AEDA0 | 1 small function | 100 % |
 | `unit_088AEEB8` | 0x088AEEB8-0x088AEF64 | 1 small function | 100 % |
