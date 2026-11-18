@@ -589,6 +589,15 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - A pointer local set before a guarded loop (`lui s0` in the delay slot of
   the guard): assign it before the `if`, not at the head of the loop
   (func_088AEC3C).
+- A linked-list walk guarded once (`beqz` to the end, then `bnez` back at
+  the bottom): `if (e != 0) { do { ...; e = e->next; } while (e != 0); }`;
+  a `while (e)` loop jumps to its test first (func_088B059C, func_088B05B8).
+- A stack buffer at an 8-byte boundary where ours is 4 bytes higher: the
+  buffer holds 64-bit members, declare it as a `u64` array
+  (func_088B0604, ad hoc peer list).
+- A minimum computed as `v1 = len; if (max < len) v1 = max;` (`slt`,
+  `beqz` with the copy in its delay slot): write it that way, not with
+  `?:`; the address after the field is `p + (len + 2)` (func_088B040C).
 - A test that leads only to `b end` after a call (`beqz v0, end; nop; b
   end`): the body is `return;`; an empty body drops the test
   (func_088AE988, NonMatching).
