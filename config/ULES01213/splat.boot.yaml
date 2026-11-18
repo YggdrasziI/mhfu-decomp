@@ -1228,7 +1228,7 @@ segments:
       - [0xAC908, c, unit_088AE354]
       - [0xAC91C, c, unit_088AE368]
       - [0xAC928, c, unit_088AE374]
-      - [0xAC934, asm, text_088AE380]
+      - [0xAC934, c, unit_088AE380]
       - [0xAC9B0, c, unit_088AE3FC]
       - [0xACA18, c, unit_088AE464]
       - [0xACA54, asm, text_088AE4A0]
