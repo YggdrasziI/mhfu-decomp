@@ -126,6 +126,8 @@ segments:
       - [0x1588C, asm, text_088172D8]
       - [0x17248, cpp, unit_08818C94]
       - [0x17528, asm, text_08818F74]
+      - [0x17E98, asm, text_088198E4]
+      - [0x182AC, asm, text_08819CF8]
       - [0x18E94, c, unit_0881A8E0]
       - [0x18EAC, cpp, unit_0881A8F8]
       - [0x18F8C, asm, text_0881A9D8]

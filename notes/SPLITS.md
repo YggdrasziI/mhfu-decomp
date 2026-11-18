@@ -206,6 +206,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08816B6C` | 0x08816B6C-0x08816BE4 | 1 small function | 100 % |
 | `unit_08816F24` | 0x08816F24-0x088172D8 | 1 function (C++, speed: nested `switch` on the state bytes at +0x585, +0x588 and +0x589, draws boxes through func_0882F580 and func_088197A0) | 100 % |
 | `unit_08818C94` | 0x08818C94-0x08818F74 | 1 function (C++, speed: draws a 6-entry list with marks, page from the byte at +0x57D divided by 6; calls func_0883488C in the other mode) | 100 % |
+| `unit_088198E4` | 0x088198E4-0x08819CF8 | 1 function, NonMatching (speed, 99.8 %: saved registers of the parameters); draws an 8-row page of a list with a colour per row | not linked |
 | `unit_0881A8E0` | 0x0881A8E0-0x0881A8F8 | 1 small function | 100 % |
 | `unit_0881A8F8` | 0x0881A8F8-0x0881A9D8 | 1 function (C++; prints a time / 30 as two numbers, / 60 and the rest); optimized for speed | 100 % |
 | `unit_0881C240` | 0x0881C240-0x0881C2E4 | 1 small function | 100 % |
