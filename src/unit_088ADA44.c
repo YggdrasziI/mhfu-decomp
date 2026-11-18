@@ -1,7 +1,7 @@
 /* unit_088ADA44: 0x088ADA44-0x088ADBA4 (ULES01213)
  *
- * Bounds (hypothesis): 1 function between unit_088AD87C and func_088ADBA4
- * (both still in assembly).
+ * Bounds (hypothesis): 1 function between unit_088AD87C (NonMatching, still
+ * in assembly) and unit_088ADBA4.
  *
  * Queues a datagram for a peer in the send buffer described at 0x09A1FC44:
  * a 0x20-byte header (send time, cleared here; address; port; length;

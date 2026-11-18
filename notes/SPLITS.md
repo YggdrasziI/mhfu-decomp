@@ -964,6 +964,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088AD708` | 0x088AD708-0x088AD87C | 1 function (peer table synchronisation with a peer list) | 100 % |
 | `unit_088AD87C` | 0x088AD87C-0x088ADA44 | 1 function (datagram receive from a known peer) | NonMatching (89.97 %) |
 | `unit_088ADA44` | 0x088ADA44-0x088ADBA4 | 1 function (queues a datagram for a peer) | NonMatching (90.44 %) |
+| `unit_088ADBA4` | 0x088ADBA4-0x088ADD80 | 2 functions (sends the datagram queue; network layer set-up) | 100 % |
 | `unit_088ADD80` | 0x088ADD80-0x088ADDBC | 1 small function | 100 % |
 | `unit_088ADDBC` | 0x088ADDBC-0x088ADDF4 | 1 small function | 100 % |
 | `unit_088ADDF4` | 0x088ADDF4-0x088ADE7C | 2 functions (state tests with a `switch`); jump tables 0x089320F4-0x08932124 in the unit | 100 % |
