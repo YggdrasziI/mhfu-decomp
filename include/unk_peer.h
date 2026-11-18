@@ -33,7 +33,7 @@ typedef struct {
     char unk6[2];
     s32 unk8[4];
     s32 unk18;
-    char unk1C[4];
+    s32 unk1C;
     u8 unk20;
     u8 unk21;
     u8 count;
@@ -57,7 +57,9 @@ typedef struct {
     s32 unkA8;
     s32 unkAC[4];
     u32 unkBC[4];
-    char unkCC[0xC];
+    float unkCC;
+    char unkD0[4];
+    s32 unkD4;
     char unkD8[2];
     s16 unkDA;
     char unkDC[4];
