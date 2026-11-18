@@ -1065,6 +1065,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088B0B14` | 0x088B0B14-0x088B0C3C | 1 function (session start) | 100 % |
 | `unit_088B0C3C` | 0x088B0C3C-0x088B0C68 | 1 function (pair stored in two tables) | 100 % |
 | `unit_088B0C68` | 0x088B0C68-0x088B0C8C | 1 small function | 100 % |
+| `unit_088B0C8C` | 0x088B0C8C-0x088B0D2C | 1 function (session body replaced) | 100 % |
 | `unit_088B0D2C` | 0x088B0D2C-0x088B0D58 | 1 small function | 100 % |
 | `unit_088B0DBC` | 0x088B0DBC-0x088B0E04 | 1 small function | 100 % |
 | `unit_088B0E04` | 0x088B0E04-0x088B0E2C | 1 small function | 100 % |
