@@ -67,6 +67,12 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 
 ## Addresses, arrays and structures
 
+- A table element whose index product is computed before the load of the base
+  pointer: char arithmetic, `(Slot *) (base + k * 0x8C + 0x30)`; `(Slot *) (base +
+  0x30) + k` loads the base first (func_088C0E58).
+- A copy loop whose destination pointer starts inside the element (`d + 0x10`):
+  the fields belong to a nested structure reached through its own pointer,
+  `Info *di = &d->info;` (func_088C0E58).
 - A large offset (`lui` + `addu` then a small one) is `(char *) p + off`, not an
   integer sum (`pointer_offsets`).
 - Array access gives `addu index, base`; the pointer sum `p + i * k` gives
