@@ -1297,6 +1297,8 @@ segments:
       - [0xAEBB8, c, unit_088B0604]
       - [0xAEC74, c, unit_088B06C0]
       - [0xAECD8, asm, text_088B0724]
+      - [0xAEE50, c, unit_088B089C]
+      - [0xAEEEC, asm, text_088B0938]
       - [0xAEF50, c, unit_088B099C]
       - [0xAEF58, c, unit_088B09A4]
       - [0xAEF84, asm, text_088B09D0]
