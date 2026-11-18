@@ -213,6 +213,13 @@ per pass; `#pragma opt_unroll_loops off` gives the original loop (hypothesis: th
 original source turned unrolling off there). The build keeps `-O4`; a unit that needs the speed setting says
 `#pragma optimize_for_size off` at its top, with the reason in its header comment.
 
+The socket functions of 0x088AA370-0x088AAE10 match only with `#pragma
+opt_rebuildconditionals off` for three of them (func_088AA520, func_088AA83C,
+func_088AAC80); the others there match with or without it. Across the 27
+NonMatching units, the pragma changes only func_088415D0 (89.9 % to 95.6 %) and
+func_088A8E3C (99.0 % to 98.3 %). Hypothesis: that source file was built with
+the option off (pragma or command line), like the unrolling setting above.
+
 mwccpsp calls `__extendsfdf2`, `__muldf3`, `__adddf3` and `__truncdfsf2` for
 `(double) f`, `d * d`, `d + d` and `(float) d`; func_088A7E44 calls 0x08905294,
 0x08905B10, 0x08905AA4 and 0x089066E0 at those places, so these addresses carry the

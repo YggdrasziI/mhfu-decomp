@@ -38,6 +38,30 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   in the delay slot of the call before it: `if (n > 0) do { ... n -= 6;
   call(...); ... } while (n > 0);` with the update written before the call
   (func_088A8C78).
+- A `return C;` that branches straight to the epilogue (`b end` with the value
+  in its delay slot) where ours branches to the join after the next `return
+  f(x);` call, and instructions left dead after a `b` (the block a branch-likely
+  delay slot was copied from, e.g. `addu $a0, $v0` before the `jal`, or `lw $v0`
+  before `lw $ra`): `#pragma opt_rebuildconditionals off` at the top of the
+  unit. No source form gave it (else chains, inverted tests, one result
+  variable, conditional expressions, a `switch`). With it, `if (r < 0) return
+  r; return 0;` becomes `return r < 0 ? r : 0;` (func_088AA520, func_088AA83C,
+  func_088AAC80; notes/COMPILER.md). Found by compiling the unit once per
+  `opt_*` pragma of `mwccpsp.exe` (`strings`), `off` and `on`.
+- A test against two values (`== 2 || == 1`) compiled as a range check
+  (`addiu -1` + `sltiu 2`) where the original compares each (`beq 2`, `beq 1`):
+  `switch (x) { case 1: case 2: ...; break; }` (func_088A9EF4).
+- A `switch` table whose out-of-range `beql` has `sh $zero` (the store of case
+  0) in its delay slot and no `default` block: `case 0: default: x = 0;
+  break;` written first (func_088AA9B4).
+- A list walk `beqzl p` before the loop (no jump to the test) and `bnezl p` at
+  the bottom: `p = head; if (p != 0) { do { ... p = p->next; } while (p !=
+  0); } return -1;` (func_088AA9B4).
+- A slot search whose test reads through a pointer that steps by the record
+  size while the stores after it recompute `base + i * size`: test `q->sock`
+  with `q++` and `i++` in a `do`/`while`, store through `tbl[i]`; the pointer
+  copied in the delay slot of the test is `c = q;` before the `if`
+  (func_088AA370, func_088AA9B4).
 
 ## Booleans (C++ only)
 
