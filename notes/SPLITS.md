@@ -938,6 +938,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088AC0D0` | 0x088AC0D0-0x088AC0E8 | 3 small functions | 100 % |
 | `unit_088AC0E8` | 0x088AC0E8-0x088AC308 | 2 functions (event handlers: state flags and the eight registered callbacks) | 100 % |
 | `unit_088AC308` | 0x088AC308-0x088AC5E0 | 1 function (connection phase 1: network configuration dialog, sceUtilityNetconf*) | 100 % |
+| `unit_088AC5E0` | 0x088AC5E0-0x088AC870 | 1 function (connection phase 0: network module initialisation) | 100 % |
 | `unit_088ACB1C` | 0x088ACB1C-0x088ACC54 | 1 function (connection step; local MAC and access point IP once connected) | 100 % |
 | `unit_088ACC54` | 0x088ACC54-0x088ACC60 | 1 small function | 100 % |
 | `unit_088ACC60` | 0x088ACC60-0x088ACD38 | 2 functions (reset of the state block at 0x09A1DB60) | 100 % |
