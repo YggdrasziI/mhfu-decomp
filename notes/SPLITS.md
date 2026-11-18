@@ -918,6 +918,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088AA520` | 0x088AA520-0x088AA67C | 1 function (connects a socket of that table) | NonMatching (99.9 %) |
 | `unit_088AA67C` | 0x088AA67C-0x088AA83C | 1 function (opens a listening inet or PTP socket) | 100 % |
 | `unit_088AA83C` | 0x088AA83C-0x088AA9B4 | 1 function (accepts a connection, records it in the table) | NonMatching (99.8 %) |
+| `unit_088AA9B4` | 0x088AA9B4-0x088AAC80 | 1 function (state of a connected socket from the TCP / PTP status list); jump table 0x08931FE4-0x08932010 in the unit | 100 % |
 | `unit_088AB028` | 0x088AB028-0x088AB068 | 1 small function | 100 % |
 | `unit_088AB1A0` | 0x088AB1A0-0x088AB1CC | 1 small function | 100 % |
 | `unit_088AB35C` | 0x088AB35C-0x088AB490 | 1 function (C++; routes a received message by its kind); jump table 0x08932010-0x0893203C in the unit | 100 % |
