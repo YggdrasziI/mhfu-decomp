@@ -581,6 +581,17 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - A per-iteration pointer into a global array written `st = &T[i];` at the top
   of the body (not `st++` in the `for`): the induction pointers are then
   updated in the original order (func_088A8E3C, 97 % → 99 %).
+- Parallel global tables searched with one pointer per table stepped in the
+  loop (`addiu t1, t1, 1` ...) and no jump to the test: a `for` loop in a
+  speed unit. A 16-bit key built from two of them with `(u16) (hi << 8) |
+  lo` swapped the two pointers or the `or` operands; `c = hi[i] << 8; c |=
+  lo[i];` matched (func_088AEB80).
+- A pointer local set before a guarded loop (`lui s0` in the delay slot of
+  the guard): assign it before the `if`, not at the head of the loop
+  (func_088AEC3C).
+- A test that leads only to `b end` after a call (`beqz v0, end; nop; b
+  end`): the body is `return;`; an empty body drops the test
+  (func_088AE988, NonMatching).
 
 ## Calls and allocation
 
