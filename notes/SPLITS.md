@@ -936,6 +936,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088AB7D8` | 0x088AB7D8-0x088AB980 | 1 function (applies a received message by kind 0-13); jump table 0x08932098-0x089320D0 in the unit | 100 % |
 | `unit_088AC04C` | 0x088AC04C-0x088AC0D0 | 1 function (C++; selects the first active of four records) | 100 % |
 | `unit_088AC0D0` | 0x088AC0D0-0x088AC0E8 | 3 small functions | 100 % |
+| `unit_088AC0E8` | 0x088AC0E8-0x088AC308 | 2 functions (event handlers: state flags and the eight registered callbacks) | 100 % |
 | `unit_088ACC54` | 0x088ACC54-0x088ACC60 | 1 small function | 100 % |
 | `unit_088ACC60` | 0x088ACC60-0x088ACD38 | 2 functions (reset of the state block at 0x09A1DB60) | 100 % |
 | `unit_088ACD38` | 0x088ACD38-0x088ACD60 | 1 small function | 100 % |
