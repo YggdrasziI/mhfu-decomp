@@ -915,6 +915,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088AA14C` | 0x088AA14C-0x088AA368 | 2 functions (system error code mapping, buffer reset) | 100 % |
 | `unit_088AA368` | 0x088AA368-0x088AA370 | 1 small function | 100 % |
 | `unit_088AA370` | 0x088AA370-0x088AA520 | 1 function (opens an inet or PTP socket, records it in a 16-slot table) | 100 % |
+| `unit_088AA520` | 0x088AA520-0x088AA67C | 1 function (connects a socket of that table) | NonMatching (99.9 %) |
 | `unit_088AB028` | 0x088AB028-0x088AB068 | 1 small function | 100 % |
 | `unit_088AB1A0` | 0x088AB1A0-0x088AB1CC | 1 small function | 100 % |
 | `unit_088AB35C` | 0x088AB35C-0x088AB490 | 1 function (C++; routes a received message by its kind); jump table 0x08932010-0x0893203C in the unit | 100 % |
