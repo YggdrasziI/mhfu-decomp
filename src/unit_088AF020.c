@@ -1,6 +1,6 @@
 /* unit_088AF020: 0x088AF020-0x088AF110 (ULES01213)
  *
- * Bounds (hypothesis): 1 function between unit_088AF008 and unit_088AF110.
+ * Bounds (hypothesis): 1 function between unit_088AEFCC and unit_088AF110.
  *
  * Periodic update while D_09A202C8 is set: every 61 calls, request 2
  * (func_088AF110, reply dropped) and func_088AFAD0 on D_09A201F0; every
