@@ -1,7 +1,6 @@
 /* unit_088AEDA0: 0x088AEDA0-0x088AEE04 (ULES01213)
  *
- * Bounds (hypothesis): 1 function between unit_088AED80 and func_088AEE04
- * (still in assembly).
+ * Bounds (hypothesis): 1 function between unit_088AED80 and unit_088AEE04.
  *
  * Returns 1 when func_088B0514 accepts arg0 against each of the 18
  * 8-byte entries at arg1, 0 at the first refusal.

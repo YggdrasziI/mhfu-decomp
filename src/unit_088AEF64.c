@@ -1,6 +1,6 @@
 /* unit_088AEF64: 0x088AEF64-0x088AEF98 (ULES01213)
  *
- * Bounds (hypothesis): 1 function between func_088AEE04 (still in assembly) and unit_088AEF98.
+ * Bounds (hypothesis): 1 function between unit_088AEEB8 and unit_088AEF98.
  *
  * Copies the 8-byte block at D_09A202C0 to arg0.
  */
