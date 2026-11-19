@@ -254,6 +254,10 @@ static inline float sin_vfpu(float x) {
 }
 ```
 
+Matrix registers keep their name: `vmidt.q M000` and `vmidt.q E000` (the
+transposed view) assemble to different words; func_088CAA00 needs `E000`
+(0xF38380A0), as spimdisasm prints it.
+
 The object holds the same words as func_088429EC at 0x08842A5C-0x08842A6C
 (`lv.s` 0xC8400000, `vcst.s` 0xD0650020, `vmul.s` 0x64200000, `vsin.s`
 0xD0120001, `sv.s` 0xE8410000), with the same frame shape: the operand stored
