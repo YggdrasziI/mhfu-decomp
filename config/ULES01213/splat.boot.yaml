@@ -1395,7 +1395,7 @@ segments:
       - [0xB2ADC, c, unit_088B4528]
       - [0xB2B10, c, unit_088B455C]
       - [0xB2B64, c, unit_088B45B0]
-      - [0xB2BB0, asm, text_088B45FC]
+      - [0xB2BB0, c, unit_088B45FC]
       - [0xB2CA0, c, unit_088B46EC]
       - [0xB2CEC, asm, text_088B4738]
       - [0xB2DD8, c, unit_088B4824]
