@@ -1241,6 +1241,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088BFBEC` | 0x088BFBEC-0x088BFCF0 | 1 small function | 100 % |
 | `unit_088BFCF0` | 0x088BFCF0-0x088BFE54 | 1 function (save data size check, C++ virtual call) | 100 % |
 | `unit_088BFE54` | 0x088BFE54-0x088BFEF8 | 1 small function | 100 % |
+| `unit_088BFEF8` | 0x088BFEF8-0x088C0198 | 2 functions (message dialog with symbol replacement, utility dialog status) | 100 % |
 | `unit_088C0198` | 0x088C0198-0x088C0200 | 1 small function | 100 % |
 | `unit_088C0200` | 0x088C0200-0x088C022C | 1 small function | 100 % |
 | `unit_088C0594` | 0x088C0594-0x088C05FC | 1 small function | 100 % |

@@ -1484,7 +1484,7 @@ segments:
       - [0xBE1A0, c, unit_088BFBEC]
       - [0xBE2A4, cpp, unit_088BFCF0]
       - [0xBE408, c, unit_088BFE54]
-      - [0xBE4AC, asm, text_088BFEF8]
+      - [0xBE4AC, c, unit_088BFEF8]
       - [0xBE74C, c, unit_088C0198]
       - [0xBE7B4, c, unit_088C0200]
       - [0xBE7E0, asm, text_088C022C]
