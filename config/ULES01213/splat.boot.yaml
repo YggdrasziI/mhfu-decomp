@@ -1507,7 +1507,7 @@ segments:
       - [0xC1148, asm, text_088C2B94]
       - [0xC1194, c, unit_088C2BE0]
       - [0xC1294, c, unit_088C2CE0]
-      - [0xC1328, asm, text_088C2D74]
+      - [0xC1328, c, unit_088C2D74]
       - [0xC14FC, c, unit_088C2F48]
       - [0xC153C, c, unit_088C2F88]
       - [0xC158C, c, unit_088C2FD8]
