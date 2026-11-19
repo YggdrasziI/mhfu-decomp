@@ -1228,6 +1228,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088BA148` | 0x088BA148-0x088BA1A4 | 1 small function | 100 % |
 | `unit_088BA1A4` | 0x088BA1A4-0x088BA2A0 | 1 small function | 100 % |
 | `unit_088BA2A0` | 0x088BA2A0-0x088BA2E0 | 1 small function | 100 % |
+| `unit_088BA2E0` | 0x088BA2E0-0x088BA494 | 1 function (two message strings and a selection frame) | NonMatching (97.80 %) |
 | `unit_088BA494` | 0x088BA494-0x088BA54C | 2 small functions | 100 % |
 | `unit_088BA54C` | 0x088BA54C-0x088BA5BC | 1 function (draws a message string) | 100 % |
 | `unit_088BA5BC` | 0x088BA5BC-0x088BA664 | 1 small function | 100 % |
