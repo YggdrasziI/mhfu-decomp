@@ -1389,7 +1389,7 @@ segments:
       - [0xB2768, c, unit_088B41B4]
       - [0xB2794, c, unit_088B41E0]
       - [0xB27A0, c, unit_088B41EC]
-      - [0xB27AC, asm, text_088B41F8]
+      - [0xB27AC, c, unit_088B41F8]
       - [0xB2828, c, unit_088B4274]
       - [0xB2874, c, unit_088B42C0]
       - [0xB2ADC, c, unit_088B4528]
