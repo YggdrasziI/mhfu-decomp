@@ -1301,6 +1301,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088C7064` | 0x088C7064-0x088C70D8 | 1 small function | 100 % |
 | `unit_088C70D8` | 0x088C70D8-0x088C7130 | 1 function (reserves a 16-byte aligned block from a buffer) | 100 % |
 | `unit_088C7130` | 0x088C7130-0x088C7184 | 1 small function | 100 % |
+| `unit_088C7184` | 0x088C7184-0x088C7424 | 5 functions (C++; list unlink, key lookup, vtable tail calls, area containing a point) | 100 % |
 | `unit_088C7764` | 0x088C7764-0x088C7774 | 1 small function | 100 % |
 | `unit_088C7774` | 0x088C7774-0x088C77D8 | 1 small function | 100 % |
 | `unit_088C77D8` | 0x088C77D8-0x088C7814 | 1 small function | 100 % |

@@ -25,3 +25,9 @@ func_088A88E0 = 0x088A88E0; // type:func size:0xA8
 // at 0x088C6AF0, is a function of its own (an entry of the vtable D_089BACDC)
 func_088C6ADC = 0x088C6ADC; // type:func size:0x14
 func_088C6AF0 = 0x088C6AF0; // type:func size:0x8
+
+// func_088C7298 ends with a jump through a vtable (`jr $t9`); the code after it,
+// at 0x088C72B0, is a function of its own (its own prologue; calls func_088C7280
+// and func_088C7298)
+func_088C7298 = 0x088C7298; // type:func size:0x18
+func_088C72B0 = 0x088C72B0; // type:func size:0x174
