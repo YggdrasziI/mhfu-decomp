@@ -1369,7 +1369,7 @@ segments:
       - [0xB1680, c, unit_088B30CC]
       - [0xB16CC, c, unit_088B3118]
       - [0xB16D8, c, unit_088B3124]
-      - [0xB16E4, asm, text_088B3130]
+      - [0xB16E4, c, unit_088B3130]
       - [0xB1760, c, unit_088B31AC]
       - [0xB17AC, c, unit_088B31F8]
       - [0xB17E8, c, unit_088B3234]

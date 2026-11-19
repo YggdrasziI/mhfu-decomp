@@ -1128,6 +1128,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088B30CC` | 0x088B30CC-0x088B3118 | 1 small function | 100 % |
 | `unit_088B3118` | 0x088B3118-0x088B3124 | 1 small function | 100 % |
 | `unit_088B3124` | 0x088B3124-0x088B3130 | 1 small function | 100 % |
+| `unit_088B3130` | 0x088B3130-0x088B31AC | 1 function (phase dispatch of the record D_09A4406C) | 100 % |
 | `unit_088B31AC` | 0x088B31AC-0x088B31F8 | 1 small function | 100 % |
 | `unit_088B31F8` | 0x088B31F8-0x088B3234 | 1 small function | 100 % |
 | `unit_088B3234` | 0x088B3234-0x088B32A0 | 1 small function | 100 % |
