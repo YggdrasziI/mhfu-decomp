@@ -1310,6 +1310,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088CA2E0` | 0x088CA2E0-0x088CA39C | 1 small function | 100 % |
 | `unit_088CA39C` | 0x088CA39C-0x088CA508 | 1 function (C++; registers the 0x20-byte records of a list) | 100 % |
 | `unit_088CA508` | 0x088CA508-0x088CA558 | 2 small functions (C++) | 100 % |
+| `unit_088CA558` | 0x088CA558-0x088CA908 | 1 function (C++; finds an entry of kind 0x17, registers the list records) | NonMatching (99.32 %) |
 | `unit_088CA908` | 0x088CA908-0x088CA944 | 1 small function (C++) | 100 % |
 | `unit_088CA944` | 0x088CA944-0x088CAA00 | 1 small function (C++) | 100 % |
 | `unit_088CAB2C` | 0x088CAB2C-0x088CAB34 | 1 small function | 100 % |
