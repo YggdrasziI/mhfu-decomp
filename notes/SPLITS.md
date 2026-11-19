@@ -1122,6 +1122,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088B2B28` | 0x088B2B28-0x088B2BC0 | 1 function (dispatch to six functions on the byte at +0x22); jump table 0x08932154-0x0893216C in the unit | 100 % |
 | `unit_088B2BC0` | 0x088B2BC0-0x088B2C20 | 1 small function | 100 % |
 | `unit_088B2C20` | 0x088B2C20-0x088B2D74 | 1 function (copies accepted records to their slots, counts in D_09A299A9) | 100 % |
+| `unit_088B2D74` | 0x088B2D74-0x088B2ED4 | 1 function (collects addresses, timer and retries) | 100 % |
 | `unit_088B30CC` | 0x088B30CC-0x088B3118 | 1 small function | 100 % |
 | `unit_088B3118` | 0x088B3118-0x088B3124 | 1 small function | 100 % |
 | `unit_088B3124` | 0x088B3124-0x088B3130 | 1 small function | 100 % |
