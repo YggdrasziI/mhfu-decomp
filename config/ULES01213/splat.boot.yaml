@@ -1407,7 +1407,7 @@ segments:
       - [0xB3218, c, unit_088B4C64]
       - [0xB3258, c, unit_088B4CA4]
       - [0xB332C, cpp, unit_088B4D78]
-      - [0xB3408, asm, text_088B4E54]
+      - [0xB3408, c, unit_088B4E54]
       - [0xB3558, c, unit_088B4FA4]
       - [0xB3560, asm, text_088B4FAC]
       - [0xB3B14, c, unit_088B5560]
