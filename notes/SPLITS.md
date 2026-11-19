@@ -1334,6 +1334,9 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088CC568` | 0x088CC568-0x088CC604 | 1 function (constructor shape), C++ | NonMatching |
 | `unit_088CC604` | 0x088CC604-0x088CC828 | 2 functions (destructor shape, state machine), C++ | 100 % |
 | `unit_088CD804` | 0x088CD804-0x088CD964 | 1 function (handles an entry by the kind byte at +6 of its record); jump table 0x08932380-0x089323B0 in the unit | 100 % |
+| `unit_088CD964` | 0x088CD964-0x088CDA74 | 1 function (C++; finds the object of a request among the 20 at D_09C121B0 + 0x1220) | 100 % |
+| `unit_088CDA74` | 0x088CDA74-0x088CDBF4 | 1 function (C++; bit mask test of the four 0x8C-byte entries) | NonMatching (96.04 %) |
+| `unit_088CDBF4` | 0x088CDBF4-0x088CDCB0 | 2 functions (C++; slot scan, 16-bit value of the current slot) | 100 % |
 | `unit_088CDCB0` | 0x088CDCB0-0x088CDCC8 | 1 small function | 100 % |
 | `unit_088CDCF4` | 0x088CDCF4-0x088CDD24 | 1 small function | 100 % |
 | `unit_088CE05C` | 0x088CE05C-0x088CE1AC | 1 small function | 100 % |
