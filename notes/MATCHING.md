@@ -259,6 +259,14 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - A float reinterpreted as bits through the stack (`swc1` then `lw` / `lbu`):
   `*(u32 *) &f` and `((u8 *) &f)[i]` on a float local (func_088CAB98).
 
+- A call result compared as a byte with no `andi 0xFF`, its argument loaded
+  before the other operand: declare the callee `u8 f(char *, u8)` instead of
+  casting an `s32` result (func_088CD964, func_0884FC74).
+- `x ? x : 0xFFFF` on a `u16` returned with no `andi`: return `s32`
+  (func_088CDC8C).
+- A loop with a constant count and no jump to its test at entry: `i = 0; do
+  { ... } while (i < 4);` (a `for` jumps to the test first).
+
 ## Registers and loops
 
 - Two locals in swapped registers: the declaration order of the locals sets them
