@@ -1244,6 +1244,10 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088BFEF8` | 0x088BFEF8-0x088C0198 | 2 functions (message dialog with symbol replacement, utility dialog status) | 100 % |
 | `unit_088C0198` | 0x088C0198-0x088C0200 | 1 small function | 100 % |
 | `unit_088C0200` | 0x088C0200-0x088C022C | 1 small function | 100 % |
+| `unit_088C022C` | 0x088C022C-0x088C0420 | 2 functions (save image digest check, block names) | NonMatching (99.47 %, func_088C03CC order) |
+| `unit_088C0420` | 0x088C0420-0x088C0468 | 1 function (save image word sum) | 100 % |
+| `unit_088C0468` | 0x088C0468-0x088C0554 | 1 function (seals and writes the save image) | NonMatching (99.66 %) |
+| `unit_088C0554` | 0x088C0554-0x088C0594 | 1 function (save image identity check) | 100 % |
 | `unit_088C0594` | 0x088C0594-0x088C05FC | 1 small function | 100 % |
 | `unit_088C05FC` | 0x088C05FC-0x088C0940 | 1 function, NonMatching (speed, 93.5 %: scheduling of a stack argument store); a bar, five gauges and five text lines from the layout table D_089B4E10 | not linked |
 | `unit_088C0940` | 0x088C0940-0x088C0BBC | 1 function (speed: three records 0x6B100 apart, each drawn with a time split by 60 and its box from D_089B2DF0) | 100 % |
