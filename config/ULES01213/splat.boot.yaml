@@ -1434,7 +1434,7 @@ segments:
       - [0xB5B34, c, unit_088B7580]
       - [0xB5B6C, c, unit_088B75B8]
       - [0xB5F0C, c, unit_088B7958]
-      - [0xB5F2C, asm, text_088B7978]
+      - [0xB5F2C, c, unit_088B7978]
       - [0xB5FC4, c, unit_088B7A10]
       - [0xB5FEC, c, unit_088B7A38]
       - [0xB6010, asm, text_088B7A5C]
