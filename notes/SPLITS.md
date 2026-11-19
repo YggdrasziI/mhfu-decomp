@@ -1184,6 +1184,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088B6338` | 0x088B6338-0x088B63A4 | 1 small function | 100 % |
 | `unit_088B63A4` | 0x088B63A4-0x088B650C | 2 small functions | 100 % |
 | `unit_088B650C` | 0x088B650C-0x088B652C | 1 counter increment | 100 % |
+| `unit_088B652C` | 0x088B652C-0x088B6A08 | 9 functions (count, find, add and remove in the 0x64-byte records at D_09A2851C + 0xCB8 and the 0xC8-byte records at + 0xE48) | 100 % |
 | `unit_088B72CC` | 0x088B72CC-0x088B7350 | 1 small function | 100 % |
 | `unit_088B7580` | 0x088B7580-0x088B75B8 | 1 small function | 100 % |
 | `unit_088B7958` | 0x088B7958-0x088B7978 | 1 global reset | 100 % |
