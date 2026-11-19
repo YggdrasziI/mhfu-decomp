@@ -48,6 +48,10 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   r; return 0;` becomes `return r < 0 ? r : 0;` (func_088AA520, func_088AA83C,
   func_088AAC80; notes/COMPILER.md). Found by compiling the unit once per
   `opt_*` pragma of `mwccpsp.exe` (`strings`), `off` and `on`.
+- The same dead instruction after a `b` (`addiu a0, zero, 2` left before the
+  block its branch-likely slot was copied from) without the pragma: early
+  returns instead of an `else if` chain, `if (A == 0 || B == 0) { ...;
+  return; } if (C != 0) return; ...` (func_088B6B14).
 - A test against two values (`== 2 || == 1`) compiled as a range check
   (`addiu -1` + `sltiu 2`) where the original compares each (`beq 2`, `beq 1`):
   `switch (x) { case 1: case 2: ...; break; }` (func_088A9EF4).
@@ -111,6 +115,11 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - A callee whose result the caller masks with `andi 0xFF` may return `u8`; but keep
   the prototype the callee's own unit defines (one count and type per function,
   `tools/psp/prototypes.py`).
+- A function that masks its argument at each use (`andi v1, s2, 0xFFFF` for
+  the test and the index, the raw register stored with `sh`) and whose callers
+  pass it unmasked: an `s32` parameter cast at each use, `(u16) arg0 < 0x15`,
+  `tbl[(u16) arg0]`; a `u16` parameter makes the callers mask it, and a `u16`
+  local keeps only the masked copy (func_088B6A80, called by func_088B6B14).
 - `if (x >= 2.1474836e9f)` around a conversion is mwccpsp's own `(u32) x`
   (`unsigned_casts`).
 - `mul.s` with a constant as first operand, loaded after the int-to-float
@@ -225,6 +234,13 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   The registers of the outer loop follow a destination pointer local declared
   last (`Blk *dst`, func_088B3F60); a `char *` destination stepped by 0xC8 or a
   `Blk *` parameter swaps them.
+- Read-modify-write of a member reached through a repeated cast,
+  `--((Slot *) (p + 0x1C60))->timer`, gets its address computed once into a
+  register (`addiu a0, s0, 0x1C80` / `sw v0, 0(a0)`); the original keeps
+  `0x1C80(s0)`: write the member as `*(s32 *) (p + 0x1C80)` (func_088B6E8C).
+- A 0x14-byte result copied as four floats then one (`lwc1` x4, `swc1` x4,
+  `lwc1` / `swc1`): a structure of an `F4` (four `f32`) and an `f32`, copied
+  member by member (func_088B6D10; func_088B1C34 has `F3` + `F2`).
 
 ## Registers and loops
 
