@@ -1196,6 +1196,8 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088B7978` | 0x088B7978-0x088B7A10 | 1 function (peer record removal) | 100 % |
 | `unit_088B7A10` | 0x088B7A10-0x088B7A38 | 1 small function | 100 % |
 | `unit_088B7A38` | 0x088B7A38-0x088B7A5C | 2 small functions | 100 % |
+| `unit_088B7A5C` | 0x088B7A5C-0x088B7F5C | 6 functions (16 address entries of 0xA8 bytes at D_09A2851C + 0x1BC18, status code filter) | 100 % |
+| `unit_088B7F5C` | 0x088B7F5C-0x088B826C | 4 functions (angle normalisation and piecewise remap, speed mode) | 100 % |
 | `unit_088B826C` | 0x088B826C-0x088B8320 | 1 function (fills a 0x3C-byte record, float argument) | 100 % |
 | `unit_088B8320` | 0x088B8320-0x088B8374 | 1 small function | 100 % |
 | `unit_088B8374` | 0x088B8374-0x088B8404 | 1 small function | 100 % |
