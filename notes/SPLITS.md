@@ -1160,6 +1160,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088B4824` | 0x088B4824-0x088B4858 | 1 small function | 100 % |
 | `unit_088B4858` | 0x088B4858-0x088B48A4 | 1 small function | 100 % |
 | `unit_088B48A4` | 0x088B48A4-0x088B48DC | 1 small function | 100 % |
+| `unit_088B48DC` | 0x088B48DC-0x088B4A14 | 2 functions (result callback for D_09A440E4, identifier of the func_088AFE78 buffer) | 100 % |
 | `unit_088B4A14` | 0x088B4A14-0x088B4A6C | 1 small function | 100 % |
 | `unit_088B4C64` | 0x088B4C64-0x088B4CA4 | 1 small function | 100 % |
 | `unit_088B4D78` | 0x088B4D78-0x088B4E54 | 1 function (C++; stores a checked 8-byte address in D_09A29CD0) | 100 % |
