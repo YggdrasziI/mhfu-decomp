@@ -87,6 +87,13 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   (func_088B1DB0).
 - `bnezl` to the store of 1, the store of 0 first: `if (x == 0) g = 0; else
   g = 1;` (`x != 0` first gives `beqzl`; func_088B1BF8).
+- A loop where one failure path skips the pointer step (`beqzl` past the
+  `addiu s0, 0xC8` to the counter step): a `for` loop with the pointer
+  stepped at the end of the body and `continue` on that path
+  (func_088B2C20).
+- A record array reached at a large offset of another symbol (`lui
+  D_09A2851C`, loads at `0x116C(s1)` / `0x1231(s1)`): step a `char *` from
+  the base symbol and cast `p + 0x116C` (func_088B2D74).
 
 ## Booleans (C++ only)
 
