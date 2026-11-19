@@ -1523,7 +1523,7 @@ segments:
       - [0xC1994, c, unit_088C33E0]
       - [0xC199C, cpp, unit_088C33E8]
       - [0xC1A14, cpp, unit_088C3460]
-      - [0xC1A50, asm, text_088C349C]
+      - [0xC1A50, cpp, unit_088C349C]
       - [0xC1AD0, c, unit_088C351C]
       - [0xC1B00, c, unit_088C354C]
       - [0xC1EFC, asm, text_088C3948]
