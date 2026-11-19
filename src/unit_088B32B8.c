@@ -9,6 +9,7 @@
 
 typedef signed char s8;
 typedef unsigned char u8;
+typedef unsigned short u16;
 typedef int s32;
 
 typedef struct {
@@ -71,7 +72,7 @@ s32 func_088B3328(void *arg0, u8 arg1) {
     return 0;
 }
 
-s32 func_088B33BC(void *arg0) {
+u16 func_088B33BC(void *arg0, u8 arg1) {
     s32 i;
     char *p;
 

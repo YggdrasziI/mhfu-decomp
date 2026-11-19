@@ -34,8 +34,8 @@ extern char *func_088AFE78(void);
 extern s32 func_088B6BC4(void);
 extern void func_088B5478(Res14 *, char *, u16);
 extern void func_088B7A50(s32);
-extern char *func_088B6BFC(Res14 *, void (*)(void), s32);
-extern void func_088B48DC(void);
+extern char *func_088B6BFC(Res14 *, void (*)(void *), s32);
+extern void func_088B48DC(void *);
 
 void func_088B4738(u8 *arg0) {
     Res14 res;
