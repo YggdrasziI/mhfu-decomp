@@ -13,7 +13,7 @@ typedef int s32;
 
 extern char D_089B4F2C[];
 
-extern void func_088C3010(void);
+extern s32 func_088C3010(s32, char **);
 extern s32 sceKernelCreateThread(const char *, void *, s32, s32, s32, void *);
 extern s32 sceKernelStartThread(s32, s32, void *);
 
