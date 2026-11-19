@@ -555,6 +555,14 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   { nop; nop } wait = !flag; } while (wait); }` on a `volatile u8`; a plain
   `while (!flag)` folds the first test into a `bnez` and C++ adds an `andi
   0xFF` (func_088597BC).
+- A null test of a call result on `$v0` (`bnez $v0` with the copy to a saved
+  register in its delay slot, then `b` to a `return 0` block): the assignment
+  inside the test, `if ((a = f(x)) == 0) { return 0; }`; testing the local
+  afterwards gives `bnezl $s1` (func_088C72B0).
+- A speed-mode loop that reads its bound from a table entry again at every
+  pass (`lw $v0, 0($a0)` in the `bnel` delay slot): index the table in the
+  loop, `i < D[k].count` and `D[k].keys[i]`; a `Table *t = &D[k]` local
+  hoists the load (func_088C722C).
 - With the speed setting, a `for` / `while (cond)` loop is rotated (test at
   the bottom). An original loop with the test at the top and a `b` back is
   `while (1) { if (!cond) { break; } ...; step; }` (func_0886DB0C).
