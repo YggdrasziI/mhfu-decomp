@@ -1180,6 +1180,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088B5D3C` | 0x088B5D3C-0x088B5EDC | 1 function (C++; NonMatching 97.2 %: copies a 0xC8-byte structure to D_09A28BFC member by member, two registers swapped) | 100 % |
 | `unit_088B5FC8` | 0x088B5FC8-0x088B608C | 1 function (C++; clears D_09A28BFC and stores an 8-byte address in it) | 100 % |
 | `unit_088B608C` | 0x088B608C-0x088B60E8 | 1 small function | 100 % |
+| `unit_088B60E8` | 0x088B60E8-0x088B6338 | 3 functions (message builders 0x1A / 0x1B) | 100 % |
 | `unit_088B6338` | 0x088B6338-0x088B63A4 | 1 small function | 100 % |
 | `unit_088B63A4` | 0x088B63A4-0x088B650C | 2 small functions | 100 % |
 | `unit_088B650C` | 0x088B650C-0x088B652C | 1 counter increment | 100 % |
