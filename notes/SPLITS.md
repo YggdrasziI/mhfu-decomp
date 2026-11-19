@@ -1321,6 +1321,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088CACD4` | 0x088CACD4-0x088CAF4C | 2 functions (C++; GE commands around a draw, kind switch) | 100 % |
 | `unit_088CAF4C` | 0x088CAF4C-0x088CAF54 | 1 small function | 100 % |
 | `unit_088CB32C` | 0x088CB32C-0x088CB364 | 1 small function | 100 % |
+| `unit_088CB364` | 0x088CB364-0x088CB46C | 1 function (C++; state from a flag and clock values) | 100 % |
 | `unit_088CB46C` | 0x088CB46C-0x088CB474 | 1 small function | 100 % |
 | `unit_088CC0E4` | 0x088CC0E4-0x088CC128 | 1 small function | 100 % |
 | `unit_088CC190` | 0x088CC190-0x088CC478 | 2 small functions | 100 % |
