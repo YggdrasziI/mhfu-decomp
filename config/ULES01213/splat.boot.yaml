@@ -1539,7 +1539,7 @@ segments:
       - [0xC4FF0, cpp, unit_088C6A3C]
       - [0xC507C, c, unit_088C6AC8]
       - [0xC5088, c, unit_088C6AD4]
-      - [0xC5090, asm, text_088C6ADC]
+      - [0xC5090, cpp, unit_088C6ADC]
       - [0xC52E0, cpp, unit_088C6D2C]
       - [0xC53AC, asm, text_088C6DF8]
       - [0xC5618, c, unit_088C7064]

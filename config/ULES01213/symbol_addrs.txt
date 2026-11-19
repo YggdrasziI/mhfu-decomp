@@ -20,3 +20,8 @@ D_0893B7A4 = 0x0893B7A4;
 // function to it once they were split into their own piece
 func_088A88C4 = 0x088A88C4; // type:func size:0x1C
 func_088A88E0 = 0x088A88E0; // type:func size:0xA8
+
+// func_088C6ADC ends with a jump through a pointer (`jr $t9`); the `return 0` after it,
+// at 0x088C6AF0, is a function of its own (an entry of the vtable D_089BACDC)
+func_088C6ADC = 0x088C6ADC; // type:func size:0x14
+func_088C6AF0 = 0x088C6AF0; // type:func size:0x8
