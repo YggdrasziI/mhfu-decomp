@@ -1117,6 +1117,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088B2704` | 0x088B2704-0x088B27C8 | 1 function (request 0x25, 20-byte reply) | 100 % |
 | `unit_088B27C8` | 0x088B27C8-0x088B2854 | 1 function (C++; stores a checked 8-byte address in D_09A29CD0) | 100 % |
 | `unit_088B2854` | 0x088B2854-0x088B29A4 | 1 function (request 0x20 with a list of records) | 100 % |
+| `unit_088B29A4` | 0x088B29A4-0x088B2AAC | 1 function (reads the record list into D_09A299AC) | 100 % |
 | `unit_088B2B28` | 0x088B2B28-0x088B2BC0 | 1 function (dispatch to six functions on the byte at +0x22); jump table 0x08932154-0x0893216C in the unit | 100 % |
 | `unit_088B2BC0` | 0x088B2BC0-0x088B2C20 | 1 small function | 100 % |
 | `unit_088B30CC` | 0x088B30CC-0x088B3118 | 1 small function | 100 % |
