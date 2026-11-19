@@ -1554,7 +1554,7 @@ segments:
       - [0xC5EC8, asm, text_088C7914]
       - [0xC888C, c, unit_088CA2D8]
       - [0xC8894, c, unit_088CA2E0]
-      - [0xC8950, asm, text_088CA39C]
+      - [0xC8950, cpp, unit_088CA39C]
       - [0xC8ABC, cpp, unit_088CA508]
       - [0xC8B0C, asm, text_088CA558]
       - [0xC8EBC, cpp, unit_088CA908]

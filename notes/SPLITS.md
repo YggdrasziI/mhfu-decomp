@@ -1308,6 +1308,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088C7814` | 0x088C7814-0x088C7914 | 2 small functions | 100 % |
 | `unit_088CA2D8` | 0x088CA2D8-0x088CA2E0 | 1 small function | 100 % |
 | `unit_088CA2E0` | 0x088CA2E0-0x088CA39C | 1 small function | 100 % |
+| `unit_088CA39C` | 0x088CA39C-0x088CA508 | 1 function (C++; registers the 0x20-byte records of a list) | 100 % |
 | `unit_088CA508` | 0x088CA508-0x088CA558 | 2 small functions (C++) | 100 % |
 | `unit_088CA908` | 0x088CA908-0x088CA944 | 1 small function (C++) | 100 % |
 | `unit_088CA944` | 0x088CA944-0x088CAA00 | 1 small function (C++) | 100 % |
