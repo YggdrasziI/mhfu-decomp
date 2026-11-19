@@ -1164,6 +1164,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088B4A14` | 0x088B4A14-0x088B4A6C | 1 small function | 100 % |
 | `unit_088B4A6C` | 0x088B4A6C-0x088B4C64 | 3 functions (message builders, kinds 0xE and 0x15) | 100 % |
 | `unit_088B4C64` | 0x088B4C64-0x088B4CA4 | 1 small function | 100 % |
+| `unit_088B4CA4` | 0x088B4CA4-0x088B4D78 | 1 function (message builder, kind 0x16) | 100 % |
 | `unit_088B4D78` | 0x088B4D78-0x088B4E54 | 1 function (C++; stores a checked 8-byte address in D_09A29CD0) | 100 % |
 | `unit_088B4FA4` | 0x088B4FA4-0x088B4FAC | 1 small function | 100 % |
 | `unit_088B5560` | 0x088B5560-0x088B5568 | 1 small function | 100 % |
