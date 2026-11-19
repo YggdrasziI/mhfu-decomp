@@ -1330,7 +1330,7 @@ segments:
       - [0xAFC1C, c, unit_088B1668]
       - [0xAFCBC, c, unit_088B1708]
       - [0xAFE3C, c, unit_088B1888]
-      - [0xAFF1C, asm, text_088B1968]
+      - [0xAFF1C, c, unit_088B1968]
       - [0xAFF80, c, unit_088B19CC]
       - [0xAFFB8, c, unit_088B1A04]
       - [0xAFFCC, asm, text_088B1A18]
