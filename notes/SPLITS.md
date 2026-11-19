@@ -1190,6 +1190,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088B6E8C` | 0x088B6E8C-0x088B70E8 | 4 functions (slot timeouts, timer entries at + 0x1BA60, state result) | 100 % |
 | `unit_088B70E8` | 0x088B70E8-0x088B72CC | 1 function (peer timeouts) | NonMatching (96.36 %) |
 | `unit_088B72CC` | 0x088B72CC-0x088B7350 | 1 small function | 100 % |
+| `unit_088B7350` | 0x088B7350-0x088B7580 | 1 function (peer joined or left) | NonMatching (96.93 %) |
 | `unit_088B7580` | 0x088B7580-0x088B75B8 | 1 small function | 100 % |
 | `unit_088B75B8` | 0x088B75B8-0x088B7958 | 5 functions (peer records at D_09A2851C + 0xC6C: polls, timeout reset, insertion) | 100 % |
 | `unit_088B7958` | 0x088B7958-0x088B7978 | 1 global reset | 100 % |
