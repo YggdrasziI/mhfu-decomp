@@ -1313,6 +1313,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088CA558` | 0x088CA558-0x088CA908 | 1 function (C++; finds an entry of kind 0x17, registers the list records) | NonMatching (99.32 %) |
 | `unit_088CA908` | 0x088CA908-0x088CA944 | 1 small function (C++) | 100 % |
 | `unit_088CA944` | 0x088CA944-0x088CAA00 | 1 small function (C++) | 100 % |
+| `unit_088CAA00` | 0x088CAA00-0x088CAB2C | 1 function (C++; identity matrix with VFPU `asm`, optional parts, GE commands) | 100 % |
 | `unit_088CAB2C` | 0x088CAB2C-0x088CAB34 | 1 small function | 100 % |
 | `unit_088CAB34` | 0x088CAB34-0x088CAB64 | 1 small function (C++) | 100 % |
 | `unit_088CAB64` | 0x088CAB64-0x088CAB98 | 1 small function (C++) | 100 % |
