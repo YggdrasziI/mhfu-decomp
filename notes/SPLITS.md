@@ -1185,6 +1185,10 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088B63A4` | 0x088B63A4-0x088B650C | 2 small functions | 100 % |
 | `unit_088B650C` | 0x088B650C-0x088B652C | 1 counter increment | 100 % |
 | `unit_088B652C` | 0x088B652C-0x088B6A08 | 9 functions (count, find, add and remove in the 0x64-byte records at D_09A2851C + 0xCB8 and the 0xC8-byte records at + 0xE48) | 100 % |
+| `unit_088B6A08` | 0x088B6A08-0x088B6E14 | 6 functions (result callbacks, event handler table, request slots at D_09A2851C + 0x1C60) | 100 % |
+| `unit_088B6E14` | 0x088B6E14-0x088B6E8C | 1 function (request slot key lookup) | NonMatching (74.20 %) |
+| `unit_088B6E8C` | 0x088B6E8C-0x088B70E8 | 4 functions (slot timeouts, timer entries at + 0x1BA60, state result) | 100 % |
+| `unit_088B70E8` | 0x088B70E8-0x088B72CC | 1 function (peer timeouts) | NonMatching (96.36 %) |
 | `unit_088B72CC` | 0x088B72CC-0x088B7350 | 1 small function | 100 % |
 | `unit_088B7580` | 0x088B7580-0x088B75B8 | 1 small function | 100 % |
 | `unit_088B7958` | 0x088B7958-0x088B7978 | 1 global reset | 100 % |
