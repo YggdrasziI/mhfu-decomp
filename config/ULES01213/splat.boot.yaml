@@ -1565,7 +1565,7 @@ segments:
       - [0xC9118, cpp, unit_088CAB64]
       - [0xC914C, c, unit_088CAB98]
       - [0xC9280, c, unit_088CACCC]
-      - [0xC9288, asm, text_088CACD4]
+      - [0xC9288, cpp, unit_088CACD4]
       - [0xC9500, c, unit_088CAF4C]
       - [0xC9508, asm, text_088CAF54]
       - [0xC98E0, c, unit_088CB32C]
