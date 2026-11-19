@@ -1375,7 +1375,7 @@ segments:
       - [0xB17E8, c, unit_088B3234]
       - [0xB1854, c, unit_088B32A0]
       - [0xB1860, c, unit_088B32AC]
-      - [0xB186C, asm, text_088B32B8]
+      - [0xB186C, c, unit_088B32B8]
       - [0xB1CCC, c, unit_088B3718]
       - [0xB1CF8, asm, text_088B3744]
       - [0xB1D2C, c, unit_088B3778]
