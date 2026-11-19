@@ -1297,6 +1297,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088C6AD4` | 0x088C6AD4-0x088C6ADC | 1 small function | 100 % |
 | `unit_088C6ADC` | 0x088C6ADC-0x088C6D2C | 5 functions (C++; vtable tail call, 0x100-byte flags at 0xA2E8) | 100 % |
 | `unit_088C6D2C` | 0x088C6D2C-0x088C6DF8 | 1 small function (C++) | 100 % |
+| `unit_088C6DF8` | 0x088C6DF8-0x088C7064 | 1 function (sets up the object of unit_088C6ADC from resource parts 0-5, DMA copies) | NonMatching (99.84 %) |
 | `unit_088C7064` | 0x088C7064-0x088C70D8 | 1 small function | 100 % |
 | `unit_088C7130` | 0x088C7130-0x088C7184 | 1 small function | 100 % |
 | `unit_088C7764` | 0x088C7764-0x088C7774 | 1 small function | 100 % |
