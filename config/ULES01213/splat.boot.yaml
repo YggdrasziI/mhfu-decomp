@@ -1563,7 +1563,7 @@ segments:
       - [0xC90E0, c, unit_088CAB2C]
       - [0xC90E8, cpp, unit_088CAB34]
       - [0xC9118, cpp, unit_088CAB64]
-      - [0xC914C, asm, text_088CAB98]
+      - [0xC914C, c, unit_088CAB98]
       - [0xC9280, c, unit_088CACCC]
       - [0xC9288, asm, text_088CACD4]
       - [0xC9500, c, unit_088CAF4C]

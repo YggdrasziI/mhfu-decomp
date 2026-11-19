@@ -1316,6 +1316,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088CAB2C` | 0x088CAB2C-0x088CAB34 | 1 small function | 100 % |
 | `unit_088CAB34` | 0x088CAB34-0x088CAB64 | 1 small function (C++) | 100 % |
 | `unit_088CAB64` | 0x088CAB64-0x088CAB98 | 1 small function (C++) | 100 % |
+| `unit_088CAB98` | 0x088CAB98-0x088CACCC | 1 function (fog GE commands 0xCF / 0xCD / 0xCE to the display list) | 100 % |
 | `unit_088CACCC` | 0x088CACCC-0x088CACD4 | 1 small function | 100 % |
 | `unit_088CAF4C` | 0x088CAF4C-0x088CAF54 | 1 small function | 100 % |
 | `unit_088CB32C` | 0x088CB32C-0x088CB364 | 1 small function | 100 % |
