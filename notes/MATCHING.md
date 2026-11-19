@@ -252,6 +252,13 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   base first (`addu base, index`), and a `char *` sum with the offset folds it
   into `lui` + `addu` (func_088C6B84, func_088C6BCC).
 
+- A float test against zero with the value first (`c.eq.s $f1, $f0`, zero in
+  `$f0`) and `bc1t` to the zero case: the implicit test `d ? d : 1.0f`;
+  `d != 0.0f` or `d == 0.0f` put zero first, and an `if` gives `bc1f`
+  (func_088CAB98).
+- A float reinterpreted as bits through the stack (`swc1` then `lw` / `lbu`):
+  `*(u32 *) &f` and `((u8 *) &f)[i]` on a float local (func_088CAB98).
+
 ## Registers and loops
 
 - Two locals in swapped registers: the declaration order of the locals sets them
