@@ -694,6 +694,48 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   end`): the body is `return;`; an empty body drops the test
   (func_088AE988, NonMatching).
 
+- Three values that all return 1, compared `beql 0x6E` (the `1` in its delay
+  slot), then `beq 1` and `beq 0x75` to one `v0 = 1; b end` block: one case
+  group in the reverse of the test order, `case 0x75: case 1: case 0x6E:
+  return 1;`; two groups or three `return 1;` fill another branch
+  (func_088CDEDC).
+- A small `switch` whose case branches are `beql` with the first instruction
+  of the case in the delay slot (ours `beq` + `nop`): the empty case is
+  `case 0: break;`, not `case 0: return;` (func_088CDFF8).
+- The loads of a global first argument and of a member second argument in
+  swapped order (`lw a0, g` / `lw a1, 8(a1)`), unchanged by the callee's
+  parameter types: the member is `u32`, passed to an `s32` parameter
+  (func_088CDFF8).
+- A float argument copied from a saved register (`mov.s fa0, fs0`) before
+  the integer arguments where ours puts it in the delay slot of the `jal`:
+  the float parameter comes earlier in the callee's prototype
+  (`func_088D2674(char *, float, s32, s32)`, `func_08864348(float, char *,
+  s32)`); the calls with constant floats did not depend on it
+  (func_088D1E40).
+- A halfword kept in a saved register, passed unmasked right after its load
+  and with `andi 0xFFFF` at each later use: an `s32` local set from the
+  `u16` member, passed to `u16` parameters; a `u16` local is never masked
+  (func_088CDDAC).
+- A call result copied with `addu` where ours has `seh`: the callee returns
+  `s32` (its own unit matches either way when it returns an `lh` load,
+  func_08813E70 called from func_088CDF5C).
+- `beql x, 0xFFFF` to the next instruction with `x = id` in its delay slot:
+  `v = (v != 0xFFFF) ? v : id;` on an `s32`, the `(u16)` cast at the use; an
+  `if` gives `bnel` (func_088CD044). The same inside nested inline lookups
+  that each test `id == 0xFFFF` again (`is_plain`, `map_id`, `base_id`,
+  `cur_id` of func_088CD2D4): the repeated tests are kept by the compiler.
+- A pointer argument loaded into `$v1` before a test of another global, the
+  member read after it: an inline accessor taking the pointer,
+  `get(D_08A62C7C)` with `if (g->busy) return 0; return p->a->b;`; a
+  conditional expression loads the pointer after the test (func_088CD044).
+- Final tests of a function that all branch to the shared `return 0` (`beqz`
+  + `nop`, only the first one `bnezl` with the `addu v0` copied): one `&&`
+  chain around the block; an early `return 0;` per test gives `beqzl` + `b`
+  (func_088CD3FC).
+- An index read before the store that precedes the call (`lbu v1, 1(s0)`,
+  then `sb` of the state): the index goes to a local first, `idx = p->cur;
+  p->state = 1; f(p, &p->e[idx]);` (func_088CD230).
+
 ## Calls and allocation
 
 - PSP EABI: arguments 5-8 in `$t0-$t3`, float arguments in `$f12-$f19` counted apart
