@@ -1592,7 +1592,7 @@ segments:
       - [0xCC2D8, cpp, unit_088CDD24]
       - [0xCC610, c, unit_088CE05C]
       - [0xCC760, c, unit_088CE1AC]
-      - [0xCC84C, asm, text_088CE298]
+      - [0xCC84C, cpp, unit_088CE298]
       - [0xCCD08, c, unit_088CE754]
       - [0xCCD10, asm, text_088CE75C]
       - [0xCD764, c, unit_088CF1B0]

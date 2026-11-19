@@ -1344,6 +1344,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088CDD24` | 0x088CDD24-0x088CE05C | 5 functions (C++; helpers of the entry queue, timed actions of a record: 12-byte items at +0x28 ended by -1) | 100 % |
 | `unit_088CE05C` | 0x088CE05C-0x088CE1AC | 1 small function | 100 % |
 | `unit_088CE1AC` | 0x088CE1AC-0x088CE298 | 2 small functions | 100 % |
+| `unit_088CE298` | 0x088CE298-0x088CE754 | 3 functions (C++, speed; set-up of an object from the 0x8C-byte record of its slot, reset of its animation state with a VFPU quad copy, 16 x 3 update loop) | 100 % |
 | `unit_088CE754` | 0x088CE754-0x088CE75C | 1 small function | 100 % |
 | `unit_088CF1B0` | 0x088CF1B0-0x088CF210 | 2 small functions | 100 % |
 | `unit_088D1DD0` | 0x088D1DD0-0x088D1E40 | 1 small function (C++) | 100 % |
