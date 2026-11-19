@@ -1521,7 +1521,7 @@ segments:
       - [0xC18D8, c, unit_088C3324]
       - [0xC1918, cpp, unit_088C3364]
       - [0xC1994, c, unit_088C33E0]
-      - [0xC199C, asm, text_088C33E8]
+      - [0xC199C, cpp, unit_088C33E8]
       - [0xC1A14, cpp, unit_088C3460]
       - [0xC1A50, asm, text_088C349C]
       - [0xC1AD0, c, unit_088C351C]

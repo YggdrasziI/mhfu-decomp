@@ -1276,6 +1276,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088C3324` | 0x088C3324-0x088C3364 | 1 small function | 100 % |
 | `unit_088C3364` | 0x088C3364-0x088C33E0 | 1 small function (C++) | 100 % |
 | `unit_088C33E0` | 0x088C33E0-0x088C33E8 | 1 small function | 100 % |
+| `unit_088C33E8` | 0x088C33E8-0x088C3460 | 1 function (updates the object list, C++) | 100 % |
 | `unit_088C3460` | 0x088C3460-0x088C349C | 1 small function (C++) | 100 % |
 | `unit_088C351C` | 0x088C351C-0x088C354C | 1 small function | 100 % |
 | `unit_088C354C` | 0x088C354C-0x088C3948 | 4 small functions | 100 % |
