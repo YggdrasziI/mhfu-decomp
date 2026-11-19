@@ -218,6 +218,13 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   `*(B6 *) d = *(B6 *) s` (`B6` = `struct { s8 b[6]; }`). Two `u8` members after a
   `u16` at a 2-aligned offset merge into an unaligned `lwl`/`lwr` copy unless
   written through `u8 *` (func_088B42C0, C, not C++).
+- A copy loop moving two words per pass (`lw` / `lw` / `sw` / `sw`, count 0x19,
+  step 8) is a whole-structure assignment of a 0xC8-byte `struct { s32 w[0x32]; }`;
+  one word per pass (count 0x19, step 4) was a hand-written loop of 0x64 bytes,
+  and an 8-byte `s8` structure gives the `lb` / `lb` / `sb` / `sb` loop of count 4.
+  The registers of the outer loop follow a destination pointer local declared
+  last (`Blk *dst`, func_088B3F60); a `char *` destination stepped by 0xC8 or a
+  `Blk *` parameter swaps them.
 
 ## Registers and loops
 
