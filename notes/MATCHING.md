@@ -777,6 +777,33 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   / `or` / `add.s`), the product stored to a byte through the 2^31 test:
   `m->unk0[0] = 0.65f * (float) (u32) byte;` (func_088CEAB8).
 
+- Two branches that end in the same conversion, the taken one jumping to a
+  copy of it placed after the other (`b` / `ori v0, v1, 2`, then `ori v0,
+  v1, 1` / `b` / `andi`, then `andi`): a `switch` with `case 0:` and
+  `default:`, not an `if` / `else` nor a conditional expression
+  (func_088CF210).
+- A compare chain where the last case of a group is a `beql` and the others
+  plain `beq` to a shared block: all of them are one group of labels.
+  Separate cases with the same body each get their own `beql`
+  (func_088D1CA8).
+- The jump of the missing default filled with the first instruction of the
+  epilogue (`b` / `lw ra`), where the original fills the jump of a case
+  instead: an explicit `default: return;` after the last case
+  (func_088D168C).
+- `bnel` with a load of the old value in its delay slot, then a store of the
+  register, the function returning it: `if (cond) { p->m = r; } else { r =
+  p->m; } return r;` with a `u8` return. The conditional expression stored
+  to the member needs one more move (func_088D1BA8).
+- Four floats stored to the stack and loaded with `lv.s S000`..`S003`, then
+  `sv.q C000`: an inline helper with float parameters, pointer locals to
+  them and an `asm` block. When the temporaries have to sit above the
+  vectors in the frame, the helper is a member function of the vector
+  structure (`rot.set(x, y, z)`), the structure being declared
+  `__attribute__((aligned(16)))`; a plain inline function puts them below
+  (func_088D1398, func_088D168C).
+- Aligned stack vectors are placed in reverse declaration order (the last
+  declared at the lowest address) (func_088D1978).
+
 ## Calls and allocation
 
 - PSP EABI: arguments 5-8 in `$t0-$t3`, float arguments in `$f12-$f19` counted apart
