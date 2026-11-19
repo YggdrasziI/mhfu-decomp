@@ -5,10 +5,11 @@
 
 typedef unsigned char u8;
 typedef short s16;
+typedef int s32;
 
 extern char *D_089CC438;
 
-s16 func_08813E70(char *arg0) {
+s32 func_08813E70(char *arg0) {
     if (*(u8 *)(D_089CC438 + 0x422) == 0) {
         return -1;
     }

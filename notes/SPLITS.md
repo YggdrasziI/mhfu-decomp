@@ -1339,7 +1339,9 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088CDA74` | 0x088CDA74-0x088CDBF4 | 1 function (C++; bit mask test of the four 0x8C-byte entries) | NonMatching (96.04 %) |
 | `unit_088CDBF4` | 0x088CDBF4-0x088CDCB0 | 2 functions (C++; slot scan, 16-bit value of the current slot) | 100 % |
 | `unit_088CDCB0` | 0x088CDCB0-0x088CDCC8 | 1 small function | 100 % |
+| `unit_088CDCC8` | 0x088CDCC8-0x088CDCF4 | 1 small function (id of the current entry's record) | 100 % |
 | `unit_088CDCF4` | 0x088CDCF4-0x088CDD24 | 1 small function | 100 % |
+| `unit_088CDD24` | 0x088CDD24-0x088CE05C | 5 functions (C++; helpers of the entry queue, timed actions of a record: 12-byte items at +0x28 ended by -1) | 100 % |
 | `unit_088CE05C` | 0x088CE05C-0x088CE1AC | 1 small function | 100 % |
 | `unit_088CE1AC` | 0x088CE1AC-0x088CE298 | 2 small functions | 100 % |
 | `unit_088CE754` | 0x088CE754-0x088CE75C | 1 small function | 100 % |
