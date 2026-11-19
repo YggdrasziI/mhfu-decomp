@@ -82,6 +82,11 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   pointer, then search the declaration order (func_088AC0E8).
 - A float constant stored as `lui` / `ori` (not read from the data) and a
   copy loop that steps two pointers: speed mode (func_088AB068).
+- The same call emitted twice, behind `bnez s0` and then behind a redundant
+  `beqz s0`: `if (ok == 0) err = f(); else if (ok != 0) err = f();`
+  (func_088B1DB0).
+- `bnezl` to the store of 1, the store of 0 first: `if (x == 0) g = 0; else
+  g = 1;` (`x != 0` first gives `beqzl`; func_088B1BF8).
 
 ## Booleans (C++ only)
 
