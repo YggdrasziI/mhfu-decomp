@@ -1509,7 +1509,7 @@ segments:
       - [0xC153C, c, unit_088C2F88]
       - [0xC158C, c, unit_088C2FD8]
       - [0xC1608, c, unit_088C3054]
-      - [0xC166C, asm, text_088C30B8]
+      - [0xC166C, c, unit_088C30B8]
       - [0xC16EC, c, unit_088C3138]
       - [0xC1734, c, unit_088C3180]
       - [0xC1784, c, unit_088C31D0]
