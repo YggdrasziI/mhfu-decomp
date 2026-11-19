@@ -1346,6 +1346,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088CE1AC` | 0x088CE1AC-0x088CE298 | 2 small functions | 100 % |
 | `unit_088CE298` | 0x088CE298-0x088CE754 | 3 functions (C++, speed; set-up of an object from the 0x8C-byte record of its slot, reset of its animation state with a VFPU quad copy, 16 x 3 update loop) | 100 % |
 | `unit_088CE754` | 0x088CE754-0x088CE75C | 1 small function | 100 % |
+| `unit_088CE75C` | 0x088CE75C-0x088CF1B0 | 5 functions (C++, speed; material visibility and colours of the six model parts, draw function with GE commands, VFPU identity matrix); jump table 0x089323B0-0x089323C8 in the unit | 100 % |
 | `unit_088CF1B0` | 0x088CF1B0-0x088CF210 | 2 small functions | 100 % |
 | `unit_088D1DD0` | 0x088D1DD0-0x088D1E40 | 1 small function (C++) | 100 % |
 | `unit_088D1E40` | 0x088D1E40-0x088D2674 | 1 function (speed; timed events of an animation by the id at +0x684, 25-case `switch` compiled as a chain) | 100 % |
