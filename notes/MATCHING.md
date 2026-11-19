@@ -299,6 +299,12 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - A compare through `$at` (`slt $at, a, b` + `bnez $at`) where ours uses `$v0`:
   the source says `b <= a` / `a > b`; `a >= b` and `!(a < b)` go through `$v0`
   (func_088A7AF0).
+- A float test whose `c.ngt.s` is followed by `bc1fl` over the guarded block
+  (ours `bc1tl`): the source negates the comparison, `if (!(a > K))`; `a <= K`
+  and `K < a` keep ours (func_088B8164).
+- `mul.s` with the operands swapped and the difference computed into `$f1`
+  in a delay slot: cast the difference, `127.0f * (float) (a - K) / K`, or
+  assign it to the variable first (func_088B81F8).
 - The last load in `$v0` instead of an argument register although nothing is
   returned after it: the function returns that value
   (`n = p[0]; g->pos += n; return n;`, func_088A7A68).
