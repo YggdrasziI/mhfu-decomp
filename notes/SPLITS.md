@@ -1086,6 +1086,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088B14C0` | 0x088B14C0-0x088B1584 | 1 function (request 7, 20-byte reply) | 100 % |
 | `unit_088B1584` | 0x088B1584-0x088B158C | 1 small function | 100 % |
 | `unit_088B158C` | 0x088B158C-0x088B1668 | 1 function (request 8, 20-byte reply) | 100 % |
+| `unit_088B1668` | 0x088B1668-0x088B1708 | 1 function (copies a key and a block to D_09A29D3C / D_09A29D44) | 100 % |
 | `unit_088B19CC` | 0x088B19CC-0x088B1A04 | 1 small function | 100 % |
 | `unit_088B1A04` | 0x088B1A04-0x088B1A18 | 1 small function | 100 % |
 | `unit_088B1A94` | 0x088B1A94-0x088B1AE0 | 1 small function | 100 % |
