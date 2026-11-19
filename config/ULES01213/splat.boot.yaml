@@ -1496,7 +1496,7 @@ segments:
       - [0xBEEF4, c, unit_088C0940]
       - [0xBF170, c, unit_088C0BBC]
       - [0xBF40C, cpp, unit_088C0E58]
-      - [0xBF72C, asm, text_088C1178]
+      - [0xBF72C, c, unit_088C1178]
       - [0xBF870, c, unit_088C12BC]
       - [0xBF8F8, asm, text_088C1344]
       - [0xBF99C, c, unit_088C13E8]

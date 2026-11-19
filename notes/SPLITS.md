@@ -1253,7 +1253,9 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088C0940` | 0x088C0940-0x088C0BBC | 1 function (speed: three records 0x6B100 apart, each drawn with a time split by 60 and its box from D_089B2DF0) | 100 % |
 | `unit_088C0BBC` | 0x088C0BBC-0x088C0E58 | 1 function (speed: sibling of func_088C0940, records 0x15000 apart behind the pointer at +0x950) | 100 % |
 | `unit_088C0E58` | 0x088C0E58-0x088C1178 | 1 function (C++, speed: state machine on the word at +0x998; copies one record per slot into D_089CC438 + 0x30, two virtual calls) | 100 % |
+| `unit_088C1178` | 0x088C1178-0x088C12BC | 1 function (selects one of three scene objects) | 100 % |
 | `unit_088C12BC` | 0x088C12BC-0x088C1344 | 1 small function | 100 % |
+| `unit_088C1344` | 0x088C1344-0x088C13E8 | 1 function (entry value to a scene object, C++ virtual calls) | NonMatching (88.54 %) |
 | `unit_088C13E8` | 0x088C13E8-0x088C1430 | 1 small function | 100 % |
 | `unit_088C1430` | 0x088C1430-0x088C14C8 | 1 small function (C++) | 100 % |
 | `unit_088C14C8` | 0x088C14C8-0x088C1828 | 2 small functions | 100 % |
