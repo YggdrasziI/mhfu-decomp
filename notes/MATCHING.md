@@ -804,6 +804,35 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - Aligned stack vectors are placed in reverse declaration order (the last
   declared at the lowest address) (func_088D1978).
 
+- `addiu a2, a2, 0x14D0` / `addiu a2, a2, 0x150` (two constants not folded
+  into one): the first comes from an inline accessor, `get_bone(mdl, 9)`
+  returning `(Bone *)(mdl + i * 0x250)`, the second is the member taken from
+  its result. `mdl[9].mtx` on a typed pointer folds them (func_088D28DC).
+- A float expression repeated with the same constants, each result computed
+  straight into its final register while the constants stay in theirs: a
+  macro. As an inline function with a float parameter the first use goes
+  through one more register (func_088D28DC, `TO_RAD`).
+- `lhu` followed by the unsigned conversion (`bltzl`, `srl 1`): the `u16`
+  member is copied to a `u32` local first. `(u32) *(u16 *) p` inside the
+  expression emits a second, useless `bltz` (func_088D28DC).
+- A pointer computed before a call and kept in a saved register although it
+  is only used after it (`addiu s0, a0, 0x10` in the delay slot of the
+  `jal`): a local assigned before the call (func_088D2B90).
+- Four stack slots written with the same float register in the order x, w,
+  z, y before `lv.s` x4: the helper takes `w` as a fourth parameter. With
+  `w` as a local of the helper the order is x, z, y, w (func_088D2C14).
+- An inner counter cleared before the address of the outer element
+  (`addu t1, zero, zero` / `addu t0, s2, v1`): no local for the element,
+  `arg0 + i * 0x40` written at each use (func_088D2C14).
+- A later loop whose counter and scaled index take each other's registers:
+  the loop reuses the counter variable of an earlier loop instead of a third
+  local (func_088D2C14).
+- `lh v1` / compare / `seh a0, v1`: the element is read into an `s32` local
+  and cast back at its use, `v = *p; ... (s16) v * 0x12` (func_088D2C14).
+- Floats after the pointers in a call (`addiu a0` / `addiu a1` / `mov.s` /
+  `jal` / `mov.s`): the pointer parameters come first in the prototype
+  (func_088640F8 called from func_088D2894).
+
 ## Calls and allocation
 
 - PSP EABI: arguments 5-8 in `$t0-$t3`, float arguments in `$f12-$f19` counted apart

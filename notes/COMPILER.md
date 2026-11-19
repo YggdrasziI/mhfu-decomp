@@ -265,8 +265,12 @@ to one stack slot, both slot addresses taken first, the result read back with
 `lwc1`. `src/unit_088429EC.c` and `src/unit_08841100.cpp` (two sines in one
 function) match this way. So VFPU code no longer has to stay in assembly: write
 it as an inline helper with an `asm` block. `lv.q` / `sv.q` with pointer
-locals are checked too (func_088CE5D4, func_088CEE68). Not checked yet:
-`vmmul`, VFPU register allocation across several blocks.
+locals are checked too (func_088CE5D4, func_088CEE68), and so are `vrot.q`
+with its `[C,0,-S,0]` operand, `vidt.q`, `vmmul.t`, `vtfm3.t` and `vadd.t`
+(func_088D28DC, func_088D2B90). What spimdisasm prints as
+`vcst.t R203, INVALID_0` (0xD060802B) is written `vcst.t R203, 0`; `.word`
+is accepted too. Not checked yet: VFPU register allocation across several
+blocks.
 
 The phase before such a sine is `K * (float) phase` in the original, with the
 constant loaded after the conversion. `ang = phase; ang = K * (float) ang;`
