@@ -302,6 +302,16 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - A float test whose `c.ngt.s` is followed by `bc1fl` over the guarded block
   (ours `bc1tl`): the source negates the comparison, `if (!(a > K))`; `a <= K`
   and `K < a` keep ours (func_088B8164).
+- Two `else` branches storing the same `u16` field, the original keeping both
+  stores (`b` + `sw` each) and re-masking the loaded value (`andi 0xFFFF` in a
+  `bnezl` slot): read it into an `s32` local and store `(u16) v` in one branch,
+  the field again in the other (func_088C1178).
+- An indexed record whose offset is `n * 0x50` computed around the load of the
+  base (`sll`, `addu`, `lw base`, `sll`): index a typed array,
+  `(*(Ent **) (p + 0xB08))[n].size`; the `char *` sum `base + n * 0x50 + 8`
+  swaps the registers (func_088BFCF0).
+- A C++ unit in the splat yaml is a `cpp` subsegment (`[0x<offset>, cpp,
+  unit_<addr>]`); with `c`, splat writes a `.c` stub beside the `.cpp`.
 - `mul.s` with the operands swapped and the difference computed into `$f1`
   in a delay slot: cast the difference, `127.0f * (float) (a - K) / K`, or
   assign it to the variable first (func_088B81F8).
