@@ -104,6 +104,10 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - `andi` + `sltu` + branch on 0/1: `(bool) (x & K) == 0` / `!= 0`; C folds the
   `sltu` away (`bool_tests`). A plain `if (A & K)` in C++ needs the explicit
   `(bool) (A & K) != 0`.
+- A list walk tested on entry (`beqz head`) and then on the saved next
+  pointer (`bnez next` with `o = next` in the delay slot): `if (o != 0) do {
+  ...; next = o->next; ...; o = next; } while (next != 0);`; `while (o)` and
+  `for` give `b` to a bottom test of `o` (func_088C33E8, func_088C349C).
 
 ## Types and signedness
 
