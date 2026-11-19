@@ -264,8 +264,9 @@ The object holds the same words as func_088429EC at 0x08842A5C-0x08842A6C
 to one stack slot, both slot addresses taken first, the result read back with
 `lwc1`. `src/unit_088429EC.c` and `src/unit_08841100.cpp` (two sines in one
 function) match this way. So VFPU code no longer has to stay in assembly: write
-it as an inline helper with an `asm` block. Not checked yet: matrix and vector
-forms (`lv.q`, `vmmul`), VFPU register allocation across several blocks.
+it as an inline helper with an `asm` block. `lv.q` / `sv.q` with pointer
+locals are checked too (func_088CE5D4, func_088CEE68). Not checked yet:
+`vmmul`, VFPU register allocation across several blocks.
 
 The phase before such a sine is `K * (float) phase` in the original, with the
 constant loaded after the conversion. `ang = phase; ang = K * (float) ang;`

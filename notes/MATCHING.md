@@ -736,6 +736,47 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   then `sb` of the state): the index goes to a local first, `idx = p->cur;
   p->state = 1; f(p, &p->e[idx]);` (func_088CD230).
 
+- Eight byte stores per pass at consecutive offsets of `base + i`, the sum
+  recomputed at the top of each pass (`addu v0, s1, v1` in the `bnezl` delay
+  slot): speed mode and a plain loop storing through the `char *` sum,
+  `(arg0 + i)[0x2FF] = 0;`. A `u8 *` cast or an array member is turned into
+  a stepped pointer (func_088CE298).
+- A copy loop whose destination register starts at the object itself and
+  stores at the member offsets (`addu t0, s1, zero`, `sb 0x4F4(t0)`, step
+  0xC): the destination is an array member of a structure of the object,
+  `((Obj *) arg0)->unk4F4[i] = p->unk3C[i];`; `(Item *)(arg0 + 0x4F4)` starts
+  the register at the array (func_088CE298).
+- A global first argument loaded in the delay slot of the `jal`, after the
+  member passed second (`lhu a1` / `jal` / `lw a0`): the callee's second
+  parameter has the width of the member (`u16` for `lhu`, `u8` for `lbu`),
+  not `s32` (func_0885CCD0, func_0885CE00, func_0885CE1C called from
+  func_088CE298).
+- A VFPU quad copy `lv.q C000, 0(v0)` / `sv.q C000, 0(v1)`: an inline helper
+  with an `asm` block; the order of its pointer parameters (source first)
+  sets which address is computed first (func_088CE5D4).
+- A stack matrix written with `sv.q` at a 16-byte boundary, a gap between it
+  and the next local: the array is declared `float mtx[16]
+  __attribute__((aligned(16)));` (func_088CEE68).
+- Two addresses `mdl + K` kept in saved registers from before a speed-mode
+  loop (`addiu s7` / `addiu fp` after the counter is cleared): pointer
+  locals assigned between `i = 0;` and `for (; i < 6; i++)` (func_088CEE68).
+- One byte stored to two members with a single load, the higher offset
+  first: `m->unk0[0] = m->unk0[4] = col[0];` (func_088CEE68).
+- `lbu` of an id, `lw` of the table, `sll`, `addu table, table, id` for one
+  store: a pointer local, `m = &part->unk8[ids[0]]; m->unk0[3] = 0;`. The
+  direct `part->unk8[ids[0]].unk0[3] = 0;` puts the sum in the register of
+  the id. In the remainder loop of an unrolled loop the same local decides
+  which register holds the stored constant (func_088CE75C).
+- A `u8` parameter passed on with a plain `addu` and masked at its other
+  uses: the callee's parameter is `u8` too (func_08856D14 called from
+  func_088CF094); an `s32` loop counter passed to that `u8` parameter gets
+  the `andi 0xFF` at the call (func_088CEE68).
+- `sll 24` / `srl 28` of a byte and `andi 0xF` of the same byte: two 4-bit
+  bit-fields, `u8 kind : 4; u8 mode : 4;` (low bits first) (func_088CF094).
+- A byte converted to float through the unsigned sequence (`bltz`, `srl 1`
+  / `or` / `add.s`), the product stored to a byte through the 2^31 test:
+  `m->unk0[0] = 0.65f * (float) (u32) byte;` (func_088CEAB8).
+
 ## Calls and allocation
 
 - PSP EABI: arguments 5-8 in `$t0-$t3`, float arguments in `$f12-$f19` counted apart
