@@ -1325,6 +1325,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088CB364` | 0x088CB364-0x088CB46C | 1 function (C++; state from a flag and clock values) | 100 % |
 | `unit_088CB46C` | 0x088CB46C-0x088CB474 | 1 small function | 100 % |
 | `unit_088CC0E4` | 0x088CC0E4-0x088CC128 | 1 small function | 100 % |
+| `unit_088CC128` | 0x088CC128-0x088CC190 | 1 function (copies three words from a stream) | 100 % |
 | `unit_088CC190` | 0x088CC190-0x088CC478 | 2 small functions | 100 % |
 | `unit_088CC478` | 0x088CC478-0x088CC4D8 | 2 small functions (C++) | 100 % |
 | `unit_088CC4D8` | 0x088CC4D8-0x088CC508 | six functions returning 0 | 100 % |
