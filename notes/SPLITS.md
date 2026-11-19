@@ -1347,6 +1347,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088CE754` | 0x088CE754-0x088CE75C | 1 small function | 100 % |
 | `unit_088CF1B0` | 0x088CF1B0-0x088CF210 | 2 small functions | 100 % |
 | `unit_088D1DD0` | 0x088D1DD0-0x088D1E40 | 1 small function (C++) | 100 % |
+| `unit_088D1E40` | 0x088D1E40-0x088D2674 | 1 function (speed; timed events of an animation by the id at +0x684, 25-case `switch` compiled as a chain) | 100 % |
 | `unit_088D2674` | 0x088D2674-0x088D27BC | 1 function (maps a 16-bit kind 0-8 to an argument of func_09C6EF18); jump table 0x089323C8-0x089323EC in the unit | 100 % |
 | `unit_088D27BC` | 0x088D27BC-0x088D27CC | 1 small function | 100 % |
 | `unit_088D27CC` | 0x088D27CC-0x088D27F4 | 1 small function | 100 % |

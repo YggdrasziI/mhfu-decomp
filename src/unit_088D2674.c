@@ -8,11 +8,11 @@
 typedef int s32;
 typedef short s16;
 
-extern s32 func_08864348(char *, s32);
+extern s32 func_08864348(float, char *, s32);
 extern void func_09C6EF18(char *, s32, s32);
 
-void func_088D2674(char *arg0, s32 arg1, s32 arg2) {
-    if (func_08864348(arg0 + 0x80, 0) == 0) {
+void func_088D2674(char *arg0, float frame, s32 arg1, s32 arg2) {
+    if (func_08864348(frame, arg0 + 0x80, 0) == 0) {
         return;
     }
     switch ((s16) arg2) {
