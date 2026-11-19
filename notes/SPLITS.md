@@ -1259,6 +1259,9 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088C13E8` | 0x088C13E8-0x088C1430 | 1 small function | 100 % |
 | `unit_088C1430` | 0x088C1430-0x088C14C8 | 1 small function (C++) | 100 % |
 | `unit_088C14C8` | 0x088C14C8-0x088C1828 | 2 small functions | 100 % |
+| `unit_088C2B54` | 0x088C2B54-0x088C2B94 | 1 function (seeds a keystream state) | 100 % |
+| `unit_088C2B94` | 0x088C2B94-0x088C2BE0 | 1 function (steps a keystream state) | NonMatching (98.68 %) |
+| `unit_088C2BE0` | 0x088C2BE0-0x088C2CE0 | 1 function (decodes and checks a save block) | 100 % |
 | `unit_088C2CE0` | 0x088C2CE0-0x088C2D74 | 1 small function | 100 % |
 | `unit_088C2F48` | 0x088C2F48-0x088C2F88 | 1 small function | 100 % |
 | `unit_088C2F88` | 0x088C2F88-0x088C2FD8 | 1 small function | 100 % |
