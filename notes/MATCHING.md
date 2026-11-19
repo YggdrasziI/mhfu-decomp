@@ -246,6 +246,12 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   `lwc1` / `swc1`): a structure of an `F4` (four `f32`) and an `f32`, copied
   member by member (func_088B6D10; func_088B1C34 has `F3` + `F2`).
 
+- A large-offset byte array indexed by an argument (`addu $v0, index, base`, then
+  `addiu 0x22F0` + `addiu 0x7FF8`): a structure member array, read and written
+  as `arg0->flags[i]` each time; a `u8 *p = &arg0->flags[i]` local puts the
+  base first (`addu base, index`), and a `char *` sum with the offset folds it
+  into `lui` + `addu` (func_088C6B84, func_088C6BCC).
+
 ## Registers and loops
 
 - Two locals in swapped registers: the declaration order of the locals sets them
@@ -681,6 +687,10 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - Virtual calls (`jalr $t9`): C++ with a class of virtual functions,
   `((Vxx *) X)->vfunc_xx(X, ...)` (`virtual_calls`). Pointer-to-member calls go
   through `__ptmf_test` / `__ptmf_scall` (notes/COMPILER.md).
+- A function ending with a jump through a vtable (`lw $t9, 0xA8($t9)`; `jr $t9`,
+  no frame) where ours calls with `jalr` and returns: C++ makes no tail call at
+  all (virtual or through a function pointer) unless `#pragma exceptions off`;
+  C makes it, but through `$v0` (func_088C6ADC).
 - A parameter still in its argument register is passed on without a move
   (no `addu $a1, $s4, $zero` before the `jal`): the callee does take it,
   `func_08851F20(g, arg1)` (func_088DBBBC, `tools/psp/prototypes.py` counts
