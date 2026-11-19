@@ -24,12 +24,12 @@ extern u8 D_09A28876;
 extern Key D_09A29D3C;
 extern Block D_09A29D44;
 
-extern void func_088B6964(void);
+extern void func_088B6964(Key *, Block *);
 extern void func_088B6B14(s32);
 
 void func_088B1668(Key *arg0, Block *arg1) {
     if (D_09A28876) {
-        func_088B6964();
+        func_088B6964(arg0, arg1);
     }
     D_09A29D3C = *arg0;
     D_09A29D44 = *arg1;
