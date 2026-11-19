@@ -299,6 +299,14 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - The opposite in a speed unit (our loop unrolled by 8, the original one pass per
   iteration, e.g. a variable-count `v /= 12` loop): add `#pragma opt_unroll_loops
   off` after `optimize_for_size off` (func_088FB2B0, 90 % → 97.7 %).
+- A word loop that steps four byte pointers (`buf`, `buf + 1`, `buf + 2`,
+  `buf + 3`, each `+= 4`): speed mode and the four pointers written out
+  (`*p1 = sbox[*p1]`); `buf[i + 1]` or an inner `j` loop keep one pointer
+  (func_088C2D74).
+- A two-way unsigned test through `$at` guarding the rest of the function
+  (`sltiu $at` + `beql $at, zero` to `return 0`): the rest goes inside
+  `if (len < K) { ... }` followed by `return 0`; the early `return 0` form
+  uses `$v0` (func_088C2BE0).
 
 - A compare through `$at` (`slt $at, a, b` + `bnez $at`) where ours uses `$v0`:
   the source says `b <= a` / `a > b`; `a >= b` and `!(a < b)` go through `$v0`
