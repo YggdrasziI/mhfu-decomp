@@ -1581,7 +1581,7 @@ segments:
       - [0xCAB0C, c, unit_088CC558]
       - [0xCAB1C, asm, text_088CC568]
       - [0xCABB8, cpp, unit_088CC604]
-      - [0xCADDC, asm, text_088CC828]
+      - [0xCADDC, cpp, unit_088CC828]
       - [0xCBDB8, c, unit_088CD804]
       - [0xCBF18, cpp, unit_088CD964]
       - [0xCC028, asm, text_088CDA74]
