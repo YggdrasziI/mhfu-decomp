@@ -1281,6 +1281,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088C349C` | 0x088C349C-0x088C351C | 1 function (destroys the object list, C++) | 100 % |
 | `unit_088C351C` | 0x088C351C-0x088C354C | 1 small function | 100 % |
 | `unit_088C354C` | 0x088C354C-0x088C3948 | 4 small functions | 100 % |
+| `unit_088C3948` | 0x088C3948-0x088C3A64 | 1 function (allocates and constructs an object) | NonMatching (95.77 %) |
 | `unit_088C3A64` | 0x088C3A64-0x088C3C54 | 2 small functions | 100 % |
 | `unit_088C3C54` | 0x088C3C54-0x088C3F18 | 2 small functions | 100 % |
 | `unit_088C3F18` | 0x088C3F18-0x088C493C | 10 small functions | 100 % |
