@@ -1361,6 +1361,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088D286C` | 0x088D286C-0x088D2894 | 1 small function | 100 % |
 | `unit_088D2894` | 0x088D2894-0x088D2BEC | 3 functions (C++, speed; VFPU rotations of five bone matrices from 16-bit angles, bone position to world space) | 100 % |
 | `unit_088D2BEC` | 0x088D2BEC-0x088D2C14 | 1 small function | 100 % |
+| `unit_088D2C14` | 0x088D2C14-0x088D2E04 | 1 function (C++, speed; clears four slots with VFPU vectors, fills a list of up to four records from a table searched by id) | 100 % |
 | `unit_088D2E04` | 0x088D2E04-0x088D2E18 | 1 small function | 100 % |
 | `unit_088D3A84` | 0x088D3A84-0x088D3ADC | 1 small function | 100 % |
 | `unit_088D5B54` | 0x088D5B54-0x088D5BD4 | 1 function (`switch` with 11 cases); jump table 0x08932418-0x08932444 in the unit | 100 % |
