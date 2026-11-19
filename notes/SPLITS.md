@@ -1168,6 +1168,8 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088B4D78` | 0x088B4D78-0x088B4E54 | 1 function (C++; stores a checked 8-byte address in D_09A29CD0) | 100 % |
 | `unit_088B4E54` | 0x088B4E54-0x088B4FA4 | 1 function (message builder, kind 0xF) | 100 % |
 | `unit_088B4FA4` | 0x088B4FA4-0x088B4FAC | 1 small function | 100 % |
+| `unit_088B4FAC` | 0x088B4FAC-0x088B5380 | 1 function (join request handler) | NonMatching (97.02 %) |
+| `unit_088B5380` | 0x088B5380-0x088B5560 | 2 functions (message builders, kinds 0x10 and 0x11) | 100 % |
 | `unit_088B5560` | 0x088B5560-0x088B5568 | 1 small function | 100 % |
 | `unit_088B5568` | 0x088B5568-0x088B57A0 | 1 function, NonMatching (97.0 %, order of two byte copies between globals) | not linked |
 | `unit_088B5D3C` | 0x088B5D3C-0x088B5EDC | 1 function (C++; NonMatching 97.2 %: copies a 0xC8-byte structure to D_09A28BFC member by member, two registers swapped) | 100 % |

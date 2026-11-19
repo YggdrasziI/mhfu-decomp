@@ -1410,6 +1410,7 @@ segments:
       - [0xB3408, c, unit_088B4E54]
       - [0xB3558, c, unit_088B4FA4]
       - [0xB3560, asm, text_088B4FAC]
+      - [0xB3934, c, unit_088B5380]
       - [0xB3B14, c, unit_088B5560]
       - [0xB3B1C, asm, text_088B5568]
       - [0xB3D54, asm, text_088B57A0]
