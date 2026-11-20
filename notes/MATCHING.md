@@ -1101,6 +1101,18 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - Counter and stepped pointer of the last loop in each other's saved
   register although every declaration order was tried: the loop has its
   own counter, not the one of an earlier loop (func_088DC40C).
+- `seh a0, v0` right after a call, the value shifted later from `$a0`
+  (ours: `seh v0, v0` and the shift into `$a0`): an `int` local holding the
+  narrowed result, `s32 id = (s16) f();`, not an `s16` local
+  (func_088DCA10).
+- Independent set-up statements (a load, float constants, table addresses)
+  with one instruction scheduled elsewhere (`mtc1` before or after a
+  `lhu`): the order of the statements decides; assign the locals in
+  separate statements and permute those (func_088DCB00: index and first
+  pointer before the two factors, second pointer last).
+- Four bytes built on the stack and returned in `$v0` (`lw v0, 0xC(sp)`):
+  a union of `u8 c[4]` and `u32`, returned through the `u32`
+  (func_088DCB00).
 
 ## Calls and allocation
 
