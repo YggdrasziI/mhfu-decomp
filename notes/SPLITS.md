@@ -1414,7 +1414,11 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088DA974` | 0x088DA974-0x088DAA54 | 1 small function | 100 % |
 | `unit_088DAA54` | 0x088DAA54-0x088DAA98 | 1 small function (C++) | 100 % |
 | `unit_088DAA98` | 0x088DAA98-0x088DAAA0 | 1 small function | 100 % |
+| `unit_088DAAA0` | 0x088DAAA0-0x088DACA4 | 3 functions (speed: 16-bit value at +0x60C from the first item's record and states; count of leading entries below a value in a row of seven; state test) | 100 % |
 | `unit_088DACA4` | 0x088DACA4-0x088DACF8 | 1 small function | 100 % |
+| `unit_088DACF8` | 0x088DACF8-0x088DAD58 | 1 small function | 100 % |
+| `unit_088DAD58` | 0x088DAD58-0x088DADD8 | 1 function, NonMatching (88.9 %: list pointer built after the first test, two saved registers swapped); picks the 0x14-byte entry of the table at 0x089B07A0 for a key | not linked |
+| `unit_088DADD8` | 0x088DADD8-0x088DAE98 | 1 function (speed: the 16-bit value at +0x420, times 1.05 in one state) | 100 % |
 | `unit_088DAE98` | 0x088DAE98-0x088DAEB0 | 2 small functions | 100 % |
 | `unit_088DAEB0` | 0x088DAEB0-0x088DAF18 | 1 function (C++); optimized for speed | 100 % |
 | `unit_088DAF18` | 0x088DAF18-0x088DAFC8 | 1 small function | 100 % |
