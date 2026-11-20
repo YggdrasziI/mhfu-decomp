@@ -1402,6 +1402,9 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088D8900` | 0x088D8900-0x088D897C | 2 small functions | 100 % |
 | `unit_088D897C` | 0x088D897C-0x088D8DA4 | 1 function (speed: the six entries at +0x676 / +0x634 / +0x63A rebuilt from the 7-byte records of D_089B7B60, ranked and sorted) | 100 % |
 | `unit_088D8DA4` | 0x088D8DA4-0x088D8DF4 | 1 small function | 100 % |
+| `unit_088D8DF4` | 0x088D8DF4-0x088D92F8 | 2 functions (C++, speed: sum of func_0885CF9C over the five items; the 16-bit value at +0x420 from func_0885D300, pair, item and state bonuses, stored / 100 at +0x380) | 100 % |
+| `unit_088D92F8` | 0x088D92F8-0x088D9EB8 | 3 functions (C++, speed: the sibling value at +0x422, half of it at +0x384; the five floats at +0x39C from func_0885D300 and their state bonuses) | 100 % |
+| `unit_088D9EB8` | 0x088D9EB8-0x088DA008 | 2 functions (speed: a value added to the float chosen by a key; the five signed bytes at +0x6993D of the global object added to the floats) | 100 % |
 | `unit_088DA008` | 0x088DA008-0x088DA150 | 1 small function | 100 % |
 | `unit_088DA150` | 0x088DA150-0x088DA168 | 1 small function | 100 % |
 | `unit_088DA2C4` | 0x088DA2C4-0x088DA324 | 1 small function | 100 % |
