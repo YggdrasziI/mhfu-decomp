@@ -1379,6 +1379,9 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088D61CC` | 0x088D61CC-0x088D6388 | 1 function (C++: three words and two 16-bit values of D_08A62C68 copied to +0x480, masked or cleared by flags) | 100 % |
 | `unit_088D6388` | 0x088D6388-0x088D6488 | 1 function (value from one of three tables of 16-bit rows); jump table 0x08932444-0x0893245C in the unit | 100 % |
 | `unit_088D6488` | 0x088D6488-0x088D64E0 | 1 small function | 100 % |
+| `unit_088D64E0` | 0x088D64E0-0x088D66F4 | 2 functions (C++: move of the position at +0x200 towards +0x650 in steps, VFPU distance; clamped add to the 16-bit value at +0x2E4) | 100 % |
+| `unit_088D66F4` | 0x088D66F4-0x088D6924 | 1 function, NonMatching (C++, 99.7 %: register order of three `s16` in two of six item copies); copies the global record's items to the object | not linked |
+| `unit_088D6924` | 0x088D6924-0x088D69F0 | 1 function (C++: 24 pairs of the global object copied to func_08856884's pairs and to +0x568) | 100 % |
 | `unit_088D69F0` | 0x088D69F0-0x088D6A1C | 1 small function | 100 % |
 | `unit_088D6A1C` | 0x088D6A1C-0x088D6AC8 | 2 functions (a byte looked up in the six bytes at +0x676, and in five bytes of a global record) | 100 % |
 | `unit_088D6AC8` | 0x088D6AC8-0x088D6B00 | 1 small function | 100 % |
