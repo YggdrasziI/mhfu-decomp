@@ -1026,6 +1026,16 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   for the nested loops, not the `i` of the other loops; two byte swaps
   loaded together (`lbu` x4 then `sb` x4) are two plain three-statement
   exchanges in a row (func_088D897C).
+- `lhu` / `sra 1` / `sh` to halve a `u16` (ours: `srl` with `>>= 1` or
+  `/= 2`): the plain form `x = x >> 1`; `x += x / 2` gives the `ext` / `addu`
+  pair (func_088D92F8).
+- Five float fields updated with one constant kept in `$f1` (`lwc1` / `add.s`
+  / `swc1` five times): a counted loop over the fields as an array, unrolled
+  in speed mode; single updates keep `x += K` (func_088D9880,
+  func_088D9F3C).
+- A caller that passes an `s16` value without `seh` to a function whose
+  definition narrows it: the caller sees an `s32` parameter, so the two are
+  in different units (func_088D96BC calling func_088D9EB8).
 
 ## Calls and allocation
 
