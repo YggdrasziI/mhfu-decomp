@@ -981,6 +981,18 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - A `for` whose bound is a variable has a guard and a bottom test
   (`blez n, end`; ours jumps to the test): `i = 0; if (n > 0) { do { ...
   i++; } while (i < n); }` (func_088D7AD8).
+- A 16-bit angle converted with a plain `mtc1` / `cvt.s.w` (ours: the
+  unsigned sequence with `bltz`, or reloads from the stack): mask an `int`,
+  `K * (a & 0xFFFF)`, and pass the three products as arguments of an inline
+  setter (`vec_set4(&rot, K * (ang.x & 0xFFFF), ...)`); a helper taking
+  pointers reloads the fields (func_088D852C, func_088D8740).
+- `addu v0, v1, zero` to return 1 from the register of an earlier `== 1`
+  test, `addu v0, zero, zero` elsewhere (ours: `andi v0, v1, 0xff` bool
+  merging, or the call result kept in v0): `if (a) { if (x) return 1; }
+  else if (y) return 1; return 0;` with literal returns (func_088D852C).
+- Destination and source pointers of a VFPU helper in swapped registers:
+  take the destination in a local after the source is filled, `po = &out;
+  vec_tfm3(po, &m, &v);` (func_088D8740).
 - Two stepped pointers in swapped saved registers in a counted loop: declare
   them in the reverse order (`char *rec; char *own;` gives `rec` the higher
   register) (func_088D6924).
