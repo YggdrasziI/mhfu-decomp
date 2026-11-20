@@ -1036,6 +1036,23 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - A caller that passes an `s16` value without `seh` to a function whose
   definition narrows it: the caller sees an `s32` parameter, so the two are
   in different units (func_088D96BC calling func_088D9EB8).
+- Byte locals filled from one of two record tables, in other registers and
+  loaded in another order than the original: here the declaration order
+  does change the registers (kind, type, elem, power, elem value, base,
+  flag, then the 16-bit results) and the loads must be written in one
+  order in both branches (type, elem, power, elem value, base; `= 0` at the
+  same place in the branch without the field). Found by permuting the
+  declarations, then the statements of each branch (func_088DA398).
+- A jump table for a `switch` whose first cases do nothing (ours: a compare
+  chain): write the empty cases, `case 0: case 1: case 2: case 3: break;`
+  (func_088DA398).
+- `seh v0, a2` / `blezl` before a call that takes the value, the value kept
+  in the argument register and moved to `$v0` at the end: one `return` at
+  the end, `if (val > 0) { if (flag != 0) val = f(obj, flag, val); } return
+  val;` (func_088DA398).
+- `bnel` to a shared `return 0` for the first test and `beql` to `return 1`
+  for the second: one condition, `if (a == 0 && (x == K1 || x == K2 || ...))
+  return 1; return 0;` (func_088DA324).
 
 ## Calls and allocation
 
