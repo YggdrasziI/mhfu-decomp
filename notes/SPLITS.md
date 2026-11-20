@@ -24,6 +24,11 @@ bytes found byte for byte. The compression files (`jc*.c`, `jfdct*.c`), `jdatads
 functions of `jddctmgr.c`, 8 of the 9 of `jdmainct.c`, parts of `jdcoefct.c`,
 `jdsample.c` and `jmemnobs.c` (other build options or changed code: to look at);
 `jerror.c` and `jmemmgr.c` were not built (they need more of the C library headers).
+Second survey, same day, with `MAX_COMPONENTS` 4 (`notes/PROVENANCE.md`): 0xF090
+bytes byte for byte; `jdcoefct.c`, `jdinput.c`, `jdmainct.c` and `jdsample.c` are
+complete. Still different: `start_pass` of `jddctmgr.c`; not in the image:
+`save_marker`, `jpeg_save_markers`, `jpeg_set_marker_processor` (`jdmarker.c`),
+`jpeg_new_colormap` (`jdmaster.c`), four allocation stubs of `jmemnobs.c`.
 Functions of a linked file that are not in the image are taken as dropped by the
 original linker (hypothesis).
 
@@ -1501,10 +1506,8 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `jpeg-6b/jcomapi` | 0x088DE804-0x088DE8EC | 4 functions: `jcomapi.c` of the IJG JPEG library 6b, unmodified source (`notes/PROVENANCE.md`); `-O4,p` | 100 % |
 | `jpeg-6b/jdapimin` | 0x088DE8EC-0x088DEF50 | 6 functions: `jdapimin.c` of the library, unmodified; 3 functions not in the image removed from the object (`decomp.toml`, `[compiler.drop_functions]`); jump table 0x089324BC-0x089324E8 in the unit | 100 % |
 | `jpeg-6b/jdapistd` | 0x088DEF50-0x088DF2C4 | 3 functions: `jdapistd.c` of the library, unmodified; 3 functions not in the image removed from the object | 100 % |
-| `unit_088DF31C` | 0x088DF31C-0x088DF324 | 1 small function | 100 % |
-| `unit_088DF698` | 0x088DF698-0x088DF6A0 | 1 small function | 100 % |
-| `unit_088E0DE4` | 0x088E0DE4-0x088E0DFC | 1 small function | 100 % |
-| `unit_088E1084` | 0x088E1084-0x088E108C | 1 small function | 100 % |
+| `jpeg-6b/jdcoefct` | 0x088DF2C4-0x088E0640 | 10 functions: `jdcoefct.c` of the library, unmodified (`MAX_COMPONENTS` 4 in `jmorecfg.h`) | 100 % |
+| `jpeg-6b/jdcolor` | 0x088E0640-0x088E13C0 | 8 functions: `jdcolor.c` of the library, unmodified | 100 % |
 | `unit_088E30B0` | 0x088E30B0-0x088E30C4 | 1 small function | 100 % |
 | `unit_088E62EC` | 0x088E62EC-0x088E6310 | 1 small function | 100 % |
 | `unit_088E744C` | 0x088E744C-0x088E7460 | 1 small function | 100 % |
@@ -1518,8 +1521,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088EEE00` | 0x088EEE00-0x088EEE38 | 1 small function | 100 % |
 | `unit_088EEE38` | 0x088EEE38-0x088EEE40 | 1 small function | 100 % |
 | `unit_088EEFF0` | 0x088EEFF0-0x088EF000 | 1 small function | 100 % |
-| `unit_088EF1F4` | 0x088EF1F4-0x088EF224 | 2 small functions | 100 % |
-| `unit_088EF2B4` | 0x088EF2B4-0x088EF2C0 | 1 small function | 100 % |
+| `jpeg-6b/jutils` | 0x088EF1F4-0x088EF2C0 | 5 functions: `jutils.c` of the library, unmodified; `jpeg_natural_order` 0x089327C4-0x08932904 in the unit | 100 % |
 | `unit_088EF2C0` | 0x088EF2C0-0x088EF2C8 | 1 small function | 100 % |
 | `unit_088EF2C8` | 0x088EF2C8-0x088EF348 | 1 small function | 100 % |
 | `unit_088EF348` | 0x088EF348-0x088EF380 | 4 forwarders with a fixed first argument, 1 empty function | 100 % |

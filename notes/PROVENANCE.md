@@ -37,7 +37,8 @@ in the image (hypothesis: unused, dropped by the original linker).
 
 | Our file | Source | Changes |
 |---|---|---|
-| `src/jpeg-6b/README`, `jcomapi.c`, `jdapimin.c`, `jdapistd.c`, `jinclude.h`, `jpeglib.h`, `jmorecfg.h`, `jpegint.h`, `jerror.h` | release 6b | none |
+| `src/jpeg-6b/README`, `jcomapi.c`, `jdapimin.c`, `jdapistd.c`, `jdcoefct.c`, `jdcolor.c`, `jutils.c`, `jinclude.h`, `jpeglib.h`, `jpegint.h`, `jerror.h` | release 6b | none |
+| `src/jpeg-6b/jmorecfg.h` | release 6b | one line: `MAX_COMPONENTS` is 4 instead of 10 (the value its own comment gives for builds short on memory). Evidence: with 10, six words of `jdcoefct.c` differ (private structure 0x18 bytes larger) and `jdinput.c`, `jdmainct.c`, `jdsample.c` do not match; with 4 all their functions are byte for byte |
 | `src/jpeg-6b/jconfig.h` | not from the distribution: written for this project from the options of its `jconfig.doc` | `boolean` is `unsigned char` (one byte in the original code) |
 | `include/libc/*.h` | written for this project | minimal `<stddef.h>`, `<stdlib.h>`, `<stdio.h>`, `<string.h>` for the library sources |
 

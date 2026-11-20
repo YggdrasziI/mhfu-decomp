@@ -59,5 +59,32 @@ jinit_input_controller = 0x088E3250; // type:func size:0x78
 jinit_marker_reader = 0x088E6310; // type:func size:0xDC
 jinit_master_decompress = 0x088E6DF0; // type:func size:0x5C
 jinit_memory_mgr = 0x088EC284; // type:func size:0x138
+// jdcoefct.c of the IJG JPEG library, built from its source (notes/PROVENANCE.md)
+start_iMCU_row = 0x088DF2C4; // type:func size:0x58
+start_input_pass = 0x088DF31C; // type:func size:0x8
+start_output_pass = 0x088DF324; // type:func size:0x70
+decompress_onepass = 0x088DF394; // type:func size:0x304
+dummy_consume_data = 0x088DF698; // type:func size:0x8
+consume_data = 0x088DF6A0; // type:func size:0x208
+decompress_data = 0x088DF8A8; // type:func size:0x244
+smoothing_ok = 0x088DFAEC; // type:func size:0x170
+decompress_smooth_data = 0x088DFC5C; // type:func size:0x830
+jinit_d_coef_controller = 0x088E048C; // type:func size:0x1B4
+// jdcolor.c of the IJG JPEG library, built from its source (notes/PROVENANCE.md)
+build_ycc_rgb_table = 0x088E0640; // type:func size:0x600
+ycc_rgb_convert = 0x088E0C40; // type:func size:0x128
+null_convert = 0x088E0D68; // type:func size:0x7C
+grayscale_convert = 0x088E0DE4; // type:func size:0x18
+gray_rgb_convert = 0x088E0DFC; // type:func size:0x118
+ycck_cmyk_convert = 0x088E0F14; // type:func size:0x170
+start_pass_dcolor = 0x088E1084; // type:func size:0x8
+jinit_color_deconverter = 0x088E108C; // type:func size:0x334
 // C library: target of the IJG library's MEMCOPY (memcpy) calls in jutils.c
 memcpy = 0x0880C084; // type:func
+// jutils.c of the IJG JPEG library, built from its source (notes/PROVENANCE.md)
+jdiv_round_up = 0x088EF1F4; // type:func size:0x18
+jround_up = 0x088EF20C; // type:func size:0x18
+jcopy_sample_rows = 0x088EF224; // type:func size:0x7C
+jcopy_block_row = 0x088EF2A0; // type:func size:0x14
+jzero_far = 0x088EF2B4; // type:func size:0xC
+jpeg_natural_order = 0x089327C4; // size:0x140
