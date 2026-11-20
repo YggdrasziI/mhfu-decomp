@@ -319,9 +319,10 @@ def main() -> None:
         outputs.append(posix(out))
         n.newline()
 
-    unused = sorted(set(drop_functions()) - dropping)
+    # a source that this version does not link yet is fine; one that does not exist is not
+    unused = sorted(source for source in set(drop_functions()) - dropping if not (ROOT / source).is_file())
     if unused:
-        sys.exit(f"decomp.toml: [compiler.drop_functions]: not a compiled source: {', '.join(unused)}")
+        sys.exit(f"decomp.toml: [compiler.drop_functions]: no source {', '.join(unused)}")
     n.build("check", "check", posix(config_dir / "build.sha1"), implicit=outputs)
 
     write_objdiff(units)
