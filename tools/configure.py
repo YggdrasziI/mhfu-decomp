@@ -44,6 +44,8 @@ WIBO_VERSION = "1.2.0"  # runs the Windows compiler on Linux and macOS
 COMPILER = project.CONFIG["compiler"]["name"]
 CC_EXE = project.CONFIG["compiler"]["exe"]
 CC_FLAGS = project.CONFIG["compiler"]["flags"] + " -Iinclude -Isrc"
+# extra flags for the sources of a directory ([compiler.dir_flags] of decomp.toml)
+DIR_FLAGS = project.CONFIG["compiler"].get("dir_flags", {})
 
 AS_FLAGS = "-EL -march=mips32r2 -mabi=32 -G0 -no-pad-sections -Iinclude"
 LD_FLAGS = "-EL --no-check-sections"
@@ -77,6 +79,12 @@ def tool(name: str) -> str:
 
 def posix(path: Path | str) -> str:
     return str(path).replace("\\", "/")
+
+
+def cc_variables(source: str) -> dict | None:
+    """ninja variables of one compile: the flags of the source's directory, if any."""
+    extra = [flags for d, flags in DIR_FLAGS.items() if source.startswith(d.rstrip("/") + "/")]
+    return {"cc_flags": " ".join(["$cc_flags"] + extra)} if extra else None
 
 
 def split(module: project.Module) -> None:
@@ -221,7 +229,8 @@ def main() -> None:
                     unit_objs.append(obj)
             elif src.endswith((".c", ".cpp")):
                 source = src[len(posix(build_dir)) + 1:]
-                n.build(obj, "cc", source, implicit=cc_deps + [posix(binutils_stamp)])
+                n.build(obj, "cc", source, implicit=cc_deps + [posix(binutils_stamp)],
+                        variables=cc_variables(source))
                 unit = Path(source).with_suffix("").relative_to("src").as_posix()
                 target_asm = write_target_asm(module.name, unit)
                 # A C unit holds matched functions only, so it is always linked from source
