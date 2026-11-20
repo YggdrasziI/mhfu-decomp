@@ -962,6 +962,25 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - `seh` of a saved register before each comparison but none at the return:
   the variable is `s16` and so is the function's return type; a `s32`
   variable with casts hoists the extension (func_088D72A4).
+- A narrow parameter masked again at each use, into a scratch register,
+  and passed on in its incoming register without a move (ours: one masked
+  copy in a saved register): the parameter is an `int`, masked where it is
+  used (`arg1 & 0xFFFF`), and the table lookup goes through an inline
+  helper with a `u16` parameter (func_088D777C).
+- A search loop that steps a pointer next to the index (`lhu 0x568(a0)`,
+  `addiu a0, a0, 4`): write the pointer, `p = arg0; do { if (*(u16 *)(p +
+  0x568) == id) ...; i++; p += 4; } while (i < 0x18);`; the body then
+  indexes the array again (func_088D777C, func_088D7904).
+- `i * 4 + base` computed twice for two fields of one element (ours: one
+  sum, or a pointer to the element): index two arrays, one per field,
+  `((Pair *)(o + 0x542))[i].unk0 = id; ... *(s16 *) &((Pair *)(o +
+  0x544))[i] = n;` (func_088D7904, func_088D777C).
+- Index and pointer of the first of two search loops in swapped scratch
+  registers: give that loop its own index, declared before the other one,
+  and keep the pointer shared (func_088D7904).
+- A `for` whose bound is a variable has a guard and a bottom test
+  (`blez n, end`; ours jumps to the test): `i = 0; if (n > 0) { do { ...
+  i++; } while (i < n); }` (func_088D7AD8).
 - Two stepped pointers in swapped saved registers in a counted loop: declare
   them in the reverse order (`char *rec; char *own;` gives `rec` the higher
   register) (func_088D6924).
@@ -1005,6 +1024,8 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - Saved registers in another order although every declaration order gives
   the same code (original: result, parameters, then masked id and loop
   index; ours: index and masked id first): func_088D72A4.
+- Three saved registers rotated (count, mode, masked index) whatever the
+  declaration order: func_088D7AD8.
 - Three `s16` copied through temporaries (x, y, z loaded into descending
   registers, then stored): ours loads y, z, x with x in the register of the
   previous temporary, for every helper form tried; function-level
