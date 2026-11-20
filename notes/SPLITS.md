@@ -1385,6 +1385,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088D69F0` | 0x088D69F0-0x088D6A1C | 1 small function | 100 % |
 | `unit_088D6A1C` | 0x088D6A1C-0x088D6AC8 | 2 functions (a byte looked up in the six bytes at +0x676, and in five bytes of a global record) | 100 % |
 | `unit_088D6AC8` | 0x088D6AC8-0x088D6B00 | 1 small function | 100 % |
+| `unit_088D6B00` | 0x088D6B00-0x088D71F0 | 3 functions (C++, speed: heading at +0x1F4 turned towards +0x320 by a state-dependent step; nearest object within 1500 units and the 16-bit value at +0x68C turned towards it, VFPU distance / normalize / arc tangent; step of the move started by func_088D64E0, VFPU add) | 100 % |
 | `unit_088D71F0` | 0x088D71F0-0x088D722C | 1 small function | 100 % |
 | `unit_088D722C` | 0x088D722C-0x088D72A4 | 1 function (C++: tells whether one of the 24 pairs of func_08856884 is free) | 100 % |
 | `unit_088D72A4` | 0x088D72A4-0x088D773C | 1 function, NonMatching (C++, 97.8 %: saved register allocation, one load order); adds to the count of a pair and reports the outcome | not linked |
