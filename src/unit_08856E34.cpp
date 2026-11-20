@@ -11,7 +11,7 @@ extern "C" {
 
 extern char *D_089CC438;
 
-s32 func_08856E34(void) {
+s32 func_08856E34(char *arg0) {
     s32 temp_v1;
 
     temp_v1 = *(s32 *)(D_089CC438 + 0x6AF14);
