@@ -930,6 +930,17 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - A chain `beql 3` / `beq 9` / `beq 4` / `beq 6` / `bne 10` over a block
   (ours with a `switch` of empty cases: `beq 10` and a `b`): `if (k == 3 ||
   k == 9 || k == 4 || k == 6 || k == 10) { ... }` (func_088D3F68).
+- A call result moved twice before the next call (`addu a2, v0, zero` /
+  `addu a1, a2, zero`): the result is assigned to the parameter that lives
+  in that register, `arg2 = o->f(...); g(p, arg2, i, 0.0f);`
+  (func_088D5F30, func_088D5FE4).
+- A loop offset kept apart from its base (`addu a1, s1, s3` with `s3 += 100`,
+  cleared after the entry test) where ours folds the base into the stepped
+  register: cast the product, `arg1 + (s32) (i * 100)` with `i` unsigned
+  (func_088D5F30).
+- `seb` of a byte before the add (ours) where the original adds the raw
+  `lb` value, stores it and sign-extends after: `p->b = p->b + n;`, not
+  `p->b += n;` (func_088D5EF0).
 
 ## Calls and allocation
 
