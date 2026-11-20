@@ -1400,6 +1400,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088D852C` | 0x088D852C-0x088D88F0 | 2 functions (C++, VFPU: offset rotated about Y by a 16-bit angle; height test in front of the object, per-object offset added to a position) | 100 % |
 | `unit_088D88F0` | 0x088D88F0-0x088D8900 | 2 small functions | 100 % |
 | `unit_088D8900` | 0x088D8900-0x088D897C | 2 small functions | 100 % |
+| `unit_088D897C` | 0x088D897C-0x088D8DA4 | 1 function (speed: the six entries at +0x676 / +0x634 / +0x63A rebuilt from the 7-byte records of D_089B7B60, ranked and sorted) | 100 % |
 | `unit_088D8DA4` | 0x088D8DA4-0x088D8DF4 | 1 small function | 100 % |
 | `unit_088DA008` | 0x088DA008-0x088DA150 | 1 small function | 100 % |
 | `unit_088DA150` | 0x088DA150-0x088DA168 | 1 small function | 100 % |

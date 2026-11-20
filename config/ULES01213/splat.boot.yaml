@@ -1648,7 +1648,7 @@ segments:
       - [0xD6AE0, cpp, unit_088D852C]
       - [0xD6EA4, c, unit_088D88F0]
       - [0xD6EB4, c, unit_088D8900]
-      - [0xD6F30, asm, text_088D897C]
+      - [0xD6F30, c, unit_088D897C]
       - [0xD7358, c, unit_088D8DA4]
       - [0xD73A8, asm, text_088D8DF4]
       - [0xD85BC, c, unit_088DA008]
