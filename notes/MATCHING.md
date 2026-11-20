@@ -996,6 +996,20 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - Two stepped pointers in swapped saved registers in a counted loop: declare
   them in the reverse order (`char *rec; char *own;` gives `rec` the higher
   register) (func_088D6924).
+- `bnel` to the join with the assignment in its delay slot, then the same
+  assignment again in a block of its own (ours: `beqzl` / `b` per test): the
+  tests share one assignment, `if (a || b) v = K;` or `if (a && b && c) v =
+  K1; else v = K2;`; the compiler duplicates it (func_088D6B00).
+- Comparison with a constant in `$at` or in `$v1`: `x < K`, `x > K` and
+  `a <= b` put the `slt` result in `$at` and branch on false; `x >= K` and
+  `!(a < b)` use `$v1` and branch on true. `if (x != K) v = A; else v = B;`
+  gives `beql` where the `==` form and the ternary give `bnel`
+  (func_088D6B00, func_088D6D10).
+- A `b` to the epilogue with a `nop` and a second epilogue label where the
+  original has one: an early `return` inside the first branch; write the
+  rest of the function as the `else` (func_088D6D10).
+- `addiu v1, v1, -K` / `sltiu at, v1, N` for a range test: `(u32) (x - K) <
+  N` (two `slti` for `x >= K && x < K + N`) (func_088D6B00).
 
 ## Calls and allocation
 
