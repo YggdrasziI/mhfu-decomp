@@ -1,4 +1,4 @@
-/* unit_088DD8A8: 0x088DD8A8-0x088DDF50 (ULES01213)
+/* unit_088DD8A8: 0x088DD8A8-0x088DDE20 (ULES01213)
  *
  * Bounds (hypothesis): 6 functions between unit_088DD868 and func_088DDE20,
  * which is still in assembly (text_088DDE20).
