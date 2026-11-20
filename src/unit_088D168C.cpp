@@ -12,7 +12,13 @@
  * `s32` local or through an `s32` inline function gives the original order
  * and registers, but then the offset 0x6AF14 is added with `lui at` /
  * `ori at` instead of `lui v1, 7` / `lw a0, -0x50EC(v1)`, and the constant 1
- * is loaded before the `andi`.
+ * is loaded before the `andi` (the same with the masked value in a local, a
+ * struct member for the flag word, or an inline function returning the
+ * masked word). A `u16` copy of the id made before the test (`raw = id
+ * field; id = raw;` or a `u16` id) also gives the original order and
+ * registers with the folded offset (98.1 %), but the load becomes `lhu` and
+ * the subtraction gains an extension. Same-width copies, an `s32` id, the
+ * copy after the test and `== true` change nothing.
  *
  * C++: bool conversion, member function. Optimized for speed.
  */
