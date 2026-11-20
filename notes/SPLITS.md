@@ -14,6 +14,19 @@
 | 0x08906934 - 0x0890BE00 (edge between 0x0890BD68 and 0x0890BE00) | not Metrowerks: start-up code (entry point 0x08906934), GU graphics library | style markers; imports and strings below |
 | 0x0890BE00 - 0x0890DE38 | Metrowerks, C++ runtime (hypothesis) | 7 functions linked from C (2026-11-12); `std::exception` strings |
 
+Inside the Metrowerks region, 0x088DE804 - 0x088EF2C0 is the IJG JPEG library,
+release 6b, decoder side (`notes/PROVENANCE.md`). Survey of 2026-11-20: 42 files of
+the distribution built unmodified with `-O4,p` and each function searched in the
+image (relocated fields masked). 22 files have functions there, in the library's
+file order from `jcomapi.c` (0x088DE804) to `jutils.c` (ends 0x088EF2C0): 0xCF34
+bytes found byte for byte. The compression files (`jc*.c`, `jfdct*.c`), `jdatadst.c`,
+`jdatasrc.c` and `jdtrans.c` are not in the image. Not found as they are: both
+functions of `jddctmgr.c`, 8 of the 9 of `jdmainct.c`, parts of `jdcoefct.c`,
+`jdsample.c` and `jmemnobs.c` (other build options or changed code: to look at);
+`jerror.c` and `jmemmgr.c` were not built (they need more of the C library headers).
+Functions of a linked file that are not in the image are taken as dropped by the
+original linker (hypothesis).
+
 Edges (2026-11-12): the last function of the first region is `func_08811B3C`
 (ends 0x08811C84); the last Metrowerks-style function before the second region is
 `func_089039AC` (ends 0x08903A94), the first non-Metrowerks one `func_08903A94`.
