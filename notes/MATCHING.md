@@ -1098,9 +1098,11 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   `addu s2, zero, zero` in the delay slot; `addu s1, s4, zero`): the
   compiler's own, write `&base[k]` at each use; a pointer in the `for`
   header is set before the guard (func_088DC40C).
-- Counter and stepped pointer of the last loop in each other's saved
-  register although every declaration order was tried: the loop has its
-  own counter, not the one of an earlier loop (func_088DC40C).
+- Counter and stepped pointer of a loop in each other's register, or the
+  counter of a loop and the base pointer / temporaries around it in other
+  registers, although every declaration order was tried: each loop has its
+  own counter, not the one of an earlier loop (func_088DC40C,
+  func_088DCFCC: three loops, three counters).
 - `seh a0, v0` right after a call, the value shifted later from `$a0`
   (ours: `seh v0, v0` and the shift into `$a0`): an `int` local holding the
   narrowed result, `s32 id = (s16) f();`, not an `s16` local
