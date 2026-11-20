@@ -292,6 +292,34 @@ The phase before such a sine is `K * (float) phase` in the original, with the
 constant loaded after the conversion. `ang = phase; ang = K * (float) ang;`
 gives it: with a plain `ang` the compiler swaps the `mul.s` operands, with
 the conversion inside the product it loads the constant first.
+
+Also checked (2026-11-20, func_088CF2C8): `vsin.t`, `vcos.t`, `vneg.s`,
+`vadd.s`, `vsub.s`, `vmul.s` on any register, and a `nop` written inside a
+block.
+
+## Inlining depth (2026-11-20)
+
+func_088CF2C8 (0x160C) has ten rotations, each two inline levels deep: a
+helper with its own matrix (`Mtx m; mtx_identity(&m); rot_x(&m, ang);
+mtx_mul3(mtx, &m, mtx);`) calling the rotation block. With the build flags
+alone the compiler inlines the first level and leaves `rot_x` / `rot_y` /
+`rot_z` as calls (74 %); the helpers one level deep (sine, vector set) are
+inlined. Any of these gives the original code, 100 %:
+
+- `#pragma inline_depth(2)` (also 3, 4, 8) or `#pragma inline_bottom_up on`
+  in the file;
+- `-inline level=2` (or `level=8`) or `-inline bottomup` on the command line.
+
+`inline_depth(smart)`, `auto_inline on`, `inline_max_size`,
+`inline_max_total_size`, `-inline on` / `all` / `auto` / `deferred` do not.
+
+Hypothesis, not proven: the game was built with one of these settings.
+`-inline bottomup` added to the flags of every unit keeps `BOOT.BIN: OK` and
+the report without a regression (1695 functions, no NonMatching unit
+improved), so nothing contradicts it, but one function is the only evidence
+for it. Until a second function needs it, the unit carries
+`#pragma inline_depth(2)` and the build flags stay as they are.
+
 ## Candidates
 
 | Compiler | Where | Status |

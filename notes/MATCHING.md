@@ -889,6 +889,29 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - Saved registers s0, s1, s2 for three pointer locals follow the reverse of
   their declaration order (declared `p`, `item`, `state`: `state` in s0)
   (func_088D08D4).
+- Inline helpers left as calls (`jal rot_x`) two levels below a large
+  function: `#pragma inline_depth(2)` (notes/COMPILER.md, "Inlining depth")
+  (func_088CF2C8).
+- A flag word read once and kept (`lhu a1`), its mask `andi a0, a1, 0xF00`
+  computed again for the table index where ours keeps the masked value: read
+  the word into a `u16` local for the tests and index with the field itself,
+  `w = item->unk2; if (w & 4) ...; if ((w & 0xF00) != 0 ...) ... D[(item->unk2
+  & 0xF00) >> 8]` (func_088CF2C8).
+- Stores to a local that nothing reads, kept by the original (three floats
+  at +0x30 of a matrix local): they are the fourth row of that matrix, which
+  a VFPU block reads later, not a separate vector (func_088CF2C8).
+- Three floats loaded, then stored together, the first store placed before
+  the third load in ours when the copy is an inline helper with a cast
+  destination: write the three assignments directly, `mtx.m[12] = pos.x;
+  ...` (func_088CF2C8).
+- `mul.s` operands swapped for `table[i] * s` with `s` the result of an
+  inline VFPU helper: read the table entry into a float local first, `amp =
+  D[i]; f = amp * s2;`; the local also serves the second product
+  (func_088CF2C8).
+- `beql` to the reset store (`sh zero` in the delay slot) where ours has
+  `bnel` and a jump: `if (v != 0xFFFF) v++; else v = 0;` (func_088CF2C8).
+- A `u16` field converted to float takes the unsigned path (`bltz`, `srl`,
+  `or`, `add.s`) without a cast (func_088CF2C8).
 
 ## Calls and allocation
 
