@@ -31,3 +31,10 @@ func_088C6AF0 = 0x088C6AF0; // type:func size:0x8
 // and func_088C7298)
 func_088C7298 = 0x088C7298; // type:func size:0x18
 func_088C72B0 = 0x088C72B0; // type:func size:0x174
+
+// IJG JPEG library, release 6b (notes/PROVENANCE.md): names proven by building the
+// library's unmodified jcomapi.c, which gives these four functions byte for byte
+jpeg_abort = 0x088DE804; // type:func size:0x54
+jpeg_destroy = 0x088DE858; // type:func size:0x3C
+jpeg_alloc_quant_table = 0x088DE894; // type:func size:0x2C
+jpeg_alloc_huff_table = 0x088DE8C0; // type:func size:0x2C

@@ -5,8 +5,8 @@
 
 typedef int s32;
 
-extern void func_088DE858(s32);
+extern void jpeg_destroy(s32);
 
 void func_088DEA14(s32 arg0) {
-    func_088DE858(arg0);
+    jpeg_destroy(arg0);
 }

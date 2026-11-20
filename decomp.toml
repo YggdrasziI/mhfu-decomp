@@ -26,6 +26,12 @@ name = "mwccpsp_3.0.1_219"
 exe = "mwccpsp.exe"
 flags = "-O4 -sdatathreshold 0"
 
+# Extra flags for the sources of one directory (tools/configure.py). The IJG JPEG
+# library is built for speed (`-O4,p`) and finds <stddef.h>... in include/libc
+# (`-gccinc` puts the -I paths on the system list); notes/PROVENANCE.md.
+[compiler.dir_flags]
+"src/jpeg-6b" = "-O4,p -gccinc -Iinclude/libc"
+
 # tools/psp/batch_units.py: the Metrowerks regions of .text (notes/SPLITS.md):
 # game and engine, one game object before the start-up code, then the C++
 # runtime at the end of .text
