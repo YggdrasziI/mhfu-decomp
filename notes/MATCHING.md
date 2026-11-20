@@ -1128,6 +1128,12 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   (func_088DDF10).
 - A direct tail call (`j func`) in C++ needs `#pragma exceptions off`, as
   the virtual ones (func_088DDE20).
+- `li v0, 2`; `beq a1, v0, body`; `li v0, 1`; `beq a1, v0, body`; `b end`
+  where ours makes a range test (`addiu v0, a1, -1`; `sltiu at, v0, 2`) for
+  `arg1 == 2 || arg1 == 1` or a `switch`: nested negative tests,
+  `if (arg1 != 2) { if (arg1 != 1) return 0; }` (func_088DE560).
+- Signed byte tested with `!= 0` in C++ before a `(bool) x ^ 1` test gives
+  an extra `sltu`: test it bare, `if (*(s8 *) p) { ... }` (func_088DE7C8).
 - Counter of a search loop kept in `$v0` with `seb v0, v0` after its
   increment, and returned as it is: the counter and the return type are
   both `s8` (func_088DE060, not matched for another reason).
@@ -1179,6 +1185,9 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   compound assignment or inline function (for the id, the comparison or
   the whole search) changes it. The same expression passed as a `u16`
   argument of a call matches (func_088DE0B8, func_088DE2D8).
+- 16-bit number kept in a saved register, copied to `$v0` before it is
+  scaled into the same saved register (`addu v0, s0, zero`; `sll s0, v0,
+  2`) after a call: ours scales in place or masks again (func_088DE6EC).
 - Register-only differences (two registers swapped, result kept in `$v0` then copied
   to a saved register: func_088C3948, func_0884FDC4).
 - Saved registers in another order although every declaration order gives
