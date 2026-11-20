@@ -1452,7 +1452,9 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088DC720` | 0x088DC720-0x088DC748 | 1 small function | 100 % |
 | `unit_088DC748` | 0x088DC748-0x088DC774 | 2 small functions | 100 % |
 | `unit_088DC774` | 0x088DC774-0x088DC8DC | 1 function (C++, virtual call) | 100 % |
+| `unit_088DC8DC` | 0x088DC8DC-0x088DCD94 | 3 functions (C++, speed: removal of the object of slot 1; a two-step sequence sending pairs of 16-bit values; colour blended from two entries of the table at 0x089B657C) | 100 % |
 | `unit_088DCD94` | 0x088DCD94-0x088DCDEC | 1 small function | 100 % |
+| `unit_088DCDEC` | 0x088DCDEC-0x088DCEEC | 2 functions (C++: object of a slot, 0 outside 0-5; reset of the six objects and of the one of the global index) | 100 % |
 | `unit_088DCEEC` | 0x088DCEEC-0x088DCF3C | 1 small function | 100 % |
 | `unit_088DCF3C` | 0x088DCF3C-0x088DCF70 | 1 small function | 100 % |
 | `unit_088DCF70` | 0x088DCF70-0x088DCFCC | 1 small function | 100 % |
