@@ -1612,7 +1612,7 @@ segments:
       - [0xD11A0, c, unit_088D2BEC]
       - [0xD11C8, cpp, unit_088D2C14]
       - [0xD13B8, c, unit_088D2E04]
-      - [0xD13CC, asm, text_088D2E18]
+      - [0xD13CC, cpp, unit_088D2E18]
       - [0xD2038, c, unit_088D3A84]
       - [0xD2090, cpp, unit_088D3ADC]
       - [0xD251C, asm, text_088D3F68]
