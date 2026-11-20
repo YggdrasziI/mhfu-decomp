@@ -81,9 +81,23 @@ def posix(path: Path | str) -> str:
     return str(path).replace("\\", "/")
 
 
+def dir_flags() -> list[tuple[str, str]]:
+    """[compiler.dir_flags] as (directory, flags), parents before their subdirectories."""
+    if not isinstance(DIR_FLAGS, dict) or not all(isinstance(f, str) for f in DIR_FLAGS.values()):
+        sys.exit("decomp.toml: [compiler.dir_flags] must be a table of strings")
+    out = []
+    for d, flags in DIR_FLAGS.items():
+        key = Path(d.replace("\\", "/")).as_posix()
+        if not (ROOT / key).is_dir():
+            sys.exit(f"decomp.toml: [compiler.dir_flags]: no directory {d}")
+        out.append((key, flags))
+    return sorted(out, key=lambda item: len(item[0]))
+
+
 def cc_variables(source: str) -> dict | None:
-    """ninja variables of one compile: the flags of the source's directory, if any."""
-    extra = [flags for d, flags in DIR_FLAGS.items() if source.startswith(d.rstrip("/") + "/")]
+    """ninja variables of one compile: the flags of the source's directories, if any
+    (the most specific directory last, so that its flags win)."""
+    extra = [ninja_syntax.escape(flags) for d, flags in dir_flags() if source.startswith(d + "/")]
     return {"cc_flags": " ".join(["$cc_flags"] + extra)} if extra else None
 
 
@@ -261,7 +275,8 @@ def main() -> None:
             if target_obj not in objs:
                 continue  # another module's, or no piece starts there yet
             obj = posix(build_dir / source) + ".o"
-            n.build(obj, "cc", source, implicit=cc_deps + [posix(binutils_stamp)])
+            n.build(obj, "cc", source, implicit=cc_deps + [posix(binutils_stamp)],
+                    variables=cc_variables(source))
             unit = Path(source).with_suffix("").relative_to("src").as_posix()
             units = [u for u in units if u.get("target_path") != target_obj]
             units.append({"name": unit, "base_path": obj, "target_path": target_obj,
