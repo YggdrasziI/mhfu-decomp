@@ -1692,7 +1692,7 @@ segments:
       - [0xDA3DC, c, unit_088DBE28]
       - [0xDA424, c, unit_088DBE70]
       - [0xDA434, c, unit_088DBE80]
-      - [0xDA494, asm, text_088DBEE0]
+      - [0xDA494, cpp, unit_088DBEE0]
       - [0xDA77C, c, unit_088DC1C8]
       - [0xDA7A4, asm, text_088DC1F0]
       - [0xDAC9C, c, unit_088DC6E8]

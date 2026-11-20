@@ -1444,6 +1444,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088DBE28` | 0x088DBE28-0x088DBE70 | 1 small function | 100 % |
 | `unit_088DBE70` | 0x088DBE70-0x088DBE80 | 1 small function | 100 % |
 | `unit_088DBE80` | 0x088DBE80-0x088DBEE0 | 1 small function | 100 % |
+| `unit_088DBEE0` | 0x088DBEE0-0x088DC1C8 | 3 functions (C++: two drivers stepping a per-slot sequence over four slots; the two-step sequence sending pairs of 16-bit values to func_08880A70) | 100 % |
 | `unit_088DC1C8` | 0x088DC1C8-0x088DC1F0 | 2 small functions | 100 % |
 | `unit_088DC6E8` | 0x088DC6E8-0x088DC720 | 6 accessors | 100 % |
 | `unit_088DC720` | 0x088DC720-0x088DC748 | 1 small function | 100 % |
