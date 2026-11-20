@@ -1376,9 +1376,11 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088D5C74` | 0x088D5C74-0x088D5C7C | 1 small function | 100 % |
 | `unit_088D5C7C` | 0x088D5C7C-0x088D6108 | 4 functions (C++, speed, virtual calls: rates and start of the two entries at +0x324, clamped byte at +0x67E, two id setters looping over the slots) | 100 % |
 | `unit_088D6108` | 0x088D6108-0x088D61CC | 1 function (record lookup like func_08865254, in the table of D_09A4F0C4 for ids below 1000); optimized for speed | 100 % |
+| `unit_088D61CC` | 0x088D61CC-0x088D6388 | 1 function (C++: three words and two 16-bit values of D_08A62C68 copied to +0x480, masked or cleared by flags) | 100 % |
 | `unit_088D6388` | 0x088D6388-0x088D6488 | 1 function (value from one of three tables of 16-bit rows); jump table 0x08932444-0x0893245C in the unit | 100 % |
 | `unit_088D6488` | 0x088D6488-0x088D64E0 | 1 small function | 100 % |
 | `unit_088D69F0` | 0x088D69F0-0x088D6A1C | 1 small function | 100 % |
+| `unit_088D6A1C` | 0x088D6A1C-0x088D6AC8 | 2 functions (a byte looked up in the six bytes at +0x676, and in five bytes of a global record) | 100 % |
 | `unit_088D6AC8` | 0x088D6AC8-0x088D6B00 | 1 small function | 100 % |
 | `unit_088D71F0` | 0x088D71F0-0x088D722C | 1 small function | 100 % |
 | `unit_088D773C` | 0x088D773C-0x088D777C | 1 small function | 100 % |
