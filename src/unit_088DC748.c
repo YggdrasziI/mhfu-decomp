@@ -15,5 +15,5 @@ s32 func_088DC748(char *arg0) {
     return var_v0;
 }
 
-void func_088DC76C(void) {
+void func_088DC76C(char *arg0, char *arg1) {
 }
