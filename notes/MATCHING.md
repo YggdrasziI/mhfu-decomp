@@ -1060,6 +1060,27 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   and kept unmasked in a saved register (`andi` only after the conversion
   back, `addu v0, s0, zero` to return): a `u32` local and an `s32` result,
   `v = (u16) (u32) (K * (float) v);` (func_088DADD8).
+- `addu` operands of an indexed member: the value `p->slot[i]` adds the
+  scaled index first (`addu v0, v0, a0`), the address `&p->slot[i]` (or
+  `p->slot + i`, a reference, a member function returning the address) the
+  base first. A slot read then written through one saved address (`lw s0,
+  0xC(v0)`; `addiu s1, v0, 0xC`): index it twice, `obj = p->slot[i]; ...;
+  p->slot[i] = 0;` (func_088DBA0C, func_088DBBBC). The same holds for
+  arrays far into a large structure (`g->head[k]` at +0x80028): type the
+  structure instead of adding offsets to a `char *`.
+- An `if` / `else` that both branch to a lone `b` to the end instead of
+  going there directly: the value is assigned after the `if` / `else`,
+  `if (...) { ...; r = v; } else { r = 0; } var = r;` (func_088DB608).
+- `bne v0, v1, ...` on a call result with the copy to the saved register in
+  the delay slot (ours: copy, then compare the saved register): keep the
+  result in its own local, `r = f(); arg1 = r; if (r == -1)`
+  (func_088DB608).
+- A global pointer loaded again for the first call of a case although a
+  local copy made at the top of the function is still live (ours passes the
+  copy; after a call both reload): only a volatile read gives it,
+  `f(*(char *volatile *) &D_x, ...)`; an inline getter, another local type,
+  a pointer to the global, `const` and a later assignment do not
+  (func_088DBBBC). A device, not a claim about the original source.
 
 ## Calls and allocation
 
@@ -1090,11 +1111,10 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 
 ## Open symptoms
 
-- A global pointer loaded again for the first call of a case although a local
-  copy made at the top of the function is still live (ours passes the copy;
-  after a call both reload): func_088DBBBC.
 - $a0 not reloaded after a call to a function that leaves it alone
   (func_088A6BA0, notes/COMPILER.md).
+- Table pointer and index in each other's register in an inlined lookup
+  (`lw v1, D_x`; `addiu a0, s1, 1` in the original): func_088DB608.
 - Register-only differences (two registers swapped, result kept in `$v0` then copied
   to a saved register: func_088C3948, func_0884FDC4).
 - Saved registers in another order although every declaration order gives
