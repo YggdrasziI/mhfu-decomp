@@ -1396,6 +1396,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088D81E4` | 0x088D81E4-0x088D81F0 | 1 small function | 100 % |
 | `unit_088D81F0` | 0x088D81F0-0x088D81FC | 1 small function | 100 % |
 | `unit_088D81FC` | 0x088D81FC-0x088D852C | 2 functions (C++: next usable pair forwards / backwards; emptying of a pair and its selection) | 100 % |
+| `unit_088D852C` | 0x088D852C-0x088D88F0 | 2 functions (C++, VFPU: offset rotated about Y by a 16-bit angle; height test in front of the object, per-object offset added to a position) | 100 % |
 | `unit_088D88F0` | 0x088D88F0-0x088D8900 | 2 small functions | 100 % |
 | `unit_088D8900` | 0x088D8900-0x088D897C | 2 small functions | 100 % |
 | `unit_088D8DA4` | 0x088D8DA4-0x088D8DF4 | 1 small function | 100 % |
