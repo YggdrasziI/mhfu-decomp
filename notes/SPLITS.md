@@ -1481,7 +1481,11 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088DE3D4` | 0x088DE3D4-0x088DE458 | 1 function, NonMatching (96.5 %: same symptom as unit_088DDF94) | not linked |
 | `unit_088DE458` | 0x088DE458-0x088DE4BC | 1 small function (C++, speed) | 100 % |
 | `unit_088DE4BC` | 0x088DE4BC-0x088DE520 | 1 small function | 100 % |
+| `unit_088DE520` | 0x088DE520-0x088DE6A0 | 2 functions (C++, speed: volatile memory of the resource table given back, directly and from an event callback) | 100 % |
 | `unit_088DE6A0` | 0x088DE6A0-0x088DE6EC | 1 small function | 100 % |
+| `unit_088DE6EC` | 0x088DE6EC-0x088DE7C8 | 1 function, NonMatching (97.0 %: a register copy before the index is scaled); requests five resources | not linked |
+| `unit_088DE7C8` | 0x088DE7C8-0x088DE804 | 1 small function (C++) | 100 % |
+| `unit_088DE804` | 0x088DE804-0x088DEA14 | 5 functions (C, speed: abort, destroy, two table allocations and decoder initialisation of an image codec object; shape and constants of the IJG JPEG library 6b: hypothesis, no string proves it) | 100 % |
 | `unit_088DEA14` | 0x088DEA14-0x088DEA1C | 1 small function | 100 % |
 | `unit_088DED1C` | 0x088DED1C-0x088DEE1C | 1 function (state step 200-210, shape of the IJG library's jpeg_consume_input: hypothesis); jump table 0x089324BC-0x089324E8 in the unit | 100 % |
 | `unit_088DF31C` | 0x088DF31C-0x088DF324 | 1 small function | 100 % |
