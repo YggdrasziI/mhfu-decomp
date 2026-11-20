@@ -1350,7 +1350,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088CF1B0` | 0x088CF1B0-0x088CF210 | 2 small functions | 100 % |
 | `unit_088CF210` | 0x088CF210-0x088CF2C8 | 1 function (speed; calls func_088CF2C8, then func_088D08D4 per entry); the two large VFPU functions that follow stay in the asm piece text_088CF2C8 | 100 % |
 | `unit_088D1398` | 0x088D1398-0x088D168C | 2 functions (C++, speed; key-frame tables interpolated at the current animation frame, VFPU vector) | 100 % |
-| `unit_088D168C` | 0x088D168C-0x088D18F0 | 1 function, NonMatching (C++, speed, 95.6 %: read order of the id at the entry, order of two zero stores); places an effect by animation id | not linked |
+| `unit_088D168C` | 0x088D168C-0x088D18F0 | 1 function, NonMatching (C++, speed, 95.7 %: read order of the id at the entry); places an effect by animation id | not linked |
 | `unit_088D18F0` | 0x088D18F0-0x088D1DD0 | 4 functions (C++, speed; effect drawn from a matrix, effect id by animation frame, level from the value at +0x672, state by action) | 100 % |
 | `unit_088D1DD0` | 0x088D1DD0-0x088D1E40 | 1 small function (C++) | 100 % |
 | `unit_088D1E40` | 0x088D1E40-0x088D2674 | 1 function (speed; timed events of an animation by the id at +0x684, 25-case `switch` compiled as a chain) | 100 % |

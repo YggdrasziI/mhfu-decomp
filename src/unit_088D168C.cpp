@@ -2,16 +2,17 @@
  *
  * Bounds (hypothesis): 1 function between unit_088D1398 and unit_088D18F0.
  *
- * NonMatching, 95.6 %. Two gaps:
- * - the entry: the original reads the id (`lh a1, 0x324(a0)`) before the
- *   global and keeps it in a1; here the global is read first and the id is
- *   in a2;
- * - the third vector (0, pi, pi): the original stores the zero of `w` before
- *   the zero of `x`, here `x` comes first.
- * Tried: the test as an inline function (with and without the id as
- * parameter), ternary forms, an `s32` id with casts, constructor / member /
- * plain inline function for the vector, declaration orders of the pointer
- * locals of the helper, other spellings of the zero argument.
+ * NonMatching, 95.7 %. One gap, the entry: the original reads the id
+ * (`lh a1, 0x324(a0)`) before the global and keeps it in a1, the global and
+ * the flag in a0; here the global is read first (a1) and the id is in a2.
+ * Tried: the test as an inline function (with and without the id or the
+ * global as parameter, returning bool, u8 or s32), as a member function, a
+ * local for the global, the whole body as an inline function taking the id,
+ * ternary forms, an `s32` id with casts. Reading the flag word into an
+ * `s32` local or through an `s32` inline function gives the original order
+ * and registers, but then the offset 0x6AF14 is added with `lui at` /
+ * `ori at` instead of `lui v1, 7` / `lw a0, -0x50EC(v1)`, and the constant 1
+ * is loaded before the `andi`.
  *
  * C++: bool conversion, member function. Optimized for speed.
  */
@@ -46,9 +47,8 @@ struct VecC {
     float y;
     float z;
     float w;
-    void set(float x_, float y_, float z_) {
+    void set(float x_, float y_, float z_, float w_) {
         float *dst = &x;
-        float w_ = 0.0f;
         float *px = &x_;
         float *py = &y_;
         float *pz = &z_;
@@ -79,16 +79,16 @@ void func_088D168C(char *arg0) {
     scale.x = 1.0f;
     switch (id) {
     case 0x19F: {
-        rot.set(0.36651915f, 0.17453294f, 1.3613569f);
-        pos.set(17.0f, 0.9f, 22.0f);
+        rot.set(0.36651915f, 0.17453294f, 1.3613569f, 0.0f);
+        pos.set(17.0f, 0.9f, 22.0f, 0.0f);
         func_08865044(arg0, mtx, 0xE, (Vec *) &pos, (Vec *) &rot, (Vec *) &scale);
         func_088D18F0(arg0, mtx, 0x46);
         return;
     }
     case 0x1A2:
         if (func_08864408(118.0f, arg0 + 0x80, 0) == 0) {
-            rot.set(0.0f, 3.1415927f, 3.1415927f);
-            pos.set(-9.0f, -1.0f, 65.0f);
+            rot.set(0.0f, 3.1415927f, 3.1415927f, 0.0f);
+            pos.set(-9.0f, -1.0f, 65.0f, 0.0f);
             func_08865044(arg0, mtx, 0x12, (Vec *) &pos, (Vec *) &rot, (Vec *) &scale);
             func_088D18F0(arg0, mtx, 0x47);
         }
