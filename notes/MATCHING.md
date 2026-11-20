@@ -1053,6 +1053,13 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - `bnel` to a shared `return 0` for the first test and `beql` to `return 1`
   for the second: one condition, `if (a == 0 && (x == K1 || x == K2 || ...))
   return 1; return 0;` (func_088DA324).
+- A `u8` counter masked at each step next to a stepped pointer (ours: the
+  index masked and scaled in the loop): step both, `for (i = 0; i < 7; i++,
+  p++)` (func_088DAB94).
+- A 16-bit value converted to float through the unsigned sequence, scaled
+  and kept unmasked in a saved register (`andi` only after the conversion
+  back, `addu v0, s0, zero` to return): a `u32` local and an `s32` result,
+  `v = (u16) (u32) (K * (float) v);` (func_088DADD8).
 
 ## Calls and allocation
 
