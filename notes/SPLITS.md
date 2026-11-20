@@ -1348,7 +1348,8 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088CE754` | 0x088CE754-0x088CE75C | 1 small function | 100 % |
 | `unit_088CE75C` | 0x088CE75C-0x088CF1B0 | 5 functions (C++, speed; material visibility and colours of the six model parts, draw function with GE commands, VFPU identity matrix); jump table 0x089323B0-0x089323C8 in the unit | 100 % |
 | `unit_088CF1B0` | 0x088CF1B0-0x088CF210 | 2 small functions | 100 % |
-| `unit_088CF210` | 0x088CF210-0x088CF2C8 | 1 function (speed; calls func_088CF2C8, then func_088D08D4 per entry); the two large VFPU functions that follow stay in the asm piece text_088CF2C8 | 100 % |
+| `unit_088CF210` | 0x088CF210-0x088CF2C8 | 1 function (speed; calls func_088CF2C8, then func_088D08D4 per entry); the large VFPU function that follows stays in the asm piece text_088CF2C8 | 100 % |
+| `unit_088D08D4` | 0x088D08D4-0x088D1398 | 1 function (C++, speed; material animation records of one model part, `switch` on 8 record kinds, VFPU sine) | 100 % |
 | `unit_088D1398` | 0x088D1398-0x088D168C | 2 functions (C++, speed; key-frame tables interpolated at the current animation frame, VFPU vector) | 100 % |
 | `unit_088D168C` | 0x088D168C-0x088D18F0 | 1 function, NonMatching (C++, speed, 95.7 %: read order of the id at the entry); places an effect by animation id | not linked |
 | `unit_088D18F0` | 0x088D18F0-0x088D1DD0 | 4 functions (C++, speed; effect drawn from a matrix, effect id by animation frame, level from the value at +0x672, state by action) | 100 % |

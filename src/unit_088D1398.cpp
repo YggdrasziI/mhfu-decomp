@@ -1,6 +1,6 @@
 /* unit_088D1398: 0x088D1398-0x088D168C (ULES01213)
  *
- * Bounds (hypothesis): 2 functions between the asm piece text_088CF2C8 and
+ * Bounds (hypothesis): 2 functions between unit_088D08D4 and the asm piece
  * text_088D168C.
  *
  * Key-frame tables read at the current frame of the animation at +0x80: the
