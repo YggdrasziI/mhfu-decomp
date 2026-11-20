@@ -1081,6 +1081,14 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   `f(*(char *volatile *) &D_x, ...)`; an inline getter, another local type,
   a pointer to the global, `const` and a later assignment do not
   (func_088DBBBC). A device, not a claim about the original source.
+- `addu v0, zero, zero`; `b end`; `nop` after a store (delay slot left
+  empty, the other branch setting `$v0` too): a result variable set in both
+  branches, `if (...) { ...; r = 0; } else { ...; r = 1; } return r;`
+  (func_088DBEE0).
+- `li v0, 1` both before a lone `b end` and in the delay slot of the jump
+  to it: a case falling through to `default: return 1;`; the waiting branch
+  of that case leaves with `break` to the `return 0` after the `switch`
+  (`bnel` with the value in the delay slot), func_088DBF3C.
 
 ## Calls and allocation
 
