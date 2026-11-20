@@ -941,6 +941,11 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - `seb` of a byte before the add (ours) where the original adds the raw
   `lb` value, stores it and sign-extends after: `p->b = p->b + n;`, not
   `p->b += n;` (func_088D5EF0).
+- `bnel v1, v0` (ours) for `bnel v0, v1` in a byte search, the loaded byte
+  first: the constant before the index in the address, `*(u8 *)(p + 0x676 +
+  i) == c`, not `p + i + 0x676` (func_088D6A1C).
+- A short counted search entered without a jump to its test: `i = 0; do {
+  if (...) return 1; i++; } while (i < 6);` (func_088D6A1C, func_088D6A54).
 
 ## Calls and allocation
 
