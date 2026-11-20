@@ -1089,6 +1089,18 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   to it: a case falling through to `default: return 1;`; the waiting branch
   of that case leaves with `break` to the `return 0` after the `switch`
   (`bnel` with the value in the delay slot), func_088DBF3C.
+- Speed mode, a loop that multiplies its counter by the element size at
+  each pass (`sll` / `addu` chain, not a stepped pointer) next to loops
+  that are strength reduced: the multiply is unsigned, `(Node *)((char *)
+  base + i * sizeof(Node))`; the signed `&base[i]` is stepped
+  (func_088DC40C).
+- A stepped pointer set after the counter, behind the loop guard (`blez`;
+  `addu s2, zero, zero` in the delay slot; `addu s1, s4, zero`): the
+  compiler's own, write `&base[k]` at each use; a pointer in the `for`
+  header is set before the guard (func_088DC40C).
+- Counter and stepped pointer of the last loop in each other's saved
+  register although every declaration order was tried: the loop has its
+  own counter, not the one of an earlier loop (func_088DC40C).
 
 ## Calls and allocation
 
@@ -1121,8 +1133,12 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 
 - $a0 not reloaded after a call to a function that leaves it alone
   (func_088A6BA0, notes/COMPILER.md).
-- Table pointer and index in each other's register in an inlined lookup
-  (`lw v1, D_x`; `addiu a0, s1, 1` in the original): func_088DB608.
+- Lookup in the table of D_09A4F0D0 (0xC-byte entries): the original loads
+  the table pointer into `$v1`, keeps the index in `$a0` and builds the
+  offset from it even when the index is the constant 8 (`li a0, 8`; `li v0,
+  0x10`; `addu v0, v0, a0`; `sll s1, v0, 2`); ours swaps the two registers
+  (func_088DB608) or folds the constant (func_088DC1F0). No form of the
+  lookup, of its index, nor two-level inlining gives it.
 - Register-only differences (two registers swapped, result kept in `$v0` then copied
   to a saved register: func_088C3948, func_0884FDC4).
 - Saved registers in another order although every declaration order gives
