@@ -955,6 +955,13 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   an inline function returning `bool`, compared with 0, `if (is_own(o) ==
   0) return 0;`; `== 1` adds the `addiu 1` / `bnel` form (func_088D6594,
   func_088D6924).
+- A result returned through `addu v0, s0, zero` where ours folds the
+  constant (`addu v0, zero, zero`) and keeps the variable in two registers:
+  leave the loops with `break` to a single `return ret;` instead of
+  returning inside them (func_088D72A4).
+- `seh` of a saved register before each comparison but none at the return:
+  the variable is `s16` and so is the function's return type; a `s32`
+  variable with casts hoists the extension (func_088D72A4).
 - Two stepped pointers in swapped saved registers in a counted loop: declare
   them in the reverse order (`char *rec; char *own;` gives `rec` the higher
   register) (func_088D6924).
@@ -995,6 +1002,9 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   (func_088A6BA0, notes/COMPILER.md).
 - Register-only differences (two registers swapped, result kept in `$v0` then copied
   to a saved register: func_088C3948, func_0884FDC4).
+- Saved registers in another order although every declaration order gives
+  the same code (original: result, parameters, then masked id and loop
+  index; ours: index and masked id first): func_088D72A4.
 - Three `s16` copied through temporaries (x, y, z loaded into descending
   registers, then stored): ours loads y, z, x with x in the register of the
   previous temporary, for every helper form tried; function-level
