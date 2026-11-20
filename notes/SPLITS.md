@@ -1463,11 +1463,15 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088DD26C` | 0x088DD26C-0x088DD3A8 | 1 function (C++: draw with five GE commands and two virtual calls) | 100 % |
 | `unit_088DD3A8` | 0x088DD3A8-0x088DD3E4 | 1 small function (C++) | 100 % |
 | `unit_088DD3E4` | 0x088DD3E4-0x088DD3EC | 1 small function | 100 % |
+| `text_088DD3EC` | 0x088DD3EC-0x088DD7C4 | 6 functions, not Metrowerks (jumps with `j` inside a function, `$ra` saved after the other registers, free use of `$t` registers): UTF-8 / UTF-16 decoding and encoding and the two string conversions built on them; stays in assembly like the other non-Metrowerks code | assembly |
 | `unit_088DD7C4` | 0x088DD7C4-0x088DD7D8 | 1 small function | 100 % |
 | `unit_088DD7D8` | 0x088DD7D8-0x088DD7E8 | 1 small function | 100 % |
 | `unit_088DD7E8` | 0x088DD7E8-0x088DD838 | 1 small function | 100 % |
 | `unit_088DD838` | 0x088DD838-0x088DD868 | 1 small function | 100 % |
 | `unit_088DD868` | 0x088DD868-0x088DD8A8 | 1 small function | 100 % |
+| `unit_088DD8A8` | 0x088DD8A8-0x088DDE20 | 6 functions (C++, speed: table of 43 loaded resources with a bump area: reset, release, per-frame update, request, copy of an entry, copy out) | 100 % |
+| `unit_088DDE20` | 0x088DDE20-0x088DDF10 | 1 function, NonMatching (96.6 %: a 16-bit mask scheduled before the loop set-up); copies a loaded resource into the first free entry | not linked |
+| `unit_088DDF10` | 0x088DDF10-0x088DDF50 | 1 small function (C++) | 100 % |
 | `unit_088DDF50` | 0x088DDF50-0x088DDF94 | 1 small function | 100 % |
 | `unit_088DDFE8` | 0x088DDFE8-0x088DE014 | 1 small function | 100 % |
 | `unit_088DE4BC` | 0x088DE4BC-0x088DE520 | 1 small function | 100 % |
