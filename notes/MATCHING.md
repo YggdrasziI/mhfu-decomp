@@ -1115,6 +1115,19 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - Four bytes built on the stack and returned in `$v0` (`lw v0, 0xC(sp)`):
   a union of `u8 c[4]` and `u32`, returned through the `u32`
   (func_088DCB00).
+- Unrolled loop (speed mode) with its test in `$at` (`slti at, a0, 0x24`
+  in the middle of the body) and every register one step lower than ours
+  (test in `$v0`): the bound is written `i <= 42`, not `i < 43`
+  (func_088DD91C, func_088DDA44).
+- `sltu v1, a0, a2`; `bnel v1, ...` with the zero result in the delay slot,
+  for an inline function returning 0 when there is not enough left: the
+  positive test first, `if (left >= size) { ...; return x; } return 0;`
+  (func_088DDBD8).
+- `andi` + `sltu` + `xori v1, v1, 1` + `beqz`: the bool exclusive-ored with
+  1, `if ((bool) (f & 2) ^ 1) r = 1;`, with a result variable preset to 0
+  (func_088DDF10).
+- A direct tail call (`j func`) in C++ needs `#pragma exceptions off`, as
+  the virtual ones (func_088DDE20).
 
 ## Calls and allocation
 
