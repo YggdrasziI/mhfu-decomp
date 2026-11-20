@@ -219,6 +219,12 @@ per pass; `#pragma opt_unroll_loops off` gives the original loop (hypothesis: th
 original source turned unrolling off there). The build keeps `-O4`; a unit that needs the speed setting says
 `#pragma optimize_for_size off` at its top, with the reason in its header comment.
 
+Third-party sources that are kept unmodified cannot carry the pragma: their
+directory gets `-O4,p` from `[compiler.dir_flags]` of `decomp.toml`, which gives the
+same code as the pragma (checked on `jdapimin.c` of the IJG JPEG library: 6 functions
+byte for byte with either). `-opt speed` is not accepted by this driver although its
+help names it.
+
 The socket functions of 0x088AA370-0x088AAE10 match only with `#pragma
 opt_rebuildconditionals off` for three of them (func_088AA520, func_088AA83C,
 func_088AAC80); the others there match with or without it. Across the 27
