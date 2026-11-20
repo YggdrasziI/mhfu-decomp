@@ -1368,6 +1368,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088D2E18` | 0x088D2E18-0x088D3A84 | 1 function (C++, speed, VFPU `asm` blocks with an inline arc tangent: moves the bone chains listed by func_088D2C14) | 100 % |
 | `unit_088D3A84` | 0x088D3A84-0x088D3ADC | 1 small function | 100 % |
 | `unit_088D3ADC` | 0x088D3ADC-0x088D3F68 | 3 functions (C++, speed, VFPU `asm` blocks: push-out vector along an axis, two recursive walks of a bone tree rebuilding the matrix at +0x50) | 100 % |
+| `unit_088D3F68` | 0x088D3F68-0x088D5B54 | 1 function (C++, speed, VFPU `asm` blocks: scale, rotation and position of the first four bones by kind, then the material alpha and the draw of each group); jump table 0x089323EC-0x08932418 in the unit | 100 % |
 | `unit_088D5B54` | 0x088D5B54-0x088D5BD4 | 1 function (`switch` with 11 cases); jump table 0x08932418-0x08932444 in the unit | 100 % |
 | `unit_088D5C2C` | 0x088D5C2C-0x088D5C34 | 1 small function | 100 % |
 | `unit_088D5C34` | 0x088D5C34-0x088D5C74 | 1 small function | 100 % |

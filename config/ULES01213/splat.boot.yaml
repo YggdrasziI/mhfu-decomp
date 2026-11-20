@@ -1616,7 +1616,7 @@ segments:
       - [0xD13CC, cpp, unit_088D2E18]
       - [0xD2038, c, unit_088D3A84]
       - [0xD2090, cpp, unit_088D3ADC]
-      - [0xD251C, asm, text_088D3F68]
+      - [0xD251C, cpp, unit_088D3F68]
       - [0xD4108, c, unit_088D5B54]
       - [0xD4188, asm, text_088D5BD4]
       - [0xD41E0, c, unit_088D5C2C]
@@ -1880,7 +1880,7 @@ segments:
       - { start: 0x130934, type: .rodata, name: unit_088CD804, linker_section_order: .data }
       - { start: 0x130964, type: .rodata, name: unit_088CE75C, linker_section_order: .data }
       - { start: 0x13097C, type: .rodata, name: unit_088D2674, linker_section_order: .data }
-      - [0x1309A0, data, data_089323EC]
+      - { start: 0x1309A0, type: .rodata, name: unit_088D3F68, linker_section_order: .data }
       - { start: 0x1309CC, type: .rodata, name: unit_088D5B54, linker_section_order: .data }
       - { start: 0x1309F8, type: .rodata, name: unit_088D6388, linker_section_order: .data }
       - [0x130A10, data, data_0893245C]
