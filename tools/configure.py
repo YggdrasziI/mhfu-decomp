@@ -46,6 +46,8 @@ CC_EXE = project.CONFIG["compiler"]["exe"]
 CC_FLAGS = project.CONFIG["compiler"]["flags"] + " -Iinclude -Isrc"
 # extra flags for the sources of a directory ([compiler.dir_flags] of decomp.toml)
 DIR_FLAGS = project.CONFIG["compiler"].get("dir_flags", {})
+# functions removed from the object of a source ([compiler.drop_functions])
+DROP_FUNCTIONS = project.CONFIG["compiler"].get("drop_functions", {})
 
 AS_FLAGS = "-EL -march=mips32r2 -mabi=32 -G0 -no-pad-sections -Iinclude"
 LD_FLAGS = "-EL --no-check-sections"
@@ -94,11 +96,30 @@ def dir_flags() -> list[tuple[str, str]]:
     return sorted(out, key=lambda item: len(item[0]))
 
 
+def drop_functions() -> dict[str, list[str]]:
+    """[compiler.drop_functions] as {source: functions}, checked."""
+    ok = isinstance(DROP_FUNCTIONS, dict) and all(
+        isinstance(names, list) and names and all(isinstance(f, str) and f for f in names)
+        for names in DROP_FUNCTIONS.values())
+    if not ok:
+        sys.exit("decomp.toml: [compiler.drop_functions] must be a table of lists of function names")
+    return {Path(source.replace("\\", "/")).as_posix(): names for source, names in DROP_FUNCTIONS.items()}
+
+
+dropping = set()  # sources of [compiler.drop_functions] that a compile used
+
+
 def cc_variables(source: str) -> dict | None:
     """ninja variables of one compile: the flags of the source's directories, if any
-    (the most specific directory last, so that its flags win)."""
+    (the most specific directory last, so that its flags win), and the functions that
+    compile.py removes from its object."""
     extra = [ninja_syntax.escape(flags) for d, flags in dir_flags() if source.startswith(d + "/")]
-    return {"cc_flags": " ".join(["$cc_flags"] + extra)} if extra else None
+    variables = {"cc_flags": " ".join(["$cc_flags"] + extra)} if extra else {}
+    dropped = drop_functions().get(source, [])
+    if dropped:
+        dropping.add(source)
+        variables["cc_wrap"] = "".join(f"--drop-function {ninja_syntax.escape(f)} " for f in dropped)
+    return variables or None
 
 
 def split(module: project.Module) -> None:
@@ -197,7 +218,7 @@ def main() -> None:
     n.rule("as", f"$python {psp}/assemble.py {posix(tool('as'))} $in $out $as_flags",
            description="AS $in")
     renames = "".join(f"--rename-section {r} " for r in project.CONFIG["compiler"].get("rename_sections", []))
-    n.rule("cc", f"$python {psp}/compile.py {renames}{posix(tool('objcopy'))} $out {posix(cc_command)} -c $cc_flags -o $out $in",
+    n.rule("cc", f"$python {psp}/compile.py ${{cc_wrap}}{renames}{posix(tool('objcopy'))} $out {posix(cc_command)} -c $cc_flags -o $out $in",
            description="CC $in")
     n.rule("bin", f"{tool('objcopy')} -I binary -O elf32-littlemips -B mips $in $out",
            description="BIN $in")
@@ -298,6 +319,9 @@ def main() -> None:
         outputs.append(posix(out))
         n.newline()
 
+    unused = sorted(set(drop_functions()) - dropping)
+    if unused:
+        sys.exit(f"decomp.toml: [compiler.drop_functions]: not a compiled source: {', '.join(unused)}")
     n.build("check", "check", posix(config_dir / "build.sha1"), implicit=outputs)
 
     write_objdiff(units)
