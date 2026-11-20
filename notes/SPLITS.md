@@ -1446,6 +1446,8 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088DBE80` | 0x088DBE80-0x088DBEE0 | 1 small function | 100 % |
 | `unit_088DBEE0` | 0x088DBEE0-0x088DC1C8 | 3 functions (C++: two drivers stepping a per-slot sequence over four slots; the two-step sequence sending pairs of 16-bit values to func_08880A70) | 100 % |
 | `unit_088DC1C8` | 0x088DC1C8-0x088DC1F0 | 2 small functions | 100 % |
+| `unit_088DC1F0` | 0x088DC1F0-0x088DC40C | 1 function, NonMatching (95.2 %: index of a table lookup kept in a register instead of folded); sets up an object from the four parts of a resource | not linked |
+| `unit_088DC40C` | 0x088DC40C-0x088DC6E8 | 2 functions (C++, speed: tree of 0x250-byte nodes built from resource data; identity matrix, VFPU) | 100 % |
 | `unit_088DC6E8` | 0x088DC6E8-0x088DC720 | 6 accessors | 100 % |
 | `unit_088DC720` | 0x088DC720-0x088DC748 | 1 small function | 100 % |
 | `unit_088DC748` | 0x088DC748-0x088DC774 | 2 small functions | 100 % |

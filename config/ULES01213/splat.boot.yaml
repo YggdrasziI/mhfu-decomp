@@ -1695,6 +1695,7 @@ segments:
       - [0xDA494, cpp, unit_088DBEE0]
       - [0xDA77C, c, unit_088DC1C8]
       - [0xDA7A4, asm, text_088DC1F0]
+      - [0xDA9C0, cpp, unit_088DC40C]
       - [0xDAC9C, c, unit_088DC6E8]
       - [0xDACD4, c, unit_088DC720]
       - [0xDACFC, c, unit_088DC748]
