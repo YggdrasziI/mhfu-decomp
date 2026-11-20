@@ -1473,7 +1473,13 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088DDE20` | 0x088DDE20-0x088DDF10 | 1 function, NonMatching (96.6 %: a 16-bit mask scheduled before the loop set-up); copies a loaded resource into the first free entry | not linked |
 | `unit_088DDF10` | 0x088DDF10-0x088DDF50 | 1 small function (C++) | 100 % |
 | `unit_088DDF50` | 0x088DDF50-0x088DDF94 | 1 small function | 100 % |
+| `unit_088DDF94` | 0x088DDF94-0x088DDFE8 | 1 function, NonMatching (79.9 %: where the id is narrowed to 16 bits, see `notes/MATCHING.md`, open symptoms); address of a loaded resource by id | not linked |
 | `unit_088DDFE8` | 0x088DDFE8-0x088DE014 | 1 small function | 100 % |
+| `unit_088DE014` | 0x088DE014-0x088DE060 | 1 function (C++, speed: index of a loaded resource by id) | 100 % |
+| `unit_088DE060` | 0x088DE060-0x088DE0B8 | 1 function, NonMatching (93.4 %: same symptom as unit_088DDF94) | not linked |
+| `unit_088DE0B8` | 0x088DE0B8-0x088DE3D4 | 3 functions (C++, speed: resource requests into the first free entry) | 100 % |
+| `unit_088DE3D4` | 0x088DE3D4-0x088DE458 | 1 function, NonMatching (96.5 %: same symptom as unit_088DDF94) | not linked |
+| `unit_088DE458` | 0x088DE458-0x088DE4BC | 1 small function (C++, speed) | 100 % |
 | `unit_088DE4BC` | 0x088DE4BC-0x088DE520 | 1 small function | 100 % |
 | `unit_088DE6A0` | 0x088DE6A0-0x088DE6EC | 1 small function | 100 % |
 | `unit_088DEA14` | 0x088DEA14-0x088DEA1C | 1 small function | 100 % |
