@@ -946,6 +946,18 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   i) == c`, not `p + i + 0x676` (func_088D6A1C).
 - A short counted search entered without a jump to its test: `i = 0; do {
   if (...) return 1; i++; } while (i < 6);` (func_088D6A1C, func_088D6A54).
+- The three address registers of a VFPU helper in another order (original:
+  first operand a2, second v1, result pointer a3; ours a3, a2, v1): the
+  registers descend in the declaration order of the helper's pointer
+  locals, so declare the result pointer first, `float *pr = &r; Vec *a =
+  &ra; Vec *b = &rb;` with reference parameters (func_088D64E0).
+- `xor` / `sltiu` / `bnez` for an equality test (ours: `beq`): the test is
+  an inline function returning `bool`, compared with 0, `if (is_own(o) ==
+  0) return 0;`; `== 1` adds the `addiu 1` / `bnel` form (func_088D6594,
+  func_088D6924).
+- Two stepped pointers in swapped saved registers in a counted loop: declare
+  them in the reverse order (`char *rec; char *own;` gives `rec` the higher
+  register) (func_088D6924).
 
 ## Calls and allocation
 
@@ -983,6 +995,10 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   (func_088A6BA0, notes/COMPILER.md).
 - Register-only differences (two registers swapped, result kept in `$v0` then copied
   to a saved register: func_088C3948, func_0884FDC4).
+- Three `s16` copied through temporaries (x, y, z loaded into descending
+  registers, then stored): ours loads y, z, x with x in the register of the
+  previous temporary, for every helper form tried; function-level
+  temporaries shared by a macro fix four copies out of six (func_088D66F4).
 - Scheduling: a load placed before / after an index computation (func_088307BC,
   func_0884424C `trunc.w.s`).
 - Unfilled `jal` delay slot (func_08813CF8).
