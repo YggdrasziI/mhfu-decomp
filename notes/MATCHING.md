@@ -1010,6 +1010,22 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   rest of the function as the `else` (func_088D6D10).
 - `addiu v1, v1, -K` / `sltiu at, v1, N` for a range test: `(u32) (x - K) <
   N` (two `slti` for `x >= K && x < K + N`) (func_088D6B00).
+- Addresses of array elements kept in saved registers and stack slots from
+  an unrolled loop to a later one (`addiu v1, s5, 0x636` / `sw v1,
+  0x5c(sp)`; ours: folded offsets, small frame): the arrays are members of a
+  typed structure, `obj->id[i]`; `*(u8 *)(obj + 0x676 + i)` and inline
+  accessors over `char *` do not give it (func_088D897C).
+- A table pointer built with `lui` / `addiu` before the first test (ours:
+  the first test reads the symbol directly): assign the pointer at the top
+  of the function, before the code that precedes the loop, `rec = D_X; ...
+  for (; rec->key != 0xFF; rec++)` (func_088D897C).
+- A later argument loaded before an earlier one (`lbu a3` then `lbu a1`):
+  parameter types of the callee, here `u8` second and `s32` fourth
+  (func_088D897C calling func_088D8DA4).
+- Loop counters in swapped temporaries in a sort: counters of their own
+  for the nested loops, not the `i` of the other loops; two byte swaps
+  loaded together (`lbu` x4 then `sb` x4) are two plain three-statement
+  exchanges in a row (func_088D897C).
 
 ## Calls and allocation
 
