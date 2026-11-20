@@ -1407,7 +1407,9 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088D9EB8` | 0x088D9EB8-0x088DA008 | 2 functions (speed: a value added to the float chosen by a key; the five signed bytes at +0x6993D of the global object added to the floats) | 100 % |
 | `unit_088DA008` | 0x088DA008-0x088DA150 | 1 small function | 100 % |
 | `unit_088DA150` | 0x088DA150-0x088DA168 | 1 small function | 100 % |
+| `unit_088DA168` | 0x088DA168-0x088DA2C4 | 2 functions (C++, speed: pair 0x2B held by the own object; no pair of kind 2 in the mask of func_088D7D6C) | 100 % |
 | `unit_088DA2C4` | 0x088DA2C4-0x088DA324 | 1 small function | 100 % |
+| `unit_088DA324` | 0x088DA324-0x088DA940 | 3 functions (C++, speed: state test; one value of the first item by selector, with state bonuses; factors of that value); jump tables 0x0893245C-0x0893249C in the unit | 100 % |
 | `unit_088DA940` | 0x088DA940-0x088DA974 | 1 small function | 100 % |
 | `unit_088DA974` | 0x088DA974-0x088DAA54 | 1 small function | 100 % |
 | `unit_088DAA54` | 0x088DAA54-0x088DAA98 | 1 small function (C++) | 100 % |
