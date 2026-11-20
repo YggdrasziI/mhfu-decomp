@@ -912,6 +912,24 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   `bnel` and a jump: `if (v != 0xFFFF) v++; else v = 0;` (func_088CF2C8).
 - A `u16` field converted to float takes the unsigned path (`bltz`, `srl`,
   `or`, `add.s`) without a cast (func_088CF2C8).
+- Three floats read from a vector and stored to a matrix row with x in f0,
+  y in f1, z in f2, loaded in that order (ours: x in f2, z in f0, for a copy
+  helper with float locals or for three assignments): a helper that takes
+  the three values as arguments, `vec3_set(float *dst, float x, float y,
+  float z)` called with `v.x, v.y, v.z` (func_088D3F68).
+- A float constant loaded once at the top (`mtc1 v0, f4` with 1.0f), stored
+  from that register in later blocks and copied (`mov.s f3, f4`) where
+  another local gets the same value: a local of its own, `one = 1.0f;`, used
+  by name at those places (`scale = one;`, `mtx_scale(m, one, 0.0f, 3.0f)`);
+  the other 1.0f stay literals (func_088D3F68).
+- `addiu` of a member address (`s3 + 0x5F0`) placed between the loads and
+  the stores of a copy that precedes its first use, and the copy's loads
+  placed before an earlier VFPU block's stack stores: a pointer local taken
+  first, `m2 = &bones[2].unk150; vec3_copy(&pos, &m2->m[12]);`, and the
+  copies written before the vector sets (func_088D3F68).
+- A chain `beql 3` / `beq 9` / `beq 4` / `beq 6` / `bne 10` over a block
+  (ours with a `switch` of empty cases: `beq 10` and a `b`): `if (k == 3 ||
+  k == 9 || k == 4 || k == 6 || k == 10) { ... }` (func_088D3F68).
 
 ## Calls and allocation
 
