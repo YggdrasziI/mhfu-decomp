@@ -163,8 +163,23 @@ def write_target_asm(module: str, unit: str) -> Path | None:
     (ROOT / out).parent.mkdir(parents=True, exist_ok=True)
     lines = ['.include "macro.inc"', ".set noat", ".set noreorder", '.section .text, "ax"']
     # Copied, not included: assemble.py turns VFPU instructions into words in this file only
-    lines += [(ROOT / f).read_text() for f in funcs]
-    (ROOT / out).write_text("\n".join(lines) + "\n", newline="\n")
+    text = "\n".join(lines + [(ROOT / f).read_text() for f in funcs]) + "\n"
+    # Jump tables: the compiler's object refers to `function + offset`, GNU as would
+    # turn a local label into `.text + offset`, and objdiff compares the addends as
+    # data. Write each entry the compiler's way so that an identical table scores 100 %.
+    spans = [(int(m.group(3), 16), int(m.group(2), 16), m.group(1)) for m in
+             re.finditer(r"^nonmatching (\w+), 0x([0-9A-Fa-f]+)\n+glabel \1\n\s*/\* [0-9A-F]+ ([0-9A-F]{8}) ",
+                         text, re.M)]
+
+    def entry(m: re.Match) -> str:
+        addr = int(m.group(2), 16)
+        for start, size, name in spans:
+            if start <= addr < start + size:
+                return f"{m.group(1)}{name} + 0x{addr - start:X}"
+        return m.group(0)
+
+    text = re.sub(r"(\.word\s+)\.L([0-9A-F]{8})\b", entry, text)
+    (ROOT / out).write_text(text, newline="\n")
     return out
 
 
