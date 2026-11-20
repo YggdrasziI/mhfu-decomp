@@ -33,7 +33,7 @@ extern char D_09A1DBC4[];
 extern s32 sceOpenPSIDGetOpenPSID(void *);
 extern s32 sceKernelExitGame(void);
 extern void memset(void *, s32, s32);
-extern void func_0880C084(void *, const void *, s32);
+extern void memcpy(void *, const void *, s32);
 
 s32 func_088ACD60(void) {
     State *s = &D_09A1DB60;
@@ -53,7 +53,7 @@ void func_088ACD88(void) {
     D_09A1DBBC = 1;
     sceOpenPSIDGetOpenPSID(psid);
     memset(D_09A1DBC4, 0, 0x80);
-    func_0880C084(D_09A1DBC4, psid, 0x10);
+    memcpy(D_09A1DBC4, psid, 0x10);
     D_09A1DBC0 = 0x10;
 }
 

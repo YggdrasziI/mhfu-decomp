@@ -24,7 +24,7 @@ extern char D_09A201F0;
 extern char D_09A202C0;
 
 extern int func_0880BFF0(void *, void *, int);
-extern int func_0880C084(void *, void *, s32);
+extern int memcpy(void *, void *, s32);
 extern int func_0880C1A8(void *, void *, s32);
 extern s32 func_088AD87C(void *, char *, u16 *, void *, s16);
 
@@ -80,7 +80,7 @@ u8 *func_088AFC34(void *arg0, s32 arg1, s32 *arg2) {
             return 0;
         }
         *arg2 = 0;
-        func_0880C084(&D_09A202C0, from, 6);
+        memcpy(&D_09A202C0, from, 6);
         return D_09A20618;
     }
 }

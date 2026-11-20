@@ -43,11 +43,11 @@ extern u8 D_09A20609;
 extern u16 D_09A202D4;
 
 extern void memset(void *, s32, s32);
-extern void func_0880C084(void *, void *, s32);
+extern void memcpy(void *, void *, s32);
 
 void func_088AFE90(Msg *m, u16 kind) {
     memset(m->data, 0, sizeof(m->data));
-    func_0880C084(m->addr, D_09A202B8, 6);
+    memcpy(m->addr, D_09A202B8, 6);
     m->unk6 = D_089B295C[kind];
     m->unk7 = D_089B2984[kind];
     m->cls = D_089B29FC[kind];

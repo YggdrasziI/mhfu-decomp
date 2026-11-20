@@ -43,7 +43,7 @@ extern Queue D_09A1FC44;
 extern u32 D_09A1FC6C;
 
 extern u32 func_088AD0F8(u32);
-extern void func_0880C084(void *, const void *, s32);
+extern void memcpy(void *, const void *, s32);
 
 s32 func_088ADA44(s32 id, u8 *mac, u16 port, void *data, s16 len, u16 count) {
     u32 seq;
@@ -57,7 +57,7 @@ s32 func_088ADA44(s32 id, u8 *mac, u16 port, void *data, s16 len, u16 count) {
     }
     hdr.time_lo = 0;
     hdr.time_hi = 0;
-    func_0880C084(hdr.mac, mac, 6);
+    memcpy(hdr.mac, mac, 6);
     n = len + 4;
     hdr.port = port;
     hdr.len = n;
@@ -68,11 +68,11 @@ s32 func_088ADA44(s32 id, u8 *mac, u16 port, void *data, s16 len, u16 count) {
         seq = func_088AD0F8(D_09A1FC6C);
         D_09A1FC6C += n;
     }
-    func_0880C084(q->data + q->len, &hdr, 0x20);
+    memcpy(q->data + q->len, &hdr, 0x20);
     q->len += 0x20;
-    func_0880C084(q->data + q->len, &seq, 4);
+    memcpy(q->data + q->len, &seq, 4);
     q->len += 4;
-    func_0880C084(q->data + q->len, data, len);
+    memcpy(q->data + q->len, data, len);
     q->len += len;
     return len;
 }

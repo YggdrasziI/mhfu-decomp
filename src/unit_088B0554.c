@@ -10,7 +10,7 @@ typedef unsigned char u8;
 typedef int s32;
 
 extern s32 sceWlanGetEtherAddr(u8 *);
-extern void func_0880C084(void *, void *, s32);
+extern void memcpy(void *, void *, s32);
 
 s32 func_088B0554(u8 *arg0) {
     u8 mac[8];
@@ -20,6 +20,6 @@ s32 func_088B0554(u8 *arg0) {
     if (ret < 0) {
         return ret;
     }
-    func_0880C084(arg0, mac, 6);
+    memcpy(arg0, mac, 6);
     return 0;
 }

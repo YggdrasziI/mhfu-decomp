@@ -6,7 +6,7 @@
 
 #include "unk_peer.h"
 
-extern int func_0880C084(void *, void *, s32);
+extern int memcpy(void *, void *, s32);
 extern s32 func_088A8018(Session *, s32, s32);
 extern s32 D_09A1D594;
 
@@ -23,8 +23,8 @@ s32 func_088A8048(Session *arg0, char *data, s32 n, s32 type) {
     h.from = arg0->self;
     h.seq = 0xFF;
     h.n = 0xFFFF;
-    func_0880C084(g->buf + g->pos, &h, 6);
-    func_0880C084(g->buf + (g->pos + 6), data, n);
+    memcpy(g->buf + g->pos, &h, 6);
+    memcpy(g->buf + (g->pos + 6), data, n);
     g->pos += h.len;
     return 0;
 }

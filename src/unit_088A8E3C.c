@@ -20,7 +20,7 @@ extern Store D_09A1D578;
 
 extern void func_088A7BDC(Session *);
 extern void func_088A7F6C(Session *);
-extern int func_0880C084(void *, void *, s32);
+extern int memcpy(void *, void *, s32);
 extern int func_0880C1A8(void *, void *, s32);
 extern s32 func_088AAC80(s32, char *, s16);
 extern void func_088A84B4(Session *, s32, u8);
@@ -91,7 +91,7 @@ s32 func_088A8E3C(Session *arg0) {
             if (dst->cap < dst->pos + r) {
                 return func_088A8028(arg0, 4, dst->pos + r);
             }
-            func_0880C084(dst->buf + dst->pos, st->buf + pos, r);
+            memcpy(dst->buf + dst->pos, st->buf + pos, r);
             func_088A88E0(arg0, hdr.from, hdr.type, dst->buf + (dst->pos + 6));
             pos += r;
             dst->pos += r;

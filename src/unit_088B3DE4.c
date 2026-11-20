@@ -49,7 +49,7 @@ extern u8 D_09A2917E;
 extern char D_09A44094[];
 
 extern void memset(void *, s32, s32);
-extern void func_0880C084(void *, void *, s32);
+extern void memcpy(void *, void *, s32);
 extern s32 func_088AFB48(char *);
 extern s32 func_088B04B4(void *);
 extern s32 func_088B0514(void *, void *);
@@ -69,7 +69,7 @@ s32 func_088B3DE4(char *arg0, s32 arg1, s32 arg2) {
     if (D_09A28876 != 0) {
         if (func_088B0514(D_09A2887C, arg0) == 0 || func_088B04B4(arg0) == 0) {
             D_09A28863 = func_088B68FC();
-            func_0880C084(D_09A28E54, D_09A29364, 0x320);
+            memcpy(D_09A28E54, D_09A29364, 0x320);
             func_088B6A08(0, arg1, arg2);
             return 0;
         }

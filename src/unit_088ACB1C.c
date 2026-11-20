@@ -26,7 +26,7 @@ extern s32 sceNetGetLocalEtherAddr(u8 *);
 extern s32 sceNetApctlGetInfo(s32, void *);
 extern s32 sceNetInetInetAddr(void *);
 extern void memset(void *, s32, s32);
-extern int func_0880C084(void *, void *, s32);
+extern int memcpy(void *, void *, s32);
 extern void func_088AC0D0(void);
 extern void func_088AC0D8(void);
 extern s32 func_088AC308(State *);
@@ -60,7 +60,7 @@ s32 func_088ACB1C(void) {
         if (sceNetGetLocalEtherAddr(mac) < 0) {
             memset(D_09A1DB58, 0, 6);
         } else {
-            func_0880C084(D_09A1DB58, mac, 6);
+            memcpy(D_09A1DB58, mac, 6);
         }
         switch (s->mode) {
         case 1:

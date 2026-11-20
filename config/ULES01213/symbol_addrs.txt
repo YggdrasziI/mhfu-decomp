@@ -59,3 +59,5 @@ jinit_input_controller = 0x088E3250; // type:func size:0x78
 jinit_marker_reader = 0x088E6310; // type:func size:0xDC
 jinit_master_decompress = 0x088E6DF0; // type:func size:0x5C
 jinit_memory_mgr = 0x088EC284; // type:func size:0x138
+// C library: target of the IJG library's MEMCOPY (memcpy) calls in jutils.c
+memcpy = 0x0880C084; // type:func

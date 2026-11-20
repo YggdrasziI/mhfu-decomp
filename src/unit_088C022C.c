@@ -27,7 +27,7 @@ extern char *D_08A631A0;
 extern s32 D_09A0B540;
 extern u8 D_089B2C94[];
 extern u8 D_089B4DF8[];
-extern void func_0880C084(void *, void *, s32);
+extern void memcpy(void *, void *, s32);
 extern void memset(void *, s32, s32);
 extern s32 func_0880BFF0(void *, void *, s32);
 extern void func_0880ED70(char *, char *);
@@ -53,10 +53,10 @@ s32 func_088C022C(char *arg0, char *buf, s32 nocopy) {
     s32 n;
 
     func_088C2D74(arg0, buf, 0x16A100, D_089B2C94, 1);
-    func_0880C084(&hdr, buf + 0x16A0DC, sizeof(Hdr));
-    func_0880C084(buf + 0x16A0DC, D_089B4DF8, 0x14);
+    memcpy(&hdr, buf + 0x16A0DC, sizeof(Hdr));
+    memcpy(buf + 0x16A0DC, D_089B4DF8, 0x14);
     func_089040A0(buf, 0x16A0F0, digest);
-    func_0880C084(buf + 0x16A0DC, &hdr, sizeof(Hdr));
+    memcpy(buf + 0x16A0DC, &hdr, sizeof(Hdr));
     if (func_0880BFF0(digest, hdr.digest, 0x14) == 0) {
         tmp = func_08898694(D_09A0B540, 0x17, 0x6800);
         memset(arg0 + 0x9B0, 0, 0xF0);
@@ -69,7 +69,7 @@ s32 func_088C022C(char *arg0, char *buf, s32 nocopy) {
                 if (n != 0) {
                     func_088C03CC(arg0, tmp, i);
                     if (nocopy == 0) {
-                        func_0880C084(e, tmp, n);
+                        memcpy(e, tmp, n);
                     }
                 }
             }

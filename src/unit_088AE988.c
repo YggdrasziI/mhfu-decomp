@@ -30,7 +30,7 @@ extern s8 D_09A202E4;
 extern u16 D_09A202E0[2];
 extern u8 D_09A1FDE0;
 
-extern void func_0880C084(void *, void *, s32);
+extern void memcpy(void *, void *, s32);
 extern s32 func_088AEB80(u16, u8);
 extern void func_088AEE04(char *, u16);
 extern void func_088B7E74(u16);
@@ -39,7 +39,7 @@ extern s32 func_088B6E14(u16, u16);
 void func_088AE988(u8 *arg0) {
     u16 code;
 
-    func_0880C084(D_09A20602, arg0, 0x14);
+    memcpy(D_09A20602, arg0, 0x14);
     D_09A202E8 = arg0[0];
     D_09A202DE = arg0[1];
     code = (u16) (arg0[2] << 8) | arg0[3];

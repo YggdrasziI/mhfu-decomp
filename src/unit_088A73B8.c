@@ -7,7 +7,7 @@
 #include "unk_peer.h"
 
 extern int memset(void *, s32, s32);
-extern int func_0880C084(void *, void *, s32);
+extern int memcpy(void *, void *, s32);
 
 void func_088A73B8(Session *arg0) {
     s32 i;
@@ -20,7 +20,7 @@ void func_088A73B8(Session *arg0) {
         e = D_09A11EF0;
         s = (char *) arg0;
         do {
-            func_0880C084(e->addr, s + 0x24, 0x10);
+            memcpy(e->addr, s + 0x24, 0x10);
             if (i == arg0->self) {
                 e->state = 6;
             } else if (i < arg0->self) {

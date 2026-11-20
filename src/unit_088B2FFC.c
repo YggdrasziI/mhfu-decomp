@@ -29,7 +29,7 @@ extern u8 D_09A299AC;
 extern u8 D_09A299AD;
 extern Rec D_09A299B0[];
 
-extern void func_0880C084(void *, void *, s32);
+extern void memcpy(void *, void *, s32);
 extern s32 func_088B04EC(Rec *);
 extern void func_088B2854(Id *, Rec *, u8 *, Rec *);
 
@@ -47,7 +47,7 @@ void func_088B2FFC(u8 *arg0) {
             if (func_088B04EC(rec) == 0) {
                 D_09A299AC = D_09A29684;
                 D_09A299AD = D_09A29685;
-                func_0880C084(D_09A299B0, D_09A29688, 0x320);
+                memcpy(D_09A299B0, D_09A29688, 0x320);
             } else {
                 func_088B2854(&a, rec, &D_09A29684, D_09A29688);
             }

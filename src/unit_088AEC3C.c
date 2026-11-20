@@ -20,7 +20,7 @@ extern char D_09A1FE08[];
 extern u8 D_09A1FDE0;
 
 extern void memset(void *, s32, s32);
-extern void func_0880C084(void *, void *, s32);
+extern void memcpy(void *, void *, s32);
 extern void func_088B0604(char *, u32 *);
 extern s32 func_088AED80(char *, char *);
 extern s32 func_088B04B4(char *);
@@ -67,7 +67,7 @@ void func_088AEC3C(void) {
     }
     D_09A1FE04 = count;
     if (count != 0) {
-        func_0880C084(D_09A1FE08, list, sizeof(list));
+        memcpy(D_09A1FE08, list, sizeof(list));
     } else {
         memset(D_09A1FE08, 0, sizeof(list));
     }

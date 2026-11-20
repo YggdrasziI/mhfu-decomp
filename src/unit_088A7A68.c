@@ -6,7 +6,7 @@
 
 #include "unk_peer.h"
 
-extern int func_0880C084(void *, void *, s32);
+extern int memcpy(void *, void *, s32);
 extern s32 func_088A8018(char *, s32, s32);
 extern s32 D_09A11EE8;
 extern s32 func_088AD0F0(s32);
@@ -19,7 +19,7 @@ s32 func_088A7A68(char *arg0, u8 *arg1) {
     if (D_09A11EE8 < D_09A11EE4.pos + arg1[0]) {
         return func_088A8018(arg0, 2, g->pos + arg1[0]);
     }
-    func_0880C084(g->buf + g->pos, arg1, arg1[0]);
+    memcpy(g->buf + g->pos, arg1, arg1[0]);
     n = arg1[0];
     g->pos += n;
     return n;

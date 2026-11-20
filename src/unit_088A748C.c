@@ -13,7 +13,7 @@ typedef struct {
     u16 unk12;
 } SockAddr;
 
-extern int func_0880C084(void *, void *, s32);
+extern int memcpy(void *, void *, s32);
 extern int func_0880BFF0(void *, void *, int);
 extern s32 func_088AA9B4(s32, char *);
 extern s32 func_088AA370(SockAddr *);
@@ -53,7 +53,7 @@ s32 func_088A748C(Session *arg0) {
                 }
                 break;
             case 2:
-                func_0880C084(sa.addr, e->addr, 0x10);
+                memcpy(sa.addr, e->addr, 0x10);
                 sa.port = arg0->self + 0x4E20;
                 sa.unk12 = 0;
                 r = func_088AA370(&sa);

@@ -35,7 +35,7 @@ extern s32 sceNetInetAccept(s32, SockAddr *, s32 *);
 extern s32 sceNetInetGetpeername(s32, SockAddr *, s32 *);
 extern s32 sceNetInetGetPspError(void);
 extern s32 sceNetAdhocPtpAccept(s32, u8 *, u16 *, s32, s32);
-extern int func_0880C084(void *, void *, s32);
+extern int memcpy(void *, void *, s32);
 extern s32 func_088AA14C(s32);
 extern s32 D_09A1D728;
 extern Conn D_09A1D72C[16];
@@ -62,14 +62,14 @@ s32 func_088AA83C(s32 lsock, u8 *addr, u16 *port) {
         if (sceNetInetGetpeername(sock, &sa, &len) < 0) {
             return func_088AA14C(sceNetInetGetPspError());
         }
-        func_0880C084(addr, &sa.addr, 4);
+        memcpy(addr, &sa.addr, 4);
         *port = __builtin_allegrex_wsbh(sa.port);
         i = 0;
         c = D_09A1D72C;
         do {
             if (c->sock < 0) {
                 D_09A1D72C[i].sock = sock;
-                func_0880C084(D_09A1D72C[i].addr, &sa.addr, 4);
+                memcpy(D_09A1D72C[i].addr, &sa.addr, 4);
                 D_09A1D72C[i].port = sa.port;
                 break;
             }

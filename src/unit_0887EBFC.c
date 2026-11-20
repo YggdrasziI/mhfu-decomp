@@ -27,7 +27,7 @@ extern u8 func_0884FB38(char *, u32);
 extern u8 func_08854BEC(char *, u32);
 extern u8 func_08854C5C(char *, u32);
 extern void func_0884FAC4(char *, u32);
-extern void func_0880C084(void *, void *, s32);
+extern void memcpy(void *, void *, s32);
 extern char *func_0886BEA4(char *, s32);
 extern int func_0880E8F0(char *, char *, ...);
 extern void func_08858904(char *, char *);
@@ -153,7 +153,7 @@ void func_0887EBFC(char *arg0) {
             if (*(u8 *) (r + 0x1E8) == 0xC) {
                 continue;
             }
-            func_0880C084(D_08A62C7C + k * 18 + 0x6A8, D_09A0B544 + (u8) *(u16 *) (r + 0x1E6) * 200 + 0xBC8, 0x12);
+            memcpy(D_08A62C7C + k * 18 + 0x6A8, D_09A0B544 + (u8) *(u16 *) (r + 0x1E6) * 200 + 0xBC8, 0x12);
             k++;
             c = *(u8 *) (r + 0x113E);
             if (c != 0) {

@@ -6,7 +6,7 @@
 
 #include "unk_peer.h"
 
-extern int func_0880C084(void *, void *, s32);
+extern int memcpy(void *, void *, s32);
 extern s32 func_088A7A68(Session *, u8 *);
 extern s32 func_088A8018(Session *, s32, s32);
 extern Store D_09A1D56C;
@@ -20,7 +20,7 @@ s32 func_088A85F4(Session *arg0, Store *g, u8 *pkt) {
     if (g->cap < g->pos + pkt[0]) {
         return func_088A8018(arg0, 2, g->pos + pkt[0]);
     }
-    func_0880C084(g->buf + g->pos, pkt, pkt[0]);
+    memcpy(g->buf + g->pos, pkt, pkt[0]);
     g->pos += pkt[0];
     n = pkt[0];
     return n;

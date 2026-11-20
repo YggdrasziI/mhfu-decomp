@@ -43,7 +43,7 @@ extern Buf D_09A1FC50;
 extern s32 func_088AAF28(s32, u8 *, u16 *, void *, s16);
 extern u32 func_088AD12C(u32);
 extern int func_0880BFF0(void *, void *, int);
-extern void func_0880C084(void *, const void *, s32);
+extern void memcpy(void *, const void *, s32);
 
 s32 func_088AD87C(s32 id, u8 *mac, u16 *port, void *out, s16 len) {
     u16 from_port;
@@ -76,7 +76,7 @@ s32 func_088AD87C(s32 id, u8 *mac, u16 *port, void *out, s16 len) {
         if (i == 16) {
             continue;
         }
-        func_0880C084(&seq, b->data, 4);
+        memcpy(&seq, b->data, 4);
         if (func_088AD12C(seq) != 0) {
             if (found->active == 1) {
                 found->seq = func_088AD12C(seq);
@@ -90,13 +90,13 @@ s32 func_088AD87C(s32 id, u8 *mac, u16 *port, void *out, s16 len) {
         if (func_088AD12C(seq) != 0) {
             found->seq = func_088AD12C(seq);
         }
-        func_0880C084(mac, found, 6);
+        memcpy(mac, found, 6);
         *port = from_port;
         n = b->len - 4;
         if (len < n) {
             return -0xC;
         }
-        func_0880C084(out, b->data + 4, n);
+        memcpy(out, b->data + 4, n);
         return n;
     }
 }

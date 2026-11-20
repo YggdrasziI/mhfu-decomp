@@ -8,7 +8,7 @@ typedef int s32;
 
 extern char *D_089CC438;
 extern s32 D_09A4F0C4;
-extern int func_0880C084(char *, char *, s32);
+extern int memcpy(char *, char *, s32);
 extern int func_088D893C(s32);
 extern s32 func_088DCEBC(s32, u8);
 
@@ -20,8 +20,8 @@ void func_0887EA88(void) {
     temp_s2 = func_088DCEBC(D_09A4F0C4, *(u8 *)(D_089CC438 + 0x28));
     temp_s1 = D_089CC438 + 0x4A0;
     temp_s0 = D_089CC438 + 0x6ADFC;
-    func_0880C084(temp_s1 + 0x3F28, temp_s0, 0x60);
+    memcpy(temp_s1 + 0x3F28, temp_s0, 0x60);
     func_088D893C(temp_s2);
-    func_0880C084(temp_s1 + 0x20, temp_s0 + 0x60, 0xC);
-    func_0880C084(temp_s1 + 0x2C, temp_s0 + 0x6C, 0x3C);
+    memcpy(temp_s1 + 0x20, temp_s0 + 0x60, 0xC);
+    memcpy(temp_s1 + 0x2C, temp_s0 + 0x6C, 0x3C);
 }

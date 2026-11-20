@@ -32,7 +32,7 @@ typedef struct {
 } Config;
 
 extern void memset(void *, s32, s32);
-extern int func_0880C084(void *, void *, s32);
+extern int memcpy(void *, void *, s32);
 extern void func_088A84B4(Session *, s32, u8);
 extern s32 func_0880DA7C(void);
 extern void func_088A7DC0(void);
@@ -89,7 +89,7 @@ void func_088A9914(Config *arg0) {
     D_09A1D5D0.count = n;
     D_09A1D5D0.self = arg0->self;
     for (i = 0; i < cnt; i++) {
-        func_0880C084(D_09A1D5D0.addr[i], arg0->addr[i], 0x10);
+        memcpy(D_09A1D5D0.addr[i], arg0->addr[i], 0x10);
     }
     D_09A1D5D0.unkCC = arg0->unk44;
     D_09A1D5D0.unkD4 = arg0->unk48;

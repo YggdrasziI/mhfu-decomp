@@ -30,7 +30,7 @@ extern s32 func_0884FC0C(char *, s32);
 extern void func_088854A0(s32, s32, s32);
 extern int func_08883988(s32, s32, s32, s32, s32, s32, s32, s32, s32);
 extern void func_08876574(char *);
-extern void func_0880C084(void *, void *, s32);
+extern void memcpy(void *, void *, s32);
 
 s32 func_0887A950(char *arg0) {
     char *src;
@@ -110,7 +110,7 @@ s32 func_0887A950(char *arg0) {
                 }
                 ((s32 *)(D_089CC438 + 0x6397C))[idx] = val;
                 if (src != 0) {
-                    func_0880C084(D_089CC438 + (idx - 4001) * 18 + 0x6781C, src, 0x12);
+                    memcpy(D_089CC438 + (idx - 4001) * 18 + 0x6781C, src, 0x12);
                 } else {
                     (D_089CC438 + 0x55ECA)[idx * 18] = 0;
                 }

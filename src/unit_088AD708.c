@@ -30,7 +30,7 @@ typedef struct Entry {
 extern Peer D_09A1FC5C[16];
 
 extern int func_0880BFF0(void *, void *, int);
-extern void func_0880C084(void *, const void *, s32);
+extern void memcpy(void *, const void *, s32);
 
 s32 func_088AD708(Entry *list, s32 valid) {
     Peer *t;
@@ -58,7 +58,7 @@ s32 func_088AD708(Entry *list, s32 valid) {
                 e = t + 1;
                 do {
                     if (e->active == 0) {
-                        func_0880C084(e, p->mac, 6);
+                        memcpy(e, p->mac, 6);
                         e->unk10 = 1;
                         e->active = 1;
                         e->unk16 = 0xAAAA;

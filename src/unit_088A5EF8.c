@@ -8,7 +8,7 @@ typedef int s32;
 extern s32 D_09A0B564;
 extern s32 D_09A0B568;
 extern char D_09A0EB54;
-extern int func_0880C084(char *, s32, s32);
+extern int memcpy(char *, s32, s32);
 extern s32 func_088A4654(s32, s32, s32);
 extern int sceKernelCpuResumeIntr(s32);
 extern s32 sceKernelCpuSuspendIntr(void);
@@ -25,7 +25,7 @@ char *func_088A5EF8(s32 arg0, s32 arg1, s32 arg2) {
     if (temp_a0 == 0) {
         D_09A0B568 = sceKernelCpuSuspendIntr();
     }
-    func_0880C084(&D_09A0EB54, func_088A4654(arg0, arg1, arg2), 0x14);
+    memcpy(&D_09A0EB54, func_088A4654(arg0, arg1, arg2), 0x14);
     if (D_09A0B564 != 0) {
         temp_v1 = D_09A0B564 - 1;
         D_09A0B564 = temp_v1;

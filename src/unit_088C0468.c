@@ -25,7 +25,7 @@ extern char *D_089CC438;
 extern char *D_08A631A0;
 extern u8 D_089B2B94[];
 extern u8 D_089B4DF8[];
-extern void func_0880C084(void *, void *, s32);
+extern void memcpy(void *, void *, s32);
 extern void func_088572E8(char *);
 extern void func_088C2D74(char *, char *, s32, u8 *, s32);
 extern void func_089040A0(char *, s32, u8 *);
@@ -37,10 +37,10 @@ extern void func_089040A0(char *, s32, u8 *);
 void func_088C0468(char *arg0) {
     Hdr hdr;
 
-    func_0880C084(&hdr, *(char **) (arg0 + 0x94C) + 0x16A0DC, sizeof(Hdr));
-    func_0880C084(*(char **) (arg0 + 0x94C) + 0x16A0DC, D_089B4DF8, 0x14);
+    memcpy(&hdr, *(char **) (arg0 + 0x94C) + 0x16A0DC, sizeof(Hdr));
+    memcpy(*(char **) (arg0 + 0x94C) + 0x16A0DC, D_089B4DF8, 0x14);
     func_089040A0(*(char **) (arg0 + 0x94C), 0x16A0F0, hdr.digest);
-    func_0880C084(*(char **) (arg0 + 0x94C) + 0x16A0DC, &hdr, sizeof(Hdr));
+    memcpy(*(char **) (arg0 + 0x94C) + 0x16A0DC, &hdr, sizeof(Hdr));
     func_088572E8(D_089CC438);
     *(s32 *) (*(char **) (arg0 + 0x94C) + 0x16A0FC) =
         *(s32 *) (D_089CC438 + 0x4468) + *(s32 *) (D_08A631A0 + 0xF7A554);

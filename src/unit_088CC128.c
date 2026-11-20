@@ -9,13 +9,13 @@
 
 typedef int s32;
 
-extern void func_0880C084(void *, void *, s32);
+extern void memcpy(void *, void *, s32);
 
 char *func_088CC128(char *arg0, char *arg1) {
     s32 *p = (s32 *) arg1;
 
-    func_0880C084(arg0 + 0x450, p++, 4);
-    func_0880C084(arg0 + 0x448, p++, 4);
-    func_0880C084(arg0 + 0x44C, p++, 4);
+    memcpy(arg0 + 0x450, p++, 4);
+    memcpy(arg0 + 0x448, p++, 4);
+    memcpy(arg0 + 0x44C, p++, 4);
     return (char *) p;
 }

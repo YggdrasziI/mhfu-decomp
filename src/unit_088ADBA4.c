@@ -37,7 +37,7 @@ extern Queue D_09A1FC44;
 
 extern u64 sceKernelGetSystemTimeWide(void);
 extern s32 func_088AAFA4(s32, u8 *, u16, void *, s16);
-extern void func_0880C084(void *, const void *, s32);
+extern void memcpy(void *, const void *, s32);
 extern void func_088ACD88(void);
 extern void func_088AD00C(void);
 extern void func_088AD064(void (*)(s32, s32, void *), void *);
@@ -57,7 +57,7 @@ s32 func_088ADBA4(s32 id) {
     off = 0;
     if (D_09A1FC44.len > 0) {
         do {
-            func_0880C084(&hdr, q->data + off, 0x20);
+            memcpy(&hdr, q->data + off, 0x20);
             if (now >= hdr.time + 250000) {
                 ret = func_088AAFA4(id, hdr.mac, hdr.port, q->data + (off + 0x20), hdr.len);
                 if (ret < 0) {
@@ -72,11 +72,11 @@ s32 func_088ADBA4(s32 id) {
                     n = hdr.len + 0x20;
                     end = off + n;
                     if (end < q->len) {
-                        func_0880C084(q->data + off, q->data + end, q->len - end);
+                        memcpy(q->data + off, q->data + end, q->len - end);
                     }
                     q->len -= n;
                 } else {
-                    func_0880C084(q->data + off, &hdr, 0x20);
+                    memcpy(q->data + off, &hdr, 0x20);
                     off += hdr.len + 0x20;
                 }
             } else {

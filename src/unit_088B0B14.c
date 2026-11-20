@@ -31,7 +31,7 @@ extern char D_09A28884[];
 extern char D_09A2889C[];
 
 extern void memset(void *, s32, s32);
-extern void func_0880C084(void *, void *, s32);
+extern void memcpy(void *, void *, s32);
 extern s32 func_088B0554(u8 *);
 extern s32 func_088AAED0(T14 *);
 extern void func_088AFC28(void);
@@ -42,8 +42,8 @@ s32 func_088B0B14(char *arg0) {
 
     memset(D_09A2851C, 0, 0x1C740);
     func_088B0554(D_09A201F0);
-    func_0880C084(D_09A201F8, arg0, 0x16);
-    func_0880C084(D_09A20210, arg0 + 0x18, 0xA4);
+    memcpy(D_09A201F8, arg0, 0x16);
+    memcpy(D_09A20210, arg0 + 0x18, 0xA4);
     switch (D_09A1FDE0) {
     case 0:
         D_09A1FDE0 = 1;
@@ -62,7 +62,7 @@ s32 func_088B0B14(char *arg0) {
     }
     D_09A202C8 = 1;
     func_088B0554(D_09A2887C);
-    func_0880C084(D_09A28884, arg0, 0x16);
-    func_0880C084(D_09A2889C, arg0 + 0x18, 0xA4);
+    memcpy(D_09A28884, arg0, 0x16);
+    memcpy(D_09A2889C, arg0 + 0x18, 0xA4);
     return 0;
 }

@@ -9,7 +9,7 @@
 
 #include "unk_peer.h"
 
-extern int func_0880C084(void *, void *, s32);
+extern int memcpy(void *, void *, s32);
 extern s32 func_088A8028(Session *, s32, s32);
 
 s32 func_088A8C78(Session *arg0, char *data, s32 size, Header *out) {
@@ -25,7 +25,7 @@ s32 func_088A8C78(Session *arg0, char *data, s32 size, Header *out) {
                 return 0;
             }
             size -= 6;
-            func_0880C084(&hdr, data, 6);
+            memcpy(&hdr, data, 6);
             if (hdr.len < 6) {
                 func_088A8028(arg0, 5, hdr.len);
                 return 0;
@@ -41,7 +41,7 @@ s32 func_088A8C78(Session *arg0, char *data, s32 size, Header *out) {
                 return 0;
             }
             if (out != 0) {
-                func_0880C084(out, &hdr, 6);
+                memcpy(out, &hdr, 6);
             }
             return hdr.len;
         }

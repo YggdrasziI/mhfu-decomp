@@ -11,7 +11,7 @@ typedef unsigned char u8;
 typedef int s32;
 
 extern void memset(void *, s32, s32);
-extern int func_0880C084(void *, void *, s32);
+extern int memcpy(void *, void *, s32);
 typedef struct {
     u8 busy;
     u8 unk1;
@@ -32,7 +32,7 @@ void func_088ACC60(u8 mode, void *src) {
     D_09A1DB60.unkC = -1;
     switch (D_09A1DB60.mode) {
     case 1:
-        func_0880C084(D_09A1DAF4, src, 9);
+        memcpy(D_09A1DAF4, src, 9);
         break;
     }
     D_09A1DB60.busy = 0;
@@ -43,7 +43,7 @@ void func_088ACCE8(void *src) {
     D_09A1DB60.unk1 = 0;
     switch (D_09A1DB60.mode) {
     case 1:
-        func_0880C084(D_09A1DB00, src, 8);
+        memcpy(D_09A1DB00, src, 8);
         break;
     }
 }

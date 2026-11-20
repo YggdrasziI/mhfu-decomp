@@ -35,7 +35,7 @@ extern s32 sceNetGetLocalEtherAddr(u8 *);
 extern s32 sceNetAdhocPdpCreate(u8 *, u16, s32, s32);
 extern s32 sceNetAdhocPdpRecv(s32, u8 *, u16 *, void *, s32 *, s32, s32);
 extern s32 sceNetAdhocPdpSend(s32, u8 *, u16, void *, s32, s32, s32);
-extern int func_0880C084(void *, void *, s32);
+extern int memcpy(void *, void *, s32);
 extern s32 func_088AA14C(s32);
 extern s32 D_09A1D728;
 extern Conn D_09A1D72C[16];
@@ -95,7 +95,7 @@ s32 func_088AAF28(s32 id, u8 *mac, u16 *port, void *buf, s16 len) {
     if (ret < 0) {
         return ret;
     }
-    func_0880C084(mac, from, 6);
+    memcpy(mac, from, 6);
     return n;
 }
 
@@ -103,7 +103,7 @@ s32 func_088AAFA4(s32 id, u8 *mac, u16 port, void *buf, s16 len) {
     s32 ret;
     u8 to[8];
 
-    func_0880C084(to, mac, 6);
+    memcpy(to, mac, 6);
     ret = func_088AA14C(sceNetAdhocPdpSend(id, to, port, buf, len, 0, 0));
     return ret < 0 ? ret : len;
 }

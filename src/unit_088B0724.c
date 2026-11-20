@@ -41,7 +41,7 @@ extern char D_089B2A3C[];
 
 extern s32 sceNetAdhocctlGetScanInfo(u32 *, void *);
 extern void memset(void *, s32, s32);
-extern void func_0880C084(void *, void *, s32);
+extern void memcpy(void *, void *, s32);
 extern int func_0880E8F0(char *, char *, ...);
 extern u32 func_0880EDF8(char *);
 extern int func_0880BFF0(void *, void *, int);
@@ -59,7 +59,7 @@ s32 func_088B0724(u8 *arg0, char *arg1) {
     p = D_09A28950;
     i = 0;
     do {
-        func_0880C084(p, D_09A28528, 6);
+        memcpy(p, D_09A28528, 6);
         func_0880E8F0(num, D_089B2A3C, i);
         if (func_0880EDF8(num) == 1) {
             p[6] = '0';
@@ -71,7 +71,7 @@ s32 func_088B0724(u8 *arg0, char *arg1) {
         i++;
         p += 0x10;
     } while (i < 0x18);
-    func_0880C084(arg1, D_09A28950, 0x180);
+    memcpy(arg1, D_09A28950, 0x180);
     len = 0x32C;
     if (sceNetAdhocctlGetScanInfo(&len, &D_09A28534) < 0) {
         return 0;

@@ -25,13 +25,13 @@ extern char D_09A1F844[];
 extern char D_09A1DC44[];
 
 extern void memset(void *, s32, s32);
-extern void func_0880C084(void *, const void *, s32);
+extern void memcpy(void *, const void *, s32);
 
 void func_088AD63C(void *mac) {
     memset(D_09A1FC5C, 0, 0x180);
     memset(D_09A1FC50, 0, 0xC);
     memset(D_09A1FC44, 0, 0xC);
-    func_0880C084(D_09A1FC5C, mac, 6);
+    memcpy(D_09A1FC5C, mac, 6);
     D_09A1FC6C = 1;
     D_09A1FC70 = 2;
     D_09A1FC72 = 0xAAAA;

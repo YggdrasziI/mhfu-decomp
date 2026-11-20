@@ -12,7 +12,7 @@ typedef unsigned short u16;
 
 extern s32 D_09A202D0;
 
-extern void func_0880C084(void *dst, const void *src, int size);
+extern void memcpy(void *dst, const void *src, int size);
 extern s32 func_088ADA44(s32, char *, s32, char *, s16, u8);
 
 /* 87.7 %: the original computes the last three arguments first and loads
@@ -23,7 +23,7 @@ s32 func_088B012C(char *arg0) {
     char addr[16];
     s32 ret;
 
-    func_0880C084(addr, any, 6);
+    memcpy(addr, any, 6);
     ret = func_088ADA44(D_09A202D0, addr, 0x2710, arg0 + 4, *(u16 *)arg0 + 0x14, *(u8 *)(arg0 + 0x14));
     if (ret < 0) {
         return ret;

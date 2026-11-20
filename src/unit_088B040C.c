@@ -11,7 +11,7 @@ typedef unsigned char u8;
 typedef unsigned short u16;
 typedef int s32;
 
-extern void func_0880C084(void *, void *, s32);
+extern void memcpy(void *, void *, s32);
 
 u8 *func_088B040C(char *arg0, u16 arg1, u8 *arg2) {
     u16 len;
@@ -23,7 +23,7 @@ u8 *func_088B040C(char *arg0, u16 arg1, u8 *arg2) {
         n = arg1;
     }
     if (n != 0) {
-        func_0880C084(arg0, arg2 + 2, (u16) n);
+        memcpy(arg0, arg2 + 2, (u16) n);
     }
     return arg2 + (len + 2);
 }

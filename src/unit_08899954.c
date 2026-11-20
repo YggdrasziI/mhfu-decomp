@@ -8,7 +8,7 @@ typedef unsigned char u8;
 typedef short s16;
 typedef int s32;
 
-extern int func_0880C084(void *, void *, s32);
+extern int memcpy(void *, void *, s32);
 extern int memset(void *, s32, s32);
 extern char func_0889A290;
 extern char func_0889AEB0;
@@ -36,14 +36,14 @@ void func_08899954(char *arg0, char *arg1, char *arg2, s32 arg3) {
     *(u8 *)(arg0 + 0x12D6) = 0U;
     memset(arg0 + 0x20, 0, 0xBC);
     if (arg1 != 0) {
-        func_0880C084(arg0 + 0x20, arg1, 0x12);
+        memcpy(arg0 + 0x20, arg1, 0x12);
     }
     *(s16 *)(arg0 + 0x32) = 0x12;
     *(u8 *)(arg0 + 0xD6) = (u8) *(u8 *)(arg0 + 0x12D6);
     *(u8 *)(arg0 + 0xD7) = (u8) *(u8 *)(arg0 + 0x12D5);
     *(s16 *)(arg0 + 0xD8) = 0;
     if (arg3 != 0) {
-        func_0880C084(arg0 + 0x38, arg2, arg3);
+        memcpy(arg0 + 0x38, arg2, arg3);
         *(s16 *)(arg0 + 0xD8) = 0xA0;
     }
     *(s8 *)(arg0 + 0x12D4) = 0;

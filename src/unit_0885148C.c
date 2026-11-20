@@ -19,7 +19,7 @@ extern u16 D_0899B46C[];
 extern u16 D_0899B7A4[];
 extern u16 D_0899BAD8[];
 
-extern void func_0880C084(void *dst, const void *src, int size);
+extern void memcpy(void *dst, const void *src, int size);
 
 char *func_0885148C(int unused, int section) {
     int i = section + 2;
@@ -34,7 +34,7 @@ char *func_088514AC(int arg, int section, u16 entry) {
     if (entry == 0xFFFF) {
         return 0;
     }
-    func_0880C084(&offset, base + entry * 4, 4);
+    memcpy(&offset, base + entry * 4, 4);
     if (offset == -1) {
         return 0;
     }

@@ -64,7 +64,7 @@ typedef struct {
     u8 unk175;
 } Lobby;
 
-extern int func_0880C084(void *, void *, s32);
+extern int memcpy(void *, void *, s32);
 extern void func_088A9914(Config *);
 extern s32 func_088AB35C(s32, s32, s32);
 extern void func_088AB490(u8, u8 *);
@@ -77,7 +77,7 @@ void func_088AB068(Lobby *lobby, Members *m) {
 
     p = m->member;
     for (i = 0; i < m->count; i++) {
-        func_0880C084(cfg.addr[i], p->mac, 6);
+        memcpy(cfg.addr[i], p->mac, 6);
         p++;
     }
     cfg.unk0 = 1;

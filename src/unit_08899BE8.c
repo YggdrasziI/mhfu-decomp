@@ -7,7 +7,7 @@ typedef signed char s8;
 typedef short s16;
 typedef int s32;
 
-extern int func_0880C084(void *, void *, s32);
+extern int memcpy(void *, void *, s32);
 extern int memset(void *, s32, s32);
 extern char func_0889A614;
 extern int func_088B3778(char *, char *, char *);
@@ -15,19 +15,19 @@ extern int func_088B3778(char *, char *, char *);
 void func_08899BE8(char *arg0, char *arg1, char *arg2, s32 arg3, s8 arg4, char *arg5, s32 arg6) {
     *(s32 *)(arg0 + 0x12C0) = (s32) (*(s32 *)(arg0 + 0x12C0) | 0x80);
     if (arg1 != 0) {
-        func_0880C084(arg0 + 0xEE8, arg1, 0x12);
+        memcpy(arg0 + 0xEE8, arg1, 0x12);
     } else {
         memset(arg0 + 0xEE8, 0, 0x12);
     }
     *(s16 *)(arg0 + 0xEFA) = 0x12;
     if (arg2 != 0) {
-        func_0880C084(arg0 + 0xF00, arg2, 0x42);
+        memcpy(arg0 + 0xF00, arg2, 0x42);
     } else {
         memset(arg0 + 0xF00, 0, 0x42);
     }
     *(s16 *)(arg0 + 0xF42) = 0x42;
     if (arg5 != 0) {
-        func_0880C084(arg0 + 0xF50, arg5, arg6);
+        memcpy(arg0 + 0xF50, arg5, arg6);
     } else {
         memset(arg0 + 0xF50, 0, 8);
     }
