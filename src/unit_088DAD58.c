@@ -32,13 +32,13 @@ typedef struct Entry {
 extern Entry D_089B07A0;
 extern Entry D_089B07B4[];
 
-extern void func_0880C464(char *, s32, s32);
+extern void memset(char *, s32, s32);
 
 void func_088DAD58(char *arg0, u16 arg1) {
     Entry *e;
 
     *(Entry **)(arg0 + 0x7F4) = &D_089B07A0;
-    func_0880C464(arg0 + 0x7F8, 0, 0x30);
+    memset(arg0 + 0x7F8, 0, 0x30);
     for (e = D_089B07B4; e->key != 0xFFFF; e++) {
         if (e->key == arg1) {
             *(Entry **)(arg0 + 0x7F4) = e;

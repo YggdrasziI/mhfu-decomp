@@ -40,7 +40,7 @@ extern char D_09A28950[];
 extern char D_089B2A3C[];
 
 extern s32 sceNetAdhocctlGetScanInfo(u32 *, void *);
-extern void func_0880C464(void *, s32, s32);
+extern void memset(void *, s32, s32);
 extern void func_0880C084(void *, void *, s32);
 extern int func_0880E8F0(char *, char *, ...);
 extern u32 func_0880EDF8(char *);
@@ -55,7 +55,7 @@ s32 func_088B0724(u8 *arg0, char *arg1) {
 
     len = 0;
     *arg0 = 0x18;
-    func_0880C464(D_09A28950, 0, 0x180);
+    memset(D_09A28950, 0, 0x180);
     p = D_09A28950;
     i = 0;
     do {

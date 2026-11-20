@@ -7,11 +7,11 @@ typedef unsigned short u16;
 typedef int s32;
 
 extern char *D_08A62C58;
-extern int func_0880C464(void *, s32, s32);
+extern int memset(void *, s32, s32);
 
 char *func_08860768(char *arg0) {
     D_08A62C58 = arg0;
-    func_0880C464(arg0, 0, 0x150);
+    memset(arg0, 0, 0x150);
     *(u16 *)(arg0 + 0x15C) = 0xFFFF;
     return arg0;
 }

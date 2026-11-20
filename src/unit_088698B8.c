@@ -5,10 +5,10 @@
 
 typedef int s32;
 
-extern int func_0880C464(void *, s32, s32);
+extern int memset(void *, s32, s32);
 extern void func_08870D30(void *);
 
 void func_088698B8(char *arg0) {
-    func_0880C464(arg0, 0, 0x8A8);
+    memset(arg0, 0, 0x8A8);
     func_08870D30(arg0);
 }

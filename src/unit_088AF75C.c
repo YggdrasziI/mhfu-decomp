@@ -14,7 +14,7 @@ typedef int s32;
 extern u8 D_09A1FDE0;
 
 extern s32 func_088AFE84(void);
-extern void func_0880C464(void *, s32, s32);
+extern void memset(void *, s32, s32);
 extern void func_088AEF64(char *);
 extern void func_088B0370(char *, s32);
 extern s32 func_088AF7E0(char *);
@@ -27,7 +27,7 @@ void func_088AF75C(void) {
     s32 n;
 
     n = func_088AFE84();
-    func_0880C464(body, 0, sizeof(body));
+    memset(body, 0, sizeof(body));
     func_088AEF64(key);
     func_088B0370(body, n);
     if (func_088AF7E0(key) == 0) {

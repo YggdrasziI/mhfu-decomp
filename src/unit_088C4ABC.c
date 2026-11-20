@@ -31,7 +31,7 @@ extern char D_089BE590;
 extern char D_089BE5B0;
 extern char D_089BE5D0;
 extern char D_089BE5F0;
-extern int func_0880C464(void *, s32, s32);
+extern int memset(void *, s32, s32);
 extern s32 func_08859B44(void *, s32, s32);
 extern int func_08859C40(void *, s32);
 extern s32 func_088C7130(s32, s32);
@@ -66,7 +66,7 @@ void func_088C4ABC(char *arg0, s32 arg1) {
 
     tmp = func_08859B44(arg0 + 0x2294 + 0x7FF8, 0x50, 0x10);
     if (tmp != 0) {
-        func_0880C464((char *) tmp, 0, 0x50);
+        memset((char *) tmp, 0, 0x50);
         if (tmp != 0) {
             *(char **)tmp = &D_089BAB34;
             *(char **)tmp = &D_089BACBC;
@@ -98,7 +98,7 @@ void func_088C4BB4(char *arg0, s32 arg1) {
 
     tmp = func_08859B44(arg0 + 0x2294 + 0x7FF8, 0xC0, 0x10);
     if (tmp != 0) {
-        func_0880C464((char *) tmp, 0, 0xC0);
+        memset((char *) tmp, 0, 0xC0);
         if (tmp != 0) {
             *(char **)tmp = &D_089BAB34;
             *(char **)tmp = &D_089BACBC;
@@ -130,7 +130,7 @@ void func_088C4CAC(char *arg0) {
 
     tmp = func_08859B44(arg0 + 0x2294 + 0x7FF8, 0x50, 0x10);
     if (tmp != 0) {
-        func_0880C464((char *) tmp, 0, 0x50);
+        memset((char *) tmp, 0, 0x50);
         if (tmp != 0) {
             *(char **)tmp = &D_089BAB34;
             *(char **)tmp = &D_089BACBC;
@@ -162,7 +162,7 @@ void func_088C4D94(char *arg0, s32 arg1) {
 
     tmp = func_08859B44(arg0 + 0x2294 + 0x7FF8, 0x70, 0x10);
     if (tmp != 0) {
-        func_0880C464((char *) tmp, 0, 0x70);
+        memset((char *) tmp, 0, 0x70);
         if (tmp != 0) {
             *(char **)tmp = &D_089BAB34;
             *(char **)tmp = &D_089BACBC;
@@ -194,7 +194,7 @@ void func_088C4E8C(char *arg0, s32 arg1) {
 
     tmp = func_08859B44(arg0 + 0x2294 + 0x7FF8, 0x3C, 0x10);
     if (tmp != 0) {
-        func_0880C464((char *) tmp, 0, 0x3C);
+        memset((char *) tmp, 0, 0x3C);
         if (tmp != 0) {
             *(char **)tmp = &D_089BAB34;
             *(char **)tmp = &D_089BACBC;
@@ -226,7 +226,7 @@ void func_088C4F84(char *arg0, s32 arg1) {
 
     tmp = func_08859B44(arg0 + 0x2294 + 0x7FF8, 0x70, 0x10);
     if (tmp != 0) {
-        func_0880C464((char *) tmp, 0, 0x70);
+        memset((char *) tmp, 0, 0x70);
         if (tmp != 0) {
             *(char **)tmp = &D_089BAB34;
             *(char **)tmp = &D_089BACBC;
@@ -258,7 +258,7 @@ void func_088C507C(char *arg0, s32 arg1) {
 
     tmp = func_08859B44(arg0 + 0x2294 + 0x7FF8, 0x60, 0x10);
     if (tmp != 0) {
-        func_0880C464((char *) tmp, 0, 0x60);
+        memset((char *) tmp, 0, 0x60);
         if (tmp != 0) {
             *(char **)tmp = &D_089BAB34;
             *(char **)tmp = &D_089BACBC;
@@ -290,7 +290,7 @@ void func_088C5174(char *arg0, s32 arg1) {
 
     tmp = func_08859B44(arg0 + 0x2294 + 0x7FF8, 0x60, 0x10);
     if (tmp != 0) {
-        func_0880C464((char *) tmp, 0, 0x60);
+        memset((char *) tmp, 0, 0x60);
         if (tmp != 0) {
             *(char **)tmp = &D_089BAB34;
             *(char **)tmp = &D_089BACBC;
@@ -322,7 +322,7 @@ void func_088C526C(char *arg0, s32 arg1) {
 
     tmp = func_08859B44(arg0 + 0x2294 + 0x7FF8, 0x50, 0x10);
     if (tmp != 0) {
-        func_0880C464((char *) tmp, 0, 0x50);
+        memset((char *) tmp, 0, 0x50);
         if (tmp != 0) {
             *(char **)tmp = &D_089BAB34;
             *(char **)tmp = &D_089BACBC;
@@ -354,7 +354,7 @@ void func_088C5364(char *arg0, s32 arg1, s32 arg2, s32 arg3) {
 
     tmp = func_08859B44(arg0 + 0x2294 + 0x7FF8, 0x60, 0x10);
     if (tmp != 0) {
-        func_0880C464((char *) tmp, 0, 0x60);
+        memset((char *) tmp, 0, 0x60);
         if (tmp != 0) {
             *(char **)tmp = &D_089BAB34;
             *(char **)tmp = &D_089BACBC;
@@ -386,7 +386,7 @@ void func_088C547C(char *arg0, s32 arg1) {
 
     tmp = func_08859B44(arg0 + 0x2294 + 0x7FF8, 0x40, 0x10);
     if (tmp != 0) {
-        func_0880C464((char *) tmp, 0, 0x40);
+        memset((char *) tmp, 0, 0x40);
         if (tmp != 0) {
             *(char **)tmp = &D_089BAB34;
             *(char **)tmp = &D_089BACBC;
@@ -418,7 +418,7 @@ void func_088C5574(char *arg0, s32 arg1) {
 
     tmp = func_08859B44(arg0 + 0x2294 + 0x7FF8, 0x3C, 0x10);
     if (tmp != 0) {
-        func_0880C464((char *) tmp, 0, 0x3C);
+        memset((char *) tmp, 0, 0x3C);
         if (tmp != 0) {
             *(char **)tmp = &D_089BAB34;
             *(char **)tmp = &D_089BACBC;
@@ -450,7 +450,7 @@ void func_088C566C(char *arg0, s32 arg1) {
 
     tmp = func_08859B44(arg0 + 0x2294 + 0x7FF8, 0x60, 0x10);
     if (tmp != 0) {
-        func_0880C464((char *) tmp, 0, 0x60);
+        memset((char *) tmp, 0, 0x60);
         if (tmp != 0) {
             *(char **)tmp = &D_089BAB34;
             *(char **)tmp = &D_089BACBC;
@@ -482,7 +482,7 @@ void func_088C5764(char *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4) {
 
     tmp = func_08859B44(arg0 + 0x2294 + 0x7FF8, 0x80, 0x10);
     if (tmp != 0) {
-        func_0880C464((char *) tmp, 0, 0x80);
+        memset((char *) tmp, 0, 0x80);
         if (tmp != 0) {
             *(char **)tmp = &D_089BAB34;
             *(char **)tmp = &D_089BACBC;
@@ -514,7 +514,7 @@ void func_088C588C(char *arg0, s32 arg1, s32 arg2) {
 
     tmp = func_08859B44(arg0 + 0x2294 + 0x7FF8, 0x70, 0x10);
     if (tmp != 0) {
-        func_0880C464((char *) tmp, 0, 0x70);
+        memset((char *) tmp, 0, 0x70);
         if (tmp != 0) {
             *(char **)tmp = &D_089BAB34;
             *(char **)tmp = &D_089BACBC;
@@ -546,7 +546,7 @@ void func_088C5994(char *arg0, s32 arg1) {
 
     tmp = func_08859B44(arg0 + 0x2294 + 0x7FF8, 0x70, 0x10);
     if (tmp != 0) {
-        func_0880C464((char *) tmp, 0, 0x70);
+        memset((char *) tmp, 0, 0x70);
         if (tmp != 0) {
             *(char **)tmp = &D_089BAB34;
             *(char **)tmp = &D_089BACBC;
@@ -578,7 +578,7 @@ void func_088C5A8C(char *arg0) {
 
     tmp = func_08859B44(arg0 + 0x2294 + 0x7FF8, 0x5A0, 0x10);
     if (tmp != 0) {
-        func_0880C464((char *) tmp, 0, 0x5A0);
+        memset((char *) tmp, 0, 0x5A0);
         if (tmp != 0) {
             *(char **)tmp = &D_089BAB34;
             *(char **)tmp = &D_089BACBC;
@@ -610,7 +610,7 @@ void func_088C5B74(char *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5)
 
     tmp = func_08859B44(arg0 + 0x2294 + 0x7FF8, 0xE0, 0x10);
     if (tmp != 0) {
-        func_0880C464((char *) tmp, 0, 0xE0);
+        memset((char *) tmp, 0, 0xE0);
         if (tmp != 0) {
             *(char **)tmp = &D_089BAB34;
             *(char **)tmp = &D_089BACBC;
@@ -642,7 +642,7 @@ void func_088C5CAC(char *arg0, s32 arg1) {
 
     tmp = func_08859B44(arg0 + 0x2294 + 0x7FF8, 0x50, 0x10);
     if (tmp != 0) {
-        func_0880C464((char *) tmp, 0, 0x50);
+        memset((char *) tmp, 0, 0x50);
         if (tmp != 0) {
             *(char **)tmp = &D_089BAB34;
             *(char **)tmp = &D_089BACBC;
@@ -674,7 +674,7 @@ void func_088C5DA4(char *arg0, s32 arg1) {
 
     tmp = func_08859B44(arg0 + 0x2294 + 0x7FF8, 0x70, 0x10);
     if (tmp != 0) {
-        func_0880C464((char *) tmp, 0, 0x70);
+        memset((char *) tmp, 0, 0x70);
         if (tmp != 0) {
             *(char **)tmp = &D_089BAB34;
             *(char **)tmp = &D_089BACBC;
@@ -706,7 +706,7 @@ void func_088C5E9C(char *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5,
 
     tmp = func_08859B44(arg0 + 0x2294 + 0x7FF8, 0x90, 0x10);
     if (tmp != 0) {
-        func_0880C464((char *) tmp, 0, 0x90);
+        memset((char *) tmp, 0, 0x90);
         if (tmp != 0) {
             *(char **)tmp = &D_089BAB34;
             *(char **)tmp = &D_089BACBC;
@@ -738,7 +738,7 @@ void func_088C5FE4(char *arg0, s32 arg1, s32 arg2, s32 arg3) {
 
     tmp = func_08859B44(arg0 + 0x2294 + 0x7FF8, 0x90, 0x10);
     if (tmp != 0) {
-        func_0880C464((char *) tmp, 0, 0x90);
+        memset((char *) tmp, 0, 0x90);
         if (tmp != 0) {
             *(char **)tmp = &D_089BAB34;
             *(char **)tmp = &D_089BACBC;
@@ -770,7 +770,7 @@ void func_088C60FC(char *arg0, s32 arg1, s32 arg2, s32 arg3, s32 arg4, s32 arg5)
 
     tmp = func_08859B44(arg0 + 0x2294 + 0x7FF8, 0xA0, 0x10);
     if (tmp != 0) {
-        func_0880C464((char *) tmp, 0, 0xA0);
+        memset((char *) tmp, 0, 0xA0);
         if (tmp != 0) {
             *(char **)tmp = &D_089BAB34;
             *(char **)tmp = &D_089BACBC;

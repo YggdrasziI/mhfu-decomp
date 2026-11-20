@@ -38,3 +38,7 @@ jpeg_abort = 0x088DE804; // type:func size:0x54
 jpeg_destroy = 0x088DE858; // type:func size:0x3C
 jpeg_alloc_quant_table = 0x088DE894; // type:func size:0x2C
 jpeg_alloc_huff_table = 0x088DE8C0; // type:func size:0x2C
+
+// C library: the IJG JPEG library's MEMZERO (memset) calls resolve to this function
+// in the code its unmodified jdapimin.c reproduces byte for byte (notes/PROVENANCE.md)
+memset = 0x0880C464; // type:func

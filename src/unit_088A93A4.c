@@ -13,7 +13,7 @@
 #include "unk_peer.h"
 
 extern void func_088A84B4(Session *, s32, u8);
-extern void func_0880C464(void *, s32, s32);
+extern void memset(void *, s32, s32);
 extern s32 func_088A9084(Session *);
 extern void func_088A868C(Session *);
 
@@ -22,7 +22,7 @@ s32 func_088A93A4(Session *arg0) {
 
     if (arg0->count == 1) {
         func_088A84B4(arg0, arg0->self, 3);
-        func_0880C464(arg0, 0, 8);
+        memset(arg0, 0, 8);
         return 1;
     }
     if (arg0->unk7C + arg0->unk0 < arg0->unk78) {
@@ -67,7 +67,7 @@ s32 func_088A93A4(Session *arg0) {
                 func_088A84B4(arg0, (u8) i, 3);
             }
         }
-        func_0880C464(arg0, 0, 8);
+        memset(arg0, 0, 8);
         return 1;
     }
     if (arg0->unk7C + arg0->unk134 < arg0->unk78) {
@@ -85,7 +85,7 @@ s32 func_088A93A4(Session *arg0) {
                 break;
             }
         }
-        func_0880C464(arg0, 0, 8);
+        memset(arg0, 0, 8);
         return 1;
     }
     return 0;

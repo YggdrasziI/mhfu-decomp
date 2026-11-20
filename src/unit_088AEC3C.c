@@ -19,7 +19,7 @@ extern s32 D_09A1FE04;
 extern char D_09A1FE08[];
 extern u8 D_09A1FDE0;
 
-extern void func_0880C464(void *, s32, s32);
+extern void memset(void *, s32, s32);
 extern void func_0880C084(void *, void *, s32);
 extern void func_088B0604(char *, u32 *);
 extern s32 func_088AED80(char *, char *);
@@ -39,7 +39,7 @@ void func_088AEC3C(void) {
     if (D_09A202C8 == 0) {
         return;
     }
-    func_0880C464(list, 0, sizeof(list));
+    memset(list, 0, sizeof(list));
     count = 0;
     func_088B0604(list, &count);
     if (func_088AED80(D_09A1FE08, list) == 0) {
@@ -69,6 +69,6 @@ void func_088AEC3C(void) {
     if (count != 0) {
         func_0880C084(D_09A1FE08, list, sizeof(list));
     } else {
-        func_0880C464(D_09A1FE08, 0, sizeof(list));
+        memset(D_09A1FE08, 0, sizeof(list));
     }
 }

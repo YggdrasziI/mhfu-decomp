@@ -90,7 +90,7 @@ extern char D_09A29364;
 
 extern void func_088B6A08(s32, s32, s32);
 extern void func_088B7A50(s32);
-extern void func_0880C464(void *, s32, s32);
+extern void memset(void *, s32, s32);
 extern void func_0880C084(void *, void *, s32);
 extern u16 func_088B650C(void);
 extern void func_088B67D0(RecC8 *);
@@ -116,10 +116,10 @@ s32 func_088B3778(char *arg0, s32 arg1, s32 arg2) {
     }
     func_088B7A50(2);
     D_09A28876 = 1;
-    func_0880C464(&D_09A29364, 0, 0x320);
+    memset(&D_09A29364, 0, 0x320);
     D_09A28870 = 0;
     D_09A28877 = 0;
-    func_0880C464(&D_09A28B98, 0, 0x64);
+    memset(&D_09A28B98, 0, 0x64);
     *(B8 *) g = *(B8 *) &D_09A2887C;
     g->unk58 = func_088B650C();
     D_09A291BC = *(H0B *) arg0;
@@ -131,7 +131,7 @@ s32 func_088B3778(char *arg0, s32 arg1, s32 arg2) {
     g->unk50 = *(s32 *) (arg0 + 0x60);
     g->unk56 = 1;
     func_0880C084(g->unk5C, arg0 + 0x68, 8);
-    func_0880C464(&rec, 0, 0xC8);
+    memset(&rec, 0, 0xC8);
     rec.unk0 = *(B6 *) &D_09A2887C;
     rec.unk6 = D_09A28882;
     rec.unk7 = D_09A28883;

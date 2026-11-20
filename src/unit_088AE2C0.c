@@ -10,7 +10,7 @@ typedef unsigned int u32;
 
 extern u32 D_09A1FE04;
 extern char D_09A1FE08;
-extern int func_0880C464(char *, s32, s32);
+extern int memset(char *, s32, s32);
 extern int func_088B0604(char *, u32 *);
 
 void func_088AE2C0(char *arg0) {
@@ -20,7 +20,7 @@ void func_088AE2C0(char *arg0) {
     *(s32 *)(arg0 + 0xC) = temp_v1;
     if (temp_v1 < 0) {
         *(u8 *)(arg0 + 0x22) = (u8) (*(u8 *)(arg0 + 0x22) + 1);
-        func_0880C464(&D_09A1FE08, 0, 0x90);
+        memset(&D_09A1FE08, 0, 0x90);
         D_09A1FE04 = 0;
         func_088B0604(&D_09A1FE08, &D_09A1FE04);
         if ((u32) D_09A1FE04 >= 4U) {

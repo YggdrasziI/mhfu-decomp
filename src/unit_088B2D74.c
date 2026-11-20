@@ -35,7 +35,7 @@ extern char D_09A2851C[];
 extern u16 D_09A28BF0;
 extern u8 D_09A299A9;
 
-extern void func_0880C464(void *, s32, s32);
+extern void memset(void *, s32, s32);
 extern s32 func_088B04B4(void *);
 extern void func_088B2300(Id *, Addr8 *, u16);
 
@@ -49,7 +49,7 @@ void func_088B2D74(u8 *arg0) {
     char *p;
     Addr8 *dst;
 
-    func_0880C464(buf, 0, sizeof(buf));
+    memset(buf, 0, sizeof(buf));
     n = 0;
     i = 0;
     p = D_09A2851C;

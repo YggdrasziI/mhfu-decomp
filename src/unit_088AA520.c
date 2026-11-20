@@ -32,7 +32,7 @@ typedef struct {
 extern s32 sceNetInetConnect(s32, SockAddr *, s32);
 extern s32 sceNetInetGetPspError(void);
 extern s32 sceNetAdhocPtpConnect(s32, s32, s32);
-extern void func_0880C464(void *, s32, s32);
+extern void memset(void *, s32, s32);
 extern int func_0880C084(void *, void *, s32);
 extern s32 func_088AA14C(s32);
 extern s32 D_09A1D728;
@@ -57,7 +57,7 @@ s32 func_088AA520(s32 sock) {
         if (i == 16) {
             return -1;
         }
-        func_0880C464(&sa, 0, 0x10);
+        memset(&sa, 0, 0x10);
         sa.family = 2;
         func_0880C084(sa.addr, D_09A1D72C[i].addr, 4);
         sa.port = D_09A1D72C[i].port;

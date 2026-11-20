@@ -10,7 +10,7 @@ typedef int s32;
 extern char D_089BAB18;
 extern char D_089BAB28;
 extern char D_089BAB34;
-extern int func_0880C464(char *, s32, s32);
+extern int memset(char *, s32, s32);
 
 char *func_088614DC(char *arg0) {
     *(char **)arg0 = &D_089BAB34;
@@ -34,8 +34,8 @@ char *func_088614DC(char *arg0) {
     *(s16 *)(arg0 + 0x1BE) = 0;
     *(s16 *)(arg0 + 0x1A0) = 0;
     *(s16 *)(arg0 + 0x1A2) = 0;
-    func_0880C464(arg0 + 0x50, 0, 0x20);
-    func_0880C464(arg0 + 0x80, 0, 0x140);
-    func_0880C464(arg0 + 0x70, 0, 0x10);
+    memset(arg0 + 0x50, 0, 0x20);
+    memset(arg0 + 0x80, 0, 0x140);
+    memset(arg0 + 0x70, 0, 0x10);
     return arg0;
 }

@@ -14,16 +14,16 @@ extern F2 D_089A6050;
 extern f32 D_089A6058;
 extern f32 D_089A605C;
 extern s32 __ptmf_test(f32 *);
-extern int func_0880C464(void *, s32, s32);
+extern int memset(void *, s32, s32);
 extern s32 func_088626E4(s32);
 
 void func_08864554(s32 arg0) {
     F3 sp14;
 
     func_088626E4(arg0);
-    func_0880C464((void *) (arg0 + 0x1F0), 0, 0x10);
-    func_0880C464((void *) (arg0 + 0x200), 0, 0x10);
-    func_0880C464((void *) (arg0 + 0x210), 0, 0x10);
+    memset((void *) (arg0 + 0x1F0), 0, 0x10);
+    memset((void *) (arg0 + 0x200), 0, 0x10);
+    memset((void *) (arg0 + 0x210), 0, 0x10);
     *(s32 *)(arg0 + 0x228) = 0x3F800000;
     *(s32 *)(arg0 + 0x224) = 0x3F800000;
     *(s32 *)(arg0 + 0x220) = 0x3F800000;

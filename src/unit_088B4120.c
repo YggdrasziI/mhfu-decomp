@@ -10,13 +10,13 @@ extern u8 D_09A28876;
 extern char D_09A28B98;
 extern char D_09A28CC4;
 extern char D_09A291D4;
-extern int func_0880C464(char *, s32, s32);
+extern int memset(char *, s32, s32);
 extern int func_088B65FC(char *);
 
 void func_088B4120(char *arg0) {
     *(u8 *)(arg0 + 0x22) = (u8) (*(u8 *)(arg0 + 0x22) + 1);
-    func_0880C464(&D_09A28CC4, 0, 0x190);
-    func_0880C464(&D_09A291D4, 0, 0x190);
+    memset(&D_09A28CC4, 0, 0x190);
+    memset(&D_09A291D4, 0, 0x190);
     if (D_09A28876 != 0) {
         func_088B65FC(&D_09A28B98);
     }

@@ -10,7 +10,7 @@ typedef unsigned char u8;
 typedef unsigned short u16;
 
 extern void func_088979B4(s32, s32, s32);
-extern int func_0880C464(char *, s32, s32);
+extern int memset(char *, s32, s32);
 extern int func_08897A08(s32, s32);
 extern void func_08897AE0(s32, s32, s32, char *);
 extern void func_088A1798(void *);
@@ -33,7 +33,7 @@ void func_088A2244(T *arg0) {
     switch (arg0->unk54) {
     case 3:
         func_088979B4(arg0->unk24, 0, 0);
-        func_0880C464(arg0->unk98[arg0->unk28], 0, arg0->unk94);
+        memset(arg0->unk98[arg0->unk28], 0, arg0->unk94);
         func_08897A08(arg0->unk24, 0x40);
         func_08897AE0(arg0->unk24, 0, 0, arg0->unk98[arg0->unk28]);
         func_08897AE0(arg0->unk24, 0, 0, 0);

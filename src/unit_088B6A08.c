@@ -96,7 +96,7 @@ extern char D_09A2A180[];
 extern char D_09A2A184[];
 extern ResFn D_09A44BB4[];
 extern s32 D_09A44C08[];
-extern void func_0880C464(void *, s32, s32);
+extern void memset(void *, s32, s32);
 extern s32 func_088AEFCC(s32);
 extern s32 func_088AEFE4(s32);
 extern u16 func_088AEFFC(void);
@@ -109,7 +109,7 @@ void func_088B6A08(u16 code, ResFn cb, s32 arg) {
     Res r;
 
     if (cb != 0) {
-        func_0880C464(&r, 0, sizeof(r));
+        memset(&r, 0, sizeof(r));
         if ((code & 0x8000) == 0) {
             r.unkC = 0;
         } else {
@@ -126,7 +126,7 @@ void func_088B6A80(s32 arg0) {
 
     if ((u16) arg0 < 0x15) {
         if (D_09A44BB4[(u16) arg0] != 0) {
-            func_0880C464(&r, 0, sizeof(r));
+            memset(&r, 0, sizeof(r));
             r.unkC = 1;
             r.unk8 = D_09A44C08[(u16) arg0];
             r.unk10 = arg0;
@@ -138,7 +138,7 @@ void func_088B6A80(s32 arg0) {
 void func_088B6B14(s32 ev) {
     Res r;
 
-    func_0880C464(&r, 0, sizeof(r));
+    memset(&r, 0, sizeof(r));
     if (func_088AEFCC(0x10) == 0 || func_088AEFCC(1) == 0) {
         if (ev != 0) {
             func_088B6A80(ev);
@@ -193,7 +193,7 @@ Slot *func_088B6BFC(Id *arg0, ResFn cb, s32 arg) {
         s = (Slot *) (p + 0x1C60);
         if (s->used == 0) {
             e = (Slot *) (D_09A2851C + i * sizeof(Slot) + 0x1C60);
-            func_0880C464(e, 0, sizeof(Slot));
+            memset(e, 0, sizeof(Slot));
             s->used = 1;
             s->cb = cb;
             s->id = id;
@@ -223,7 +223,7 @@ s32 func_088B6D10(Res *arg0) {
                 ((Res *) &r)->unk8 = *(s32 *) (D_09A2A184 + i * sizeof(Slot));
                 (*(ResFn *) (D_09A2A180 + i * sizeof(Slot)))((Res *) &r);
             } else {
-                func_0880C464(D_09A2851C + i * sizeof(Slot) + 0x1C60, 0, sizeof(Slot));
+                memset(D_09A2851C + i * sizeof(Slot) + 0x1C60, 0, sizeof(Slot));
             }
             return i;
         }

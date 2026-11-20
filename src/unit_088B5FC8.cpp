@@ -30,7 +30,7 @@ extern UnkC8 D_09A28BFC;
 extern u8 D_09A28C02;
 extern u8 D_09A28C03;
 
-extern void func_0880C464(void *p, int v, int n);
+extern void memset(void *p, int v, int n);
 extern int func_088AEF64(char *);
 extern void *func_088AFE84(void);
 extern s32 func_088B0318(char *, s32);
@@ -47,7 +47,7 @@ void func_088B5FC8(void) {
     func_088B0318((char *) &addr, src);
     if (func_088B04EC((char *) &addr) != 0) {
         if (func_088B0514(&D_09A28B98, (char *) &own) == 0) {
-            func_0880C464(&D_09A28BFC, 0, 0xC8);
+            memset(&D_09A28BFC, 0, 0xC8);
             *(Addr6 *) &D_09A28BFC = *(Addr6 *) &addr;
             D_09A28C02 = addr.unk6;
             D_09A28C03 = addr.unk7;

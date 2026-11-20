@@ -22,7 +22,7 @@ typedef struct {
 extern char D_09A29E58[];
 
 extern s32 func_088AFE84(void);
-extern void func_0880C464(void *, s32, s32);
+extern void memset(void *, s32, s32);
 extern void func_088AEF64(char *);
 extern s32 func_088B0324(char *, s32);
 extern void func_088B03CC(char *, s32);
@@ -33,7 +33,7 @@ void func_088AE814(void) {
     s32 n = func_088AFE84();
     Msg *m = (Msg *) D_09A29E58;
 
-    func_0880C464(m, 0, 0x324);
+    memset(m, 0, 0x324);
     func_088AEF64((char *) m);
     n = func_088B0324(m->hdr, n);
     func_088B03CC(m->tail, n);

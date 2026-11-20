@@ -8,15 +8,15 @@ typedef int s32;
 
 extern char D_089B4DC4;
 extern char D_089B4DD4;
-extern int func_0880C464(void *, s32, s32);
+extern int memset(void *, s32, s32);
 extern int func_0880ED70(void *, void *);
 extern int sceUtilitySavedataInitStart(void *);
 
 void func_088BFBEC(char *arg0) {
-    func_0880C464(arg0 + 0x18, 0, 0x600);
-    func_0880C464(arg0 + 0xAEC, 0, 0x24);
-    func_0880C464(arg0 + 0xB10, 0, 0x12C0);
-    func_0880C464(arg0 + 0x4990, 0, 0x48);
+    memset(arg0 + 0x18, 0, 0x600);
+    memset(arg0 + 0xAEC, 0, 0x24);
+    memset(arg0 + 0xB10, 0, 0x12C0);
+    memset(arg0 + 0x4990, 0, 0x48);
     *(s32 *)(arg0 + 0x18) = 0x600;
     *(s32 *)(arg0 + 0x1C) = 1;
     *(s32 *)(arg0 + 0x20) = 1;

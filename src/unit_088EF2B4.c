@@ -5,8 +5,8 @@
 
 typedef int s32;
 
-extern void func_0880C464(s32, s32, s32);
+extern void memset(s32, s32, s32);
 
 void func_088EF2B4(s32 arg0, s32 arg1) {
-    func_0880C464(arg0, 0, arg1);
+    memset(arg0, 0, arg1);
 }

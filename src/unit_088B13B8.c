@@ -23,7 +23,7 @@ extern u8 D_09A28875;
 
 extern s32 func_088AFE84(void);
 extern s32 func_088AFE78(void);
-extern void func_0880C464(void *, s32, s32);
+extern void memset(void *, s32, s32);
 extern int func_088AEFE4(s8);
 extern void func_088AEF64(char *);
 extern s32 func_088B0324(char *, s32);
@@ -46,7 +46,7 @@ void func_088B13B8(void) {
         func_088B6A80(0x14);
         return;
     }
-    func_0880C464(rec, 0, sizeof(rec));
+    memset(rec, 0, sizeof(rec));
     if (func_088AEFE4(0) == 0) {
         if (D_09A28875 == 0) {
             func_088AEF64(rec);

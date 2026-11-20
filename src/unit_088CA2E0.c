@@ -13,15 +13,15 @@ typedef struct { f32 a, b, c; } F3;
 extern F2 D_089B5368;
 extern f32 D_089B5370;
 extern s32 __ptmf_test(f32 *);
-extern int func_0880C464(void *, s32, s32);
+extern int memset(void *, s32, s32);
 extern s32 func_088626E4(s32);
 extern s32 func_088CB364(s32);
 
 void func_088CA2E0(s32 arg0) {
     F3 sp14;
 
-    func_0880C464((void *) (arg0 + 0x1D0), 0, 0x20);
-    func_0880C464((void *) (arg0 + 0x1F0), 0, 0x140);
+    memset((void *) (arg0 + 0x1D0), 0, 0x20);
+    memset((void *) (arg0 + 0x1F0), 0, 0x140);
     func_088626E4(arg0);
     *(s8 *)(arg0 + 0x330) = 0;
     *(s8 *)(arg0 + 0x3D4) = 0;

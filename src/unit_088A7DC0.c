@@ -14,14 +14,14 @@ extern char *D_09A11EE0;
 extern char D_09A11EE4;
 extern s32 D_09A11EE8;
 extern char *D_09A11EEC;
-extern int func_0880C464(char *, s32, s32);
+extern int memset(char *, s32, s32);
 
 void func_088A7DC0(void) {
-    func_0880C464(&D_09A11EE4, 0, 0xC);
-    func_0880C464(&D_09A11ED8, 0, 0xC);
+    memset(&D_09A11EE4, 0, 0xC);
+    memset(&D_09A11ED8, 0, 0xC);
     D_09A11EE8 = 0x2000;
     D_09A11EEC = &D_09A0FED8;
     D_09A11EDC = 0xFF;
     D_09A11EE0 = &D_09A0FDD8;
-    func_0880C464(&D_09A0FDC8, 0xFF, 0x10);
+    memset(&D_09A0FDC8, 0xFF, 0x10);
 }

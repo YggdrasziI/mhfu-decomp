@@ -25,7 +25,7 @@ extern Addr8 D_09A29CD0;
 extern u8 D_09A29CD6;
 extern u8 D_09A29CD7;
 
-extern void func_0880C464(void *p, int v, int n);
+extern void memset(void *p, int v, int n);
 extern void *func_088AFE84(void);
 extern s32 func_088B0318(char *, s32);
 extern s32 func_088B66D0(char *);
@@ -38,7 +38,7 @@ void func_088B4D78(void) {
     Addr8 addr;
     s32 src = (s32) func_088AFE84();
 
-    func_0880C464(&addr, 0, 8);
+    memset(&addr, 0, 8);
     func_088B0318((char *) &addr, src);
     if (func_088B7A10((char *) &addr) == 0) {
         if (D_09A2886C == 1 || D_09A2886C == 2) {

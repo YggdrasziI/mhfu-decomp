@@ -18,7 +18,7 @@ typedef struct {
 extern s32 D_09A1FE04;
 extern char D_09A1FE08[];
 
-extern void func_0880C464(void *, s32, s32);
+extern void memset(void *, s32, s32);
 extern void func_088AEF64(char *);
 extern s32 func_088AEDA0(char *, char *);
 extern s32 func_088AF7E0(char *);
@@ -30,7 +30,7 @@ void func_088AF1D4(void) {
     Id id;
     s32 lost;
 
-    func_0880C464(key, 0, sizeof(key));
+    memset(key, 0, sizeof(key));
     func_088AEF64(key);
     lost = D_09A1FE04 != 0 && func_088AEDA0(key, D_09A1FE08) == 0;
     if (lost) {

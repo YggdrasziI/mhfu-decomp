@@ -31,7 +31,7 @@ typedef struct {
     s32 unk6C;
 } Config;
 
-extern void func_0880C464(void *, s32, s32);
+extern void memset(void *, s32, s32);
 extern int func_0880C084(void *, void *, s32);
 extern void func_088A84B4(Session *, s32, u8);
 extern s32 func_0880DA7C(void);
@@ -57,12 +57,12 @@ void func_088A9914(Config *arg0) {
     if (n > 4) {
         n = 4;
     }
-    func_0880C464(&D_09A1D5D0, 0, sizeof(Session));
-    func_0880C464(D_09A1D59C, 0, sizeof(D_09A1D59C));
-    func_0880C464(&D_09A1D590, 0, sizeof(Store));
-    func_0880C464(&D_09A1D584, 0, sizeof(Store));
-    func_0880C464(&D_09A1D578, 0, sizeof(Store));
-    func_0880C464(&D_09A1D56C, 0, sizeof(Store));
+    memset(&D_09A1D5D0, 0, sizeof(Session));
+    memset(D_09A1D59C, 0, sizeof(D_09A1D59C));
+    memset(&D_09A1D590, 0, sizeof(Store));
+    memset(&D_09A1D584, 0, sizeof(Store));
+    memset(&D_09A1D578, 0, sizeof(Store));
+    memset(&D_09A1D56C, 0, sizeof(Store));
     D_09A1D5D0.unk1C = 1;
     cnt = n;
     for (i = 0; i < cnt; i++) {

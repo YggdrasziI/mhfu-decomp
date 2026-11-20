@@ -28,7 +28,7 @@ extern s32 D_09A0B540;
 extern u8 D_089B2C94[];
 extern u8 D_089B4DF8[];
 extern void func_0880C084(void *, void *, s32);
-extern void func_0880C464(void *, s32, s32);
+extern void memset(void *, s32, s32);
 extern s32 func_0880BFF0(void *, void *, s32);
 extern void func_0880ED70(char *, char *);
 extern char *func_08898694(s32, s32, s32);
@@ -59,7 +59,7 @@ s32 func_088C022C(char *arg0, char *buf, s32 nocopy) {
     func_0880C084(buf + 0x16A0DC, &hdr, sizeof(Hdr));
     if (func_0880BFF0(digest, hdr.digest, 0x14) == 0) {
         tmp = func_08898694(D_09A0B540, 0x17, 0x6800);
-        func_0880C464(arg0 + 0x9B0, 0, 0xF0);
+        memset(arg0 + 0x9B0, 0, 0xF0);
         i = 0;
         p = 0;
         do {

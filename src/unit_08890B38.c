@@ -6,7 +6,7 @@
 typedef unsigned short u16;
 typedef int s32;
 
-extern int func_0880C464(void *, s32, s32);
+extern int memset(void *, s32, s32);
 
 void func_08890B38(char *arg0) {
     s32 var_a2;
@@ -27,7 +27,7 @@ void func_08890B38(char *arg0) {
         var_a1 += 0x10;
     } while (var_a2 < 0xFFF0);
     *(u16 *)(arg0 + 0x158) = 0;
-    func_0880C464(arg0 + 0x22968, 0, 0x1B0);
+    memset(arg0 + 0x22968, 0, 0x1B0);
     *(u16 *)(arg0 + 0x15A) = 0;
     *(u16 *)(arg0 + 0x162) = 0;
 }

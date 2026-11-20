@@ -13,7 +13,7 @@ extern s32 D_09A0EB6C;
 extern s32 D_09A0EB70;
 extern s32 D_09A0EB74;
 extern char D_09A0EB80;
-extern int func_0880C464(char *, s32, s32);
+extern int memset(char *, s32, s32);
 extern int sceKernelCpuResumeIntr(s32);
 extern s32 sceKernelCpuSuspendIntr(void);
 extern int sceKernelSignalSema(s32, s32);
@@ -29,7 +29,7 @@ void func_088A5A3C(void) {
     if (temp_a0 == 0) {
         D_09A0B568 = sceKernelCpuSuspendIntr();
     }
-    func_0880C464(&D_09A0EB80, 0, 0x1200);
+    memset(&D_09A0EB80, 0, 0x1200);
     D_09A0EB74 = 0;
     D_09A0EB70 = 0;
     D_09A0EB6C = 0;

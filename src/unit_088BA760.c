@@ -7,7 +7,7 @@ typedef signed char s8;
 typedef int s32;
 
 extern s32 D_09A0B540;
-extern int func_0880C464(s32, s32, s32);
+extern int memset(s32, s32, s32);
 extern s32 func_08898694(s32, s32, s32);
 
 void func_088BA760(char *arg0, s32 arg1, s32 arg2) {
@@ -21,7 +21,7 @@ void func_088BA760(char *arg0, s32 arg1, s32 arg2) {
     if (temp_s0 == 0) {
         temp_v0 = func_08898694(D_09A0B540, 0x19, 0x16A100);
         *(s32 *)(arg0 + 0x94C) = temp_v0;
-        func_0880C464(temp_v0, 0, 0x16A100);
+        memset(temp_v0, 0, 0x16A100);
     }
     if (arg2 != 0) {
         *(s32 *)(arg0 + 0x950) = arg2;

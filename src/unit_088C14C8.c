@@ -13,7 +13,7 @@ extern char D_089B4ED0;
 extern char D_089B4EDC;
 extern char *D_08A62C64;
 extern s32 D_08A631A0;
-extern int func_0880C464(void *, s32, s32);
+extern int memset(void *, s32, s32);
 extern int func_0880ED70(char *, char *);
 extern s32 func_088903BC(s32);
 extern int sceUtilitySavedataInitStart(char *);
@@ -22,7 +22,7 @@ void func_088C14C8(char *arg0, s32 arg1) {
     s32 temp_a1;
 
     if (arg1 != 0) {
-        func_0880C464(arg0 + 0x18, 0, 0x600);
+        memset(arg0 + 0x18, 0, 0x600);
     }
     *(s32 *)(arg0 + 0x18) = 0x600;
     *(s32 *)(arg0 + 0x1C) = func_088903BC(D_08A631A0);
@@ -82,7 +82,7 @@ void func_088C14C8(char *arg0, s32 arg1) {
 void func_088C1694(char *arg0) {
     s32 temp_a1;
 
-    func_0880C464(arg0 + 0x18, 0, 0x600);
+    memset(arg0 + 0x18, 0, 0x600);
     *(s32 *)(arg0 + 0x18) = 0x600;
     *(s32 *)(arg0 + 0x1C) = 1;
     *(s32 *)(arg0 + 0x20) = 1;

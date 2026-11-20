@@ -38,7 +38,7 @@ extern char D_09A4413C[];
 extern u32 D_09A1FE04;
 extern char D_09A1FE08[];
 
-extern void func_0880C464(void *, s32, s32);
+extern void memset(void *, s32, s32);
 extern void func_088AEF64(Addr8 *);
 extern s32 func_088AEDA0(Addr8 *, char *);
 extern s32 func_088AF7E0(Addr8 *);
@@ -99,7 +99,7 @@ void func_088B7BD8(Addr8 *arg0) {
     p = D_09A2851C;
     do {
         if (func_088B0514(p + 0x1BC18, arg0) == 0) {
-            func_0880C464(D_09A2851C + i * 0xA8 + 0x1BC18, 0, 0xA8);
+            memset(D_09A2851C + i * 0xA8 + 0x1BC18, 0, 0xA8);
             return;
         }
         i++;
@@ -156,7 +156,7 @@ void func_088B7E74(u16 code) {
     Addr8 own;
     s32 t;
 
-    func_0880C464(&own, 0, sizeof(own));
+    memset(&own, 0, sizeof(own));
     func_088AEF64(&own);
     switch (code) {
     case 0x6001:

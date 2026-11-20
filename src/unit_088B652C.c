@@ -29,7 +29,7 @@ extern char D_09A2851C[];
 extern char D_09A291D4[];
 extern char D_09A29364[];
 
-extern void func_0880C464(void *, s32, s32);
+extern void memset(void *, s32, s32);
 extern s32 func_088B04B4(void *);
 extern s32 func_088B0514(void *, void *);
 
@@ -103,7 +103,7 @@ s32 func_088B66D0(void *arg0) {
     p = D_09A2851C;
     do {
         if (func_088B0514(arg0, p + 0xCB8) == 0) {
-            func_0880C464(D_09A2851C + i * 0x64 + 0xCB8, 0, 0x64);
+            memset(D_09A2851C + i * 0x64 + 0xCB8, 0, 0x64);
             return 1;
         }
         i++;
@@ -155,7 +155,7 @@ s32 func_088B6864(void *arg0) {
     p = D_09A2851C;
     do {
         if (func_088B0514(p + 0xE48, arg0) == 0) {
-            func_0880C464(D_09A2851C + i * 0xC8 + 0xE48, 0, 0xC8);
+            memset(D_09A2851C + i * 0xC8 + 0xE48, 0, 0xC8);
             return 1;
         }
         i++;

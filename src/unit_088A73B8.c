@@ -6,7 +6,7 @@
 
 #include "unk_peer.h"
 
-extern int func_0880C464(void *, s32, s32);
+extern int memset(void *, s32, s32);
 extern int func_0880C084(void *, void *, s32);
 
 void func_088A73B8(Session *arg0) {
@@ -14,7 +14,7 @@ void func_088A73B8(Session *arg0) {
     Peer *e;
     char *s;
 
-    func_0880C464(D_09A11EF0, 0, sizeof(D_09A11EF0));
+    memset(D_09A11EF0, 0, sizeof(D_09A11EF0));
     i = 0;
     if (arg0->count > 0) {
         e = D_09A11EF0;

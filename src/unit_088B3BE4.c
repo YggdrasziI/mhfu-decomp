@@ -12,7 +12,7 @@ typedef struct {
     s32 unk0[25];
 } Unk64;
 
-extern int func_0880C464(void *, s32, s32);
+extern int memset(void *, s32, s32);
 extern s32 func_088AFB48(Unk64 *);
 extern void func_088B4670(void);
 extern void func_088B4CA4(char *);
@@ -33,7 +33,7 @@ s32 func_088B3BE4(s32 arg0, s32 arg1) {
             func_088B6A08(0x8031, arg0, arg1);
             return 0;
         case 0:
-            func_0880C464(&D_09A28B98, 0, 0x64);
+            memset(&D_09A28B98, 0, 0x64);
             func_088B6A08(0x8021, arg0, arg1);
             return 0;
         case 1:
@@ -44,7 +44,7 @@ s32 func_088B3BE4(s32 arg0, s32 arg1) {
         default:
             func_088B7A50(0);
             D_09A28876 = 0;
-            func_0880C464(&D_09A28B98, 0, 0x64);
+            memset(&D_09A28B98, 0, 0x64);
             func_088B4CA4(sp1C);
             func_088B6A08(0, arg0, arg1);
             return 0;
@@ -52,7 +52,7 @@ s32 func_088B3BE4(s32 arg0, s32 arg1) {
     }
     switch (D_09A2886C) {
     case 0:
-        func_0880C464(&D_09A28B98, 0, 0x64);
+        memset(&D_09A28B98, 0, 0x64);
         func_088B6A08(0x8021, arg0, arg1);
         return 0;
     case 2:
@@ -63,7 +63,7 @@ s32 func_088B3BE4(s32 arg0, s32 arg1) {
     }
     if (D_09A2886C != 2) {
         func_088B7A50(0);
-        func_0880C464(&D_09A28B98, 0, 0x64);
+        memset(&D_09A28B98, 0, 0x64);
         func_088B6A08(0, arg0, arg1);
         return 0;
     }

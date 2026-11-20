@@ -47,7 +47,7 @@ extern s32 sceUtilityNetconfInitStart(Netconf *);
 extern s32 sceUtilityNetconfGetStatus(void);
 extern s32 sceUtilityNetconfUpdate(s32);
 extern s32 sceUtilityNetconfShutdownStart(void);
-extern void func_0880C464(void *, s32, s32);
+extern void memset(void *, s32, s32);
 extern Netconf D_09A1DB0C;
 extern s32 D_09A1DB50;
 extern char D_09A1DB00[];
@@ -64,7 +64,7 @@ s32 func_088AC308(State *s) {
         s->unk10 = 0;
         break;
     case 0xA:
-        func_0880C464(&D_09A1DB0C, 0, sizeof(Netconf));
+        memset(&D_09A1DB0C, 0, sizeof(Netconf));
         D_09A1DB0C.size = sizeof(Netconf);
         switch (D_09A1DB50) {
         case 1:

@@ -17,7 +17,7 @@ struct V {
 
 extern "C" {
 extern char *D_08A62C5C;
-extern int func_0880C464(void *, s32, s32);
+extern int memset(void *, s32, s32);
 extern s32 func_08859B44(void *, s32, s32);
 extern int func_08859C40(void *, s32);
 extern s32 func_08864544(s32, s32);
@@ -34,7 +34,7 @@ void func_088DC774(s32 arg0) {
     g = D_08A62C5C;
     tmp = func_08859B44(g + 0x80000, 0x1610, 0x10);
     if (tmp != 0) {
-        func_0880C464((char *) tmp, 0, 0x1610);
+        memset((char *) tmp, 0, 0x1610);
         v = func_08864544(0x1610, tmp);
         if (v != 0) {
             v = func_09A72C50(v);

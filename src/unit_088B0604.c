@@ -18,7 +18,7 @@ typedef unsigned long long u64;
 typedef struct Entry Entry;
 
 extern s32 sceNetAdhocctlGetPeerList(u32 *, void *);
-extern void func_0880C464(void *, s32, s32);
+extern void memset(void *, s32, s32);
 extern s32 func_088B059C(void *);
 extern s32 func_088B05B8(char *, void *);
 extern s32 func_088AD708(void *, u32);
@@ -37,7 +37,7 @@ s32 func_088B0604(char *arg0, s32 *arg1) {
         if (len >= 0xAB0) {
             len = 0xAB0;
         }
-        func_0880C464(buf, 0, sizeof(buf));
+        memset(buf, 0, sizeof(buf));
         ret = sceNetAdhocctlGetPeerList(&len, buf);
         *arg1 = func_088B059C(buf);
         func_088B05B8(arg0, buf);

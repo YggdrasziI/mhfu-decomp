@@ -14,7 +14,7 @@ extern u8 D_09A1FDE0;
 
 extern s32 func_088AFE84(void);
 extern s32 func_088AFE78(void);
-extern void func_0880C464(void *, s32, s32);
+extern void memset(void *, s32, s32);
 extern void func_088AEF64(char *);
 extern s32 func_088AF7E0(char *);
 extern s32 func_088AF978(char *);
@@ -25,7 +25,7 @@ void func_088AF6EC(void) {
 
     func_088AFE84();
     func_088AFE78();
-    func_0880C464(key, 0, sizeof(key));
+    memset(key, 0, sizeof(key));
     func_088AEF64(key);
     if (func_088AF7E0(key) == 0) {
         func_088AF978(key);

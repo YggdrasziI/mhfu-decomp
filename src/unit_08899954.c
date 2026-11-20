@@ -9,7 +9,7 @@ typedef short s16;
 typedef int s32;
 
 extern int func_0880C084(void *, void *, s32);
-extern int func_0880C464(void *, s32, s32);
+extern int memset(void *, s32, s32);
 extern char func_0889A290;
 extern char func_0889AEB0;
 extern char func_0889AEF4;
@@ -34,7 +34,7 @@ extern int func_088B0D58(char *, char *);
 
 void func_08899954(char *arg0, char *arg1, char *arg2, s32 arg3) {
     *(u8 *)(arg0 + 0x12D6) = 0U;
-    func_0880C464(arg0 + 0x20, 0, 0xBC);
+    memset(arg0 + 0x20, 0, 0xBC);
     if (arg1 != 0) {
         func_0880C084(arg0 + 0x20, arg1, 0x12);
     }
@@ -49,7 +49,7 @@ void func_08899954(char *arg0, char *arg1, char *arg2, s32 arg3) {
     *(s8 *)(arg0 + 0x12D4) = 0;
     func_088B0B14(arg0 + 0x20);
     *(s8 *)(arg0 + 0xEE3) = 0;
-    func_0880C464(arg0 + 0x57C, 0, 0x320);
+    memset(arg0 + 0x57C, 0, 0x320);
     func_088B0C3C(1, &func_0889AEB0, arg0);
     func_088B0C3C(3, &func_0889AEF4, arg0);
     func_088B0C3C(5, &func_0889AF48, arg0);

@@ -15,7 +15,7 @@
 extern void func_088A7E44(float *, void *);
 extern void func_088A73B8(Session *);
 extern s32 func_088A7788(Session *);
-extern void func_0880C464(void *, s32, s32);
+extern void memset(void *, s32, s32);
 extern s32 func_088A9CFC(void);
 extern void func_088A8E3C(Session *);
 extern s32 func_088A93A4(Session *);
@@ -51,7 +51,7 @@ void func_088A9660(Session *arg0) {
             for (arg0->unk0 = 0; arg0->unk0 < arg0->count; arg0->unk0++) {
                 arg0->unkE0[arg0->unk0] = arg0->unk78;
             }
-            func_0880C464(arg0, 0, 8);
+            memset(arg0, 0, 8);
         }
         break;
     case 3:

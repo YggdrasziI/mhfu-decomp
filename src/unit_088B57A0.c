@@ -30,7 +30,7 @@ extern u8 D_09A28876;
 extern s32 D_09A2886C;
 
 extern void func_0880C084(void *, void *, s32);
-extern void func_0880C464(void *, s32, s32);
+extern void memset(void *, s32, s32);
 extern void func_088AEF64(Addr8 *);
 extern s32 func_088AEFE4(s32);
 extern s32 func_088AFE78(void);
@@ -55,7 +55,7 @@ void func_088B57A0(Id *arg0, Addr8 *arg1, u16 arg2) {
     Id id;
 
     h = func_088AFE78();
-    func_0880C464(&id, 0, sizeof(id));
+    memset(&id, 0, sizeof(id));
     func_088B01BC(1, arg1);
     func_088AFE90(h, 0x12);
     func_088AFFBC(h, arg2);
@@ -72,7 +72,7 @@ void func_088B5898(Id *arg0, Addr8 *arg1) {
     Id id;
 
     h = func_088AFE78();
-    func_0880C464(&id, 0, sizeof(id));
+    memset(&id, 0, sizeof(id));
     func_088B01BC(1, arg1);
     func_088AFE90(h, 0x13);
     func_088AFFD0(h);

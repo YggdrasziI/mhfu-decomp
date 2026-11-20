@@ -19,7 +19,7 @@ typedef struct {
 extern char D_09A28884[];
 extern char D_09A2889C[];
 
-extern void func_0880C464(void *, s32, s32);
+extern void memset(void *, s32, s32);
 extern s32 func_088AFE78(void);
 extern void func_088AFE90(s32, s32);
 extern void func_088AFFD0(s32);
@@ -36,12 +36,12 @@ void func_088B4E54(Id *arg0, s32 arg1, char *arg2, s32 arg3) {
     char zero[4];
 
     h = func_088AFE78();
-    func_0880C464(&id, 0, sizeof(id));
+    memset(&id, 0, sizeof(id));
     func_088B01BC(1, arg1);
     func_088AFE90(h, 0xF);
     func_088B0010(h, arg3);
     if (*(u16 *) (arg2 + 0x12) == 0) {
-        func_0880C464(zero, 0, sizeof(zero));
+        memset(zero, 0, sizeof(zero));
         func_088B00DC(h, zero, 0);
     } else {
         func_088B00DC(h, arg2, *(u16 *) (arg2 + 0x12));

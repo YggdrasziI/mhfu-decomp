@@ -11,10 +11,10 @@ extern s32 D_09A0B5C4;
 extern s32 D_09A0B5C8;
 extern char *D_09A0B5CC;
 extern char D_09A0B5D0;
-extern int func_0880C464(char *, s32, s32);
+extern int memset(char *, s32, s32);
 
 void func_0889F07C(void) {
-    func_0880C464(&D_09A0B5D0, 0, 0x1000);
+    memset(&D_09A0B5D0, 0, 0x1000);
     D_09A0B5BC = 0;
     D_09A0B5C0 = 0;
     D_09A0B5C4 = 0;

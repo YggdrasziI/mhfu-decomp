@@ -21,7 +21,7 @@ extern char D_09A2851C[];
 extern u8 D_09A1FDE0[];
 extern u8 D_09A201F0[];
 
-extern void func_0880C464(void *, s32, s32);
+extern void memset(void *, s32, s32);
 extern void func_0880C084(void *, void *, s32);
 extern void func_088B047C(void);
 extern void func_088AD064(void (*)(void), void *);
@@ -31,8 +31,8 @@ extern void func_088AD63C(u8 *);
 s32 func_088B0A58(Bytes24 *arg0) {
     u8 buf[0x10];
 
-    func_0880C464(D_09A2851C, 0, 0x1C740);
-    func_0880C464(D_09A1FDE0, 0, 0x873C);
+    memset(D_09A2851C, 0, 0x1C740);
+    memset(D_09A1FDE0, 0, 0x873C);
     D_09A1FDE0[0] = 0;
     *(Bytes24 *) D_09A2851C = *arg0;
     func_088AD064(func_088B047C, 0);

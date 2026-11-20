@@ -88,7 +88,7 @@ extern u8 D_09A2917B;
 extern u8 D_09A2917E;
 
 extern s32 func_0880BFF0(void *, void *, s32);
-extern void func_0880C464(void *, s32, s32);
+extern void memset(void *, s32, s32);
 extern void func_088AEF64(RecC8 *);
 extern void func_088AEF98(Info14 *);
 extern char *func_088AFE84(void);
@@ -131,8 +131,8 @@ void func_088B4FAC(void) {
     src = func_088AFE84();
     err = 0;
     ok = 0;
-    func_0880C464(&rec, 0, sizeof(rec));
-    func_0880C464(key, 0, sizeof(key));
+    memset(&rec, 0, sizeof(rec));
+    memset(key, 0, sizeof(key));
     func_088AEF64(&rec);
     src = func_088B03CC(&port, src);
     src = func_088B040C(key, 0x12, src);

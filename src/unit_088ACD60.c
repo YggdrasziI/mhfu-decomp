@@ -32,7 +32,7 @@ extern char D_09A1DBC4[];
 
 extern s32 sceOpenPSIDGetOpenPSID(void *);
 extern s32 sceKernelExitGame(void);
-extern void func_0880C464(void *, s32, s32);
+extern void memset(void *, s32, s32);
 extern void func_0880C084(void *, const void *, s32);
 
 s32 func_088ACD60(void) {
@@ -48,11 +48,11 @@ void func_088ACD88(void) {
     u8 psid[16];
 
     D_09A1DBB8 = -1;
-    func_0880C464(D_09A1DB78, 0, 0x40);
+    memset(D_09A1DB78, 0, 0x40);
     D_09A1DBBD = 1;
     D_09A1DBBC = 1;
     sceOpenPSIDGetOpenPSID(psid);
-    func_0880C464(D_09A1DBC4, 0, 0x80);
+    memset(D_09A1DBC4, 0, 0x80);
     func_0880C084(D_09A1DBC4, psid, 0x10);
     D_09A1DBC0 = 0x10;
 }

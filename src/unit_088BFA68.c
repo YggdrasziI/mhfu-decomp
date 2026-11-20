@@ -11,7 +11,7 @@ extern char D_089B4DC4;
 extern char D_089B4DC8;
 extern char *D_08A62C64;
 extern s32 D_08A631A0;
-extern int func_0880C464(void *, s32, s32);
+extern int memset(void *, s32, s32);
 extern int func_0880ED70(void *, void *);
 extern s32 func_088903BC(s32);
 extern int sceUtilitySavedataInitStart(void *);
@@ -19,7 +19,7 @@ extern int sceUtilitySavedataInitStart(void *);
 void func_088BFA68(char *arg0) {
     char *temp_a0;
 
-    func_0880C464(arg0 + 0x18, 0, 0x600);
+    memset(arg0 + 0x18, 0, 0x600);
     *(s32 *)(arg0 + 0x18) = 0x600;
     *(s32 *)(arg0 + 0x1C) = func_088903BC(D_08A631A0);
     *(s32 *)(arg0 + 0x20) = 1;
@@ -46,9 +46,9 @@ void func_088BFA68(char *arg0) {
     *(s32 *)(arg0 + 0x5CC) = 0;
     *(s32 *)(arg0 + 0x5D0) = 0;
     *(s32 *)(arg0 + 0x5D4) = 0;
-    func_0880C464(arg0 + 0x618, 0, 0x14);
-    func_0880C464(arg0 + 0x62C, 0, 0x40);
-    func_0880C464(arg0 + 0x66C, 0, 0x1C);
+    memset(arg0 + 0x618, 0, 0x14);
+    memset(arg0 + 0x62C, 0, 0x40);
+    memset(arg0 + 0x66C, 0, 0x1C);
     *(char **)(arg0 + 0x5E8) = (char *) (arg0 + 0x618);
     temp_a0 = arg0 + 0x62C;
     *(char **)(arg0 + 0x5EC) = temp_a0;

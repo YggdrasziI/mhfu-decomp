@@ -63,7 +63,7 @@ extern u16 D_09A2893C;
 extern u8 D_09A2893E;
 extern u8 D_09A2893F;
 
-extern void func_0880C464(void *p, int v, int n);
+extern void memset(void *p, int v, int n);
 extern void func_088AF848(UnkC8 *);
 extern void func_088B1204(Unk14 *);
 
@@ -74,7 +74,7 @@ void func_088B0FF8(char *arg0) {
     (*(u8 *)(arg0 + 0x22))++;
     D_09A28875 = 0;
     if (D_09A1FDE0 == 1) {
-        func_0880C464(&D_09A1FE98, 0, 0x320);
+        memset(&D_09A1FE98, 0, 0x320);
         *(Addr6 *) &copy = *(Addr6 *) &D_09A2887C;
         copy.unk6 = D_09A28882;
         copy.unk7 = D_09A28883;

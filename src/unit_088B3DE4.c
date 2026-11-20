@@ -48,7 +48,7 @@ extern Addr8 D_09A29174;
 extern u8 D_09A2917E;
 extern char D_09A44094[];
 
-extern void func_0880C464(void *, s32, s32);
+extern void memset(void *, s32, s32);
 extern void func_0880C084(void *, void *, s32);
 extern s32 func_088AFB48(char *);
 extern s32 func_088B04B4(void *);
@@ -65,7 +65,7 @@ extern void func_088B41EC(char *);
 s32 func_088B3DE4(char *arg0, s32 arg1, s32 arg2) {
     Res14 res;
 
-    func_0880C464(D_09A28E54, 0, 0x320);
+    memset(D_09A28E54, 0, 0x320);
     if (D_09A28876 != 0) {
         if (func_088B0514(D_09A2887C, arg0) == 0 || func_088B04B4(arg0) == 0) {
             D_09A28863 = func_088B68FC();

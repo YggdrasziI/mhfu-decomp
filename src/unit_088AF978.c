@@ -7,7 +7,7 @@ typedef unsigned char u8;
 typedef int s32;
 
 extern u8 D_09A1FDE0;
-extern int func_0880C464(void *, s32, s32);
+extern int memset(void *, s32, s32);
 extern s32 func_088B0514(void *, void *);
 extern s32 func_088B7BD8(s32);
 
@@ -19,7 +19,7 @@ s32 func_088AF978(char *arg0) {
     var_s1 = &D_09A1FDE0;
 loop_1:
     if (func_088B0514(var_s1 + 0xB8, arg0) == 0) {
-        func_0880C464(&D_09A1FDE0 + (var_s2 * 0xC8) + 0xB8, 0, 0xC8);
+        memset(&D_09A1FDE0 + (var_s2 * 0xC8) + 0xB8, 0, 0xC8);
     } else {
         var_s2 += 1;
         var_s1 += 0xC8;

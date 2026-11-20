@@ -16,7 +16,7 @@ typedef int s32;
 extern char *D_08A62C64;
 extern s32 D_08A631A0;
 
-extern void func_0880C464(void *, s32, s32);
+extern void memset(void *, s32, s32);
 extern void func_0880F178(char *, char *, s32);
 extern s32 func_088903BC(s32);
 extern s32 sceUtilityMsgDialogInitStart(void *);
@@ -30,7 +30,7 @@ extern s32 sceUtilitySavedataShutdownStart(void);
 void func_088BFEF8(char *arg0, char *arg1) {
     s8 *p;
 
-    func_0880C464(arg0 + 0x688, 0, 0x2C4);
+    memset(arg0 + 0x688, 0, 0x2C4);
     *(s32 *) (arg0 + 0x688) = 0x2C4;
     *(s32 *) (arg0 + 0x68C) = func_088903BC(D_08A631A0);
     *(s32 *) (arg0 + 0x690) = 1;

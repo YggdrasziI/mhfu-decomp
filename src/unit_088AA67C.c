@@ -35,7 +35,7 @@ extern s32 sceNetInetClose(s32);
 extern s32 sceNetInetGetPspError(void);
 extern s32 sceNetGetLocalEtherAddr(u8 *);
 extern s32 sceNetAdhocPtpListen(u8 *, u16, s32, s32, s32, s32, s32);
-extern void func_0880C464(void *, s32, s32);
+extern void memset(void *, s32, s32);
 extern s32 func_088AA14C(s32);
 extern s32 D_09A1D728;
 
@@ -61,7 +61,7 @@ s32 func_088AA67C(Endpoint *ep) {
             sceNetInetClose(sock);
             return func_088AA14C(sceNetInetGetPspError());
         }
-        func_0880C464(&sa, 0, 0x10);
+        memset(&sa, 0, 0x10);
         sa.family = 2;
         sa.addr = 0;
         sa.port = __builtin_allegrex_wsbh(ep->local_port);

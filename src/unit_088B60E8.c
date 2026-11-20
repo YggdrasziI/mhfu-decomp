@@ -23,7 +23,7 @@ typedef struct {
 
 extern char D_09A2887C[];
 
-extern void func_0880C464(void *, s32, s32);
+extern void memset(void *, s32, s32);
 extern void func_088AEF64(Addr8 *);
 extern s32 func_088AFE78(void);
 extern char *func_088AFE84(void);
@@ -46,7 +46,7 @@ void func_088B60E8(void) {
     char *src;
 
     src = func_088AFE84();
-    func_0880C464(&own, 0, sizeof(own));
+    memset(&own, 0, sizeof(own));
     func_088AEF64(&own);
     func_088B03CC(&port, src);
     func_088B614C(&id, &own, 0, (u8) func_088B68FC());
@@ -57,7 +57,7 @@ void func_088B614C(Id *arg0, Addr8 *arg1, u16 arg2, u8 arg3) {
     Id id;
 
     h = func_088AFE78();
-    func_0880C464(&id, 0, sizeof(id));
+    memset(&id, 0, sizeof(id));
     func_088B01BC(1, arg1);
     func_088AFE90(h, 0x1A);
     func_088AFFBC(h, arg2);
@@ -74,7 +74,7 @@ void func_088B624C(Id *arg0, u8 arg1) {
     Id id;
 
     h = func_088AFE78();
-    func_0880C464(&id, 0, sizeof(id));
+    memset(&id, 0, sizeof(id));
     func_088B01BC(0, 0);
     func_088AFE90(h, 0x1B);
     func_088B0240(h, D_09A2887C);

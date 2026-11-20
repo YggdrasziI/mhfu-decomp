@@ -12,12 +12,12 @@ extern char D_09A202B8;
 extern u8 D_09A20608;
 extern u8 D_09A20609;
 extern int func_0880C084(void *, void *, s32);
-extern int func_0880C464(void *, s32, s32);
+extern int memset(void *, s32, s32);
 
 void func_088AEEB8(char *arg0, s32 arg1) {
     s32 temp_a0;
 
-    func_0880C464(arg0 + 0x18, 0, 0x300);
+    memset(arg0 + 0x18, 0, 0x300);
     func_0880C084(arg0 + 0xE, &D_09A202B8, 6);
     temp_a0 = arg1 & 0xFFFF;
     *(u8 *)(arg0 + 6) = (s8) ((s32) (temp_a0 & 0xFF00) >> 8);

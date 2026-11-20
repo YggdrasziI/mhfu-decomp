@@ -7,7 +7,7 @@ typedef signed char s8;
 typedef int s32;
 
 extern char *D_08A62C5C;
-extern int func_0880C464(char *, s32, s32);
+extern int memset(char *, s32, s32);
 extern int func_08859AE4(char *, char *, s32);
 
 char *func_088662B8(char *arg0) {
@@ -33,12 +33,12 @@ char *func_088662B8(char *arg0) {
         var_v1 += 0x14;
     } while (var_a0 < 0xF);
     *(s32 *)(arg0 + 0x800A0) = 0;
-    func_0880C464(arg0 + 0x80258, 0, 0xC0);
-    func_0880C464(arg0 + 0x80318, 0, 0xC0);
-    func_0880C464(arg0 + 0x803D8, 0, 0x30);
-    func_0880C464(arg0 + 0x80408, 0xFF, 0x60);
+    memset(arg0 + 0x80258, 0, 0xC0);
+    memset(arg0 + 0x80318, 0, 0xC0);
+    memset(arg0 + 0x803D8, 0, 0x30);
+    memset(arg0 + 0x80408, 0xFF, 0x60);
     *(s8 *)(arg0 + 0x800A4) = 0;
-    func_0880C464(arg0 + 0x800A8, 0, 0x180);
+    memset(arg0 + 0x800A8, 0, 0x180);
     *(s32 *)(arg0 + 0x80228) = 0;
     *(s32 *)(arg0 + 0x8022C) = 0;
     *(s32 *)(arg0 + 0x80230) = 0;

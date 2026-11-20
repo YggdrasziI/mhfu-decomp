@@ -38,7 +38,7 @@ struct Obj {
     s32 unk10C;
 };
 
-extern void func_0880C464(void *, s32, s32);
+extern void memset(void *, s32, s32);
 extern void func_088E3250(Obj *);
 extern void func_088E6310(Obj *);
 extern void func_088EC284(Obj *);
@@ -63,7 +63,7 @@ void func_088DE8EC(Obj *arg0, s32 arg1, s32 arg2) {
         Err *err = arg0->err;
         s32 keep = arg0->unkC;
 
-        func_0880C464(arg0, 0, 0x1B0);
+        memset(arg0, 0, 0x1B0);
         arg0->err = err;
         arg0->unkC = keep;
     }

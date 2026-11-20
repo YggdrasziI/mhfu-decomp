@@ -45,7 +45,7 @@ extern u8 D_09A2917E;
 extern u8 D_09A299A8;
 extern char D_09A29CD0[];
 
-extern void func_0880C464(void *, s32, s32);
+extern void memset(void *, s32, s32);
 extern void func_088B21D0(Id *, u8);
 extern u8 func_088B32B8(void);
 extern s32 func_088B6594(void *);
@@ -68,7 +68,7 @@ void func_088B7350(Addr8 *arg0) {
     Id b2C;
     Id b18;
 
-    func_0880C464(D_09A28AD0, 0, 0xC8);
+    memset(D_09A28AD0, 0, 0xC8);
     *(Addr8 *) D_09A28AD0 = *arg0;
     if (func_088B6594(arg0) == 0) {
         if (func_088B7A10(arg0) == 0 && D_09A2886C == 2) {
@@ -94,7 +94,7 @@ void func_088B7350(Addr8 *arg0) {
             func_088B21D0(&b18, D_09A299A8);
             func_088B6A80(3);
         }
-        func_0880C464(D_09A28BFC, 0, 0xC8);
+        memset(D_09A28BFC, 0, 0xC8);
         *(Addr8 *) D_09A28BFC = *arg0;
         func_088B6A80(0x10);
     }

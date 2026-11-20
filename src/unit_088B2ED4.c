@@ -33,7 +33,7 @@ extern Rec D_09A29688[];
 extern u16 D_09A28BF0;
 
 extern void func_0880C084(void *, void *, s32);
-extern void func_0880C464(void *, s32, s32);
+extern void memset(void *, s32, s32);
 extern s32 func_088B04B4(Rec *);
 extern void func_088B25B4(Id *, Rec *, u16);
 
@@ -52,8 +52,8 @@ void func_088B2ED4(u8 *arg0) {
     arg0[0x23] = 0;
     func_0880C084(old, D_09A29688, sizeof(old));
     dst = D_09A29688;
-    func_0880C464(&D_09A29684, 0, 4);
-    func_0880C464(dst, 0, sizeof(old));
+    memset(&D_09A29684, 0, 4);
+    memset(dst, 0, sizeof(old));
     n = 0;
     i = 0;
     src = old;

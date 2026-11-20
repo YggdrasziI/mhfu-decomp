@@ -17,7 +17,7 @@ typedef struct {
 
 extern char D_09A28884;
 extern s32 func_088AFE78(void);
-extern void func_0880C464(void *, s32, s32);
+extern void memset(void *, s32, s32);
 extern void func_088AFE90(s32, s32);
 extern void func_088AFFD0(s32);
 extern void func_088B00DC(s32, char *, u16);
@@ -30,7 +30,7 @@ void func_088AE718(Id *arg0, s32 arg1, char *arg2) {
     Id id;
 
     h = func_088AFE78();
-    func_0880C464(&id, 0, sizeof(id));
+    memset(&id, 0, sizeof(id));
     func_088B01BC(1, arg1);
     func_088AFE90(h, 0xC);
     func_088B0284(h, &D_09A28884);

@@ -85,7 +85,7 @@ extern char *D_089CC438;
 extern Heap *D_08A62C5C;
 extern Entry *D_09A4F0D0;
 
-extern int func_0880C464(void *, s32, s32);
+extern int memset(void *, s32, s32);
 extern Obj *func_08859B44(void *, s32, s32);
 extern int func_08859C40(void *, Obj *);
 extern Obj *func_08864544(s32, Obj *);
@@ -109,7 +109,7 @@ extern void func_088DB49C(Group *, Obj *);
         Obj *v; \
         Obj *r; \
         if (tmp != 0) { \
-            func_0880C464(tmp, 0, size); \
+            memset(tmp, 0, size); \
             v = func_08864544(size, tmp); \
             if (v != 0) { \
                 v = ctor(v); \

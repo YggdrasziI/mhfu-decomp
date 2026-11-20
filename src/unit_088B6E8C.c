@@ -91,7 +91,7 @@ typedef struct {
 } Peer;
 
 extern char D_09A2851C[];
-extern void func_0880C464(void *, s32, s32);
+extern void memset(void *, s32, s32);
 extern s32 func_088B012C(void *);
 
 void func_088B6E8C(void) {
@@ -110,7 +110,7 @@ void func_088B6E8C(void) {
                     *(u8 *) (p + 0x1C99) = 1;
                     func_088B012C(p + 0x1C84);
                 } else {
-                    func_0880C464(&r, 0, sizeof(r));
+                    memset(&r, 0, sizeof(r));
                     *(u8 *) (p + 0x1C60) = 0;
                     r.unkC = -1;
                     r.unk10 = 0x8001;
@@ -118,7 +118,7 @@ void func_088B6E8C(void) {
                         r.unk8 = *(s32 *) (p + 0x1C68);
                         (*(ResFn *) (p + 0x1C64))(&r);
                     }
-                    func_0880C464(p + 0x1C60, 0, sizeof(Slot));
+                    memset(p + 0x1C60, 0, sizeof(Slot));
                 }
             }
         }
@@ -132,7 +132,7 @@ s32 func_088B6F64(u16 idx, void (*fn)(void), s32 arg2, s32 arg3) {
 
     e = (Ent28 *) (D_09A2851C + idx * sizeof(Ent28) + 0x1BA60);
     if (e->unk20 == 0) {
-        func_0880C464(e, 0, sizeof(Ent28));
+        memset(e, 0, sizeof(Ent28));
         e->unk20 = 1;
         e->unk4 = arg2;
         e->fn = fn;
@@ -162,7 +162,7 @@ void func_088B7004(void) {
 void func_088B7078(State *arg0, u8 arg1, u16 arg2) {
     Res r;
 
-    func_0880C464(&r, 0, sizeof(r));
+    memset(&r, 0, sizeof(r));
     arg0->unk20 = 0;
     arg0->unk21 = 0;
     arg0->unk22 = 0;

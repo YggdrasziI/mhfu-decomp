@@ -8,12 +8,12 @@ typedef int s32;
 
 extern char *D_08A62C64;
 extern s32 D_08A631A0;
-extern int func_0880C464(void *, s32, s32);
+extern int memset(void *, s32, s32);
 extern s32 func_088903BC(s32);
 extern int sceUtilityMsgDialogInitStart(char *);
 
 void func_088BFE54(char *arg0, s32 arg1) {
-    func_0880C464(arg0 + 0x688, 0, 0x2C4);
+    memset(arg0 + 0x688, 0, 0x2C4);
     *(s32 *)(arg0 + 0x688) = 0x2C4;
     *(s32 *)(arg0 + 0x68C) = func_088903BC(D_08A631A0);
     *(s32 *)(arg0 + 0x690) = 1;

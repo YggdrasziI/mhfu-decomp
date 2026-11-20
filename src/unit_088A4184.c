@@ -14,7 +14,7 @@ extern s32 D_09A0E3C0;
 extern s32 D_09A0E3C4;
 extern s32 D_09A0E3C8;
 extern s32 D_09A0E3CC;
-extern int func_0880C464(s32 *, s32, s32);
+extern int memset(s32 *, s32, s32);
 extern void func_088A412C(void);
 extern int func_088A4344(s32 *);
 
@@ -23,7 +23,7 @@ void func_088A4184(void) {
     char *var_s0;
 
     func_088A412C();
-    func_0880C464(&D_09A0E3CC, 0, 0x580);
+    memset(&D_09A0E3CC, 0, 0x580);
     var_s1 = 0;
     var_s0 = (char *) (&D_09A0E3CC);
     do {
@@ -33,7 +33,7 @@ void func_088A4184(void) {
         var_s1 += 1;
         var_s0 += 0x2C;
     } while (var_s1 < 0x20);
-    func_0880C464(&D_09A0E3B0, 0, 0x1C);
+    memset(&D_09A0E3B0, 0, 0x1C);
     D_09A0E3B0 = -1;
     D_09A0E3B4 = 0;
     D_09A0E3B8 = 0;

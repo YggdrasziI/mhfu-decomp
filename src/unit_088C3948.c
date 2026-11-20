@@ -13,7 +13,7 @@
 
 typedef int s32;
 
-extern void func_0880C464(void *, s32, s32);
+extern void memset(void *, s32, s32);
 extern s32 func_08859B44(void *, s32, s32);
 extern void func_08859C40(void *, s32);
 extern void func_088C7130(char *, s32);
@@ -34,7 +34,7 @@ void func_088C3948(char *arg0, s32 a1, s32 a2, s32 a3, s32 a4, s32 a5, s32 a6) {
 
     tmp = func_08859B44(arg0 + 0xA28C, 0x70, 0x10);
     if (tmp != 0) {
-        func_0880C464((char *) tmp, 0, 0x70);
+        memset((char *) tmp, 0, 0x70);
         v = tmp;
         if (tmp != 0) {
             v = func_09CBBF40(tmp);

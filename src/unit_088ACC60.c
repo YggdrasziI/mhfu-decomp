@@ -10,7 +10,7 @@
 typedef unsigned char u8;
 typedef int s32;
 
-extern void func_0880C464(void *, s32, s32);
+extern void memset(void *, s32, s32);
 extern int func_0880C084(void *, void *, s32);
 typedef struct {
     u8 busy;
@@ -27,7 +27,7 @@ extern char D_09A1DAF4[];
 extern char D_09A1DB00[];
 
 void func_088ACC60(u8 mode, void *src) {
-    func_0880C464(&D_09A1DB60, 0, sizeof(State));
+    memset(&D_09A1DB60, 0, sizeof(State));
     D_09A1DB60.mode = mode;
     D_09A1DB60.unkC = -1;
     switch (D_09A1DB60.mode) {

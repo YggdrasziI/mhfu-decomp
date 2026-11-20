@@ -9,7 +9,7 @@ typedef int s32;
 extern char D_089BAB34;
 extern char D_089BACBC;
 extern char D_089BE650;
-extern int func_0880C464(void *, s32, s32);
+extern int memset(void *, s32, s32);
 extern s32 func_08859B44(void *, s32, s32);
 extern int func_08859C40(void *, s32);
 extern s32 func_088C7130(s32, s32);
@@ -24,7 +24,7 @@ void func_088C671C(char *arg0, s32 arg1, s32 arg2) {
 
     tmp = func_08859B44(arg0 + 0x2294 + 0x7FF8, 0x50, 0x10);
     if (tmp != 0) {
-        func_0880C464((char *) tmp, 0, 0x50);
+        memset((char *) tmp, 0, 0x50);
         if (tmp != 0) {
             *(char **)tmp = &D_089BAB34;
             *(char **)tmp = &D_089BACBC;
