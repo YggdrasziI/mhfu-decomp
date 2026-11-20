@@ -1128,6 +1128,9 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   (func_088DDF10).
 - A direct tail call (`j func`) in C++ needs `#pragma exceptions off`, as
   the virtual ones (func_088DDE20).
+- Counter of a search loop kept in `$v0` with `seb v0, v0` after its
+  increment, and returned as it is: the counter and the return type are
+  both `s8` (func_088DE060, not matched for another reason).
 
 ## Calls and allocation
 
@@ -1166,6 +1169,16 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   0x10`; `addu v0, v0, a0`; `sll s1, v0, 2`); ours swaps the two registers
   (func_088DB608) or folds the constant (func_088DC1F0). No form of the
   lookup, of its index, nor two-level inlining gives it.
+- Id `arg1 + 0x17DF` (`u8` parameter) compared with a 16-bit field in a
+  loop: the original narrows the sum to 16 bits right before the loop,
+  after the counter is cleared (func_088DDE20, func_088DDF94,
+  func_088DE060), or inside the loop at each comparison when the loop
+  holds a call (func_088DE3D4); ours always narrows where the sum is
+  computed. In func_088DDF94 the `andi 0xFF` of the parameter also comes
+  after the pointer set-up, ours first. No type of the local, cast, mask,
+  compound assignment or inline function (for the id, the comparison or
+  the whole search) changes it. The same expression passed as a `u16`
+  argument of a call matches (func_088DE0B8, func_088DE2D8).
 - Register-only differences (two registers swapped, result kept in `$v0` then copied
   to a saved register: func_088C3948, func_0884FDC4).
 - Saved registers in another order although every declaration order gives
