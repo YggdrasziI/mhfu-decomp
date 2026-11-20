@@ -866,6 +866,30 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - (0, pi, pi, 0) stored y, z, then w, then x: the `w` of the vector helper is
   a fourth parameter here too, not a local of the helper (func_088D168C).
 
+- A flag built with branches (`addu v1, zero, zero` in the delay slot of the
+  first test, `addiu v1, zero, 1` after the second, `andi v1, v1, 0xFF`,
+  `bnezl`): an `s32` local cleared before the statements that compute the
+  operands, set to 1 under `if (a && b)`, and read as `(u8) in`. Cleared
+  right before the `if`, or written as a bool expression or an inline
+  function, each comparison is turned into a 0 / 1 value first (`bc1t` /
+  `li 1` / `move zero`, then `beqz`); `in++` keeps the branches but gives
+  `addiu v1, v1, 1` (func_088D08D4).
+- The order of the `beq` chain of a small `switch` is the reverse of the
+  source order of the cases, so the bodies' order in the code gives the
+  source order; a case value that cannot occur (0xFFFF for a `u8`) is an
+  empty `case` at the end (func_088D08D4).
+- `beql` to the `else` store (`swc1` in the delay slot) where ours has
+  `bnezl` and a jump: swap the branches of the `if`, `if (val != 0) {...}
+  else {state->f = 0.0f;}` (func_088D08D4).
+- A product whose left operand is converted first, added as the right
+  operand of a sum whose left operand is converted after it
+  (`mul.s f1, f0, f1` in the delay slot of the second `bltz`): the
+  conversion goes to a float local, then `prod = prod * f;`, then the sum
+  (func_088D08D4).
+- Saved registers s0, s1, s2 for three pointer locals follow the reverse of
+  their declaration order (declared `p`, `item`, `state`: `state` in s0)
+  (func_088D08D4).
+
 ## Calls and allocation
 
 - PSP EABI: arguments 5-8 in `$t0-$t3`, float arguments in `$f12-$f19` counted apart
