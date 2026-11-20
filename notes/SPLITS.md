@@ -1458,7 +1458,9 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088DCEEC` | 0x088DCEEC-0x088DCF3C | 1 small function | 100 % |
 | `unit_088DCF3C` | 0x088DCF3C-0x088DCF70 | 1 small function | 100 % |
 | `unit_088DCF70` | 0x088DCF70-0x088DCFCC | 1 small function | 100 % |
+| `unit_088DCFCC` | 0x088DCFCC-0x088DD264 | 1 function (C++, speed: object initialised from the 0x8C-byte record of its index, six 12-byte items copied) | 100 % |
 | `unit_088DD264` | 0x088DD264-0x088DD26C | 1 small function | 100 % |
+| `unit_088DD26C` | 0x088DD26C-0x088DD3A8 | 1 function (C++: draw with five GE commands and two virtual calls) | 100 % |
 | `unit_088DD3A8` | 0x088DD3A8-0x088DD3E4 | 1 small function (C++) | 100 % |
 | `unit_088DD3E4` | 0x088DD3E4-0x088DD3EC | 1 small function | 100 % |
 | `unit_088DD7C4` | 0x088DD7C4-0x088DD7D8 | 1 small function | 100 % |
