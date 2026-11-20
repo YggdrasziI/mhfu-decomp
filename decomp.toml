@@ -32,6 +32,13 @@ flags = "-O4 -sdatathreshold 0"
 [compiler.dir_flags]
 "src/jpeg-6b" = "-O4,p -gccinc -Iinclude/libc"
 
+# Functions of a source that are not in the image (unused, dropped by the original
+# linker: hypothesis): compile.py removes them from the object, the source stays as
+# it is (notes/PROVENANCE.md).
+[compiler.drop_functions]
+"src/jpeg-6b/jdapimin.c" = ["jpeg_abort_decompress", "jpeg_input_complete", "jpeg_has_multiple_scans"]
+"src/jpeg-6b/jdapistd.c" = ["jpeg_read_raw_data", "jpeg_start_output", "jpeg_finish_output"]
+
 # tools/psp/batch_units.py: the Metrowerks regions of .text (notes/SPLITS.md):
 # game and engine, one game object before the start-up code, then the C++
 # runtime at the end of .text

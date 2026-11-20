@@ -1734,11 +1734,9 @@ segments:
       - [0xDCCA0, asm, text_088DE6EC]
       - [0xDCD7C, cpp, unit_088DE7C8]
       - [0xDCDB8, c, jpeg-6b/jcomapi]
-      - [0xDCEA0, c, unit_088DE8EC]
-      - [0xDCFC8, c, unit_088DEA14]
-      - [0xDCFD0, asm, text_088DEA1C]
-      - [0xDD2D0, c, unit_088DED1C]
-      - [0xDD3D0, asm, text_088DEE1C]
+      - [0xDCEA0, c, jpeg-6b/jdapimin]
+      - [0xDD504, c, jpeg-6b/jdapistd]
+      - [0xDD878, asm, text_088DF2C4]
       - [0xDD8D0, c, unit_088DF31C]
       - [0xDD8D8, asm, text_088DF324]
       - [0xDDC4C, c, unit_088DF698]
@@ -1907,7 +1905,7 @@ segments:
       - { start: 0x1309F8, type: .rodata, name: unit_088D6388, linker_section_order: .data }
       - { start: 0x130A10, type: .rodata, name: unit_088DA324, linker_section_order: .data }
       - { start: 0x130A50, type: .rodata, name: unit_088DBBBC, linker_section_order: .data }
-      - { start: 0x130A70, type: .rodata, name: unit_088DED1C, linker_section_order: .data }
+      - { start: 0x130A70, type: .rodata, name: jpeg-6b/jdapimin, linker_section_order: .data }
       - [0x130A9C, data, data_089324E8]
       - [0x136BC8, .data, unit_08823CBC]
       - [0x136BD4, data, data_08938620]

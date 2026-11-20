@@ -38,7 +38,24 @@ jpeg_abort = 0x088DE804; // type:func size:0x54
 jpeg_destroy = 0x088DE858; // type:func size:0x3C
 jpeg_alloc_quant_table = 0x088DE894; // type:func size:0x2C
 jpeg_alloc_huff_table = 0x088DE8C0; // type:func size:0x2C
+// jdapimin.c and jdapistd.c, same proof (their functions that are not in the image
+// are listed in decomp.toml, [compiler.drop_functions])
+jpeg_CreateDecompress = 0x088DE8EC; // type:func size:0x128
+jpeg_destroy_decompress = 0x088DEA14; // type:func size:0x8
+default_decompress_parms = 0x088DEA1C; // type:func size:0x22C
+jpeg_read_header = 0x088DEC48; // type:func size:0xD4
+jpeg_consume_input = 0x088DED1C; // type:func size:0x100
+jpeg_finish_decompress = 0x088DEE1C; // type:func size:0x134
+jpeg_start_decompress = 0x088DEF50; // type:func size:0x154
+output_pass_setup = 0x088DF0A4; // type:func size:0x11C
+jpeg_read_scanlines = 0x088DF1C0; // type:func size:0x104
 
 // C library: the IJG JPEG library's MEMZERO (memset) calls resolve to this function
 // in the code its unmodified jdapimin.c reproduces byte for byte (notes/PROVENANCE.md)
 memset = 0x0880C464; // type:func
+// called by the functions above (their `jal` targets in the original code); the first
+// three also found byte for byte from jdinput.c, jdmarker.c and jdmaster.c
+jinit_input_controller = 0x088E3250; // type:func size:0x78
+jinit_marker_reader = 0x088E6310; // type:func size:0xDC
+jinit_master_decompress = 0x088E6DF0; // type:func size:0x5C
+jinit_memory_mgr = 0x088EC284; // type:func size:0x138

@@ -1499,9 +1499,8 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088DE6EC` | 0x088DE6EC-0x088DE7C8 | 1 function, NonMatching (97.0 %: a register copy before the index is scaled); requests five resources | not linked |
 | `unit_088DE7C8` | 0x088DE7C8-0x088DE804 | 1 small function (C++) | 100 % |
 | `jpeg-6b/jcomapi` | 0x088DE804-0x088DE8EC | 4 functions: `jcomapi.c` of the IJG JPEG library 6b, unmodified source (`notes/PROVENANCE.md`); `-O4,p` | 100 % |
-| `unit_088DE8EC` | 0x088DE8EC-0x088DEA14 | 1 function (C, speed): `jpeg_CreateDecompress` of the library's `jdapimin.c`, written from the assembly before the library was identified; to be replaced by the library file | 100 % |
-| `unit_088DEA14` | 0x088DEA14-0x088DEA1C | 1 small function (`jpeg_destroy_decompress` of `jdapimin.c`, to be replaced by the library file) | 100 % |
-| `unit_088DED1C` | 0x088DED1C-0x088DEE1C | 1 function (state step 200-210, shape of the IJG library's jpeg_consume_input: hypothesis); jump table 0x089324BC-0x089324E8 in the unit | 100 % |
+| `jpeg-6b/jdapimin` | 0x088DE8EC-0x088DEF50 | 6 functions: `jdapimin.c` of the library, unmodified; 3 functions not in the image removed from the object (`decomp.toml`, `[compiler.drop_functions]`); jump table 0x089324BC-0x089324E8 in the unit | 100 % |
+| `jpeg-6b/jdapistd` | 0x088DEF50-0x088DF2C4 | 3 functions: `jdapistd.c` of the library, unmodified; 3 functions not in the image removed from the object | 100 % |
 | `unit_088DF31C` | 0x088DF31C-0x088DF324 | 1 small function | 100 % |
 | `unit_088DF698` | 0x088DF698-0x088DF6A0 | 1 small function | 100 % |
 | `unit_088E0DE4` | 0x088E0DE4-0x088E0DFC | 1 small function | 100 % |

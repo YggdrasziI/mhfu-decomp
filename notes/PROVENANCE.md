@@ -37,12 +37,16 @@ in the image (hypothesis: unused, dropped by the original linker).
 
 | Our file | Source | Changes |
 |---|---|---|
-| `src/jpeg-6b/README`, `jcomapi.c`, `jinclude.h`, `jpeglib.h`, `jmorecfg.h`, `jpegint.h`, `jerror.h` | release 6b | none |
+| `src/jpeg-6b/README`, `jcomapi.c`, `jdapimin.c`, `jdapistd.c`, `jinclude.h`, `jpeglib.h`, `jmorecfg.h`, `jpegint.h`, `jerror.h` | release 6b | none |
 | `src/jpeg-6b/jconfig.h` | not from the distribution: written for this project from the options of its `jconfig.doc` | `boolean` is `unsigned char` (one byte in the original code) |
 | `include/libc/*.h` | written for this project | minimal `<stddef.h>`, `<stdlib.h>`, `<stdio.h>`, `<string.h>` for the library sources |
 
 Only the files a linked unit needs are in the repository; any change to a file of
 the distribution is listed in this table.
+
+Functions of a file that are not in the image (`[compiler.drop_functions]` of
+`decomp.toml`) are removed from the compiled object by `tools/psp/compile.py`; the
+source files are not edited for it.
 
 ## Project documents
 
