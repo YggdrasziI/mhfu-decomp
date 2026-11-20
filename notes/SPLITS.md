@@ -1425,8 +1425,10 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088DAFC8` | 0x088DAFC8-0x088DB068 | 1 small function | 100 % |
 | `unit_088DB068` | 0x088DB068-0x088DB0A0 | 1 small function (C++) | 100 % |
 | `unit_088DB0A0` | 0x088DB0A0-0x088DB0B0 | 1 small function | 100 % |
+| `unit_088DB0B0` | 0x088DB0B0-0x088DB15C | 1 function (C++: index and a global 16-bit value given to the six objects of func_088DCEBC, then their virtual function at 0x40) | 100 % |
 | `unit_088DB15C` | 0x088DB15C-0x088DB1C0 | 1 small function (C++) | 100 % |
 | `unit_088DB1C0` | 0x088DB1C0-0x088DB250 | 1 small function | 100 % |
+| `unit_088DB250` | 0x088DB250-0x088DB488 | 4 functions (C++, speed: passes over the six object pointers at +0xC by flag; func_088D61CC on the object of the global index) | 100 % |
 | `unit_088DB488` | 0x088DB488-0x088DB49C | 1 small function | 100 % |
 | `unit_088DB49C` | 0x088DB49C-0x088DB4C8 | 1 small function | 100 % |
 | `unit_088DB4C8` | 0x088DB4C8-0x088DB4D4 | 1 small function | 100 % |
