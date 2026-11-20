@@ -2,7 +2,7 @@
  *
  * Bounds (hypothesis): 1 function between unit_088D777C and unit_088D7D6C.
  *
- * NonMatching, 99.2 %. Steps the pair index `arg1` (mode `arg2`: 0 next, 1
+ * NonMatching, 99.3 %. Steps the pair index `arg1` (mode `arg2`: 0 next, 1
  * previous, 2 next after the test, 3 previous after the test) through the
  * 24 or 25 pairs until one holds an id whose record (D_0899D198) fits the
  * object's kind and the mask of func_088D7D6C; returns the index or 0xFF.
@@ -79,7 +79,7 @@ u16 func_088D7AD8(char *arg0, u16 arg1, u8 arg2) {
         if (arg1 == 0) {
             arg1 = n - 1;
         } else {
-            arg1 = arg1 - 1;
+            arg1--;
         }
         break;
     case 2:
@@ -117,7 +117,7 @@ u16 func_088D7AD8(char *arg0, u16 arg1, u8 arg2) {
             if (arg1 == 0) {
                 arg1 = n - 1;
             } else {
-                arg1 = arg1 - 1;
+                arg1--;
             }
             break;
         }

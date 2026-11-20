@@ -1391,7 +1391,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088D72A4` | 0x088D72A4-0x088D773C | 1 function, NonMatching (C++, 97.8 %: saved register allocation, one load order); adds to the count of a pair and reports the outcome | not linked |
 | `unit_088D773C` | 0x088D773C-0x088D777C | 1 small function | 100 % |
 | `unit_088D777C` | 0x088D777C-0x088D7AD8 | 2 functions (C++: removal from the object's own pairs at +0x568; transfer to the four pairs at +0x542) | 100 % |
-| `unit_088D7AD8` | 0x088D7AD8-0x088D7D6C | 1 function, NonMatching (C++, 99.2 %: three saved registers rotated); steps a pair index to the next usable pair | not linked |
+| `unit_088D7AD8` | 0x088D7AD8-0x088D7D6C | 1 function, NonMatching (C++, 99.3 %: three saved registers rotated); steps a pair index to the next usable pair | not linked |
 | `unit_088D7D6C` | 0x088D7D6C-0x088D8000 | 3 functions (C++: bit masks built from func_088D6A1C tests) | 100 % |
 | `unit_088D8000` | 0x088D8000-0x088D81E4 | 1 function (C++: refreshes level, count and capacity of the selected pair) | 100 % |
 | `unit_088D81E4` | 0x088D81E4-0x088D81F0 | 1 small function | 100 % |
