@@ -272,6 +272,22 @@ with its `[C,0,-S,0]` operand, `vidt.q`, `vmmul.t`, `vtfm3.t` and `vadd.t`
 is accepted too. Not checked yet: VFPU register allocation across several
 blocks.
 
+Branches work in a block (2026-11-20, func_088D2E18): `bvt 4, label`,
+`bvtl`, `bvfl` and `b label` with labels local to the block, also when the
+helper is inlined twice. The assembler then adds a `nop` after each branch
+unless the block starts with `.set noreorder`; with it the next instruction
+is the delay slot, as in the original arc tangent. The `nop` after
+`vcmp.s ez` in the normalization is written out (func_088D3ADC).
+`vcmp` always takes both operands (`vcmp.s ez, S000, S000`,
+`vcmp.p es, C000, C000`). `vpfxd` takes bracketed ranges,
+`vpfxd [-1:1],[-1:1],[-1:1],[-1:1]` (0xDE0000FF) and `[0:1]` x4
+(0xDE000055); no accepted syntax was found for `vpfxs` / `vpfxt`, a partial
+`vpfxd` or `vfim.s` with a negative value, so those are `.word`. Also
+checked: `vsub.t`, `vscl.t`, `vdot.t`, `vcrsp.t`, `vrsq.s`, `vrcp.s`,
+`vsqrt.s`, `vasin.s`, `vsgn`, `vocp.s`, `vone.s`, `vzero.s`, `vi2f.s`,
+`vcmovt.s`, `vdiv.t`, `vneg.t`, `vfad.t`, `vmmul.q`, `vmmov.q`, `vmidt.q`,
+`vrot.q` with `[C,S,0,0]`, `[-S,C,0,0]`, `[0,C,S,0]`, `[0,-S,C,0]`.
+
 The phase before such a sine is `K * (float) phase` in the original, with the
 constant loaded after the conversion. `ang = phase; ang = K * (float) ang;`
 gives it: with a plain `ang` the compiler swaps the `mul.s` operands, with

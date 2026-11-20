@@ -833,6 +833,39 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   `jal` / `mov.s`): the pointer parameters come first in the prototype
   (func_088640F8 called from func_088D2894).
 
+- Addresses of the operands of a VFPU helper computed in the order left
+  operand, right operand, destination (`addiu a0` / `v1` / `a1`), where
+  pointer parameters give right, left, destination: the helper takes its
+  operands by reference, `vec_sub(Vec *dst, Vec &ra, Vec &rb)` with
+  `Vec *a = &ra; Vec *b = &rb;` in that order before the `asm` block
+  (func_088D2E18). For a matrix product only the right operand is a
+  reference when it is a stack matrix (func_088D3B94, func_088D3DBC,
+  func_088D2E18); the same product on two members keeps pointers.
+- A fifth argument register left untouched before a recursive call
+  (`t0` still holds the address of a stack matrix used just before): the
+  call passes that stack matrix, not the parameter (func_088D3DBC).
+- Three floats loaded, then stored (`lwc1` x3, `swc1` x3, x first): an
+  inline helper with three float locals, `float x = src[0]; ...;
+  dst->x = x; ...`. A helper taking the three floats as parameters loads z
+  first (func_088D2E18).
+- The stack slot of a helper's result lower than the slots of every later
+  helper: the call is written as the argument of the next helper,
+  `vec_scale(&v, &v, vec_dot(&v, &w))`; with a local in between the slot is
+  allocated in source order (func_088D2E18).
+- In a helper with a result, the result's address in the first register
+  (`addiu a1` before the operand stores): declare `float *pr = &r;` before
+  the pointers to the operands (atan2 and sqrt helpers of func_088D2E18).
+- A source row and a destination row copied with `lv.s` x3 / `sv.s` x3,
+  source address in `v1`, destination in `a0`: the helper takes
+  `(src, dst)`; a pointer local for the destination matrix gives the
+  `addiu a0, a1, 0x10` rows (func_088D2E18).
+- Two tables read with the same index, the second one's value needed first
+  (`lhu s7` from the +2 table, the +0 value read in the delay slot of the
+  test): read the +0 table into its local first, then the +2 one
+  (func_088D2E18).
+- (0, pi, pi, 0) stored y, z, then w, then x: the `w` of the vector helper is
+  a fourth parameter here too, not a local of the helper (func_088D168C).
+
 ## Calls and allocation
 
 - PSP EABI: arguments 5-8 in `$t0-$t3`, float arguments in `$f12-$f19` counted apart
