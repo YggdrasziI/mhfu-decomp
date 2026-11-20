@@ -1374,6 +1374,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088D5C2C` | 0x088D5C2C-0x088D5C34 | 1 small function | 100 % |
 | `unit_088D5C34` | 0x088D5C34-0x088D5C74 | 1 small function | 100 % |
 | `unit_088D5C74` | 0x088D5C74-0x088D5C7C | 1 small function | 100 % |
+| `unit_088D5C7C` | 0x088D5C7C-0x088D6108 | 4 functions (C++, speed, virtual calls: rates and start of the two entries at +0x324, clamped byte at +0x67E, two id setters looping over the slots) | 100 % |
 | `unit_088D6108` | 0x088D6108-0x088D61CC | 1 function (record lookup like func_08865254, in the table of D_09A4F0C4 for ids below 1000); optimized for speed | 100 % |
 | `unit_088D6388` | 0x088D6388-0x088D6488 | 1 function (value from one of three tables of 16-bit rows); jump table 0x08932444-0x0893245C in the unit | 100 % |
 | `unit_088D6488` | 0x088D6488-0x088D64E0 | 1 small function | 100 % |
