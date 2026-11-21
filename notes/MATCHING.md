@@ -1554,6 +1554,52 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - A field loaded in a guard's delay slot ahead of a `cond ? e : 0`: read it
   into an `int` local before the comparison (func_088A0C74).
 
+- `beql v0, zero, end` with the return 0 in its slot where ours gives
+  `bnezl` + `b end`: put the body inside `if (x != 0) { ...; return 1; }
+  return 0;` rather than an early `return 0` (func_088A243C).
+- A float kept when the input holds a marker (`c.eq.s` + `bc1tl` to the
+  next instruction, the old value loaded in the slot, one shared `swc1`):
+  `g = (a != K) ? a : g;`, the new value first (func_088A2F88,
+  func_088A3AB0).
+- `lui` + `lwc1` per float from consecutive data words: one assignment per
+  member from named globals declared `float D_X[2]`, the same source
+  written twice for a value stored twice (func_088A198C).
+- A global incremented, stored and read again before its test, each access
+  with its own `lui`: declare it `extern volatile` (func_088A3480,
+  func_088A356C); a callback and its argument loaded again before `jalr`:
+  the whole struct pointer `volatile T *` (func_088A4004).
+- A switch compare chain where only the first compare of a group is `beql`:
+  all its values are labels of one case group; values are compared in
+  reverse source order; a default body right after the chain: `default:`
+  first (func_088A1E70).
+- `x = !(a == -1 && b == -1);` for a `not; sltiu; beql; xori 1` chain
+  (func_088A1E70); `if (x < 0 || x > 2)` for `bltzl` then `slti at`
+  (func_088A32A0).
+- A flag-bit loop with `beqz` to the exit and a plain `bnez` back edge: a
+  guard and a do-while, `if (f != 0) do { ... } while (f != 0);`
+  (func_088A4408).
+- Two stores in a row to one field: two compound statements, `x |= A; x &=
+  ~B;` (func_088A4280, func_088A42F0).
+- A byte-clear loop unrolled by 8 under the speed setting with `addiu
+  %lo(base)` after the counter's zeroing: index the global array with a
+  `u32` counter, not a pointer (func_088A412C).
+- 4-lane s16 to float blocks (registers or `lh` order differ): one statement
+  per stage, all four lanes at each stage: convert, `*= k`, `+= st * g`,
+  clamp, divide, store; float locals take registers in reverse declaration
+  order (func_088A356C, func_088A2498). An inline `clear()` that would be
+  unrolled: `#pragma opt_unroll_loops off` (ended by `reset`).
+- After an inlined helper, an early error return reaches `b <return move>`
+  + nop instead of `b <epilogue>` with the move in the slot: make the helper
+  `void`, writing the result through a pointer to the caller's local
+  (`if ((*out = f(...)) < 0) { ...; return; }`), one `return ret;` in the
+  caller (func_088A2A78).
+- A loop count loaded into the wrong argument register before a copy loop:
+  read it into its local before the pointer set-up (func_088A2A78); `if
+  ((ret = f()) < 0)` puts the copy in the `bgez` slot (func_088A2A78).
+- A static leaf callee whose result-free call keeps $a0 (`sceKernel...` state
+  passed through): same static-callee rule as above (func_088A4344 calling
+  func_088A4178, func_088A2A78 calling func_088A243C).
+
 ## Open symptoms
 
 - Two part pointers in swapped saved registers after the D_09A4F0D0
@@ -1574,3 +1620,6 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   code; the original stores it after the fifth argument's loads. Only a
   function-level local reassigned elsewhere moves it, and that breaks
   other orders (func_088C05FC, 93.54 %).
+- `t->tbl[t->idx]` address computed in $v0 where the original uses the
+  register of the result (a1), and the following clear() counter in a2
+  instead of v0 (func_088A2498, 99.87 %).

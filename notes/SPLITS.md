@@ -863,23 +863,36 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088A18B8` | 0x088A18B8-0x088A18E8 | 1 small function | 100 % |
 | `unit_088A18E8` | 0x088A18E8-0x088A1914 | 1 small function (sets a 0-0x7F level, returns the old one) | 100 % |
 | `unit_088A1914` | 0x088A1914-0x088A198C | 1 small function | 100 % |
+| `unit_088A198C` | 0x088A198C-0x088A1E70 | 1 function (sets up an audio stream entry and starts its thread func_088A2498) | 100 % |
+| `unit_088A1E70` | 0x088A1E70-0x088A2068 | 1 function (sceAtrac set-up of a stream) | 100 % |
 | `unit_088A2068` | 0x088A2068-0x088A20E4 | 1 small function | 100 % |
 | `unit_088A20E4` | 0x088A20E4-0x088A2204 | 1 function (state step on +0x54); jump table 0x08931F20-0x08931F38 in the unit | 100 % |
 | `unit_088A2204` | 0x088A2204-0x088A2244 | 1 small function | 100 % |
 | `unit_088A2244` | 0x088A2244-0x088A232C | 1 function (state step with fall-through cases); jump table 0x08931F38-0x08931F50 in the unit | 100 % |
 | `unit_088A232C` | 0x088A232C-0x088A2338 | 1 small function | 100 % |
 | `unit_088A2338` | 0x088A2338-0x088A2378 | 1 small function | 100 % |
+| `unit_088A2378` | 0x088A2378-0x088A23C4 | 1 small function (0-0x7F level and its /127 scale) | 100 % |
 | `unit_088A23C4` | 0x088A23C4-0x088A2404 | 1 small function | 100 % |
 | `unit_088A2404` | 0x088A2404-0x088A2410 | 1 small function | 100 % |
+| `unit_088A2410` | 0x088A2410-0x088A243C | 1 small function (optional callback D_09A0D250) | 100 % |
+| `unit_088A243C` | 0x088A243C-0x088A2F88 | 3 functions: static func_088A243C and its caller func_088A2A78 (sceAtrac decode step, jump table jtbl_08931F50), with func_088A2498 between them (stream thread) | NonMatching (func_088A2498 99.87 %) |
+| `unit_088A2F88` | 0x088A2F88-0x088A3244 | 1 function (copies 21 parameters, 0x00800000 keeps the old value) | 100 % |
 | `unit_088A3244` | 0x088A3244-0x088A32A0 | 1 small function | 100 % |
+| `unit_088A32A0` | 0x088A32A0-0x088A3480 | 1 function (sets up the mixer parameters and starts its thread func_088A356C) | 100 % |
+| `unit_088A3480` | 0x088A3480-0x088A34E4 | 1 small function | 100 % |
 | `unit_088A34E4` | 0x088A34E4-0x088A3554 | 1 small function | 100 % |
 | `unit_088A3554` | 0x088A3554-0x088A356C | 2 small functions | 100 % |
+| `unit_088A356C` | 0x088A356C-0x088A3AB0 | 1 function (mixer thread, 4-lane float limiter) | 100 % |
+| `unit_088A3AB0` | 0x088A3AB0-0x088A3ED4 | 1 function (copies 21 parameters into globals, 0x00800000 keeps the old value) | 100 % |
 | `unit_088A3ED4` | 0x088A3ED4-0x088A3F30 | 1 small function | 100 % |
+| `unit_088A3F30` | 0x088A3F30-0x088A3FF4 | 1 function (creates and starts thread func_088A4004) | 100 % |
 | `unit_088A3FF4` | 0x088A3FF4-0x088A4004 | 1 small function | 100 % |
+| `unit_088A4004` | 0x088A4004-0x088A407C | 1 function (thread loop calling a callback) | 100 % |
 | `unit_088A407C` | 0x088A407C-0x088A412C | 2 small functions | 100 % |
-| `unit_088A4178` | 0x088A4178-0x088A4184 | 1 small function | 100 % |
-| `unit_088A4184` | 0x088A4184-0x088A4248 | 1 small function | 100 % |
-| `unit_088A4248` | 0x088A4248-0x088A4280 | 1 small function | 100 % |
+| `unit_088A412C` | 0x088A412C-0x088A4178 | 1 small function | 100 % |
+| `unit_088A4178` | 0x088A4178-0x088A43C0 | 6 functions: static func_088A4178 and its only caller func_088A4344, with the entries of D_09A0E3CC between them | 100 % |
+| `unit_088A43C0` | 0x088A43C0-0x088A4408 | 1 small function | 100 % |
+| `unit_088A4408` | 0x088A4408-0x088A4504 | 1 function (flag bits of an entry to func_08897xxx calls) | 100 % |
 | `unit_088A464C` | 0x088A464C-0x088A4654 | 1 small function | 100 % |
 | `unit_088A49D0` | 0x088A49D0-0x088A4A30 | 1 small function | 100 % |
 | `unit_088A4A30` | 0x088A4A30-0x088A4B5C | 2 small functions | 100 % |
