@@ -1,8 +1,9 @@
 /* unit_088A7860: 0x088A7860-0x088A7A68 (ULES01213)
  *
- * NonMatching: compiled for the report only, the code is linked from assembly.
  * Bounds (hypothesis): 1 function between unit_088A7788 and unit_088A7A68.
  */
+
+#pragma optimize_for_size off
 
 #include "unk_peer.h"
 
@@ -14,26 +15,24 @@ extern s32 func_088A8048(Session *, char *, s32, s32);
 extern char D_09A0FDC8;
 extern char D_09A11F76[];
 
-/* 97.8 %: the original keeps the packet in $s6 and the write pointer in $s1 (ours
- * the other way round), reads the length back into $s1 (ours $s2) and clears
- * `off` one instruction later. Tried: every declaration order of room / pkt / dst
- * / len / off / n, the order of the three initialisations, a Packet structure
- * pointer (its first stores then go straight to the symbol), `n` shared with
- * `rem`. `room = 0xFF; room -= 6;` is needed for the unfolded `addiu` pair. */
+/* Speed mode puts the packet in $s6 and the length read-back in $s1; this
+ * declaration order (found by search) fixes the loop registers, and `off = 0`
+ * after `dst` gives its late `addu`. `room = 0xFF; room -= 6;` is needed for
+ * the unfolded `addiu` pair. */
 s32 func_088A7860(Session *arg0) {
-    u8 t[4];
     SendBuf *g;
-    s32 flag;
-    s32 i;
-    char *dst;
+    s32 rem;
+    s32 n;
     s32 off;
     s32 room;
+    s32 flag;
+    s32 i;
     s32 len;
     u8 *pkt;
-    s32 n;
-    s32 rem;
     u8 st;
+    u8 t[4];
     u16 v;
+    char *dst;
 
     g = &D_09A11EE4;
     flag = 0;
@@ -50,7 +49,6 @@ s32 func_088A7860(Session *arg0) {
             i++;
         } while (i < arg0->count);
     }
-    off = 0;
     len = 6;
     room = 0xFF;
     room -= 6;
@@ -58,6 +56,7 @@ s32 func_088A7860(Session *arg0) {
     pkt[1] = 3;
     pkt[2] = arg0->self;
     dst = D_09A11F76;
+    off = 0;
     while (room > 0 && off < g->pos) {
         memcpy(t, g->buf + off, 4);
         if (room < t[0]) {

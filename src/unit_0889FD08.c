@@ -1,8 +1,7 @@
 /* unit_0889FD08: 0x0889FD08-0x088A00B0 (ULES01213)
  *
  * Bounds (hypothesis): 1 function between code still in assembly
- * (text_0889FB94) and unit_088A00B0. NonMatching: the code stays in the
- * asm piece text_0889FD08.
+ * (text_0889FB94) and unit_088A00B0.
  *
  * Optimized for speed: the divisions by 4095, 100, 32767 and 44100 are
  * multiplications.
@@ -30,12 +29,9 @@ extern s16 func_088A0BE4(s32);
 extern s16 func_088A0AFC(s32);
 extern float func_088085A4(float, float);
 
-/* NonMatching, 98.8 %: register allocation (the original keeps arg0 in s3,
- * the volume, pitch sum and base rate in s0, the left level in s2 and the
- * right level in s1) and the order of the first mult. Tried: declaration
- * orders, a struct for arg0, split or shared locals, pan * 2 inline, ternary
- * and if forms for both mixes, both operand orders, C++.
- */
+/* a * b / 4095 as a helper: gives the operand order of the first mult. */
+static inline s32 sc(s32 a, s32 b) { return a * b / 4095; }
+
 s32 func_0889FD08(char *arg0) {
     s32 v;
     s32 pan;
@@ -47,8 +43,7 @@ s32 func_0889FD08(char *arg0) {
     s32 sum;
     u32 base;
 
-    v = D_09A0D140[*(u8 *)(arg0 + 0x1C) & 0xF].a * *(u16 *)(arg0 + 0x22) / 4095
-        * (*(u16 *)(arg0 + 0x24) * *(u8 *)(arg0 + 0x2A) / 100) / 4095;
+    v = sc(sc(D_09A0D140[*(u8 *)(arg0 + 0x1C) & 0xF].a, *(u16 *)(arg0 + 0x22)), *(u16 *)(arg0 + 0x24) * *(u8 *)(arg0 + 0x2A) / 100);
     v += func_088A0AB0(arg0 + 0x40);
     if (v < 0) {
         v = 0;
@@ -67,7 +62,8 @@ s32 func_0889FD08(char *arg0) {
     l = v * func_088A0BE4(pan) / 32767;
     r = v * func_088A0AFC(pan) / 32767;
     sum = *(s16 *)(arg0 + 0x2C) + (*(s16 *)(arg0 + 0x26) + *(s16 *)(arg0 + 0x28));
-    f = (float) (sum + func_088A0AB0(arg0 + 0x38)) / 1200.0f;
+    sum += func_088A0AB0(arg0 + 0x38);
+    f = (float) sum / 1200.0f;
     base = *(u32 *)(arg0 + 0x34);
     rate = ((u32) ((float) base * func_088085A4(2.0f, f)) << 12) / 44100;
     if (D_09A0D13C == 0) {

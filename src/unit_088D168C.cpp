@@ -2,23 +2,20 @@
  *
  * Bounds (hypothesis): 1 function between unit_088D1398 and unit_088D18F0.
  *
- * NonMatching, 95.7 %. One gap, the entry: the original reads the id
- * (`lh a1, 0x324(a0)`) before the global and keeps it in a1, the global and
- * the flag in a0; here the global is read first (a1) and the id is in a2.
- * Tried: the test as an inline function (with and without the id or the
- * global as parameter, returning bool, u8 or s32), as a member function, a
- * local for the global, the whole body as an inline function taking the id,
- * ternary forms, an `s32` id with casts. Reading the flag word into an
- * `s32` local or through an `s32` inline function gives the original order
- * and registers, but then the offset 0x6AF14 is added with `lui at` /
- * `ori at` instead of `lui v1, 7` / `lw a0, -0x50EC(v1)`, and the constant 1
- * is loaded before the `andi` (the same with the masked value in a local, a
- * struct member for the flag word, or an inline function returning the
- * masked word). A `u16` copy of the id made before the test (`raw = id
- * field; id = raw;` or a `u16` id) also gives the original order and
- * registers with the folded offset (98.1 %), but the load becomes `lhu` and
- * the subtraction gains an extension. Same-width copies, an `s32` id, the
- * copy after the test and `== true` change nothing.
+ * NonMatching, 98.79 %. The test is written `!= 0`: the id is then read
+ * first (`lh a1`) and the global kept in a0 as in the original, the offset
+ * split as `lui v1, 7` / `lw -0x50EC`. The only gap is the compare: the
+ * original tests against 1 (`addiu v1, zero, 1` after the `andi`, flag in
+ * a0, `bnel a0, v1`), ours branches with `beqzl v1`. Every `== 1` form with
+ * the load written in the condition (casts and types of the constant,
+ * `== true`, switch, goto, typed structure, structure-pointer local, bit
+ * fields, `void *` parameter with all 720 declaration orders, scale stores
+ * moved) loads the global before the id and swaps the registers. Forms that
+ * go through a single-use temporary (an `s32` flag local, an inline helper
+ * returning the word or the bool, a pointer local, a manual
+ * `+ 0x70000 - 0x50EC` split) give the original registers but add the
+ * offset with `lui at` / `ori at` (97.54 %); a local used twice keeps the
+ * split but swaps the registers again.
  *
  * C++: bool conversion, member function. Optimized for speed.
  */
@@ -77,7 +74,7 @@ void func_088D168C(char *arg0) {
     s16 id;
 
     id = *(s16 *)(arg0 + 0x324);
-    if ((bool) (*(s32 *)(D_089CC438 + 0x6AF14) & 1) == 1) {
+    if ((bool) (*(s32 *)(D_089CC438 + 0x6AF14) & 1) != 0) {
         id -= 0x3E8;
     }
     scale.z = 1.0f;

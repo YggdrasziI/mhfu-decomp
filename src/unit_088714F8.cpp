@@ -5,13 +5,12 @@
  *
  * C++: virtual call. Optimized for speed (the getter's index becomes an
  * induction variable). The initializers of the three local tables
- * (0x089A82D0-0x089A853C) would be the unit's .data; they stay in the data
- * piece while the function does not match.
+ * (0x089A82D0-0x089A853C) are the unit's .data.
  *
- * NonMatching: func_088714F8 99.3 %. The two table searches: the original's
- * loop is `lhu; bnel id, v0, top` with the increment in the delay slot (no
- * guard); ours leaves with `bne` and steps back (this form), or adds a guard
- * (`while`), or exits through `beql` (`for`, `goto`, `do`, inline helper).
+ * The two table searches call inside the loop and leave with `break`
+ * (`lhu; bnel id, v0, top` with the step in the delay slot); a search
+ * followed by the call after the loop adds a guard, a `beql` exit or a
+ * jump to the test.
  */
 
 #pragma optimize_for_size off
@@ -133,17 +132,23 @@ void func_088714F8(char *arg0) {
     }
     if (in_first(arg0, id)) {
         s = (func_0886B8DC(arg0) & 1) ? t2 : t3;
-        do {
-        } while (id != (s++)->id);
-        s--;
-        func_09AB2DD8(D_09C121B0, 0xA, s->pos, s->v);
+        for (;;) {
+            if (id == s->id) {
+                func_09AB2DD8(D_09C121B0, 0xA, s->pos, s->v);
+                break;
+            }
+            s++;
+        }
     }
     if (in_second(arg0, id)) {
         s = t1;
-        do {
-        } while (id != (s++)->id);
-        s--;
-        func_09AB2DD8(D_09C121B0, 0x4A, s->pos, s->v);
+        for (;;) {
+            if (id == s->id) {
+                func_09AB2DD8(D_09C121B0, 0x4A, s->pos, s->v);
+                break;
+            }
+            s++;
+        }
     }
 }
 

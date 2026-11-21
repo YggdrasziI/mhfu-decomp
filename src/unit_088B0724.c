@@ -8,11 +8,9 @@
  * (sceNetAdhocctlGetScanInfo into D_09A28534) and flags (+0xC) the
  * records whose name was found. Returns 0.
  *
- * NonMatching (96.17 %): only the end of the scan loop differs; the
- * original leaves with `beqzl s0` to the return and jumps back with `b`,
- * ours loops with `bnez`. Tried: `while (1)` with return / break, `do`
- * `while (s != 0)`, `goto`, `for (;;)` with `continue`, a test at the top
- * (94 %), and each `opt_*` / `peephole` / `scheduling` pragma off.
+ * The list walk keeps the next record in its own local and leaves with
+ * `break` before `s = n;` (the original's `beqzl` to the return then `b`
+ * back to the top).
  */
 
 typedef unsigned char u8;
@@ -52,6 +50,7 @@ s32 func_088B0724(u8 *arg0, char *arg1) {
     s32 i;
     char *p;
     Scan *s;
+    Scan *n;
 
     len = 0;
     *arg0 = 0x18;
@@ -91,9 +90,11 @@ s32 func_088B0724(u8 *arg0, char *arg1) {
             i++;
             p += 0x10;
         } while (i < 0x18);
-        s = s->next;
-        if (s == 0) {
-            return 0;
+        n = s->next;
+        if (n == 0) {
+            break;
         }
+        s = n;
     }
+    return 0;
 }

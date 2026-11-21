@@ -7,11 +7,10 @@
  * with func_09CBBF40 (overlay code), adds it to the list (func_088C7130),
  * points +0x2C / +0x30 into the record at *arg0 and initialises it with
  * func_09CBC010 and the seven other arguments.
- *
- * NonMatching: the image keeps the original code.
  */
 
 typedef int s32;
+typedef unsigned int u32;
 
 extern void memset(void *, s32, s32);
 extern s32 func_08859B44(void *, s32, s32);
@@ -20,14 +19,13 @@ extern void func_088C7130(char *, s32);
 extern s32 func_09CBBF40(s32);
 extern void func_09CBC010(s32, s32, s32, s32, s32, s32, s32);
 
-/* NonMatching, 95.77 %: after freeing a failed object the original jumps
- * over the `else` (`b` with `addu a0, s4` in the slot, then the dead
- * `addu s6, zero, zero` of `obj = 0`); ours falls through. Probably a C++
- * placement `new` with an inline allocator. Tried: the assignment before or
- * after the test, a goto, a ternary, the branches swapped, C++, every
- * declaration order. */
+/* The constructor result goes through an unsigned local and a signed copy
+ * (like the temporary of a C++ new-expression): with a single local it
+ * shares the saved register of obj and the free path loses its `b` over
+ * the dead `obj = 0`. */
 void func_088C3948(char *arg0, s32 a1, s32 a2, s32 a3, s32 a4, s32 a5, s32 a6) {
-    s32 v;
+    u32 v;
+    s32 p;
     s32 obj;
     s32 tmp;
     s32 base;
@@ -39,10 +37,11 @@ void func_088C3948(char *arg0, s32 a1, s32 a2, s32 a3, s32 a4, s32 a5, s32 a6) {
         if (tmp != 0) {
             v = func_09CBBF40(tmp);
         }
-        obj = v;
-        if (v == 0) {
+        p = (s32) v;
+        if (p == 0) {
             func_08859C40(arg0 + 0xA28C, tmp);
         }
+        obj = p;
     } else {
         obj = 0;
     }

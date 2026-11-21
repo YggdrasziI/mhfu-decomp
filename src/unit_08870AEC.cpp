@@ -5,8 +5,6 @@
  *
  * C++: virtual calls. Optimized for speed: divisions by a constant are
  * multiplications.
- *
- * NonMatching: the image keeps the original code.
  */
 
 #pragma optimize_for_size off
@@ -30,11 +28,6 @@ extern void func_08898748(s32, s32);
 extern s32 func_08898898(s32, s32);
 extern void func_088C2BE0(s32, char *, s32);
 
-/* NonMatching, 90.7 %: same instructions, other schedule in the table lookup.
- * The original loads D_089A7CE8[group] before the divisions and the u16 at
- * +0x714 during them; this loads both after. Tried: temporaries for each
- * level, index locals, integer arithmetic, inline helpers for the group and
- * the lookup, the comparison written both ways. */
 u8 func_08870AEC(char *arg0, u16 arg1, char *arg2) {
     u8 ret = 0;
 
@@ -45,6 +38,7 @@ u8 func_08870AEC(char *arg0, u16 arg1, char *arg2) {
         if (id < 60000) {
             s32 group;
             u16 **table;
+            u16 *row;
             u16 file;
 
             if (id <= 9999) {
@@ -60,8 +54,13 @@ u8 func_08870AEC(char *arg0, u16 arg1, char *arg2) {
             } else {
                 group = 12;
             }
+            /* Each level is its own pointer step: the table and the row are
+             * loaded before the index terms that follow them. */
             table = D_089A7CE8[group];
-            file = table[id % 1000 / 100][id % 100];
+            table += id % 1000 / 100;
+            row = *table;
+            row += id % 100;
+            file = *row;
             if (*(u16 *)(arg0 + 0x714) != file) {
                 D_089CC434->vfunc_34(file, func_08898694(D_09A0B540, 0x17, 0x6800), -1, 0, 0, 1);
                 *(u16 *)(arg0 + 0x714) = file;

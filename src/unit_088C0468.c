@@ -7,8 +7,6 @@
  * +0x16A0DC holds a 0x14-byte digest at +0xC, computed by func_089040A0
  * over 0x16A0F0 bytes with the digest field set to D_089B4DF8.
  * Seals the image (digest, a word at +0x16A0FC) and writes it.
- *
- * NonMatching: the image keeps the original code.
  */
 
 typedef unsigned char u8;
@@ -30,10 +28,8 @@ extern void func_088572E8(char *);
 extern void func_088C2D74(char *, char *, s32, u8 *, s32);
 extern void func_089040A0(char *, s32, u8 *);
 
-/* NonMatching, 99.66 %: the original loads +0x4468 into $a0 and the
- * other term into $a1 and adds $a0 + $a1; ours swaps the registers (the
- * operands swapped reorders the loads). Tried: a temporary, u32 terms,
- * array indexing, the header word as an array element. */
+/* The +0x4468 word is read as u32 and the other term as s32: the mixed
+ * signedness gives the original register order of the sum. */
 void func_088C0468(char *arg0) {
     Hdr hdr;
 
@@ -43,6 +39,6 @@ void func_088C0468(char *arg0) {
     memcpy(*(char **) (arg0 + 0x94C) + 0x16A0DC, &hdr, sizeof(Hdr));
     func_088572E8(D_089CC438);
     *(s32 *) (*(char **) (arg0 + 0x94C) + 0x16A0FC) =
-        *(s32 *) (D_089CC438 + 0x4468) + *(s32 *) (D_08A631A0 + 0xF7A554);
+        *(u32 *) (D_089CC438 + 0x4468) + *(s32 *) (D_08A631A0 + 0xF7A554);
     func_088C2D74(arg0, *(char **) (arg0 + 0x94C), 0x16A100, D_089B2B94, 0);
 }

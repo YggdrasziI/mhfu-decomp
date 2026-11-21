@@ -1,4 +1,4 @@
-/* unit_088F4210: 0x088F4210-0x088F4518 (ULES01213), NonMatching
+/* unit_088F4210: 0x088F4210-0x088F4518 (ULES01213)
  *
  * Bounds (hypothesis): 1 function between code still in assembly.
  * Draws the sprite of D_089B8410 shrunk around its centre by the square root
@@ -47,7 +47,7 @@ extern u16 D_089B841A;
 extern char *D_089CBBEC;
 extern List *D_08A62C40;
 
-extern void func_088314A0(char *, u16, u16);
+extern void func_088314A0(char *, s32, s32);
 extern void func_088596C8(List *, s32 *, s32, s32);
 
 static inline float sqrt_vfpu(float x) {
@@ -97,23 +97,16 @@ static inline void submit(List *list, Packet *pkt, s32 layer) {
     }
 }
 
-/* 86.2 %: same blocks and stack layout, the differences are orders.
- * - Sprite copy: the original loads u into $v1 and v into $v0 after the store
- *   of h; ours loads u before that store, into $a0 / $v1.
- * - Half margins: the original's `mfc1` of the width product is in the delay
- *   slot of the first division's `bgez` and the subtraction from the width
- *   follows that division; ours subtracts before the branch. The two
- *   products, then the two subtractions, then the two divisions as separate
- *   statements is the closest order found.
- * - Vertex words: the original stores w[0] before w[3] and w[5] before w[2];
- *   natural order with repeated expressions (func_088F4518) scores lower.
- * submit is the helper matched in func_088F4518 (unit_088F4518.c).
- * The speed setting unrolls the copy loop by 8 (not the original's). */
+/* - func_088314A0 is declared with s32 parameters: with u16 ones the two
+ *   loads of u and v come before the store of h, in other registers.
+ * - The width is an s32 local read back as (s16) w: the original extends it
+ *   (`seh t1, a3`) after the first division.
+ * submit is the helper matched in func_088F4518 (unit_088F4518.c). */
 void func_088F4210(char *arg0, s32 arg1, s32 arg2, s32 arg3) {
     Sprite spr;
     Packet pkt;
     float scale;
-    s16 w;
+    s32 w;
     s16 h;
     s32 dy;
     s32 dx;
@@ -142,14 +135,14 @@ void func_088F4210(char *arg0, s32 arg1, s32 arg2, s32 arg3) {
     dy = (s32) (h * scale);
     dx = (s32) (w * scale);
     dy = h - dy;
-    dx = w - dx;
     hy = dy / 2;
+    dx = (s16) w - dx;
     hx = dx / 2;
-    pkt.w[1] = ((arg1 + hx) << 16) | 0xFFFF;
-    pkt.w[4] = ((arg1 + w - hx) << 16) | 0xFFFF;
     pkt.w[0] = (spr.y << 16) | spr.x;
-    pkt.w[3] = ((spr.y + h) << 16) | (spr.x + w);
-    pkt.w[5] = (arg2 + h - hy) & 0xFFFF;
+    pkt.w[1] = ((arg1 + hx) << 16) | 0xFFFF;
     pkt.w[2] = (arg2 + hy) & 0xFFFF;
+    pkt.w[3] = ((spr.y + h) << 16) | (spr.x + (s16) w);
+    pkt.w[4] = ((arg1 + (s16) w - hx) << 16) | 0xFFFF;
+    pkt.w[5] = (arg2 + h - hy) & 0xFFFF;
     submit(D_08A62C40, &pkt, *(u8 *)(D_089CBBEC + 0x534));
 }

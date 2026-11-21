@@ -8,18 +8,13 @@
  * `(bool) (x & 1) != 0` tests keep their `sltu`. Optimized for speed: the
  * division by 30 is a multiplication.
  *
- * Its jump table would be the unit's .rodata (0x089318F0-0x08931910) and the
- * initializers of the local s16[12] and s16[7] tables its .data
- * (0x089A8920-0x089A8948, the second table followed by 2 bytes of padding).
+ * The initializers of the local s16[12] and s16[7] tables are the unit's
+ * .data (0x089A8920-0x089A8948, the second table followed by 2 bytes of
+ * padding).
  *
- * NonMatching: func_0887AFB8 98.3 %. Two register choices differ: the original
- * loads the halfword index at D_089CC438 + 0x6AF12 into a1 and hoists the
- * 0x60000 of the table address before the D_08A631A8 load; and in
- * `pos[6] - n * 8` / `pos[2] - n * 8` it loads pos[] into a1 and n * 8 into
- * v1 (ours: the reverse). Tried: array, pointer and local-index forms of the
- * table read; s32 / s16 parameters of func_08891474 and func_088920A8; `<< 3`,
- * negated and cast forms of the subtraction; locals for n and the result;
- * s16 / u16 returns of func_08890F70 and func_088167F4.
+ * The table value at D_089CC438 + 0x6397C goes through `len` (reused later
+ * for the bar width) and both text widths through `n` (reused later for the
+ * bar lengths): fresh locals or direct arguments swap registers.
  */
 
 #pragma optimize_for_size off
@@ -110,7 +105,8 @@ void func_0887AFB8(char *arg0) {
         func_08892004(D_08A631A8, func_09A63198(D_09A44C5C, D_089B540A));
     case 5:
     case 6:
-        func_08891474(D_08A631A8, 0xF4, 0xB2, &D_089A891C, ((s32 *)(D_089CC438 + 0x6397C))[*(u16 *)(D_089CC438 + 0x6AF12)]);
+        len = ((s32 *)(D_089CC438 + 0x6397C))[*(u16 *)(D_089CC438 + 0x6AF12)];
+        func_08891474(D_08A631A8, 0xF4, 0xB2, &D_089A891C, len);
         if (*(s16 *)(arg0 + 0xAC) != 0) {
             func_08890E38(D_08A631A8, 5);
             func_0887941C(arg0, 0xC2, func_09A63198(D_09A44C5C, D_089B540E));
@@ -128,7 +124,8 @@ void func_0887AFB8(char *arg0) {
         if ((bool) (*(s32 *)(D_08A631A0 + 0xF7A57C) & 1) != 0 && src != 0 && *(u16 *)src != 0) {
             func_08890E38(D_08A631A8, 0xE);
             func_0880E8F0(text, &D_089A8948, *(s32 *)(arg0 + 0xB4));
-            func_088920A8(D_08A631A8, pos[6] - (s16) func_08890F70(D_08A631A8, text) * 8, pos[7], &D_089A8870, text);
+            n = func_08890F70(D_08A631A8, text);
+            func_088920A8(D_08A631A8, pos[6] - n * 8, pos[7], &D_089A8870, text);
         }
         func_08890E38(D_08A631A8, 0);
     case 2:
@@ -136,7 +133,8 @@ void func_0887AFB8(char *arg0) {
         func_088912BC(D_08A631A8, pos[0], pos[1], (s32) (D_089CC438 + 0x4A0));
         if ((bool) (*(s32 *)(D_08A631A0 + 0xF7A57C) & 1) != 0 && src != 0 && *(u16 *)src != 0) {
             func_08890E38(D_08A631A8, 0xE);
-            func_088912BC(D_08A631A8, pos[2] - (s16) func_088167F4(D_089CBBE8, src) * 8, pos[3], (s32) src);
+            n = func_088167F4(D_089CBBE8, src);
+            func_088912BC(D_08A631A8, pos[2] - n * 8, pos[3], (s32) src);
         }
         func_08890E38(D_08A631A8, 0);
         h = pos[11];

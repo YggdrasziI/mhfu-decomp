@@ -1,8 +1,7 @@
 /* unit_088A8E3C: 0x088A8E3C-0x088A9084 (ULES01213)
  *
  * Bounds (hypothesis): 1 function between func_088A8D74 and func_088A9084
- * (still in assembly). NonMatching: the code stays in the asm piece
- * text_088A8E3C.
+ * (still in assembly).
  *
  * Optimized for speed (the per-peer word at +0x8 is walked with a pointer).
  *
@@ -29,10 +28,9 @@ extern s32 func_088A8B98(Session *, Header *);
 extern s32 func_088A8028(Session *, s32, s32);
 extern s32 func_088A88E0(Session *, s32, u8, char *);
 
-/* NonMatching, 99.0 %: the peer's buffer and the inner position are in swapped
- * registers (original s3 / s2). Tried: declaration orders, block-scoped
- * locals, pointer or index forms for the buffer, a separate length local, two
- * forms of the final move.
+/* The received length and the inner position share one local (n), the
+ * remaining length goes in r: a separate position local swaps its saved
+ * register with the peer's buffer.
  */
 s32 func_088A8E3C(Session *arg0) {
     Header hdr;
@@ -41,7 +39,6 @@ s32 func_088A8E3C(Session *arg0) {
     Store *dst;
     s32 n;
     s32 r;
-    s32 pos;
     u8 s;
 
     func_088A7BDC(arg0);
@@ -73,33 +70,33 @@ s32 func_088A8E3C(Session *arg0) {
         st->pos += r;
         arg0->unk90 += r;
         arg0->unkE0[arg0->self] = arg0->unk78;
-        pos = 0;
+        n = 0;
         for (;;) {
-            r = func_088A8C78(arg0, st->buf + pos, st->pos - pos, &hdr);
+            r = func_088A8C78(arg0, st->buf + n, st->pos - n, &hdr);
             if (r < 0) {
-                pos -= r;
+                n -= r;
                 continue;
             }
             if (r == 0) {
                 break;
             }
             if (func_088A8B98(arg0, &hdr) < 0) {
-                pos += r;
+                n += r;
                 continue;
             }
             dst = (hdr.type & 0xF) == 2 ? &D_09A1D590 : &D_09A1D578;
             if (dst->cap < dst->pos + r) {
                 return func_088A8028(arg0, 4, dst->pos + r);
             }
-            memcpy(dst->buf + dst->pos, st->buf + pos, r);
+            memcpy(dst->buf + dst->pos, st->buf + n, r);
             func_088A88E0(arg0, hdr.from, hdr.type, dst->buf + (dst->pos + 6));
-            pos += r;
+            n += r;
             dst->pos += r;
         }
-        n = st->pos - pos;
-        st->pos = n;
-        if (n > 0) {
-            func_0880C1A8(st->buf, st->buf + pos, n);
+        r = st->pos - n;
+        st->pos = r;
+        if (r > 0) {
+            func_0880C1A8(st->buf, st->buf + n, r);
         }
     }
     return 0;

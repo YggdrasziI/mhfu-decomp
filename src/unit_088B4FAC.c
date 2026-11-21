@@ -7,8 +7,6 @@
  * error 0x8014 / 0x8031 / 0x8012 / 0x8013 / 0x8011, else the peer record
  * is stored at D_09A28BFC and both peers are announced (func_088B6A80 0xF
  * and 0x11); the answer goes back through func_088B5380.
- *
- * NonMatching: the image keeps the original code.
  */
 
 typedef signed char s8;
@@ -20,6 +18,11 @@ typedef int s32;
 typedef struct {
     s8 b[6];
 } B6;
+
+typedef struct {
+    u8 a;
+    u8 b;
+} AB;
 
 typedef struct {
     s8 b[0x12];
@@ -61,8 +64,7 @@ typedef struct {
 extern s32 D_09A2886C;
 extern u8 D_09A28876;
 extern B6 D_09A2887C;
-extern u8 D_09A28882;
-extern u8 D_09A28883;
+extern AB D_09A28882;
 extern char D_09A291BC[];
 extern u8 D_09A28BED;
 extern u8 D_09A28BEE;
@@ -72,19 +74,16 @@ extern u8 D_09A28C02;
 extern u8 D_09A28C03;
 extern B12 D_09A28C04;
 extern u16 D_09A28C16;
-extern u8 D_09A28C18;
-extern u8 D_09A28C19;
+extern AB D_09A28C18;
 extern BA0 D_09A28C1C;
 extern u16 D_09A28CBC;
-extern u8 D_09A28CBE;
-extern u8 D_09A28CBF;
+extern AB D_09A28CBE;
 extern u8 D_09A28CC0;
 extern u8 D_09A28CC1;
 extern u8 D_09A28CC2;
 extern u8 D_09A28CC3;
 extern B6 D_09A29174;
-extern u8 D_09A2917A;
-extern u8 D_09A2917B;
+extern AB D_09A2917A;
 extern u8 D_09A2917E;
 
 extern s32 func_0880BFF0(void *, void *, s32);
@@ -107,14 +106,11 @@ extern s32 func_088B7C7C(s32, RecC8 *, Info14 *);
 
 void func_088B5380(Id *arg0, RecC8 *arg1, u16 arg2);
 
-/* NonMatching, 97.02 %: (1) the original loads D_09A28882 and D_09A28883
- * before storing either to D_09A2917A / D_09A2917B, ours stores the first
- * before loading the second (as func_088B5568); (2) in the member copies
- * to D_09A28C16... the first load of each pair goes to $v1 in the
- * original, $a0 in ours, and the load of +0x1D is scheduled after the
- * address of D_09A28C1C. Tried: a whole-structure assignment in C++
- * (copies words), member assignments on a RecC8 global, a pointer local
- * on the record (96.49 %). */
+/* Byte pairs loaded together then stored together (rec +0x1C/+0x1D,
+ * +0xC2/+0xC3, D_09A28882/83): one copy of a two-byte structure each.
+ * The second byte of each pair is named D_X+0x1 here where the original
+ * uses its own symbol (D_09A28C19, D_09A28CBF, D_09A28883, D_09A2917B):
+ * names only, the instructions are identical. */
 void func_088B4FAC(void) {
     u16 port;
     char key[0x16];
@@ -179,20 +175,17 @@ void func_088B4FAC(void) {
         D_09A28C03 = rec.unk7;
         *(B12 *) &D_09A28C04 = *(B12 *) &rec.unk8;
         D_09A28C16 = rec.unk1A;
-        D_09A28C18 = rec.unk1C;
-        D_09A28C19 = rec.unk1D;
+        *(AB *) &D_09A28C18 = *(AB *) &rec.unk1C;
         *(BA0 *) &D_09A28C1C = *(BA0 *) &rec.unk20;
         D_09A28CBC = rec.unkC0;
-        D_09A28CBE = rec.unkC2;
-        D_09A28CBF = rec.unkC3;
+        *(AB *) &D_09A28CBE = *(AB *) &rec.unkC2;
         D_09A28CC0 = rec.unkC4;
         D_09A28CC1 = rec.unkC5;
         D_09A28CC2 = rec.unkC6;
         D_09A28CC3 = rec.unkC7;
         func_088B6A80(0xF);
         *(B6 *) &D_09A29174 = *(B6 *) &D_09A2887C;
-        D_09A2917A = D_09A28882;
-        D_09A2917B = D_09A28883;
+        *(AB *) &D_09A2917A = *(AB *) &D_09A28882;
         D_09A2917E = D_09A28BEE;
         func_088B6A80(0x11);
     }

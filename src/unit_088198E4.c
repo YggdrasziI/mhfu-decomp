@@ -1,8 +1,7 @@
 /* unit_088198E4: 0x088198E4-0x08819CF8 (ULES01213)
  *
  * Bounds (hypothesis): 1 function between code still in assembly
- * (text_08818F74 and text_08819CF8). NonMatching: the code stays in the asm
- * piece text_088198E4.
+ * (text_08818F74 and text_08819CF8).
  *
  * Optimized for speed: the 8-row loop counts down. Same family as
  * func_08818C94 (a Box, then one coloured line per row).
@@ -60,10 +59,9 @@ extern void func_08890DFC(char *, s16, s16);
 extern int func_0889134C(char *, char *, ...);
 extern void func_08819CF8(char *, s32);
 
-/* NonMatching, 99.8 %: only the saved registers of the parameters differ (the
- * original puts pos in s3, list in s7, sel in s2 and title in s1, the
- * registers the loop later reuses for y, flags & 0xC, colour and alt). Tried:
- * declaration orders (greedy and random restarts), loop forms, C++.
+/* y is read before the row pointer is set, and the pointer is set in the
+ * for header after the counter: this gives the parameters the saved
+ * registers of y, flags & 0xC, colour and alt.
  */
 void func_088198E4(char *arg0, Entry *list, s32 pos, s32 sel, s32 flags, s32 title) {
     Box box;
@@ -92,9 +90,8 @@ void func_088198E4(char *arg0, Entry *list, s32 pos, s32 sel, s32 flags, s32 tit
     if (flags & 0x10) {
         func_0882FB38(arg0, &box, page, 3, 0, 0);
     }
-    e = list + first;
     y = box.y;
-    for (i = 8; i > 0; i--) {
+    for (i = 8, e = list + first; i > 0; i--) {
         colour = 0;
         alt = 2;
         if (flags & 0xC) {

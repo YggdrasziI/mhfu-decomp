@@ -4,8 +4,6 @@
  *
  * Steps the keystream state i at +0xAA0: times D_089B4EE8[i] modulo
  * D_089B4EF8[i].
- *
- * NonMatching: the image keeps the original code.
  */
 
 typedef unsigned char u8;
@@ -22,14 +20,12 @@ typedef struct {
 extern s32 D_089B4EE8[];
 extern u32 D_089B4EF8[];
 
-/* NonMatching, 98.68 %: the original builds i * 4 in $a0 (arg0 dead) and
- * loads the state into $a1; ours reuses $a1 for i * 4 and loads into $a0.
- * Tried: the state through the structure member, pointers formed five
- * ways, a u32 index, an s32 return, the state in a local. */
 u16 func_088C2B94(Dec *arg0, s32 i) {
-    u16 *p;
+    u16 *p = (u16 *) ((char *) arg0 + 0xAA0) + i;
+    u32 v = *p;
 
-    p = (u16 *) ((char *) arg0 + 0xAA0) + i;
-    *p = (*p * D_089B4EE8[i]) % D_089B4EF8[i];
+    v *= D_089B4EE8[i];
+    v %= D_089B4EF8[i];
+    *p = v;
     return *p;
 }

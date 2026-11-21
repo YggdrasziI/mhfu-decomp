@@ -9,12 +9,9 @@
  * one kept in the record, then returns the sender's address and port and
  * copies the payload after the sequence number.
  *
- * NonMatching (89.97 %): with every saved register in use, the original
- * keeps the table base in $s0 and spills `len` to the stack (`sh $t0` at
- * entry, `lh` before the size check); ours keeps `len` in $fp and spills
- * or rematerialises the table address instead. Declaration orders, a
- * table local (`register` or not) and the forms of the size check do not
- * change the choice.
+ * Compiled for speed. The peer table base is held in a local, the size
+ * is passed to func_088AAF28 as an s32 (argument load order: size before
+ * buffer), and the sender address is a 16-byte buffer (stack layout).
  */
 
 typedef unsigned char u8;
@@ -22,6 +19,8 @@ typedef short s16;
 typedef unsigned short u16;
 typedef int s32;
 typedef unsigned int u32;
+
+#pragma optimize_for_size off
 
 typedef struct {
     u8 mac[6];
@@ -40,23 +39,25 @@ typedef struct {
 extern Peer D_09A1FC5C[16];
 extern Buf D_09A1FC50;
 
-extern s32 func_088AAF28(s32, u8 *, u16 *, void *, s16);
+extern s32 func_088AAF28(s32, u8 *, u16 *, void *, s32);
 extern u32 func_088AD12C(u32);
 extern int func_0880BFF0(void *, void *, int);
 extern void memcpy(void *, const void *, s32);
 
 s32 func_088AD87C(s32 id, u8 *mac, u16 *port, void *out, s16 len) {
-    u16 from_port;
-    u32 seq;
-    u8 from[8];
     Buf *b;
+    u32 seq;
     s32 ret;
-    s32 i;
-    Peer *e;
     Peer *found;
+    u16 from_port;
+    s32 i;
+    Peer *t;
+    u8 from[16];
+    Peer *e;
     s32 n;
 
     b = &D_09A1FC50;
+    t = D_09A1FC5C;
     for (;;) {
         ret = func_088AAF28(id, from, &from_port, b->data, b->size);
         if (ret <= 0) {
@@ -64,7 +65,7 @@ s32 func_088AD87C(s32 id, u8 *mac, u16 *port, void *out, s16 len) {
         }
         b->len = ret;
         i = 1;
-        e = D_09A1FC5C + 1;
+        e = t + 1;
         do {
             found = e;
             if (e->active != 0 && func_0880BFF0(e, from, 6) == 0) {

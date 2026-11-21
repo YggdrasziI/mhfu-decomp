@@ -2,18 +2,13 @@
  *
  * Bounds (hypothesis): 1 function between unit_088DE0B8 and unit_088DE458.
  *
- * NonMatching, 96.5 %: the code stays in the assembly piece text_088DE3D4.
- *
  * Releases (func_088DDF50) every requested or loaded entry of id
  * `arg1 + 0x17DF` among entries 9-12 of the resource table
  * (unit_088DD8A8).
  *
- * Gap: the original keeps the sum `arg1 + 0x17DF` in `$s0` and narrows it
- * to 16 bits inside the loop, at each comparison (`andi v1, s0, 0xFFFF`).
- * This form (an `s32` parameter masked by hand) lets the compiler drop the
- * narrowing; every form with a `u8` parameter narrows once before the
- * loop (87.3 %). Same symptom and same list of forms tried as
- * func_088DE060.
+ * The id is computed inside the loop in a `u32` local and narrowed with a
+ * compound `&= 0xFFFF`: the sum is hoisted into `$s0` and the mask stays at
+ * each comparison (`andi v1, s0, 0xFFFF`), as in the original.
  *
  * Optimized for speed, as unit_088DD8A8.
  */
@@ -48,7 +43,9 @@ void func_088DE3D4(Table *arg0, s32 arg1) {
 
     for (i = 0; i < 4; i++, e++) {
         if (e->flags & 3) {
-            if (e->id == (((arg1 & 0xFF) + 0x17DF) & 0xFFFF)) {
+            u32 id = (arg1 & 0xFF) + 0x17DF;
+            id &= 0xFFFF;
+            if (e->id == id) {
                 func_088DDF50(arg0, i + 9);
             }
         }

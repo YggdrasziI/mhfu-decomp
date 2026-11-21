@@ -245,7 +245,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08816B6C` | 0x08816B6C-0x08816BE4 | 1 small function | 100 % |
 | `unit_08816F24` | 0x08816F24-0x088172D8 | 1 function (C++, speed: nested `switch` on the state bytes at +0x585, +0x588 and +0x589, draws boxes through func_0882F580 and func_088197A0) | 100 % |
 | `unit_08818C94` | 0x08818C94-0x08818F74 | 1 function (C++, speed: draws a 6-entry list with marks, page from the byte at +0x57D divided by 6; calls func_0883488C in the other mode) | 100 % |
-| `unit_088198E4` | 0x088198E4-0x08819CF8 | 1 function, NonMatching (speed, 99.8 %: saved registers of the parameters); draws an 8-row page of a list with a colour per row | not linked |
+| `unit_088198E4` | 0x088198E4-0x08819CF8 | 1 function, speed; draws an 8-row page of a list with a colour per row | 100 % |
 | `unit_0881A8E0` | 0x0881A8E0-0x0881A8F8 | 1 small function | 100 % |
 | `unit_0881A8F8` | 0x0881A8F8-0x0881A9D8 | 1 function (C++; prints a time / 30 as two numbers, / 60 and the rest); optimized for speed | 100 % |
 | `unit_0881C240` | 0x0881C240-0x0881C2E4 | 1 small function | 100 % |
@@ -257,7 +257,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0881EAF8` | 0x0881EAF8-0x0881EB60 | 1 small function | 100 % |
 | `unit_0881ED64` | 0x0881ED64-0x0881EE84 | 1 function (C++; fills a 12-byte record from one of six sources); jump table 0x089309BC-0x089309D4 in the unit | 100 % |
 | `unit_08821B58` | 0x08821B58-0x08821BD4 | 1 small function | 100 % |
-| `unit_0882232C` | 0x0882232C-0x08822594 | 1 function, NonMatching (speed, 94.7 %: register allocation); draws a header, then one line per entry with func_08892148 | not linked |
+| `unit_0882232C` | 0x0882232C-0x08822594 | 1 function, speed; draws a header, then one line per entry with func_08892148 | 100 % |
 | `unit_088226F0` | 0x088226F0-0x08822990 | 1 function (sibling of func_0882232C: compares two values from func_088DA398 and draws one line) | 100 % |
 | `unit_08822990` | 0x08822990-0x088229B8 | 1 small function | 100 % |
 | `unit_08823A50` | 0x08823A50-0x08823AE4 | 1 small function | 100 % |
@@ -598,9 +598,9 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08870194` | 0x08870194-0x0887019C | 1 small function | 100 % |
 | `unit_0887019C` | 0x0887019C-0x088701D8 | 1 small function | 100 % |
 | `unit_08870AC4` | 0x08870AC4-0x08870AEC | 1 small function | 100 % |
-| `unit_08870AEC` | 0x08870AEC-0x08870D30 | 1 function (C++; NonMatching 90.7 %: picks a u16 from the three-level table D_089A7CE8 by id and starts a load through D_089CC434's virtual calls) | 100 % |
+| `unit_08870AEC` | 0x08870AEC-0x08870D30 | 1 function (C++; picks a u16 from the three-level table D_089A7CE8 by id and starts a load through D_089CC434's virtual calls) | 100 % |
 | `unit_08870D30` | 0x08870D30-0x08870D40 | 1 small function | 100 % |
-| `unit_088714F8` | 0x088714F8-0x0887184C | 1 function, NonMatching (C++, speed, 99.3 %: two search loops); virtual calls over 20 objects, entity update, two table lookups in initialised local tables | not linked |
+| `unit_088714F8` | 0x088714F8-0x0887184C | 1 function, C++, speed; virtual calls over 20 objects, entity update, two table lookups in initialised local tables (.data 0x089A82D0-0x089A853C) | 100 % |
 | `unit_08871DCC` | 0x08871DCC-0x08872108 | 1 function (C++, speed: sibling of func_0887221C with a virtual call and a maximum per record) | 100 % |
 | `unit_08872108` | 0x08872108-0x0887221C | 1 function (same family: one slot's colours to func_08880D64 and func_08881114) | 100 % |
 | `unit_0887221C` | 0x0887221C-0x08872444 | 1 function (speed: fills three `u16[4]` and one `u8[4]` local arrays from the slots at D_09A4F0D0 and the table D_09BC8400, then hands them to func_08880E50) | 100 % |
@@ -631,7 +631,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0887941C` | 0x0887941C-0x0887959C | 2 small functions | 100 % |
 | `unit_0887A34C` | 0x0887A34C-0x0887A838, .data 0x089A88FC-0x089A891C | 1 function (C++, speed: draws a panel; a `switch` on the halfword at +0xA4 whose cases fall through, `default` first); jump table 0x089318B4-0x089318CC and the initializers of its two local `s16[7]` tables in the unit | 100 % |
 | `unit_0887A950` | 0x0887A950-0x0887AFB8 | 1 function (C++, speed: a 9-state machine on the halfword at +0xA4; returns 1 when state 8 ends); jump table 0x089318CC-0x089318F0 in the unit | 100 % |
-| `unit_0887AFB8` | 0x0887AFB8-0x0887B7C4 | 1 function, NonMatching (C++, 98.3 %: two register choices); draws a panel with two proportional bars; its jump table 0x089318F0-0x08931910 and .data 0x089A8920-0x089A8948 stay in the data pieces | not linked |
+| `unit_0887AFB8` | 0x0887AFB8-0x0887B7C4 | 1 function, C++; draws a panel with two proportional bars; jump table 0x089318F0-0x08931910, .data 0x089A8920-0x089A8948 | 100 % |
 | `unit_0887B7C4` | 0x0887B7C4-0x0887B7E0 | 1 small function | 100 % |
 | `unit_0887B8D8` | 0x0887B8D8-0x0887BB48 | 1 function (same shape as func_08878F08; prints a line for each set bit of the 64-bit mask at +0xF8, 48 bits); optimized for speed | 100 % |
 | `unit_0887C708` | 0x0887C708-0x0887C724 | 1 small function | 100 % |
@@ -642,7 +642,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0887CCAC` | 0x0887CCAC-0x0887CD04 | 1 small function | 100 % |
 | `unit_0887CDFC` | 0x0887CDFC-0x0887D02C | 1 function (same shape as func_08878F08 with three formatted lines); optimized for speed | 100 % |
 | `unit_0887D0B4` | 0x0887D0B4-0x0887D0D0 | 1 small function | 100 % |
-| `unit_0887D0D0` | 0x0887D0D0-0x0887D65C | 1 function, NonMatching (97.3 %, registers of a loop unrolled by 8); fills the totals at +0x10C-+0x124 shown by func_0887D884 | not linked |
+| `unit_0887D0D0` | 0x0887D0D0-0x0887D65C | 1 function; fills the totals at +0x10C-+0x124 shown by func_0887D884 | 100 % |
 | `unit_0887D65C` | 0x0887D65C-0x0887D884 | 1 function (countdown state machine on +0xA4); jump table 0x08931910-0x08931934 in the unit | 100 % |
 | `unit_0887D884` | 0x0887D884-0x0887DD88 | 1 function (draws the lines of the same screen, cases falling through); jump table 0x08931934-0x08931954 and initialised array 0x089A89E4-0x089A89F2 (`.data`) in the unit; optimized for speed | 100 % |
 | `unit_0887DD88` | 0x0887DD88-0x0887DDD0 | 1 small function | 100 % |
@@ -849,7 +849,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0889F744` | 0x0889F744-0x0889F764 | 1 element address | 100 % |
 | `unit_0889F9A0` | 0x0889F9A0-0x0889F9C4 | 1 small function | 100 % |
 | `unit_0889F9C4` | 0x0889F9C4-0x0889FB94 | 1 function (reads up to 64 messages under the interrupt lock and dispatches them by id 0x10000000-0x1000000D); jump table 0x08931EE8-0x08931F20 in the unit | 100 % |
-| `unit_0889FD08` | 0x0889FD08-0x088A00B0 | 1 function, NonMatching (speed, 98.8 %: register allocation); one voice's volume, pan and pitch written to its output block | not linked |
+| `unit_0889FD08` | 0x0889FD08-0x088A00B0 | 1 function, speed; one voice's volume, pan and pitch written to its output block | 100 % |
 | `unit_088A00B0` | 0x088A00B0-0x088A00D0 | 1 small function | 100 % |
 | `unit_088A0938` | 0x088A0938-0x088A0958 | 1 initialiser | 100 % |
 | `unit_088A0A80` | 0x088A0A80-0x088A0A90 | 1 small function | 100 % |
@@ -915,9 +915,9 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088A7378` | 0x088A7378-0x088A73A8 | 1 small function | 100 % |
 | `unit_088A73A8` | 0x088A73A8-0x088A73B8 | 2 small functions | 100 % |
 | `unit_088A73B8` | 0x088A73B8-0x088A748C | 1 function (fills the peer table of include/unk_peer.h) | 100 % |
-| `unit_088A748C` | 0x088A748C-0x088A7788 | 1 function (peer state machine, jump table at 0x08931F9C) | NonMatching |
+| `unit_088A748C` | 0x088A748C-0x088A7788 | 1 function (peer state machine, jump table at 0x08931F9C) | 100 % |
 | `unit_088A7788` | 0x088A7788-0x088A7860 | 1 function (walks the peer table) | 100 % |
-| `unit_088A7860` | 0x088A7860-0x088A7A68 | 1 function (builds and sends a packet from the send buffer) | NonMatching |
+| `unit_088A7860` | 0x088A7860-0x088A7A68 | 1 function (builds and sends a packet from the send buffer) | 100 % |
 | `unit_088A7A68` | 0x088A7A68-0x088A7BDC | 2 functions (append to the send buffer, sequence check) | 100 % |
 | `unit_088A7BDC` | 0x088A7BDC-0x088A7DC0 | 1 function (receive loop) | 100 % |
 | `unit_088A7DC0` | 0x088A7DC0-0x088A7E44 | 1 small function | 100 % |
@@ -930,12 +930,12 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088A8570` | 0x088A8570-0x088A85F4 | 1 small function | 100 % |
 | `unit_088A85F4` | 0x088A85F4-0x088A874C | 5 functions (append to a store, four packet builders ending in it) | 100 % |
 | `unit_088A88C4` | 0x088A88C4-0x088A88E0 | 1 function (callback through the session) | 100 % |
-| `unit_088A88E0` | 0x088A88E0-0x088A8988 | 1 function (peer activity time stamp) | NonMatching |
-| `unit_088A8988` | 0x088A8988-0x088A8B98 | 1 function (splits a received buffer into packets, one handler per type) | NonMatching (95.4 %) |
+| `unit_088A88E0` | 0x088A88E0-0x088A8988 | 1 function (peer activity time stamp) | 100 % |
+| `unit_088A8988` | 0x088A8988-0x088A8B98 | 1 function (splits a received buffer into packets, one handler per type) | 100 % |
 | `unit_088A8B98` | 0x088A8B98-0x088A8C78 | 1 function (sequence number and counter of a sender) | 100 % |
 | `unit_088A8C78` | 0x088A8C78-0x088A8D74 | 1 function (reads a 6-byte packet header from a buffer) | 100 % |
 | `unit_088A8D74` | 0x088A8D74-0x088A8E3C | 1 function (handles the complete packets of a buffer, moves the rest) | 100 % |
-| `unit_088A8E3C` | 0x088A8E3C-0x088A9084 | 1 function (receives from each peer, queues its packets by type) | NonMatching (99.0 %) |
+| `unit_088A8E3C` | 0x088A8E3C-0x088A9084 | 1 function (receives from each peer, queues its packets by type) | 100 % |
 | `unit_088A9084` | 0x088A9084-0x088A91F4 | 1 function (counts each peer's lag, drops it past a threshold, rolls the byte counters) | 100 % |
 | `unit_088A91F4` | 0x088A91F4-0x088A920C | 1 small function | 100 % |
 | `unit_088A920C` | 0x088A920C-0x088A9334 | 1 function (drops the peers whose timers ran out) | 100 % |
@@ -959,7 +959,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088AA83C` | 0x088AA83C-0x088AA9B4 | 1 function (accepts a connection, records it in the table; `opt_rebuildconditionals off`) | 100 % |
 | `unit_088AA9B4` | 0x088AA9B4-0x088AAC80 | 1 function (state of a connected socket from the TCP / PTP status list); jump table 0x08931FE4-0x08932010 in the unit | 100 % |
 | `unit_088AAC80` | 0x088AAC80-0x088AAD58 | 1 function (receive; `opt_rebuildconditionals off`) | 100 % |
-| `unit_088AAD58` | 0x088AAD58-0x088AAE10 | 1 function (send) | NonMatching (85.2 %) |
+| `unit_088AAD58` | 0x088AAD58-0x088AAE10 | 1 function (send) | 100 % |
 | `unit_088AAE10` | 0x088AAE10-0x088AB028 | 4 functions (socket close, PDP create / receive / send; `opt_rebuildconditionals off`) | 100 % |
 | `unit_088AB028` | 0x088AB028-0x088AB068 | 1 small function | 100 % |
 | `unit_088AB068` | 0x088AB068-0x088AB1A0 | 1 function (starts a session for a member list, speed mode) | 100 % |
@@ -973,7 +973,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088AB514` | 0x088AB514-0x088AB6D0 | 1 function (builds a message by kind 0-13 and sends it with func_088AB4DC; C++); jump table 0x0893203C-0x08932074 in the unit | 100 % |
 | `unit_088AB6D0` | 0x088AB6D0-0x088AB7D8 | 1 function (C++; copies a 12- or 8-byte record to the stack and sends it); jump table 0x08932074-0x08932098 in the unit | 100 % |
 | `unit_088AB7D8` | 0x088AB7D8-0x088AB980 | 1 function (applies a received message by kind 0-13); jump table 0x08932098-0x089320D0 in the unit | 100 % |
-| `unit_088AB980` | 0x088AB980-0x088ABE58 | 1 function (lobby message type 7, nine sub-types) | NonMatching (96.96 %) |
+| `unit_088AB980` | 0x088AB980-0x088ABE58 | 1 function (lobby message type 7, nine sub-types; jump table 0x089320D0-0x089320F4) | 100 % |
 | `unit_088ABE58` | 0x088ABE58-0x088AC04C | 1 function (C++; wireless switch and removal of departed members) | 100 % |
 | `unit_088AC04C` | 0x088AC04C-0x088AC0D0 | 1 function (C++; selects the first active of four records) | 100 % |
 | `unit_088AC0D0` | 0x088AC0D0-0x088AC0E8 | 3 small functions | 100 % |
@@ -1001,8 +1001,8 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088AD4EC` | 0x088AD4EC-0x088AD63C | 1 function (heap: reallocation) | NonMatching (97.98 %) |
 | `unit_088AD63C` | 0x088AD63C-0x088AD708 | 1 function (reset of the peer table) | 100 % |
 | `unit_088AD708` | 0x088AD708-0x088AD87C | 1 function (peer table synchronisation with a peer list) | 100 % |
-| `unit_088AD87C` | 0x088AD87C-0x088ADA44 | 1 function (datagram receive from a known peer) | NonMatching (89.97 %) |
-| `unit_088ADA44` | 0x088ADA44-0x088ADBA4 | 1 function (queues a datagram for a peer) | NonMatching (90.44 %) |
+| `unit_088AD87C` | 0x088AD87C-0x088ADA44 | 1 function (datagram receive from a known peer) | 100 % |
+| `unit_088ADA44` | 0x088ADA44-0x088ADBA4 | 1 function (queues a datagram for a peer) | 100 % |
 | `unit_088ADBA4` | 0x088ADBA4-0x088ADD80 | 2 functions (sends the datagram queue; network layer set-up) | 100 % |
 | `unit_088ADD80` | 0x088ADD80-0x088ADDBC | 1 small function | 100 % |
 | `unit_088ADDBC` | 0x088ADDBC-0x088ADDF4 | 1 small function | 100 % |
@@ -1040,7 +1040,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088AE718` | 0x088AE718-0x088AE814 | 1 function (request 0xC, 20-byte reply copied out) | 100 % |
 | `unit_088AE814` | 0x088AE814-0x088AE894 | 1 function (message 11 built at D_09A29E58) | 100 % |
 | `unit_088AE894` | 0x088AE894-0x088AE988 | 1 small function | 100 % |
-| `unit_088AE988` | 0x088AE988-0x088AEB80 | 1 function (header kept in globals, dispatch) | NonMatching (96.90 %) |
+| `unit_088AE988` | 0x088AE988-0x088AEB80 | 1 function (header kept in globals, dispatch) | 100 % |
 | `unit_088AEB80` | 0x088AEB80-0x088AEC3C | 1 function (handler table lookup, speed) | 100 % |
 | `unit_088AEC3C` | 0x088AEC3C-0x088AED80 | 1 function (update of the 18-entry list at D_09A1FE08) | 100 % |
 | `unit_088AED80` | 0x088AED80-0x088AEDA0 | 1 small function | 100 % |
@@ -1078,7 +1078,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088B0044` | 0x088B0044-0x088B0084 | 1 big-endian append | 100 % |
 | `unit_088B0084` | 0x088B0084-0x088B00DC | 1 small function | 100 % |
 | `unit_088B00DC` | 0x088B00DC-0x088B012C | 1 small function | 100 % |
-| `unit_088B012C` | 0x088B012C-0x088B01BC | 1 function, NonMatching (87.7 %, argument scheduling); initialised array 0x089B2A2C-0x089B2A32 | not linked |
+| `unit_088B012C` | 0x088B012C-0x088B01BC | 1 function; initialised array 0x089B2A2C-0x089B2A32 | 100 % |
 | `unit_088B01BC` | 0x088B01BC-0x088B0240 | 1 function (copies a 6-byte address, all 0xFF when the flag is 0, to D_09A202B8); initialised array 0x089B2A34-0x089B2A3A (`.data`) in the unit | 100 % |
 | `unit_088B0240` | 0x088B0240-0x088B0318 | 3 small functions | 100 % |
 | `unit_088B0318` | 0x088B0318-0x088B0324 | 1 small function | 100 % |
@@ -1094,7 +1094,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088B05B8` | 0x088B05B8-0x088B0604 | 1 function (peer addresses written out) | 100 % |
 | `unit_088B0604` | 0x088B0604-0x088B06C0 | 1 function (ad hoc peer list) | 100 % |
 | `unit_088B06C0` | 0x088B06C0-0x088B0724 | 1 function (handler 1 registration) | 100 % |
-| `unit_088B0724` | 0x088B0724-0x088B089C | 1 function (network names and scan) | NonMatching (96.17 %) |
+| `unit_088B0724` | 0x088B0724-0x088B089C | 1 function (network names and scan) | 100 % |
 | `unit_088B089C` | 0x088B089C-0x088B0938 | 1 function (handler 2 registration) | 100 % |
 | `unit_088B0938` | 0x088B0938-0x088B099C | 1 function (handler 3 registration) | 100 % |
 | `unit_088B099C` | 0x088B099C-0x088B09A4 | 1 small function | 100 % |
@@ -1149,7 +1149,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088B22AC` | 0x088B22AC-0x088B2300 | 1 function (reads D_09A299A8 from a message) | 100 % |
 | `unit_088B2300` | 0x088B2300-0x088B23E8 | 1 function (request 0x1E, 20-byte reply) | 100 % |
 | `unit_088B23E8` | 0x088B23E8-0x088B2424 | 1 function (passes the sender address to func_088B3594) | 100 % |
-| `unit_088B2424` | 0x088B2424-0x088B24E4 | 1 function (state 2 message check) | NonMatching (96.67 %) |
+| `unit_088B2424` | 0x088B2424-0x088B24E4 | 1 function (state 2 message check) | 100 % |
 | `unit_088B24E4` | 0x088B24E4-0x088B25B4 | 1 function (request 0x1F, 20-byte reply) | 100 % |
 | `unit_088B25B4` | 0x088B25B4-0x088B269C | 1 function (request 0x24, 20-byte reply) | 100 % |
 | `unit_088B269C` | 0x088B269C-0x088B2704 | 1 function (message check, func_088B7A50(4)) | 100 % |
@@ -1207,12 +1207,12 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088B4D78` | 0x088B4D78-0x088B4E54 | 1 function (C++; stores a checked 8-byte address in D_09A29CD0) | 100 % |
 | `unit_088B4E54` | 0x088B4E54-0x088B4FA4 | 1 function (message builder, kind 0xF) | 100 % |
 | `unit_088B4FA4` | 0x088B4FA4-0x088B4FAC | 1 small function | 100 % |
-| `unit_088B4FAC` | 0x088B4FAC-0x088B5380 | 1 function (join request handler) | NonMatching (97.02 %) |
+| `unit_088B4FAC` | 0x088B4FAC-0x088B5380 | 1 function (join request handler) | 100 % |
 | `unit_088B5380` | 0x088B5380-0x088B5560 | 2 functions (message builders, kinds 0x10 and 0x11) | 100 % |
 | `unit_088B5560` | 0x088B5560-0x088B5568 | 1 small function | 100 % |
-| `unit_088B5568` | 0x088B5568-0x088B57A0 | 1 function, NonMatching (97.0 %, order of two byte copies between globals) | not linked |
+| `unit_088B5568` | 0x088B5568-0x088B57A0 | 1 function | 100 % |
 | `unit_088B57A0` | 0x088B57A0-0x088B5AC8 | 4 functions (message builders 0x12 / 0x13, record list read into D_09A28E54, error reply) | 100 % |
-| `unit_088B5AC8` | 0x088B5AC8-0x088B5C30 | 1 function (message builder 0x14 with the record list) | NonMatching (99.11 %) |
+| `unit_088B5AC8` | 0x088B5AC8-0x088B5C30 | 1 function (message builder 0x14 with the record list) | 100 % |
 | `unit_088B5C30` | 0x088B5C30-0x088B5D3C | 1 function (message builder 0x17) | 100 % |
 | `unit_088B5D3C` | 0x088B5D3C-0x088B5EDC | 1 function (stores a peer record at D_09A28BFC) | NonMatching (97.12 %) |
 | `unit_088B5EDC` | 0x088B5EDC-0x088B5FC8 | 1 function (message builder 0x18) | 100 % |
@@ -1225,11 +1225,11 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088B650C` | 0x088B650C-0x088B652C | 1 counter increment | 100 % |
 | `unit_088B652C` | 0x088B652C-0x088B6A08 | 9 functions (count, find, add and remove in the 0x64-byte records at D_09A2851C + 0xCB8 and the 0xC8-byte records at + 0xE48) | 100 % |
 | `unit_088B6A08` | 0x088B6A08-0x088B6E14 | 6 functions (result callbacks, event handler table, request slots at D_09A2851C + 0x1C60) | 100 % |
-| `unit_088B6E14` | 0x088B6E14-0x088B6E8C | 1 function (request slot key lookup) | NonMatching (74.20 %) |
+| `unit_088B6E14` | 0x088B6E14-0x088B6E8C | 1 function (request slot key lookup) | 100 % |
 | `unit_088B6E8C` | 0x088B6E8C-0x088B70E8 | 4 functions (slot timeouts, timer entries at + 0x1BA60, state result) | 100 % |
-| `unit_088B70E8` | 0x088B70E8-0x088B72CC | 1 function (peer timeouts) | NonMatching (96.36 %) |
+| `unit_088B70E8` | 0x088B70E8-0x088B72CC | 1 function (peer timeouts) | 100 % |
 | `unit_088B72CC` | 0x088B72CC-0x088B7350 | 1 small function | 100 % |
-| `unit_088B7350` | 0x088B7350-0x088B7580 | 1 function (peer joined or left) | NonMatching (96.93 %) |
+| `unit_088B7350` | 0x088B7350-0x088B7580 | 1 function (peer joined or left) | 100 % |
 | `unit_088B7580` | 0x088B7580-0x088B75B8 | 1 small function | 100 % |
 | `unit_088B75B8` | 0x088B75B8-0x088B7958 | 5 functions (peer records at D_09A2851C + 0xC6C: polls, timeout reset, insertion) | 100 % |
 | `unit_088B7958` | 0x088B7958-0x088B7978 | 1 global reset | 100 % |
@@ -1267,7 +1267,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088BA148` | 0x088BA148-0x088BA1A4 | 1 small function | 100 % |
 | `unit_088BA1A4` | 0x088BA1A4-0x088BA2A0 | 1 small function | 100 % |
 | `unit_088BA2A0` | 0x088BA2A0-0x088BA2E0 | 1 small function | 100 % |
-| `unit_088BA2E0` | 0x088BA2E0-0x088BA494 | 1 function (two message strings and a selection frame) | NonMatching (97.80 %) |
+| `unit_088BA2E0` | 0x088BA2E0-0x088BA494 | 1 function (two message strings and a selection frame) | 100 % |
 | `unit_088BA494` | 0x088BA494-0x088BA54C | 2 small functions | 100 % |
 | `unit_088BA54C` | 0x088BA54C-0x088BA5BC | 1 function (draws a message string) | 100 % |
 | `unit_088BA5BC` | 0x088BA5BC-0x088BA664 | 1 small function | 100 % |
@@ -1283,9 +1283,9 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088BFEF8` | 0x088BFEF8-0x088C0198 | 2 functions (message dialog with symbol replacement, utility dialog status) | 100 % |
 | `unit_088C0198` | 0x088C0198-0x088C0200 | 1 small function | 100 % |
 | `unit_088C0200` | 0x088C0200-0x088C022C | 1 small function | 100 % |
-| `unit_088C022C` | 0x088C022C-0x088C0420 | 2 functions (save image digest check, block names) | NonMatching (99.47 %, func_088C03CC order) |
+| `unit_088C022C` | 0x088C022C-0x088C0420 | 2 functions (save image digest check, block names) | 100 % |
 | `unit_088C0420` | 0x088C0420-0x088C0468 | 1 function (save image word sum) | 100 % |
-| `unit_088C0468` | 0x088C0468-0x088C0554 | 1 function (seals and writes the save image) | NonMatching (99.66 %) |
+| `unit_088C0468` | 0x088C0468-0x088C0554 | 1 function (seals and writes the save image) | 100 % |
 | `unit_088C0554` | 0x088C0554-0x088C0594 | 1 function (save image identity check) | 100 % |
 | `unit_088C0594` | 0x088C0594-0x088C05FC | 1 small function | 100 % |
 | `unit_088C05FC` | 0x088C05FC-0x088C0940 | 1 function, NonMatching (speed, 93.5 %: scheduling of a stack argument store); a bar, five gauges and five text lines from the layout table D_089B4E10 | not linked |
@@ -1294,12 +1294,12 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088C0E58` | 0x088C0E58-0x088C1178 | 1 function (C++, speed: state machine on the word at +0x998; copies one record per slot into D_089CC438 + 0x30, two virtual calls) | 100 % |
 | `unit_088C1178` | 0x088C1178-0x088C12BC | 1 function (selects one of three scene objects) | 100 % |
 | `unit_088C12BC` | 0x088C12BC-0x088C1344 | 1 small function | 100 % |
-| `unit_088C1344` | 0x088C1344-0x088C13E8 | 1 function (entry value to a scene object, C++ virtual calls) | NonMatching (88.54 %) |
+| `unit_088C1344` | 0x088C1344-0x088C13E8 | 1 function (entry value to a scene object, C++ virtual calls) | 100 % |
 | `unit_088C13E8` | 0x088C13E8-0x088C1430 | 1 small function | 100 % |
 | `unit_088C1430` | 0x088C1430-0x088C14C8 | 1 small function (C++) | 100 % |
 | `unit_088C14C8` | 0x088C14C8-0x088C1828 | 2 small functions | 100 % |
 | `unit_088C2B54` | 0x088C2B54-0x088C2B94 | 1 function (seeds a keystream state) | 100 % |
-| `unit_088C2B94` | 0x088C2B94-0x088C2BE0 | 1 function (steps a keystream state) | NonMatching (98.68 %) |
+| `unit_088C2B94` | 0x088C2B94-0x088C2BE0 | 1 function (steps a keystream state) | 100 % |
 | `unit_088C2BE0` | 0x088C2BE0-0x088C2CE0 | 1 function (decodes and checks a save block) | 100 % |
 | `unit_088C2CE0` | 0x088C2CE0-0x088C2D74 | 1 small function | 100 % |
 | `unit_088C2D74` | 0x088C2D74-0x088C2F48 | 1 function (save image substitution cipher, speed mode) | 100 % |
@@ -1321,7 +1321,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088C349C` | 0x088C349C-0x088C351C | 1 function (destroys the object list, C++) | 100 % |
 | `unit_088C351C` | 0x088C351C-0x088C354C | 1 small function | 100 % |
 | `unit_088C354C` | 0x088C354C-0x088C3948 | 4 small functions | 100 % |
-| `unit_088C3948` | 0x088C3948-0x088C3A64 | 1 function (allocates and constructs an object) | NonMatching (95.77 %) |
+| `unit_088C3948` | 0x088C3948-0x088C3A64 | 1 function (allocates and constructs an object) | 100 % |
 | `unit_088C3A64` | 0x088C3A64-0x088C3C54 | 2 small functions | 100 % |
 | `unit_088C3C54` | 0x088C3C54-0x088C3F18 | 2 small functions | 100 % |
 | `unit_088C3F18` | 0x088C3F18-0x088C493C | 10 small functions | 100 % |
@@ -1336,7 +1336,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088C6AD4` | 0x088C6AD4-0x088C6ADC | 1 small function | 100 % |
 | `unit_088C6ADC` | 0x088C6ADC-0x088C6D2C | 5 functions (C++; vtable tail call, 0x100-byte flags at 0xA2E8) | 100 % |
 | `unit_088C6D2C` | 0x088C6D2C-0x088C6DF8 | 1 small function (C++) | 100 % |
-| `unit_088C6DF8` | 0x088C6DF8-0x088C7064 | 1 function (sets up the object of unit_088C6ADC from resource parts 0-5, DMA copies) | NonMatching (99.84 %) |
+| `unit_088C6DF8` | 0x088C6DF8-0x088C7064 | 1 function (sets up the object of unit_088C6ADC from resource parts 0-5, DMA copies) | 100 % |
 | `unit_088C7064` | 0x088C7064-0x088C70D8 | 1 small function | 100 % |
 | `unit_088C70D8` | 0x088C70D8-0x088C7130 | 1 function (reserves a 16-byte aligned block from a buffer) | 100 % |
 | `unit_088C7130` | 0x088C7130-0x088C7184 | 1 small function | 100 % |
@@ -1349,7 +1349,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088CA2E0` | 0x088CA2E0-0x088CA39C | 1 small function | 100 % |
 | `unit_088CA39C` | 0x088CA39C-0x088CA508 | 1 function (C++; registers the 0x20-byte records of a list) | 100 % |
 | `unit_088CA508` | 0x088CA508-0x088CA558 | 2 small functions (C++) | 100 % |
-| `unit_088CA558` | 0x088CA558-0x088CA908 | 1 function (C++; finds an entry of kind 0x17, registers the list records) | NonMatching (99.32 %) |
+| `unit_088CA558` | 0x088CA558-0x088CA908 | 1 function (C++; finds an entry of kind 0x17, registers the list records) | 100 % |
 | `unit_088CA908` | 0x088CA908-0x088CA944 | 1 small function (C++) | 100 % |
 | `unit_088CA944` | 0x088CA944-0x088CAA00 | 1 small function (C++) | 100 % |
 | `unit_088CAA00` | 0x088CAA00-0x088CAB2C | 1 function (C++; identity matrix with VFPU `asm`, optional parts, GE commands) | 100 % |
@@ -1375,7 +1375,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088CC828` | 0x088CC828-0x088CD804 | 7 functions (C++; queue of four 0x20-byte entries at +4 pointing at 0x44-byte records of the table at 0x089B5648: fill by id, step of the current entry) | 100 % |
 | `unit_088CD804` | 0x088CD804-0x088CD964 | 1 function (handles an entry by the kind byte at +6 of its record); jump table 0x08932380-0x089323B0 in the unit | 100 % |
 | `unit_088CD964` | 0x088CD964-0x088CDA74 | 1 function (C++; finds the object of a request among the 20 at D_09C121B0 + 0x1220) | 100 % |
-| `unit_088CDA74` | 0x088CDA74-0x088CDBF4 | 1 function (C++; bit mask test of the four 0x8C-byte entries) | NonMatching (96.04 %) |
+| `unit_088CDA74` | 0x088CDA74-0x088CDBF4 | 1 function (C++; bit mask test of the four 0x8C-byte entries) | 100 % |
 | `unit_088CDBF4` | 0x088CDBF4-0x088CDCB0 | 2 functions (C++; slot scan, 16-bit value of the current slot) | 100 % |
 | `unit_088CDCB0` | 0x088CDCB0-0x088CDCC8 | 1 small function | 100 % |
 | `unit_088CDCC8` | 0x088CDCC8-0x088CDCF4 | 1 small function (id of the current entry's record) | 100 % |
@@ -1391,7 +1391,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088CF2C8` | 0x088CF2C8-0x088D08D4 | 1 function (C++, speed, `#pragma inline_depth(2)`; bone animation records of a model, `switch` on 20 record kinds: rotations, scales, translations, key frames; VFPU `asm` blocks) | 100 % |
 | `unit_088D08D4` | 0x088D08D4-0x088D1398 | 1 function (C++, speed; material animation records of one model part, `switch` on 8 record kinds, VFPU sine) | 100 % |
 | `unit_088D1398` | 0x088D1398-0x088D168C | 2 functions (C++, speed; key-frame tables interpolated at the current animation frame, VFPU vector) | 100 % |
-| `unit_088D168C` | 0x088D168C-0x088D18F0 | 1 function, NonMatching (C++, speed, 95.7 %: read order of the id at the entry); places an effect by animation id | not linked |
+| `unit_088D168C` | 0x088D168C-0x088D18F0 | 1 function, NonMatching (C++, speed, 98.8 %: a test against 1 branches on zero); places an effect by animation id | not linked |
 | `unit_088D18F0` | 0x088D18F0-0x088D1DD0 | 4 functions (C++, speed; effect drawn from a matrix, effect id by animation frame, level from the value at +0x672, state by action) | 100 % |
 | `unit_088D1DD0` | 0x088D1DD0-0x088D1E40 | 1 small function (C++) | 100 % |
 | `unit_088D1E40` | 0x088D1E40-0x088D2674 | 1 function (speed; timed events of an animation by the id at +0x684, 25-case `switch` compiled as a chain) | 100 % |
@@ -1419,7 +1419,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088D6388` | 0x088D6388-0x088D6488 | 1 function (value from one of three tables of 16-bit rows); jump table 0x08932444-0x0893245C in the unit | 100 % |
 | `unit_088D6488` | 0x088D6488-0x088D64E0 | 1 small function | 100 % |
 | `unit_088D64E0` | 0x088D64E0-0x088D66F4 | 2 functions (C++: move of the position at +0x200 towards +0x650 in steps, VFPU distance; clamped add to the 16-bit value at +0x2E4) | 100 % |
-| `unit_088D66F4` | 0x088D66F4-0x088D6924 | 1 function, NonMatching (C++, 99.7 %: register order of three `s16` in two of six item copies); copies the global record's items to the object | not linked |
+| `unit_088D66F4` | 0x088D66F4-0x088D6924 | 1 function, C++; copies the global record's items to the object | 100 % |
 | `unit_088D6924` | 0x088D6924-0x088D69F0 | 1 function (C++: 24 pairs of the global object copied to func_08856884's pairs and to +0x568) | 100 % |
 | `unit_088D69F0` | 0x088D69F0-0x088D6A1C | 1 small function | 100 % |
 | `unit_088D6A1C` | 0x088D6A1C-0x088D6AC8 | 2 functions (a byte looked up in the six bytes at +0x676, and in five bytes of a global record) | 100 % |
@@ -1427,10 +1427,10 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088D6B00` | 0x088D6B00-0x088D71F0 | 3 functions (C++, speed: heading at +0x1F4 turned towards +0x320 by a state-dependent step; nearest object within 1500 units and the 16-bit value at +0x68C turned towards it, VFPU distance / normalize / arc tangent; step of the move started by func_088D64E0, VFPU add) | 100 % |
 | `unit_088D71F0` | 0x088D71F0-0x088D722C | 1 small function | 100 % |
 | `unit_088D722C` | 0x088D722C-0x088D72A4 | 1 function (C++: tells whether one of the 24 pairs of func_08856884 is free) | 100 % |
-| `unit_088D72A4` | 0x088D72A4-0x088D773C | 1 function, NonMatching (C++, 97.8 %: saved register allocation, one load order); adds to the count of a pair and reports the outcome | not linked |
+| `unit_088D72A4` | 0x088D72A4-0x088D773C | 1 function, C++; adds to the count of a pair and reports the outcome | 100 % |
 | `unit_088D773C` | 0x088D773C-0x088D777C | 1 small function | 100 % |
 | `unit_088D777C` | 0x088D777C-0x088D7AD8 | 2 functions (C++: removal from the object's own pairs at +0x568; transfer to the four pairs at +0x542) | 100 % |
-| `unit_088D7AD8` | 0x088D7AD8-0x088D7D6C | 1 function, NonMatching (C++, 99.3 %: three saved registers rotated); steps a pair index to the next usable pair | not linked |
+| `unit_088D7AD8` | 0x088D7AD8-0x088D7D6C | 1 function, NonMatching (C++, 99.6 %: two saved registers swapped); steps a pair index to the next usable pair | not linked |
 | `unit_088D7D6C` | 0x088D7D6C-0x088D8000 | 3 functions (C++: bit masks built from func_088D6A1C tests) | 100 % |
 | `unit_088D8000` | 0x088D8000-0x088D81E4 | 1 function (C++: refreshes level, count and capacity of the selected pair) | 100 % |
 | `unit_088D81E4` | 0x088D81E4-0x088D81F0 | 1 small function | 100 % |
@@ -1456,7 +1456,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088DAAA0` | 0x088DAAA0-0x088DACA4 | 3 functions (speed: 16-bit value at +0x60C from the first item's record and states; count of leading entries below a value in a row of seven; state test) | 100 % |
 | `unit_088DACA4` | 0x088DACA4-0x088DACF8 | 1 small function | 100 % |
 | `unit_088DACF8` | 0x088DACF8-0x088DAD58 | 1 small function | 100 % |
-| `unit_088DAD58` | 0x088DAD58-0x088DADD8 | 1 function, NonMatching (88.9 %: list pointer built after the first test, two saved registers swapped); picks the 0x14-byte entry of the table at 0x089B07A0 for a key | not linked |
+| `unit_088DAD58` | 0x088DAD58-0x088DADD8 | 1 function; picks the 0x14-byte entry of the table at 0x089B07A0 for a key | 100 % |
 | `unit_088DADD8` | 0x088DADD8-0x088DAE98 | 1 function (speed: the 16-bit value at +0x420, times 1.05 in one state) | 100 % |
 | `unit_088DAE98` | 0x088DAE98-0x088DAEB0 | 2 small functions | 100 % |
 | `unit_088DAEB0` | 0x088DAEB0-0x088DAF18 | 1 function (C++); optimized for speed | 100 % |
@@ -1485,7 +1485,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088DBE80` | 0x088DBE80-0x088DBEE0 | 1 small function | 100 % |
 | `unit_088DBEE0` | 0x088DBEE0-0x088DC1C8 | 3 functions (C++: two drivers stepping a per-slot sequence over four slots; the two-step sequence sending pairs of 16-bit values to func_08880A70) | 100 % |
 | `unit_088DC1C8` | 0x088DC1C8-0x088DC1F0 | 2 small functions | 100 % |
-| `unit_088DC1F0` | 0x088DC1F0-0x088DC40C | 1 function, NonMatching (95.2 %: index of a table lookup kept in a register instead of folded); sets up an object from the four parts of a resource | not linked |
+| `unit_088DC1F0` | 0x088DC1F0-0x088DC40C | 1 function, NonMatching (C++, speed, 99.8 %: two saved registers swapped); sets up an object from the four parts of a resource | not linked |
 | `unit_088DC40C` | 0x088DC40C-0x088DC6E8 | 2 functions (C++, speed: tree of 0x250-byte nodes built from resource data; identity matrix, VFPU) | 100 % |
 | `unit_088DC6E8` | 0x088DC6E8-0x088DC720 | 6 accessors | 100 % |
 | `unit_088DC720` | 0x088DC720-0x088DC748 | 1 small function | 100 % |
@@ -1509,20 +1509,20 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088DD838` | 0x088DD838-0x088DD868 | 1 small function | 100 % |
 | `unit_088DD868` | 0x088DD868-0x088DD8A8 | 1 small function | 100 % |
 | `unit_088DD8A8` | 0x088DD8A8-0x088DDE20 | 6 functions (C++, speed: table of 43 loaded resources with a bump area: reset, release, per-frame update, request, copy of an entry, copy out) | 100 % |
-| `unit_088DDE20` | 0x088DDE20-0x088DDF10 | 1 function, NonMatching (96.6 %: a 16-bit mask scheduled before the loop set-up); copies a loaded resource into the first free entry | not linked |
+| `unit_088DDE20` | 0x088DDE20-0x088DDF10 | 1 function; copies a loaded resource into the first free entry | 100 % |
 | `unit_088DDF10` | 0x088DDF10-0x088DDF50 | 1 small function (C++) | 100 % |
 | `unit_088DDF50` | 0x088DDF50-0x088DDF94 | 1 small function | 100 % |
-| `unit_088DDF94` | 0x088DDF94-0x088DDFE8 | 1 function, NonMatching (79.9 %: where the id is narrowed to 16 bits, see `notes/MATCHING.md`, open symptoms); address of a loaded resource by id | not linked |
+| `unit_088DDF94` | 0x088DDF94-0x088DDFE8 | 1 function; address of a loaded resource by id | 100 % |
 | `unit_088DDFE8` | 0x088DDFE8-0x088DE014 | 1 small function | 100 % |
 | `unit_088DE014` | 0x088DE014-0x088DE060 | 1 function (C++, speed: index of a loaded resource by id) | 100 % |
-| `unit_088DE060` | 0x088DE060-0x088DE0B8 | 1 function, NonMatching (93.4 %: same symptom as unit_088DDF94) | not linked |
+| `unit_088DE060` | 0x088DE060-0x088DE0B8 | 1 function | 100 % |
 | `unit_088DE0B8` | 0x088DE0B8-0x088DE3D4 | 3 functions (C++, speed: resource requests into the first free entry) | 100 % |
-| `unit_088DE3D4` | 0x088DE3D4-0x088DE458 | 1 function, NonMatching (96.5 %: same symptom as unit_088DDF94) | not linked |
+| `unit_088DE3D4` | 0x088DE3D4-0x088DE458 | 1 function | 100 % |
 | `unit_088DE458` | 0x088DE458-0x088DE4BC | 1 small function (C++, speed) | 100 % |
 | `unit_088DE4BC` | 0x088DE4BC-0x088DE520 | 1 small function | 100 % |
 | `unit_088DE520` | 0x088DE520-0x088DE6A0 | 2 functions (C++, speed: volatile memory of the resource table given back, directly and from an event callback) | 100 % |
 | `unit_088DE6A0` | 0x088DE6A0-0x088DE6EC | 1 small function | 100 % |
-| `unit_088DE6EC` | 0x088DE6EC-0x088DE7C8 | 1 function, NonMatching (97.0 %: a register copy before the index is scaled); requests five resources | not linked |
+| `unit_088DE6EC` | 0x088DE6EC-0x088DE7C8 | 1 function; requests five resources | 100 % |
 | `unit_088DE7C8` | 0x088DE7C8-0x088DE804 | 1 small function (C++) | 100 % |
 | `jpeg-6b/jcomapi` | 0x088DE804-0x088DE8EC | 4 functions: `jcomapi.c` of the IJG JPEG library 6b, unmodified source (`notes/PROVENANCE.md`); `-O4,p` | 100 % |
 | `jpeg-6b/jdapimin` | 0x088DE8EC-0x088DEF50 | 6 functions: `jdapimin.c` of the library, unmodified; 3 functions not in the image removed from the object (`decomp.toml`, `[compiler.drop_functions]`); jump table 0x089324BC-0x089324E8 in the unit | 100 % |
@@ -1557,7 +1557,8 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088EF488` | 0x088EF488-0x088EF4A8 | 4 empty callbacks | 100 % |
 | `unit_088EF4A8` | 0x088EF4A8-0x088EF55C | 1 small function | 100 % |
 | `unit_088EF55C` | 0x088EF55C-0x088EF9C8 | 4 functions: a JPEG image decoded into a texture by a thread of its own (IJG library); speed setting | 100 % |
-| `unit_088EF9C8` | 0x088EF9C8-0x088EFC04 | 2 functions, NonMatching (98.8 % saved registers, 98.0 % one branch): start and state of the on-screen keyboard | not linked |
+| `unit_088EF9C8` | 0x088EF9C8-0x088EFB18 | 1 function, NonMatching (98.8 %: saved registers): starts the on-screen keyboard | not linked |
+| `unit_088EFB18` | 0x088EFB18-0x088EFC04 | 1 function: state of the on-screen keyboard | 100 % |
 | `unit_088EFC04` | 0x088EFC04-0x088EFC14 | 2 small functions | 100 % |
 | `unit_088EFC14` | 0x088EFC14-0x088EFF1C | 1 function (C++, speed; VFPU: two matrices of an object from its scale and local matrix, turned for the ids 0x21-0x24, passed on by virtual calls) | 100 % |
 | `unit_088EFF1C` | 0x088EFF1C-0x088EFF78 | 1 small function | 100 % |
@@ -1573,7 +1574,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088F2B0C` | 0x088F2B0C-0x088F368C | 1 function (speed): menu state machine on +0xD (five states) with slot counting helpers, then its drawing | 100 % |
 | `unit_088F368C` | 0x088F368C-0x088F383C | 1 function: nine-entry list, the pad moves the cursor | 100 % |
 | `unit_088F383C` | 0x088F383C-0x088F4210 | 1 function (speed): moves the cursors of the list entries (nine kinds, wrap-around, 5x7 and 8x3 grids); `.rodata` 0x0893296C-0x08932990 (jump table) | 100 % |
-| `unit_088F4210` | 0x088F4210-0x088F4518 | 1 function, NonMatching (86.2 %, orders): a sprite shrunk around its centre, sent as two vertices and nine commands to the display list (inline packet builder, VFPU square root) | not linked |
+| `unit_088F4210` | 0x088F4210-0x088F4518 | 1 function: a sprite shrunk around its centre, sent as two vertices and nine commands to the display list (inline packet builder, VFPU square root) | 100 % |
 | `unit_088F4518` | 0x088F4518-0x088F4A7C | 1 function: a sprite drawn as three stacked bands (stretched by arg3 lines), each sent as two vertices and nine commands to the display list (inline packet helper) | 100 % |
 | `unit_088F4A7C` | 0x088F4A7C-0x088F56B8 | 1 function (speed): draws a page of eight named items out of twelve pages; `.data` 0x089B8444-0x089B849A (local `s16[7]` and `s16[7][5]` initializers) | 100 % |
 | `unit_088F56B8` | 0x088F56B8-0x088F5C88 | 1 function (speed): box with a title, four framed fields, three texts and a name of up to 48 characters; `.data` 0x089B84FC-0x089B852A (local `Rect[4]` and `s16[7]` initializers) | 100 % |
@@ -1588,7 +1589,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088FA6D8` | 0x088FA6D8-0x088FAB0C | 1 function (speed): draws a grid of three rows of eight cells from a 64-bit mask, the cursor, the selected cell and the page number | 100 % |
 | `unit_088FAB0C` | 0x088FAB0C-0x088FAE30 | 1 function: draws a page of nine lines out of a 31-entry list, with frame, captions and page number | 100 % |
 | `unit_088FAE30` | 0x088FAE30-0x088FB2B0 | 1 function (speed): draws a page of nine lines out of 23 records (name, time, count; 15-bit and 17-bit fields) | 100 % |
-| `unit_088FB2B0` | 0x088FB2B0-0x088FBC3C | 1 function, NonMatching (97.7 %, registers); 20-entry list with a VFPU sine for the cursor, then a 5-row table of times | not linked |
+| `unit_088FB2B0` | 0x088FB2B0-0x088FBC3C | 1 function; 20-entry list with a VFPU sine for the cursor, then a 5-row table of times | 100 % |
 | `unit_088FBC3C` | 0x088FBC3C-0x088FBE4C | 1 function: caption of an entry (24-byte records) with a separator line | 100 % |
 | `unit_088FBE4C` | 0x088FBE4C-0x088FC088 | 1 function: box for an entry with two values of arg0 | 100 % |
 | `unit_088FC088` | 0x088FC088-0x088FC4F4 | 1 function (speed): draws one 8-byte entry (name, two-digit values, count, marks from 2-bit fields) | 100 % |

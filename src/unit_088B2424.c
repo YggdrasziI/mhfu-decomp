@@ -6,12 +6,6 @@
  * message; when func_088B7A10 and func_088B7A38 reject them and
  * D_09A28870 is set, replies with func_088B24E4 and calls
  * func_088B6A80(1), else calls func_088B7A50(4) and func_088B6A80(0xE).
- *
- * NonMatching (96.67 %): only one delay slot differs; after the second
- * test the original stores `bad = 1` before `b` and leaves its delay slot
- * empty, ours moves the store into the delay slot. Tried: `else if`
- * chains, `||`, nested `if` / `else` in each order, `goto`, an early
- * `return`, `bad` as u8 / s16 / u16 / unsigned / initialised at the top.
  */
 
 typedef signed char s8;
@@ -57,13 +51,9 @@ void func_088B2424(void) {
     func_088B03CC(&port, src);
     if (D_09A2886C == 2) {
         bad = 0;
-        if (func_088B7A10(&own) == 0) {
-            if (func_088B7A38(port) != 0) {
-                bad = 1;
-            } else if (D_09A28870 == 0) {
-                bad = 1;
-            }
-        } else {
+        if (func_088B7A10(&own) != 0 || func_088B7A38(port) != 0) {
+            bad = 1;
+        } else if (D_09A28870 == 0) {
             bad = 1;
         }
         if (bad == 0) {

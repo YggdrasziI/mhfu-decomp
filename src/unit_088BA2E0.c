@@ -7,8 +7,11 @@
  * D_089CC438 centred at x + 0xE and x + 0x5B, the selected one with style 5,
  * and a 0x54 x 0x10 frame on it when arg3 is set.
  *
- * NonMatching: the image keeps the original code.
+ * Speed setting: with the default size setting the frame x and the text
+ * widths take each other's saved registers.
  */
+
+#pragma optimize_for_size off
 
 typedef signed char s8;
 typedef short s16;
@@ -26,11 +29,6 @@ extern s32 func_08890F70(char *, char *);
 extern void func_08892148(char *, s16, s16, s8, char *, ...);
 extern void func_08831F3C(char *, u16, u16, u16, u16, s32, s32, s32);
 
-/* NonMatching, 97.80 %: the original keeps the frame x in $s6 and both text
- * widths in $s0; ours swaps them ($s0 for the frame x, $s6 / $s2 for the
- * widths). Tried: every declaration order with u16 or s32 frame x and s32
- * or s8 styles, two width variables, the message pointer in a local, the
- * width inline (worse) and the frame x computed at the call (worse). */
 void func_088BA2E0(s32 x, s32 y, s32 sel, s32 show) {
     s32 s0;
     s32 s1;
@@ -42,9 +40,9 @@ void func_088BA2E0(s32 x, s32 y, s32 sel, s32 show) {
         s1 = 0;
         fx = x - 0x1C;
     } else {
-        fx = x + 0x31;
         s0 = 0;
         s1 = 5;
+        fx = x + 0x31;
     }
     if (show == 0) {
         s0 = 0;

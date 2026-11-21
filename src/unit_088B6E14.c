@@ -4,7 +4,7 @@
  *
  * Tells whether no request slot has the 16-bit keys a and b.
  *
- * NonMatching: the image keeps the original code.
+ * Each key is built in two steps, `x = hi << 8; x |= lo;`.
  */
 
 typedef signed char s8;
@@ -92,23 +92,20 @@ typedef struct {
 
 extern char D_09A2851C[];
 
-/* NonMatching, 74.20 %: the original loads the two keys interleaved
- * (+0x1C6E, +0x1C72, +0x1C6F, +0x1C73), tests the first with `bne` and the
- * second with `bnel`, masking the second twice; ours computes one key at a
- * time. Tried: temporaries in both orders, swapped compares, nested ifs,
- * s32 keys, an inline 16-bit read helper, Slot members. */
 s32 func_088B6E14(u16 a, u16 b) {
     s32 i;
-    char *p;
+    u8 *p;
     u16 x;
     u16 y;
 
     i = 0;
-    p = D_09A2851C;
+    p = (u8 *) D_09A2851C;
     do {
-        x = (u16) (*(u8 *) (p + 0x1C6E) << 8) | *(u8 *) (p + 0x1C6F);
-        y = (u16) (*(u8 *) (p + 0x1C72) << 8) | *(u8 *) (p + 0x1C73);
-        if (x == a && y == b) {
+        x = p[0x1C6E] << 8;
+        x |= p[0x1C6F];
+        y = p[0x1C72] << 8;
+        y |= p[0x1C73];
+        if (x == a && b == y) {
             return 0;
         }
         i++;

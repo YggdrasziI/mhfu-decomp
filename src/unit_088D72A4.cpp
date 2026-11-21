@@ -2,22 +2,20 @@
  *
  * Bounds (hypothesis): 1 function between unit_088D722C and unit_088D773C.
  *
- * NonMatching, 97.8 %. Adds `arg2` to the count of the pair whose id is
- * `arg1` (pairs of func_08856884; 0x18-byte records at D_0899D198, maximum
- * count in byte 3) and returns what happened: 0 new pair, 1 count changed,
- * 2 clamped to the maximum, 3 already at the maximum, 4 pair emptied, 5 no
- * free pair. The 16-bit return type is a hypothesis (no extension of the
- * result, which shares its variable with the maximum).
+ * Adds `arg2` to the count of the pair whose id is `arg1` (pairs of
+ * func_08856884; 0x18-byte records at D_0899D198, maximum count in byte 3)
+ * and returns what happened: 0 new pair, 1 count changed, 2 clamped to the
+ * maximum, 3 already at the maximum, 4 pair emptied, 5 no free pair. The
+ * 16-bit return type is a hypothesis (no extension of the result, which
+ * shares its variable with the maximum).
  *
- * Gaps: saved registers (original: result s0, arg2 s1, arg1 s2, arg0 s3,
- * masked arg1 s4, index s5; ours: index s0, masked arg1 s1, result s2, arg2
- * s3, arg1 s4, arg0 s5), and the load of +0x648 placed after the load of
- * D_08A62C50 instead of before. Tried: all declaration orders (no effect),
- * one index per loop, block-scoped indices, `s16` / `u32` index, a local
- * copy of the id, a separate variable for the maximum, the result
- * initialised at its declaration, inline helpers for the pair and the
- * lookup, merged early tests, `!` test.
+ * Matching needs the speed setting, one block-scoped counter per loop
+ * (`s32 i = 0;` in each branch; a function-level counter swaps it with the
+ * masked id), and the +0x648 field read as `s16` for the `u16` parameter of
+ * func_0885C580 (as `u16` its load comes after the load of D_08A62C50).
  */
+
+#pragma optimize_for_size off
 
 typedef signed char s8;
 typedef unsigned char u8;
@@ -53,7 +51,6 @@ static inline bool is_own(char *obj) {
 
 s16 func_088D72A4(char *arg0, u16 arg1, s16 arg2, u8 arg3) {
     s16 ret;
-    s32 i;
     s32 off;
     u8 *max;
 
@@ -73,7 +70,7 @@ s16 func_088D72A4(char *arg0, u16 arg1, s16 arg2, u8 arg3) {
     }
     if ((s16) func_088568AC(D_089CC438, arg1) == 0) {
         ret = 5;
-        i = 0;
+        s32 i = 0;
         do {
             if (func_08856884(D_089CC438, i)->unk0 == 0) {
                 if (arg2 > 0) {
@@ -104,7 +101,7 @@ s16 func_088D72A4(char *arg0, u16 arg1, s16 arg2, u8 arg3) {
                         }
                     }
                     ret = 0;
-                    if (func_0885C580(D_08A62C50, *(u16 *)(arg0 + 0x648))[1] == 1) {
+                    if (func_0885C580(D_08A62C50, *(s16 *)(arg0 + 0x648))[1] == 1) {
                         break;
                     }
                     *(u16 *)(arg0 + 0x648) = func_088D81FC(arg0, *(u16 *)(arg0 + 0x648), 0);
@@ -114,7 +111,7 @@ s16 func_088D72A4(char *arg0, u16 arg1, s16 arg2, u8 arg3) {
             i++;
         } while (i < 0x18);
     } else {
-        i = 0;
+        s32 i = 0;
         do {
             if (arg1 == func_08856884(D_089CC438, i)->unk0) {
                 ret = *max;

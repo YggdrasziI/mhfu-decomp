@@ -5,8 +5,6 @@
  * While hosting in state 2, counts down the timeout of each accepted peer
  * record (0xC bytes at D_09A2851C + 0xC6C); after five expiries the peer is
  * dropped and announced (events 0x11, 3, 0x10), else it is polled again.
- *
- * NonMatching: the image keeps the original code.
  */
 
 typedef signed char s8;
@@ -96,13 +94,16 @@ extern char D_09A2851C[];
 extern s32 D_09A2886C;
 extern u8 D_09A28876;
 extern B6 D_09A28B98;
-extern u8 D_09A28B9E;
-extern u8 D_09A28B9F;
+typedef struct {
+    u8 a;
+    u8 b;
+} AB;
+
+extern AB D_09A28B9E;
 extern u8 D_09A28BEE;
 extern Addr8 D_09A28BFC;
 extern B6 D_09A29174;
-extern u8 D_09A2917A;
-extern u8 D_09A2917B;
+extern AB D_09A2917A;
 extern u8 D_09A2917E;
 extern u8 D_09A299A8;
 extern s32 func_088B04B4(void *);
@@ -118,11 +119,8 @@ extern void func_088B7978(Peer *);
 
 void func_088B6A80(s32 arg0);
 
-/* NonMatching, 96.36 %: (1) the original loads D_09A28B9E and D_09A28B9F
- * before storing either to D_09A2917A / D_09A2917B, ours stores the first
- * before loading the second (as func_088B4FAC, func_088B5568); (2) the
- * retry test uses `slti $at` where ours uses `$v0`. Tried for (2): >= 5,
- * !(< 5), > 4, 5 <=, every order of the loop locals. */
+/* The two bytes D_09A28B9E/F are copied as one AB structure (both loaded
+ * before either store); the retry test is written `> 4` (slti $at). */
 void func_088B70E8(void) {
     Id b4C;
     Id b38;
@@ -142,14 +140,13 @@ void func_088B70E8(void) {
                     if (--r->timer < 0) {
                         r->timer = 0xE1;
                         r->retries++;
-                        if (r->retries >= 5) {
+                        if (r->retries > 4) {
                             func_088B6864(r);
                             D_09A28BEE = func_088B68FC();
                             func_088B5EDC(&b4C, r);
                             func_088B624C(&b38, D_09A28BEE);
                             *(B6 *) &D_09A29174 = *(B6 *) &D_09A28B98;
-                            D_09A2917A = D_09A28B9E;
-                            D_09A2917B = D_09A28B9F;
+                            *(AB *) &D_09A2917A = *(AB *) &D_09A28B9E;
                             D_09A2917E = D_09A28BEE;
                             func_088B6A80(0x11);
                             D_09A299A8 = func_088B32B8();

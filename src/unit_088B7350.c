@@ -7,8 +7,6 @@
  * D_09A28AD0, then either announces it (event 0xD) or, for a known peer,
  * drops it while hosting (as func_088B70E8: events 0x11 and 3) and records
  * it in D_09A28BFC (event 0x10); event 6 in every case.
- *
- * NonMatching: the image keeps the original code.
  */
 
 typedef signed char s8;
@@ -18,6 +16,11 @@ typedef int s32;
 typedef struct {
     s8 b[6];
 } B6;
+
+typedef struct {
+    u8 a;
+    u8 b;
+} AB;
 
 typedef struct {
     s8 b[8];
@@ -34,13 +37,11 @@ extern s32 D_09A2886C;
 extern u8 D_09A28876;
 extern char D_09A28AD0[];
 extern B6 D_09A28B98;
-extern u8 D_09A28B9E;
-extern u8 D_09A28B9F;
+extern AB D_09A28B9E;
 extern u8 D_09A28BEE;
 extern char D_09A28BFC[];
 extern B6 D_09A29174;
-extern u8 D_09A2917A;
-extern u8 D_09A2917B;
+extern AB D_09A2917A;
 extern u8 D_09A2917E;
 extern u8 D_09A299A8;
 extern char D_09A29CD0[];
@@ -59,11 +60,11 @@ extern s32 func_088B7A10(Addr8 *);
 extern void func_088B7A50(s32);
 extern void func_088B7978(Addr8 *);
 
-/* NonMatching, 96.93 %: the original loads D_09A28B9E and D_09A28B9F before
- * storing either to D_09A2917A / D_09A2917B, ours stores the first before
- * loading the second (as func_088B70E8, func_088B5568, func_088B4FAC).
- * Tried there: temporaries, one-byte structures, a two-byte sub-structure
- * (C and C++), an 8-byte structure copy, enum types. */
+/* The two bytes after the 6-byte name are one 2-byte structure copied
+ * through casts (both loads before both stores; a plain assignment of the
+ * same externs stores the first byte before loading the second). objdiff
+ * names the second byte D_09A28B9E+0x1 (D_09A28B9F in the original):
+ * asm_compare shows 99.86 %, the report counts 100 %. */
 void func_088B7350(Addr8 *arg0) {
     Id b2C;
     Id b18;
@@ -86,8 +87,7 @@ void func_088B7350(Addr8 *arg0) {
             D_09A28BEE = func_088B68FC();
             func_088B624C(&b2C, D_09A28BEE);
             *(B6 *) &D_09A29174 = *(B6 *) &D_09A28B98;
-            D_09A2917A = D_09A28B9E;
-            D_09A2917B = D_09A28B9F;
+            *(AB *) &D_09A2917A = *(AB *) &D_09A28B9E;
             D_09A2917E = D_09A28BEE;
             func_088B6A80(0x11);
             D_09A299A8 = func_088B32B8();

@@ -1,8 +1,8 @@
 /* unit_088A748C: 0x088A748C-0x088A7788 (ULES01213)
  *
- * NonMatching: compiled for the report only, the code is linked from assembly.
  * Bounds (hypothesis): 1 function between unit_088A73B8 and unit_088A7788. Its
- * switch has a jump table (0x08931F9C, in `.data`).
+ * switch has a jump table (0x08931F9C-0x08931FC0, in `.data`), linked
+ * from this unit.
  */
 
 #include "unk_peer.h"
@@ -22,11 +22,10 @@ extern s32 func_088AA67C(SockAddr *);
 extern s32 func_088AA83C(s32, char *, u16 *);
 extern int func_088AAE10(char *);
 
-/* 99.6 %: in the second loop the original has the counter in $a1 and the peer
- * count in $a2 (ours the other way round). Tried: every declaration order of the
- * loop variables, shared or separate variables for the two loops, indexed / for
- * / switch forms, a local for the count. Linking it also needs its jump table
- * (9 words at 0x08931F9C) moved from the `.data` assembly into this unit. */
+/* Code matches; only the jump-table relocation differs (the compiler's own
+ * table vs jtbl_08931F9C): linking it needs the 9 words at 0x08931F9C moved
+ * from the `.data` assembly into this unit. The second loop reuses the first
+ * loop's counter `i` with its own pointer `f`. */
 s32 func_088A748C(Session *arg0) {
     s32 r;
     SockAddr sa;
@@ -36,7 +35,6 @@ s32 func_088A748C(Session *arg0) {
     Peer *e;
     s32 st;
     Peer *f;
-    s32 j;
 
     arg0->unkDA = 1;
     func_088AA9B4(-1, arg0->unkD8);
@@ -125,7 +123,7 @@ s32 func_088A748C(Session *arg0) {
             e++;
         } while (i < arg0->count);
     }
-    j = 0;
+    i = 0;
     if (arg0->count > 0) {
         f = D_09A11EF0;
         do {
@@ -133,9 +131,9 @@ s32 func_088A748C(Session *arg0) {
             if (st != 0 && st != 8 && st != 6) {
                 return 0;
             }
-            j++;
+            i++;
             f++;
-        } while (j < arg0->count);
+        } while (i < arg0->count);
     }
     return 1;
 }

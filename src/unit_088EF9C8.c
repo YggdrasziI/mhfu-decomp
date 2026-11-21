@@ -1,10 +1,10 @@
-/* unit_088EF9C8: 0x088EF9C8-0x088EFC04 (ULES01213), NonMatching
+/* unit_088EF9C8: 0x088EF9C8-0x088EFB18 (ULES01213), NonMatching
  *
- * Bounds (hypothesis): 2 functions between two units. They start the system's
- * on-screen keyboard and follow its state.
+ * Bounds (hypothesis): 1 function between unit_088EF55C and unit_088EFB18.
+ * Starts the system's on-screen keyboard (unit_088EFB18 follows its state).
  *
  * #pragma optimize_for_size off: as in unit_088EF55C, the unit before
- * (hypothesis: same object); neither function depends on it.
+ * (hypothesis: same object); the function does not depend on it.
  */
 
 #pragma optimize_for_size off
@@ -28,18 +28,12 @@ typedef struct {
 } OskParams;
 
 extern OskData D_09A521B4;
-/* D_09A521B4.w[11] */
-extern s32 D_09A521E0;
 extern OskParams D_09A521E8;
 extern u16 D_09A52228[0x101];
 
 extern void *memset(void *, s32, s32);
 extern void func_088DD638(u16 *, s32, void *);
-extern void func_088DD708(void *, s32, u16 *);
-extern void func_09A96758(void);
 extern s32 sceUtilityOskInitStart(void *);
-extern s32 sceUtilityOskShutdownStart(void);
-extern s32 sceUtilityOskGetStatus(void);
 
 /* 98.81 %: the parameter block pointer is in $s0 and arg3 / type in $s1 in the
  * original, the other way round here. Tried: declaration orders, the pointer
@@ -88,53 +82,4 @@ s32 func_088EF9C8(void *arg0, u8 arg1, u16 arg2, void *arg3) {
     data->w[11] = 0;
     data->w[9] = 0x202;
     return -(sceUtilityOskInitStart(&D_09A521E8) != 0);
-}
-
-/* 97.97 %: the test of 0x80110202 is a `beq` to the shared `ret = 1` block in
- * the original, a `beql` with the store in its delay slot here. Tried: the
- * cases apart, `default` first, `break` and `return` forms, `if` chains with
- * and without a local. The `seb` of the default case comes with an `s8`
- * result variable. */
-s8 func_088EFB18(void *arg0) {
-    OskParams *params;
-    s8 ret;
-
-    params = &D_09A521E8;
-    switch (sceUtilityOskGetStatus()) {
-    case 1:
-        ret = 0;
-        break;
-    case 4:
-        ret = 0;
-        break;
-    default:
-        ret = 1;
-        break;
-    case 2:
-        func_09A96758();
-        ret = 0;
-        break;
-    case 3:
-        if (D_09A521E0 == 2) {
-            func_088DD708(arg0, 0x100, D_09A52228);
-        }
-        sceUtilityOskShutdownStart();
-        ret = 1;
-        break;
-    case 0:
-        switch (params->w[7]) {
-        case 0x80110201:
-        case 0x80110202:
-            ret = 1;
-            break;
-        case 0x801102FF:
-            ret = 1;
-            break;
-        default:
-            ret = 0;
-            break;
-        }
-        break;
-    }
-    return ret;
 }

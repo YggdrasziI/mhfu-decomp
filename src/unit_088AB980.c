@@ -7,12 +7,9 @@
  * sub-type, read by func_088AB500, selects the update (member slots,
  * member objects) and the reply sent back through func_088AB6D0.
  *
- * NonMatching (96.96 %): only sub-type 1 differs. The original computes the
- * bit mask (`n % 32`) before the word index and keeps an `andi 0xFF` before
- * the `srl` of the index; ours hoists the index above the mask, without the
- * `andi` (`sra` or `srl`). Index forms, inline bitset helpers (C and C++)
- * and direct field reads do not change it. The jump table stays in the
- * assembly data while the function is not linked from this unit.
+ * Its jump table (9 words) is linked from this unit. Sub-type 1 needs a
+ * typed `G *` local for D_089CC438 and a `u8` bit number used as
+ * `bits[b / 32]` and `1 << (b % 32)`.
  */
 
 typedef unsigned char u8;
@@ -58,6 +55,13 @@ extern void func_08872EA0(char *, char *);
 extern void func_09A6FE20(char *, s32);
 extern void func_09A70068(char *);
 
+
+/* Assumed layout of the object at D_089CC438: a two-word bit set at 0x410. */
+typedef struct {
+    char pad[0x410];
+    u32 bits[2];
+} G;
+
 void func_088AB980(s32 arg0, s32 arg1, Msg *msg) {
     u8 type;
     u8 sub;
@@ -66,30 +70,27 @@ void func_088AB980(s32 arg0, s32 arg1, Msg *msg) {
     u8 b30[8];
     u8 b28[8];
     u8 b20[8];
-    char *g;
+    G *gg;
     char *p;
-    u32 *w;
-    s32 mask;
     s32 n;
     s32 i;
     u8 *q;
+    u8 b;
 
     func_088AB500(&sub, &type, (char *) msg);
     switch (type) {
     case 0:
         break;
     case 1:
-        g = D_089CC438;
-        if (*(u8 *) (g + 0x420) == *(u8 *) (g + 0x28)) {
+        gg = (G *) D_089CC438;
+        if (*((u8 *) gg + 0x420) == *((u8 *) gg + 0x28)) {
             slots.unk0 = arg1;
-            n = msg->unk5;
-            mask = 1 << (n % 32);
-            w = (u32 *) (g + 0x410) + ((u8) n >> 5);
-            if (*w & mask) {
+            b = msg->unk5;
+            if (gg->bits[b / 32] & (1 << (b % 32))) {
                 slots.unk1 = 0xFF;
             } else {
-                slots.unk1 = n;
-                *w |= mask;
+                slots.unk1 = b;
+                gg->bits[b / 32] |= (1 << (b % 32));
             }
             slots.unk4 = *(s32 *) (D_089CC438 + 0x410);
             slots.unk8 = *(s32 *) (D_089CC438 + 0x414);

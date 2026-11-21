@@ -99,6 +99,25 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   D_09A2851C`, loads at `0x116C(s1)` / `0x1231(s1)`): step a `char *` from
   the base symbol and cast `p + 0x116C` (func_088B2D74).
 
+- States that return early (`beql K1` / `beq K2` + nop / `beqz` to a
+  separate `v0 = 0; b end` block): one switch label group,
+  `switch (st) { case 0: case 5: case 6: return 0; }`, lowest value first,
+  not `&&` / `||` tests (func_088A8988, func_088A88E0).
+- Error codes tested in reverse order (`beql FF`, `beq 202`, `beq 201` to
+  a shared block): one case group written 0x80110201, 0x80110202,
+  0x801102FF (func_088EFB18).
+- Last test `beq a, b, end; nop; b end; addiu v0, K`: `return (a != b) ? K
+  : a;` or an `if/else` on a result local (func_088AAD58).
+- A list walk ending `lw s0, 0(s0); beqzl s0, <epilogue>; b <top>`: keep
+  the next pointer in its own local, `n = s->next; if (n == 0) break; s =
+  n;`, then `return 0;` after the loop (func_088B0724).
+- A pointer search entered with no guard (`lhu; bnel id, v0, top` with the
+  step in the delay slot) and the found element used after it: make the
+  use inside the loop and leave with `break`, `for (;;) { if (id == p->id)
+  { use(p); break; } p++; }` (func_088714F8).
+- `beqzl` over the body where the original has `bnez` + `b`: `if (x != 0)
+  { rest } return 0;` instead of an early `return 0` (func_088CDA74).
+
 ## Booleans (C++ only)
 
 - `andi` + `sltu` + branch on 0/1: `(bool) (x & K) == 0` / `!= 0`; C folds the
@@ -142,6 +161,16 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - `subu` with its operands loaded in the other order (`b` into `$v0` before
   `a + 1` into `$v1`): `(s32) (a + 1) - b` (func_08816F24).
 
+- `addu` operands swapped against the original: the first operand read as
+  `u32`, the second as `s32` (func_088C0468).
+- A loaded word added to a base with the loaded operand first (`addu v0,
+  v0, a1`): load it as a pointer and add the base as an integer, `*(char
+  **) (e + (s32) blk) + (s32) blk` (func_088C03CC).
+- `memset` size as `unsigned int` in the prototype (func_088AD1EC).
+- `(bool) (x & K)` tested `!= 0` rather than `== 1`: the id is read first
+  and the large offset stays split `lui 7` / `lw -0x50EC` (func_088D168C,
+  NonMatching).
+
 ## Symbol names in the report
 
 - splat names a field address it sees loaded on its own (`D_09BC8402`), and
@@ -153,6 +182,16 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   (`D_09A1D5EC`, `D_09A1D594`...). `asm_compare.py` shows those names as
   differences (99.05 %), but the objdiff report gives 100 %. Read the report
   before splitting the externs.
+
+- The only difference `%lo(D_X+0x4)` against `%lo(D_Y)`: read the word
+  through its own `extern D_Y`, not a member of D_X (func_088ADA44).
+- `jtbl_X`, `D_X` (local initialiser) against `@N`: the code matches; give
+  the table or initialiser to the unit in the splat yaml (func_088A748C,
+  func_0887AFB8, func_088AB980, func_088B012C, func_088714F8).
+- Byte pairs copied with both loads before both stores (`D_X+0x1` against
+  `D_X+1` in the diff, 100 % in the report):
+  `typedef struct {u8 a, b;} AB;`, `*(AB *) &dst = *(AB *) &src;`
+  (func_088B4FAC, func_088B5568, func_088B70E8, func_088B7350).
 
 ## Addresses, arrays and structures
 
@@ -1140,6 +1179,77 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   increment, and returned as it is: the counter and the return type are
   both `s8` (func_088DE060, not matched for another reason).
 
+- Pointer to a table built after its first read (`lui; lhu %lo(D)`) where
+  the original builds it first and exits with `beql`: initialise the
+  pointer through an integer cast, `e = (Entry *)(s32)D_x;` (func_088DAD58;
+  the same cast keeps a field pointer in one register in func_088EF9C8).
+- Lookup through nested tables, each table or row pointer loaded early:
+  one pointer step per level, `p = tbl[k]; p += i; q = *p; q += j; v =
+  *q;` (func_08870AEC).
+- An indexed table address kept in its own register: take the element's
+  address as its own step, `t = &t[idx]; e = *t;`, and follow a chain of
+  table offsets through one reused local (func_088C03CC).
+- A loop-invariant 16-bit id kept in a saved register and masked at each
+  comparison (`andi 0xFFFF`): compute it inside the loop in a `u32` local
+  and narrow it with a separate `id &= 0xFFFF;`, on an `s32` parameter
+  masked `& 0xFF` (func_088DDE20, func_088DDF94, func_088DE060,
+  func_088DE3D4).
+- A constant index multiplied but only half folded (`li a0, 8; li v0,
+  0x10; addu v0, v0, a0; sll s1, v0, 2`, offset kept for a second lookup):
+  `#pragma opt_propagation off`, one `s32 idx = 8;` shared by both lookups
+  and an inline helper that indexes `tbl[i]` with no copy of the index
+  (func_088DC1F0, NonMatching for two saved registers).
+- A parameter copied unextended into a saved register and extended at each
+  use: an `s32` local assigned in its own statement (`kk = k;`) passed to
+  `s16` parameters; the `s16` call result stored back into the same local
+  (`kk = v;`) (func_088C1344).
+- A narrow parameter kept raw in one saved register and extended in
+  another: declare it `s32`, copy it once into an `s16` local, and write a
+  fresh `(s16) param` at the use that extends it again (func_088ADA44); or
+  `(s16)` casts at each use and `x = (s16) x;` in place in the other
+  branch (func_088AAD58).
+- An `lh` value extended again (`seh`) after a branch, the float conversion
+  using the raw register: an `s32` local set from the field, used as is in
+  the float expression and as `(s16) w` elsewhere (func_088F4210).
+- An invariant `seh` placed after the loop guard: a second `s16` local
+  copied inside a hand-written guard, `i = 0; if (n > 0) { x2 = x; do {
+  ... } while (i < n); }` (func_0882232C); a `blezl` guard with `v0 = 0` in
+  its slot: the speed setting and `if (pos < n) { value; do { } while (pos
+  < n); }` (func_088A8988).
+- A constant register reused by `seb rD, rC`: chained assignment `w = c =
+  K;` (func_0882232C).
+- A `u16` step whose `andi` comes after `i++`: put the step after `i++`
+  (func_0882232C).
+- Two 16-bit keys built from byte pairs, `bnel` on the wrong test: build
+  each key in two statements on a `u16` local, `x = p[hi] << 8; x |=
+  p[lo];`; the operand order of the second test sets the `bnel` registers
+  (func_088B6E14).
+- Loop offset, block and size in the wrong saved registers: `for (i = 0, p
+  = 0; ...; i++, p += K)` with a `u32` offset and the constant grouped with
+  the base, then a declaration-order search (func_088C022C).
+- Saved registers only right when pointers and integers share locals:
+  every local `s32` and a scripted search of role-to-local assignments and
+  declaration orders (func_088C6DF8, func_088DC1F0, func_088FB2B0).
+- A pointer parameter whose saved register is swapped with a later local:
+  take it as `void *` and read it through a typed local declared after
+  that local (func_088AE988).
+- One block-scoped counter per loop (`s32 i = 0;` in each branch)
+  (func_088D72A4).
+- A copy of a 16-bit number before it is scaled (`addu v0, s0, zero`; `sll
+  s0, v0, 2`): pass `(u16) arg` to an inline helper with a `u32`
+  parameter (func_088DE6EC).
+- Three `s16` copied with x, y, z loaded into descending registers: a C++
+  structure assignment of a nested member (func_088D66F4).
+- Speed setting for frame and text widths that take each other's saved
+  registers (func_088BA2E0); a narrow parameter spilled instead of a table
+  base: hold the table in a local and compile for speed, neither works
+  alone (func_088AD87C).
+- Struct words stored in a scheduler order: try the plain index order
+  first (func_088F4210).
+- Stack offsets of locals off by 8 with the right frame size: the local
+  array is larger than the bytes used (`u8 from[16]` for 6 bytes,
+  func_088AD87C).
+
 ## Calls and allocation
 
 - PSP EABI: arguments 5-8 in `$t0-$t3`, float arguments in `$f12-$f19` counted apart
@@ -1394,45 +1504,41 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - Inline helpers nested three levels deep left as a call: the build flag
   `-inline bottomup` (notes/COMPILER.md, "Inlining depth"; func_08901814).
 
+- Callee parameter types change the argument load order: a global first
+  argument loaded before the others until the callee's last parameter is
+  `u16` instead of `u8` (func_088B012C); two `u16` stack fields loaded
+  before an earlier store until the callee takes `s32` (func_088F4210); an
+  `lh` loaded after a `lw` until the narrow callee parameter is `s32`
+  (func_088AD87C). Argument counts never change.
+- A constructor result tested in `$v0` and copied to the object's saved
+  register, the free path ending with a `b` over the else: keep the result
+  in a `u32` or pointer local, `p = (s32) v;`, test `p`, then `obj = p;`
+  after the free (func_088C3948).
+
 ## Open symptoms
 
-- $a0 not reloaded after a call to a function that leaves it alone
-  (func_088A6BA0, notes/COMPILER.md).
-- Lookup in the table of D_09A4F0D0 (0xC-byte entries): the original loads
-  the table pointer into `$v1`, keeps the index in `$a0` and builds the
-  offset from it even when the index is the constant 8 (`li a0, 8`; `li v0,
-  0x10`; `addu v0, v0, a0`; `sll s1, v0, 2`); ours swaps the two registers
-  (func_088DB608) or folds the constant (func_088DC1F0). No form of the
-  lookup, of its index, nor two-level inlining gives it.
-- Id `arg1 + 0x17DF` (`u8` parameter) compared with a 16-bit field in a
-  loop: the original narrows the sum to 16 bits right before the loop,
-  after the counter is cleared (func_088DDE20, func_088DDF94,
-  func_088DE060), or inside the loop at each comparison when the loop
-  holds a call (func_088DE3D4); ours always narrows where the sum is
-  computed. In func_088DDF94 the `andi 0xFF` of the parameter also comes
-  after the pointer set-up, ours first. No type of the local, cast, mask,
-  compound assignment or inline function (for the id, the comparison or
-  the whole search) changes it. The same expression passed as a `u16`
-  argument of a call matches (func_088DE0B8, func_088DE2D8).
-- 16-bit number kept in a saved register, copied to `$v0` before it is
-  scaled into the same saved register (`addu v0, s0, zero`; `sll s0, v0,
-  2`) after a call: ours scales in place or masks again (func_088DE6EC).
-- Register-only differences (two registers swapped, result kept in `$v0` then copied
-  to a saved register: func_088C3948, func_0884FDC4).
-- Saved registers in another order although every declaration order gives
-  the same code (original: result, parameters, then masked id and loop
-  index; ours: index and masked id first): func_088D72A4.
-- Three saved registers rotated (count, mode, masked index) whatever the
-  declaration order: func_088D7AD8.
-- Three `s16` copied through temporaries (x, y, z loaded into descending
-  registers, then stored): ours loads y, z, x with x in the register of the
-  previous temporary, for every helper form tried; function-level
-  temporaries shared by a macro fix four copies out of six (func_088D66F4).
+- An argument register not reloaded after a call to a function that
+  leaves it alone ($a0: func_088A6BA0, func_088AD4EC; $a3: func_088AD378,
+  whose callee func_088AD2FC never uses it; notes/COMPILER.md).
+- Lookup in the table of D_09A4F0D0 (0xC-byte entries): table pointer and
+  index registers swapped (func_088DB608, 99.89 %). Not yet tried with the
+  form that fixed the same lookup in func_088DC1F0 (`#pragma
+  opt_propagation off`, "Calls and allocation").
+- Two part pointers in swapped saved registers after the lookup above
+  (func_088DC1F0, 99.78 %).
+- Register-only differences (result kept in `$v0` then copied to a saved
+  register: func_0884FDC4; see func_088C3948 in "Calls and allocation").
+- Two saved registers swapped (masked index and count) whatever the
+  declaration order: func_088D7AD8 (99.58 %).
 - Scheduling: a load placed before / after an index computation (func_088307BC,
   func_0884424C `trunc.w.s`).
 - Unfilled `jal` delay slot (func_08813CF8).
-- The second of three values tested in a row (`beql` A, `beq` B, `beq` C, B and
-  C sharing the block after the default): ours copies the shared store into
-  the delay slot of B's branch (`beql`): func_088EFB18.
 - Two saved registers swapped (a pointer to a global in `$s0`, the last
   argument in `$s1`) whatever the declaration order: func_088EF9C8.
+- A test against the constant 1 (`addiu v1, zero, 1` after the `andi`,
+  `bnel a0, v1`): ours branches with `beqzl` for every `== 1` form
+  (func_088D168C, 98.79 %).
+- A stack argument store (`sw zero, 0(sp)`) scheduled first in a call's
+  code; the original stores it after the fifth argument's loads. Only a
+  function-level local reassigned elsewhere moves it, and that breaks
+  other orders (func_088C05FC, 93.54 %).

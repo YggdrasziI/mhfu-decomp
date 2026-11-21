@@ -7,7 +7,7 @@
  * store, then registers each 0x20-byte record of the list (as
  * func_088CA39C).
  *
- * NonMatching: the image keeps the original code.
+ * Matching (100 %).
  */
 
 typedef signed char s8;
@@ -60,11 +60,9 @@ extern void func_08884748(s32, s32, s32, s32, s32, char *, s32, s32, s32);
 extern s32 func_088C6BCC(Mgr *, s32, s32, s32, s32, s32, char *, s32);
 extern s32 func_08883B54(s32, s32, s32, s32, s32, s32, char *, s32, s32, s32, s32);
 
-/* NonMatching, 99.32 %: `found = 0` is set at each pass of the entry loop in
- * the original (delay slot of the kind test); ours sets it once before the
- * loop (only the exits set it to 1). Tried: the store inside the `if`, a
- * block-scoped or `bool` / `u8` flag, a comma expression, a `continue` form,
- * the first part as an inline helper, every declaration order. */
+/* The entry loop is built with labels: as a `do { } while` the compiler
+ * hoists the `found = 0` of each pass out of the loop; the original clears
+ * it in the delay slot of the kind test at every pass. */
 void func_088CA558(List *arg0) {
     s32 j;
     char *p;
@@ -76,36 +74,39 @@ void func_088CA558(List *arg0) {
         p = D_09A4F060->store->vfunc_28()->unk10;
         j = 0;
         if (D_09A4F060->store->vfunc_28()->count > 0) {
-            do {
-                found = 0;
-                if (*(u16 *)(p + 2) == 0x17 && *(u16 *)(p + 0x16) == 0) {
-                    p = arg0->vfunc_44();
-                    if (p == 0) {
+        loop:
+            found = 0;
+            if (*(u16 *)(p + 2) == 0x17 && *(u16 *)(p + 0x16) == 0) {
+                p = arg0->vfunc_44();
+                if (p == 0) {
+                    goto done;
+                }
+                if ((bool) (*(s32 *)(D_089CC438 + 0x6AF14) & 1) == 0) {
+                    switch (*(u8 *)(D_089CC438 + 0x2E)) {
+                    case 6:
+                    case 5:
+                    case 7:
+                    case 8:
+                        if (func_088855C4(D_08A62D8C, 6, 0xC0, 0) != 0) {
+                            func_08885494(D_08A62D8C, 6, 0xC0, 0, 0);
+                        }
+                        found = 1;
                         break;
                     }
-                    if ((bool) (*(s32 *)(D_089CC438 + 0x6AF14) & 1) == 0) {
-                        switch (*(u8 *)(D_089CC438 + 0x2E)) {
-                        case 6:
-                        case 5:
-                        case 7:
-                        case 8:
-                            if (func_088855C4(D_08A62D8C, 6, 0xC0, 0) != 0) {
-                                func_08885494(D_08A62D8C, 6, 0xC0, 0, 0);
-                            }
-                            found = 1;
-                            break;
-                        }
-                    }
-                    if (found == 0) {
-                        func_088C6BCC(D_09A4F060, 6, 0x11, 0, 0xC0, 0, p, 9);
-                    }
-                    break;
                 }
-                j++;
-                p += 0x18;
-            } while (j < D_09A4F060->store->vfunc_28()->count);
+                if (found == 0) {
+                    func_088C6BCC(D_09A4F060, 6, 0x11, 0, 0xC0, 0, p, 9);
+                }
+                goto done;
+            }
+            j++;
+            p += 0x18;
+            if (j < D_09A4F060->store->vfunc_28()->count) {
+                goto loop;
+            }
         }
     }
+done:
 
     rec = arg0->vfunc_B0();
     i = 0;

@@ -3,16 +3,10 @@
  * Bounds (hypothesis): 1 function between code still in assembly
  * (text_08821BD4 and text_08822594).
  *
- * Optimized for speed: the loop is guarded and rotated, its constants hoisted.
- *
- * NonMatching: func_0882232C 94.7 %. func_08892148 is variadic here (93.4 %
- * with eight fixed parameters). Register allocation differs: the
- * original keeps x in $s0 until the loop and a sign-extended copy in $s7,
- * keeps the loop constant 3 in $a0 (set again in each delay slot) and so has
- * every saved register taken; ours keeps 3 in a saved register and shifts the
- * others. Tried: s16 / s32 types for x and the colour, declaration orders
- * (greedy pairwise search), local copies, x kept as a
- * sign-extended s32.
+ * Optimized for speed. The loop is written as a guarded do-while: the second
+ * sign-extended copy of x ($s7) is made inside the guard, after the blez.
+ * `w = c = 3` makes the colour a sign-extended copy of the compare constant
+ * register ($a0).
  */
 
 #pragma optimize_for_size off
@@ -51,10 +45,11 @@ void func_0882232C(char *arg0, u8 *arg1, s32 arg2, s32 arg3, s32 arg4, u16 y) {
     s32 w;
     char *label;
     s16 x = arg4;
+    s16 x2;
 
     func_088915B0(D_08A631A8, x, y, 5, &D_08938478, func_0885151C(D_089CC438, D_089AC97E));
-    func_08821890(arg0, arg2);
     n = 3;
+    func_08821890(arg0, arg2);
     func_08821A10(arg0, arg2, arg3);
     if (arg1[0xB] == 4) {
         n++;
@@ -66,22 +61,25 @@ void func_0882232C(char *arg0, u8 *arg1, s32 arg2, s32 arg3, s32 arg4, u16 y) {
         n++;
     }
     y += 0x10;
-    for (i = 0; i < n; i++) {
-        if (i == 3 && arg1[0xB] != 4) {
-            c = 3;
-            w = c;
-        } else if (i == 2 && arg1[0xB] == 2) {
-            c = 3;
-            w = c;
-        } else {
-            w = 6;
-            c = 0;
-        }
-        func_0880E8F0(text, &D_089385EC, i + 1);
-        func_0880ED70(name, text);
-        label = func_0885151C(D_089CC438, D_089AC954[i == 0 ? 0x16 : 0x17]);
-        func_08892148(D_08A631A8, x, y, w, label, name, (s8) c, func_0885151C(D_089CC438, D_089AC9DC[D_08978E38[*(u8 *)(arg1 + 0x10)][i]]));
-        y += 0x10;
+    i = 0;
+    if (n > 0) {
+        x2 = x;
+        do {
+            if (i == 3 && arg1[0xB] != 4) {
+                w = c = 3;
+            } else if (i == 2 && arg1[0xB] == 2) {
+                w = c = 3;
+            } else {
+                w = 6;
+                c = 0;
+            }
+            func_0880E8F0(text, &D_089385EC, i + 1);
+            func_0880ED70(name, text);
+            label = func_0885151C(D_089CC438, D_089AC954[i == 0 ? 0x16 : 0x17]);
+            func_08892148(D_08A631A8, x2, y, w, label, name, (s8) c, func_0885151C(D_089CC438, D_089AC9DC[D_08978E38[*(u8 *)(arg1 + 0x10)][i]]));
+            i++;
+            y += 0x10;
+        } while (i < n);
     }
     func_08821924(arg0, arg2);
 }

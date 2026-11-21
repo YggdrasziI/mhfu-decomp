@@ -3,7 +3,8 @@
  * Bounds (hypothesis): 1 function between unit_088B5560 and code still in
  * assembly.
  *
- * NonMatching: the image keeps the original code.
+ * Matching (the second byte is D_09A28882+0x1 / D_09A2917A+0x1 in ours,
+ * D_09A28883 / D_09A2917B in the original: same addresses).
  */
 
 typedef signed char s8;
@@ -28,21 +29,24 @@ typedef struct {
 } Info14;
 
 typedef struct {
+    u8 a;
+    u8 b;
+} AB;
+
+typedef struct {
     u8 unk0[0x14];
 } Buf14;
 
 extern s32 D_09A2886C;
 extern u8 D_09A28876;
 extern Addr6 D_09A2887C;
-extern u8 D_09A28882;
-extern u8 D_09A28883;
+extern AB D_09A28882;
 extern u8 D_09A28BEE;
 extern Addr6 D_09A28BFC;
 extern u8 D_09A28C02;
 extern u8 D_09A28C03;
 extern Addr6 D_09A29174;
-extern u8 D_09A2917A;
-extern u8 D_09A2917B;
+extern AB D_09A2917A;
 extern u8 D_09A2917E;
 
 extern char *func_088AFE84(void);
@@ -62,10 +66,10 @@ extern void func_088B624C(Buf14 *, u8);
 extern void func_088B6A80(s32);
 extern void func_088B57A0(Buf14 *, Addr8 *, u16);
 
-/* NonMatching, 96.97 %: the original loads D_09A28882 and D_09A28883 before
- * storing either to D_09A2917A / D_09A2917B; this stores the first before
- * loading the second. Tried: temporaries (u8, s32), a 2-byte structure copy,
- * an inline pointer helper, const sources, whole Addr8 copies in C and C++. */
+/* The two bytes after the 6-byte address are copied as one 2-byte structure
+ * declared on both globals (both loads before both stores); separate u8
+ * externs, or the cast copy on u8 externs, store the first byte before
+ * loading the second. */
 void func_088B5568(void) {
     u16 port;
     Addr8 own;
@@ -107,8 +111,7 @@ void func_088B5568(void) {
         D_09A28C03 = own.unk7;
         func_088B6A80(0x10);
         *(Addr6 *) &D_09A29174 = *(Addr6 *) &D_09A2887C;
-        D_09A2917A = D_09A28882;
-        D_09A2917B = D_09A28883;
+        *(AB *) &D_09A2917A = *(AB *) &D_09A28882;
         D_09A2917E = D_09A28BEE;
         func_088B6A80(0x11);
     }

@@ -4,8 +4,6 @@
  *
  * Message builder (kind 0x14) to the address arg1 with the status arg2;
  * on success it lists the accepted 0xC8-byte records at D_09A29364.
- *
- * NonMatching: the image keeps the original code.
  */
 
 typedef signed char s8;
@@ -37,13 +35,9 @@ extern void func_088B02C8(s32, char *);
 extern s32 func_088B04B4(char *);
 extern s32 func_088B68FC(void);
 
-/* NonMatching, 99.11 %: the record pointer and the counter of the loop
- * take each other's saved register ($s2 / $s3). Tried: every declaration
- * order of the four locals (char * and Rec * pointer), locals in the
- * block, a for loop, the counter set first, an s32 status cast to u16. */
 void func_088B5AC8(Id *arg0, Addr8 *arg1, u16 arg2) {
-    char *p;
     s32 i;
+    char *p;
     s32 h;
     Id id;
 

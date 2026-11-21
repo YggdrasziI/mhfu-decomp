@@ -6,8 +6,6 @@
  * Sets up the object of unit_088C6ADC (0xA000-byte heap buffer at 0x28C,
  * heap at 0xA28C): reads the parts 0-5 of a resource (func_088B89B0) and
  * copies two of them into memory returned by func_088C70D8 (DMA copy).
- *
- * NonMatching: the image keeps the original code.
  */
 
 typedef unsigned char u8;
@@ -43,33 +41,29 @@ extern void func_09C386E8(char *, char *);
 extern void sceKernelDcacheWritebackInvalidateAll(void);
 extern s32 sceDmacMemcpy(s32, char *, s32);
 
-/* NonMatching, 99.84 %: in the first part, the allocation (buf) and the size
- * returned by func_0886271C sit in swapped saved registers ($s2 / $s4); the
- * original gives the size the register of the 16-bit count. The second part
- * matches. The size is computed through a temporary (`buf = x * 16;` then
- * `buf + n * 8`): written in one expression the `addu` operands swap.
- * Tried: every declaration order, the count / temporary in each local, an
- * inline helper for both parts, block-scoped locals, sizeof / shift forms. */
+/* Register allocation: the two 16-bit-count / buffer pairs swap locals
+ * between the first and the third part (a / b), and the first part computes
+ * the `* 16` term in `size` before it holds the size. */
 void func_088C6DF8(Obj *arg0, char *arg1, u8 arg2) {
-    s32 buf;
     char *r;
     s32 size;
+    s32 a;
+    s32 b;
     s32 dst;
-    s32 n;
 
     func_08859AE4(arg0->heap, arg0->buf, 0xA000);
     arg0->unkA2C0 = 0;
     arg0->unkA2E4 = arg1;
 
     r = func_088B89B0(arg1, 0);
-    n = *(u16 *)(r + 0x1C);
-    buf = func_088627AC(r) * 16;
-    buf = func_08859B44(arg0->heap, buf + n * 8, 0x10);
+    b = *(u16 *)(r + 0x1C);
+    size = func_088627AC(r) * 16;
+    a = func_08859B44(arg0->heap, size + b * 8, 0x10);
     size = func_0886271C(r);
     dst = func_088C70D8(arg0, size);
     sceKernelDcacheWritebackInvalidateAll();
     sceDmacMemcpy(dst, func_08862710(r), size);
-    func_088623DC(arg0->unk0 + 0x50, buf, r, dst);
+    func_088623DC(arg0->unk0 + 0x50, a, r, dst);
 
     r = func_088B89B0(arg1, 1);
     if (r != 0) {
@@ -83,14 +77,14 @@ void func_088C6DF8(Obj *arg0, char *arg1, u8 arg2) {
 
     r = func_088B89B0(arg1, 2);
     if (r != 0) {
-        n = *(u16 *)(r + 0x1C);
-        buf = func_088627AC(r) * 16;
-        buf = func_08859B44(arg0->heap, buf + n * 8, 0x10);
+        a = *(u16 *)(r + 0x1C);
+        b = func_088627AC(r) * 16;
+        b = func_08859B44(arg0->heap, b + a * 8, 0x10);
         size = func_0886271C(r);
         dst = func_088C70D8(arg0, size);
         sceKernelDcacheWritebackInvalidateAll();
         sceDmacMemcpy(dst, func_08862710(r), size);
-        func_088623DC(arg0->unk0 + 0x1D0, buf, r, dst);
+        func_088623DC(arg0->unk0 + 0x1D0, b, r, dst);
     }
 
     if (arg2 == 1) {
