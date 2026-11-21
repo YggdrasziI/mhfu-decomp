@@ -1570,6 +1570,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088F368C` | 0x088F368C-0x088F383C | 1 function: nine-entry list, the pad moves the cursor | 100 % |
 | `unit_088F4210` | 0x088F4210-0x088F4518 | 1 function, NonMatching (78.2 %, orders): a sprite shrunk around its centre, sent as two vertices and nine commands to the display list (inline packet builder, VFPU square root) | not linked |
 | `unit_088F61B4` | 0x088F61B4-0x088F6450 | 1 function: draws a box with a title, three coloured lines and two captions | 100 % |
+| `unit_088FAB0C` | 0x088FAB0C-0x088FAE30 | 1 function: draws a page of nine lines out of a 31-entry list, with frame, captions and page number | 100 % |
 | `unit_088FB2B0` | 0x088FB2B0-0x088FBC3C | 1 function, NonMatching (97.7 %, registers); 20-entry list with a VFPU sine for the cursor, then a 5-row table of times | not linked |
 | `unit_088FC5F8` | 0x088FC5F8-0x088FC62C | 1 small function | 100 % |
 | `unit_088FD168` | 0x088FD168-0x088FD170 | 1 small function | 100 % |
