@@ -34,7 +34,7 @@ Commits before `15e9c9d` (first units, from `unit_088A6024` on) were not measure
 | 2026-11-18 | `e57bc89` | 16.50 % | 1506 / 3573 | 1167 | Region around 0x088B0000 |
 | 2026-11-19 | `12bf4da` | 20.02 % | 1678 / 3575 | 1264 | VFPU code in `asm` blocks, C++ units with virtual calls |
 | 2026-11-20 | `c8059f8` | 25.51 % | 1802 / 3575 | 1312 | IJG JPEG library linked from its unmodified sources |
-| 2026-11-21 | `d49a310` | 380348 / 1089072 bytes (34.92 %) | 1953 / 3576 | 1345 | Region 0x088EF380-0x088FB2B0 complete but for one function: JPEG decoding thread, menu pages; integer-cast pointer unlocks four old units |
+| 2026-11-21 | `d49a310` | 380348 / 1089072 bytes (34.92 %) | 1953 / 3576 | 1345 | Region 0x088EF380-0x088FB2B0 complete but for three functions (two units NonMatching): JPEG decoding thread, menu pages; integer-cast pointer unlocks four old units |
 
 From 2026-11-12 (`f84b2f1`) on, one row per day: the last commit recorded that
 day in `progress/ULES01213/history.csv`, which has every measured commit. Rows
