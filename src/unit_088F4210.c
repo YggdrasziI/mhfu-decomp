@@ -63,30 +63,33 @@ static inline float sqrt_vfpu(float x) {
 }
 
 static inline void submit(List *list, Packet *pkt, s32 layer) {
-    s32 *cur;
-    s32 *src;
     s32 i;
-    s32 n;
-    s32 count;
+    s32 nv;
     s32 skip;
+    s32 n;
+    s32 *src;
+    s32 *cur;
+    s32 count;
 
     if (layer >= 0 && layer < 0x14) {
+        nv = *(s32 *) pkt;
         cur = list->cur;
         if ((u32) ((cur - list->buf[list->index]) + (pkt->nVtx + pkt->nCmd)) < 0x10000) {
-            if (pkt->nVtx > 0) {
+            if (nv > 0) {
                 pkt->w[10] = (((u32) cur & 0xFF000000) >> 8) | 0x10000000;
                 pkt->w[11] = ((u32) list->cur & 0xFFFFFF) | 0x01000000;
             }
-            src = &pkt->nCmd + 1;
-            count = pkt->nCmd;
+            src = &pkt->nCmd;
+            count = *src++;
+            skip = src[-2];
             n = pkt->nVtx + count;
-            skip = pkt->nVtx;
             i = 0;
             if (n > 0) {
                 do {
-                    *list->cur = *src++;
-                    i++;
+                    *list->cur = *src;
                     list->cur++;
+                    i++;
+                    src++;
                 } while (i < n);
             }
             func_088596C8(list, cur + skip, count, layer);
@@ -94,19 +97,17 @@ static inline void submit(List *list, Packet *pkt, s32 layer) {
     }
 }
 
-/* 78.2 %: same blocks and stack layout, the differences are orders.
+/* 86.2 %: same blocks and stack layout, the differences are orders.
  * - Sprite copy: the original loads u into $v1 and v into $v0 after the store
  *   of h; ours loads u before that store, into $a0 / $v1.
- * - The float product for the width starts before the division of the first
- *   half margin (its `mfc1` is in the delay slot of that division's `bgez`);
- *   ours computes it after, whatever the order of the statements, with
- *   locals for the scaled sizes, float locals or the divisions at the uses.
- * - Vertex words: the original stores w[0] before w[3] and w[5] before w[2].
- * - submit: the original reads nVtx again for each sum with nCmd (three reads
- *   before the test, two before the loop) and builds the source pointer as
- *   `sp + 0x24` then `+ 4`; ours reads it once and folds the pointer. Tried:
- *   the sum through an unsigned read or an inline function, the source
- *   indexed from &nCmd or pre-incremented.
+ * - Half margins: the original's `mfc1` of the width product is in the delay
+ *   slot of the first division's `bgez` and the subtraction from the width
+ *   follows that division; ours subtracts before the branch. The two
+ *   products, then the two subtractions, then the two divisions as separate
+ *   statements is the closest order found.
+ * - Vertex words: the original stores w[0] before w[3] and w[5] before w[2];
+ *   natural order with repeated expressions (func_088F4518) scores lower.
+ * submit is the helper matched in func_088F4518 (unit_088F4518.c).
  * The speed setting unrolls the copy loop by 8 (not the original's). */
 void func_088F4210(char *arg0, s32 arg1, s32 arg2, s32 arg3) {
     Sprite spr;
@@ -140,8 +141,10 @@ void func_088F4210(char *arg0, s32 arg1, s32 arg2, s32 arg3) {
     w = spr.w;
     dy = (s32) (h * scale);
     dx = (s32) (w * scale);
-    hy = (h - dy) / 2;
-    hx = (w - dx) / 2;
+    dy = h - dy;
+    dx = w - dx;
+    hy = dy / 2;
+    hx = dx / 2;
     pkt.w[1] = ((arg1 + hx) << 16) | 0xFFFF;
     pkt.w[4] = ((arg1 + w - hx) << 16) | 0xFFFF;
     pkt.w[0] = (spr.y << 16) | spr.x;

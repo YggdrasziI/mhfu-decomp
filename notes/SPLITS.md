@@ -1568,7 +1568,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088F0020` | 0x088F0020-0x088F0088 | 1 small function | 100 % |
 | `unit_088F0088` | 0x088F0088-0x088F012C | 1 function: calls one of the five functions after it, by kind | 100 % |
 | `unit_088F368C` | 0x088F368C-0x088F383C | 1 function: nine-entry list, the pad moves the cursor | 100 % |
-| `unit_088F4210` | 0x088F4210-0x088F4518 | 1 function, NonMatching (78.2 %, orders): a sprite shrunk around its centre, sent as two vertices and nine commands to the display list (inline packet builder, VFPU square root) | not linked |
+| `unit_088F4210` | 0x088F4210-0x088F4518 | 1 function, NonMatching (86.2 %, orders): a sprite shrunk around its centre, sent as two vertices and nine commands to the display list (inline packet builder, VFPU square root) | not linked |
 | `unit_088F4518` | 0x088F4518-0x088F4A7C | 1 function: a sprite drawn as three stacked bands (stretched by arg3 lines), each sent as two vertices and nine commands to the display list (inline packet helper) | 100 % |
 | `unit_088F56B8` | 0x088F56B8-0x088F5C88 | 1 function (speed): box with a title, four framed fields, three texts and a name of up to 48 characters; `.data` 0x089B84FC-0x089B852A (local `Rect[4]` and `s16[7]` initializers) | 100 % |
 | `unit_088F5C88` | 0x088F5C88-0x088F61B4 | 1 function (speed): one page of seven lines of a list box, page number and caption of the selected entry | 100 % |
