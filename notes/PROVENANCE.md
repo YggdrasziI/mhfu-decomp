@@ -37,9 +37,9 @@ in the image (hypothesis: unused, dropped by the original linker).
 
 | Our file | Source | Changes |
 |---|---|---|
-| `src/jpeg-6b/README`, `jcomapi.c`, `jdapimin.c`, `jdapistd.c`, `jdcoefct.c`, `jdcolor.c`, `jdhuff.c`, `jdinput.c`, `jdmainct.c`, `jdmarker.c`, `jdmaster.c`, `jdmerge.c`, `jdphuff.c`, `jdpostct.c`, `jdsample.c`, `jidctflt.c`, `jidctfst.c`, `jidctint.c`, `jidctred.c`, `jquant1.c`, `jquant2.c`, `jutils.c`, `jinclude.h`, `jpeglib.h`, `jpegint.h`, `jerror.h`, `jdhuff.h`, `jdct.h` | release 6b | none |
+| `src/jpeg-6b/README`, `jcomapi.c`, `jdapimin.c`, `jdapistd.c`, `jdcoefct.c`, `jdcolor.c`, `jdhuff.c`, `jdinput.c`, `jdmainct.c`, `jdmarker.c`, `jdmaster.c`, `jdmerge.c`, `jdphuff.c`, `jdpostct.c`, `jdsample.c`, `jidctflt.c`, `jidctfst.c`, `jidctint.c`, `jidctred.c`, `jmemmgr.c`, `jquant1.c`, `jquant2.c`, `jutils.c`, `jinclude.h`, `jpeglib.h`, `jpegint.h`, `jerror.h`, `jdhuff.h`, `jdct.h`, `jmemsys.h` | release 6b | none |
 | `src/jpeg-6b/jmorecfg.h` | release 6b | one line: `MAX_COMPONENTS` is 4 instead of 10 (the value its own comment gives for builds short on memory). Evidence: with 10, six words of `jdcoefct.c` differ (private structure 0x18 bytes larger) and `jdinput.c`, `jdmainct.c`, `jdsample.c` do not match; with 4 all their functions are byte for byte |
-| `src/jpeg-6b/jconfig.h` | not from the distribution: written for this project from the options of its `jconfig.doc` | `boolean` is `unsigned char` (one byte in the original code) |
+| `src/jpeg-6b/jconfig.h` | not from the distribution: written for this project from the options of its `jconfig.doc` | `boolean` is `unsigned char` (one byte in the original code); `NO_GETENV` (`jinit_memory_mgr` reads no environment variable) |
 | `include/libc/*.h` | written for this project | minimal `<stddef.h>`, `<stdlib.h>`, `<stdio.h>`, `<string.h>` for the library sources |
 
 Only the files a linked unit needs are in the repository; any change to a file of

@@ -1753,9 +1753,7 @@ segments:
       - [0xE854C, c, jpeg-6b/jidctfst]
       - [0xE89C4, c, jpeg-6b/jidctint]
       - [0xE8F58, c, jpeg-6b/jidctred]
-      - [0xE9608, asm, text_088EB054]
-      - [0xEA7D8, c, unit_088EC224]
-      - [0xEA838, asm, text_088EC284]
+      - [0xE9608, c, jpeg-6b/jmemmgr]
       - [0xEA970, c, unit_088EC3BC]
       - [0xEA978, asm, text_088EC3C4]
       - [0xEA994, c, unit_088EC3E0]
@@ -1898,7 +1896,7 @@ segments:
       - [0x130A9C, data, data_089324E8]
       - { start: 0x130B5C, type: .rodata, name: jpeg-6b/jdhuff, linker_section_order: .data }
       - { start: 0x130BDC, type: .rodata, name: jpeg-6b/jdphuff, linker_section_order: .data }
-      - [0x130C5C, data, data_089326A8]
+      - { start: 0x130C5C, type: .rodata, name: jpeg-6b/jmemmgr, linker_section_order: .data }
       - { start: 0x130C6C, type: .rodata, name: jpeg-6b/jquant1, linker_section_order: .data }
       - { start: 0x130D78, type: .rodata, name: jpeg-6b/jutils, linker_section_order: .data }
       - [0x130EB8, data, data_08932904]

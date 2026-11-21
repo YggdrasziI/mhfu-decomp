@@ -5,5 +5,5 @@
 
 typedef int s32;
 
-void func_088EC3E0(s32 arg0) {
+void jpeg_mem_term(s32 arg0) {
 }

@@ -11,8 +11,8 @@ extern char D_09A4F0D4[];
 extern void func_088AD378(char *, s32);
 extern void func_088AD46C(char *, s32);
 
-void func_088EF348(s32 arg0, s32 arg1) { func_088AD378(D_09A4F0D4, arg1); }
-void func_088EF354(s32 arg0, s32 arg1, s32 arg2) { func_088AD46C(D_09A4F0D4, arg1); }
-void func_088EF360(s32 arg0, s32 arg1) { func_088AD378(D_09A4F0D4, arg1); }
-void func_088EF36C(s32 arg0, s32 arg1) { func_088AD46C(D_09A4F0D4, arg1); }
+void jpeg_get_small(s32 arg0, s32 arg1) { func_088AD378(D_09A4F0D4, arg1); }
+void jpeg_free_small(s32 arg0, s32 arg1, s32 arg2) { func_088AD46C(D_09A4F0D4, arg1); }
+void jpeg_get_large(s32 arg0, s32 arg1) { func_088AD378(D_09A4F0D4, arg1); }
+void jpeg_free_large(s32 arg0, s32 arg1) { func_088AD46C(D_09A4F0D4, arg1); }
 void func_088EF378(void) {}

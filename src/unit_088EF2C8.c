@@ -17,7 +17,7 @@ extern char D_09A4F0FC;
 extern char D_09B795C0;
 extern int func_088AD1EC(s32 *);
 
-s32 func_088EF2C8(void) {
+s32 jpeg_mem_init(void) {
     D_09A4F0D4 = 0x10;
     D_09A4F0D8 = &D_09B795C0;
     D_09A4F0DC = 0x10000;

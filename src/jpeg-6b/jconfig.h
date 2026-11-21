@@ -16,3 +16,7 @@
  * with `sb`, global_state follows at +0x14) */
 typedef unsigned char boolean;
 #define HAVE_BOOLEAN
+
+/* jinit_memory_mgr does not read the JPEGMEM environment variable in the
+ * original code (no call between the pool setup and the return) */
+#define NO_GETENV

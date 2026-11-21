@@ -222,3 +222,30 @@ build_ycc_rgb_table = 0x088E6E4C; // type:func allow_duplicated:True
 process_restart = 0x088E7DA0; // type:func allow_duplicated:True
 // jddctmgr.c of the IJG library: called by master_selection (jdmaster.c, built from source)
 jinit_inverse_dct = 0x088E1A64; // type:func size:0xBC
+// jddctmgr.c of the IJG library: jinit_inverse_dct (identical to the source) stores its address
+start_pass = 0x088E13C0; // type:func size:0x6A4
+// jmemmgr.c of the IJG JPEG library, built from its source (notes/PROVENANCE.md)
+out_of_memory = 0x088EB054; // type:func size:0x24
+alloc_small = 0x088EB078; // type:func size:0x1DC
+alloc_large = 0x088EB254; // type:func size:0x108
+alloc_sarray = 0x088EB35C; // type:func size:0x11C
+alloc_barray = 0x088EB478; // type:func size:0x130
+request_virt_sarray = 0x088EB5A8; // type:func size:0xC8
+request_virt_barray = 0x088EB670; // type:func size:0xC8
+realize_virt_arrays = 0x088EB738; // type:func size:0x270
+do_sarray_io = 0x088EB9A8; // type:func size:0x13C
+do_barray_io = 0x088EBAE4; // type:func size:0x140
+access_virt_sarray = 0x088EBC24; // type:func size:0x238
+access_virt_barray = 0x088EBE5C; // type:func size:0x23C
+free_pool = 0x088EC098; // type:func size:0x18C
+self_destruct = 0x088EC224; // type:func size:0x60
+// system-dependent memory functions of the IJG library (jmemsys.h), named by the
+// calls of jmemmgr.c (built from source); not the distribution's jmemnobs.c
+jpeg_mem_available = 0x088EC3BC; // type:func
+jpeg_open_backing_store = 0x088EC3C4; // type:func
+jpeg_mem_term = 0x088EC3E0; // type:func
+jpeg_mem_init = 0x088EF2C8; // type:func
+jpeg_get_small = 0x088EF348; // type:func
+jpeg_free_small = 0x088EF354; // type:func
+jpeg_get_large = 0x088EF360; // type:func
+jpeg_free_large = 0x088EF36C; // type:func

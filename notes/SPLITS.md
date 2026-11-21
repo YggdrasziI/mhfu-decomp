@@ -35,6 +35,21 @@ complete. Still different: `start_pass` of `jddctmgr.c`; not in the image:
 built). Three static names are used by two files each (`start_input_pass`,
 `build_ycc_rgb_table`, `process_restart`): both addresses carry the name in
 `symbol_addrs.txt`, with splat's `allow_duplicated`.
+`jmemmgr.c` is linked too. What is left of the library:
+- `jddctmgr.c` (0x088E13C0-0x088E1B20): `jinit_inverse_dct` is identical,
+  `start_pass` is 98.19 %: same instructions, but its two integer loops keep
+  their temporaries in `$t0`... where the compiled source uses `$a1`-`$a3`.
+  Tried without effect: `-O3`/`-O4` with `,p`/`,s`, `-inline`, `-fp`, the
+  eleven compiler builds, and some twenty variants of the source (declaration
+  order, types of `i`, casts of the multiply, inline helpers, calls with two or
+  four arguments). Only a 64-bit multiply (`long long` casts) moves the first
+  loop to `$t0`/`$t1`, with other code for the second: a lead, not an answer.
+- the system-dependent memory functions (`jmemsys.h`), written for the game and
+  not `jmemnobs.c`: `jpeg_mem_available`, `jpeg_open_backing_store`,
+  `jpeg_mem_term` (0x088EC3BC-0x088EC3E8) and `jpeg_mem_init`, `jpeg_get_small`,
+  `jpeg_free_small`, `jpeg_get_large`, `jpeg_free_large`
+  (0x088EF2C8-0x088EF380), named by the calls of `jmemmgr.c`;
+- no `jerror.c`: the error manager is the caller's.
 Functions of a linked file that are not in the image are taken as dropped by the
 original linker (hypothesis).
 
@@ -1527,7 +1542,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `jpeg-6b/jidctfst` | 0x088E9F98-0x088EA410 | 1 function: `jidctfst.c` of the library, unmodified | 100 % |
 | `jpeg-6b/jidctint` | 0x088EA410-0x088EA9A4 | 1 function: `jidctint.c` of the library, unmodified | 100 % |
 | `jpeg-6b/jidctred` | 0x088EA9A4-0x088EB054 | 3 functions: `jidctred.c` of the library, unmodified | 100 % |
-| `unit_088EC224` | 0x088EC224-0x088EC284 | 1 small function | 100 % |
+| `jpeg-6b/jmemmgr` | 0x088EB054-0x088EC3BC | 15 functions: `jmemmgr.c` of the library, unmodified (`NO_GETENV` in `jconfig.h`); `first_pool_slop`, `extra_pool_slop` 0x089326A8-0x089326B8 in the unit | 100 % |
 | `unit_088EC3BC` | 0x088EC3BC-0x088EC3C4 | 1 small function | 100 % |
 | `unit_088EC3E0` | 0x088EC3E0-0x088EC3E8 | 1 small function | 100 % |
 | `jpeg-6b/jquant1` | 0x088EC3E8-0x088ED7A4 | 17 functions: `jquant1.c`; `base_dither_matrix` and the `RGB_order` of `select_ncolors` 0x089326B8-0x089327C4 in the unit of the library, unmodified | 100 % |
