@@ -1183,6 +1183,11 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   small constants: the result goes through an `s8` local (`ret = 1; break;`
   ... `return ret;`) in a function that returns `s8` (func_088EFB18).
 
+- Arguments of a call loaded in another order (the `s16` global of the second
+  argument read last in ours, first in the original): the callee's parameter
+  is `s32` there, `f(char *, s32, s16, char *)`; the next one keeps its `seh`
+  (func_088912BC called from func_088F61B4).
+
 ## Open symptoms
 
 - $a0 not reloaded after a call to a function that leaves it alone

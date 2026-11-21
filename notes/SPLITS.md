@@ -1568,6 +1568,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088F0020` | 0x088F0020-0x088F0088 | 1 small function | 100 % |
 | `unit_088F0088` | 0x088F0088-0x088F012C | 1 function: calls one of the five functions after it, by kind | 100 % |
 | `unit_088F368C` | 0x088F368C-0x088F383C | 1 function: nine-entry list, the pad moves the cursor | 100 % |
+| `unit_088F61B4` | 0x088F61B4-0x088F6450 | 1 function: draws a box with a title, three coloured lines and two captions | 100 % |
 | `unit_088FB2B0` | 0x088FB2B0-0x088FBC3C | 1 function, NonMatching (97.7 %, registers); 20-entry list with a VFPU sine for the cursor, then a 5-row table of times | not linked |
 | `unit_088FC5F8` | 0x088FC5F8-0x088FC62C | 1 small function | 100 % |
 | `unit_088FD168` | 0x088FD168-0x088FD170 | 1 small function | 100 % |
