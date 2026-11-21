@@ -5,6 +5,10 @@ __ptmf_scall = 0x0890C370; // type:func size:0x34
 __ptmf_cmpr = 0x0890C3A4; // type:func size:0x34
 __ptmf_test = 0x0890C3D8; // type:func size:0x1C
 
+// 64-bit shift left: mwccpsp calls this name for `(u64) 1 << n` where
+// func_088FA6D8 calls this address (value in $a0/$a1, count in $a2/$a3)
+__ashldi3 = 0x08904350; // type:func
+
 // Soft-float double routines: mwccpsp calls these names for `(double) f`, `d * d`,
 // `d + d` and `(float) d` where func_088A7E44 calls these addresses
 // (notes/COMPILER.md)

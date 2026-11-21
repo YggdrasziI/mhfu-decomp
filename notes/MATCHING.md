@@ -1188,6 +1188,18 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   is `s32` there, `f(char *, s32, s16, char *)`; the next one keeps its `seh`
   (func_088912BC called from func_088F61B4).
 
+- `u8` locals kept on the stack as bytes (`sb` right after the load, `lbu` at
+  each call) where ours keeps masked words (`andi 0xFF` / `sw`, `lw`): the
+  callee's parameters are `u8`, not `s32` (func_0882B94C called from
+  func_088FA6D8).
+- A table row address built from the row counter at each pass (`sll v1, row,
+  4`) where ours steps a second counter kept on the stack: index the rows as
+  one array, `D[row + page * 3][col]` with `s16 D[][8]`, not
+  `D[page][row][col]` (func_088FA6D8).
+- `1 << n` in 64 bits calls `__ashldi3` (func_08904350) with the count in
+  $a2/$a3; `sra a3, n, 31` needs a signed 64-bit count, `(u64) 1 << (s64) n`
+  (a plain `int` count clears $a3) (func_088FA6D8).
+
 ## Open symptoms
 
 - $a0 not reloaded after a call to a function that leaves it alone

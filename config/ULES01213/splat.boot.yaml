@@ -1786,6 +1786,7 @@ segments:
       - [0xF2ACC, asm, text_088F4518]
       - [0xF4768, c, unit_088F61B4]
       - [0xF4A04, asm, text_088F6450]
+      - [0xF8C8C, c, unit_088FA6D8]
       - [0xF90C0, c, unit_088FAB0C]
       - [0xF93E4, asm, text_088FAE30]
       - [0xF9864, asm, text_088FB2B0]
