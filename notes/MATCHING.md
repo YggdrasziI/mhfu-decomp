@@ -1165,6 +1165,24 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - A pass-through argument count is a reading aid: counts only go up
   (`tools/psp/prototypes.py`).
 
+- A global read again after it was just tested or stored (`lw` after the `sw`
+  of the same symbol, and once more for the return value after a call):
+  declare it `volatile` (the decoder's error code D_09A52180: func_088EF460,
+  func_088EF75C, func_088EF894).
+- An `else if` chain whose branches all meet at a `b` over the block that
+  follows (`b end` / `nop` after the chain, then `v0 = a0`), where ours sends
+  each branch straight to the end: the chain sets a local and the `if` block
+  ends with `return size;`, the other value is returned after it
+  (func_088EF55C; an `else` with one `return` at the end does not give it).
+- The address of a global kept in one register as the base of a run of stores
+  (`lui v1` / `addiu v1` once, then `sw x, off(v1)`), where a pointer local set
+  to `&D_x` is folded into every store (`lui` + `sw %lo` each): set the
+  pointer through an integer cast, `p = (T *) (s32) &D_x;` (func_088EF9C8).
+  To replay on func_08837D54 (open symptom below).
+- `seb v0, v1` of a constant register in one case of a `switch` that returns
+  small constants: the result goes through an `s8` local (`ret = 1; break;`
+  ... `return ret;`) in a function that returns `s8` (func_088EFB18).
+
 ## Open symptoms
 
 - $a0 not reloaded after a call to a function that leaves it alone
@@ -1205,3 +1223,8 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - A constant table address kept in a saved register and read at +4 / +6
   (`lui s3` / `addiu s3` once), where ours loads `lui` + `lh` at each use:
   func_08837D54 (pointer locals, `volatile`, inline helper tried).
+- The second of three values tested in a row (`beql` A, `beq` B, `beq` C, B and
+  C sharing the block after the default): ours copies the shared store into
+  the delay slot of B's branch (`beql`): func_088EFB18.
+- Two saved registers swapped (a pointer to a global in `$s0`, the last
+  argument in `$s1`) whatever the declaration order: func_088EF9C8.

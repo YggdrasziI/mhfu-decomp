@@ -1553,8 +1553,11 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088EF348` | 0x088EF348-0x088EF380 | 4 forwarders with a fixed first argument, 1 empty function | 100 % |
 | `unit_088EF380` | 0x088EF380-0x088EF3E0 | 3 small functions | 100 % |
 | `unit_088EF3E0` | 0x088EF3E0-0x088EF460 | 1 small function | 100 % |
+| `unit_088EF460` | 0x088EF460-0x088EF488 | 1 function: the error callback of the JPEG decoder (ends the thread with the error code) | 100 % |
 | `unit_088EF488` | 0x088EF488-0x088EF4A8 | 4 empty callbacks | 100 % |
 | `unit_088EF4A8` | 0x088EF4A8-0x088EF55C | 1 small function | 100 % |
+| `unit_088EF55C` | 0x088EF55C-0x088EF9C8 | 4 functions: a JPEG image decoded into a texture by a thread of its own (IJG library); speed setting | 100 % |
+| `unit_088EF9C8` | 0x088EF9C8-0x088EFC04 | 2 functions, NonMatching (98.8 % saved registers, 98.0 % one branch): start and state of the on-screen keyboard | not linked |
 | `unit_088EFC04` | 0x088EFC04-0x088EFC14 | 2 small functions | 100 % |
 | `unit_088EFF1C` | 0x088EFF1C-0x088EFF78 | 1 small function | 100 % |
 | `unit_088EFF78` | 0x088EFF78-0x088EFF88 | 1 small function | 100 % |
