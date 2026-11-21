@@ -34,7 +34,7 @@ Commits before `15e9c9d` (first units, from `unit_088A6024` on) were not measure
 | 2026-11-18 | `e57bc89` | 16.50 % | 1506 / 3573 | 1167 | Region around 0x088B0000 |
 | 2026-11-19 | `12bf4da` | 20.02 % | 1678 / 3575 | 1264 | VFPU code in `asm` blocks, C++ units with virtual calls |
 | 2026-11-20 | `c8059f8` | 25.51 % | 1802 / 3575 | 1312 | IJG JPEG library linked from its unmodified sources |
-| 2026-11-21 | `50474fb` | 422220 / 1089072 bytes (38.77 %) | 2020 / 3576 | 1400 | Region 0x088EF380-0x089038C4 complete but for four functions; build flag `-inline bottomup`; 50 NonMatching functions retried with the newer source forms now match |
+| 2026-11-21 | `2407787` | 428200 / 1089072 bytes (39.32 %) | 2047 / 3576 | 1389 | Region 0x088EF380-0x089038C4 complete but for four functions; build flag `-inline bottomup`; 50 NonMatching functions retried with the newer source forms now match; static callees defined before their callers keep argument registers across calls (three units merged) |
 
 From 2026-11-12 (`f84b2f1`) on, one row per day: the last commit recorded that
 day in `progress/ULES01213/history.csv`, which has every measured commit. Rows
