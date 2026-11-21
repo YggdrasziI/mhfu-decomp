@@ -1246,6 +1246,13 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - `sltu v0` + `bnel` with the constant branch second:
   `if (!(max < *val)) { computed } else { constants }` (func_088F7108).
 
+- Two compiler copy loops (`lh` / `sh`, counting down), one at entry and one
+  later: the first is an initialised array at function scope, the second an
+  initialised array declared in a nested block at the place of the copy. A
+  small buffer that must sit below it on the stack is declared inside the loop
+  body that uses it (func_088F56B8).
+- `addiu 8` before `addu base`: `y + ((j / 24) * 16 + 8)` (func_088F56B8).
+
 ## Open symptoms
 
 - $a0 not reloaded after a call to a function that leaves it alone

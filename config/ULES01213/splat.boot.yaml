@@ -1788,7 +1788,7 @@ segments:
       - [0xF27C4, asm, text_088F4210]
       - [0xF2ACC, c, unit_088F4518]
       - [0xF3030, asm, text_088F4A7C]
-      - [0xF3C6C, asm, text_088F56B8]
+      - [0xF3C6C, c, unit_088F56B8]
       - [0xF423C, c, unit_088F5C88]
       - [0xF4768, c, unit_088F61B4]
       - [0xF4A04, asm, text_088F6450]
@@ -1961,6 +1961,9 @@ segments:
       - [0x1B0FE0, data, data_089B2A2C]
       - [0x1B0FE8, .data, unit_088B01BC]
       - [0x1B0FF0, data, data_089B2A3C]
+      - [0x1B6AB0, .data, unit_088F56B8]
+      - [0x1B6ADE, pad, pad_089B852A]     # 2 bytes of padding after the s16[7] table
+      - [0x1B6AE0, data, data_089B852C]
       - { start: 0x1CA044, type: bss, vram: 0x089CBA90, name: bss }
 
   - [0x1CA044, bin, elf_tail]
