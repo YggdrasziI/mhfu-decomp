@@ -1200,6 +1200,11 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   $a2/$a3; `sra a3, n, 31` needs a signed 64-bit count, `(u64) 1 << (s64) n`
   (a plain `int` count clears $a3) (func_088FA6D8).
 
+- `lw` + `srl 15` and `lhu` + `andi 0x7FFF` on the same word: bit-fields,
+  `struct { u32 a : 15; u32 b : 17; }`. `a % 12` divides signed (`div`, the
+  field is promoted to `int`); the original's `divu` is `a % 12U`
+  (func_088FAE30).
+
 ## Open symptoms
 
 - $a0 not reloaded after a call to a function that leaves it alone

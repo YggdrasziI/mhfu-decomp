@@ -1572,6 +1572,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088F61B4` | 0x088F61B4-0x088F6450 | 1 function: draws a box with a title, three coloured lines and two captions | 100 % |
 | `unit_088FA6D8` | 0x088FA6D8-0x088FAB0C | 1 function (speed): draws a grid of three rows of eight cells from a 64-bit mask, the cursor, the selected cell and the page number | 100 % |
 | `unit_088FAB0C` | 0x088FAB0C-0x088FAE30 | 1 function: draws a page of nine lines out of a 31-entry list, with frame, captions and page number | 100 % |
+| `unit_088FAE30` | 0x088FAE30-0x088FB2B0 | 1 function (speed): draws a page of nine lines out of 23 records (name, time, count; 15-bit and 17-bit fields) | 100 % |
 | `unit_088FB2B0` | 0x088FB2B0-0x088FBC3C | 1 function, NonMatching (97.7 %, registers); 20-entry list with a VFPU sine for the cursor, then a 5-row table of times | not linked |
 | `unit_088FC5F8` | 0x088FC5F8-0x088FC62C | 1 small function | 100 % |
 | `unit_088FD168` | 0x088FD168-0x088FD170 | 1 small function | 100 % |
