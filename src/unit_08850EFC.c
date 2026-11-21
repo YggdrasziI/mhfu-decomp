@@ -7,12 +7,11 @@
 
 #pragma optimize_for_size off
 
-typedef int s32;
 typedef short s16;
 
-extern s16 func_08850E58(void);
+extern s16 func_08850E58(char *);
 
-s16 func_08850EFC(s32 arg0, s16 arg1) {
+s16 func_08850EFC(char *arg0, s16 arg1) {
     s16 max;
     s16 hi;
 
@@ -24,7 +23,7 @@ s16 func_08850EFC(s32 arg0, s16 arg1) {
         }
         return arg1;
     }
-    max = func_08850E58() - 1;
+    max = func_08850E58(arg0) - 1;
     hi = arg1 / 100;
     if (max < hi) {
         hi = max;
