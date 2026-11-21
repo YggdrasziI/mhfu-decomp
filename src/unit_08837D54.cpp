@@ -3,17 +3,13 @@
  * Bounds (hypothesis): 1 function between code still in assembly
  * (text_088351F0 and text_08838004).
  *
- * C++. The rectangle is an initialised local; its constant would be the
- * unit's .data (0x0893B270-0x0893B278). Optimized for speed: the divisions by
- * 100 and 10 are multiplications.
+ * C++. The rectangle is an initialised local; its constant is the unit's
+ * .data (0x0893B270-0x0893B278). Optimized for speed: the divisions by 100
+ * and 10 are multiplications.
  *
- * NonMatching: func_08837D54 84.6 %. The original keeps the address of the
- * record table D_08939850 in $s3 (the register of arg2 once it is dead) and
- * reads +4 / +6 through it; ours loads `lui` + `lh` at each use, so the
- * saved registers of n and arg2 differ and the two calls are scheduled
- * otherwise. Tried: an `s16 *` / record pointer local (early or late),
- * `volatile` pointer, an inline helper taking the record pointer, a structure
- * for the rectangle (it is then kept in registers; the `u16` array is not).
+ * The address of the record table D_08939850 is kept in $s3 for both calls:
+ * the pointer is set through an integer cast; a plain `&D_08939850[0]` is
+ * folded into each read (notes/MATCHING.md).
  */
 
 #pragma optimize_for_size off
@@ -87,12 +83,12 @@ void func_08837D54(char *arg0, s16 arg1, s16 arg2, s16 arg3, s16 arg4) {
     func_08890E38(D_08A631A8, 0);
     func_08890DFC(D_08A631A8, arg1, arg2);
     func_0889134C(D_08A631A8, &D_0893B220, text);
-    if (2 > arg4) {
+    if (arg4 <= 1) {
         return;
     }
     u16 r[4] = {0x10, 0, 0x18, 0xE};
 
-    p = &D_08939850[0];
+    p = (Rec12 *) (s32) &D_08939850[0];
     y = arg2 - r[1];
     draw_rect(arg0, arg1 - r[0], y, p, (u8 *)&color, 1);
     draw_rect(arg0, arg1 + r[2] + r[3] * n, y, p, (u8 *)&color, 0);

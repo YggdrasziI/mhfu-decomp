@@ -1177,8 +1177,8 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - The address of a global kept in one register as the base of a run of stores
   (`lui v1` / `addiu v1` once, then `sw x, off(v1)`), where a pointer local set
   to `&D_x` is folded into every store (`lui` + `sw %lo` each): set the
-  pointer through an integer cast, `p = (T *) (s32) &D_x;` (func_088EF9C8).
-  To replay on func_08837D54 (open symptom below).
+  pointer through an integer cast, `p = (T *) (s32) &D_x;` (func_088EF9C8;
+  func_08837D54, a saved register kept for two calls: 84.6 % -> 100 %).
 - `seb v0, v1` of a constant register in one case of a `switch` that returns
   small constants: the result goes through an `s8` local (`ret = 1; break;`
   ... `return ret;`) in a function that returns `s8` (func_088EFB18).
@@ -1242,9 +1242,6 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - Scheduling: a load placed before / after an index computation (func_088307BC,
   func_0884424C `trunc.w.s`).
 - Unfilled `jal` delay slot (func_08813CF8).
-- A constant table address kept in a saved register and read at +4 / +6
-  (`lui s3` / `addiu s3` once), where ours loads `lui` + `lh` at each use:
-  func_08837D54 (pointer locals, `volatile`, inline helper tried).
 - The second of three values tested in a row (`beql` A, `beq` B, `beq` C, B and
   C sharing the block after the default): ours copies the shared store into
   the delay slot of B's branch (`beql`): func_088EFB18.

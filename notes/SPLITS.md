@@ -310,7 +310,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08834D04` | 0x08834D04-0x08834D3C | 1 function (returns the halfword at +0x111E, or func_0884FB6C when the flag at +0x111D is clear) | 100 % |
 | `unit_08834D3C` | 0x08834D3C-0x08835098 | 1 function (C++, dispatch on a byte to 13 cases); jump table 0x08930F74-0x08930FA8 in the unit | 100 % |
 | `unit_08835098` | 0x08835098-0x088351F0 | 1 function (dispatch to 12 functions on a byte, 16-bit result); jump table 0x08930FA8-0x08930FDC in the unit | 100 % |
-| `unit_08837D54` | 0x08837D54-0x08838004 | 1 function, NonMatching (C++, 84.6 %: the record table D_08939850 is not kept in a register); formats a number with one of three formats, then draws two items | not linked |
+| `unit_08837D54` | 0x08837D54-0x08838004 | 1 function (C++, speed): formats a number with one of three formats, then draws two items; `.data` 0x0893B270-0x0893B278 (the local `u16[4]` initializer) | 100 % |
 | `unit_088380B4` | 0x088380B4-0x08838458 | 1 function (an item count drawn with full-width parentheses); `.data` 0x0893B298-0x0893B2A0 (the two local `char[4]` initializers) | 100 % |
 | `unit_08838AB4` | 0x08838AB4-0x08838B08 | 1 function (`switch` on a byte argument); jump table 0x089310F0-0x08931124 in the unit | 100 % |
 | `unit_08838E0C` | 0x08838E0C-0x08838E30 | 1 small function | 100 % |
