@@ -1569,7 +1569,11 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088F0088` | 0x088F0088-0x088F012C | 1 function: calls one of the five functions after it, by kind | 100 % |
 | `unit_088F368C` | 0x088F368C-0x088F383C | 1 function: nine-entry list, the pad moves the cursor | 100 % |
 | `unit_088F4210` | 0x088F4210-0x088F4518 | 1 function, NonMatching (78.2 %, orders): a sprite shrunk around its centre, sent as two vertices and nine commands to the display list (inline packet builder, VFPU square root) | not linked |
+| `unit_088F4518` | 0x088F4518-0x088F4A7C | 1 function: a sprite drawn as three stacked bands (stretched by arg3 lines), each sent as two vertices and nine commands to the display list (inline packet helper) | 100 % |
+| `unit_088F5C88` | 0x088F5C88-0x088F61B4 | 1 function (speed): one page of seven lines of a list box, page number and caption of the selected entry | 100 % |
 | `unit_088F61B4` | 0x088F61B4-0x088F6450 | 1 function: draws a box with a title, three coloured lines and two captions | 100 % |
+| `unit_088F69B4` | 0x088F69B4-0x088F7108 | 1 function (speed): status page (frame pieces, name, seven lines, six icons, 48 glyphs on 24 columns, gauge, counters) | 100 % |
+| `unit_088F7108` | 0x088F7108-0x088F7620 | 1 function (speed): bar chart with a scale and eleven coloured bars; reads the 15 words at 0x089B85A4-0x089B85E0 as externs (probably its own initialisers, left in the data piece) | 100 % |
 | `unit_088FA6D8` | 0x088FA6D8-0x088FAB0C | 1 function (speed): draws a grid of three rows of eight cells from a 64-bit mask, the cursor, the selected cell and the page number | 100 % |
 | `unit_088FAB0C` | 0x088FAB0C-0x088FAE30 | 1 function: draws a page of nine lines out of a 31-entry list, with frame, captions and page number | 100 % |
 | `unit_088FAE30` | 0x088FAE30-0x088FB2B0 | 1 function (speed): draws a page of nine lines out of 23 records (name, time, count; 15-bit and 17-bit fields) | 100 % |

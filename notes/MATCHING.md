@@ -1207,6 +1207,45 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   field is promoted to `int`); the original's `divu` is `a % 12U`
   (func_088FAE30).
 
+- Display-list packet helper (`0x80198`, func_088596C8), matched in
+  func_088F4518 (`submit` in unit_088F4518.c):
+  - count read twice with no store in between: once through a cast
+    (`nv = *(s32 *) pkt;`, before `cur = list->cur;`) for the `> 0` test, once
+    as `pkt->nVtx + pkt->nCmd` in the room test;
+  - source built as `&nCmd` then `+4`: walk a word pointer, `src = &pkt->nCmd;
+    count = *src++; skip = src[-2]; n = pkt->nVtx + count;`;
+  - copy loop as a guarded `do { *list->cur = *src; list->cur++; i++; src++; }
+    while (i < n);`; locals declared `i, nv, skip, n, src, cur, count`;
+  - the packet words are written in natural order with the full expression
+    repeated in each block (no shared locals): the compiler shares them
+    across the inlined copies and orders the stores itself.
+- A global structure read through one saved base register from its first use:
+  `s16 *spr = (s16 *) &D_x;` with the extern kept as the structure, indexed
+  `spr[n]` (func_088F4518); a structure pointer local folds.
+- Argument loads in the wrong order around the global in `$a0`: read the
+  fields as `u16` and let the callee's parameter type convert (`s16` -> `lh`,
+  `u16` -> `lhu`, `u8` -> `lbu`) (func_088F69B4, func_088F7108).
+- A loop pointer's `lui` far before its loop: initialise the pointer at its
+  declaration and leave it out of the `for` (func_088F69B4).
+- Several loops in one function, saved registers swapped: one counter per
+  loop, then permute the declarations (func_088F69B4, func_088F5C88).
+- Speed setting: one loop may need explicit stepped variables in the `for`
+  header and the next the indexed form (func_088F69B4).
+- A template copied member by member with one symbol per member: one
+  assignment per member from separate externs, in C (func_088F5C88).
+- Stack order of local arrays: reverse of the declaration order
+  (func_088F5C88).
+- A byte re-read through a saved pointer after a call: a structure member
+  array read both times, the inner call's result stored in a local first
+  (func_088F5C88).
+- `lb; beqz; seb; beqz` before a speed loop: bare guard `if (x) { for (...; i
+  < x; ...) }` with a `u32` counter; `!= 0` drops the `seb` (func_088F7108).
+- A constant of more than 16 bytes copied to the stack word by word through
+  `lwc1` / `swc1`: locals with a float view (`union { float f; u8 b[4]; }`),
+  one assignment per word from externs (func_088F7108).
+- `sltu v0` + `bnel` with the constant branch second:
+  `if (!(max < *val)) { computed } else { constants }` (func_088F7108).
+
 ## Open symptoms
 
 - $a0 not reloaded after a call to a function that leaves it alone
