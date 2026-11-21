@@ -1474,7 +1474,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088DB534` | 0x088DB534-0x088DB5C0 | 1 small function | 100 % |
 | `unit_088DB5C0` | 0x088DB5C0-0x088DB5D8 | 2 small functions | 100 % |
 | `unit_088DB5D8` | 0x088DB5D8-0x088DB608 | 1 small function | 100 % |
-| `unit_088DB608` | 0x088DB608-0x088DB990 | 1 function, NonMatching (99.9 %: two registers swapped in a table lookup); creates the object of a slot and appends it to list 2 of D_08A62C5C | not linked |
+| `unit_088DB608` | 0x088DB608-0x088DB990 | 1 function, C++; creates the object of a slot and appends it to list 2 of D_08A62C5C | 100 % |
 | `unit_088DB990` | 0x088DB990-0x088DBB5C | 2 functions (C++: func_088DB608 for the six used slots; removal of a slot's object from its list, destruction and free) | 100 % |
 | `unit_088DBB5C` | 0x088DBB5C-0x088DBBBC | 1 small function | 100 % |
 | `unit_088DBBBC` | 0x088DBBBC-0x088DBD98 | 1 function (per-slot step 0-7 sending values of a 0x8C-byte record); jump table 0x0893249C-0x089324BC in the unit | 100 % |

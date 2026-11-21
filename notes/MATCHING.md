@@ -1200,6 +1200,11 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   `#pragma opt_propagation off`, one `s32 idx = 8;` shared by both lookups
   and an inline helper that indexes `tbl[i]` with no copy of the index
   (func_088DC1F0, NonMatching for two saved registers).
+- Table pointer and computed index swapped in an inline lookup (`addu v1,
+  a0, v0` for `addu v1, v1, v0`): put the index in an earlier
+  function-level local not used again, not in a fresh local, with a helper
+  that indexes `tbl[i]` with no copy (func_088DB608; `opt_propagation off`
+  hurts the rest of that function).
 - A parameter copied unextended into a saved register and extended at each
   use: an `s32` local assigned in its own statement (`kk = k;`) passed to
   `s16` parameters; the `s16` call result stored back into the same local
@@ -1521,10 +1526,6 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - An argument register not reloaded after a call to a function that
   leaves it alone ($a0: func_088A6BA0, func_088AD4EC; $a3: func_088AD378,
   whose callee func_088AD2FC never uses it; notes/COMPILER.md).
-- Lookup in the table of D_09A4F0D0 (0xC-byte entries): table pointer and
-  index registers swapped (func_088DB608, 99.89 %). Not yet tried with the
-  form that fixed the same lookup in func_088DC1F0 (`#pragma
-  opt_propagation off`, "Calls and allocation").
 - Two part pointers in swapped saved registers after the lookup above
   (func_088DC1F0, 99.78 %).
 - Register-only differences (result kept in `$v0` then copied to a saved

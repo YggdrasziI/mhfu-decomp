@@ -2,8 +2,6 @@
  *
  * Bounds (hypothesis): 1 function between unit_088DB5D8 and unit_088DB990.
  *
- * NonMatching, 99.9 %: the code stays in the assembly piece text_088DB608.
- *
  * Creates the object of slot `arg1` (the first free slot for -1): 0x1120,
  * 0x10F0 or 0x11C0 bytes from the allocator at +0x80000 of D_08A62C5C,
  * with the constructor chosen by the global mode bits, appends it to list 2
@@ -12,16 +10,11 @@
  * D_09A4F0D0 (0xC-byte entries, when their bit 2 is set) and its index,
  * then runs its virtual functions at 0x10 and 0x48.
  *
- * Gap: in the table lookup the original keeps the table pointer in `$v1`
- * and the index in `$a0`; ours has them swapped (the entry address is then
- * `addu v1, a0, v0` for `addu v1, v1, v0`). Tried for the lookup: an inline
- * function on a pointer stepped by the index (parameter itself or a local,
- * either parameter order), on the table indexed twice with or without a
- * copy of the index, a member function of the table (array member, pointer
- * member, `this` cast), the lookup written in the function with a ternary
- * or `if` / `else`, an unsigned index, a result variable; and every order
- * of the five declarations of the function. The forms without a copy of
- * the index fold the `+ 1` into the offsets (99.5 %).
+ * The index `arg1 + 1` of the table lookup goes through the function-level
+ * local `r` (it also holds the func_088DB5D8 result) and the inline helper
+ * indexes the table with no copy of the index: a fresh index local swaps the
+ * table and index registers, no local at all folds the `+ 1` into the
+ * offsets.
  *
  * C++: bool conversions and virtual calls.
  */
@@ -125,10 +118,8 @@ extern void func_088DB49C(Group *, Obj *);
     }
 
 static inline s32 entry_value(Entry *tbl, s32 i) {
-    s32 n = i;
-
-    if (tbl[n].flags & 2) {
-        return tbl[n].value;
+    if (tbl[i].flags & 2) {
+        return tbl[i].value;
     }
     return 0;
 }
@@ -168,7 +159,8 @@ Obj *func_088DB608(Group *arg0, s32 arg1) {
         COUNT(g)++;
         func_08867EC8(D_08A62C5C, obj, arg1);
         func_08868234(D_08A62C5C, obj, arg1);
-        v = entry_value(D_09A4F0D0, arg1 + 1);
+        r = arg1 + 1;
+        v = entry_value(D_09A4F0D0, r);
         if (v != 0) {
             *(s32 *)((char *) obj + 0x1AC) = v;
         }
