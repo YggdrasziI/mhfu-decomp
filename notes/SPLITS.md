@@ -1214,9 +1214,8 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088B57A0` | 0x088B57A0-0x088B5AC8 | 4 functions (message builders 0x12 / 0x13, record list read into D_09A28E54, error reply) | 100 % |
 | `unit_088B5AC8` | 0x088B5AC8-0x088B5C30 | 1 function (message builder 0x14 with the record list) | 100 % |
 | `unit_088B5C30` | 0x088B5C30-0x088B5D3C | 1 function (message builder 0x17) | 100 % |
-| `unit_088B5D3C` | 0x088B5D3C-0x088B5EDC | 1 function (stores a peer record at D_09A28BFC) | NonMatching (97.12 %) |
+| `unit_088B5D3C` | 0x088B5D3C-0x088B5EDC | 1 function (stores a peer record at D_09A28BFC) | 100 % |
 | `unit_088B5EDC` | 0x088B5EDC-0x088B5FC8 | 1 function (message builder 0x18) | 100 % |
-| `unit_088B5D3C` | 0x088B5D3C-0x088B5EDC | 1 function (C++; NonMatching 97.2 %: copies a 0xC8-byte structure to D_09A28BFC member by member, two registers swapped) | 100 % |
 | `unit_088B5FC8` | 0x088B5FC8-0x088B608C | 1 function (C++; clears D_09A28BFC and stores an 8-byte address in it) | 100 % |
 | `unit_088B608C` | 0x088B608C-0x088B60E8 | 1 small function | 100 % |
 | `unit_088B60E8` | 0x088B60E8-0x088B6338 | 3 functions (message builders 0x1A / 0x1B) | 100 % |

@@ -191,7 +191,8 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - Byte pairs copied with both loads before both stores (`D_X+0x1` against
   `D_X+1` in the diff, 100 % in the report):
   `typedef struct {u8 a, b;} AB;`, `*(AB *) &dst = *(AB *) &src;`
-  (func_088B4FAC, func_088B5568, func_088B70E8, func_088B7350).
+  (func_088B4FAC, func_088B5568, func_088B5D3C, func_088B70E8,
+  func_088B7350).
 
 ## Addresses, arrays and structures
 
