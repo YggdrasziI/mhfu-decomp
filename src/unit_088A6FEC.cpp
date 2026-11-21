@@ -1,6 +1,5 @@
 /* unit_088A6FEC: 0x088A6FEC-0x088A7090 (ULES01213)
  *
- * NonMatching: compiled for the report only, the code is linked from assembly.
  * Bounds (hypothesis): 1 function (constructor shape) before unit_088A7090 (its
  * destructor shape). Class layout and names are guesses from the code; same
  * shape as func_088B97BC (unit_088B97BC.cpp).
@@ -20,12 +19,13 @@ extern s32 __ptmf_test(void *);
 
 struct A { char *vt; T t; char pad[0x1C - 0x10]; };
 struct D;
-struct S { s32 s0; inline void reg(); };
+struct S { s32 s0; };
 struct D : A, S { s32 f20; s32 f24; };
-inline void S::reg() { D_09A0FDC4 = (s32) &static_cast<D &>(*this); }
 
-/* The original stores (this + 0x1C) - 0x1C to D_09A0FDC4 without folding it;
- * every form tried folds it to `this` (see func_088B97BC). */
+/* (this + 0x1C) - 0x1C is stored to D_09A0FDC4 without being folded (a base
+ * at +0x1C cast back to the derived class: hypothesis): the sum goes through
+ * an integer cast (notes/MATCHING.md); static_cast of a pointer or reference
+ * and an inline member of the base fold it to `this`. */
 extern "C" D *func_088A6FEC(D *d) {
     T t;
     d->vt = &D_089BAB98;
@@ -35,10 +35,7 @@ extern "C" D *func_088A6FEC(D *d) {
     if (__ptmf_test(&t)) {
         d->t = t;
     }
-    {
-        S &s = *d;
-        s.reg();
-    }
+    D_09A0FDC4 = (s32) ((char *) (s32) ((char *) d + 0x1C) - 0x1C);
     d->vt = &D_089BABF8;
     d->f20 = 0;
     d->f24 = 0;

@@ -219,9 +219,11 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   (func_088A6690).
 - A `char **this` (destructor shapes) used with a member address `this + 0x1C`:
   m2c scales it by 4; it is `(char *) this + 0x1C` (`byte_offsets`).
-- Constructor shapes that store `(this + 0x1C) - 0x1C` to a global (a base at
-  +0x1C cast back): not solved; every form tried folds it (func_088B97BC,
-  func_088CC568, func_088A6FEC).
+- Constructor shapes that store `(this + 0x1C) - 0x1C` to a global unfolded
+  (`addiu v0, s0, 0x1C` / `addiu v1, v0, -0x1C`): the sum goes through an
+  integer cast, `D = (s32) ((char *) (s32) ((char *) d + 0x1C) - 0x1C);`.
+  static_cast and inline base members fold it (func_088B97BC, func_088CC568,
+  func_088A6FEC).
 - A constant 12-byte object split by splat (`D_089B9228` + 8 vs `D_089B9230`) must be
   one symbol before a structure copy can match (func_0890682C).
 - A structure copied member by member where small byte arrays are copied two bytes

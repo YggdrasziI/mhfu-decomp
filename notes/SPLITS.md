@@ -906,7 +906,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088A6A78` | 0x088A6A78-0x088A6BA0 | 1 small function | 100 % |
 | `unit_088A6BA0` | 0x088A6BA0-0x088A6C48 | 1 function (message of include/unk_msg.h) | NonMatching |
 | `unit_088A6C48` | 0x088A6C48-0x088A6FEC | 5 functions building and sending the messages of include/unk_msg.h | 100 % |
-| `unit_088A6FEC` | 0x088A6FEC-0x088A7090 | 1 function (constructor shape), C++ | NonMatching |
+| `unit_088A6FEC` | 0x088A6FEC-0x088A7090 | 1 function (constructor shape), C++ | 100 % |
 | `unit_088A7090` | 0x088A7090-0x088A713C | 1 small function | 100 % |
 | `unit_088A713C` | 0x088A713C-0x088A72F0 | 1 function (state machine), C++ | 100 % |
 | `unit_088A72F0` | 0x088A72F0-0x088A7308 | 3 small functions | 100 % |
@@ -1254,7 +1254,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088B8A0C` | 0x088B8A0C-0x088B8A58 | 1 small function | 100 % |
 | `unit_088B96D8` | 0x088B96D8-0x088B97A0 | 1 function (switch setting flag bits) | 100 % |
 | `unit_088B97A0` | 0x088B97A0-0x088B97BC | 1 small function | 100 % |
-| `unit_088B97BC` | 0x088B97BC-0x088B9884 | 1 function (constructor shape), C++ | NonMatching |
+| `unit_088B97BC` | 0x088B97BC-0x088B9884 | 1 function (constructor shape), C++ | 100 % |
 | `unit_088B9884` | 0x088B9884-0x088B9910 | 1 function (destructor shape) | 100 % |
 | `unit_088B9910` | 0x088B9910-0x088B996C | 1 small function | 100 % |
 | `unit_088B996C` | 0x088B996C-0x088B9B0C | 1 function (state machine, member-pointer reset), C++ | 100 % |
@@ -1370,7 +1370,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088CC4D8` | 0x088CC4D8-0x088CC508 | six functions returning 0 | 100 % |
 | `unit_088CC508` | 0x088CC508-0x088CC558 | 2 small functions (C++) | 100 % |
 | `unit_088CC558` | 0x088CC558-0x088CC568 | 2 small functions | 100 % |
-| `unit_088CC568` | 0x088CC568-0x088CC604 | 1 function (constructor shape), C++ | NonMatching |
+| `unit_088CC568` | 0x088CC568-0x088CC604 | 1 function (constructor shape), C++ | 100 % |
 | `unit_088CC604` | 0x088CC604-0x088CC828 | 2 functions (destructor shape, state machine), C++ | 100 % |
 | `unit_088CC828` | 0x088CC828-0x088CD804 | 7 functions (C++; queue of four 0x20-byte entries at +4 pointing at 0x44-byte records of the table at 0x089B5648: fill by id, step of the current entry) | 100 % |
 | `unit_088CD804` | 0x088CD804-0x088CD964 | 1 function (handles an entry by the kind byte at +6 of its record); jump table 0x08932380-0x089323B0 in the unit | 100 % |

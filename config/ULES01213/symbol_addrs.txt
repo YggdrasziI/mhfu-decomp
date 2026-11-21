@@ -253,3 +253,7 @@ jpeg_get_small = 0x088EF348; // type:func
 jpeg_free_small = 0x088EF354; // type:func
 jpeg_get_large = 0x088EF360; // type:func
 jpeg_free_large = 0x088EF36C; // type:func
+
+// float read by func_088B97BC (lwc1 at 0x2B34 off 0x089B0000); without this
+// name the word stays inside D_089B2B32
+D_089B2B34 = 0x089B2B34;
