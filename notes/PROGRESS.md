@@ -26,3 +26,18 @@ Commits before `15e9c9d` (first units, from `unit_088A6024` on) were not measure
 | 2026-11-12 | `ba091ee` | 40060 / 1089072 bytes (3.68 %) | 847 / 3573 | 624 | Callees still in assembly given to m2c with the argument count they read |
 | 2026-11-12 | `b05ac32` | 41020 / 1089072 bytes (3.77 %) | 858 / 3573 | 633 | Indexed loads from a symbol typed by element size |
 | 2026-11-12 | `67c8af9` | 41324 / 1089072 bytes (3.79 %) | 862 / 3573 | 637 | Stack buffers sized from the original frame |
+| 2026-11-12 | `f84b2f1` | 4.71 % | 977 / 3572 | 739 | Draft fixes in batches: bool flag tests, large field offsets, stack structures |
+| 2026-11-13 | `2d515ec` | 6.79 % | 1079 / 3572 | 797 | Call arguments, goto tails written out; progress card by region |
+| 2026-11-14 | `3b01c13` | 8.32 % | 1202 / 3573 | 907 | Structures by value, FPU code; `.data` and `.rodata` counted in the report |
+| 2026-11-16 | `9646129` | 10.02 % | 1320 / 3573 | 996 | Jump-table functions linked with their tables; NonMatching units; speed setting per unit |
+| 2026-11-17 | `4a10c1d` | 14.30 % | 1411 / 3573 | 1085 | Region by region, one function at a time; initialised local arrays as unit `.data` |
+| 2026-11-18 | `e57bc89` | 16.50 % | 1506 / 3573 | 1167 | Region around 0x088B0000 |
+| 2026-11-19 | `12bf4da` | 20.02 % | 1678 / 3575 | 1264 | VFPU code in `asm` blocks, C++ units with virtual calls |
+| 2026-11-20 | `c8059f8` | 25.51 % | 1802 / 3575 | 1312 | IJG JPEG library linked from its unmodified sources |
+| 2026-11-21 | `ba8d504` | 358324 / 1089072 bytes (32.90 %) | 1948 / 3576 | 1340 | Region 0x088EF380-0x088FB2B0: JPEG decoding thread, menu pages; integer-cast pointer unlocks four old units |
+
+From 2026-11-12 (`f84b2f1`) on, one row per day: the last commit recorded that
+day in `progress/ULES01213/history.csv`, which has every measured commit. Rows
+taken from that file give the matched code as a percentage only (the file
+does not keep the byte count); the units are the `c` / `cpp` pieces of the
+splat yaml at that commit.
