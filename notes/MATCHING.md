@@ -1288,6 +1288,42 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - `__ashldi3` with `sra a3` in the delay slot of the `jal`: a `u64` local,
   `mask = 1; mask <<= (s64) n;` (func_088F9EF4).
 
+- A large structure copied member by member (one count-down loop per array
+  member, scalars one by one): a C++ structure assignment `dst = *src;` in a
+  `.cpp` unit; in C it is a single word-copy loop. The copy shows the layout:
+  arrays with an even count go two elements per pass, an 8-aligned `lw` / `lw`
+  pair is an `s64`, `lwc1` runs through one base register are a nested
+  structure of floats (func_088F012C).
+- Speed unit whose byte-wise `clear()` comes out unrolled: add
+  `#pragma opt_unroll_loops off` next to the speed pragma (func_088F7620).
+- A record base stepped at offset 0 with large displacements: no pointer
+  variable, `((Big *) arg1)->recs[i]` with a `u32 i` (func_088F7620).
+- Tail `beqzl v0; or s0, s0, s2` then `move v0, s0`: early return,
+  `if (flag != 0) { return ret; } return ret | pad;` (func_088F1664).
+- `arg1 & 8` kept in a saved register: its own `s32` local; reassigning the
+  `u16` parameter masks it again at each use (func_088F1664).
+- `addu index, base` for a raw sum: index a typed array,
+  `((u16 *)(arg2 + 0x9A))[cursor]`; one-off reads as a cast pointer array and
+  loop accesses as structure members give the two orders (func_088F1664,
+  func_088F4A7C).
+- A saved old byte used unextended in `old - 1` but compared through `seb`:
+  `s32 old = *(s8 *) p;` and `!= (s8) old` (func_088F1664, func_088F9058).
+- Unlisted switch values reaching the last case through their own label:
+  `default:` written just before that `case` (func_088F1664).
+- A flag set in the delay slot of a `jal`: assign it before the call
+  (func_088F012C).
+- Descending `sb` of one constant into a local array: chained assignment
+  `a[0] = a[1] = ... = 5;` (func_088F4A7C).
+- Copy loop, load of a global, second copy loop: a nested block declaring
+  `s16 a[7] = {...}; s32 lang = ...; s16 b[7][5] = {...};` in that order
+  (func_088F4A7C).
+- A table index constant folded into the relocation where the original keeps
+  the `addiu`: cast the whole index, `(&D)[(u32) (sel + 0x3C)]`
+  (func_088F9058).
+- A sub-expression computed again in an `else` where ours reuses it: write
+  the second one with an unsigned constant, `(row + 1U) * 0x10 + 0x64`
+  (func_088F9058).
+
 ## Open symptoms
 
 - $a0 not reloaded after a call to a function that leaves it alone
