@@ -1559,6 +1559,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088EF55C` | 0x088EF55C-0x088EF9C8 | 4 functions: a JPEG image decoded into a texture by a thread of its own (IJG library); speed setting | 100 % |
 | `unit_088EF9C8` | 0x088EF9C8-0x088EFC04 | 2 functions, NonMatching (98.8 % saved registers, 98.0 % one branch): start and state of the on-screen keyboard | not linked |
 | `unit_088EFC04` | 0x088EFC04-0x088EFC14 | 2 small functions | 100 % |
+| `unit_088EFC14` | 0x088EFC14-0x088EFF1C | 1 function (C++, speed; VFPU: two matrices of an object from its scale and local matrix, turned for the ids 0x21-0x24, passed on by virtual calls) | 100 % |
 | `unit_088EFF1C` | 0x088EFF1C-0x088EFF78 | 1 small function | 100 % |
 | `unit_088EFF78` | 0x088EFF78-0x088EFF88 | 1 small function | 100 % |
 | `unit_088EFF88` | 0x088EFF88-0x088EFFD8 | 1 small function | 100 % |

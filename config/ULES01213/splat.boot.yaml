@@ -1771,7 +1771,7 @@ segments:
       - [0xEDB10, c, unit_088EF55C]
       - [0xEDF7C, asm, text_088EF9C8]
       - [0xEE1B8, c, unit_088EFC04]
-      - [0xEE1C8, asm, text_088EFC14]
+      - [0xEE1C8, cpp, unit_088EFC14]
       - [0xEE4D0, c, unit_088EFF1C]
       - [0xEE52C, c, unit_088EFF78]
       - [0xEE53C, c, unit_088EFF88]
