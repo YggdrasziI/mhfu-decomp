@@ -1521,13 +1521,43 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   in a `u32` or pointer local, `p = (s32) v;`, test `p`, then `obj = p;`
   after the free (func_088C3948).
 
+- An argument register live across a call without being saved or reloaded
+  (`addu a1, a0` in the `jal` delay slot, read again after the call; no
+  saved register for it): the callee is a `static` function defined earlier
+  in the same file; a global definition or an extern prototype is not
+  enough. Put the callee and all its callers in one unit
+  (func_088A13AC/140C/146C/14B8/072C/0820 calling func_088A014C,
+  func_088A6BA0, func_088AD378, func_088AD4EC; notes/COMPILER.md).
+- A parameter copy placed before a `jal` instead of in its delay slot, with
+  a `count = 0` there: assign the call result before the zero
+  initialisation; the zero then fills the next call's slot (func_088A0820).
+- Dead instructions left after a `b` (first instructions of blocks copied
+  into branch-likely slots) that `opt_rebuildconditionals off` does not
+  change: the body is a `static inline` helper with early returns, called
+  as `ret = body(arg); tail(); return ret;` (func_088A1268).
+- A pointer and a counter initialised for a loop in the wrong order: both
+  in the `for` header, counter first, `for (i = 0, p = base; ...)`
+  (func_088A08E4, func_088A0958).
+- A global sum loaded after a pointer chain in a comparison: compute the
+  sum in a local first (func_088A0DB8).
+- Upper bound tests that should use `slti at`: `v > 0x1FFF` rather than
+  `v >= 0x2000` (func_088A0360, func_088A0DB8, func_088A061C); a "big
+  enough" test with the bound on the left, `if (s <= x)` (func_088AD378).
+- `beql x==1 / bne x!=2` where ours gives a range check: `if (t != 1 && t !=
+  2) continue;` (func_088A072C); the range check itself is `(unsigned) (x -
+  1) < 2` (func_088A0820).
+- A list walk ending `bnel next, tail, top` with `n = next` in the slot: the
+  exit inside the loop with its own cleanup and return, `if (next == tail)
+  { unlock(); return 0; } n = next; } while (1);` (func_088AD378).
+- A third parameter copied to its saved register first and tested there:
+  copy it into a local at the top and loop on the local (func_088A01D8).
+- A field loaded in a guard's delay slot ahead of a `cond ? e : 0`: read it
+  into an `int` local before the comparison (func_088A0C74).
+
 ## Open symptoms
 
-- An argument register not reloaded after a call to a function that
-  leaves it alone ($a0: func_088A6BA0, func_088AD4EC; $a3: func_088AD378,
-  whose callee func_088AD2FC never uses it; notes/COMPILER.md).
-- Two part pointers in swapped saved registers after the lookup above
-  (func_088DC1F0, 99.78 %).
+- Two part pointers in swapped saved registers after the D_09A4F0D0
+  lookup (func_088DC1F0, 99.78 %).
 - Register-only differences (result kept in `$v0` then copied to a saved
   register: func_0884FDC4; see func_088C3948 in "Calls and allocation").
 - Two saved registers swapped (masked index and count) whatever the

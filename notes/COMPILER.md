@@ -182,20 +182,26 @@ else through the vtable. So these are named `__ptmf_scall`, `__ptmf_cmpr`, `__pt
 (no caller). `(bool) (flags & 1) != 0` gives the `andi`/`sltu`/`beqz` flag test seen
 with them.
 
-## Registers kept across a call (2026-11-16)
+## Registers kept across a call (2026-11-16, solved 2026-11-21)
 
-func_088A6BA0 calls func_088A6A78(&r, x), then func_088A6E44(&r, 0x10000003)
-without loading `&r` into $a0 again: the original relies on func_088A6A78 leaving
-$a0 alone. mwccpsp 3.0.1 (build 219) reloads it, even with func_088A6A78 defined
-earlier in the same file, and has no `-ipa` option. Hypothesis: the original
-compiler (2.4.1.01) tracks the registers a callee compiled earlier in the file
-uses; if so, other calls between functions of one object will show the same gap.
+Some callers keep an argument register live across a call without saving it:
+func_088A6BA0 passes `&r` to func_088A6E44 in the $a0 left by func_088A6A78;
+func_088AD378 keeps a list pointer in $a3 across func_088AD2FC; func_088AD4EC
+passes the heap in the $a0 left by func_088AD348; func_088A13AC, 088A140C,
+088A146C and 088A14B8 keep their argument in $a1 across func_088A014C.
 
-Second case: func_088AD378 keeps a list pointer in $a3 across its call to
-func_088AD2FC (same heap code); with func_088AD2FC defined earlier in the same
-file, mwccpsp 3.0.1 still moves the pointer to a saved register (NonMatching
-unit_088AD378, 92.87 %). func_088AD4EC passes the heap to func_088AD378 in $a0
-left by func_088AD348 (NonMatching unit_088AD4EC, 97.98 %).
+mwccpsp 3.0.1 (build 219) does the same when the callee is a `static` function
+defined earlier in the same file: it then knows which registers the callee
+uses. A global definition earlier in the file is not enough (the register is
+saved or reloaded), nor is an extern prototype. Checked with try.py on all
+seven callers: 73-98 % with an extern or global callee, 100 % with a static
+one (func_088AD378 and func_088A0820 also needed source-order changes).
+
+Consequence: the callee and its callers were in one source file, and the
+callee was `static` there (local symbol). In the splits, each such callee is
+in one unit with all its callers: unit_088A014C (0x088A014C-0x088A1500),
+unit_088A6A78 (0x088A6A78-0x088A6C48), unit_088AD2FC (0x088AD2FC-0x088AD63C).
+In each case the callee has no caller outside that range.
 
 ## Speed and space (2026-11-16)
 

@@ -851,23 +851,17 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0889F9C4` | 0x0889F9C4-0x0889FB94 | 1 function (reads up to 64 messages under the interrupt lock and dispatches them by id 0x10000000-0x1000000D); jump table 0x08931EE8-0x08931F20 in the unit | 100 % |
 | `unit_0889FD08` | 0x0889FD08-0x088A00B0 | 1 function, speed; one voice's volume, pan and pitch written to its output block | 100 % |
 | `unit_088A00B0` | 0x088A00B0-0x088A00D0 | 1 small function | 100 % |
-| `unit_088A0938` | 0x088A0938-0x088A0958 | 1 initialiser | 100 % |
-| `unit_088A0A80` | 0x088A0A80-0x088A0A90 | 1 small function | 100 % |
-| `unit_088A0A90` | 0x088A0A90-0x088A0A9C | 1 small function | 100 % |
-| `unit_088A0A9C` | 0x088A0A9C-0x088A0AB0 | 1 small function | 100 % |
-| `unit_088A0AB0` | 0x088A0AB0-0x088A0AFC | 1 small function | 100 % |
-| `unit_088A0AFC` | 0x088A0AFC-0x088A0BE4 | 1 small function | 100 % |
-| `unit_088A0BE4` | 0x088A0BE4-0x088A0C10 | 3 forwarders, 1 flag setter | 100 % |
-| `unit_088A0D70` | 0x088A0D70-0x088A0DB0 | 1 entry reset | 100 % |
-| `unit_088A0DB0` | 0x088A0DB0-0x088A0DB8 | 1 small function | 100 % |
-| `unit_088A10E0` | 0x088A10E0-0x088A10F8 | 3 small functions | 100 % |
-| `unit_088A11F0` | 0x088A11F0-0x088A1200 | 1 small function | 100 % |
-| `unit_088A13A4` | 0x088A13A4-0x088A13AC | 1 small function | 100 % |
+| `unit_088A00D0` | 0x088A00D0-0x088A014C | 1 function (clears the list entries of kind 7) | 100 % |
+| `unit_088A014C` | 0x088A014C-0x088A1500 | 36 functions, one source file (hypothesis): static func_088A014C and all its callers; voice list, levels and pans, message dispatch (notes/COMPILER.md, "Registers kept across a call") | 100 % |
+| `unit_088A1500` | 0x088A1500-0x088A1554 | 1 small function | 100 % |
+| `unit_088A1554` | 0x088A1554-0x088A16A4 | 1 function (ORs the flags of two lists under the interrupt lock) | 100 % |
+| `unit_088A16A4` | 0x088A16A4-0x088A173C | 1 small function | 100 % |
 | `unit_088A173C` | 0x088A173C-0x088A177C | 1 small function | 100 % |
 | `unit_088A177C` | 0x088A177C-0x088A1798 | 2 small functions | 100 % |
 | `unit_088A1798` | 0x088A1798-0x088A1848 | 3 small functions | 100 % |
 | `unit_088A1848` | 0x088A1848-0x088A18B8 | 1 small function | 100 % |
 | `unit_088A18B8` | 0x088A18B8-0x088A18E8 | 1 small function | 100 % |
+| `unit_088A18E8` | 0x088A18E8-0x088A1914 | 1 small function (sets a 0-0x7F level, returns the old one) | 100 % |
 | `unit_088A1914` | 0x088A1914-0x088A198C | 1 small function | 100 % |
 | `unit_088A2068` | 0x088A2068-0x088A20E4 | 1 small function | 100 % |
 | `unit_088A20E4` | 0x088A20E4-0x088A2204 | 1 function (state step on +0x54); jump table 0x08931F20-0x08931F38 in the unit | 100 % |
@@ -903,8 +897,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088A658C` | 0x088A658C-0x088A6780 | 4 functions building messages (byte-wise clear of include/unk_msg.h) | 100 % |
 | `unit_088A6780` | 0x088A6780-0x088A6798 | 2 small functions | 100 % |
 | `unit_088A6798` | 0x088A6798-0x088A6A78 | 8 functions filling a record of include/unk_msg.h for func_088A6E44 | 100 % |
-| `unit_088A6A78` | 0x088A6A78-0x088A6BA0 | 1 small function | 100 % |
-| `unit_088A6BA0` | 0x088A6BA0-0x088A6C48 | 1 function (message of include/unk_msg.h) | NonMatching |
+| `unit_088A6A78` | 0x088A6A78-0x088A6C48 | 2 functions: static field copy and its only caller (message of include/unk_msg.h) | 100 % |
 | `unit_088A6C48` | 0x088A6C48-0x088A6FEC | 5 functions building and sending the messages of include/unk_msg.h | 100 % |
 | `unit_088A6FEC` | 0x088A6FEC-0x088A7090 | 1 function (constructor shape), C++ | 100 % |
 | `unit_088A7090` | 0x088A7090-0x088A713C | 1 small function | 100 % |
@@ -994,11 +987,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088AD12C` | 0x088AD12C-0x088AD134 | 1 small function | 100 % |
 | `unit_088AD134` | 0x088AD134-0x088AD188 | 1 small function | 100 % |
 | `unit_088AD188` | 0x088AD188-0x088AD1EC | 2 small functions | 100 % |
-| `unit_088AD2FC` | 0x088AD2FC-0x088AD348 | 1 small function | 100 % |
-| `unit_088AD348` | 0x088AD348-0x088AD378 | 1 function (heap: block lookup by address) | 100 % |
-| `unit_088AD378` | 0x088AD378-0x088AD46C | 1 function (heap: allocation) | NonMatching (92.87 %) |
-| `unit_088AD46C` | 0x088AD46C-0x088AD4EC | 1 function (heap: release) | 100 % |
-| `unit_088AD4EC` | 0x088AD4EC-0x088AD63C | 1 function (heap: reallocation) | NonMatching (97.98 %) |
+| `unit_088AD2FC` | 0x088AD2FC-0x088AD63C | 5 functions (block heap: free entry, lookup, allocation, release, reallocation; two static helpers) | 100 % |
 | `unit_088AD63C` | 0x088AD63C-0x088AD708 | 1 function (reset of the peer table) | 100 % |
 | `unit_088AD708` | 0x088AD708-0x088AD87C | 1 function (peer table synchronisation with a peer list) | 100 % |
 | `unit_088AD87C` | 0x088AD87C-0x088ADA44 | 1 function (datagram receive from a known peer) | 100 % |
