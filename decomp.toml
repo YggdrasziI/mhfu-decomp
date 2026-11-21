@@ -38,6 +38,8 @@ flags = "-O4 -sdatathreshold 0"
 [compiler.drop_functions]
 "src/jpeg-6b/jdapimin.c" = ["jpeg_abort_decompress", "jpeg_input_complete", "jpeg_has_multiple_scans"]
 "src/jpeg-6b/jdapistd.c" = ["jpeg_read_raw_data", "jpeg_start_output", "jpeg_finish_output"]
+"src/jpeg-6b/jdmarker.c" = ["save_marker", "jpeg_save_markers", "jpeg_set_marker_processor"]
+"src/jpeg-6b/jdmaster.c" = ["jpeg_new_colormap"]
 
 # tools/psp/batch_units.py: the Metrowerks regions of .text (notes/SPLITS.md):
 # game and engine, one game object before the start-up code, then the C++

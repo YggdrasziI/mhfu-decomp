@@ -29,6 +29,12 @@ bytes byte for byte; `jdcoefct.c`, `jdinput.c`, `jdmainct.c` and `jdsample.c` ar
 complete. Still different: `start_pass` of `jddctmgr.c`; not in the image:
 `save_marker`, `jpeg_save_markers`, `jpeg_set_marker_processor` (`jdmarker.c`),
 `jpeg_new_colormap` (`jdmaster.c`), four allocation stubs of `jmemnobs.c`.
+2026-11-21: every file of that survey is linked from its source except
+`jddctmgr.c` (0x088E13C0-0x088E1B20). Left in the library's range: that file and
+0x088EB054-0x088EC3E8 (`jmemmgr.c`, `jmemnobs.c`, `jerror.c`: hypothesis, not
+built). Three static names are used by two files each (`start_input_pass`,
+`build_ycc_rgb_table`, `process_restart`): both addresses carry the name in
+`symbol_addrs.txt`, with splat's `allow_duplicated`.
 Functions of a linked file that are not in the image are taken as dropped by the
 original linker (hypothesis).
 
@@ -1508,19 +1514,24 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `jpeg-6b/jdapistd` | 0x088DEF50-0x088DF2C4 | 3 functions: `jdapistd.c` of the library, unmodified; 3 functions not in the image removed from the object | 100 % |
 | `jpeg-6b/jdcoefct` | 0x088DF2C4-0x088E0640 | 10 functions: `jdcoefct.c` of the library, unmodified (`MAX_COMPONENTS` 4 in `jmorecfg.h`) | 100 % |
 | `jpeg-6b/jdcolor` | 0x088E0640-0x088E13C0 | 8 functions: `jdcolor.c` of the library, unmodified | 100 % |
-| `unit_088E30B0` | 0x088E30B0-0x088E30C4 | 1 small function | 100 % |
-| `unit_088E62EC` | 0x088E62EC-0x088E6310 | 1 small function | 100 % |
-| `unit_088E744C` | 0x088E744C-0x088E7460 | 1 small function | 100 % |
-| `unit_088E9048` | 0x088E9048-0x088E9060 | 1 small function | 100 % |
-| `unit_088E91E8` | 0x088E91E8-0x088E91F8 | 2 small functions | 100 % |
+| `jpeg-6b/jdhuff` | 0x088E1B20-0x088E2A9C | 7 functions: `jdhuff.c`; `extend_test`, `extend_offset` 0x089325A8-0x08932628 in the unit of the library, unmodified | 100 % |
+| `jpeg-6b/jdinput` | 0x088E2A9C-0x088E32C8 | 8 functions: `jdinput.c` of the library, unmodified | 100 % |
+| `jpeg-6b/jdmainct` | 0x088E32C8-0x088E3FBC | 9 functions: `jdmainct.c` of the library, unmodified | 100 % |
+| `jpeg-6b/jdmarker` | 0x088E3FBC-0x088E63EC | 17 functions: `jdmarker.c`; 3 functions not in the image removed from the object of the library, unmodified | 100 % |
+| `jpeg-6b/jdmaster` | 0x088E63EC-0x088E6E4C | 7 functions: `jdmaster.c`; 1 function not in the image removed from the object of the library, unmodified | 100 % |
+| `jpeg-6b/jdmerge` | 0x088E6E4C-0x088E7A74 | 7 functions: `jdmerge.c` of the library, unmodified | 100 % |
+| `jpeg-6b/jdphuff` | 0x088E7A74-0x088E8B54 | 7 functions: `jdphuff.c`; its own `extend_test`, `extend_offset` 0x08932628-0x089326A8 in the unit of the library, unmodified | 100 % |
+| `jpeg-6b/jdpostct` | 0x088E8B54-0x088E9048 | 5 functions: `jdpostct.c` of the library, unmodified | 100 % |
+| `jpeg-6b/jdsample` | 0x088E9048-0x088E9B78 | 10 functions: `jdsample.c` of the library, unmodified | 100 % |
+| `jpeg-6b/jidctflt` | 0x088E9B78-0x088E9F98 | 1 function: `jidctflt.c` of the library, unmodified | 100 % |
+| `jpeg-6b/jidctfst` | 0x088E9F98-0x088EA410 | 1 function: `jidctfst.c` of the library, unmodified | 100 % |
+| `jpeg-6b/jidctint` | 0x088EA410-0x088EA9A4 | 1 function: `jidctint.c` of the library, unmodified | 100 % |
+| `jpeg-6b/jidctred` | 0x088EA9A4-0x088EB054 | 3 functions: `jidctred.c` of the library, unmodified | 100 % |
 | `unit_088EC224` | 0x088EC224-0x088EC284 | 1 small function | 100 % |
 | `unit_088EC3BC` | 0x088EC3BC-0x088EC3C4 | 1 small function | 100 % |
 | `unit_088EC3E0` | 0x088EC3E0-0x088EC3E8 | 1 small function | 100 % |
-| `unit_088EC6EC` | 0x088EC6EC-0x088EC740 | 2 small functions | 100 % |
-| `unit_088ED680` | 0x088ED680-0x088ED688 | 1 small function | 100 % |
-| `unit_088EEE00` | 0x088EEE00-0x088EEE38 | 1 small function | 100 % |
-| `unit_088EEE38` | 0x088EEE38-0x088EEE40 | 1 small function | 100 % |
-| `unit_088EEFF0` | 0x088EEFF0-0x088EF000 | 1 small function | 100 % |
+| `jpeg-6b/jquant1` | 0x088EC3E8-0x088ED7A4 | 17 functions: `jquant1.c`; `base_dither_matrix` and the `RGB_order` of `select_ncolors` 0x089326B8-0x089327C4 in the unit of the library, unmodified | 100 % |
+| `jpeg-6b/jquant2` | 0x088ED7A4-0x088EF1F4 | 18 functions: `jquant2.c` of the library, unmodified | 100 % |
 | `jpeg-6b/jutils` | 0x088EF1F4-0x088EF2C0 | 5 functions: `jutils.c` of the library, unmodified; `jpeg_natural_order` 0x089327C4-0x08932904 in the unit | 100 % |
 | `unit_088EF2C0` | 0x088EF2C0-0x088EF2C8 | 1 small function | 100 % |
 | `unit_088EF2C8` | 0x088EF2C8-0x088EF348 | 1 small function | 100 % |

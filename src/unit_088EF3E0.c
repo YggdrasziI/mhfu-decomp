@@ -14,7 +14,7 @@ extern char *D_09A52198;
 extern char *D_09A5219C;
 extern s32 D_09A521A0;
 extern s32 D_09A521A4;
-extern char func_088E6164;
+extern char jpeg_resync_to_restart;
 extern char func_088EF378;
 extern char func_088EF380;
 extern char func_088EF3A8;
@@ -25,7 +25,7 @@ void func_088EF3E0(char *arg0) {
     D_09A5218C = &func_088EF378;
     D_09A52190 = &func_088EF380;
     D_09A52194 = &func_088EF3A8;
-    D_09A52198 = &func_088E6164;
+    D_09A52198 = &jpeg_resync_to_restart;
     D_09A5219C = &func_088EF3D8;
     D_09A52188 = D_09A521A4;
     D_09A52184 = D_09A521A0;

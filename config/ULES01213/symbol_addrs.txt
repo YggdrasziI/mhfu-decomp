@@ -61,7 +61,7 @@ jinit_master_decompress = 0x088E6DF0; // type:func size:0x5C
 jinit_memory_mgr = 0x088EC284; // type:func size:0x138
 // jdcoefct.c of the IJG JPEG library, built from its source (notes/PROVENANCE.md)
 start_iMCU_row = 0x088DF2C4; // type:func size:0x58
-start_input_pass = 0x088DF31C; // type:func size:0x8
+start_input_pass = 0x088DF31C; // type:func size:0x8 allow_duplicated:True
 start_output_pass = 0x088DF324; // type:func size:0x70
 decompress_onepass = 0x088DF394; // type:func size:0x304
 dummy_consume_data = 0x088DF698; // type:func size:0x8
@@ -71,7 +71,7 @@ smoothing_ok = 0x088DFAEC; // type:func size:0x170
 decompress_smooth_data = 0x088DFC5C; // type:func size:0x830
 jinit_d_coef_controller = 0x088E048C; // type:func size:0x1B4
 // jdcolor.c of the IJG JPEG library, built from its source (notes/PROVENANCE.md)
-build_ycc_rgb_table = 0x088E0640; // type:func size:0x600
+build_ycc_rgb_table = 0x088E0640; // type:func size:0x600 allow_duplicated:True
 ycc_rgb_convert = 0x088E0C40; // type:func size:0x128
 null_convert = 0x088E0D68; // type:func size:0x7C
 grayscale_convert = 0x088E0DE4; // type:func size:0x18
@@ -88,3 +88,137 @@ jcopy_sample_rows = 0x088EF224; // type:func size:0x7C
 jcopy_block_row = 0x088EF2A0; // type:func size:0x14
 jzero_far = 0x088EF2B4; // type:func size:0xC
 jpeg_natural_order = 0x089327C4; // size:0x140
+// jdhuff.c of the IJG JPEG library, built from its source (notes/PROVENANCE.md)
+start_pass_huff_decoder = 0x088E1B20; // type:func size:0x1B8
+jpeg_make_d_derived_tbl = 0x088E1CD8; // type:func size:0x4B0
+jpeg_fill_bit_buffer = 0x088E2188; // type:func size:0x198
+jpeg_huff_decode = 0x088E2320; // type:func size:0x140
+process_restart = 0x088E2460; // type:func size:0xB4 allow_duplicated:True
+decode_mcu = 0x088E2514; // type:func size:0x518
+jinit_huff_decoder = 0x088E2A2C; // type:func size:0x70
+// jdinput.c of the IJG JPEG library, built from its source (notes/PROVENANCE.md)
+initial_setup = 0x088E2A9C; // type:func size:0x2A4
+per_scan_setup = 0x088E2D40; // type:func size:0x218
+latch_quant_tables = 0x088E2F58; // type:func size:0xFC
+finish_input_pass = 0x088E30B0; // type:func size:0x14
+consume_markers = 0x088E30C4; // type:func size:0x12C
+reset_input_controller = 0x088E31F0; // type:func size:0x60
+// jdmainct.c of the IJG JPEG library, built from its source (notes/PROVENANCE.md)
+alloc_funny_pointers = 0x088E32C8; // type:func size:0x120
+make_funny_pointers = 0x088E33E8; // type:func size:0x488
+set_wraparound_pointers = 0x088E3870; // type:func size:0x130
+set_bottom_pointers = 0x088E39A0; // type:func size:0x178
+start_pass_main = 0x088E3B18; // type:func size:0xA0
+process_data_simple_main = 0x088E3BB8; // type:func size:0xBC
+process_data_context_main = 0x088E3C74; // type:func size:0x1D4
+process_data_crank_post = 0x088E3E48; // type:func size:0x28
+jinit_d_main_controller = 0x088E3E70; // type:func size:0x14C
+// jdmarker.c of the IJG JPEG library, built from its source (notes/PROVENANCE.md)
+get_soi = 0x088E3FBC; // type:func size:0x11C
+get_sof = 0x088E40D8; // type:func size:0x45C
+get_sos = 0x088E4534; // type:func size:0x3E0
+get_dht = 0x088E4914; // type:func size:0x3D0
+get_dqt = 0x088E4CE4; // type:func size:0x360
+get_dri = 0x088E5044; // type:func size:0x17C
+examine_app0 = 0x088E51C0; // type:func size:0x364
+examine_app14 = 0x088E5524; // type:func size:0x120
+get_interesting_appn = 0x088E5644; // type:func size:0x1E0
+skip_variable = 0x088E5824; // type:func size:0x110
+next_marker = 0x088E5934; // type:func size:0x194
+first_marker = 0x088E5AC8; // type:func size:0x104
+read_markers = 0x088E5BCC; // type:func size:0x4D4
+read_restart_marker = 0x088E60A0; // type:func size:0xC4
+jpeg_resync_to_restart = 0x088E6164; // type:func size:0x188
+reset_marker_reader = 0x088E62EC; // type:func size:0x24
+// jdmaster.c of the IJG JPEG library, built from its source (notes/PROVENANCE.md)
+use_merged_upsample = 0x088E63EC; // type:func size:0xF0
+jpeg_calc_output_dimensions = 0x088E64DC; // type:func size:0x2C4
+prepare_range_limit_table = 0x088E67A0; // type:func size:0x104
+master_selection = 0x088E68A4; // type:func size:0x300
+prepare_for_output_pass = 0x088E6BA4; // type:func size:0x208
+finish_output_pass = 0x088E6DAC; // type:func size:0x44
+// jdmerge.c of the IJG JPEG library, built from its source (notes/PROVENANCE.md)
+start_pass_merged_upsample = 0x088E744C; // type:func size:0x14
+merged_2v_upsample = 0x088E7460; // type:func size:0x124
+merged_1v_upsample = 0x088E7584; // type:func size:0x60
+h2v1_merged_upsample = 0x088E75E4; // type:func size:0x188
+h2v2_merged_upsample = 0x088E776C; // type:func size:0x238
+jinit_merged_upsampler = 0x088E79A4; // type:func size:0xD0
+// jdphuff.c of the IJG JPEG library, built from its source (notes/PROVENANCE.md)
+start_pass_phuff_decoder = 0x088E7A74; // type:func size:0x32C
+decode_mcu_DC_first = 0x088E7E58; // type:func size:0x2BC
+decode_mcu_AC_first = 0x088E8114; // type:func size:0x2DC
+decode_mcu_DC_refine = 0x088E83F0; // type:func size:0x144
+decode_mcu_AC_refine = 0x088E8534; // type:func size:0x550
+jinit_phuff_decoder = 0x088E8A84; // type:func size:0xD0
+// jdpostct.c of the IJG JPEG library, built from its source (notes/PROVENANCE.md)
+start_pass_dpost = 0x088E8B54; // type:func size:0x120
+post_process_1pass = 0x088E8C74; // type:func size:0xAC
+post_process_prepass = 0x088E8D20; // type:func size:0x118
+post_process_2pass = 0x088E8E38; // type:func size:0x120
+jinit_d_post_controller = 0x088E8F58; // type:func size:0xF0
+// jdsample.c of the IJG JPEG library, built from its source (notes/PROVENANCE.md)
+start_pass_upsample = 0x088E9048; // type:func size:0x18
+sep_upsample = 0x088E9060; // type:func size:0x188
+fullsize_upsample = 0x088E91E8; // type:func size:0x8
+noop_upsample = 0x088E91F0; // type:func size:0x8
+int_upsample = 0x088E91F8; // type:func size:0x184
+h2v1_upsample = 0x088E937C; // type:func size:0x158
+h2v2_upsample = 0x088E94D4; // type:func size:0x1B8
+h2v1_fancy_upsample = 0x088E968C; // type:func size:0xD8
+h2v2_fancy_upsample = 0x088E9764; // type:func size:0x15C
+jinit_upsampler = 0x088E98C0; // type:func size:0x2B8
+// jidctflt.c of the IJG JPEG library, built from its source (notes/PROVENANCE.md)
+jpeg_idct_float = 0x088E9B78; // type:func size:0x420
+// jidctfst.c of the IJG JPEG library, built from its source (notes/PROVENANCE.md)
+jpeg_idct_ifast = 0x088E9F98; // type:func size:0x478
+// jidctint.c of the IJG JPEG library, built from its source (notes/PROVENANCE.md)
+jpeg_idct_islow = 0x088EA410; // type:func size:0x594
+// jidctred.c of the IJG JPEG library, built from its source (notes/PROVENANCE.md)
+jpeg_idct_4x4 = 0x088EA9A4; // type:func size:0x3F4
+jpeg_idct_2x2 = 0x088EAD98; // type:func size:0x284
+jpeg_idct_1x1 = 0x088EB01C; // type:func size:0x38
+// jquant1.c of the IJG JPEG library, built from its source (notes/PROVENANCE.md)
+select_ncolors = 0x088EC3E8; // type:func size:0x304
+output_value = 0x088EC6EC; // type:func size:0x2C
+largest_input_value = 0x088EC718; // type:func size:0x28
+create_colormap = 0x088EC740; // type:func size:0x268
+create_colorindex = 0x088EC9A8; // type:func size:0x2BC
+make_odither_array = 0x088ECC64; // type:func size:0xB8
+create_odither_tables = 0x088ECD1C; // type:func size:0xB4
+color_quantize = 0x088ECDD0; // type:func size:0x1B4
+color_quantize3 = 0x088ECF84; // type:func size:0x8C
+quantize_ord_dither = 0x088ED010; // type:func size:0x130
+quantize3_ord_dither = 0x088ED140; // type:func size:0x128
+quantize_fs_dither = 0x088ED268; // type:func size:0x224
+alloc_fs_workspace = 0x088ED48C; // type:func size:0x84
+start_pass_1_quant = 0x088ED510; // type:func size:0x170
+finish_pass_1_quant = 0x088ED680; // type:func size:0x8
+new_color_map_1_quant = 0x088ED688; // type:func size:0x1C
+jinit_1pass_quantizer = 0x088ED6A4; // type:func size:0x100
+// jquant2.c of the IJG JPEG library, built from its source (notes/PROVENANCE.md)
+prescan_quantize = 0x088ED7A4; // type:func size:0x9C
+find_biggest_color_pop = 0x088ED840; // type:func size:0x4C
+find_biggest_volume = 0x088ED88C; // type:func size:0x40
+update_box = 0x088ED8CC; // type:func size:0x480
+median_cut = 0x088EDD4C; // type:func size:0x1D8
+compute_color = 0x088EDF24; // type:func size:0x1B0
+select_colors = 0x088EE0D4; // type:func size:0xD8
+find_nearby_colors = 0x088EE1AC; // type:func size:0x2C0
+find_best_colors = 0x088EE46C; // type:func size:0x1B8
+fill_inverse_cmap = 0x088EE624; // type:func size:0x12C
+pass2_no_dither = 0x088EE750; // type:func size:0x114
+pass2_fs_dither = 0x088EE864; // type:func size:0x3B0
+init_error_limit = 0x088EEC14; // type:func size:0x1EC
+finish_pass1 = 0x088EEE00; // type:func size:0x38
+finish_pass2 = 0x088EEE38; // type:func size:0x8
+start_pass_2_quant = 0x088EEE40; // type:func size:0x1B0
+new_color_map_2_quant = 0x088EEFF0; // type:func size:0x10
+jinit_2pass_quantizer = 0x088EF000; // type:func size:0x1F4
+// static functions of the IJG library whose name is also used by another of its
+// files (jdcoefct.c / jdinput.c, jdcolor.c / jdmerge.c, jdhuff.c / jdphuff.c)
+start_input_pass = 0x088E3054; // type:func allow_duplicated:True
+build_ycc_rgb_table = 0x088E6E4C; // type:func allow_duplicated:True
+process_restart = 0x088E7DA0; // type:func allow_duplicated:True
+// jddctmgr.c of the IJG library: called by master_selection (jdmaster.c, built from source)
+jinit_inverse_dct = 0x088E1A64; // type:func size:0xBC
