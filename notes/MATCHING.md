@@ -1324,6 +1324,76 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   the second one with an unsigned constant, `(row + 1U) * 0x10 + 0x64`
   (func_088F9058).
 
+- Coordinates truncated (`andi 0xFFFF` / `seh`) before every call while x and
+  y stay in saved registers: `s32` parameters, the truncation from the
+  callee's `u16` / `s16` parameters; `u16` parameters keep pre-truncated
+  copies in one more register (func_088FBE4C).
+- The arguments of one call computed in the wrong order: let the callee's
+  `u16` parameters truncate plain `x + 8` instead of explicit `(u16)` casts
+  (func_088FBE4C).
+- An entry reached through `lbu 0x150(s0)` with pointer registers to its
+  fields: write `base->ents[idx].field` at each access, no entry pointer
+  local (func_088FC088).
+- An early-out block placed at the end of the function: `if (used || n > 0)
+  { main } else { placeholder }` rather than an early return (func_088FC088).
+- `beql a0, v0` with the constants of a two-way choice the other way round:
+  `id = (k != 2) ? 0x1A4 : 0x1A5;` (func_088FC088).
+- Pointer set before the loop counter: `for (p = base, i = 0; ...)`
+  (func_088FC7A8); in a function with several loops, a pointer local of its
+  own declared first and assigned before `n = 0` (func_088FC810).
+- `default: return 1;` when the default path leaves the constant in `$v0`;
+  `if (call() == 0) { ...; break; } return 0;` inside a case for a `bnezl`
+  to the shared `return 0` (func_088FC4F4).
+- A global pointer loaded again at the top of each pass of a speed loop
+  (bottom test `bnez` + `nop`): declare it `volatile` and copy it to a local
+  first, `g = D; e = &g->entries[(u8) i];` (func_088FC62C).
+- `addiu v0, v0, 4` after the `addu` of a call result: parenthesize the call
+  term, `extra + (func(...) + 4)` (func_088FCF84).
+- A pointer set up in the delay slot of the call before a loop: assign it
+  before that call in the source (func_088FCF84).
+- `sll x, 29; srl x, 30` on a loaded byte: a two-bit `u8` bit-field at bit 1
+  (func_089015F8).
+- A loop pointer advanced only on some passes: `continue;` before the
+  `p++` at the end of the body (func_089015F8).
+- The same pointer step in the delay slots of several branches: `p += 0xC;`
+  at the end of each arm of the `if` / `else` (func_08901664).
+- A flag cleared in the delay slot of the `beqz` on a pointer: initialise it
+  before the `if (list != 0)` (func_08901664).
+- A call argument register holding the value of an earlier compare load:
+  pass that value again (`func(D, p[1], ...)`); check the callee's argument
+  count in src/ (func_08901664).
+- `beql e, zero` with `addu r, zero, zero` in the delay slot, then the
+  fall-through `addiu r, e, 0x20`: `if (e != 0) return e + 0x20; return 0;`
+  (func_08901814).
+- `bltzl` straight to a shared store of 0: both failure tests in one `if`
+  joined by `||` (func_08901814).
+- `sltu aX, zero, aX` before a `bnez` on a halfword test: the test through an
+  inline helper `return *(u16 *) r != 0;` (func_08901A60).
+- Arrays of structures shifted down with one source / destination pair per
+  parallel array: separate `dst` and `src = dst + 1` pointers, stepped
+  together (func_08901A60).
+- A one-float member of a copied structure stored to the stack instead of
+  kept in an FP register: make it a nested structure `struct { f32 a; }`
+  (func_08901FDC).
+- Element addresses as base + index or index + base in one function: mix raw
+  byte sums `*(T *)(D + i * size + off)` and typed indexes
+  `((s32 *)(D + off))[i]` (func_08901FDC).
+- The second test of a "less / greater" pair kept in a saved register instead
+  of `$at` in a `beql` delay slot: the same operand order with the operator
+  flipped, `if (x[b] < x[a]) {...} if (x[b] > x[a]) break;` (func_089030D8).
+- `beql v0, zero` to the epilogue with the result move in the delay slot:
+  `if (cond) break;` in the loop and one `return n;` after it
+  (func_0890383C).
+- Registers of a sum and a count swapped across distant loops: one local for
+  every sum and count (func_088FD170, NonMatching).
+- An entry copied as `lhu/sh` (id read again) then `lbu, lbu, sb, sb`: C++
+  structure assignment of `{u16 id; struct {u8 a, b;} ab;}` (func_088FD170).
+- Two adjacent words, high one first, `bne hi, K1` then `bne lo, -1`: a `u64`
+  compare; `sll 8; bnez zero; srl 8` against 0xFFFFFF is a `u32 lo:24`
+  bit-field compared with a 64-bit constant (func_088FD170).
+- Inline helpers nested three levels deep left as a call: the build flag
+  `-inline bottomup` (notes/COMPILER.md, "Inlining depth"; func_08901814).
+
 ## Open symptoms
 
 - $a0 not reloaded after a call to a function that leaves it alone

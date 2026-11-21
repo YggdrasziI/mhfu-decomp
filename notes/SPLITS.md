@@ -1589,9 +1589,27 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088FAB0C` | 0x088FAB0C-0x088FAE30 | 1 function: draws a page of nine lines out of a 31-entry list, with frame, captions and page number | 100 % |
 | `unit_088FAE30` | 0x088FAE30-0x088FB2B0 | 1 function (speed): draws a page of nine lines out of 23 records (name, time, count; 15-bit and 17-bit fields) | 100 % |
 | `unit_088FB2B0` | 0x088FB2B0-0x088FBC3C | 1 function, NonMatching (97.7 %, registers); 20-entry list with a VFPU sine for the cursor, then a 5-row table of times | not linked |
+| `unit_088FBC3C` | 0x088FBC3C-0x088FBE4C | 1 function: caption of an entry (24-byte records) with a separator line | 100 % |
+| `unit_088FBE4C` | 0x088FBE4C-0x088FC088 | 1 function: box for an entry with two values of arg0 | 100 % |
+| `unit_088FC088` | 0x088FC088-0x088FC4F4 | 1 function (speed): draws one 8-byte entry (name, two-digit values, count, marks from 2-bit fields) | 100 % |
+| `unit_088FC4F4` | 0x088FC4F4-0x088FC5F8 | 1 function (C++, virtual calls): two-step loader of resource 0x4F | 100 % |
 | `unit_088FC5F8` | 0x088FC5F8-0x088FC62C | 1 small function | 100 % |
+| `unit_088FC62C` | 0x088FC62C-0x088FC724 | 1 function (speed): fills three 0x1C-byte rows from the 0xC8-byte entries of D_09A0B544 | 100 % |
+| `unit_088FC724` | 0x088FC724-0x088FC7A8 | 1 function (speed): stores a value in the first matching row of three | 100 % |
+| `unit_088FC7A8` | 0x088FC7A8-0x088FC810 | 1 function: counts the rows of kind 2 and the set ones | 100 % |
+| `unit_088FC810` | 0x088FC810-0x088FCF40 | 1 function (C++, speed): stores one of six parts of a received record into ten 0x1090-byte slots, then copies the complete record over the global one with the same key | 100 % |
+| `unit_088FCF40` | 0x088FCF40-0x088FCF84 | 1 function: counts the rows of kind 2 and a given id | 100 % |
+| `unit_088FCF84` | 0x088FCF84-0x088FD168 | 1 function: box with a title and the matching rows | 100 % |
 | `unit_088FD168` | 0x088FD168-0x088FD170 | 1 small function | 100 % |
+| `unit_088FD170` | 0x088FD170-0x089015F8 | 1 function, NonMatching (C++, speed, 99.82 %, one loop's registers): recomputes the 0x1A2-bit set at +0x479C of D_089CC438, then lists the set entries of D_089B8770 | not linked |
+| `unit_089015F8` | 0x089015F8-0x08901664 | 1 function: counts the used entries of kind 1 or 2 among 31 | 100 % |
+| `unit_08901664` | 0x08901664-0x08901814 | 1 function (speed): counts the 0xC-byte records matching a kind and a list | 100 % |
+| `unit_08901814` | 0x08901814-0x08901924 | 1 function (speed, three inline levels): ages the ten slots of unit_088FC810 | 100 % |
 | `unit_08901924` | 0x08901924-0x08901A60 | 1 small function | 100 % |
+| `unit_08901A60` | 0x08901A60-0x08901FDC | 1 function (C++, speed): compacts the 0x60 records of 0x1078 bytes and their two parallel arrays | 100 % |
+| `unit_08901FDC` | 0x08901FDC-0x089030D8 | 1 function (C++, speed): moves one of the 0x60 records to another slot, with its two parallel arrays | 100 % |
+| `unit_089030D8` | 0x089030D8-0x0890383C | 1 function (speed): fills three 96-slot tables of a list from the used records and sorts them by mode | 100 % |
+| `unit_0890383C` | 0x0890383C-0x089038C4 | 1 function (speed): index of the first of 94 strings equal to D_089B916C | 100 % |
 | `unit_089038C4` | 0x089038C4-0x08903950 | 1 small function | 100 % |
 | `unit_08903950` | 0x08903950-0x089039AC | 1 small function | 100 % |
 | `unit_089039AC` | 0x089039AC-0x08903A94 | 1 small function | 100 % |
