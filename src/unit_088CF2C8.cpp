@@ -13,15 +13,13 @@
  * and matrix operations are VFPU `asm` blocks (notes/COMPILER.md, "VFPU in
  * asm blocks").
  *
- * `#pragma inline_depth(2)`: each rotation is a helper (its own matrix, the
- * angle read before the identity) that calls the rotation block, two levels
- * below the function. With the default setting the compiler leaves that
- * second level as calls in a function of this size; the original has them
- * all inline (notes/COMPILER.md, "Inlining depth").
+ * Each rotation is a helper (its own matrix, the angle read before the
+ * identity) that calls the rotation block, two levels below the function:
+ * fully inlined only with the build flag `-inline bottomup`
+ * (notes/COMPILER.md, "Inlining depth").
  */
 
 #pragma optimize_for_size off
-#pragma inline_depth(2)
 
 typedef signed char s8;
 typedef unsigned char u8;

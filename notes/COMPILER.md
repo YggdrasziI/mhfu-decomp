@@ -319,12 +319,17 @@ inlined. Any of these gives the original code, 100 %:
 `inline_depth(smart)`, `auto_inline on`, `inline_max_size`,
 `inline_max_total_size`, `-inline on` / `all` / `auto` / `deferred` do not.
 
-Hypothesis, not proven: the game was built with one of these settings.
-`-inline bottomup` added to the flags of every unit keeps `BOOT.BIN: OK` and
-the report without a regression (1695 functions, no NonMatching unit
-improved), so nothing contradicts it, but one function is the only evidence
-for it. Until a second function needs it, the unit carries
-`#pragma inline_depth(2)` and the build flags stay as they are.
+Second witness (2026-11-21): func_08901814 has a chain of inline helpers
+three levels deep (compare, search, data pointer). Without a setting it
+scores 25.1 %; `-inline level=2` 46.6 % (one call left); `-inline level=3`,
+`level=8` and `-inline bottomup` 100 %. So `level=2` is ruled out; nothing
+separates `bottomup` from `level=3` or more yet.
+
+The build flags now carry `-inline bottomup` ([compiler] of decomp.toml) and
+the two units have no inlining pragma: `BOOT.BIN: OK`, report without a
+regression (1970 functions, no NonMatching unit changed). The choice of
+`bottomup` over `level=3` is not proven; a function whose inline chain is
+deeper than the level would tell them apart.
 
 ## Candidates
 

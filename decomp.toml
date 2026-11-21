@@ -24,7 +24,7 @@ relocatable = false
 [compiler]
 name = "mwccpsp_3.0.1_219"
 exe = "mwccpsp.exe"
-flags = "-O4 -sdatathreshold 0"
+flags = "-O4 -sdatathreshold 0 -inline bottomup"
 
 # Extra flags for the sources of one directory (tools/configure.py). The IJG JPEG
 # library is built for speed (`-O4,p`) and finds <stddef.h>... in include/libc
