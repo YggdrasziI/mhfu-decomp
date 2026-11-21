@@ -1253,6 +1253,41 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   body that uses it (func_088F56B8).
 - `addiu 8` before `addu base`: `y + ((j / 24) * 16 + 8)` (func_088F56B8).
 
+- Wrap clamp of a signed byte field (`bgezl` / `slti at` / `b` with the
+  constant in the delay slot, result kept in `$v0`): a nested ternary,
+  `f = f < 0 ? max : (f > max ? 0 : f);`, not `if / else if` on a local
+  (func_088F2224, func_088F383C).
+- Two-way block emitted in the opposite order: write the positive condition
+  first, `if (*q != 0 && *q != 3) { ok } else { error }` (func_088F2224).
+- `sltu` / `xori` / `bnezl` where the original has `beqzl` on a shifted test
+  in a loop with `break` (speed): explicit `if ((x >> 15) != 0)`
+  (func_088F383C, func_088F6450).
+- Operand load order of a comparison: `b - 13 > a` loads `a` first, unlike
+  `a < b - 13` (func_088F383C).
+- Search loop stepping a second register: step it explicitly,
+  `cur = f + 1; for (k = 1; k < 20; k++, cur++) idx = cur % 20;`
+  (func_088F383C).
+- First call of a series hoisted before its loop, guard in `$at`:
+  `i = 0; f(first); for (i++; i <= 6; i++) f(...);` (func_088F6450,
+  func_088F9EF4).
+- Counter per loop is not a rule: func_088F6450 needs ONE counter for all
+  its loops, func_088F9EF4 one per loop; try both.
+- A counting loop that reads `lhu 0x198(a0)` from a stepped pointer: an
+  explicit pointer declared first and initialised at its declaration, before
+  the count and the index (`char *slot = arg0 + 0x188; s32 n = 0; s32 i;`);
+  repeated, it is a `static inline` helper (func_088F2B0C).
+- A `jal` emitted before an inlined loop whose result is a later argument of
+  the next call: store the call's result in a local first (func_088F2B0C).
+- Row offsets and table pointers in lower registers than the loop variables:
+  not variables; index (`D[row][col]`, `k * 7 + 0x2F + i * 0x1D`) and let
+  strength reduction create them (func_088F9EF4).
+- Bytes loaded once per pass into saved registers for `s32` parameters: `s32`
+  locals, not `u8` (func_088F9EF4).
+- Spill slots: named locals take descending slots in declaration order,
+  compiler temporaries ascending slots below them (func_088F9EF4).
+- `__ashldi3` with `sra a3` in the delay slot of the `jal`: a `u64` local,
+  `mask = 1; mask <<= (s64) n;` (func_088F9EF4).
+
 ## Open symptoms
 
 - $a0 not reloaded after a call to a function that leaves it alone

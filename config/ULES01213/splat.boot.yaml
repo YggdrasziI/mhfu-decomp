@@ -1781,22 +1781,22 @@ segments:
       - [0xEE63C, c, unit_088F0088]
       - [0xEE6E0, asm, text_088F012C]
       - [0xEFC18, asm, text_088F1664]
-      - [0xF07D8, asm, text_088F2224]
-      - [0xF10C0, asm, text_088F2B0C]
+      - [0xF07D8, c, unit_088F2224]
+      - [0xF10C0, c, unit_088F2B0C]
       - [0xF1C40, c, unit_088F368C]
-      - [0xF1DF0, asm, text_088F383C]
+      - [0xF1DF0, c, unit_088F383C]
       - [0xF27C4, asm, text_088F4210]
       - [0xF2ACC, c, unit_088F4518]
       - [0xF3030, asm, text_088F4A7C]
       - [0xF3C6C, c, unit_088F56B8]
       - [0xF423C, c, unit_088F5C88]
       - [0xF4768, c, unit_088F61B4]
-      - [0xF4A04, asm, text_088F6450]
+      - [0xF4A04, c, unit_088F6450]
       - [0xF4F68, c, unit_088F69B4]
       - [0xF56BC, c, unit_088F7108]
       - [0xF5BD4, asm, text_088F7620]
       - [0xF760C, asm, text_088F9058]
-      - [0xF84A8, asm, text_088F9EF4]
+      - [0xF84A8, c, unit_088F9EF4]
       - [0xF8C8C, c, unit_088FA6D8]
       - [0xF90C0, c, unit_088FAB0C]
       - [0xF93E4, c, unit_088FAE30]
@@ -1922,6 +1922,10 @@ segments:
       - { start: 0x130C6C, type: .rodata, name: jpeg-6b/jquant1, linker_section_order: .data }
       - { start: 0x130D78, type: .rodata, name: jpeg-6b/jutils, linker_section_order: .data }
       - [0x130EB8, data, data_08932904]
+      - { start: 0x130EE0, type: .rodata, name: unit_088F2224, linker_section_order: .data }
+      - { start: 0x130F20, type: .rodata, name: unit_088F383C, linker_section_order: .data }
+      - { start: 0x130F44, type: .rodata, name: unit_088F6450, linker_section_order: .data }
+      - [0x130F68, data, data_089329B4]
       - [0x136BC8, .data, unit_08823CBC]
       - [0x136BD4, data, data_08938620]
       - [0x139824, .data, unit_08837D54]
@@ -1964,6 +1968,9 @@ segments:
       - [0x1B6AB0, .data, unit_088F56B8]
       - [0x1B6ADE, pad, pad_089B852A]     # 2 bytes of padding after the s16[7] table
       - [0x1B6AE0, data, data_089B852C]
+      - [0x1B6C58, .data, unit_088F9EF4]
+      - [0x1B6C76, pad, pad_089B86C2]     # 2 bytes of padding after the second s16[7] table
+      - [0x1B6C78, data, data_089B86C4]
       - { start: 0x1CA044, type: bss, vram: 0x089CBA90, name: bss }
 
   - [0x1CA044, bin, elf_tail]
