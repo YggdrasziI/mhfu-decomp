@@ -813,7 +813,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088920A8` | 0x088920A8-0x08892148 | 1 variadic function (same, at a position) | 100 % |
 | `unit_08892148` | 0x08892148-0x088921FC | 1 variadic function (same, at a position with a colour) | 100 % |
 | `unit_088921FC` | 0x088921FC-0x08892708 | 1 function (draws a string with its control codes, optimized for speed) | 100 % |
-| `unit_08892708` | 0x08892708-0x08892A88 | 1 function (string layout with control codes, optimized for speed) | NonMatching (99.26 %) |
+| `unit_08892708` | 0x08892708-0x08892A88 | 1 function (string layout with control codes, optimized for speed; `opt_rebuildconditionals off`) | 100 % |
 | `unit_08892A88` | 0x08892A88-0x08892E7C | 1 function (draws a list of items, optimized for speed) | 100 % |
 | `unit_08892E7C` | 0x08892E7C-0x08892F18 | 1 function (opens the system font through sceFont*) | 100 % |
 | `unit_08892F18` | 0x08892F18-0x08892F88 | 1 small function | 100 % |
@@ -821,15 +821,35 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08892FB0` | 0x08892FB0-0x088930A0 | 1 small function | 100 % |
 | `unit_088930A0` | 0x088930A0-0x088930A8 | 1 small function | 100 % |
 | `unit_088930A8` | 0x088930A8-0x08893198 | 1 function (feeds the characters of the queued records to func_08893198, optimized for speed) | 100 % |
+| `unit_08893198` | 0x08893198-0x088932A8 | 1 function (queues one character code, takes a free slot through func_088932A8) | 100 % |
+| `unit_088932A8` | 0x088932A8-0x08893390 | 1 function (finds a free character slot, optimized for speed) | 100 % |
 | `unit_08893390` | 0x08893390-0x08893444 | 1 small function | 100 % |
+| `unit_08893444` | 0x08893444-0x0889377C | 1 function (draws one character through sceFontGetCharInfo / sceFontGetCharGlyphImage, optimized for speed) | 100 % |
+| `unit_0889377C` | 0x0889377C-0x08893894 | 1 function (feeds the characters of a u16 string to func_08893894) | 100 % |
+| `unit_08893894` | 0x08893894-0x08893C6C | 1 function (draws one queued character, optimized for speed) | NonMatching (99.92 %) |
+| `unit_08893C6C` | 0x08893C6C-0x08894754 | 1 function, C++ (formats a string with a va_list: %d %u %x %o %s %c %f %b; optimized for speed) | 100 % |
+| `unit_08894754` | 0x08894754-0x08894874 | 1 function (converts a string to u16 character codes) | 100 % |
 | `unit_08894874` | 0x08894874-0x08894988 | 1 small function | 100 % |
 | `unit_08894988` | 0x08894988-0x088949EC | 1 function (maps 0-5 to 9-14); jump table 0x08931DAC-0x08931DC4 in the unit | 100 % |
 | `unit_08894B00` | 0x08894B00-0x08894B0C | 1 small function | 100 % |
+| `unit_08894B0C` | 0x08894B0C-0x08894EE4 | 1 function (parses a text control code) | 100 % |
+| `unit_08894EE4` | 0x08894EE4-0x08894F7C | 1 function (formats one control-code value into a buffer) | 100 % |
+| `unit_08894F7C` | 0x08894F7C-0x08895220 | 1 function (copies a string up to a width; optimized for speed, `opt_rebuildconditionals off`) | 100 % |
+| `unit_08895220` | 0x08895220-0x088952A4 | 1 function (queues one 8-byte record) | 100 % |
+| `unit_088952A4` | 0x088952A4-0x088952E4 | 1 function (halves a byte value by a flag) | 100 % |
+| `unit_088952E4` | 0x088952E4-0x08895538 | 1 function (tests an id against a list of 44 values) | 100 % |
+| `unit_08895538` | 0x08895538-0x0889560C | 1 function, C++ (updates the four objects of a manager; virtual calls) | 100 % |
 | `unit_0889560C` | 0x0889560C-0x08895644 | 1 small function | 100 % |
+| `unit_08895644` | 0x08895644-0x08895EA0 | 1 function (creates one of 14 object kinds in a manager slot); jump table 0x08931DC4-0x08931E00 in the unit | 100 % |
 | `unit_08895EA0` | 0x08895EA0-0x08895F3C | 1 small function (C++) | 100 % |
 | `unit_08895F3C` | 0x08895F3C-0x08895FFC | 1 small function | 100 % |
+| `unit_08895FFC` | 0x08895FFC-0x0889615C | 1 function, C++ (menu input in two states) | 100 % |
 | `unit_0889615C` | 0x0889615C-0x08896228 | 1 small function (C++) | 100 % |
+| `unit_08896228` | 0x08896228-0x0889645C | 1 function (menu input in two states, sound ids) | 100 % |
 | `unit_0889645C` | 0x0889645C-0x08896484 | 1 small function | 100 % |
+| `unit_08896484` | 0x08896484-0x088965D8 | 1 function (draws a menu in two modes) | 100 % |
+| `unit_088965D8` | 0x088965D8-0x088966C0 | 1 function (draws a menu entry with a formatted value) | 100 % |
+| `unit_088966C0` | 0x088966C0-0x0889695C | 1 function, C++ (dispatches 19 menu entries); jump table 0x08931E00-0x08931E4C in the unit | 100 % |
 | `unit_08896A50` | 0x08896A50-0x08896AD4 | 1 small function | 100 % |
 | `unit_08896C10` | 0x08896C10-0x08896C2C | 1 small function | 100 % |
 | `unit_088971A0` | 0x088971A0-0x088971F0 | 1 small function (C++) | 100 % |

@@ -2,15 +2,14 @@
  *
  * Bounds (hypothesis): 1 function between code still in assembly.
  *
- * NonMatching (99.26 %): where the count reaches the limit, the original
- * turns the 1/0 result into an if/else and sign-extends it (`seh v0, v0`)
- * in the delay slot of its own branch to the exit, which the `ret = 4` path
- * skips; ours has no `seh` there. Copies, casts, inline helpers, a switch
- * and a goto diamond were tried (they give `xori`/`sltiu`, or move the
- * `seh` to the shared exit).
+ * #pragma optimize_for_size off: the copy loops are unrolled by 8 behind a
+ * guard. #pragma opt_rebuildconditionals off: keeps the `r == 2` if/else as
+ * branches. The 1/0 result goes through an s32 local before the s16 `ret`,
+ * which places the `seh` at the join of the if/else.
  */
 
 #pragma optimize_for_size off
+#pragma opt_rebuildconditionals off
 
 typedef int s32;
 typedef short s16;
@@ -37,6 +36,7 @@ s16 func_08892708(s32 arg0, s16 limit, char *dst, char *arg3, char **out) {
     s32 i;
     s32 flag;
     s16 count;
+    s32 t;
 
     src = arg3;
     flag = 0;
@@ -97,10 +97,11 @@ s16 func_08892708(s32 arg0, s16 limit, char *dst, char *arg3, char **out) {
             }
             *dst = 0;
             if (r == 2) {
-                ret = 1;
+                t = 1;
             } else {
-                ret = 0;
+                t = 0;
             }
+            ret = t;
             break;
         }
         for (i = 0; i < n; i++) {

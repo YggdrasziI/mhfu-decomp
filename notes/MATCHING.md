@@ -48,6 +48,13 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   r; return 0;` becomes `return r < 0 ? r : 0;` (func_088AA520, func_088AA83C,
   func_088AAC80; notes/COMPILER.md). Found by compiling the unit once per
   `opt_*` pragma of `mwccpsp.exe` (`strings`), `off` and `on`.
+- A 0/1 result kept as branches (`li v1, K; bne`, `li v0, 1` / `move v0,
+  zero`, `seh v0` at the join) where ours gives `xori`/`sltiu`: the same
+  pragma with `if (x == K) r = 1; else r = 0; return r;`, `r` an s32
+  (func_08894F7C). With an s16 result shared through a `break`, the value
+  goes through an s32 local first, `t = 1 / 0; ret = t;`, which puts the
+  `seh` at the join (func_08892708). No source form keeps the branches
+  without the pragma.
 - The same dead instruction after a `b` (`addiu a0, zero, 2` left before the
   block its branch-likely slot was copied from) without the pragma: early
   returns instead of an `else if` chain, `if (A == 0 || B == 0) { ...;
@@ -155,6 +162,16 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   condition; `$at`/`aN` swapped between two `slti` of a byte range: both
   bounds inclusive, `c >= 0x81 && c <= 0x9F` (func_08891F88, func_08891D4C).
 
+- A `sltu` against zero kept before a test of a masked flag (`andi 0x100;
+  sltu v0, zero, v0; bnez`): `(bool) (x & 0x100) == 0` in a C++ unit
+  (func_08895FFC, func_088966C0); an unroll guard copied with `andi 0xFF` in
+  a speed unit: C++ too (func_08893C6C).
+- A ternary on `x != 0` giving `beqzl` with swapped constants where the
+  original has `bnezl` with the true value in its slot: `x == 0 ? B : A`
+  (func_08894EE4); same for if/else: the `x == 0` case first (func_088952A4).
+- `ext v0, v0, 1, 8` on a u8 parameter: `(u32) arg >> 1` (func_088952A4);
+  `srl 1` then a signed `slt`: `(s32) ((u32) b >> 1)` (func_08893444).
+
 ## Booleans (C++ only)
 
 - `andi` + `sltu` + branch on 0/1: `(bool) (x & K) == 0` / `!= 0`; C folds the
@@ -251,6 +268,21 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 
 - A scalar local and a local struct with their stack slots swapped:
   declare the scalar first (func_08892E7C).
+
+- A `switch` whose other values return 0 through the shared `return 0;`
+  after it: no `default: return 0;` (func_08896228). Two states tested
+  `== 1` then `== 0`: `case 0: break;` written first (func_08895FFC); a
+  mode switch with case bodies in source order (func_08896484).
+- A chain of tests on one value before one call (`beql K1`, then `beq
+  K2..Kn` to the same join): one `if (c != K1 && ... && c != Kn) f();`,
+  not a `switch` (func_0889377C); `||` chains with `return`, then a
+  separate `if`, for two groups (func_08893444).
+- `slti v1, x, N; bnezl v1, end` with `v0 = 0` in its slot: the positive
+  form, `if (x >= N) { ... } return 0;` (func_088952E4); a tail test
+  `bltzl x, ret0`: `if (x >= 0) { ...; return 1; } return 0;`
+  (func_088966C0).
+- `beqz` on a switch value before the range check, table entry 0 equal to
+  the default: `if (x == 0) return;` before the `switch` (func_08895644).
 
 ## Addresses, arrays and structures
 
@@ -378,6 +410,18 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   array fields (`arg0->count[arg0->cur]`, `&arg0->list[cur][n]`) or array
   indexing on a cast base (func_088915B0, func_08891474, func_08891A28,
   func_088930A8).
+
+- A u16 table inside a large record scanned through a pointer stepped from
+  the base with the offset in the load: a struct field array reached
+  through a separate `Obj *obj = (Obj *) arg0;` local, the parameter kept
+  `u8 *` (func_088932A8); `arr[j] == x` gives `bnel load, x`, `x ==
+  arr[j]` the reverse.
+- A u8 index recomputed (`andi 0xFF`) after each call: an s32 parameter
+  with `(u8) arg1` at every use (func_08895644); a byte flag kept unmasked
+  in a saved register and masked only at the compare: an s32 parameter
+  compared as `(u8) arg4 == 1` (func_08894B0C).
+- A byte field address kept in a saved register (`addiu s0, obj, 0x11`):
+  a struct field, not a cast offset (func_08895538).
 
 ## Registers and loops
 
@@ -1360,6 +1404,29 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   gives a move: compile the unit as C++ (`bool` is one byte;
   func_08891BC8).
 
+- `andi vX, v0, 0xFFFF` after each call and one shared `sh` after an
+  if/else of calls: the callees return s32 and a `u16 c` local takes each
+  result, then one `*dst = c;` (func_08894754).
+- The `lw a0` of a global and the `lui t0` of the format string swapped
+  before a call of func_088915B0 / func_08892148: declare their second and
+  third parameters s32 (func_08896484, func_088965D8). The definitions
+  match with s16; the original parameters are probably ints.
+- A literal 1 left in `$a1` before a virtual call with no visible argument:
+  the method takes it, `obj->vfunc_08(1)` (func_08895538).
+- A va_list parameter: read arguments as `*(*(T **) &ap)++` (taking the
+  address of `ap` gives the frame slot and the register order;
+  func_08893C6C).
+- Statements in the wrong order with the right registers once declaration
+  permutations stall: permute the order of independent assignments
+  (func_08893444).
+- Two-digit parse with the pointer step before the `seh`: a separate s16
+  digit local, `d = *p++ - '0'; n = d + n * 10;` (func_08894B0C).
+- The end-of-buffer address hoisted and spilled: `pos = size - 1; buf[pos]
+  = 0;`; two copies of one loop with different multiplier registers: one
+  multiplier local per copy, the second declared last (func_08893C6C).
+- A `static` helper written for a repeated store is not inlined and is
+  emitted even when unused: drop it (it shifts the link; func_08895644).
+
 ## Calls and allocation
 
 - PSP EABI: arguments 5-8 in `$t0-$t3`, float arguments in `$f12-$f19` counted apart
@@ -1731,8 +1798,9 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   declaration order: func_088D7AD8 (99.58 %).
 - Scheduling: a load placed before / after an index computation (func_088307BC,
   func_0884424C `trunc.w.s`).
-- A 0/1 if/else kept as branches with a `seh` on one path only
-  (func_08892708, 99.26 %): every copy or cast becomes `xori`/`sltiu`.
+- Two loaded values with t1 and t2 swapped in one store of a speed unit
+  (func_08893894, 99.92 %): regroupings, casts, temporaries and
+  declaration orders change nothing.
 - Unfilled `jal` delay slot (func_08813CF8; func_088A812C 99.29 %: the
   `addu a1` goes into the slot of the func_088AAD58 call, with an extern or
   a static callee alike).

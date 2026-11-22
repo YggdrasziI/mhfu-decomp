@@ -237,6 +237,9 @@ func_088AAC80); the others there match with or without it. Across the 27
 NonMatching units, the pragma changes only func_088415D0 (89.9 % to 95.6 %) and
 func_088A8E3C (99.0 % to 98.3 %). Hypothesis: that source file was built with
 the option off (pragma or command line), like the unrolling setting above.
+The text functions func_08892708 and func_08894F7C (0x0889) need it too,
+together with the speed setting: there it keeps a 0/1 `if (x == K)` result
+as branches instead of `xori`/`sltiu`.
 
 mwccpsp calls `__extendsfdf2`, `__muldf3`, `__adddf3` and `__truncdfsf2` for
 `(double) f`, `d * d`, `d + d` and `(float) d`; func_088A7E44 calls 0x08905294,
