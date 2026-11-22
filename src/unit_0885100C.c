@@ -9,7 +9,7 @@ typedef int s32;
 
 extern s32 D_089CBBE4;
 extern s32 D_089CBFFC;
-extern int func_08812A08(s32, s32);
+extern int func_08812A08(s32);
 extern int func_0884B284(s32);
 
 void func_0885100C(char *arg0) {
@@ -22,6 +22,6 @@ void func_0885100C(char *arg0) {
     *(s16 *)(arg0 + 0x6AF12) = 1;
     temp_a1 = *(s32 *)(arg0 + 0x6AF14);
     *(s32 *)(arg0 + 0x6AF14) = (s32) (temp_a1 & ~1);
-    func_08812A08(D_089CBBE4, temp_a1);
+    func_08812A08(D_089CBBE4);
     func_0884B284(D_089CBFFC);
 }

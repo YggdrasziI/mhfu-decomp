@@ -228,6 +228,27 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   first (func_0888A668).
 - A test before a loop and a `bnel` back at the bottom: `if (c) do { ... }
   while (c); else ...`; `while` gives `beqzl` + `b` (func_0888A388).
+- `beq x, 2` then `beql x, 1` and a separate `b` to the epilogue: a
+  two-case `switch` written `case 1:` before `case 2:`; an if/else chain
+  gives `bne` and the blocks in the wrong order (func_0888AF68).
+- `beql x, 1, end` with a store in its slot, `beqz x, L`, then the default
+  call and `b end`: `switch (v) { default: f(); break; case 0: case 1:
+  store; break; }`, the group after `default` (func_0888E350).
+- `beqzl v0, ret` with `addiu v0, 1` in the slot where the original
+  branches to a shared `return 1`: drop the explicit `else { return 1; }`
+  and fall through to the final return (func_0888B994).
+- An extra `b` with `addu v0, zero, zero` in its slot before the return:
+  `if (x < lim) { ... } else { return 0; }`, not `if (!(x < lim)) return
+  0;` (func_0888E634).
+- Two early tests with one return value, the first `beql` with the value
+  in its slot, the second `bnel` + `b`: one `if (a == 1 || b == 1) return
+  1;` (func_0888D888, func_0888E494). `beql v, 1` with 0 in the slot then
+  `bnel v, 5` with 0xFF: `if (v == 1 || v == 5) return 0; return 0xFF;`
+  (func_0888D888).
+- `bltzl` with the else store in its slot: `if (r >= 0) { ... } else {
+  ... }` (func_0888FBD4). A shared `return 0` after a switch: `break` from
+  the cases, no `default`; returns inside the cases duplicate the epilogue
+  (func_0888D734).
 
 ## Booleans (C++ only)
 
@@ -241,6 +262,11 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   pointer (`bnez next` with `o = next` in the delay slot): `if (o != 0) do {
   ...; next = o->next; ...; o = next; } while (next != 0);`; `while (o)` and
   `for` give `b` to a bottom test of `o` (func_088C33E8, func_088C349C).
+- `sltu` kept before `beqz`: `(bool) (x & m) != 0`; `(bool) (x & m)`
+  alone drops it, `== 1` compares against a register holding 1
+  (func_0888D600). In C: a `u8` local, `u8 flag = (x & 8) != 0;`
+  (func_0888E494). A test `(u8) check(p) == 1` on a `static inline bool`
+  helper with an early `return false` and a switch (func_0888FBD4).
 
 ## Types and signedness
 
@@ -287,6 +313,11 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 
 - `sltiu` where ours gives `slti`: make the compared parameter unsigned
   (func_088A4654, `unsigned int` length).
+- `andi 0xFFFF` followed by signed `slti` / `slt` where the original has
+  `sltiu` / `sltu`: an `unsigned int` local holding a `(u16)` cast, not a
+  `u16` local (func_0888FCE4).
+- A compare branch with its operands swapped that `==` order does not fix:
+  type both values as `char *` instead of `s32` (func_0888E218).
 
 ## Symbol names in the report
 
@@ -655,6 +686,17 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   (`addiu s0, s5, 0x18` then `sw 0(s0)`): a struct keeps `sw 0x18(s0)`
   (func_08881CE0). A fixed byte read through the unstepped base while the
   loop steps a copy: `s->id[i]`, `s->flag` of a struct (func_08882750).
+- `addu v0, idx, base` with the scaled index first: index a struct member
+  array, `s->f[i]` or `s->e[i].f`, not a raw `*(float *) (p + i * 4)`
+  (func_0888C318, func_0888B7FC).
+- `sw 0xC(sp)` then `lh` / `sh 0xE(sp)`: a local `union { s32 w; struct {
+  s16 lo, hi; } h; }` (func_0888C344).
+- Several stack arrays reached through one pointer with fixed offsets
+  (0x40, 0x80): one local struct of arrays; separate locals get one stepped
+  pointer each, in reverse address order (func_0888C3AC).
+- One field load in the wrong register in the first of two unrolled
+  blocks: declare the object as a struct instead of raw offsets, same form
+  in both blocks (func_0888E28C).
 
 ## Registers and loops
 
@@ -1740,6 +1782,20 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - `slt at` / `bnezl at` where ours computes the test into `v1`: write the
   comparison the other way round, `s->idx > n` for `n < s->idx`
   (func_0888A388); `i <= 10` for `i < 11` (func_08885644, func_0888571C).
+- A search loop `do { if (p[0] == key) { v = p[1]; break; } p += 2; }
+  while (--i != 0);`; `for (i = 16; i != 0; i--)` rotates it behind a `b`
+  (func_0888E350).
+- Two pointer increments swapped at the loop bottom: put one in the `for`
+  header, `for (j = 0; j < n - 1; j++, m += 4)`; a table address kept in its
+  own saved register: a local pointer `m = D_x[0]` declared before the
+  counter (func_0888C3AC).
+- With the speed setting, a `beqz` guard and the pointer stepped in the
+  `bnel` slot: `for (n--; n != 0; n--) { arr++; ... }` (func_0888BB40).
+- `c.ngt.s best, v` with `bc1t` where ours has `c.lt.s v, best`: write
+  `best > v` (func_0888BB40).
+- A float constant built by `lui` / `ori` + `mtc1` in a function without a
+  loop: the speed setting too; the size setting loads it from `@N`
+  (func_0888C344).
 
 ## Calls and allocation
 
@@ -2135,6 +2191,38 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - A `seb` before a later compare of a byte loaded by `lb`: an `s32` local
   from `*(signed char *) p`, then `(signed char) local` in the tests
   (func_088858EC).
+- Saved registers swapped and the declaration order does not help: change
+  the order of the assignment statements (`b = arg0 + 0xA0;` before `p =
+  *(...)`, func_0888D734), or keep the initialisers in the declarations in
+  register order (func_0888C9F8, func_0888FBD4, func_0888FCE4).
+- Float registers swapped around a call result in a compare: put the
+  result in a float local first, `r = f(); if (x > 300.0f + r)`
+  (func_0888D734).
+- A dead `addu v0, zero, zero` in the slot of the first early return: a
+  pointer local initialised at its declaration, `Entry *e = 0;`, set later
+  in a loop (func_0888C9F8). An address `base + 4` hoisted out of a loop
+  where the original loads `lw 4(base)` inside: read the global into a
+  struct pointer local in the loop (func_0888C9F8).
+- `add.s` operands swapped on a final sum: the shared operand in a local
+  and the quotient in a temporary, `t = ...; return t + y0;`
+  (func_0888C294); `mul.s` order of a product of squares: `a = f - lo; b =
+  hi - f; ... k * (a * a) * (k * (b * b))` (func_0888E634).
+- `a[i + 1]` loaded before `a[i]`, and `a[i]` reused: `x * (a[i + 1] -
+  (base = a[i]))` (func_0888C344). Two divisions of the same loads: compute
+  both before the first store (func_0888C3AC).
+- A constant loaded into `$f13` before a call that seems to take one float:
+  the callee takes two floats (func_08897D4C, func_0888E3DC). A branch slot
+  setting `a0` whose target is a `jal`: the callee takes it
+  (func_0888D888).
+- `addu v1, v0, zero` after a call, then `seb`: an `s32 t` set by both arms
+  (`t = f(...)` or `t = -1`), then `s8 r = t;` (func_0888FBD4).
+- One reload too many through `*slot` after `*slot = p`: reload once into
+  the local, `p = *slot; p[0x11] = 2; p[0x12] = 0;` (func_0888FDFC).
+- func_08812A08 takes one argument (it sets `a1` itself): the second
+  argument of the call in func_0885100C was the register that happened to
+  hold a temporary, and the call matches without it.
+- func_08859174 takes an unused argument: its callers load `a0` before the
+  call (func_0888FDFC) and the definition matches with `s32 arg0`.
 
 ## Open symptoms
 

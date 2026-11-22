@@ -824,10 +824,35 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0888A49C` | 0x0888A49C-0x0888A538 | 1 function (ratio of two floats of a table entry) | 100 % |
 | `unit_0888A538` | 0x0888A538-0x0888A668 | 1 function (moves a cursor towards a table entry) | 100 % |
 | `unit_0888A668` | 0x0888A668-0x0888A73C | 1 function (stores one of two float constants) | 100 % |
+| `unit_0888AF68` | 0x0888AF68-0x0888AFEC | 1 function (eased ratio by mode, through func_08897D4C(t, 2.25f)) | 100 % |
+| `unit_0888B7FC` | 0x0888B7FC-0x0888B884 | 1 function (calls func_0888C3AC, then func_0888B600 with a scaled float) | 100 % |
+| `unit_0888B994` | 0x0888B994-0x0888BB40 | 1 function (checks a key array through func_0888BC40 and func_0888BB40) | 100 % |
+| `unit_0888BB40` | 0x0888BB40-0x0888BC40 | 1 function (first float of an array clamped to a limit, else the smallest overshoot) | 100 % |
+| `unit_0888C294` | 0x0888C294-0x0888C318 | 1 function (clamped linear interpolation) | 100 % |
+| `unit_0888C318` | 0x0888C318-0x0888C344 | 1 function (interpolation of two adjacent floats) | 100 % |
+| `unit_0888C344` | 0x0888C344-0x0888C3AC | 1 function (interpolated s16 angle scaled by 2*pi/65536) | 100 % |
+| `unit_0888C3AC` | 0x0888C3AC-0x0888C794 | 1 function (cubic segment coefficients from a key array; three calls to func_0888C794) | 100 % |
+| `unit_0888C794` | 0x0888C794-0x0888C9F8 | 1 function (tridiagonal solver, hypothesis from the code shape) | 100 % |
+| `unit_0888C9F8` | 0x0888C9F8-0x0888CC10 | 1 function (state switch, searches a 6-byte entry table) | 100 % |
+| `unit_0888D004` | 0x0888D004-0x0888D0A8 | 1 function (copies two halfwords by state) | 100 % |
+| `unit_0888D1BC` | 0x0888D1BC-0x0888D2B4 | 1 function (raises or lowers a float, clamped to 0-300) | 100 % |
+| `unit_0888D600` | 0x0888D600-0x0888D708 | 1 function, C++ (chain of state tests) | 100 % |
 | `unit_0888D708` | 0x0888D708-0x0888D734 | 1 small function | 100 % |
+| `unit_0888D734` | 0x0888D734-0x0888D888 | 1 function (switch on a state byte after two float compares) | 100 % |
+| `unit_0888D888` | 0x0888D888-0x0888D958 | 1 function (returns a code from three tests) | 100 % |
 | `unit_0888E1C8` | 0x0888E1C8-0x0888E1F8 | 1 small function | 100 % |
 | `unit_0888E1F8` | 0x0888E1F8-0x0888E218 | 1 dot product (x, z) | 100 % |
+| `unit_0888E218` | 0x0888E218-0x0888E28C | 1 function (searches a 20-slot table) | 100 % |
+| `unit_0888E28C` | 0x0888E28C-0x0888E324 | 1 function (s16 pair interpolated by num / den) | 100 % |
 | `unit_0888E324` | 0x0888E324-0x0888E350 | 1 small function | 100 % |
+| `unit_0888E350` | 0x0888E350-0x0888E3DC | 1 function (searches a 16-pair table, then a switch) | 100 % |
+| `unit_0888E3DC` | 0x0888E3DC-0x0888E494 | 1 function (quadratic ease-in-out, hypothesis) | 100 % |
+| `unit_0888E494` | 0x0888E494-0x0888E5B8 | 1 function (chain of tests) | 100 % |
+| `unit_0888E634` | 0x0888E634-0x0888E788 | 1 function (product of two squared distances, scaled) | 100 % |
+| `unit_0888FBD4` | 0x0888FBD4-0x0888FCE4 | 1 function, C++ (bool tests, stores a call result) | 100 % |
+| `unit_0888FCE4` | 0x0888FCE4-0x0888FD38 | 1 function (angle difference range test) | 100 % |
+| `unit_0888FD38` | 0x0888FD38-0x0888FDFC | 1 function, C++ (loop that never returns: 11 calls and a virtual call per pass) | 100 % |
+| `unit_0888FDFC` | 0x0888FDFC-0x08890020 | 1 function, C++ (start-up: creates and starts the thread func_08890020, loads utility modules 0x100 and 0x101) | 100 % |
 | `unit_08890020` | 0x08890020-0x08890080 | 2 functions: a thread body that registers an exit callback and sleeps forever, and the callback (symbol sizes in symbol_addrs.txt) | 100 % |
 | `unit_08890080` | 0x08890080-0x088900A0 | 1 setter | 100 % |
 | `unit_088900A0` | 0x088900A0-0x088900C4 | 1 small function | 100 % |
