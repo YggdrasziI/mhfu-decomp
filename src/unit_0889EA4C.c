@@ -18,7 +18,7 @@ extern void func_0889EC88(s32);
 extern void func_0889EC90(s32, s32);
 extern void func_0889EC98(s32);
 extern int func_0889ECA0(int i, int v);
-extern void func_0889ECA8(s32);
+extern s32 func_0889ECA8(s32);
 extern void func_0889ECB0(s32, s32, s32);
 extern void func_0889EE48(s32, s32, s32);
 extern void func_0889EE50(void);
@@ -51,8 +51,8 @@ int func_0889EA6C(int i, int v) {
     return func_0889ECA0(i, v);
 }
 
-void func_0889EA74(s32 arg0, s32 arg1, s32 arg2, s32 arg3) {
-    func_0889ECA8(arg0);
+s32 func_0889EA74(s32 arg0) {
+    return func_0889ECA8(arg0);
 }
 
 void func_0889EA7C(s32 arg0, s32 arg1, s32 arg2) {

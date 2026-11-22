@@ -208,6 +208,20 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   (f() != 0)` tests at the bottom (func_088805A0).
 - A single `beqz` to the epilogue in place of `bnez; nop; b`: `if (!found
   || x != 0) return call(); return r;` (func_088816AC).
+- Two `beql` to the epilogue with `li v0, 1` and `move v0, zero` in their
+  slots: one `if (a == 1 || b != 0) return 1; return 0;`; two early returns
+  give `bnel` + `b` (func_08881970). `beql r, 1` then `beqzl w` with
+  `v0 = 0` in the slot: `if (r != 1) { switch (w) { case 0: return 0; } }
+  return 1;` (func_088819D0).
+- Ascending `bnez` / `bnel` compares (0, 1, 2, 3, 4) with `b` to a join:
+  an if/else-if chain; a `switch` compares in reverse order (func_0888291C).
+  `beq state, 1` first, then `beql state, 0`, case 0 code first: a `switch`
+  with `case 0` written first (func_088825FC, func_08882750).
+- A `beql x, 0xFFFF` to the else call at the end of a loop body: write the
+  `!= 0xFFFF` block first (func_08882750).
+- A loop test at the top with the counter check at the bottom and no guard,
+  where a `for` puts the test at the bottom behind a `b`: `do { if (!x)
+  break; ...; i++; } while (i < N);` (func_08882FA4).
 
 ## Booleans (C++ only)
 
@@ -608,6 +622,16 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   stores (func_088800C0).
 - `a0` / `a1` loads swapped in every `f(D, arr[i])`: the array is `u32 *`
   and the callee parameter `s32` (func_08880E50).
+- `lui 0x31` + `lw -0x743C(v1)` where ours gives `lui; ori; lw 0`: the
+  base is a pointer, `*(char **)(arg0 + 0x308BC4)`, not an `s32`
+  (func_0888334C). A large constant added through `$at` (`lui at; ori at;
+  addu s0, at`): `(s32)(arg0 + 0x549BD0)` with `char *arg0` (func_0888307C).
+- An address `base + i * 2` recomputed after each call: a struct of short
+  arrays, `base->a[i]`, not `((u16 *) base)[i + 8]` (func_088823B0). With
+  the speed setting, raw offsets fold array offsets into stepped pointers
+  (`addiu s0, s5, 0x18` then `sw 0(s0)`): a struct keeps `sw 0x18(s0)`
+  (func_08881CE0). A fixed byte read through the unstepped base while the
+  loop steps a copy: `s->id[i]`, `s->flag` of a struct (func_08882750).
 
 ## Registers and loops
 
@@ -1674,6 +1698,14 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   (func_08880D94).
 - One saved register too many around `arg1 + i`: write `arg1 + i` at each
   use, not in a local (func_08881458).
+- With the speed setting, the stepped pointer of a guarded loop starting at
+  a non-zero `i` built before the guard: index in the body, `for (; i < n;
+  i++) { e = (u16 *)(blk + i * 2); ... }`, not `e++` in the header
+  (func_08882014).
+- Two adjacent loop set-up instructions swapped: swap the set-up statements,
+  `i = 0;` before the pointer (func_08882FA4).
+- `(s0 + a) + b` where ours gives `s0 + (a + b)`: two `+=` statements;
+  `sum = sum + a + b` is reassociated (func_0888307C).
 
 ## Calls and allocation
 
@@ -2035,6 +2067,28 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   two statements on one u16 local, `c = f(); c = g(D, c);`, not nested
   calls; a value kept in an argument register for no visible reason: the
   next callee takes it as an extra argument (func_08891E0C).
+- A call result copied to an argument register right after the `jal`, the
+  next global then loaded through `v0`: assign the result to the parameter
+  that already lives in that register, `arg3 = f(..., arg3, ...); g(D, arg1,
+  arg2, arg3);`; a fresh local or a nested call give `lui v1` (func_08882C24,
+  func_08882AEC).
+- A result stored to a stack slot just before the epilogue and never read:
+  a dead `val = f(..., val, ...)` on an address-taken local of a `void`
+  function (func_08883FF0, func_088846F4).
+- `lhu a1` before the `jal` with `lw a0, %lo(D)` in the slot: the callee
+  parameter is `u16` (func_088DE014 in func_08881A30, func_08881CE0); `lw a3`
+  before the global `lw a0`: a `u32` last parameter (func_0887FF74 in
+  func_08881CE0). A raw `lhu` passed with no `seh`: `u16`, not `s16`
+  (func_0887FCBC in func_088823B0).
+- Parameters only passed on to calls, saved in reverse parameter order where
+  the original uses first-use order: declare the parameter `u32` while the
+  callees take `s32`, so every use converts (func_08882D9C).
+- `addu a3, s0, x` into a fresh register before `addu a2, s0, zero`: the
+  callee takes a fourth argument, the intermediate sum, `old = sum; mid =
+  sum + e.a; sum = mid + e.b; f(D, n, old, mid);` (func_0888307C).
+- A function of two instructions, `j f; move a0, a1`, whose result its
+  callers use: `s32 g(s32 a, s32 b) { return f(b); }`; func_0887FFE0 and
+  func_0889EA74 had been written with four unused parameters.
 
 ## Open symptoms
 

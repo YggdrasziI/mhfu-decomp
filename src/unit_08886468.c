@@ -6,7 +6,7 @@
 typedef short s16;
 typedef int s32;
 
-extern int func_08886850(char *, s32, s32, s16);
+extern int func_08886850(char *, s32, s32);
 extern s32 func_088A2338(void *);
 
 void func_08886468(char *arg0) {
@@ -29,7 +29,7 @@ void func_08886468(char *arg0) {
                 *(s16 *)(var_s0 + 0x16) = temp_v0;
                 temp_a3 = *(s16 *)(var_s0 + 0x14);
                 temp_a2 = *(s16 *)(var_s0 + 0x10);
-                func_08886850(arg0, var_s1, temp_a2 + ((s32) ((*(s16 *)(var_s0 + 0x12) - temp_a2) * (temp_a3 - temp_v0)) / temp_a3), temp_a3);
+                func_08886850(arg0, var_s1, temp_a2 + ((s32) ((*(s16 *)(var_s0 + 0x12) - temp_a2) * (temp_a3 - temp_v0)) / temp_a3));
             }
             *(s32 *)(var_s0 + 8) = func_088A2338(*(char **)var_s0);
         }

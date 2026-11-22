@@ -721,23 +721,43 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088817E8` | 0x088817E8-0x08881824 | 1 small function | 100 % |
 | `unit_08881824` | 0x08881824-0x08881840 | 1 small function | 100 % |
 | `unit_08881840` | 0x08881840-0x08881970 | 1 function (state dispatch; C++ for two virtual calls) | 100 % |
+| `unit_08881970` | 0x08881970-0x088819D0 | 1 function (state test; C++ for one virtual call) | 100 % |
+| `unit_088819D0` | 0x088819D0-0x08881A30 | 1 function (state test; C++ for one virtual call) | 100 % |
+| `unit_08881A30` | 0x08881A30-0x08881CE0 | 1 function (three-step state machine; C++ for one virtual call) | 100 % |
+| `unit_08881CE0` | 0x08881CE0-0x08882014 | 1 function (four-step state machine over an id block; C++, optimized for speed) | 100 % |
+| `unit_08882014` | 0x08882014-0x088823B0 | 1 function (three-step state machine over id lists; C++, optimized for speed) | 100 % |
+| `unit_088823B0` | 0x088823B0-0x088825FC | 1 function (three-step state machine over an id block; C++) | 100 % |
+| `unit_088825FC` | 0x088825FC-0x08882750 | 1 function (two-step state machine; C++) | 100 % |
+| `unit_08882750` | 0x08882750-0x0888291C | 1 function (two-step state machine over three ids; C++, optimized for speed) | 100 % |
+| `unit_0888291C` | 0x0888291C-0x08882A74 | 1 function (fills 21 entries from a table row) | 100 % |
+| `unit_08882A74` | 0x08882A74-0x08882AEC | 1 small function | 100 % |
+| `unit_08882AEC` | 0x08882AEC-0x08882B4C | 1 small function | 100 % |
 | `unit_08882B4C` | 0x08882B4C-0x08882B68 | 2 small functions | 100 % |
 | `unit_08882B68` | 0x08882B68-0x08882BB8 | 1 small function | 100 % |
+| `unit_08882BB8` | 0x08882BB8-0x08882C24 | 1 small function | 100 % |
+| `unit_08882C24` | 0x08882C24-0x08882C90 | 1 small function | 100 % |
 | `unit_08882C90` | 0x08882C90-0x08882C9C | 1 small function | 100 % |
 | `unit_08882C9C` | 0x08882C9C-0x08882CFC | 1 small function | 100 % |
 | `unit_08882CFC` | 0x08882CFC-0x08882D20 | 1 small function | 100 % |
 | `unit_08882D20` | 0x08882D20-0x08882D9C | 1 small function | 100 % |
+| `unit_08882D9C` | 0x08882D9C-0x08882E24 | 1 function (four calls with the same arguments) | 100 % |
 | `unit_08882E24` | 0x08882E24-0x08882EA0 | 1 small function | 100 % |
 | `unit_08882EA0` | 0x08882EA0-0x08882F04 | 1 small function | 100 % |
 | `unit_08882F04` | 0x08882F04-0x08882F10 | 1 small function | 100 % |
 | `unit_08882F10` | 0x08882F10-0x08882F58 | 1 small function | 100 % |
 | `unit_08882F58` | 0x08882F58-0x08882F64 | 1 small function | 100 % |
 | `unit_08882F64` | 0x08882F64-0x08882FA4 | 1 small function | 100 % |
+| `unit_08882FA4` | 0x08882FA4-0x0888307C | 1 function (walks one table row) | 100 % |
+| `unit_0888307C` | 0x0888307C-0x08883268 | 1 function (running sums over one table row; optimized for speed) | 100 % |
 | `unit_08883268` | 0x08883268-0x0888334C | 3 small functions | 100 % |
+| `unit_0888334C` | 0x0888334C-0x08883374 | 1 small function | 100 % |
 | `unit_08883374` | 0x08883374-0x08883384 | 1 small function | 100 % |
 | `unit_088838B0` | 0x088838B0-0x08883988 | 1 function (forwards to func_0887FFE8 with its last argument * n / 100); optimized for speed | 100 % |
 | `unit_08883988` | 0x08883988-0x08883B54 | 2 small functions | 100 % |
 | `unit_08883B54` | 0x08883B54-0x08883DE4 | 1 function (speed: looks an entry up with func_088840A8, then calls func_088800C0 or func_088838B0 depending on func_0887FBBC) | 100 % |
+| `unit_08883DE4` | 0x08883DE4-0x08883FF0 | 1 function (same shape as func_08883B54) | 100 % |
+| `unit_08883FF0` | 0x08883FF0-0x088840A8 | 1 function (two branches on a mode, one call each) | 100 % |
+| `unit_088846F4` | 0x088846F4-0x08884748 | 1 small function | 100 % |
 | `unit_08884748` | 0x08884748-0x0888491C | 1 function (stores its last argument at +0x562438, then calls func_088801E8 or func_088801A0 with arg7 * r / 100); optimized for speed | 100 % |
 | `unit_08884C9C` | 0x08884C9C-0x08884CD4 | 1 small function | 100 % |
 | `unit_08884CD4` | 0x08884CD4-0x08884CE4 | 1 small function | 100 % |
