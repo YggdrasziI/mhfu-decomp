@@ -35,7 +35,7 @@ Commits before `15e9c9d` (first units, from `unit_088A6024` on) were not measure
 | 2026-11-19 | `12bf4da` | 20.02 % | 1678 / 3575 | 1264 | VFPU code in `asm` blocks, C++ units with virtual calls |
 | 2026-11-20 | `c8059f8` | 25.51 % | 1802 / 3575 | 1312 | IJG JPEG library linked from its unmodified sources |
 | 2026-11-21 | `41f80a9` | 436188 / 1089072 bytes (40.05 %) | 2066 / 3576 | 1402 | Region 0x088EF380-0x089038C4 complete but for four functions; build flag `-inline bottomup`; 50 NonMatching functions retried with the newer source forms now match; static callees defined before their callers keep argument registers across calls (three units merged); region 0x088A0000: 0x088A00D0-0x088A4504 matched but for func_088A2498 |
-| 2026-11-22 | `24bc9b4` | 453572 / 1089072 bytes (41.65 %) | 2124 / 3576 | 1455 | Region 0x088A0000: 0x088A4504-0x088A88C4 matched but for func_088A812C; func_088A9660 matches with its static callee func_088A91F4 (five units merged); region 0x08890000: 0x08890020-0x08893198 matched but for func_08892708 (two functions without a return split in symbol_addrs.txt; first variadic functions, `va_start` from the mwccpsp builtins) |
+| 2026-11-22 | `b6b75d2` | 466268 / 1089072 bytes (42.81 %) | 2144 / 3576 | 1475 | Region 0x088A0000: 0x088A4504-0x088A88C4 matched but for func_088A812C; func_088A9660 matches with its static callee func_088A91F4 (five units merged); region 0x08890000: 0x08890020-0x0889695C matched but for func_08893894 (two functions without a return split in symbol_addrs.txt; first variadic functions, `va_start` from the mwccpsp builtins) |
 
 From 2026-11-12 (`f84b2f1`) on, one row per day: the last commit recorded that
 day in `progress/ULES01213/history.csv`, which has every measured commit. Rows
