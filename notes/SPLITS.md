@@ -965,10 +965,22 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0889D608` | 0x0889D608-0x0889D6EC | 1 function (clears fields of the record of the current id; optimized for speed) | 100 % |
 | `unit_0889D6EC` | 0x0889D6EC-0x0889D7E8 | 1 function (record of the current id, guarded by a status bit; optimized for speed) | 100 % |
 | `unit_0889D7E8` | 0x0889D7E8-0x0889D8A8 | 2 small functions | 100 % |
+| `unit_0889D8A8` | 0x0889D8A8-0x0889DF10 | 1 function (builds a message by type, switch with its jump table at 0x08931E9C given to the unit; optimized for speed) | 100 % |
+| `unit_0889DF10` | 0x0889DF10-0x0889DFAC | 1 function (looks up a record by id and calls func_0889DFAC; optimized for speed) | 100 % |
+| `unit_0889DFAC` | 0x0889DFAC-0x0889E1BC | 1 function (checks two records against the current id; optimized for speed) | 100 % |
 | `unit_0889E1BC` | 0x0889E1BC-0x0889E1E0 | 1 small function | 100 % |
+| `unit_0889E1E0` | 0x0889E1E0-0x0889E368 | 1 function (returns the lowest 8-byte record id by value; optimized for speed) | 100 % |
+| `unit_0889E368` | 0x0889E368-0x0889E440 | 1 function (compares the current id with a status bit test; optimized for speed) | 100 % |
 | `unit_0889E440` | 0x0889E440-0x0889E47C | 1 small function | 100 % |
+| `unit_0889E47C` | 0x0889E47C-0x0889E508 | 1 function (record init from an id) | 100 % |
+| `unit_0889E508` | 0x0889E508-0x0889E670 | 1 function (request state step) | 100 % |
 | `unit_0889E670` | 0x0889E670-0x0889E6A4 | 1 small function | 100 % |
+| `unit_0889E6A4` | 0x0889E6A4-0x0889E848 | 1 function (request state step with a timer; optimized for speed) | 100 % |
+| `unit_0889E848` | 0x0889E848-0x0889E8F8 | 1 function (logs three strings and runs the init helpers) | 100 % |
+| `unit_0889E8F8` | 0x0889E8F8-0x0889E984 | 1 function (message dispatch, switch as a compare chain) | 100 % |
+| `unit_0889E984` | 0x0889E984-0x0889E9D4 | 1 function (logs three strings and runs two helpers) | 100 % |
 | `unit_0889E9D4` | 0x0889E9D4-0x0889E9DC | 1 small function | 100 % |
+| `unit_0889E9DC` | 0x0889E9DC-0x0889EA4C | 1 function (switch on a mode, stores it) | 100 % |
 | `unit_0889EA4C` | 0x0889EA4C-0x0889EAE8 | 19 forwarders (tail calls) | 100 % |
 | `unit_0889EAE8` | 0x0889EAE8-0x0889EB84 | 1 function (record of include/unk_msg.h) | 100 % |
 | `unit_0889EB84` | 0x0889EB84-0x0889EC14 | 1 function (table reset, loop unrolled by 8: optimized for speed) | 100 % |
@@ -977,18 +989,29 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0889EC78` | 0x0889EC78-0x0889ECB8 | 8 forwarders | 100 % |
 | `unit_0889ECB8` | 0x0889ECB8-0x0889EE40 | 1 function (copies the fields named by a bit mask) | 100 % |
 | `unit_0889EE40` | 0x0889EE40-0x0889EEA0 | 12 forwarders | 100 % |
+| `unit_0889EEA0` | 0x0889EEA0-0x0889EF04 | 1 function (creates the semaphores of a table) | 100 % |
 | `unit_0889EF04` | 0x0889EF04-0x0889EF20 | 1 small function | 100 % |
 | `unit_0889EF20` | 0x0889EF20-0x0889EF40 | 1 semaphore wait | 100 % |
 | `unit_0889EF40` | 0x0889EF40-0x0889F018 | 1 function (virtual timer creation) | 100 % |
 | `unit_0889F018` | 0x0889F018-0x0889F07C | 2 small functions | 100 % |
 | `unit_0889F07C` | 0x0889F07C-0x0889F0D8 | 1 small function | 100 % |
+| `unit_0889F0D8` | 0x0889F0D8-0x0889F1CC | 1 function (pushes a 64-byte entry into a ring buffer) | 100 % |
+| `unit_0889F1CC` | 0x0889F1CC-0x0889F288 | 1 function (pops a 64-byte entry from a ring buffer) | 100 % |
+| `unit_0889F288` | 0x0889F288-0x0889F42C | 1 function (initialises a 32-node linked list) | 100 % |
 | `unit_0889F42C` | 0x0889F42C-0x0889F444 | 2 small functions | 100 % |
+| `unit_0889F444` | 0x0889F444-0x0889F47C | 1 small function (first node of a list) | 100 % |
 | `unit_0889F47C` | 0x0889F47C-0x0889F4BC | 1 list cursor step | 100 % |
 | `unit_0889F4BC` | 0x0889F4BC-0x0889F4F0 | 1 small function | 100 % |
+| `unit_0889F4F0` | 0x0889F4F0-0x0889F544 | 1 small function (next node of a list walk) | 100 % |
+| `unit_0889F544` | 0x0889F544-0x0889F5D8 | 1 function (moves a node between two lists) | 100 % |
+| `unit_0889F5D8` | 0x0889F5D8-0x0889F6A0 | 1 function (moves the node of an id between two lists; optimized for speed) | 100 % |
 | `unit_0889F6A0` | 0x0889F6A0-0x0889F744 | 1 function (resets a table of 32 0x48-byte entries) | 100 % |
 | `unit_0889F744` | 0x0889F744-0x0889F764 | 1 element address | 100 % |
+| `unit_0889F764` | 0x0889F764-0x0889F8F4 | 1 function (message dispatch with an inline interrupt-locked push) | 100 % |
+| `unit_0889F8F4` | 0x0889F8F4-0x0889F9A0 | 1 function (message dispatch) | 100 % |
 | `unit_0889F9A0` | 0x0889F9A0-0x0889F9C4 | 1 small function | 100 % |
 | `unit_0889F9C4` | 0x0889F9C4-0x0889FB94 | 1 function (reads up to 64 messages under the interrupt lock and dispatches them by id 0x10000000-0x1000000D); jump table 0x08931EE8-0x08931F20 in the unit | 100 % |
+| `unit_0889FB94` | 0x0889FB94-0x0889FD08 | 1 function (walks a list and updates its entries; optimized for speed) | 100 % |
 | `unit_0889FD08` | 0x0889FD08-0x088A00B0 | 1 function, speed; one voice's volume, pan and pitch written to its output block | 100 % |
 | `unit_088A00B0` | 0x088A00B0-0x088A00D0 | 1 small function | 100 % |
 | `unit_088A00D0` | 0x088A00D0-0x088A014C | 1 function (clears the list entries of kind 7) | 100 % |

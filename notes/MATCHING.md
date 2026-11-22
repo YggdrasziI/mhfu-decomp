@@ -171,6 +171,30 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   (func_08894EE4); same for if/else: the `x == 0` case first (func_088952A4).
 - `ext v0, v0, 1, 8` on a u8 parameter: `(u32) arg >> 1` (func_088952A4);
   `srl 1` then a signed `slt`: `(s32) ((u32) b >> 1)` (func_08893444).
+- A state tested `beq st, 1, join`, then `beql st, zero, body` and `b` to
+  the epilogue, the state-0 body falling into the common code: `switch (st)
+  { default: return; case 0: ...; /* fall through */ case 1: break; }`
+  with `default` written first; nested `if`s give `bnezl` (func_0889E508,
+  func_0889E6A4).
+- An error on a nonzero argument placed at the end (`beqz a0, main; b tail;
+  lui v0, 0x8000`, the `ori` at `tail`): `switch (x) { case 0: ...main...;
+  break; default: ret = ERR; break; }`, `case 0` first; no `if` / `goto` /
+  `do { } while (0)` form gives it (func_0889F0D8, func_0889F1CC).
+- An empty case tested first and branching to the epilogue: an explicit
+  `case X: break;` written last (reverse compare order, func_0889E8F8).
+- A case ending in `b` with the shared result store (`sw s2, 0(s0)`) in its
+  delay slot: a plain `break` to the shared `*out = ret;`; an early store
+  and `return`, or a `goto`, stores `zero` (func_0889F8F4, func_0889F764).
+- `b default` with a `nop` in its slot where ours fills it with the first
+  instruction of the default block: move the body of the case group into a
+  `static inline` helper (`ret = locked(msg);`); a plain `static` is not
+  inlined (func_0889F764).
+- One `beqz reg; nop` among final checks where ours gives `beqzl ...; addu
+  v0, zero, zero`: a single `if (a && p != 0 && b && f() == 0) return 1;
+  return 0;` (func_0889DFAC).
+- An if/else whose stores are duplicated into both branches: a ternary,
+  `p->prev = i == 0 ? A : &arr[i - 1];` or `x = x > 16 ? x - 16 : 0;`, gives
+  one store after the join (func_0889F288, func_0889FB94).
 
 ## Booleans (C++ only)
 
@@ -532,6 +556,29 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   structs wrapping an array, each assigned whole; a hole in the copy is a
   pad member (func_0889C914, func_0889CA88). Two `lbu` then two `sb`: load
   both into locals first, or copy them as a 2-byte struct.
+- Whole-loop register colouring different around a record row `base +
+  (u8) i * 200 + off`, declaration order without effect: a `static inline`
+  getter taking a `u8` index; a field read with the record offset folded
+  (`lbu 0x63B(row)`): call the getter again in each condition and assign
+  the row local only inside the `if` (func_0889E1E0).
+- An 8-byte align-1 struct returned by value (hidden `a0`, a count-4 `lb`
+  pair loop into the local): `u8 id[8]; *(Id8 *) id = f(x);` with `Id8 =
+  { s8 a[8]; }`; a struct temporary gives `lwc1` / `swc1` (func_0889E368).
+- A global's full address built (`lui` + `addiu`) before a branch and read
+  with an offset after it: a local pointer to it before the `if`, `p =
+  D_x;`, then `*(T *) (p + 8)`; a neighbour symbol still tested by its own
+  name (func_0889F444, func_0889F544).
+- `&local` in a saved register for the memcpy destinations while the
+  scalar stores stay sp-relative: `mp = &m;` after the early returns, `mp->`
+  only where an address is taken, `m.x = ...` for the stores; a store
+  emitted twice, or a field reloaded after a store: write through a pointer
+  to the local member (func_0889D8A8).
+- A table row with the global loaded before the multiply: `&((Row *) (D +
+  0x67758))[a]` with the row size in the struct (func_0889D8A8).
+- A lookup loop that leaves with `b` past the next load (copied into the
+  slot) and loops with `bnezl`: a `static inline` helper that returns
+  inside the loop and returns 0 after it; its input computed in the helper,
+  not passed, into the local declared last (func_0889DFAC).
 
 ## Registers and loops
 
@@ -1565,6 +1612,13 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   (func_0889B1A4, func_088D72A4).
 - `$t3` set before a call to a function that never reads it: the callee
   takes an unused eighth argument; func_088FC810 now declares it.
+- A ring-buffer push or pop with the count loaded before the `divu` and
+  stored before the `mfhi`: the new index in a local first, `h = (q[0] + 1)
+  % q[3]; ret = q[2] + 1; q[2] = ret; q[0] = h;` (func_0889F0D8,
+  func_0889F1CC).
+- A constant-count loop with the table pointer set before the counter:
+  `i = 0; p = arr; for (; i < N; i++, p++)` or `for (i = 0, p = arr; ...)`,
+  counter declared first (func_0889F288, func_0889EEA0).
 
 ## Calls and allocation
 
