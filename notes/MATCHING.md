@@ -284,6 +284,26 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - `beqz` on a switch value before the range check, table entry 0 equal to
   the default: `if (x == 0) return;` before the `switch` (func_08895644).
 
+- A count-down loop of `lb` / `lb` / `sb` / `sb` (count 3, both pointers
+  stepping by 2), then `lbu` / `lbu` / `sb` / `sb`: struct copies, a
+  6-byte align-1 struct `{ s8 b[6]; }` and a 2-byte `{ u8 b[2]; }`
+  (func_0889942C, func_08899E80, func_08899F30). In C++, `old[i] =
+  members[i];` gives one such loop per sub-structure, by alignment (`lb`
+  pairs, `lh` loop, `lbu` / `sb` for a `u8[2]`); skipped bytes are an
+  unnamed bit-field `s16 : 16;` (func_08898980).
+- A 0x14-byte record copied to the stack as three then two `lwc1` /
+  `swc1`: a local `struct { F3 a; F2 b; }` of floats filled member by
+  member from a pointer, fields read back through casts (`*(char **) ((char
+  *) &m + 8)`; func_0889A138 and its neighbours, as func_088B1C34). The
+  same record by value: exact size with padding, and the speed setting
+  unrolls the 5-word copy (func_0889A700). A whole-struct copy gives a word
+  loop.
+- An array at a large offset of the object (`lui` plus a displacement)
+  with the operands of `bnel` / `addu` reversed, or the base and `i * 12`
+  kept in two saved registers: an outer struct `{ char pad[OFF]; Entry
+  e[N]; }` used as `arg0->e[i].field` (func_08898898, func_088987D4,
+  func_0889A3D8).
+
 ## Addresses, arrays and structures
 
 - A table element whose index product is computed before the load of the base
@@ -433,6 +453,18 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   registers): declare the template externs `const` (func_08896EB8).
 - `addiu vX, zero, -0x81; and` on a byte, then `andi 0x80` tests: plain
   masks on a u8 field, not a 7/1-bit bitfield (func_088971F0).
+
+- Counter cleared before the pointer copy: both in the `for` header,
+  `for (i = 0, p = arg0; ...)` (func_08898748); a speed loop guarded by
+  `blez n` with the pointer copy after the guard: `if (n > 0) { p = arg0;
+  do { ... } while (++i < n); }` (func_08899D00).
+- A field of a stack copy kept in `$s0`: read it once into a named local
+  right after the copy (func_0889AACC, func_0889A918); a value stored to a
+  member and then compared from a register shifted by one: drop the local,
+  compare the member (func_0889A828).
+- Mode tests as `xori` / `sltiu` / `or` chains: `return (s == 2) | (s == 3)
+  | ...;` (func_088994AC); `addiu -1; sltiu at, 4` with no `andi`: `(u32)
+  (*(u8 *) p - 1) < 4` (func_08898980).
 
 ## Registers and loops
 
@@ -1445,6 +1477,17 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   `if (a == b && f(x) != 1) { ...; return 1; } break;` (func_0889695C).
 - The two operand loads before a `subu` from a call result times 7: put the
   product in the local at the call, `w = f() * 7;` (func_08896D24).
+
+- Three equality tests ending in `bne` to the exit, falling through to one
+  store: `if (v == A || v == B || v == C)` in that order, not a `switch`
+  (func_0889AA08, func_0889AACC, func_0889A918).
+- A callee defined `(void)` but given `$a0` by its callers (`move a0` in
+  the delay slot, or the register already holding a value): it takes an
+  unused argument; func_0889C518 takes one, and its older callers pass
+  what is in `$a0` there (func_0889D7E8, func_088FC62C).
+- A value left in `$a1` (or `$a0`) with no visible use before a later
+  `jal`: the callee reads it; check the callee's asm (func_088994AC,
+  func_08899F30).
 
 ## Calls and allocation
 

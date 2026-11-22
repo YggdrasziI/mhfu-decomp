@@ -38,7 +38,7 @@ typedef struct {
 } Game;
 
 extern Game *volatile D_09A0B544;
-extern void *func_0889C518(void);
+extern void *func_0889C518(void *);
 extern int func_0880BFF0(void *, void *, int);
 extern void memcpy(void *, void *, s32);
 
@@ -54,7 +54,7 @@ void func_088FC62C(s32 arg0, char *arg1)
     for (i = 0; i < D_09A0B544->count; i++) {
         g = D_09A0B544;
         entry = &g->entries[(u8)i];
-        if (func_0880BFF0(func_0889C518(), entry, 6) != 0) {
+        if (func_0880BFF0(func_0889C518(g), entry, 6) != 0) {
             if (entry->kind == 5) {
                 *(s16 *)(arg1 + 0x0) = 3;
             } else {

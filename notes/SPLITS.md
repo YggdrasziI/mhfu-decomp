@@ -883,22 +883,44 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088984B8` | 0x088984B8-0x08898510 | 1 small function | 100 % |
 | `unit_08898510` | 0x08898510-0x08898540 | 3 small functions | 100 % |
 | `unit_08898540` | 0x08898540-0x08898590 | 1 small function | 100 % |
+| `unit_08898590` | 0x08898590-0x08898694 | 1 function (clears the 0x200 records of 12 bytes at +0x83C030, optimized for speed) | 100 % |
 | `unit_08898694` | 0x08898694-0x08898748 | 1 function (table of 12-byte entries, written by hand) | 100 % |
+| `unit_08898748` | 0x08898748-0x088987D4 | 1 function (frees the records whose key equals the argument) | 100 % |
+| `unit_088987D4` | 0x088987D4-0x0889885C | 1 function (frees the first record whose value equals the argument, optimized for speed) | 100 % |
 | `unit_0889885C` | 0x0889885C-0x08898898 | 1 small function | 100 % |
+| `unit_08898898` | 0x08898898-0x088988EC | 1 function (looks up a key in the same records, optimized for speed) | 100 % |
 | `unit_088988EC` | 0x088988EC-0x08898948 | 1 small function | 100 % |
 | `unit_08898948` | 0x08898948-0x08898980 | 1 small function | 100 % |
+| `unit_08898980` | 0x08898980-0x0889942C | 1 function, C++ (updates the four members of a network session, optimized for speed) | 100 % |
+| `unit_0889942C` | 0x0889942C-0x088994AC | 1 function (copies the 6-byte id of the local member) | 100 % |
+| `unit_088994AC` | 0x088994AC-0x08899874 | 1 function (updates the member list from a received table, optimized for speed) | 100 % |
 | `unit_08899874` | 0x08899874-0x0889990C | 1 small function | 100 % |
 | `unit_0889990C` | 0x0889990C-0x08899954 | 2 small functions | 100 % |
 | `unit_08899954` | 0x08899954-0x08899B94 | 1 small function | 100 % |
 | `unit_08899B94` | 0x08899B94-0x08899BE8 | 3 small functions | 100 % |
 | `unit_08899BE8` | 0x08899BE8-0x08899D00 | 1 small function | 100 % |
+| `unit_08899D00` | 0x08899D00-0x08899D9C | 1 function (finds a member by its 6-byte id, optimized for speed) | 100 % |
 | `unit_08899D9C` | 0x08899D9C-0x08899DE0 | 1 small function | 100 % |
 | `unit_08899DE0` | 0x08899DE0-0x08899E80 | 1 small function | 100 % |
+| `unit_08899E80` | 0x08899E80-0x08899F30 | 1 function (selects a member, starts a request with func_0889A828 as callback) | 100 % |
+| `unit_08899F30` | 0x08899F30-0x08899FBC | 1 function (same, for a given id) | 100 % |
 | `unit_08899FBC` | 0x08899FBC-0x0889A008 | 1 small function | 100 % |
 | `unit_0889A008` | 0x0889A008-0x0889A024 | 1 small function | 100 % |
 | `unit_0889A024` | 0x0889A024-0x0889A064 | 2 flag + callback registrations | 100 % |
 | `unit_0889A064` | 0x0889A064-0x0889A09C | 2 small functions | 100 % |
 | `unit_0889A09C` | 0x0889A09C-0x0889A138 | 1 small function | 100 % |
+| `unit_0889A138` | 0x0889A138-0x0889A1E4 | 1 function (request callback: copies the 0x14-byte result, then calls func_0889CF34) | 100 % |
+| `unit_0889A1E4` | 0x0889A1E4-0x0889A290 | 1 function (request callback, same shape) | 100 % |
+| `unit_0889A290` | 0x0889A290-0x0889A32C | 1 function (request callback, same shape) | 100 % |
+| `unit_0889A32C` | 0x0889A32C-0x0889A3D8 | 1 function (request callback, same shape; optimized for speed) | 100 % |
+| `unit_0889A3D8` | 0x0889A3D8-0x0889A554 | 1 function (request callback, updates the member of the local id; optimized for speed) | 100 % |
+| `unit_0889A554` | 0x0889A554-0x0889A614 | 1 function (request callback, clears a 0x190-byte table) | 100 % |
+| `unit_0889A614` | 0x0889A614-0x0889A700 | 1 function (request callback with two 0x64-byte buffers; optimized for speed) | 100 % |
+| `unit_0889A700` | 0x0889A700-0x0889A828 | 1 function (request callback, record by value; optimized for speed) | 100 % |
+| `unit_0889A828` | 0x0889A828-0x0889A918 | 1 function (request callback, status codes 0x8000-0x8006) | 100 % |
+| `unit_0889A918` | 0x0889A918-0x0889AA08 | 1 function (request callback, same shape) | 100 % |
+| `unit_0889AA08` | 0x0889AA08-0x0889AACC | 1 function (request callback, same shape) | 100 % |
+| `unit_0889AACC` | 0x0889AACC-0x0889ABA4 | 1 function (request callback with a 0x64-byte buffer) | 100 % |
 | `unit_0889ABA4` | 0x0889ABA4-0x0889AC14 | 1 small function | 100 % |
 | `unit_0889AEF4` | 0x0889AEF4-0x0889AF48 | 1 small function | 100 % |
 | `unit_0889C518` | 0x0889C518-0x0889C524 | 1 small function | 100 % |
