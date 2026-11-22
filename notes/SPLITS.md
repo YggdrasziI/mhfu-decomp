@@ -607,15 +607,39 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0886F78C` | 0x0886F78C-0x0886F79C | 1 small function | 100 % |
 | `unit_08870194` | 0x08870194-0x0887019C | 1 small function | 100 % |
 | `unit_0887019C` | 0x0887019C-0x088701D8 | 1 small function | 100 % |
+| `unit_088701D8` | 0x088701D8-0x08870264 | 1 function (sums an s16 table over a 0xFF-terminated byte list) | 100 % |
+| `unit_08870264` | 0x08870264-0x088702F0 | 1 function (searches two 8-byte slots by flags and id, then a switch on a state byte) | 100 % |
+| `unit_088702F0` | 0x088702F0-0x088707D4 | 1 function (switch on a command; 22-entry jump table 0x089316DC-0x08931734 in the unit) | 100 % |
+| `unit_088707D4` | 0x088707D4-0x088709D4 | 1 function (walks a bounds-checked 20-slot table) | 100 % |
+| `unit_088709D4` | 0x088709D4-0x08870A2C | 1 function (sends a 12-byte message through func_088AB514) | 100 % |
+| `unit_08870A2C` | 0x08870A2C-0x08870A80 | 1 function (sends a 12-byte message through func_088AB514) | 100 % |
+| `unit_08870A80` | 0x08870A80-0x08870AC4 | 1 function (sends a 12-byte message through func_088AB514) | 100 % |
 | `unit_08870AC4` | 0x08870AC4-0x08870AEC | 1 small function | 100 % |
 | `unit_08870AEC` | 0x08870AEC-0x08870D30 | 1 function (C++; picks a u16 from the three-level table D_089A7CE8 by id and starts a load through D_089CC434's virtual calls) | 100 % |
 | `unit_08870D30` | 0x08870D30-0x08870D40 | 1 small function | 100 % |
+| `unit_08870D40` | 0x08870D40-0x08870E88 | 1 function, C++ (largest virtual-call value per entry, then func_088DE0B8 per new id) | 100 % |
+| `unit_08870E88` | 0x08870E88-0x088711C0 | 1 function (repeated play-or-start calls on D_09A4F0D0 for fixed ids and a returned list) | 100 % |
+| `unit_088711C0` | 0x088711C0-0x0887142C | 1 function (two id-set tests inlined, calls per list entry) | 100 % |
+| `unit_0887142C` | 0x0887142C-0x088714CC | 2 functions, C++: a tail call through the vtable of D_089CC434 and func_08871444, the last valid value of four list entries (symbol sizes in symbol_addrs.txt) | 100 % |
+| `unit_088714CC` | 0x088714CC-0x088714F8 | 1 small function (tail call with a byte of a 0x2C-byte record) | 100 % |
 | `unit_088714F8` | 0x088714F8-0x0887184C | 1 function, C++, speed; virtual calls over 20 objects, entity update, two table lookups in initialised local tables (.data 0x089A82D0-0x089A853C) | 100 % |
+| `unit_0887184C` | 0x0887184C-0x088718F4 | 1 function (id test against three ids and a returned list) | 100 % |
+| `unit_088718F4` | 0x088718F4-0x08871B34 | 1 function (walks a bounds-checked 20-slot table, calls per entry) | 100 % |
+| `unit_08871B34` | 0x08871B34-0x08871BC4 | 1 function (clears a back pointer in four entries) | 100 % |
+| `unit_08871BC4` | 0x08871BC4-0x08871DCC | 1 function (walks a table of s16 thresholds) | 100 % |
 | `unit_08871DCC` | 0x08871DCC-0x08872108 | 1 function (C++, speed: sibling of func_0887221C with a virtual call and a maximum per record) | 100 % |
 | `unit_08872108` | 0x08872108-0x0887221C | 1 function (same family: one slot's colours to func_08880D64 and func_08881114) | 100 % |
 | `unit_0887221C` | 0x0887221C-0x08872444 | 1 function (speed: fills three `u16[4]` and one `u8[4]` local arrays from the slots at D_09A4F0D0 and the table D_09BC8400, then hands them to func_08880E50) | 100 % |
+| `unit_08872444` | 0x08872444-0x0887265C | 1 function (walks 14-byte records ending at id 0xFF, random rolls against thresholds) | 100 % |
+| `unit_0887265C` | 0x0887265C-0x0887276C | 1 function (weighted random pick over a 0xFFFF-terminated table) | 100 % |
+| `unit_0887276C` | 0x0887276C-0x088727CC | 1 function (index of a byte in an 8-byte table) | 100 % |
+| `unit_08872980` | 0x08872980-0x08872AAC | 1 function (picks a table entry by rank and slot) | 100 % |
+| `unit_08872AAC` | 0x08872AAC-0x08872B2C | 1 function, C++ (sends a 12-byte message through func_088AB514) | 100 % |
 | `unit_08872B2C` | 0x08872B2C-0x08872B40 | 1 small function | 100 % |
+| `unit_08872B40` | 0x08872B40-0x08872B7C | 1 function (s16 sum over two records) | 100 % |
+| `unit_08872B7C` | 0x08872B7C-0x08872BFC | 1 function (sends a 12-byte message through func_088AB514) | 100 % |
 | `unit_08872BFC` | 0x08872BFC-0x08872CC0 | 1 small function | 100 % |
+| `unit_08872CC0` | 0x08872CC0-0x08872D74 | 1 function (adds to an s8 and clamps it to its group of eight) | 100 % |
 | `unit_08872D74` | 0x08872D74-0x08872DC4 | 1 small function | 100 % |
 | `unit_08872DC4` | 0x08872DC4-0x08872DF4 | 3 small functions | 100 % |
 | `unit_08872E2C` | 0x08872E2C-0x08872E48 | 1 small function | 100 % |

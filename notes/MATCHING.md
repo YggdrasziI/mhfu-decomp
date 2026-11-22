@@ -249,6 +249,19 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   ... }` (func_0888FBD4). A shared `return 0` after a switch: `break` from
   the cases, no `default`; returns inside the cases duplicate the epilogue
   (func_0888D734).
+- A guard leaving with `bnezl` / `v0 = 0`, then `beql K1` with `v0 = 1`,
+  `beq` + `nop` for the next ids and a last `bne` to a `v0 = 0` block: an
+  inline helper `if (guard) { if (id == K1 || ... || id == Kn) return 1; }
+  return 0;`; a switch group gives 96 % (func_088711C0).
+- `beqzl v0, end` with `v0 = 0` in the slot after a call returning a
+  list, then a `beq -1` to a separate `return 0`: a positive guard, `if (p
+  != 0) { while (*p != -1) ... } return 0;`, with the speed setting
+  (func_0887184C).
+- `bnezl v1, end` with a store in the slot and the same store on the fall
+  through: write the store in both arms, `if (v == 0) { *p = 0; ... } else
+  { *p = 0; }` (func_08872B7C).
+- A loop tested at the top with a `b` back to it: `for (;;) { if (x < 0)
+  break; ... }`; `while (x >= 0)` tests at the bottom (func_08871BC4).
 
 ## Booleans (C++ only)
 
@@ -267,6 +280,9 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   (func_0888D600). In C: a `u8` local, `u8 flag = (x & 8) != 0;`
   (func_0888E494). A test `(u8) check(p) == 1` on a `static inline bool`
   helper with an early `return false` and a switch (func_0888FBD4).
+- `xor` / `sltiu 1` / `bnel` against a register holding 1 on an equality
+  test: a C++ `static inline bool` returning `a == b`, tested `== 1`; C folds
+  it to `bnel a, b` (func_08872AAC).
 
 ## Types and signedness
 
@@ -318,6 +334,18 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   `u16` local (func_0888FCE4).
 - A compare branch with its operands swapped that `==` order does not fix:
   type both values as `char *` instead of `s32` (func_0888E218).
+- An extra `andi v0, 0xFFFF` after a call whose callee already ends with
+  `andi v0, 0xFFFF` in its delay slot: declare the callee returning `s32`
+  (func_08870E88). An extra `andi a1, 0xFFFF` before a call: declare that
+  parameter `s32`, not `u16` (func_088711C0).
+- `seh v0` in the `jr ra` slot after an `s16` sum: return `s32`, keep the
+  local `s16` (func_08872B40). No `seb` on an `s8` result: make the
+  function return `s8` and work in the `s8` parameter, `arg1 += arg2`
+  (func_08872CC0).
+- `andi 0xFF` on a byte already loaded by `lbu`, before its use as an
+  index: a `u8` local read in the loop condition, `while ((c = *p) != 0xFF)`
+  (func_088701D8). The mask in one branch only: an `s32` local in the
+  condition and `(u8) id` in that branch (func_08872444).
 
 ## Symbol names in the report
 
@@ -697,6 +725,20 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - One field load in the wrong register in the first of two unrolled
   blocks: declare the object as a struct instead of raw offsets, same form
   in both blocks (func_0888E28C).
+- A local struct passed by address 4 bytes too high in the frame (`sp +
+  0x18` for `sp + 0x14`): the struct is larger than the fields written; add
+  unused trailing fields (8 to 12 bytes; func_088709D4, func_08870A2C,
+  func_08870A80, func_08872AAC, func_08872B7C).
+- `lui 7; lhu -0x50EE(v1)` where ours gives `lui 6; ori 0xAF12`, and a
+  table base added last through `$at`: a struct for the pointed object, with
+  padding and a 2D array member, `&g->tbl[i][j]` (func_08872980).
+- `addu` operands swapped in `base + i * K + (s8) b`: index a struct array
+  of size K twice in the expression, `e[i].b[off + (s8) e[i].b[off2]]`, with
+  no pointer local (func_088714CC). A 2D element `addu x, idx * 44, base`
+  then `addu x, col, x`: `((u8 (*)[44]) (p + off))[row][col]` (func_088702F0).
+- A 32-bit value from two halfwords with the mask in the wrong register:
+  load the high half into the result local first, `v = *(s16 *) (p + 4); v
+  = *(u16 *) (p + 6) | ((v << 16) & 0xFFFF0000);` (func_088702F0).
 
 ## Registers and loops
 
@@ -1796,6 +1838,19 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - A float constant built by `lui` / `ori` + `mtc1` in a function without a
   loop: the speed setting too; the size setting loads it from `@N`
   (func_0888C344).
+- A bounds-checked 20-slot table read in a loop with the base and the
+  scaled offset in two registers: an inline accessor taking the base as a
+  parameter, `get(D_x, i)` (func_088707D4), or `i * 4 + base + 0x1220`
+  written in that order (func_088718F4).
+- A loop unrolled by 7 testing `slti at, i, 0x24`: `i <= 0x2A`, not `i <
+  0x2B` (func_088702F0). The second walk of an array reloading its element:
+  reuse the first loop's pointer local, `for (p = arg0; ...)`, rather than
+  stepping the parameter (func_0887265C).
+- A pointer start set before the guard of a speed-setting search loop:
+  index form `seen[n]`, the compiler strength-reduces it after the guard
+  (func_08870D40). Two counters stepped together: set the call-argument one
+  before the guard, `j = 0; if (...) return; for (i = 0; ...; i++, j++)`
+  (func_08871B34).
 
 ## Calls and allocation
 
@@ -2223,6 +2278,18 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   hold a temporary, and the call matches without it.
 - func_08859174 takes an unused argument: its callers load `a0` before the
   call (func_0888FDFC) and the definition matches with `s32 arg0`.
+- `slt at, tbl, x` with the table in another register and a store moved:
+  write the field on the left, `x > tbl[i]` (func_08871BC4, func_088707D4).
+- `and v1, load, mask` with the operands swapped: read the byte into a `u8`
+  local first, `f = p[x]; if (!(f & mask))` (func_08872444). A byte loaded
+  before a call and compared with its result: an `s32` local, not `s8`
+  (func_08872444).
+- The argument load before the `jal` instead of in its slot: declare that
+  callee parameter `u32` (func_088718F4); a global first argument loaded
+  before a `u8` one: declare the byte parameter `s32` (func_08870D40).
+- A splat function whose first part is a vtable tail call (`jr $t9`, no
+  frame) followed by code without a label: two functions; add the second
+  to symbol_addrs.txt with both sizes (func_0887142C, func_08871444).
 
 ## Open symptoms
 
@@ -2252,3 +2319,11 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - `t->tbl[t->idx]` address computed in $v0 where the original uses the
   register of the result (a1), and the following clear() counter in a2
   instead of v0 (func_088A2498, 99.87 %).
+- A pointer chosen by a flag (`bnezl` with the other address in its slot)
+  and the call result, index and pointer in other registers than the
+  original (func_088727CC, assembly): the plain `if (f == 0) p = tbl; else
+  p = alt;` gives the layout but not the colouring (95.30 %, all 5040
+  declaration orders alike); a pre-assigned `p = alt; if (f == 0) p = tbl;`
+  or a `switch` gives the colouring but `bnez` or an extra `xor` / `sltiu`
+  (98.67 %, 97.61 %). Loading the rank byte into its local before the
+  else-if tests fixes the rank register in those forms.
