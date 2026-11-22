@@ -642,13 +642,37 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08872CC0` | 0x08872CC0-0x08872D74 | 1 function (adds to an s8 and clamps it to its group of eight) | 100 % |
 | `unit_08872D74` | 0x08872D74-0x08872DC4 | 1 small function | 100 % |
 | `unit_08872DC4` | 0x08872DC4-0x08872DF4 | 3 small functions | 100 % |
+| `unit_08872DF4` | 0x08872DF4-0x08872E2C | 1 small function (sets a 7-bit value and its flag bit in one byte) | 100 % |
 | `unit_08872E2C` | 0x08872E2C-0x08872E48 | 1 small function | 100 % |
+| `unit_08872E48` | 0x08872E48-0x08872E84 | 1 small function (clears the flag bit of the same byte and sets the value to 0x7F) | 100 % |
 | `unit_08872E84` | 0x08872E84-0x08872ED4 | 3 small functions | 100 % |
+| `unit_08872ED4` | 0x08872ED4-0x08872F0C | 1 small function (index of a 7-bit value among six bytes) | 100 % |
+| `unit_08872F0C` | 0x08872F0C-0x08872FB8 | 1 function (largest difference of two calls over two entries) | 100 % |
 | `unit_08872FB8` | 0x08872FB8-0x08873044 | 1 small function | 100 % |
+| `unit_08873044` | 0x08873044-0x08873488 | 1 function (sets one-time flags by thresholds and shows a message through func_088307BC) | 100 % |
+| `unit_08873488` | 0x08873488-0x08873554 | 1 function, C++ (chain of state and id tests) | 100 % |
+| `unit_08873554` | 0x08873554-0x08873614 | 1 function (clears two arrays, then calls func_08873614 and func_0887370C) | 100 % |
+| `unit_08873614` | 0x08873614-0x0887370C | 1 function (nested walk of groups and entries, sets bits of a flag array) | 100 % |
+| `unit_0887370C` | 0x0887370C-0x08873838 | 1 function (nested walk of entries, tests bits of a flag array) | 100 % |
+| `unit_08873838` | 0x08873838-0x088738D4 | 1 function (clears three arrays and a total) | 100 % |
+| `unit_088738D4` | 0x088738D4-0x08873980 | 1 function (counts an id in a 20-slot table, adding it if new) | 100 % |
 | `unit_08873980` | 0x08873980-0x088739A4 | 1 small function | 100 % |
+| `unit_088739A4` | 0x088739A4-0x08873A0C | 1 function (clears 32 pairs of halfwords) | 100 % |
+| `unit_08873A0C` | 0x08873A0C-0x08873CC0 | 1 function (builds, shuffles and copies a list of up to eight ids) | 100 % |
+| `unit_08873CC0` | 0x08873CC0-0x08874124 | 1 function (rolls items by rank into a list, shuffles and copies up to eight) | 100 % |
+| `unit_08874124` | 0x08874124-0x08874190 | 1 function (table lookup by key, then a test through func_0884FB38) | 100 % |
+| `unit_08874190` | 0x08874190-0x088741D4 | 1 small function (searches an s16 table ending at -1) | 100 % |
+| `unit_088741D4` | 0x088741D4-0x08874218 | 1 small function (copies 0x60 bytes from an entry) | 100 % |
+| `unit_08874218` | 0x08874218-0x08874278 | 1 function (any of 0x3D ids accepted by func_08874278) | 100 % |
+| `unit_08874278` | 0x08874278-0x08874454 | 1 function (id lookup in two 6-byte tables and range tests) | 100 % |
+| `unit_08874454` | 0x08874454-0x08874A94 | 1 function (builds lists of entries from several tables) | 100 % |
 | `unit_08874A94` | 0x08874A94-0x08874AB0 | 1 small function | 100 % |
+| `unit_08874AB0` | 0x08874AB0-0x08874C58 | 1 function (copies item pairs into 30 slots and returns their total value) | 100 % |
 | `unit_08876574` | 0x08876574-0x088765C0 | 1 small function | 100 % |
+| `unit_088765C0` | 0x088765C0-0x08876710 | 1 function (adds a value twice by state) | 100 % |
+| `unit_08876710` | 0x08876710-0x08876AA8 | 1 function (switch on a state; jump table 0x089317C4-0x089317E0 in the unit) | 100 % |
 | `unit_08876AA8` | 0x08876AA8-0x08876FCC, .data 0x089A87E8-0x089A8808 | 1 function (C++, speed: draws a panel, same layout as func_0887A34C); jump table 0x089317E0-0x089317FC and the initializers of its two local `s16[7]` tables in the unit | 100 % |
+| `unit_08876FCC` | 0x08876FCC-0x08877100 | 1 function (two total values of an item list) | 100 % |
 | `unit_08877100` | 0x08877100-0x088775F0 | 1 function (speed: a state machine on the halfword at +0xA4; returns 1 when state 5 ends); jump table 0x089317FC-0x08931814 in the unit | 100 % |
 | `unit_088775F0` | 0x088775F0-0x08877BE8, .data 0x089A8850-0x089A8870 | 1 function (C++, speed: draws a panel, same layout as func_0887A34C, with a 2 x 5 grid of entries); jump table 0x08931814-0x0893182C and the initializers of its two local `s16[7]` tables in the unit | 100 % |
 | `unit_08877BE8` | 0x08877BE8-0x08877C04 | 1 small function | 100 % |
@@ -660,6 +684,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08878BDC` | 0x08878BDC-0x08878EEC | 1 function (same shape as func_08878F08; prints two lines for the first two of 27 entries accepted by func_088785CC); optimized for speed | 100 % |
 | `unit_08878EEC` | 0x08878EEC-0x08878F08 | 1 small function | 100 % |
 | `unit_08878F08` | 0x08878F08-0x088790F4 | 1 function (draws a panel with three texts from func_09A63198 and the s16 at +0xAC / 30); optimized for speed | 100 % |
+| `unit_088790F4` | 0x088790F4-0x08879158 | 1 function (total value of 32 item slots) | 100 % |
 | `unit_08879158` | 0x08879158-0x08879198 | 1 sum | 100 % |
 | `unit_08879198` | 0x08879198-0x0887941C | 1 function (two loops over 24 slots and 90 u16 counters at +0x29C / +0x350 of D_08A62C7C); initialised array 0x089A88B0-0x089A88C8 (`.data`) in the unit; optimized for speed | 100 % |
 | `unit_0887941C` | 0x0887941C-0x0887959C | 2 small functions | 100 % |

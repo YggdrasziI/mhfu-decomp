@@ -262,6 +262,19 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   { *p = 0; }` (func_08872B7C).
 - A loop tested at the top with a `b` back to it: `for (;;) { if (x < 0)
   break; ... }`; `while (x >= 0)` tests at the bottom (func_08871BC4).
+- A guard with `beql x, K` and `v0 = 1` in its slot, a call, `beqzl v0` with
+  `v0 = 0`, then `v0 = 1; b end` with an empty slot: `if (x != K) { switch
+  (f()) { case 0: return 0; } } return 1;` (func_08874124).
+- Two early exits merged into one `bltzl s0, end` with `v0 = 0`: `if (idx <
+  0 || f(idx)) return 0;` (func_08874278). Range blocks kept as branches
+  rather than folded into `sltu`: one `if / else if` chain whose arms only
+  `if (f()) return 1;`, then a single `return 0;` (func_08874278).
+- A jump-table guard branching to the epilogue with `v0 = 0` in its slot:
+  no `default:`, `break` from the cases, one `return 0` after the switch
+  (func_08876710).
+- Loops tested at the top and never rotated: `while (1) { if (!c) break;
+  ... }` or `for (;; p++) { ... continue; }` with the step in the header
+  (func_0887370C, func_08873614).
 
 ## Booleans (C++ only)
 
@@ -283,6 +296,10 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - `xor` / `sltiu 1` / `bnel` against a register holding 1 on an equality
   test: a C++ `static inline bool` returning `a == b`, tested `== 1`; C folds
   it to `bnel a, b` (func_08872AAC).
+- `sltu` then `bnel` against 1: cast the comparison before testing it, `if
+  ((s32) ((x & 1) != 0) == 1)` (func_088765C0). `sltu; xori 1; bnel` after
+  a call: `if (!(f() != 0) == 0)` (func_08874218). A `(bool)` test kept out
+  of a `||` chain in its own nested `if` (func_08873488).
 
 ## Types and signedness
 
@@ -346,6 +363,16 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   index: a `u8` local read in the loop condition, `while ((c = *p) != 0xFF)`
   (func_088701D8). The mask in one branch only: an `s32` local in the
   condition and `(u8) id` in that branch (func_08872444).
+- Two read-modify-write sequences on one byte (`and -0x81; or 0x80`, then
+  `and -0x80; or`): bitfields `u8 val : 7; u8 flag : 1;`, allocated from the
+  low bit, assigned in the order of the assembly (func_08872DF4,
+  func_08872E48).
+- A sum loop `count * table[id].value` with shifted registers and `slt`
+  before `mflo`: read the id into an `s32` local (func_08876FCC,
+  func_088790F4), or declare the table field `u32` (func_08874AB0).
+- `lb` for `lbu` and `addiu a0, base, off; sb 0(a0)`: make the parameter
+  `u8 *`, not casts at each use (func_08873044). A flag local set twice to
+  1: `u8` tested with `!flag` (func_08873044).
 
 ## Symbol names in the report
 
@@ -739,6 +766,14 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - A 32-bit value from two halfwords with the mask in the wrong register:
   load the high half into the result local first, `v = *(s16 *) (p + 4); v
   = *(u16 *) (p + 6) | ((v << 16) & 0xFFFF0000);` (func_088702F0).
+- An unrolled clear on `obj + 0xCC` with offsets 4, 5, 6: an inline helper
+  taking the embedded struct and a local `e = &l->e[k];` (func_08874454).
+  Two arrays of one record stepped as two pointers: explicit pointers set
+  before the loop and stepped in the `for`, declared before the counter
+  (func_08874454, func_08873A0C).
+- An output pointer stepped next to the counter: `buf[count] = x;
+  count++;`, the compiler reduces it (func_08873CC0); a stepped output in an
+  unrolled copy: `out->x = ...; out++;` (func_08873A0C).
 
 ## Registers and loops
 
@@ -1851,6 +1886,17 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   (func_08870D40). Two counters stepped together: set the call-argument one
   before the guard, `j = 0; if (...) return; for (i = 0; ...; i++, j++)`
   (func_08871B34).
+- A clear loop that steps the parameter itself and keeps a saved copy:
+  `s16 *p = arg1;` first, `*arg1++ = 0`, then `p` to the calls
+  (func_08873554). Counter and pointer swapped in an unrolled clear: declare
+  the pointer before the counter, `p++` in the body (func_088739A4).
+- The count of an unrolled loop: the `slti` limit is the count minus the
+  unroll factor (0x52 with a step of 8 and two tail stores: 90;
+  func_08873554, func_08873838).
+- A `bnel` delay slot runs only when the branch is taken: on the fall
+  through the register keeps its earlier value (func_08873CC0).
+- Many locals: a hill climb on the declaration lines (swaps and moves)
+  found the order of func_08873CC0 in about 15 tries.
 
 ## Calls and allocation
 
@@ -2290,6 +2336,11 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - A splat function whose first part is a vtable tail call (`jr $t9`, no
   frame) followed by code without a label: two functions; add the second
   to symbol_addrs.txt with both sizes (func_0887142C, func_08871444).
+- `bnel a1, v1` for `bnel v1, a1` in a search loop: the masked load in its
+  own local, `v = b & 0x7F; if (v == arg1)` (func_08872ED4).
+- func_08870AC4 and func_0886D26C return the value of their tail call to
+  func_0887265C (func_08873A0C and func_08873CC0 read it): they had been
+  written `void`; the callee is declared returning `s32`.
 
 ## Open symptoms
 
