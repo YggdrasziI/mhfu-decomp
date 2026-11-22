@@ -423,6 +423,17 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - A byte field address kept in a saved register (`addiu s0, obj, 0x11`):
   a struct field, not a cast offset (func_08895538).
 
+- Index and row pointer in swapped argument registers for `tbl[row][col *
+  2]` before a tail call: `q = tbl[row]; q += col * 2;` in separate
+  statements (func_08896C58, func_08896CA0); a byte read at `tbl[i] + j * 2 +
+  1` with the operands of the `addu` reversed: `(s32) tbl[i] + (u32) (j * 2)
+  + 1` (func_08896CF8).
+- A template copied field by field into a pointer target, with each load
+  moved above the previous store (`lui` before every load, two value
+  registers): declare the template externs `const` (func_08896EB8).
+- `addiu vX, zero, -0x81; and` on a byte, then `andi 0x80` tests: plain
+  masks on a u8 field, not a 7/1-bit bitfield (func_088971F0).
+
 ## Registers and loops
 
 - Two locals in swapped registers: the declaration order of the locals sets them
@@ -1427,6 +1438,14 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - A `static` helper written for a repeated store is not inlined and is
   emitted even when unused: drop it (it shifts the link; func_08895644).
 
+- Early exits of switch cases as `beq` + `nop` to a shared `v0 = 0` block,
+  the out-of-range path `b end` with `v0 = 0` in its slot: `if (f() == 1)
+  break;` in the cases, no `default:`, one `return 0;` after the switch
+  (func_08896AD4). In a loop, `beq` + `nop` to the `return 0` after it: one
+  `if (a == b && f(x) != 1) { ...; return 1; } break;` (func_0889695C).
+- The two operand loads before a `subu` from a call result times 7: put the
+  product in the local at the call, `w = f() * 7;` (func_08896D24).
+
 ## Calls and allocation
 
 - PSP EABI: arguments 5-8 in `$t0-$t3`, float arguments in `$f12-$f19` counted apart
@@ -1790,6 +1809,9 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 
 ## Open symptoms
 
+- `$ra` saved at 0x0 (or under the other saved registers) and a call block
+  after `jr $ra` reached by `j`: not mwccpsp code, leave it in assembly
+  (0x088972A0-0x08897E1C, notes/SPLITS.md).
 - Two part pointers in swapped saved registers after the D_09A4F0D0
   lookup (func_088DC1F0, 99.78 %).
 - Register-only differences (result kept in `$v0` then copied to a saved

@@ -14,6 +14,16 @@
 | 0x08906934 - 0x0890BE00 (edge between 0x0890BD68 and 0x0890BE00) | not Metrowerks: start-up code (entry point 0x08906934), GU graphics library | style markers; imports and strings below |
 | 0x0890BE00 - 0x0890DE38 | Metrowerks, C++ runtime (hypothesis) | 7 functions linked from C (2026-11-12); `std::exception` strings |
 
+Inside the Metrowerks region, 0x088972A0 - 0x08897E1C is probably not Metrowerks
+either (2026-11-22, hypothesis): thin wrappers of the `__sceSas*` imports (Init,
+Core, SetKeyOn/Off, SetVolume, SetPitch, SetSimpleADSR, GetEndFlag, GetOutputmode,
+Rev*) that test the flag D_08A8B1EC and return 0x8042xxxx errors, then wrappers
+of `sceAudio*` (ChReserve/Release, SetChannelDataLen, OutputPannedBlocking...).
+Nine of the pieces save `$ra` at 0x0 of a 16-byte frame, others at 0x4, 0x8 or
+under the saved registers, and several place a call block after `jr $ra` and
+jump back with `j` (the "Markers" below). mwccpsp versions of six of them score
+0-47 %. It stays in assembly (pieces `text_088972A0`, `text_088977BC`).
+
 Inside the Metrowerks region, 0x088DE804 - 0x088EF2C0 is the IJG JPEG library,
 release 6b, decoder side (`notes/PROVENANCE.md`). Survey of 2026-11-20: 42 files of
 the distribution built unmodified with `-O4,p` and each function searched in the
@@ -850,9 +860,18 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08896484` | 0x08896484-0x088965D8 | 1 function (draws a menu in two modes) | 100 % |
 | `unit_088965D8` | 0x088965D8-0x088966C0 | 1 function (draws a menu entry with a formatted value) | 100 % |
 | `unit_088966C0` | 0x088966C0-0x0889695C | 1 function, C++ (dispatches 19 menu entries); jump table 0x08931E00-0x08931E4C in the unit | 100 % |
+| `unit_0889695C` | 0x0889695C-0x08896A50 | 1 function (finds the record of the current level in a table, optimized for speed) | 100 % |
 | `unit_08896A50` | 0x08896A50-0x08896AD4 | 1 small function | 100 % |
+| `unit_08896AD4` | 0x08896AD4-0x08896C10 | 1 function (menu action in two states) | 100 % |
 | `unit_08896C10` | 0x08896C10-0x08896C2C | 1 small function | 100 % |
+| `unit_08896C2C` | 0x08896C2C-0x08896C58 | 1 function (looks up a menu entry flag) | 100 % |
+| `unit_08896C58` | 0x08896C58-0x08896CA0 | 1 function (looks up the text of a menu entry) | 100 % |
+| `unit_08896CA0` | 0x08896CA0-0x08896CF8 | 1 function (looks up the text of a menu entry option) | 100 % |
+| `unit_08896CF8` | 0x08896CF8-0x08896D24 | 1 function (looks up a byte of a menu entry) | 100 % |
+| `unit_08896D24` | 0x08896D24-0x08896EB8 | 1 function (draws a menu box with its text) | 100 % |
+| `unit_08896EB8` | 0x08896EB8-0x088971A0 | 1 function (copies a box template, draws the box and its text) | 100 % |
 | `unit_088971A0` | 0x088971A0-0x088971F0 | 1 small function (C++) | 100 % |
+| `unit_088971F0` | 0x088971F0-0x08897290 | 1 function (steps a state byte with a timer) | 100 % |
 | `unit_08897290` | 0x08897290-0x08897298 | 1 small function | 100 % |
 | `unit_08897298` | 0x08897298-0x088972A0 | 1 small function | 100 % |
 | `unit_08897E1C` | 0x08897E1C-0x08897E5C | 1 small function | 100 % |
