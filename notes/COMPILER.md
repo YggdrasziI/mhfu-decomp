@@ -174,11 +174,12 @@ calls to 0x0890C370 and 0x0890C3D8:
 | `(this->*pmf)()` | `addu $a0, this`, `jal __ptmf_scall`, `addiu $t9, this, off` (delay slot) | `jal func_0890C370`, `addiu $t9, $s0, 0x3FC` |
 | `pmf == pmf2` | `jal __ptmf_cmpr` (`$a0`, `$a1` the two), then `sltu`, `xori` | no caller; 0x0890C3A4 xors the three words of `$a0` and `$a1` and returns `!= 0` |
 | `pmf = &A::f` | three `lwc1`/`swc1` from a compiler constant, one `lui` per word | func_08906744, func_0890682C (12-byte constants {0, 0x10 or -1, 0 or a code address}) |
+| `pmf = 0` | three loads from `__ptmf_null` (the first through `%lo`, the next two from a `lui`/`addiu` base), then three stores | func_088868AC, func_08865CEC: the same copy from 0x09A5F114, 12 bytes of `.bss` never written (2026-11-22) |
 
 The pointer is three words {this offset, vtable offset, function}: 0x0890C370 adds the
 first to `this`, then calls the function directly when the vtable offset is negative,
 else through the vtable. So these are named `__ptmf_scall`, `__ptmf_cmpr`, `__ptmf_test`
-(config/ULES01213/symbol_addrs.txt); splat had joined `__ptmf_cmpr` to `__ptmf_scall`
+and `__ptmf_null` (config/ULES01213/symbol_addrs.txt); splat had joined `__ptmf_cmpr` to `__ptmf_scall`
 (no caller). `(bool) (flags & 1) != 0` gives the `andi`/`sltu`/`beqz` flag test seen
 with them.
 
