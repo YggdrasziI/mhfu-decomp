@@ -118,6 +118,23 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - `beqzl` over the body where the original has `bnez` + `b`: `if (x != 0)
   { rest } return 0;` instead of an early `return 0` (func_088CDA74).
 
+- `bnel` with `return 0` in its delay slot where ours gives `beql` + `b`:
+  the positive test with the work inside, `if (x == K) { ...; return V; }
+  return 0;` (func_088A5AFC). `bgezl v0` + `addu v0, zero, zero`: the early
+  return `if (ret < 0) return ret; return 0;` (func_088A4BC4).
+- `beql reg, zero` with `v0 = 0` in its slot, then `lw v0, 4(reg)`:
+  `if (p != 0) return p->unk4; return 0;` (func_088A5B50). `beql x, -1` to
+  a constant call: `if (x != -1) f(a, b); else f(0, 0);` (func_088A4504).
+- A clamp with an inner join (`beqz at; b join; addu s0, a2`) that if/else
+  tail-merges: a ternary, `x = (x < N) ? x : lim; len = x;` (func_088A4654).
+  `bgezl t / slti at, t, 0x100 / bnezl at`: `if (t < 0) x = 0; else if (t >
+  0xFF) x = 0xFF; else x = t;` (func_088A6100).
+- Loop exit `beql` with `lw v0, ret` in its slot, then `beq` and `b loop`:
+  `if (next == 0xFFFF) break; if (next == arg1) break; arg1 = next;` and one
+  `return ret;` after the loop (func_088A6100).
+- An error path inside a guarded do-while placed after the normal path:
+  `if (ok) { ...; } else { error calls; break; } tail;` (func_088A5D38).
+
 ## Booleans (C++ only)
 
 - `andi` + `sltu` + branch on 0/1: `(bool) (x & K) == 0` / `!= 0`; C folds the
@@ -171,6 +188,9 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   and the large offset stays split `lui 7` / `lw -0x50EC` (func_088D168C,
   NonMatching).
 
+- `sltiu` where ours gives `slti`: make the compared parameter unsigned
+  (func_088A4654, `unsigned int` length).
+
 ## Symbol names in the report
 
 - splat names a field address it sees loaded on its own (`D_09BC8402`), and
@@ -193,6 +213,13 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   `typedef struct {u8 a, b;} AB;`, `*(AB *) &dst = *(AB *) &src;`
   (func_088B4FAC, func_088B5568, func_088B5D3C, func_088B70E8,
   func_088B7350).
+
+- Two stores into globals 0x44 apart in an order no permutation changes:
+  one struct array, `D_09A0EB80[i].unk44 = x` (splat named the field
+  `D_09A0EBC4`; the diff shows `D_09A0EB80+0x44`, the report 100 %,
+  func_088A5B50). Four then three `lwc1` ascending into `$f3..$f0` copying
+  consecutive globals: one record written as two structure assignments
+  (func_088A4504, same report behaviour).
 
 ## Addresses, arrays and structures
 
@@ -308,6 +335,13 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   (func_088CDC8C).
 - A loop with a constant count and no jump to its test at entry: `i = 0; do
   { ... } while (i < 4);` (a `for` jumps to the test first).
+
+- `addu` operands swapped on `base + i * size + off`: `(T *)(base + i *
+  sizeof(T) + 0x10)`, not `&((T *)(base + 0x10))[i]` (func_088A5548);
+  `lw 0x10(idx)` after `addu idx, base`: an array member, `p->unk10[i]`
+  (func_088A5454, func_088A4CB0).
+- Global array base set up before the counters in ours: declare the global
+  as an array and index it, no pointer local (func_088A489C).
 
 ## Registers and loops
 
@@ -1256,6 +1290,16 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   array is larger than the bytes used (`u8 from[16]` for 6 bytes,
   func_088AD87C).
 
+- Saturating `s16` sum re-sign-extended into a new register: compound
+  `v += (s16)(x - 64);` on an `s16` local (func_088A5774).
+- A running offset the compiler folds to a constant: one variable assigned
+  several times (`off = 0; ... off += 0x20; ... off += size;`); one extra
+  register everywhere: the function returns a value (func_088A4CB0).
+- Swapped temporaries in one of several same-shaped sections: try splitting
+  each loop variable per section (func_088A4CB0).
+- A length passed to memcpy with `andi 0xFF` while its `lbu` feeds other
+  uses: an `s32` local passed as `(u8) sz` (func_088A812C).
+
 ## Calls and allocation
 
 - PSP EABI: arguments 5-8 in `$t0-$t3`, float arguments in `$f12-$f19` counted apart
@@ -1600,6 +1644,13 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   passed through): same static-callee rule as above (func_088A4344 calling
   func_088A4178, func_088A2A78 calling func_088A243C).
 
+- A store before a call goes into the `jal` delay slot in the original,
+  after the `a0` move: the callee is `static`, defined earlier in the same
+  file (func_088A9660 calling func_088A91F4). Parameters spilled to their
+  stack homes and case constants in saved registers: speed setting, plus
+  `#pragma opt_unroll_loops off` if an inline clear must stay rolled
+  (func_088A6100).
+
 ## Open symptoms
 
 - Two part pointers in swapped saved registers after the D_09A4F0D0
@@ -1610,7 +1661,9 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   declaration order: func_088D7AD8 (99.58 %).
 - Scheduling: a load placed before / after an index computation (func_088307BC,
   func_0884424C `trunc.w.s`).
-- Unfilled `jal` delay slot (func_08813CF8).
+- Unfilled `jal` delay slot (func_08813CF8; func_088A812C 99.29 %: the
+  `addu a1` goes into the slot of the func_088AAD58 call, with an extern or
+  a static callee alike).
 - Two saved registers swapped (a pointer to a global in `$s0`, the last
   argument in `$s1`) whatever the declaration order: func_088EF9C8.
 - A test against the constant 1 (`addiu v1, zero, 1` after the `andi`,

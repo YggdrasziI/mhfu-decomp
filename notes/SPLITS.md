@@ -893,20 +893,36 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088A4178` | 0x088A4178-0x088A43C0 | 6 functions: static func_088A4178 and its only caller func_088A4344, with the entries of D_09A0E3CC between them | 100 % |
 | `unit_088A43C0` | 0x088A43C0-0x088A4408 | 1 small function | 100 % |
 | `unit_088A4408` | 0x088A4408-0x088A4504 | 1 function (flag bits of an entry to func_08897xxx calls) | 100 % |
+| `unit_088A4504` | 0x088A4504-0x088A464C | 1 function (compares a 0x1C-byte record at D_09A0E3B0 with its argument, calls func_08897xxx, copies it as two structure assignments) | 100 % |
 | `unit_088A464C` | 0x088A464C-0x088A4654 | 1 small function | 100 % |
+| `unit_088A4654` | 0x088A4654-0x088A47C4 | 1 function (switch over a channel id: fills two buffers with 0xFF, copies the argument, calls func_0889E8F8) | 100 % |
+| `unit_088A47C4` | 0x088A47C4-0x088A489C | 1 function (checks a header tag, clears two 16-word tables, selects entry 0) | 100 % |
+| `unit_088A489C` | 0x088A489C-0x088A49D0 | 1 function (selects an entry: offsets and sizes of its 16 parts; optimized for speed) | 100 % |
 | `unit_088A49D0` | 0x088A49D0-0x088A4A30 | 1 small function | 100 % |
 | `unit_088A4A30` | 0x088A4A30-0x088A4B5C | 2 small functions | 100 % |
+| `unit_088A4B5C` | 0x088A4B5C-0x088A4BC4 | 1 small function (optimized for speed) | 100 % |
+| `unit_088A4BC4` | 0x088A4BC4-0x088A4BE8 | 1 small function | 100 % |
 | `unit_088A4BE8` | 0x088A4BE8-0x088A4BF0 | 1 small function | 100 % |
 | `unit_088A4BF0` | 0x088A4BF0-0x088A4CB0 | 2 small functions | 100 % |
+| `unit_088A4CB0` | 0x088A4CB0-0x088A53A4 | 1 function (builds a 0x20-byte header and three sections padded with 0xFF to 16 bytes; optimized for speed) | 100 % |
 | `unit_088A53A4` | 0x088A53A4-0x088A5454 | 4 small functions | 100 % |
+| `unit_088A5454` | 0x088A5454-0x088A5548 | 1 function (table lookup with error messages) | 100 % |
+| `unit_088A5548` | 0x088A5548-0x088A5774 | 1 function (fills an entry from a header, error messages) | 100 % |
+| `unit_088A5774` | 0x088A5774-0x088A59C4 | 1 function (saturating s16 sums, divisions by 127; optimized for speed) | 100 % |
 | `unit_088A59C4` | 0x088A59C4-0x088A59FC | 1 small function | 100 % |
 | `unit_088A59FC` | 0x088A59FC-0x088A5A3C | 1 small function | 100 % |
 | `unit_088A5A3C` | 0x088A5A3C-0x088A5AFC | 1 small function | 100 % |
+| `unit_088A5AFC` | 0x088A5AFC-0x088A5B50 | 1 small function (queue-full check) | 100 % |
+| `unit_088A5B50` | 0x088A5B50-0x088A5D38 | 1 function (queues a 0x48-byte entry under a semaphore; D_09A0EBC4 is field 0x44 of D_09A0EB80) | 100 % |
+| `unit_088A5D38` | 0x088A5D38-0x088A5ECC | 1 function (polls a semaphore and drains the queue of D_09A0EB80) | 100 % |
 | `unit_088A5ECC` | 0x088A5ECC-0x088A5EF8 | 1 small function | 100 % |
 | `unit_088A5EF8` | 0x088A5EF8-0x088A5FC0 | 1 small function | 100 % |
+| `unit_088A5FC0` | 0x088A5FC0-0x088A600C | 1 small function (clears a 16-word table; optimized for speed) | 100 % |
 | `unit_088A600C` | 0x088A600C-0x088A6024 | 2 small functions | 100 % |
 | `unit_088A6024` | 0x088A6024-0x088A6040 | one function (table store) | 100 % |
 | `unit_088A6040` | 0x088A6040-0x088A6088 | 1 small function | 100 % |
+| `unit_088A6088` | 0x088A6088-0x088A6100 | 1 function (flag bits of a halfword, optional hook, then func_088A6690) | 100 % |
+| `unit_088A6100` | 0x088A6100-0x088A658C | 1 function (walks linked records, switch on the record type; jump table at 0x08931F68 given to the unit; speed, unrolling off) | 100 % |
 | `unit_088A658C` | 0x088A658C-0x088A6780 | 4 functions building messages (byte-wise clear of include/unk_msg.h) | 100 % |
 | `unit_088A6780` | 0x088A6780-0x088A6798 | 2 small functions | 100 % |
 | `unit_088A6798` | 0x088A6798-0x088A6A78 | 8 functions filling a record of include/unk_msg.h for func_088A6E44 | 100 % |
@@ -932,9 +948,11 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088A8018` | 0x088A8018-0x088A8028 | 1 small function | 100 % |
 | `unit_088A8028` | 0x088A8028-0x088A8048 | 1 setter | 100 % |
 | `unit_088A8048` | 0x088A8048-0x088A812C | 1 function (appends a headed record to the store) | 100 % |
+| `unit_088A812C` | 0x088A812C-0x088A84B4 | 1 function (builds a packet from the store entries and sends it to the other peers) | NonMatching (99.29 %) |
 | `unit_088A84B4` | 0x088A84B4-0x088A8570 | 1 function (peer state change with callbacks) | 100 % |
 | `unit_088A8570` | 0x088A8570-0x088A85F4 | 1 small function | 100 % |
 | `unit_088A85F4` | 0x088A85F4-0x088A874C | 5 functions (append to a store, four packet builders ending in it) | 100 % |
+| `unit_088A874C` | 0x088A874C-0x088A88C4 | 1 function (packet handler, switch on the type byte) | 100 % |
 | `unit_088A88C4` | 0x088A88C4-0x088A88E0 | 1 function (callback through the session) | 100 % |
 | `unit_088A88E0` | 0x088A88E0-0x088A8988 | 1 function (peer activity time stamp) | 100 % |
 | `unit_088A8988` | 0x088A8988-0x088A8B98 | 1 function (splits a received buffer into packets, one handler per type) | 100 % |
@@ -943,11 +961,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088A8D74` | 0x088A8D74-0x088A8E3C | 1 function (handles the complete packets of a buffer, moves the rest) | 100 % |
 | `unit_088A8E3C` | 0x088A8E3C-0x088A9084 | 1 function (receives from each peer, queues its packets by type) | 100 % |
 | `unit_088A9084` | 0x088A9084-0x088A91F4 | 1 function (counts each peer's lag, drops it past a threshold, rolls the byte counters) | 100 % |
-| `unit_088A91F4` | 0x088A91F4-0x088A920C | 1 small function | 100 % |
-| `unit_088A920C` | 0x088A920C-0x088A9334 | 1 function (drops the peers whose timers ran out) | 100 % |
-| `unit_088A9334` | 0x088A9334-0x088A93A4 | 1 small function | 100 % |
-| `unit_088A93A4` | 0x088A93A4-0x088A9660 | 1 function (one step of the session wait) | 100 % |
-| `unit_088A9660` | 0x088A9660-0x088A9914 | 1 function (per-frame session state machine; switch table jtbl_08931FC0 stays in the data piece) | NonMatching (97.6 %) |
+| `unit_088A91F4` | 0x088A91F4-0x088A9914 | 5 functions: static func_088A91F4 and its only caller func_088A9660 (per-frame session state machine, jump table at 0x08931FC0 given to the unit), with func_088A920C, func_088A9334 and func_088A93A4 between them | 100 % |
 | `unit_088A9914` | 0x088A9914-0x088A9CDC | 1 function (starts a session, attaches the static buffers) | 100 % |
 | `unit_088A9CDC` | 0x088A9CDC-0x088A9CFC | 2 small functions | 100 % |
 | `unit_088A9CFC` | 0x088A9CFC-0x088A9DF4 | 2 functions (session status queries) | 100 % |

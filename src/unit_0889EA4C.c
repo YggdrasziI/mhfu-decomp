@@ -12,8 +12,8 @@ typedef int s32;
 typedef unsigned short u16;
 
 extern void func_0889ECB8(int a, int b, s32);
-extern void func_0889EC78(void);
-extern void func_0889EC80(void);
+extern void func_0889EC78(s32);
+extern void func_0889EC80(s32);
 extern void func_0889EC88(s32);
 extern void func_0889EC90(s32, s32);
 extern void func_0889EC98(s32);
@@ -31,12 +31,12 @@ extern void func_0889EE88(s32, s32, s32);
 extern void func_0889EE90(s32, s32, s32, s32);
 extern void func_0889EE98(s32);
 
-void func_0889EA4C(void) {
-    func_0889EC78();
+void func_0889EA4C(s32 arg0) {
+    func_0889EC78(arg0);
 }
 
 void func_0889EA54(s32 arg0) {
-    func_0889EC80();
+    func_0889EC80(arg0);
 }
 
 void func_0889EA5C(s32 arg0) {
