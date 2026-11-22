@@ -31,6 +31,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "tools" / "psp"))
+sys.path.insert(0, str(ROOT / "tools" / "common"))
 
 import ninja_syntax  # noqa: E402
 import project  # noqa: E402
@@ -241,7 +242,7 @@ def main() -> None:
            description="LD $out")
     n.rule("objcopy", f"{tool('objcopy')} -O binary $in $out", description="OBJCOPY $out")
     n.rule("relative", f"$python {psp}/prx_reloc.py $in $out --relative", description="PRX $out")
-    n.rule("check", f"$python {psp}/sha1.py $in", description="CHECK $in")
+    n.rule("check", f"$python tools/common/sha1.py $in", description="CHECK $in")
     n.rule("configure", f"$python tools/configure.py --version {version}",
            description="CONFIGURE", generator=True)
     n.newline()

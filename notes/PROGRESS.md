@@ -3,7 +3,7 @@
 `BOOT.BIN` of `ULES01213`, from the objdiff report (`ninja report`): 1089072 bytes of
 code and 3573 functions in all, the regions not built by Metrowerks included
 (`notes/SPLITS.md`). Every unit listed is at 100 %. The badges and the card in
-`progress/ULES01213/` are drawn by `python tools/psp/progress_badges.py --record`,
+`progress/ULES01213/` are drawn by `python tools/common/progress_badges.py --record`,
 which also appends the `HEAD` commit to `progress/ULES01213/history.csv`.
 
 Commits before `15e9c9d` (first units, from `unit_088A6024` on) were not measured.

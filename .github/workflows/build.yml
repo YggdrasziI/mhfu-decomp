@@ -21,8 +21,8 @@ jobs:
           TRACE_PATTERNS: ${{ secrets.TRACE_PATTERNS }}
           RANGE: ${{ github.event_name == 'push' && github.event.before != '0000000000000000000000000000000000000000' && format('{0}..{1}', github.event.before, github.sha) || github.sha }}
         run: |
-          python3 tools/psp/check_traces.py
-          python3 tools/psp/check_traces.py --log "$RANGE"
+          python3 tools/common/check_traces.py
+          python3 tools/common/check_traces.py --log "$RANGE"
 
   build:
     # This is a *private* build container (YggdrasziI/mhfu-decomp-build):

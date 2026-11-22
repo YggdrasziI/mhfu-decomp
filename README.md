@@ -11,7 +11,8 @@ Monster Hunter Freedom Unite (PSP)
 A work-in-progress matching decompilation of Monster Hunter Freedom Unite (Monster
 Hunter Portable 2nd G) for the PlayStation Portable, built with
 [splat](https://github.com/ethteck/splat) and the shared
-[psp-decomp-tools](https://github.com/YggdrasziI/psp-decomp-tools).
+[psp-decomp-tools](https://github.com/YggdrasziI/psp-decomp-tools) and
+[decomp-tools](https://github.com/YggdrasziI/decomp-tools).
 
 > [!NOTE]
 > No port to PC or other platforms is planned for the time being, but should that change, the link will appear here
@@ -40,7 +41,7 @@ Progress
 [![Progress card](progress/ULES01213/card.svg)](notes/PROGRESS.md)
 
 `BOOT.BIN` only (the overlays are not extracted yet). After `ninja report`,
-`python tools/psp/progress_badges.py --record` redraws `progress/ULES01213/` and adds
+`python tools/common/progress_badges.py --record` redraws `progress/ULES01213/` and adds
 the current commit to `progress/ULES01213/history.csv`; `notes/PROGRESS.md` logs the
 milestones.
 
@@ -80,7 +81,7 @@ Building
 4. `ninja report` writes the objdiff report (`build/<version>/report.json`);
    `objdiff.json` is there for the objdiff GUI.
 
-Contributors: `python tools/psp/check_traces.py --install-hooks` installs the
+Contributors: `python tools/common/check_traces.py --install-hooks` installs the
 pre-commit checks.
 
 Documentation

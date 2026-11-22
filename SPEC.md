@@ -65,8 +65,10 @@ gives an ELF size of 0x1D251C bytes and the entry 0x08906934, both those of
   natively once `tools/psp/lmgr_patch.py` has stubbed its license check (done by the
   download).
 - Shared tools: the `tools/psp` submodule
-  ([psp-decomp-tools](https://github.com/YggdrasziI/psp-decomp-tools)), configured by
-  `decomp.toml`.
+  ([psp-decomp-tools](https://github.com/YggdrasziI/psp-decomp-tools), PSP) and the
+  `tools/common` submodule ([decomp-tools](https://github.com/YggdrasziI/decomp-tools),
+  any platform: function comparison, report gate, progress card, trace guard), both
+  configured by `decomp.toml`.
 
 ## Build pipeline
 
@@ -76,7 +78,7 @@ gives an ELF size of 0x1D251C bytes and the entry 0x08906934, both those of
    import stubs as assembly, the module tables as rodata, `.data`, then `.bss`.
 3. `as` for assembly (through `tools/psp/assemble.py`), the compiler for `src/`,
    `objcopy -I binary`, then `ld` with the splat linker script and `objcopy -O
-   binary`: `build/ULES01213/BOOT.BIN`, checked by `tools/psp/sha1.py`.
+   binary`: `build/ULES01213/BOOT.BIN`, checked by `tools/common/sha1.py`.
 
 ## Acceptance criteria
 
@@ -89,7 +91,7 @@ gives an ELF size of 0x1D251C bytes and the entry 0x08906934, both those of
 - Reused code or data from another project is logged with its commit and license in
   `notes/PROVENANCE.md`.
 - No local paths or attribution trailers in the repository
-  (`tools/psp/check_traces.py`, pre-commit and CI).
+  (`tools/common/check_traces.py`, pre-commit and CI).
 
 ## Naming conventions
 
@@ -110,7 +112,8 @@ asm/                      splat output (git-ignored)
 build/                    build output (git-ignored)
 src/  include/            sources and headers
 tools/                    configure.py, extract.py
-tools/psp/                shared tools (git submodule)
+tools/psp/                shared PSP tools (git submodule)
+tools/common/             shared tools of any platform (git submodule)
 notes/                    reference documentation
 .github/workflows/        CI: rebuild and check the executable in a private image
 ```

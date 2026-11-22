@@ -41,6 +41,16 @@ flags = "-O4 -sdatathreshold 0 -inline bottomup"
 "src/jpeg-6b/jdmarker.c" = ["save_marker", "jpeg_save_markers", "jpeg_set_marker_processor"]
 "src/jpeg-6b/jdmaster.c" = ["jpeg_new_colormap"]
 
+# tools/common/report_diff.py: units that hold the code not yet in a source file
+[report]
+auto_units = ["asm/"]
+
+# tools/common/try_unit.py: one source compiled outside the build and scored
+# against the assembly piece that holds the function
+[try]
+compile = "{python} tools/psp/compile.py tools/binutils/mips-ps2-decompals-objcopy{exe} {obj} {cc} -c {flags} -Iinclude -Isrc -o {obj} {src}"
+target = "build/{version}/asm/{version}/boot/{piece}.s.o"
+
 # tools/psp/batch_units.py: the Metrowerks regions of .text (notes/SPLITS.md):
 # game and engine, one game object before the start-up code, then the C++
 # runtime at the end of .text
@@ -51,7 +61,7 @@ jobs = 24  # parallel workers; ninja also runs with -j 24
 [batch.ranges]
 ULES01213 = [[0x08811C84, 0x08903A94], [0x08906744, 0x08906934], [0x0890BE00, 0x0890DE38]]
 
-# Code regions of the progress card (tools/psp/progress_badges.py), bounds and
+# Code regions of the progress card (tools/common/progress_badges.py), bounds and
 # contents from notes/SPLITS.md (approximate, library names are hypotheses)
 [regions.ULES01213]
 "C library" = [[0x08804000, 0x08811C84]]
