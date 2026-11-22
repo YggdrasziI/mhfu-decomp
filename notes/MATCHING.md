@@ -135,6 +135,17 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - An error path inside a guarded do-while placed after the normal path:
   `if (ok) { ...; } else { error calls; break; } tail;` (func_088A5D38).
 
+- `sltu v0, zero, v0; xori v0, 1; beqzl v0` after a call where ours gives
+  one `bnezl`: `!(f() != 0) ? 2 : 1` (func_08890E48, func_08890ED4); the same
+  pair before a `bnez` at the top of an infinite loop: `if ((x & K) == 0)
+  goto sleep; ... sleep: call();` gives the plain `beqz` (func_08890494).
+- A switch whose first-compared case should be `beql` to the join + 4: write
+  the case equal to the default value on its own and put `default:` last
+  (func_08890718).
+- An early exit inside a loop as `beqzl p` with the result in its slot,
+  apart from the break: `if (p == 0) goto ret; ... } ret: return total;`
+  (func_08891074).
+
 ## Booleans (C++ only)
 
 - `andi` + `sltu` + branch on 0/1: `(bool) (x & K) == 0` / `!= 0`; C folds the
@@ -220,6 +231,14 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   func_088A5B50). Four then three `lwc1` ascending into `$f3..$f0` copying
   consecutive globals: one record written as two structure assignments
   (func_088A4504, same report behaviour).
+
+- A u16 element at a large offset compared with a u16 argument, with
+  both the index `addu` and the `xor` in the original order: a struct with
+  an array field, `arg0->arr[i] == arg1`, element on the left (func_08890284).
+  `sll v0, i, 1; addu v1, v0, base`: index a typed pointer,
+  `((u16 *)(base + OFF))[i]` (func_088901F8, func_088900C4); a table of
+  pointers: `((T **)(base + 0x140))[i]`; `addu a2, idx, base`: the integer
+  sum `(u8 *)(idx + (s32)base) + 0x134` (func_088911A0).
 
 ## Addresses, arrays and structures
 
@@ -1299,6 +1318,23 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   each loop variable per section (func_088A4CB0).
 - A length passed to memcpy with `andi 0xFF` while its `lbu` feeds other
   uses: an `s32` local passed as `(u8) sz` (func_088A812C).
+
+- Loads grouped ahead of stores in an unrolled copy (3 `lhu`, 3 `sh`):
+  declare the source `extern const` and walk it with a `const` pointer
+  (func_088908FC).
+- A pointer parameter and the first call result swapped in their saved
+  registers whatever the declaration order: read the parameter through a
+  local declared after the result local (`void *arg1`, `char *str =
+  arg1`, func_08890F70; `p = arg1;` before the flags, func_08891074).
+- A virtual call with an argument register passed through untouched: the
+  method takes that parameter (`vfunc_18(arg1)`, func_088901F8).
+- A function with no `jr $ra` (infinite loop) followed by another one that
+  splat left as an `alabel`: give both sizes in symbol_addrs.txt; the
+  second one is a `static` (callback) or plain function after it in the
+  same file (func_08890020, func_08890494).
+- A call that sets only `$a0` to a function reading three arguments: an
+  unprototyped declaration `extern void f();` (func_088908FC calling
+  func_08894B00).
 
 ## Calls and allocation
 

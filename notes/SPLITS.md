@@ -758,21 +758,41 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0888E1C8` | 0x0888E1C8-0x0888E1F8 | 1 small function | 100 % |
 | `unit_0888E1F8` | 0x0888E1F8-0x0888E218 | 1 dot product (x, z) | 100 % |
 | `unit_0888E324` | 0x0888E324-0x0888E350 | 1 small function | 100 % |
+| `unit_08890020` | 0x08890020-0x08890080 | 2 functions: a thread body that registers an exit callback and sleeps forever, and the callback (symbol sizes in symbol_addrs.txt) | 100 % |
 | `unit_08890080` | 0x08890080-0x088900A0 | 1 setter | 100 % |
 | `unit_088900A0` | 0x088900A0-0x088900C4 | 1 small function | 100 % |
+| `unit_088900C4` | 0x088900C4-0x08890114 | 1 function (16-bit pseudo-random step, seed * 176 mod 0xFF53) | 100 % |
 | `unit_08890114` | 0x08890114-0x08890144 | 1 small function | 100 % |
+| `unit_08890144` | 0x08890144-0x088901E0 | 1 function, C++ (table entry to func_088DDD9C or to a virtual method of D_089CC434) | 100 % |
+| `unit_088901E0` | 0x088901E0-0x088901F8 | 1 function, C++ (tail virtual call on D_089CC434) | 100 % |
+| `unit_088901F8` | 0x088901F8-0x08890284 | 1 function, C++ (virtual call, then a u16 table store) | 100 % |
+| `unit_08890284` | 0x08890284-0x088902A8 | 1 small function (u16 table compare) | 100 % |
 | `unit_088902A8` | 0x088902A8-0x088903BC | 1 function (maps a setting 0-6 to the arguments of sceImposeSetLanguageMode); jump table 0x08931A84-0x08931AA0 in the unit | 100 % |
 | `unit_088903BC` | 0x088903BC-0x08890430 | 1 function (maps 0-6 to another number); jump table 0x08931AA0-0x08931ABC in the unit | 100 % |
 | `unit_08890430` | 0x08890430-0x08890494 | 1 small function | 100 % |
+| `unit_08890494` | 0x08890494-0x088905B0 | 2 functions: a thread entry that never returns and its wakeup function (symbol sizes in symbol_addrs.txt) | 100 % |
 | `unit_088905B0` | 0x088905B0-0x088905EC | 1 small function | 100 % |
+| `unit_088905EC` | 0x088905EC-0x0889064C | 1 function (starts a VTimer with handler func_0889064C) | 100 % |
+| `unit_0889064C` | 0x0889064C-0x088906A8 | 1 function (VTimer handler) | 100 % |
+| `unit_088906A8` | 0x088906A8-0x088906DC | 1 small function | 100 % |
+| `unit_088906DC` | 0x088906DC-0x08890718 | 1 small function | 100 % |
+| `unit_08890718` | 0x08890718-0x088907D8 | 1 function (system language setting mapped to a game value) | 100 % |
 | `unit_088907D8` | 0x088907D8-0x088908FC | 1 small function | 100 % |
+| `unit_088908FC` | 0x088908FC-0x08890B38 | 1 function (table setup and initialisers, optimized for speed; one call without its prototype) | 100 % |
 | `unit_08890B38` | 0x08890B38-0x08890BBC | 1 small function | 100 % |
+| `unit_08890BBC` | 0x08890BBC-0x08890C94 | 1 function (per-frame countdown of a byte table, optimized for speed) | 100 % |
 | `unit_08890C94` | 0x08890C94-0x08890CE0 | 1 small function | 100 % |
 | `unit_08890CE0` | 0x08890CE0-0x08890D90 | 1 small function | 100 % |
 | `unit_08890D90` | 0x08890D90-0x08890DE8 | 1 small function | 100 % |
 | `unit_08890DE8` | 0x08890DE8-0x08890E08 | 2 small functions | 100 % |
+| `unit_08890E08` | 0x08890E08-0x08890E38 | 1 small function (clamp of a byte to 0-5) | 100 % |
 | `unit_08890E38` | 0x08890E38-0x08890E48 | 2 small functions | 100 % |
+| `unit_08890E48` | 0x08890E48-0x08890ED4 | 1 function (sums 1 or 2 per character of a string after func_08894874; optimized for speed) | 100 % |
+| `unit_08890ED4` | 0x08890ED4-0x08890F68 | 1 function (same sum, up to a line feed; optimized for speed) | 100 % |
 | `unit_08890F68` | 0x08890F68-0x08890F70 | 1 small function | 100 % |
+| `unit_08890F70` | 0x08890F70-0x08891074 | 1 function (same kind of sum over a string with 0x08xx control codes) | 100 % |
+| `unit_08891074` | 0x08891074-0x088911A0 | 1 function (same, for one line, with an end pointer) | 100 % |
+| `unit_088911A0` | 0x088911A0-0x088912BC | 1 function (appends a record and its string to a list, optimized for speed) | 100 % |
 | `unit_088912BC` | 0x088912BC-0x088912F8 | 1 small function | 100 % |
 | `unit_088912F8` | 0x088912F8-0x0889134C | 1 small function | 100 % |
 | `unit_08891B14` | 0x08891B14-0x08891B5C | 1 small function | 100 % |

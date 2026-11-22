@@ -25,6 +25,16 @@ D_0893B7A4 = 0x0893B7A4;
 func_088A88C4 = 0x088A88C4; // type:func size:0x1C
 func_088A88E0 = 0x088A88E0; // type:func size:0xA8
 
+// func_08890020 ends in an infinite loop (no `jr $ra`); the exit callback it
+// registers, at 0x08890060, is a function of its own
+func_08890020 = 0x08890020; // type:func size:0x40
+func_08890060 = 0x08890060; // type:func size:0x20
+
+// func_08890494 is a thread entry ending in an infinite loop (no `jr $ra`); the
+// code after it, at 0x08890544, is a function of its own (called by func_0889064C)
+func_08890494 = 0x08890494; // type:func size:0xB0
+func_08890544 = 0x08890544; // type:func size:0x6C
+
 // func_088C6ADC ends with a jump through a pointer (`jr $t9`); the `return 0` after it,
 // at 0x088C6AF0, is a function of its own (an entry of the vtable D_089BACDC)
 func_088C6ADC = 0x088C6ADC; // type:func size:0x14
