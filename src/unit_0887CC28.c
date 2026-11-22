@@ -11,7 +11,7 @@ extern char D_089A898C;
 extern s32 D_089CC438;
 extern u16 func_0884FF38(s32, s32);
 
-s32 func_0887CC28(void) {
+s32 func_0887CC28(char *unused) {
     char sp18[0x58];
     char *var_a2;
     char *var_a1;
