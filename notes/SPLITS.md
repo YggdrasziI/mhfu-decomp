@@ -685,22 +685,42 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0887FF24` | 0x0887FF24-0x0887FF74 | 1 small function | 100 % |
 | `unit_0887FF74` | 0x0887FF74-0x0887FFE0 | 1 small function | 100 % |
 | `unit_0887FFE0` | 0x0887FFE0-0x0887FFE8 | 1 small function | 100 % |
+| `unit_088800C0` | 0x088800C0-0x088801A0 | 1 function (fills a 0x3C-byte request and calls func_088B826C) | 100 % |
+| `unit_088801A0` | 0x088801A0-0x088801E8 | 1 function (fills a 0x3C-byte request and calls func_0889EACC) | 100 % |
+| `unit_088801E8` | 0x088801E8-0x08880254 | 1 function (fills a 0x3C-byte request; passes its float on to func_088B8320) | 100 % |
 | `unit_08880254` | 0x08880254-0x08880294 | 1 small function | 100 % |
 | `unit_08880294` | 0x08880294-0x088802F4 | 2 small functions | 100 % |
 | `unit_088802F4` | 0x088802F4-0x08880324 | 1 small function | 100 % |
 | `unit_08880324` | 0x08880324-0x08880350 | 1 small function | 100 % |
+| `unit_08880350` | 0x08880350-0x08880378 | 1 small function (stores six values, calls func_0889EA8C) | 100 % |
 | `unit_08880378` | 0x08880378-0x08880384 | 1 small function | 100 % |
 | `unit_08880384` | 0x08880384-0x088803FC | 2 forwarders with a computed step, 4 setters | 100 % |
+| `unit_088803FC` | 0x088803FC-0x08880498 | 1 function (state block init) | 100 % |
 | `unit_08880498` | 0x08880498-0x0888051C | 1 small function | 100 % |
+| `unit_0888051C` | 0x0888051C-0x088805A0 | 1 function (creates and starts the loader thread) | 100 % |
+| `unit_088805A0` | 0x088805A0-0x08880660 | 1 function (thread entry loading utility modules; C++ for one virtual call) | 100 % |
+| `unit_08880660` | 0x08880660-0x08880708 | 1 function (guarded shutdown calls) | 100 % |
 | `unit_08880708` | 0x08880708-0x08880760 | 1 small function | 100 % |
 | `unit_08880760` | 0x08880760-0x0888076C | 1 small function | 100 % |
 | `unit_0888076C` | 0x0888076C-0x0888080C | 3 forwarders | 100 % |
+| `unit_0888080C` | 0x0888080C-0x08880864 | 1 function (table lookup by index and field) | 100 % |
 | `unit_08880864` | 0x08880864-0x08880884 | 2 small functions | 100 % |
 | `unit_08880884` | 0x08880884-0x088808DC | 2 small functions | 100 % |
+| `unit_088808DC` | 0x088808DC-0x08880A70 | 1 function (sets ids when they changed) | 100 % |
+| `unit_08880A70` | 0x08880A70-0x08880CF8 | 1 function (sets id pairs when they changed; optimized for speed) | 100 % |
+| `unit_08880CF8` | 0x08880CF8-0x08880D64 | 1 function (clears one slot of two id blocks) | 100 % |
 | `unit_08880D64` | 0x08880D64-0x08880D94 | 1 small function | 100 % |
+| `unit_08880D94` | 0x08880D94-0x08880E50 | 1 function (clears duplicate ids of a list; optimized for speed) | 100 % |
+| `unit_08880E50` | 0x08880E50-0x08881114 | 1 function (sets id lists; C++ for one virtual call; optimized for speed) | 100 % |
+| `unit_08881114` | 0x08881114-0x088812B4 | 1 function (sets ids when they changed) | 100 % |
+| `unit_088812B4` | 0x088812B4-0x088813E0 | 1 function (sets one id) | 100 % |
 | `unit_088813E0` | 0x088813E0-0x08881438 | 1 small function | 100 % |
+| `unit_08881438` | 0x08881438-0x08881458 | 1 small function (clears one slot) | 100 % |
+| `unit_08881458` | 0x08881458-0x088816AC | 1 function (sets three ids; optimized for speed) | 100 % |
+| `unit_088816AC` | 0x088816AC-0x088817E8 | 1 function (id lookup in a table; C++ for its virtual calls) | 100 % |
 | `unit_088817E8` | 0x088817E8-0x08881824 | 1 small function | 100 % |
 | `unit_08881824` | 0x08881824-0x08881840 | 1 small function | 100 % |
+| `unit_08881840` | 0x08881840-0x08881970 | 1 function (state dispatch; C++ for two virtual calls) | 100 % |
 | `unit_08882B4C` | 0x08882B4C-0x08882B68 | 2 small functions | 100 % |
 | `unit_08882B68` | 0x08882B68-0x08882BB8 | 1 small function | 100 % |
 | `unit_08882C90` | 0x08882C90-0x08882C9C | 1 small function | 100 % |

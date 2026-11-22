@@ -195,6 +195,19 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - An if/else whose stores are duplicated into both branches: a ternary,
   `p->prev = i == 0 ? A : &arr[i - 1];` or `x = x > 16 ? x - 16 : 0;`, gives
   one store after the join (func_0889F288, func_0889FB94).
+- `bnezl v0, end` with `addu v0, zero, zero` in the slot where ours gives
+  `beqzl` plus `b`: no early `if (x != 0) return 0;`, write `if (x == 0) {
+  ...; return 1; } return 0;` (func_08880A70, func_08881458; same for a
+  call result, func_088800C0). Long path first in if/else too
+  (func_088812B4).
+- `beql x, v0` with the equal case's assignment in the slot and a flag set
+  on the fall-through: `if (a != b) flag = 1; else x = 0xFFFF;`; the `==`
+  form gives `bnel` (func_088808DC).
+- A wait loop `sltu; xori 1; bnezl v0, exit` with the call at the top and
+  `b` back at the bottom: `for (;;) { if (!f()) break; delay(); }`; `while
+  (f() != 0)` tests at the bottom (func_088805A0).
+- A single `beqz` to the epilogue in place of `bnez; nop; b`: `if (!found
+  || x != 0) return call(); return r;` (func_088816AC).
 
 ## Booleans (C++ only)
 
@@ -579,6 +592,22 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   slot) and loops with `bnezl`: a `static inline` helper that returns
   inside the loop and returns 0 after it; its input computed in the helper,
   not passed, into the local declared last (func_0889DFAC).
+- `addiu base, 0xB34` + `addiu 0x7FF8`, then small store offsets: a pointer
+  to a small struct at the large offset, `p = (S *) (arg0 + 0x8B2C);
+  p->unk2 = ...`; raw `*(u16 *) (arg0 + 0x8B2E)` stores rebuild `lui` /
+  `addu` each time (func_088812B4, func_088808DC). An index added before
+  that split (46 %): add the constant to the base in its own step, then
+  index at each store (func_08881438).
+- Stores at stride 8 with the same index: parallel arrays, a struct with
+  `u16 a[4]; u16 b[4]; ...` indexed `s->a[i]` (func_08880CF8, func_08881114).
+- `ori rX, zero, 0xFFFF` where ours gives `addiu rX, zero, -1`: store
+  0xFFFF through a `u16` (func_08880CF8).
+- A stack struct filled from arguments with the constant stored first and
+  the stack argument loaded into the wrong register: write the constant
+  store last (func_088801A0); otherwise try the permutations of the field
+  stores (func_088800C0).
+- `a0` / `a1` loads swapped in every `f(D, arr[i])`: the array is `u32 *`
+  and the callee parameter `s32` (func_08880E50).
 
 ## Registers and loops
 
@@ -1619,6 +1648,32 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - A constant-count loop with the table pointer set before the counter:
   `i = 0; p = arr; for (; i < N; i++, p++)` or `for (i = 0, p = arr; ...)`,
   counter declared first (func_0889F288, func_0889EEA0).
+- A virtual call through `$t9` (`lw t9, off(v0); jalr t9`) where C gives
+  `jalr v0`: the unit is C++ with a real virtual method (func_088805A0,
+  func_08880E50, func_088816AC, func_08881840). `andi 0xFF` after it: the
+  method returns `s32`, tested `(u8) obj->vf() == 0`; a `bool` return
+  drops the `andi` (func_08881840).
+- `mov.s fs0, fa0` at an odd place among the prologue's `addu sN, aN`
+  copies: the prologue copies parameters in declaration order, floats
+  included; move the float parameter to that place (func_088800C0).
+- A float in `$f12` never touched before a call to a function that takes a
+  float: the function takes it as a parameter and passes it on
+  (func_088801E8 to func_088B8320).
+- `a1` copied to its saved register after the other parameters: the first
+  callee takes it as an extra argument still in `$a1` (func_08881114); a
+  value loaded into `$a2` just before a `jal`: the callee reads a third
+  argument (func_08881458). An argument register never set before a call
+  to a function that does not read it: drop the unused parameter
+  (func_088802C4 now takes three).
+- `addu v0, zero, zero` before a `beq` chain and the table pointer kept in
+  `a0` / `a1`: `s32 ret = 0;` declared first, set in a `switch` with
+  `break`s, one `return ret;` (func_0888080C).
+- An inner loop starting at a counter that steps with the outer one: a
+  separate counter, `for (i = 0, k = 1; i < 4; k++, i++) for (j = k; ...)`;
+  a result flag that copies a counter's register: declare it `u8`
+  (func_08880D94).
+- One saved register too many around `arg1 + i`: write `arg1 + i` at each
+  use, not in a local (func_08881458).
 
 ## Calls and allocation
 
