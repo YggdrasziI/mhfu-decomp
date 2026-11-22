@@ -45,7 +45,7 @@ extern char *func_0885151C(char *, u16);
 extern void func_08891474(char *, s16, s16, char *, ...);
 extern int func_0880E8F0(char *, char *, ...);
 extern void func_0887D02C(s32, s32, char *, s32);
-extern void func_08891700(char *, s16, s16, char *);
+extern void func_08891700(char *, s16, s16, char *, ...);
 extern s32 func_0882A9DC(char *, u16, u16, s32);
 
 void func_088FC088(char *buf, s32 x, s32 y, Base *base, s32 idx) {

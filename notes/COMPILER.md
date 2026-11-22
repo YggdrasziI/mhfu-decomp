@@ -337,6 +337,30 @@ regression (1970 functions, no NonMatching unit changed). The choice of
 `bottomup` over `level=3` is not proven; a function whose inline chain is
 deeper than the level would tell them apart.
 
+## Variable arguments (2026-11-22)
+
+mwccpsp 3.0.1 ships no `stdarg.h`. Its executable holds the names
+`__builtin_next_arg` and `__builtin_args_info`, and the game's variadic
+functions (func_0889134C, func_08891474, func_088915B0, func_08891700,
+func_0889183C, func_08892004, func_088920A8, func_08892148) match only with
+`va_start` built from them (`include/libc/stdarg.h`, not the original
+header):
+
+- the prologue of a variadic function stores the unnamed argument registers
+  (up to `$t3`) at the top of its frame;
+- `__builtin_next_arg(last)` is the address just past that save area; it
+  needs the last named parameter (`0` is refused);
+- `__builtin_args_info(2)` is the number of named integer register
+  arguments, emitted as `li vX, N` and tested at run time; `(3)` gives 0
+  (probably the float count); 0, 1 and 4-8 stop the compiler with an
+  internal error (CodeGen.c line 891);
+- `ap = next_arg - (n >= 8 ? 0 : (8 - n) * 4)` gives the original
+  `slti v0` / `bnezl`; the reverse test `n < 8 ? ... : 0` gives `slti at` /
+  `beqzl`.
+
+Measured by four sub-agents independently; the eight functions match in
+the objdiff report.
+
 ## Candidates
 
 | Compiler | Where | Status |

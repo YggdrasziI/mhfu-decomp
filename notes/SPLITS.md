@@ -795,13 +795,32 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088911A0` | 0x088911A0-0x088912BC | 1 function (appends a record and its string to a list, optimized for speed) | 100 % |
 | `unit_088912BC` | 0x088912BC-0x088912F8 | 1 small function | 100 % |
 | `unit_088912F8` | 0x088912F8-0x0889134C | 1 small function | 100 % |
+| `unit_0889134C` | 0x0889134C-0x08891474 | 1 variadic function (queues a text record, formats its arguments) | 100 % |
+| `unit_08891474` | 0x08891474-0x088915B0 | 1 variadic function (same, at a position) | 100 % |
+| `unit_088915B0` | 0x088915B0-0x08891700 | 1 variadic function (same, at a position with a colour) | 100 % |
+| `unit_08891700` | 0x08891700-0x0889183C | 1 variadic function (same, at a position, other flags) | 100 % |
+| `unit_0889183C` | 0x0889183C-0x0889198C | 1 variadic function (same, at a position with a colour, other flags) | 100 % |
+| `unit_0889198C` | 0x0889198C-0x08891A28 | 1 function (two calls of func_088915B0, one offset) | 100 % |
+| `unit_08891A28` | 0x08891A28-0x08891B14 | 1 function (draws the queued records of one list, optimized for speed) | 100 % |
 | `unit_08891B14` | 0x08891B14-0x08891B5C | 1 small function | 100 % |
 | `unit_08891B5C` | 0x08891B5C-0x08891BC8 | 1 small function | 100 % |
+| `unit_08891BC8` | 0x08891BC8-0x08891D4C | 1 function, C++ (copies a string, printable bytes through a 3-byte table; optimized for speed) | 100 % |
+| `unit_08891D4C` | 0x08891D4C-0x08891E0C | 1 function (copies a byte string, printable bytes through a 2-byte table) | 100 % |
+| `unit_08891E0C` | 0x08891E0C-0x08891F1C | 1 function (feeds the characters of a string to func_08893198, optimized for speed) | 100 % |
 | `unit_08891F1C` | 0x08891F1C-0x08891F88 | 1 small function | 100 % |
+| `unit_08891F88` | 0x08891F88-0x08892004 | 1 function (counts the characters of a byte string, two-byte lead bytes; optimized for speed) | 100 % |
+| `unit_08892004` | 0x08892004-0x088920A8 | 1 variadic function (formats into a local buffer, then func_088921FC) | 100 % |
+| `unit_088920A8` | 0x088920A8-0x08892148 | 1 variadic function (same, at a position) | 100 % |
+| `unit_08892148` | 0x08892148-0x088921FC | 1 variadic function (same, at a position with a colour) | 100 % |
+| `unit_088921FC` | 0x088921FC-0x08892708 | 1 function (draws a string with its control codes, optimized for speed) | 100 % |
+| `unit_08892708` | 0x08892708-0x08892A88 | 1 function (string layout with control codes, optimized for speed) | NonMatching (99.26 %) |
+| `unit_08892A88` | 0x08892A88-0x08892E7C | 1 function (draws a list of items, optimized for speed) | 100 % |
+| `unit_08892E7C` | 0x08892E7C-0x08892F18 | 1 function (opens the system font through sceFont*) | 100 % |
 | `unit_08892F18` | 0x08892F18-0x08892F88 | 1 small function | 100 % |
 | `unit_08892F88` | 0x08892F88-0x08892FB0 | 1 small function | 100 % |
 | `unit_08892FB0` | 0x08892FB0-0x088930A0 | 1 small function | 100 % |
 | `unit_088930A0` | 0x088930A0-0x088930A8 | 1 small function | 100 % |
+| `unit_088930A8` | 0x088930A8-0x08893198 | 1 function (feeds the characters of the queued records to func_08893198, optimized for speed) | 100 % |
 | `unit_08893390` | 0x08893390-0x08893444 | 1 small function | 100 % |
 | `unit_08894874` | 0x08894874-0x08894988 | 1 small function | 100 % |
 | `unit_08894988` | 0x08894988-0x088949EC | 1 function (maps 0-5 to 9-14); jump table 0x08931DAC-0x08931DC4 in the unit | 100 % |

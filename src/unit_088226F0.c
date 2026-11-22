@@ -29,7 +29,7 @@ extern char *func_0885151C(char *, u16);
 extern void func_08891474(char *, s32, s16, char *, ...);
 extern int func_0880E8F0(char *, char *, ...);
 extern int func_0880ED70(char *, char *);
-extern void func_08891700(char *, s16, s16, char *);
+extern void func_08891700(char *, s16, s16, char *, ...);
 
 void func_088226F0(char *arg0, s32 arg1, u8 *arg2, u16 x, u16 y, s32 arg5) {
     s16 own;

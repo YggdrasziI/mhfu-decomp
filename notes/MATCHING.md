@@ -146,6 +146,15 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   apart from the break: `if (p == 0) goto ret; ... } ret: return total;`
   (func_08891074).
 
+- A double guard before a speed-mode loop (`blezl` to the epilogue, then
+  `blez` to the exit): an early `if (n <= 0) return;` before the same `for`
+  (func_08892A88).
+- `beql n, zero, end` with the final store in its slot: `if (n == 0)
+  break;` and one store after the loop (func_08891BC8).
+- Two tests sharing one body (duplicated `addiu` in a `bnel` slot): one `||`
+  condition; `$at`/`aN` swapped between two `slti` of a byte range: both
+  bounds inclusive, `c >= 0x81 && c <= 0x9F` (func_08891F88, func_08891D4C).
+
 ## Booleans (C++ only)
 
 - `andi` + `sltu` + branch on 0/1: `(bool) (x & K) == 0` / `!= 0`; C folds the
@@ -239,6 +248,9 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   `((u16 *)(base + OFF))[i]` (func_088901F8, func_088900C4); a table of
   pointers: `((T **)(base + 0x140))[i]`; `addu a2, idx, base`: the integer
   sum `(u8 *)(idx + (s32)base) + 0x134` (func_088911A0).
+
+- A scalar local and a local struct with their stack slots swapped:
+  declare the scalar first (func_08892E7C).
 
 ## Addresses, arrays and structures
 
@@ -361,6 +373,11 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   (func_088A5454, func_088A4CB0).
 - Global array base set up before the counters in ours: declare the global
   as an array and index it, no pointer local (func_088A489C).
+
+- `addu v1, s0, v1` on `base + idx + off` with an `andi 0xFF` lost: struct
+  array fields (`arg0->count[arg0->cur]`, `&arg0->list[cur][n]`) or array
+  indexing on a cast base (func_088915B0, func_08891474, func_08891A28,
+  func_088930A8).
 
 ## Registers and loops
 
@@ -1336,6 +1353,13 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   unprototyped declaration `extern void f();` (func_088908FC calling
   func_08894B00).
 
+- A byte clear that must stay a loop in a speed unit whose other loop is
+  unrolled: `do { *q++ = 0; } while (--n != 0);` with `u32 n` (the
+  include/unk_msg.h form is unrolled; func_088921FC).
+- A guard of an unrolled loop masking its value with `andi 0xFF` where C
+  gives a move: compile the unit as C++ (`bool` is one byte;
+  func_08891BC8).
+
 ## Calls and allocation
 
 - PSP EABI: arguments 5-8 in `$t0-$t3`, float arguments in `$f12-$f19` counted apart
@@ -1687,6 +1711,16 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   `#pragma opt_unroll_loops off` if an inline clear must stay rolled
   (func_088A6100).
 
+- Unnamed argument registers stored at the top of the frame, then
+  `li vX, N; slti; bnezl ...; subu; sll 2` from `sp + frame`: a variadic
+  function with `va_start` of `include/libc/stdarg.h` (notes/COMPILER.md,
+  "Variable arguments"; func_08891474). A callee given that pointer and a
+  flag: `char *` va_list, not a struct.
+- `andi a1, v0, 0xFFFF` after a call where ours passes the result through:
+  two statements on one u16 local, `c = f(); c = g(D, c);`, not nested
+  calls; a value kept in an argument register for no visible reason: the
+  next callee takes it as an extra argument (func_08891E0C).
+
 ## Open symptoms
 
 - Two part pointers in swapped saved registers after the D_09A4F0D0
@@ -1697,6 +1731,8 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   declaration order: func_088D7AD8 (99.58 %).
 - Scheduling: a load placed before / after an index computation (func_088307BC,
   func_0884424C `trunc.w.s`).
+- A 0/1 if/else kept as branches with a `seh` on one path only
+  (func_08892708, 99.26 %): every copy or cast becomes `xori`/`sltiu`.
 - Unfilled `jal` delay slot (func_08813CF8; func_088A812C 99.29 %: the
   `addu a1` goes into the slot of the func_088AAD58 call, with an extern or
   a static callee alike).
