@@ -876,7 +876,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08893390` | 0x08893390-0x08893444 | 1 small function | 100 % |
 | `unit_08893444` | 0x08893444-0x0889377C | 1 function (draws one character through sceFontGetCharInfo / sceFontGetCharGlyphImage, optimized for speed) | 100 % |
 | `unit_0889377C` | 0x0889377C-0x08893894 | 1 function (feeds the characters of a u16 string to func_08893894) | 100 % |
-| `unit_08893894` | 0x08893894-0x08893C6C | 1 function (draws one queued character, optimized for speed) | NonMatching (99.92 %) |
+| `unit_08893894` | 0x08893894-0x08893C6C | 1 function (draws one queued character, optimized for speed) | 100 % |
 | `unit_08893C6C` | 0x08893C6C-0x08894754 | 1 function, C++ (formats a string with a va_list: %d %u %x %o %s %c %f %b; optimized for speed) | 100 % |
 | `unit_08894754` | 0x08894754-0x08894874 | 1 function (converts a string to u16 character codes) | 100 % |
 | `unit_08894874` | 0x08894874-0x08894988 | 1 small function | 100 % |

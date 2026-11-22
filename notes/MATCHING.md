@@ -1706,6 +1706,10 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   `i = 0;` before the pointer (func_08882FA4).
 - `(s0 + a) + b` where ours gives `s0 + (a + b)`: two `+=` statements;
   `sum = sum + a + b` is reassociated (func_0888307C).
+- Two loaded values with t1 and t2 swapped in one store of a speed unit,
+  where regroupings, casts and temporaries changed nothing: read the value
+  used twice through its own pointer local, `y = (s16 *)(arg0 + 0x128);
+  ... *y ...` (func_08893894; found by decomp-permuter).
 
 ## Calls and allocation
 
@@ -2103,9 +2107,6 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   declaration order: func_088D7AD8 (99.58 %).
 - Scheduling: a load placed before / after an index computation (func_088307BC,
   func_0884424C `trunc.w.s`).
-- Two loaded values with t1 and t2 swapped in one store of a speed unit
-  (func_08893894, 99.92 %): regroupings, casts, temporaries and
-  declaration orders change nothing.
 - Unfilled `jal` delay slot (func_08813CF8; func_088A812C 99.29 %: the
   `addu a1` goes into the slot of the func_088AAD58 call, with an extern or
   a static callee alike).

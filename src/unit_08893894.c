@@ -2,10 +2,9 @@
  *
  * Bounds (hypothesis): 1 function between code still in assembly.
  *
- * NonMatching (99.92 %): in the store to p+0x18, the `lh` of arg0+0x128 and
- * the `lbu` of arg3->unk5 take t1 and t2 the other way round. Regroupings of
- * the sum, casts, temporaries for each part, the type of `w` and
- * declaration orders were tried without effect.
+ * The halfword at arg0+0x128 is read through its own pointer, declared
+ * before `w`: without it the `lh` and the `lbu` of the store to p+0x18 swap
+ * registers (99.92 %).
  */
 
 #pragma optimize_for_size off
@@ -55,6 +54,7 @@ void func_08893894(char *arg0, u16 arg1, s32 arg2, Item *arg3) {
     s32 u;
     u32 hi;
     s32 v;
+    s16 *y;
     u8 w;
     s32 list;
     u16 *ch;
@@ -101,11 +101,12 @@ void func_08893894(char *arg0, u16 arg1, s32 arg2, Item *arg3) {
     p = func_088597FC(D_08A62C40);
     *(s32 *)(p + 0x0) = (v << 16) | u;
     *(s32 *)(p + 0x4) = col;
-    *(s32 *)(p + 0x8) = (*(s16 *)(arg0 + 0x126) & 0xFFFF) | ((*(s16 *)(arg0 + 0x128) + off) << 16);
+    y = (s16 *)(arg0 + 0x128);
+    *(s32 *)(p + 0x8) = (*(s16 *)(arg0 + 0x126) & 0xFFFF) | ((*y + off) << 16);
     *(s32 *)(p + 0xC) = *(u16 *)(arg0 + 0x12A);
     *(s32 *)(p + 0x10) = ((v + *(u8 *)(arg0 + 0x119)) << 16) | (u + *(u8 *)(arg0 + 0x118));
     *(s32 *)(p + 0x14) = col;
-    *(s32 *)(p + 0x18) = ((arg3->unk5 + (*(s16 *)(arg0 + 0x128) + off)) << 16) | ((*(s16 *)(arg0 + 0x126) + w) & 0xFFFF);
+    *(s32 *)(p + 0x18) = ((arg3->unk5 + (*y + off)) << 16) | ((*(s16 *)(arg0 + 0x126) + w) & 0xFFFF);
     *(s32 *)(p + 0x1C) = *(u16 *)(arg0 + 0x12A);
     *(s32 *)(p + 0x20) = (((u32)p & 0xFF000000) >> 8) | 0x10000000;
     *(s32 *)(p + 0x24) = ((u32)p & 0xFFFFFF) | 0x01000000;
