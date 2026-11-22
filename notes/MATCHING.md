@@ -176,7 +176,10 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 
 - `andi` + `sltu` + branch on 0/1: `(bool) (x & K) == 0` / `!= 0`; C folds the
   `sltu` away (`bool_tests`). A plain `if (A & K)` in C++ needs the explicit
-  `(bool) (A & K) != 0`.
+  `(bool) (A & K) != 0`. The same `sltu` in C: `if ((u8) ((x & 1) != 0) ==
+  0)`, or an inline flag helper returning `u8` (`return (x & 1) != 0;`);
+  plain `== 0`, an `s32` local or `(u8) (x & 1)` drop it (func_0889D0E0,
+  func_0889D6EC).
 - A list walk tested on entry (`beqz head`) and then on the saved next
   pointer (`bnez next` with `o = next` in the delay slot): `if (o != 0) do {
   ...; next = o->next; ...; o = next; } while (next != 0);`; `while (o)` and
@@ -474,7 +477,8 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 
 - Stack slots of a record copy and a byte buffer swapped: swap their
   declarations; the first local declared gets the higher offset
-  (func_0889AF48, func_0889AFAC, func_0889C214).
+  (func_0889AF48, func_0889AFAC, func_0889C214; two arrays: func_0889C7B4,
+  func_0889C81C).
 - Inline 6-byte compare loops (speed setting):
   - one operand stepped by its own pointer where the original recomputes
     `addu base, i` at each pass: copy the parameters into locals of a
@@ -500,6 +504,34 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - `i * 200` kept in a saved register with `base + off` recomputed with
   swapped operands: write the sum in the same order at each use so it is
   shared (func_0889C2F0).
+- More forms of the inline 6-byte compare (speed setting):
+  - the record row pointer computed at each outer pass (`addiu a3, t1,
+    0x57C`) and the inner loads at offset 0, where ours folds the offset
+    into the load: a row local at the top of the outer loop, `p = base + i
+    * 200 + 0x57C;`, indexed `p[j]` (func_0889CF34, func_0889D0E0);
+  - the opposite, `lbu 0x57C(s0)` with the offset in the load and an
+    extra `addiu` in ours: index the field, `p->ent[j].id.b[i]`, compare
+    written in place with `goto done` (func_0889D6EC, func_0889C914);
+  - the base copy set before the `blez` guard in ours: `p = arg0 + i *
+    0xC8;` as the first statement of the body, not `p += 0xC8` in the
+    `for` (func_0889CC34); or an explicit `i = 0; if (n > 0) { p = base;
+    do { ... } while (++i < n); }` (func_0889C81C);
+  - the two byte loads in reverse order with the `slt` operands swapped:
+    `if (key[k] < p[0xBC0 + k]) ... if (p[0xBC0 + k] < key[k])`, offset
+    inside the index (func_0889C81C);
+  - a `static` compare helper is not inlined here (real `jal`): keep the
+    loop in the caller (func_0889CEB0, func_0889D0E0). The `find` / `cmp6`
+    `static inline` pair of func_0889A3D8 / func_0889AC14 still fits the
+    lookups by the current id (func_0889CF34 to func_0889D608).
+- A record found, then fields written at small offsets from a derived
+  pointer (`addiu s0, v1, 0x20`) where ours folds them (`+0xAD`): put the
+  member in its own local inside the `if`, `q = e + 0x20;` (`e += 0x20`
+  is folded) (func_0889D504, func_0889D608).
+- Member-by-member record copies: separate count-down loops per member
+  (`lb` x2 for 8 bytes, `lh` for 22 or 70 bytes) are members that are small
+  structs wrapping an array, each assigned whole; a hole in the copy is a
+  pad member (func_0889C914, func_0889CA88). Two `lbu` then two `sb`: load
+  both into locals first, or copy them as a 2-byte struct.
 
 ## Registers and loops
 

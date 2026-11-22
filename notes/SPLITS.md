@@ -944,6 +944,26 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0889C4D0` | 0x0889C4D0-0x0889C518 | 1 function (request callback, stores a u16 of its record; optimized for speed) | 100 % |
 | `unit_0889C518` | 0x0889C518-0x0889C524 | 1 small function | 100 % |
 | `unit_0889C524` | 0x0889C524-0x0889C66C | 1 function (bubble sort of records by a 6-byte key; optimized for speed) | 100 % |
+| `unit_0889C66C` | 0x0889C66C-0x0889C75C | 1 function (moves the record with a given 6-byte key to the front; optimized for speed) | 100 % |
+| `unit_0889C75C` | 0x0889C75C-0x0889C788 | 1 function (sorts the 0xC8-byte records with func_0889C524) | 100 % |
+| `unit_0889C788` | 0x0889C788-0x0889C7B4 | 1 function (sorts the 0x64-byte records with func_0889C524) | 100 % |
+| `unit_0889C7B4` | 0x0889C7B4-0x0889C81C | 1 function (moves a record to the front, sorts the rest) | 100 % |
+| `unit_0889C81C` | 0x0889C81C-0x0889C914 | 1 function (sorts records, then stores the index of the current id; optimized for speed) | 100 % |
+| `unit_0889C914` | 0x0889C914-0x0889CA88 | 1 function (adds a 0xC8-byte record unless its id is present; optimized for speed) | 100 % |
+| `unit_0889CA88` | 0x0889CA88-0x0889CC34 | 1 function (replaces or adds a 0x64-byte record; optimized for speed) | 100 % |
+| `unit_0889CC34` | 0x0889CC34-0x0889CD24 | 1 function (clears the 0xC8-byte records of an id; optimized for speed) | 100 % |
+| `unit_0889CD24` | 0x0889CD24-0x0889CE10 | 1 function (clears the 0x64-byte records of an id; optimized for speed) | 100 % |
+| `unit_0889CE10` | 0x0889CE10-0x0889CEB0 | 1 function (finds a 0x64-byte record by id; optimized for speed) | 100 % |
+| `unit_0889CEB0` | 0x0889CEB0-0x0889CF34 | 1 function (index of a 0x64-byte record by id; optimized for speed) | 100 % |
+| `unit_0889CF34` | 0x0889CF34-0x0889D008 | 1 function (stores a byte in the record of the current id; optimized for speed) | 100 % |
+| `unit_0889D008` | 0x0889D008-0x0889D0E0 | 1 function (stores a byte in the record of the current id; optimized for speed) | 100 % |
+| `unit_0889D0E0` | 0x0889D0E0-0x0889D244 | 1 function (copies data into the record of the current id; optimized for speed) | 100 % |
+| `unit_0889D244` | 0x0889D244-0x0889D318 | 1 function (stores a byte in the record of the current id; optimized for speed) | 100 % |
+| `unit_0889D318` | 0x0889D318-0x0889D3FC | 1 function (copies 6 bytes into the record of the current id; optimized for speed) | 100 % |
+| `unit_0889D3FC` | 0x0889D3FC-0x0889D504 | 1 function (copies 6 bytes and two s16 into the record of the current id; optimized for speed) | 100 % |
+| `unit_0889D504` | 0x0889D504-0x0889D608 | 1 function (copies two fields into the record of the current id; optimized for speed) | 100 % |
+| `unit_0889D608` | 0x0889D608-0x0889D6EC | 1 function (clears fields of the record of the current id; optimized for speed) | 100 % |
+| `unit_0889D6EC` | 0x0889D6EC-0x0889D7E8 | 1 function (record of the current id, guarded by a status bit; optimized for speed) | 100 % |
 | `unit_0889D7E8` | 0x0889D7E8-0x0889D8A8 | 2 small functions | 100 % |
 | `unit_0889E1BC` | 0x0889E1BC-0x0889E1E0 | 1 small function | 100 % |
 | `unit_0889E440` | 0x0889E440-0x0889E47C | 1 small function | 100 % |
