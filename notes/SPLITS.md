@@ -759,13 +759,23 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08883FF0` | 0x08883FF0-0x088840A8 | 1 function (two branches on a mode, one call each) | 100 % |
 | `unit_088846F4` | 0x088846F4-0x08884748 | 1 small function | 100 % |
 | `unit_08884748` | 0x08884748-0x0888491C | 1 function (stores its last argument at +0x562438, then calls func_088801E8 or func_088801A0 with arg7 * r / 100); optimized for speed | 100 % |
+| `unit_0888491C` | 0x0888491C-0x088849B4 | 1 function (forwards nine arguments, one through func_088855D0) | 100 % |
 | `unit_08884C9C` | 0x08884C9C-0x08884CD4 | 1 small function | 100 % |
 | `unit_08884CD4` | 0x08884CD4-0x08884CE4 | 1 small function | 100 % |
 | `unit_08885494` | 0x08885494-0x088854A0 | 1 small function | 100 % |
 | `unit_088854A0` | 0x088854A0-0x088854C4 | 1 small function | 100 % |
 | `unit_088854C4` | 0x088854C4-0x088854D0 | 1 small function | 100 % |
+| `unit_088854D0` | 0x088854D0-0x08885530 | 1 function (calls func_088802C4 over a range; optimized for speed) | 100 % |
 | `unit_08885530` | 0x08885530-0x0888553C | 1 small function | 100 % |
+| `unit_0888553C` | 0x0888553C-0x088855C4 | 1 function (picks one of two values by the low bits of func_088900C4) | 100 % |
 | `unit_088855C4` | 0x088855C4-0x088855D0 | 1 small function | 100 % |
+| `unit_088855D0` | 0x088855D0-0x08885644 | 1 function (looks a key up in four table rows; optimized for speed) | 100 % |
+| `unit_08885644` | 0x08885644-0x0888571C | 1 function (sets ten slots, skipping one by a mode) | 100 % |
+| `unit_0888571C` | 0x0888571C-0x08885798 | 1 function (sets ten slots) | 100 % |
+| `unit_08885798` | 0x08885798-0x08885870 | 1 function (sets ten slots, skipping one by a mode) | 100 % |
+| `unit_08885870` | 0x08885870-0x088858EC | 1 function (sets ten slots) | 100 % |
+| `unit_088858EC` | 0x088858EC-0x08885BB8 | 1 function (scales a value by kind; C++ for a bool test, optimized for speed) | 100 % |
+| `unit_08885BB8` | 0x08885BB8-0x08885D80 | 1 function (table lookup through a 33-case switch) | 100 % |
 | `unit_08885D80` | 0x08885D80-0x08885DB0 | 1 small function | 100 % |
 | `unit_08885DB0` | 0x08885DB0-0x08885E00 | 1 small function | 100 % |
 | `unit_08885E00` | 0x08885E00-0x08885E3C | 1 small function | 100 % |
@@ -773,6 +783,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08885E9C` | 0x08885E9C-0x08885F50 | 1 small function | 100 % |
 | `unit_08885F50` | 0x08885F50-0x08886048 | 1 small function (C++) | 100 % |
 | `unit_08886048` | 0x08886048-0x088860A0 | 8 field getters and setters | 100 % |
+| `unit_088860A0` | 0x088860A0-0x08886124 | 1 function (three-case switch, one call each) | 100 % |
 | `unit_08886124` | 0x08886124-0x0888617C | 4 small functions | 100 % |
 | `unit_0888617C` | 0x0888617C-0x088862A8 | 1 small function | 100 % |
 | `unit_088862A8` | 0x088862A8-0x0888637C | 1 small function | 100 % |
@@ -794,9 +805,12 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08886734` | 0x08886734-0x08886780 | 1 small function | 100 % |
 | `unit_08886780` | 0x08886780-0x088867F4 | 1 small function | 100 % |
 | `unit_088867F4` | 0x088867F4-0x08886834 | 1 small function | 100 % |
+| `unit_08886834` | 0x08886834-0x08886850 | 1 small function | 100 % |
+| `unit_08886850` | 0x08886850-0x08886870 | 1 small function | 100 % |
 | `unit_08886870` | 0x08886870-0x08886898 | 1 small function | 100 % |
 | `unit_08886898` | 0x08886898-0x088868A0 | 1 small function | 100 % |
 | `unit_088868A0` | 0x088868A0-0x088868AC | 1 small function | 100 % |
+| `unit_088868AC` | 0x088868AC-0x08886B2C | 1 function (sets a member function pointer by state; C++, jump table) | 100 % |
 | `unit_08886B2C` | 0x08886B2C-0x08886B68 | 1 small function (C++) | 100 % |
 | `unit_088883B8` | 0x088883B8-0x088883C0 | 1 small function | 100 % |
 | `unit_08888B84` | 0x08888B84-0x08888B98 | 1 small function | 100 % |
@@ -804,6 +818,12 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0888A164` | 0x0888A164-0x0888A190 | 1 small function | 100 % |
 | `unit_0888A190` | 0x0888A190-0x0888A1D0 | 1 small function | 100 % |
 | `unit_0888A1D0` | 0x0888A1D0-0x0888A1FC | 1 small function | 100 % |
+| `unit_0888A1FC` | 0x0888A1FC-0x0888A330 | 1 function (three-case switch, one call each) | 100 % |
+| `unit_0888A330` | 0x0888A330-0x0888A388 | 1 function (calls func_0888A49C or func_0888A538 by a flag) | 100 % |
+| `unit_0888A388` | 0x0888A388-0x0888A49C | 1 function (steps a cursor through a float table) | 100 % |
+| `unit_0888A49C` | 0x0888A49C-0x0888A538 | 1 function (ratio of two floats of a table entry) | 100 % |
+| `unit_0888A538` | 0x0888A538-0x0888A668 | 1 function (moves a cursor towards a table entry) | 100 % |
+| `unit_0888A668` | 0x0888A668-0x0888A73C | 1 function (stores one of two float constants) | 100 % |
 | `unit_0888D708` | 0x0888D708-0x0888D734 | 1 small function | 100 % |
 | `unit_0888E1C8` | 0x0888E1C8-0x0888E1F8 | 1 small function | 100 % |
 | `unit_0888E1F8` | 0x0888E1F8-0x0888E218 | 1 dot product (x, z) | 100 % |

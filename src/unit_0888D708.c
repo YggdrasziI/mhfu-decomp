@@ -8,6 +8,6 @@ typedef int s32;
 extern char *D_089CBBE4;
 extern s32 func_08865C88(s32, s32);
 
-s32 func_0888D708(void) {
+s32 func_0888D708(char *arg0) {
     return func_08865C88(*(s32 *)(D_089CBBE4 + 0xA84), 0x80000) != 0;
 }

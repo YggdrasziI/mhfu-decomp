@@ -222,6 +222,12 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - A loop test at the top with the counter check at the bottom and no guard,
   where a `for` puts the test at the bottom behind a `b`: `do { if (!x)
   break; ...; i++; } while (i < N);` (func_08882FA4).
+- A two-way `if` with the inverted branch-likely (`blezl` for `bgtzl`) and
+  the blocks swapped: invert the test and swap the blocks, `if (ret <= 0)`
+  (func_0888A1FC); `beql` for `bnel` on two constant stores: test `!=`
+  first (func_0888A668).
+- A test before a loop and a `bnel` back at the bottom: `if (c) do { ... }
+  while (c); else ...`; `while` gives `beqzl` + `b` (func_0888A388).
 
 ## Booleans (C++ only)
 
@@ -612,6 +618,23 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   `addu` each time (func_088812B4, func_088808DC). An index added before
   that split (46 %): add the constant to the base in its own step, then
   index at each store (func_08881438).
+- `addu v1, v1, base` (offset first) for an entry of a table at a constant
+  offset: index an array based at the offset, `((Entry *)(base +
+  0x10C))[i].f` or `((s16 *)(base + 0x18))[i]`; raw `base + i * 16 + 0x10C`
+  gives the operands the other way round, an array member at 0x10C of a
+  struct changes the saved registers (func_0888A49C, func_088855D0,
+  func_0888A538).
+- A float constant stored by `lui` / `ori` + `sw`: store the bit pattern,
+  `*(s32 *)(p + 0x88) = 0x3F75BE0B;` (func_0888A668). With the speed
+  setting the compiler builds 0.3f / 0.8f by `lui` / `ori` itself; with the
+  size setting it loads them from `@N` (func_088858EC).
+- A local struct 4 bytes off in the frame: give it its real size with
+  trailing padding (func_0888A538).
+- A 12-byte member set by three loads from `__ptmf_null` then three stores:
+  `*(PMF *)(p + 0x180) = 0;` with `typedef void (C::*PMF)();` in a C++
+  unit; a member pointer built on the stack and tested by `__ptmf_test`,
+  then three `lwc1` / `swc1`: `*(PMF *)(p + 0x180) = *(PMF *)&t;`
+  (func_088868AC).
 - Stores at stride 8 with the same index: parallel arrays, a struct with
   `u16 a[4]; u16 b[4]; ...` indexed `s->a[i]` (func_08880CF8, func_08881114).
 - `ori rX, zero, 0xFFFF` where ours gives `addiu rX, zero, -1`: store
@@ -1710,6 +1733,13 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   where regroupings, casts and temporaries changed nothing: read the value
   used twice through its own pointer local, `y = (s16 *)(arg0 + 0x128);
   ... *y ...` (func_08893894; found by decomp-permuter).
+- With the speed setting, `addu a1, s0` in the slot of the bottom branch
+  and the first pass using the incoming `a1`: pass the parameter itself,
+  `for (i = arg1; i <= arg2; arg1 = i) { f(D, arg1, x); i++; }`
+  (func_088854D0).
+- `slt at` / `bnezl at` where ours computes the test into `v1`: write the
+  comparison the other way round, `s->idx > n` for `n < s->idx`
+  (func_0888A388); `i <= 10` for `i < 11` (func_08885644, func_0888571C).
 
 ## Calls and allocation
 
@@ -2093,6 +2123,18 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - A function of two instructions, `j f; move a0, a1`, whose result its
   callers use: `s32 g(s32 a, s32 b) { return f(b); }`; func_0887FFE0 and
   func_0889EA74 had been written with four unused parameters.
+- `p->f = p->f + 0.5f` with the `add.s` operands swapped: `p->f += 0.5f;`
+  (func_0888A538).
+- A value loaded into `a3` before a branch and one arm calling a function
+  without setting it: the callee takes it as an argument; check the
+  callee's reads of `a3` / `$f12` (func_0888A538 to func_0888A388).
+- The prologue copying `a1` before `a0`: the first callee takes fewer
+  arguments than assumed (func_0888D708 takes one, unused; func_0888A668).
+- Base and table registers swapped (`a2` / `a3`): compute the base pointer
+  before the table load (func_088855D0).
+- A `seb` before a later compare of a byte loaded by `lb`: an `s32` local
+  from `*(signed char *) p`, then `(signed char) local` in the tests
+  (func_088858EC).
 
 ## Open symptoms
 
