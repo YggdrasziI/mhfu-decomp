@@ -6,6 +6,8 @@
  * at +0x188; once the six parts are there (low six bits of the slot flags),
  * the record is copied over the global record (0x1078 bytes at +0x4A58 of
  * D_089CC438) holding the same key.
+ *
+ * arg7 is not used here; func_0889B1A4 passes it in $t3.
  */
 
 #pragma optimize_for_size off
@@ -84,7 +86,7 @@ extern void func_08854BAC(char *, char *);
 extern void func_0885128C(char *, s32);
 extern void memcpy(void *, void *, s32);
 
-s32 func_088FC810(Box *arg0, char *arg1, char *arg2, char *arg3, s32 arg4, s32 arg5, s32 arg6) {
+s32 func_088FC810(Box *arg0, char *arg1, char *arg2, char *arg3, s32 arg4, s32 arg5, s32 arg6, s32 arg7) {
     Slot *p;
     s32 i;
     s32 j;

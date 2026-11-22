@@ -296,8 +296,14 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   member from a pointer, fields read back through casts (`*(char **) ((char
   *) &m + 8)`; func_0889A138 and its neighbours, as func_088B1C34). The
   same record by value: exact size with padding, and the speed setting
-  unrolls the 5-word copy (func_0889A700). A whole-struct copy gives a word
-  loop.
+  unrolls the 5-word copy (func_0889A700, func_0889BE7C, func_0889BEC0,
+  func_0889C4D0). Without the speed setting a whole-struct copy gives a
+  word loop. In C++, `Arg copy = *arg0;` (initialised declaration), not
+  `copy = *arg0;`, keeps the copy before the other loads (func_0889BFA0).
+- Members loaded in a batch before their stores (three `lbu`, then three
+  `sb`; two `lh` or two `lwc1`, then the stores) in a member-by-member
+  record copy: those members are a small sub-structure (`{ u8 b[3]; }`,
+  `{ s16 a, b; }`, `{ float a, b; }`) assigned whole (func_0889BCB4).
 - An array at a large offset of the object (`lui` plus a displacement)
   with the operands of `bnel` / `addu` reversed, or the base and `i * 12`
   kept in two saved registers: an outer struct `{ char pad[OFF]; Entry
@@ -465,6 +471,35 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - Mode tests as `xori` / `sltiu` / `or` chains: `return (s == 2) | (s == 3)
   | ...;` (func_088994AC); `addiu -1; sltiu at, 4` with no `andi`: `(u32)
   (*(u8 *) p - 1) < 4` (func_08898980).
+
+- Stack slots of a record copy and a byte buffer swapped: swap their
+  declarations; the first local declared gets the higher offset
+  (func_0889AF48, func_0889AFAC, func_0889C214).
+- Inline 6-byte compare loops (speed setting):
+  - one operand stepped by its own pointer where the original recomputes
+    `addu base, i` at each pass: copy the parameters into locals of a
+    struct type `{ u8 b[6]; }` and compare `a->b[i]` (func_0889AC14);
+  - one side indexed with the offset folded into the load (`lbu
+    0x5CE(v0)`): a struct pointer with a pad, `q->id[(u32) i]`, the other
+    side plain `b[i]` (func_0889B1A4);
+  - the outer guard emitted twice: a `static inline` helper with early
+    returns, not inline code with `goto`; the table row pointer computed
+    into a local before the call (func_0889ADE8);
+  - the byte loads in the wrong order: load both into locals first, `a =
+    buf[i]; b = p[0x12C8 + i];`, then the two `<` tests (func_0889BFA0,
+    func_0889C2F0);
+  - `i = 0` in the guard's delay slot and the record pointer set after it:
+    index `base + i * stride` directly, no stepped pointer local
+    (func_0889C214);
+  - a lookup over 8-byte entries with table pointer and counter swapped:
+    index the table in the call, `cmp(id, tbl + i * 8 + 0x50)`
+    (func_0889B1A4).
+- Loop start registers filled in the wrong order after a declaration-order
+  search: write the start assignments in the order the original sets the
+  registers, counter included (func_0889C524).
+- `i * 200` kept in a saved register with `base + off` recomputed with
+  swapped operands: write the sum in the same order at each use so it is
+  shared (func_0889C2F0).
 
 ## Registers and loops
 
@@ -1488,6 +1523,16 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - A value left in `$a1` (or `$a0`) with no visible use before a later
   `jal`: the callee reads it; check the callee's asm (func_088994AC,
   func_08899F30).
+
+- `xori` / `sltiu` tests joined with `or` and one `beqz`: `if ((k == 3) |
+  (k == 4) | (k == 5))`; `||` gives a range check (func_0889C0D4).
+- `addu v1, off, base` (offset first) for stores into a record array of a
+  global: a typed array, `((Rec *) (G + OFF))[idx].field` (func_0889B1A4).
+- A `negu` + `seh` argument with the `seh` before the `jal` and a constant
+  in the slot: declare that parameter s16 and the one before it u16
+  (func_0889B1A4, func_088D72A4).
+- `$t3` set before a call to a function that never reads it: the callee
+  takes an unused eighth argument; func_088FC810 now declares it.
 
 ## Calls and allocation
 

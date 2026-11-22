@@ -922,8 +922,28 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0889AA08` | 0x0889AA08-0x0889AACC | 1 function (request callback, same shape) | 100 % |
 | `unit_0889AACC` | 0x0889AACC-0x0889ABA4 | 1 function (request callback with a 0x64-byte buffer) | 100 % |
 | `unit_0889ABA4` | 0x0889ABA4-0x0889AC14 | 1 small function | 100 % |
+| `unit_0889AC14` | 0x0889AC14-0x0889ADE8 | 1 function (request callback: rebuilds the member table from the received entries; optimized for speed) | 100 % |
+| `unit_0889ADE8` | 0x0889ADE8-0x0889AEB0 | 1 function (tells whether every received entry is a known member; optimized for speed) | 100 % |
+| `unit_0889AEB0` | 0x0889AEB0-0x0889AEF4 | 1 function (request callback, sets a status bit) | 100 % |
 | `unit_0889AEF4` | 0x0889AEF4-0x0889AF48 | 1 small function | 100 % |
+| `unit_0889AF48` | 0x0889AF48-0x0889AFAC | 1 function (request callback with a 200-byte buffer) | 100 % |
+| `unit_0889AFAC` | 0x0889AFAC-0x0889B160 | 1 function (request callback, looks up a member by id; optimized for speed) | 100 % |
+| `unit_0889B160` | 0x0889B160-0x0889B1A4 | 1 function (request callback, sets a status bit) | 100 % |
+| `unit_0889B1A4` | 0x0889B1A4-0x0889BCB4 | 1 function, C++ (dispatches 19 received message types; optimized for speed); jump table 0x08931E50-0x08931E9C in the unit | 100 % |
+| `unit_0889BCB4` | 0x0889BCB4-0x0889BE7C | 1 function (copies a 0x70-byte record member by member) | 100 % |
+| `unit_0889BE7C` | 0x0889BE7C-0x0889BEC0 | 1 function (request callback, sets a status bit; optimized for speed) | 100 % |
+| `unit_0889BEC0` | 0x0889BEC0-0x0889BF08 | 1 function (passes a copy of its record to func_0889B1A4; optimized for speed) | 100 % |
+| `unit_0889BF08` | 0x0889BF08-0x0889BFA0 | 1 function (request callback with a 0x64-byte buffer; optimized for speed) | 100 % |
+| `unit_0889BFA0` | 0x0889BFA0-0x0889C0D4 | 1 function, C++ (request callback, compares the 6-byte id of the local member; optimized for speed) | 100 % |
+| `unit_0889C0D4` | 0x0889C0D4-0x0889C144 | 1 function (request callback, sets a status bit in three modes) | 100 % |
+| `unit_0889C144` | 0x0889C144-0x0889C1AC | 1 function (request callback with a 0x64-byte buffer) | 100 % |
+| `unit_0889C1AC` | 0x0889C1AC-0x0889C214 | 1 function (request callback with a 0x64-byte buffer) | 100 % |
+| `unit_0889C214` | 0x0889C214-0x0889C2F0 | 1 function (request callback, stores a value in the member of an id; optimized for speed) | 100 % |
+| `unit_0889C2F0` | 0x0889C2F0-0x0889C48C | 1 function (request callback, updates the state of a member; optimized for speed) | 100 % |
+| `unit_0889C48C` | 0x0889C48C-0x0889C4D0 | 1 function (request callback, sets a status bit) | 100 % |
+| `unit_0889C4D0` | 0x0889C4D0-0x0889C518 | 1 function (request callback, stores a u16 of its record; optimized for speed) | 100 % |
 | `unit_0889C518` | 0x0889C518-0x0889C524 | 1 small function | 100 % |
+| `unit_0889C524` | 0x0889C524-0x0889C66C | 1 function (bubble sort of records by a 6-byte key; optimized for speed) | 100 % |
 | `unit_0889D7E8` | 0x0889D7E8-0x0889D8A8 | 2 small functions | 100 % |
 | `unit_0889E1BC` | 0x0889E1BC-0x0889E1E0 | 1 small function | 100 % |
 | `unit_0889E440` | 0x0889E440-0x0889E47C | 1 small function | 100 % |
