@@ -6,8 +6,8 @@
 typedef int s32;
 
 extern s32 func_08869750(s32, s32);
-extern void func_0887265C(void *, int);
+extern s32 func_0887265C(void *, int);
 
-void func_08870AC4(s32 arg0, s32 arg1) {
-    func_0887265C((void *) (func_08869750(arg0, arg1 & 0xFFFF)), 0);
+s32 func_08870AC4(s32 arg0, s32 arg1) {
+    return func_0887265C((void *) (func_08869750(arg0, arg1 & 0xFFFF)), 0);
 }

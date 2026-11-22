@@ -7,8 +7,8 @@ typedef unsigned char u8;
 typedef unsigned short u16;
 
 extern void *D_09CD7EB0[];
-extern void func_0887265C(void *p, int v);
+extern int func_0887265C(void *p, int v);
 
-void func_0886D26C(void *unused, u16 i) {
-    func_0887265C(D_09CD7EB0[i], 0);
+int func_0886D26C(void *unused, u16 i) {
+    return func_0887265C(D_09CD7EB0[i], 0);
 }
