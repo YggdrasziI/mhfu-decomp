@@ -4,6 +4,22 @@ Lessons that made functions of `BOOT.BIN` match, each checked by a build. Read t
 when a function is stuck below 100 %: look the symptom up, try the form. Most of them
 are also tried automatically by `tools/psp/batch_units.py` (variant name in brackets).
 Compiler facts (version, flags, C vs C++) are in `notes/COMPILER.md`.
+- A switch without a jump table whose fall-out is `b end` with `v0 = 0`
+  in its slot, the cases branching to a shared `addu v0, zero, zero`: no
+  `default:` (or `default: break;`), `break` from the cases, one `return 0`
+  after the switch. `default: return 0;` turns a `bgtz` or `bgez` into a
+  likely branch with its own return block (func_0887B7E0, func_0887C724,
+  func_0887CD04, func_0887DDD0).
+- `beql v0, zero` to the epilogue with `v0 = 0` in its slot: `if (f() != 0)
+  { ...; return g(); } return 0;` rather than an early `return 0`
+  (func_0887FFE8).
+- `beqzl at` with `flag = 0` in its slot before a flagged block: an
+  explicit `else { flag = 0; }` (func_088795F4).
+- A `u8` function returning constants with `andi v0, 0xFF` before `jr ra`:
+  every result in an `s32` local and one `return ret;` at a shared label;
+  `if (x >= y) ret = 1; else ret = 0;` for `slt; bnezl` rather than
+  `xori`; two failing tests merged in one `||` with one `ret = 2; goto end;`
+  (func_0887959C).
 
 ## Block order and branches
 
@@ -275,6 +291,11 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - Loops tested at the top and never rotated: `while (1) { if (!c) break;
   ... }` or `for (;; p++) { ... continue; }` with the step in the header
   (func_0887370C, func_08873614).
+- An unfolded compare chain ending in `bnel last, join` with `v0 = 0`,
+  the first compare `beql` with `v0 = 1`: a `static inline bool` helper
+  `if (id == A || id == B || ...) return true; return false;`. A returned
+  `a || b` folds near values into range tests, a switch ends in `beq; nop;
+  b` (func_088795F4).
 
 ## Booleans (C++ only)
 
@@ -300,6 +321,15 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   ((s32) ((x & 1) != 0) == 1)` (func_088765C0). `sltu; xori 1; bnel` after
   a call: `if (!(f() != 0) == 0)` (func_08874218). A `(bool)` test kept out
   of a `||` chain in its own nested `if` (func_08873488).
+- `andi v0, 0xFF` after a call tested against zero: `f(...) == 0`, not
+  `!f(...)` (func_0887BB48); or the callee declared `s32` and the call cast
+  to `(u8)` (func_0887CA4C, func_0887CAFC).
+- `lw a0` before the `jal` and `lbu a1` in its slot swapped: declare the
+  callee's second parameter `s16`, `u16` or `s32` rather than `u8`
+  (func_0887CA4C, func_0887CAFC).
+- `negu; seh` on an s16 where `v = -v` gives a `seh` first: `v *= -1;`. A
+  clamp to 0..0xFF: `else if (t > 0xFF)`, not `t >= 0x100`. `addiu 0xFD` on
+  a byte: `+= 0xFD` (func_0887F934).
 
 ## Types and signedness
 
@@ -455,6 +485,17 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   kept in two saved registers: an outer struct `{ char pad[OFF]; Entry
   e[N]; }` used as `arg0->e[i].field` (func_08898898, func_088987D4,
   func_0889A3D8).
+- An initialised local array copied with unrolled `lwc1`/`swc1` from the
+  data: the array in the innermost block that uses it, and the speed
+  pragma. mwcc puts the initialiser in `.data`, not `.rodata`: give it to
+  the unit with a `.data` piece (`[off, .data, unit_X]`; func_0887BB48).
+- `addu v0, v0, v1` with the scaled index first: index a typed array,
+  `((u16 *) (p + 0x29C))[idx]`, not `*(u16 *) (p + idx * 2 + 0x29C)`
+  (func_0887BB48). An inner loop whose offset starts after the `blez`
+  guard: index a struct array with the counter, no stepped offset
+  (func_088795F4).
+- Two field loads before the first compare: read them in block locals
+  first, declared in the order of the loads (func_0887BB48).
 
 ## Addresses, arrays and structures
 
@@ -774,6 +815,12 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - An output pointer stepped next to the counter: `buf[count] = x;
   count++;`, the compiler reduces it (func_08873CC0); a stepped output in an
   unrolled copy: `out->x = ...; out++;` (func_08873A0C).
+- The counter set between the `lui` and `addiu` of the table pointer:
+  `i = 0; e = TABLE; for (; i < N; i++, e++)` (func_0887CA4C). A
+  `do { } while` with the steps at the end of the body for a loop with no
+  entry branch (func_0887CAFC).
+- Stack parameters loaded into swapped registers: swap the source order of
+  the two stores that use them (func_0887FFE8).
 
 ## Registers and loops
 
@@ -1897,6 +1944,18 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   through the register keeps its earlier value (func_08873CC0).
 - Many locals: a hill climb on the declaration lines (swaps and moves)
   found the order of func_08873CC0 in about 15 tries.
+- `mult v0, s3` with the call result first: put the result in its own
+  local and write `w * scale` (func_0887D02C).
+- A field load placed before the call where the original loads it after:
+  the call result in a local before the compare (func_0887CAFC). A
+  comparison operand loaded before the other's address: put it first and
+  flip the operator, `a > b` for `b < a` (func_0887A838).
+- The same unsigned division done twice with one constant register: read
+  the second operand again in the source rather than reusing the first
+  quotient (func_088795F4).
+- A callee given an argument that it does not read (`a0` set for the
+  call): the callee takes an unused parameter (func_0887CA4C, func_0887CAFC,
+  func_0887CBAC and func_0887CC28, called by func_0887BB48).
 
 ## Calls and allocation
 
