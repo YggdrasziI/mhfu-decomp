@@ -660,21 +660,40 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0886AB7C` | 0x0886AB7C-0x0886AD0C | 1 function | 100 % |
 | `unit_0886AD0C` | 0x0886AD0C-0x0886AD58 | 1 small function | 100 % |
 | `unit_0886AEEC` | 0x0886AEEC-0x0886AF2C | 1 small function | 100 % |
+| `unit_0886B064` | 0x0886B064-0x0886B0E0 | 1 small function | 100 % |
+| `unit_0886B7C0` | 0x0886B7C0-0x0886B8DC | 1 function (sum of seven unaligned u16 values) | 100 % |
 | `unit_0886B8DC` | 0x0886B8DC-0x0886B918 | 1 small function | 100 % |
+| `unit_0886BBE4` | 0x0886BBE4-0x0886BCD0 | 1 function (message 6, flag loop unrolled by 7) | 100 % |
+| `unit_0886BCD0` | 0x0886BCD0-0x0886BD84 | 1 function (loop over 2 entries, `switch`) | 100 % |
+| `unit_0886BD84` | 0x0886BD84-0x0886BE34 | 1 function (loop over 2 entries) | 100 % |
 | `unit_0886BE34` | 0x0886BE34-0x0886BE50 | 1 small function | 100 % |
+| `unit_0886BE50` | 0x0886BE50-0x0886BEA4 | 1 small function | 100 % |
+| `unit_0886BF28` | 0x0886BF28-0x0886BFBC | 1 function (word list copied to bytes) | 100 % |
+| `unit_0886BFBC` | 0x0886BFBC-0x0886C008 | 1 small function | 100 % |
+| `unit_0886C008` | 0x0886C008-0x0886C1E0 | 1 function (two search loops) | 100 % |
 | `unit_0886C1E0` | 0x0886C1E0-0x0886C218 | 1 small function | 100 % |
+| `unit_0886CA74` | 0x0886CA74-0x0886CADC | 1 function (loop unrolled by 5) | 100 % |
 | `unit_0886CDF8` | 0x0886CDF8-0x0886CE10 | 1 small function | 100 % |
+| `unit_0886CE10` | 0x0886CE10-0x0886CE4C | 1 small function | 100 % |
 | `unit_0886CE4C` | 0x0886CE4C-0x0886CE90 | 1 small function | 100 % |
 | `unit_0886CE90` | 0x0886CE90-0x0886CEA8 | 1 small function | 100 % |
 | `unit_0886CEA8` | 0x0886CEA8-0x0886CF78 | 1 small function | 100 % |
 | `unit_0886CF78` | 0x0886CF78-0x0886CFA0 | 1 small function | 100 % |
+| `unit_0886CFA0` | 0x0886CFA0-0x0886D024 | 1 small function | 100 % |
+| `unit_0886D024` | 0x0886D024-0x0886D0AC | 1 small function | 100 % |
 | `unit_0886D0AC` | 0x0886D0AC-0x0886D114 | 1 small function | 100 % |
+| `unit_0886D114` | 0x0886D114-0x0886D168 | 1 small function | 100 % |
+| `unit_0886D168` | 0x0886D168-0x0886D248 | 1 function (two loops) | 100 % |
 | `unit_0886D248` | 0x0886D248-0x0886D26C | 1 small function | 100 % |
 | `unit_0886D26C` | 0x0886D26C-0x0886D28C | 1 forwarder | 100 % |
+| `unit_0886D2E4` | 0x0886D2E4-0x0886D374 | 1 function (search loop) | 100 % |
+| `unit_0886D450` | 0x0886D450-0x0886D4D8 | 1 function (search loop) | 100 % |
 | `unit_0886D4D8` | 0x0886D4D8-0x0886D524 | 1 small function | 100 % |
+| `unit_0886D524` | 0x0886D524-0x0886D5E4 | 1 function (u16 clamp between two tables) | 100 % |
 | `unit_0886D5E4` | 0x0886D5E4-0x0886D644 | 1 small function | 100 % |
 | `unit_0886D644` | 0x0886D644-0x0886DB0C | 2 small functions | 100 % |
 | `unit_0886DB0C` | 0x0886DB0C-0x0886DC68 | 1 function (walks 0x10-byte entries and their 0x3C-byte records, sets the s16 at +0x30 of each record); optimized for speed | 100 % |
+| `unit_0886DC68` | 0x0886DC68-0x0886DD3C | 1 function (three nested loops) | 100 % |
 | `unit_0886DFAC` | 0x0886DFAC-0x0886E000 | 1 small function | 100 % |
 | `unit_0886E000` | 0x0886E000-0x0886E008 | 1 small function | 100 % |
 | `unit_0886E008` | 0x0886E008-0x0886E060 | 1 small function | 100 % |

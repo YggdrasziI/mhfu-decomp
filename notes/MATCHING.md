@@ -2542,6 +2542,35 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   returning `(x & 1) != 0` (func_08869904); a C++ `static inline bool`
   tested `!= 0` (func_0886A7D8). A loop constant 1 for `1 << i` kept apart
   from a returned 1: return `bool` (func_0886A7D8).
+- Loops tested at the top, with an unconditional `b` back and the exit
+  branch to a shared epilogue: `for (;;) { if (stop) break; ... }`; `while
+  (cond)` rotates the test to the bottom (func_0886BF28, func_0886D2E4,
+  func_0886D450, func_0886DC68).
+- `beql x, K, body` with the body's first load in the slot and `b` to the
+  increment, where `if (x != K) continue;` gives `bnel`: `switch (x) { case
+  K: break; default: continue; }` (func_0886BD84).
+- A dead `ori v0, 0xFFFE; b` tail with `beql`/`blezl` to the epilogue:
+  nested `if` with an explicit `else` for each early return
+  (func_0886CFA0).
+- `sltiu at, v, 2` for "neither 0 nor -1": `(u32)(x + 1) > 1`
+  (func_0886D450).
+- Unrolled byte-pair sums with hi/lo registers swapped in some repetitions
+  only: a `u16 t = lo; t += (u16)(hi << 8);` temporary for those, one
+  expression for the others (func_0886B7C0).
+- A `u16` parameter masked twice (before a loop and again for an index):
+  declare it `s32`, write `(u16)arg` in one place and `arg & 0xFFFF` in the
+  other so they are not merged (func_0886C008).
+- `bnezl flag` to an add block with the loop's first load copied into the
+  other path's slot: reload the pointer in both branches, `if (f == 0) e =
+  *p; else e = (T *)((char *)*p + off);` (func_0886DC68).
+- In an unrolled loop, a stepped pointer and the counter swapped: step a
+  typed `e++` AND declare it before the counter; either alone is not enough
+  (func_0886CA74). A loop bound `i <= 0x2A`, not `i < 0x2B`, for `slti at`
+  (func_0886BBE4).
+- C++ `if ((bool)(x & 1) != false)` for `sltu` + `beqzl`; the plain `(bool)`
+  test loses the `sltu` and `== 1` gives `bnel` (func_0886BEA4, still
+  99.33 %: two loads from one pointer swap registers because the twice-read
+  field is merged into one early load).
 
 ## Open symptoms
 
