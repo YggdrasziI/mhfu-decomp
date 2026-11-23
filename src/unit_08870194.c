@@ -5,6 +5,7 @@
 
 typedef int s32;
 
-s32 func_08870194(void) {
+/* Its only caller, func_0886E9F4, passes one argument. */
+s32 func_08870194(char *arg0) {
     return 0;
 }
