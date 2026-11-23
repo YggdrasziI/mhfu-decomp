@@ -592,19 +592,39 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088665A8` | 0x088665A8-0x088666B4 | 1 function, C++ (frees 15 lists of objects) | 100 % |
 | `unit_088666B4` | 0x088666B4-0x08866708 | 1 small function (C++) | 100 % |
 | `unit_08866708` | 0x08866708-0x0886678C | 1 small function (C++) | 100 % |
+| `unit_0886678C` | 0x0886678C-0x08866864 | 1 function (48 entries of type 1 given a block) | 100 % |
+| `unit_08866864` | 0x08866864-0x0886691C | 1 function, speed (48 entries of type 1 released) | 100 % |
+| `unit_0886691C` | 0x0886691C-0x088669F4 | 1 function (48 entries of type 2 given a block) | 100 % |
+| `unit_088669F4` | 0x088669F4-0x08866AAC | 1 function (48 entries of type 2 released) | 100 % |
 | `unit_08866AAC` | 0x08866AAC-0x08866B5C | 1 small function | 100 % |
+| `unit_08866B5C` | 0x08866B5C-0x08866B8C | 1 small function (bump allocator, first pool) | 100 % |
 | `unit_08866B8C` | 0x08866B8C-0x08866BD4 | 1 small function | 100 % |
+| `unit_08866BD4` | 0x08866BD4-0x08866C04 | 1 small function (bump allocator, second pool) | 100 % |
 | `unit_08866C04` | 0x08866C04-0x08866CB8 | 1 small function | 100 % |
 | `unit_08866CB8` | 0x08866CB8-0x08866DC8 | 2 small functions | 100 % |
+| `unit_08866DC8` | 0x08866DC8-0x08866E10 | 1 small function (slot state test) | 100 % |
+| `unit_08866E10` | 0x08866E10-0x08866F6C | 1 function (slot id from two tables) | 100 % |
 | `unit_08866F6C` | 0x08866F6C-0x08866FB0 | 1 small function | 100 % |
 | `unit_08866FB0` | 0x08866FB0-0x08867008 | 1 small function | 100 % |
 | `unit_08867008` | 0x08867008-0x08867058 | 4 forwarders building a byte index | 100 % |
+| `unit_08867058` | 0x08867058-0x08867260 | 1 function, speed (swaps eight slots through a buffer) | 100 % |
+| `unit_08867260` | 0x08867260-0x088673CC | 1 function (copies eight slots) | 100 % |
+| `unit_088673CC` | 0x088673CC-0x088675BC | 1 function, C++ (slot state machine, virtual calls) | 100 % |
+| `unit_088675BC` | 0x088675BC-0x088676D8 | 1 function (frees one slot) | 100 % |
+| `unit_088676D8` | 0x088676D8-0x0886789C | 1 function (model loaded into a slot) | 100 % |
+| `unit_08867B34` | 0x08867B34-0x08867D10 | 1 function (model loaded into a slot) | 100 % |
+| `unit_08867D10` | 0x08867D10-0x08867EC8 | 1 function (model loaded into a slot) | 100 % |
 | `unit_08867EC8` | 0x08867EC8-0x08867F34 | 1 small function | 100 % |
+| `unit_08867F34` | 0x08867F34-0x08868234 | 1 function, speed (model loaded into a slot) | 100 % |
+| `unit_08868234` | 0x08868234-0x08868498 | 1 function (model copied into a slot) | 100 % |
+| `unit_08868498` | 0x08868498-0x08868678 | 1 function (frees the blocks of six parts) | 100 % |
 | `unit_08868678` | 0x08868678-0x08868680 | 1 small function | 100 % |
 | `unit_08868680` | 0x08868680-0x08868778 | 1 small function | 100 % |
+| `unit_08868778` | 0x08868778-0x088688C8 | 1 function (frees the blocks of one part) | 100 % |
 | `unit_088688C8` | 0x088688C8-0x088689F4 | 2 small functions | 100 % |
 | `unit_088689F4` | 0x088689F4-0x088689FC | 1 small function | 100 % |
 | `unit_088689FC` | 0x088689FC-0x08868B6C | 1 function (two byte mappings by `switch`); jump tables 0x089315DC-0x08931628 in the unit | 100 % |
+| `unit_08868B6C` | 0x08868B6C-0x08868C04 | 1 function (on-screen keyboard status) | 100 % |
 | `unit_08868C04` | 0x08868C04-0x08868CE8 | 1 small function | 100 % |
 | `unit_08868F0C` | 0x08868F0C-0x08868F50 | 1 small function | 100 % |
 | `unit_08869424` | 0x08869424-0x08869504 | 1 function (maps a kind to one of 14 saturating byte counters); jump table 0x0893165C-0x089316DC in the unit | 100 % |

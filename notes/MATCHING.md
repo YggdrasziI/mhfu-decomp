@@ -2466,6 +2466,45 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   nested test } else { sentinel block }` (func_0886477C, func_0886171C).
 - A 3-word `lwc1`/`swc1` copy from `__ptmf_null`: a C++ pointer to member set
   to 0 (func_08865D84, as func_088868AC).
+- `addu a1, v0, v1` with a call result and a loaded value swapped, the sum
+  order in the source changing nothing: put the call result in a local first
+  (`t = f(p) << 4; ... t + h * 8`, func_08867D10, func_08868234), or make the
+  call term a pointer, `(s32)((char *)(f(p) << 4) + h * 8)` (func_088676D8,
+  func_08867B34).
+- memcpy argument loads in the wrong order (size loaded first in the
+  original): declare the size `unsigned int` (func_08867260, func_08867058,
+  as func_088AD1EC).
+- A load / add / store-back on one field where the original computes the
+  store address before the load: read the field inside the result
+  expression, then `field += n;` (func_08866B5C, func_08866BD4).
+- A test on 1 then on 0 that both reach the loop increment: `switch` with
+  an empty `case 0: break;` written first (func_0886678C, func_088669F4).
+- One stepped pointer per stride (+4, +8 from the same base) when the
+  original steps several bases, then the declaration-order search
+  (func_088669F4, func_0886691C); reads through a typed `e++`, writes
+  through raw `arg0 + off + i * 8` (func_08866864).
+- A selector (`i == 0 ? base0 : base1 + (i - 1) * stride`) repeated at each
+  use with no saved register: a `static inline` helper, not a macro (the
+  macro shares the field address) nor a plain `static` (called)
+  (func_08868498, func_08868778).
+- A constant loaded for a switch compare into `a0` and left for the next
+  `jal`: the call takes that constant as its argument (func_08868B6C).
+- A halfword table element passed as an argument, loaded early into a
+  temporary then moved: declare that callee parameter `u16` (func_08866DC8).
+  Conversely the masked copy passed where the original passes the raw
+  register: declare the callee parameter `s32` (func_088673CC).
+- A table load hoisted into a saved register before a call it is added to:
+  declare the callee returning `s32` and cast inline, `D[i][j] +
+  (u16)f()` (func_08866E10). `if ((u8)f() == 1) return 1; return 0;` for
+  `bnel` + `addu v0, zero, zero` rather than `xori`/`sltiu` (func_08866E10).
+- An extra `b epilogue` block for `default: return 0;`: drop the default and
+  let unmatched values reach the `return 0` after the switch
+  (func_088673CC).
+- Saved registers of narrowed arguments permuted in a large call-heavy
+  function with no loop, declaration order no help: try the speed setting
+  (func_08867F34, 97.89 -> 100 %).
+- The last `andi 0xff` of a u8 counter after `addiu i, 1`: increments in the
+  `for` header, `i++, a++, b++` (func_08867058).
 
 ## Open symptoms
 
