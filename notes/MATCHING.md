@@ -2505,6 +2505,43 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   (func_08867F34, 97.89 -> 100 %).
 - The last `andi 0xff` of a u8 counter after `addiu i, 1`: increments in the
   `for` header, `i++, a++, b++` (func_08867058).
+- `addu` base and index swapped on a table read: give the pointer side the
+  `char *` type and add the integer offset to it, `(char *)tbl[i] + off`
+  (func_08869750, func_088697D4); index a typed struct array at its real
+  offset in the owner struct, `p->ent[i].field`, with no local pointer to
+  the element (func_0886A77C, func_0886A87C, func_0886A4CC);
+  `((u8 *)(base + K))[idx]` for a byte at a constant offset (func_0886A0B4,
+  func_0886A7D8).
+- Leftover stores after an unrolled loop with base and index swapped on
+  `s16` arrays at constant offsets: a typed local pointer to a struct that
+  holds the arrays, `S *s = (S *)arg0; s->b[i] = 0;` (func_08869904).
+- A loop with a stepped pointer and a strength-reduced offset counter that
+  swap registers under every declaration order: no pointer local, write each
+  access `base + i * STRIDE + off` (func_0886A648). A loop stepping the bare
+  base with full offsets while the code after it indexes the entry: step a
+  pointer to the owner struct and read `slot[0]` through it (func_0886A524).
+- A loaded `u16` masked again before a compare with a call result: put the
+  call result in an `s32` local first (func_08869504).
+- A guarded bounded copy loop (`while (n) { *d = *s; if (!*s) break; ... }`)
+  tested at the bottom: speed setting; the load order follows the order of
+  the assignments, permute those as well as the declarations
+  (func_08868E54, func_0886A7D8). A loop-invariant address placed after the
+  counter init: `i = 0;` as its own statement before the pointer local
+  (func_0886A7D8).
+- A clamp `if (v < 0) v = 0` leaving branch leftovers in each switch case: a
+  `static inline` helper with an early return, `if (v < 0) return 0; return
+  v;` (func_0886A35C).
+- A test on a call result with the copy in the delay slot (`beqz v0`) where
+  ours tests the saved pointer (`beqzl s0`): assign in the condition, `if
+  ((e = f(a, b)) != 0)` (func_0886AB7C).
+- A 0/1 flag as `bnel x, K` with a hoisted 1 in the slot, every form folding
+  to `xori`/`sltu` or giving `beql`: `#pragma opt_rebuildconditionals off`
+  and `if (x == K) return 0; return 1;` in an inline helper (func_0886AA28,
+  still 99.12 %, flag register permuted).
+- A missing `sltu` before `bnel` on a bit test: a `static inline u8` helper
+  returning `(x & 1) != 0` (func_08869904); a C++ `static inline bool`
+  tested `!= 0` (func_0886A7D8). A loop constant 1 for `1 << i` kept apart
+  from a returned 1: return `bool` (func_0886A7D8).
 
 ## Open symptoms
 

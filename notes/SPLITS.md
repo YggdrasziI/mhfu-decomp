@@ -626,19 +626,38 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088689FC` | 0x088689FC-0x08868B6C | 1 function (two byte mappings by `switch`); jump tables 0x089315DC-0x08931628 in the unit | 100 % |
 | `unit_08868B6C` | 0x08868B6C-0x08868C04 | 1 function (on-screen keyboard status) | 100 % |
 | `unit_08868C04` | 0x08868C04-0x08868CE8 | 1 small function | 100 % |
+| `unit_08868CE8` | 0x08868CE8-0x08868E54 | 1 function (fills a parameter block; `switch` compares) | 100 % |
+| `unit_08868E54` | 0x08868E54-0x08868F0C | 1 function (bounded u16 text copy) | 100 % |
 | `unit_08868F0C` | 0x08868F0C-0x08868F50 | 1 small function | 100 % |
 | `unit_08869424` | 0x08869424-0x08869504 | 1 function (maps a kind to one of 14 saturating byte counters); jump table 0x0893165C-0x089316DC in the unit | 100 % |
+| `unit_08869504` | 0x08869504-0x08869564 | 1 small function | 100 % |
 | `unit_08869564` | 0x08869564-0x08869570 | 1 small function | 100 % |
 | `unit_08869570` | 0x08869570-0x088695F4 | 1 small function | 100 % |
+| `unit_08869750` | 0x08869750-0x08869774 | 1 small function | 100 % |
+| `unit_08869774` | 0x08869774-0x088697D4 | 1 small function | 100 % |
+| `unit_088697D4` | 0x088697D4-0x08869880 | 1 function (id lookup in a 16-byte table) | 100 % |
+| `unit_08869880` | 0x08869880-0x088698B8 | 1 small function | 100 % |
 | `unit_088698B8` | 0x088698B8-0x088698EC | 1 small function | 100 % |
 | `unit_088698EC` | 0x088698EC-0x08869904 | 1 small function | 100 % |
+| `unit_08869904` | 0x08869904-0x0886A054 | 1 function (clears and sets up many fields; unrolled loops) | 100 % |
 | `unit_0886A054` | 0x0886A054-0x0886A0B4 | 1 small function | 100 % |
+| `unit_0886A0B4` | 0x0886A0B4-0x0886A2D8 | 1 function (weighted pick from a table) | 100 % |
 | `unit_0886A2D8` | 0x0886A2D8-0x0886A30C | 1 small function | 100 % |
 | `unit_0886A30C` | 0x0886A30C-0x0886A35C | 1 small function | 100 % |
+| `unit_0886A35C` | 0x0886A35C-0x0886A3AC | 1 small function | 100 % |
+| `unit_0886A3AC` | 0x0886A3AC-0x0886A444 | 1 small function | 100 % |
 | `unit_0886A444` | 0x0886A444-0x0886A4CC | 1 small function | 100 % |
+| `unit_0886A4CC` | 0x0886A4CC-0x0886A524 | 1 small function | 100 % |
+| `unit_0886A524` | 0x0886A524-0x0886A58C | 1 small function | 100 % |
 | `unit_0886A58C` | 0x0886A58C-0x0886A60C | 1 small function | 100 % |
 | `unit_0886A60C` | 0x0886A60C-0x0886A648 | 1 small function | 100 % |
+| `unit_0886A648` | 0x0886A648-0x0886A73C | 1 function (loop over 0x2C-byte entries) | 100 % |
 | `unit_0886A73C` | 0x0886A73C-0x0886A77C | 1 counter | 100 % |
+| `unit_0886A77C` | 0x0886A77C-0x0886A7D8 | 1 small function | 100 % |
+| `unit_0886A7D8` | 0x0886A7D8-0x0886A87C | 1 function (C++, `bool` result) | 100 % |
+| `unit_0886A87C` | 0x0886A87C-0x0886A8AC | 1 small function | 100 % |
+| `unit_0886A8AC` | 0x0886A8AC-0x0886AA28 | 1 function (C++, one virtual call) | 100 % |
+| `unit_0886AB7C` | 0x0886AB7C-0x0886AD0C | 1 function | 100 % |
 | `unit_0886AD0C` | 0x0886AD0C-0x0886AD58 | 1 small function | 100 % |
 | `unit_0886AEEC` | 0x0886AEEC-0x0886AF2C | 1 small function | 100 % |
 | `unit_0886B8DC` | 0x0886B8DC-0x0886B918 | 1 small function | 100 % |
