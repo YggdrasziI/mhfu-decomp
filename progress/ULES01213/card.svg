@@ -8,14 +8,14 @@ text{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,san
 </style>
 <rect class="bg" x="0.5" y="0.5" width="759" height="349" rx="6"/>
 <text class="t b" x="16" y="34">Monster Hunter Freedom Unite (ULES01213)</text>
-<text class="m" x="744" y="34" text-anchor="end">commit 952b7ea</text>
+<text class="m" x="744" y="34" text-anchor="end">commit 086bd6d</text>
 <text class="t" x="16" y="60">Code</text>
 <rect class="track" x="186" y="49" width="300" height="12" rx="3"/>
-<rect class="fuzzy" x="186" y="49" width="163.8" height="12" rx="2"/>
-<rect class="perfect" x="186" y="49" width="157.3" height="12" rx="2"/>
-<rect class="linked" x="186" y="49" width="156.9" height="12" rx="2"/>
-<text class="t" x="674" y="60" text-anchor="end">571,088 / 1,089,072 bytes</text>
-<text class="m" x="744" y="60" text-anchor="end">52.44 %</text>
+<rect class="fuzzy" x="186" y="49" width="165.8" height="12" rx="2"/>
+<rect class="perfect" x="186" y="49" width="159.3" height="12" rx="2"/>
+<rect class="linked" x="186" y="49" width="158.9" height="12" rx="2"/>
+<text class="t" x="674" y="60" text-anchor="end">578,272 / 1,089,072 bytes</text>
+<text class="m" x="744" y="60" text-anchor="end">53.10 %</text>
 <text class="t" x="16" y="86">Data</text>
 <rect class="track" x="186" y="75" width="300" height="12" rx="3"/>
 <rect class="fuzzy" x="186" y="75" width="1.7" height="12" rx="2"/>
@@ -25,11 +25,11 @@ text{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,san
 <text class="m" x="744" y="86" text-anchor="end">0.57 %</text>
 <text class="t" x="16" y="112">Functions</text>
 <rect class="track" x="186" y="101" width="300" height="12" rx="3"/>
-<rect class="fuzzy" x="186" y="101" width="208.5" height="12" rx="2"/>
-<rect class="perfect" x="186" y="101" width="208.5" height="12" rx="2"/>
-<rect class="linked" x="186" y="101" width="208.4" height="12" rx="2"/>
-<text class="t" x="674" y="112" text-anchor="end">2,488 / 3,579</text>
-<text class="m" x="744" y="112" text-anchor="end">69.52 %</text>
+<rect class="fuzzy" x="186" y="101" width="210.1" height="12" rx="2"/>
+<rect class="perfect" x="186" y="101" width="210.1" height="12" rx="2"/>
+<rect class="linked" x="186" y="101" width="210.0" height="12" rx="2"/>
+<text class="t" x="674" y="112" text-anchor="end">2,507 / 3,579</text>
+<text class="m" x="744" y="112" text-anchor="end">70.05 %</text>
 <text class="t b" x="16" y="146">Code by region</text>
 <text class="t" x="16" y="172">C library</text>
 <rect class="track" x="186" y="161" width="300" height="12" rx="3"/>
@@ -37,11 +37,11 @@ text{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,san
 <text class="m" x="744" y="172" text-anchor="end">0.00 %</text>
 <text class="t" x="16" y="198">Game (Metrowerks)</text>
 <rect class="track" x="186" y="187" width="300" height="12" rx="3"/>
-<rect class="fuzzy" x="186" y="187" width="179.8" height="12" rx="2"/>
-<rect class="perfect" x="186" y="187" width="172.6" height="12" rx="2"/>
-<rect class="linked" x="186" y="187" width="172.2" height="12" rx="2"/>
-<text class="t" x="674" y="198" text-anchor="end">570,424 / 991,232 bytes</text>
-<text class="m" x="744" y="198" text-anchor="end">57.55 %</text>
+<rect class="fuzzy" x="186" y="187" width="181.9" height="12" rx="2"/>
+<rect class="perfect" x="186" y="187" width="174.8" height="12" rx="2"/>
+<rect class="linked" x="186" y="187" width="174.4" height="12" rx="2"/>
+<text class="t" x="674" y="198" text-anchor="end">577,608 / 991,232 bytes</text>
+<text class="m" x="744" y="198" text-anchor="end">58.27 %</text>
 <text class="t" x="16" y="224">VFPU code (unidentified)</text>
 <rect class="track" x="186" y="213" width="300" height="12" rx="3"/>
 <text class="t" x="674" y="224" text-anchor="end">0 / 11,432 bytes</text>
