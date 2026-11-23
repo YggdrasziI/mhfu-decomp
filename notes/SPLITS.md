@@ -499,26 +499,46 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0885F82C` | 0x0885F82C-0x0885F848 | 1 small function | 100 % |
 | `unit_0885F9A0` | 0x0885F9A0-0x0885FA0C | 1 small function | 100 % |
 | `unit_0885FBB4` | 0x0885FBB4-0x0885FBF4 | 1 lookup then call | 100 % |
+| `unit_0886025C` | 0x0886025C-0x08860328 | 1 function, speed (maximum over two nested walks of variable-size records) | 100 % |
 | `unit_088606D0` | 0x088606D0-0x08860710 | 3 small functions | 100 % |
 | `unit_08860710` | 0x08860710-0x08860758 | 1 function with the shape of func_0884B010 | 100 % |
 | `unit_08860758` | 0x08860758-0x08860760 | 1 small function | 100 % |
 | `unit_08860760` | 0x08860760-0x08860768 | 1 small function | 100 % |
 | `unit_08860768` | 0x08860768-0x088607A8 | 1 small function | 100 % |
 | `unit_088607A8` | 0x088607A8-0x088607F8 | 1 small function | 100 % |
+| `unit_08860848` | 0x08860848-0x08860A04 | 1 function (three float vectors from a live table or from defaults) | 100 % |
+| `unit_08860A04` | 0x08860A04-0x08860A78 | 1 function (clear, then three default vectors) | 100 % |
+| `unit_08860A78` | 0x08860A78-0x08860B24 | 1 function (three vectors copied from a source or set to defaults) | 100 % |
+| `unit_08860B24` | 0x08860B24-0x08860C54 | 1 function (three vectors, a switch on the kind for fixed ones) | 100 % |
+| `unit_08860C54` | 0x08860C54-0x08860CB0 | 1 function (three default vectors) | 100 % |
+| `unit_08860CB0` | 0x08860CB0-0x08860EC0 | 1 function (colour eased towards a float target, written as bytes) | 100 % |
 | `unit_088614DC` | 0x088614DC-0x0886159C | 1 small function | 100 % |
 | `unit_0886159C` | 0x0886159C-0x088615E4 | 1 function with the shape of func_0884B010 | 100 % |
 | `unit_088615E4` | 0x088615E4-0x08861604 | 1 table-address initialiser | 100 % |
 | `unit_08861604` | 0x08861604-0x0886167C | 1 small function | 100 % |
 | `unit_0886167C` | 0x0886167C-0x08861694 | 1 small function | 100 % |
 | `unit_08861694` | 0x08861694-0x0886171C | 1 small function | 100 % |
+| `unit_0886171C` | 0x0886171C-0x08861C7C | 1 function, speed (GE commands for the materials of one part) | 100 % |
 | `unit_08861C7C` | 0x08861C7C-0x08861D7C | 1 small function | 100 % |
 | `unit_08861D7C` | 0x08861D7C-0x08861E9C | 1 small function | 100 % |
 | `unit_08862510` | 0x08862510-0x08862518 | 1 small function | 100 % |
+| `unit_08862518` | 0x08862518-0x088626D0 | 1 function, speed (eight GE texture words per entry) | 100 % |
 | `unit_088626D0` | 0x088626D0-0x088626DC | 1 small function | 100 % |
 | `unit_088626DC` | 0x088626DC-0x088626E4 | 1 small function | 100 % |
 | `unit_08862710` | 0x08862710-0x08862768 | 4 small functions | 100 % |
+| `unit_08862768` | 0x08862768-0x088627AC | 1 small function (entry address) | 100 % |
 | `unit_088627AC` | 0x088627AC-0x088627B4 | 1 small function | 100 % |
+| `unit_088627B4` | 0x088627B4-0x08862800 | 1 small function (entry address) | 100 % |
+| `unit_08862800` | 0x08862800-0x088629DC | 1 function, speed (three bytes of each listed material) | 100 % |
+| `unit_088629DC` | 0x088629DC-0x08862BB8 | 1 function, speed (bytes 4-6 of each listed material) | 100 % |
+| `unit_08862BB8` | 0x08862BB8-0x08862D34 | 1 function, speed (byte 3 of each listed material) | 100 % |
+| `unit_08862D34` | 0x08862D34-0x08862DAC | 1 function (blend word chosen by a switch) | 100 % |
+| `unit_08862DAC` | 0x08862DAC-0x08862E00 | 1 small function (sets or clears bit 0 of an entry) | 100 % |
+| `unit_08862E00` | 0x08862E00-0x08862E54 | 1 small function (sets or clears bit 1 of an entry) | 100 % |
 | `unit_08862E54` | 0x08862E54-0x08862E64 | 1 small function | 100 % |
+| `unit_08862E64` | 0x08862E64-0x08862FE0 | 1 function (GE state words from a flag word) | 100 % |
+| `unit_088630D0` | 0x088630D0-0x08863198 | 1 function (key lookup then interpolation) | 100 % |
+| `unit_08863198` | 0x08863198-0x088632D8 | 1 function, speed (channel values of an animation header) | 100 % |
 | `unit_0886364C` | 0x0886364C-0x08863668 | 1 small function | 100 % |
 | `unit_08863D58` | 0x08863D58-0x08863DF4 | 1 small function | 100 % |
 | `unit_088641C0` | 0x088641C0-0x0886421C | 1 small function | 100 % |

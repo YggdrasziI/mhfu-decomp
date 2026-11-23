@@ -2400,6 +2400,38 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - func_08870AC4 and func_0886D26C return the value of their tail call to
   func_0887265C (func_08873A0C and func_08873CC0 read it): they had been
   written `void`; the callee is declared returning `s32`.
+- `beqz arg` to a shared `return 0` after the body, ours `bnez` with the
+  return inline: wrap the body, `if (arg != 0) { ...; return 1; } return 0;`
+  (func_08862518); two early `return 1` merged the same way into one
+  `if (a != 0 && b != 0) { ... } return 1;` (func_08863198).
+- A loop-invariant `ptr + K` call argument recomputed in the loop in the
+  original but hoisted into a saved register in ours: drop the `(s32)` cast
+  on the argument, pass the `char *` (func_0886025C).
+- A loop pointer built in two `addiu` steps (`base + 0xA0`, then `+ 0x10`)
+  folded into one in ours: integer cast on the sub-object,
+  `p = (char *)(s32)(arg0 + 0xA0) + 0x10;` (func_08860A04).
+- A constant loaded in the delay slot of the last call before a loop, into
+  the saved register of an argument that dies at that call: assign the
+  variable just before that call, not after (func_0886171C, `prev = -1`).
+  The original compares a `u8` load with -1 (`addiu -1` each pass, never
+  true): write `u8 != -1`, not `!= 0xFF`.
+- A stack-passed (`$t0`) argument loaded through the saved copy of the
+  pointer, `&local` arguments set in parameter order: the callee's last
+  parameter is `s16`, not `s32` (func_088630D0).
+- An extra `addiu s0, 0x10` per pass where ours has an `sll`: a separate
+  offset counter stepped by 0x10, not `i * 0x10` (func_08860A78).
+- A `char *` stepped by 0x30 whose register swaps with another pointer
+  under every declaration order: step a typed `Entry *e; e++` instead, then
+  search the declaration order (func_08860B24).
+- `addu` with base and scaled index swapped: index a struct array
+  (`p->ent[idx].f`, `((Vec *)(arg1 + 0xC0))[idx].f`) rather than raw byte
+  sums (func_08860848, func_08860CB0).
+- A 4-byte colour copied as one word (`lw`/`sw`, `lwc1`/`swc1` to the
+  result pointer): a union `{ u32 w; u8 c[4]; }` and whole assignments; a
+  `u8[4]` struct copies byte by byte (func_08860CB0).
+- try_unit.py below 100 % only on `%hi`/`%lo` of D_089CC000 at spilled
+  `lui` (the split piece has no relocation there): link it and check the
+  BOOT.BIN checksum (func_0886171C, as func_089030D8).
 
 ## Open symptoms
 
