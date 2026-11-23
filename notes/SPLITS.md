@@ -540,10 +540,15 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088630D0` | 0x088630D0-0x08863198 | 1 function (key lookup then interpolation) | 100 % |
 | `unit_08863198` | 0x08863198-0x088632D8 | 1 function, speed (channel values of an animation header) | 100 % |
 | `unit_0886364C` | 0x0886364C-0x08863668 | 1 small function | 100 % |
+| `unit_08863668` | 0x08863668-0x088637C4 | 1 function (key search by time from a hint index) | 100 % |
+| `unit_088637C4` | 0x088637C4-0x08863B70 | 1 function, speed (timers of the animation slots) | 100 % |
 | `unit_08863D58` | 0x08863D58-0x08863DF4 | 1 small function | 100 % |
+| `unit_08863DF4` | 0x08863DF4-0x08863E70 | 1 function (starts or stops one animation slot) | 100 % |
 | `unit_088641C0` | 0x088641C0-0x0886421C | 1 small function | 100 % |
 | `unit_0886421C` | 0x0886421C-0x0886423C | 1 element address | 100 % |
 | `unit_088642FC` | 0x088642FC-0x08864348 | 1 small function | 100 % |
+| `unit_08864348` | 0x08864348-0x08864408 | 1 function (time inside a slot range, with wrap) | 100 % |
+| `unit_08864408` | 0x08864408-0x08864440 | 1 small function (time before a slot start) | 100 % |
 | `unit_08864440` | 0x08864440-0x088644E8 | 1 small function | 100 % |
 | `unit_088644E8` | 0x088644E8-0x08864544 | 1 small function | 100 % |
 | `unit_08864544` | 0x08864544-0x0886454C | 1 small function | 100 % |
@@ -553,15 +558,28 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088646A4` | 0x088646A4-0x088646B4 | 2 small functions | 100 % |
 | `unit_088646B4` | 0x088646B4-0x088646F0 | 1 small function | 100 % |
 | `unit_088646F0` | 0x088646F0-0x0886477C | 1 small function | 100 % |
+| `unit_0886477C` | 0x0886477C-0x08865044 | 1 function, speed (GE commands of one model group) | 100 % |
 | `unit_08865254` | 0x08865254-0x088652DC | 1 function (record lookup by id % 1000); optimized for speed | 100 % |
+| `unit_088655F8` | 0x088655F8-0x08865648 | 1 small function, speed (three angles to floats) | 100 % |
+| `unit_0886574C` | 0x0886574C-0x08865810 | 1 function, C++, speed (slots of each part through a virtual call) | 100 % |
+| `unit_08865810` | 0x08865810-0x08865934 | 1 function, C++, speed (starts the animation of each part) | 100 % |
 | `unit_08865934` | 0x08865934-0x08865A24 | 1 small function (C++) | 100 % |
 | `unit_08865A24` | 0x08865A24-0x08865A2C | 1 small function | 100 % |
 | `unit_08865A2C` | 0x08865A2C-0x08865A64 | 1 small function | 100 % |
+| `unit_08865A64` | 0x08865A64-0x08865A9C | 1 small function (sets flag bits) | 100 % |
 | `unit_08865A9C` | 0x08865A9C-0x08865ADC | 1 flag clear | 100 % |
+| `unit_08865ADC` | 0x08865ADC-0x08865BAC | 1 function (mode byte and flag bits) | 100 % |
 | `unit_08865BAC` | 0x08865BAC-0x08865BD0 | 1 small function | 100 % |
+| `unit_08865BD0` | 0x08865BD0-0x08865C2C | 1 small function (position from a table entry) | 100 % |
+| `unit_08865C2C` | 0x08865C2C-0x08865C88 | 1 small function (position from a table entry) | 100 % |
+| `unit_08865C88` | 0x08865C88-0x08865CB8 | 1 small function (tests flag bits) | 100 % |
 | `unit_08865CB8` | 0x08865CB8-0x08865CEC | 1 small function | 100 % |
+| `unit_08865CEC` | 0x08865CEC-0x08865D54 | 1 small function (counter update) | 100 % |
+| `unit_08865D54` | 0x08865D54-0x08865D84 | 1 small function (id from a 0x1D0-byte table) | 100 % |
+| `unit_08865D84` | 0x08865D84-0x08865DBC | 1 small function, C++ (pointer to member cleared) | 100 % |
 | `unit_08865DBC` | 0x08865DBC-0x08865DC4 | 1 small function | 100 % |
 | `unit_08865DC4` | 0x08865DC4-0x08865DD4 | 1 small function | 100 % |
+| `unit_08865DD4` | 0x08865DD4-0x08865E40 | 1 small function (step from a float and a count) | 100 % |
 | `unit_08865E40` | 0x08865E40-0x08865E78 | 2 small functions | 100 % |
 | `unit_08865EC0` | 0x08865EC0-0x08865F24 | 1 small function | 100 % |
 | `unit_08865F24` | 0x08865F24-0x08865F68 | 1 small function | 100 % |
@@ -570,6 +588,8 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08866284` | 0x08866284-0x088662B8 | one function (switch on a byte field) | 100 % |
 | `unit_088662B8` | 0x088662B8-0x088664A8 | 1 small function | 100 % |
 | `unit_088664A8` | 0x088664A8-0x088664F8 | 1 small function | 100 % |
+| `unit_088664F8` | 0x088664F8-0x088665A8 | 1 function, speed (clears 15 list heads) | 100 % |
+| `unit_088665A8` | 0x088665A8-0x088666B4 | 1 function, C++ (frees 15 lists of objects) | 100 % |
 | `unit_088666B4` | 0x088666B4-0x08866708 | 1 small function (C++) | 100 % |
 | `unit_08866708` | 0x08866708-0x0886678C | 1 small function (C++) | 100 % |
 | `unit_08866AAC` | 0x08866AAC-0x08866B5C | 1 small function | 100 % |

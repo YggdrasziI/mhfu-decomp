@@ -2432,6 +2432,40 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - try_unit.py below 100 % only on `%hi`/`%lo` of D_089CC000 at spilled
   `lui` (the split piece has no relocation there): link it and check the
   BOOT.BIN checksum (func_0886171C, as func_089030D8).
+- `addu` with base and scaled index swapped and the address kept in a
+  pointer local: drop the local, write `arg0[arg1].f` at each use
+  (func_08864348). With a stride of 0x40 to one `s32` field, a typed pointer
+  to the field indexed in elements, `((s32 *)(arg0 + 0x38))[i * 16]`, where
+  struct indexing failed (func_08863DF4).
+- Two range checks ending in one shared `return 0`: `if (!w) { if (a && b)
+  return 1; } else { if (a && c) return 1; } return 0;` (func_08864348).
+- Speed setting, a byte array read with a fresh `addu base, i` each pass:
+  `*(u8 *)(base + i + off)`, not `((u8 *)(base + off))[i]`; a stepped
+  pointer that starts at the base with the offset in the load:
+  `*(u16 *)(base + i * 2 + 0x130)` (func_088637C4).
+- `mtc1` of a decremented field with the store in the delay slot (ours
+  stores then reloads with `lwc1`): `(f32)--e->field` (func_088637C4).
+- The pointer step before the branch and the s16 counter's `seh` in the
+  delay slot: write `p++; i++;`, pointer first (func_08863668).
+- An argument zero-extended to 16 bits early (`andi 0xffff` in a delay slot)
+  and tested later with `andi 0x8000`: a local `s32 flags = (u16)arg1;` at
+  the top; a `u16` local adds a second `andi` (func_08865ADC).
+- `if (x & bit) {A} else {B}` giving `beqzl` where the original has `bnel`:
+  invert, `if (!(x & bit)) {B} else {A}` (func_08865A64).
+- Stores to large offsets each recomputing `lui; addu base; sw %lo`: fields
+  of a typed struct (`char buf[0x80000]` first), `p->arr[i]`; raw casts hoist
+  separate base pointers (func_088664F8).
+- Counter set before the pointer in the original loop setup:
+  `for (i = 0, p = arg0; ...)` (func_088665A8). A list walk guarded once by
+  `beqz` and tested at the bottom on the saved next pointer:
+  `if (n) do { o = n->next; ...; n = o; } while (o != 0);` (func_088665A8).
+- Float registers swapped: declaration order works for float locals too
+  (func_08865DD4, func_08860CB0). Spill slots follow the declaration order:
+  declare a local later for a lower slot (func_0886477C).
+- A sentinel test with `beql` to a block placed later: `if (t != 0xFF) {
+  nested test } else { sentinel block }` (func_0886477C, func_0886171C).
+- A 3-word `lwc1`/`swc1` copy from `__ptmf_null`: a C++ pointer to member set
+  to 0 (func_08865D84, as func_088868AC).
 
 ## Open symptoms
 
