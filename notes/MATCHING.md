@@ -2571,6 +2571,48 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   test loses the `sltu` and `== 1` gives `bnel` (func_0886BEA4, still
   99.33 %: two loads from one pointer swap registers because the twice-read
   field is merged into one early load).
+- Speed mode: one loop rotated (test at the bottom) and another of the same
+  function kept at the top: plain `while (cond)` for the first, `while (1) {
+  if (!cond) break; ... }` for the second (func_0886DD3C, func_0886DE78,
+  func_0886D374).
+- An argument computed as a pointer sum (`addiu a3, s0, K`) scheduled after
+  a register-copy argument in the original, before it in ours: declare that
+  callee parameter `s32` and pass `(s32)(p + K)` (func_0886D374).
+- `default:` of a switch branching to a shared `return 0` with an empty
+  slot, while one case returns 0 inline: write that case `case K: break;`
+  with no `default` and one `return 0;` after the switch (func_0886B0E0).
+  The same for a case that computes a value: `break;` and one shared
+  `return sum;`, else the fall-through return becomes a constant 0
+  (func_0886C768).
+- An empty case tested in the original: write it after the real one,
+  `switch (x) { case 1: ...; break; case 0: break; }` (func_0886B918). A
+  single-value early return as `beql x, K, body` + `b` to the epilogue: a
+  one-case `switch` (func_0886BA50). `default:` laid out first: put it
+  first in the source too (func_0886C218).
+- A switch on an `s8` table value sign-extended again before the compares:
+  declare the switch variable `s32` (func_0886C218).
+- A last test kept as `beqz; nop` with its own `move v0, zero` block before
+  the epilogue: `if (x) return 1;` falling through to the function's single
+  `return 0;`, no inner `return 0;` (func_0886E08C).
+- `sh`, `seh`, then `bgtzl` with the field reloaded in the slot: the
+  decrement inside the test, `if (--e->timer <= 0)` (func_0886AF2C).
+- `seh` of a parameter kept in a saved register while the raw value goes to
+  an earlier call: `id = arg1; id = (s16)id;` with `s16 id` (func_0886C8AC).
+- Halfwords at +0x18/+0x1A/+0x1C built from two words with `srl`/`sll`/`or`:
+  read an `s64` and store `w`, `w >> 16`, `w >> 32` (func_0886B0E0); `srl`
+  rather than `sra` for the high half: a `u32` source.
+- A local structure or float array 4 bytes too high in the frame: declare
+  it larger than the fields used (12-byte message, `f32 v[4]`;
+  func_0886B918, func_0886C8AC, func_0886CADC).
+- A small structure copied field by field with `lw`/`lhu`/`lh`: assign each
+  field, a whole-structure assignment becomes `lwc1`/`swc1` (func_0886E2EC).
+- The prologue copies `a2` into its saved register before `a0`/`a1`: the
+  first callee takes fewer arguments than declared; count the registers
+  its assembly reads (func_0886E130 -> func_0886E08C).
+- A parameter in a saved register and the outer loop counter swapped,
+  unchanged by every declaration order: the speed setting (func_0886C914).
+- Speed setting also needed for float constants built with `lui`/`ori`
+  instead of loaded (func_0886CADC).
 
 ## Open symptoms
 
