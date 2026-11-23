@@ -2613,6 +2613,43 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   unchanged by every declaration order: the speed setting (func_0886C914).
 - Speed setting also needed for float constants built with `lui`/`ori`
   instead of loaded (func_0886CADC).
+- A `switch` whose failing cases `bne` to a shared `return 0` while the
+  default is an inline `b end; v0 = 0`: no `default:` label, `return 0;`
+  after the switch (func_0886E828). Two body-less cases that exit are
+  compared in their own place: keep each where the compare chain has it
+  (func_0886E9F4).
+- A search loop tested at the top with `beql` to the exit (store in its
+  slot) and a `b` back that `for (;;) { if (hit) { store; break; } }` still
+  rotates: write it with labels, `loop: if (hit) goto done; ...; goto loop;`
+  (func_0886E978). The order of the two increments places the `seh` of an
+  `s16` counter in the `b` slot (`p += 4; i++;`).
+- Ternary order: `x == 0 ? -1 : K` for `bnezl` with K in the slot
+  (func_0886E978).
+- `and` operands swapped on a `u8` byte array masked with `1 << n`: read it
+  through a structure member array, `((T *)p)->bits[i]` (func_0886E36C).
+  `slt v1` where the original has `slt at`: put the call on the left,
+  `f() > h` (func_0886E36C).
+- An initialised local `s16[35]` gives an `lh`/`sh` copy loop from its
+  `D_` symbol (an extern structure copy gives `lw`/`sw`); the 64-bit shift
+  `(u64) 1 << i` calls `__ashldi3` with `a3 = 0` for an `s32` count, an
+  `(s64)` cast gives `sra a3` (func_0886F7FC).
+- A skip-forward loop whose walker is in `v0`: step the existing cursor
+  variable, not a new pointer local (func_0886E9F4). A `g[i * K + off]`
+  byte read with `addu` operands swapped: a block-local `u8 *` copy of the
+  global (func_0886E9F4). A bounded table getter as a `static inline`
+  taking the global at each call keeps base and offset apart
+  (func_0886E9F4).
+- A compare-and-swap whose swap reads both fields again after the compare:
+  `volatile` element pointers and the compared field read once into a
+  local (func_0886F894; a device for the reloads, not a claim about the
+  source). A counter zeroed in the delay slot of a loop guard: `cnt = 0;
+  if (e->id != END) { off = 0; do { ... } while (...); }` (func_0886F894).
+  A byte flag on the stack loaded too early: test it alone, `if (flag) goto
+  next;`, not inside `||` (func_0886F894).
+- Only a temporary and a result swap saved registers after the
+  declaration and assignment order search: the speed setting
+  (func_0886E5BC). `s32` return for an `s16` sum when the original ends
+  with `seh v0` (func_0886E6F4).
 
 ## Open symptoms
 

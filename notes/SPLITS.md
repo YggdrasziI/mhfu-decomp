@@ -719,9 +719,20 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0886E23C` | 0x0886E23C-0x0886E27C | 1 small function | 100 % |
 | `unit_0886E27C` | 0x0886E27C-0x0886E2EC | 1 small function (loop over 2 entries) | 100 % |
 | `unit_0886E2EC` | 0x0886E2EC-0x0886E36C | 1 small function (slot copy); optimized for speed | 100 % |
+| `unit_0886E36C` | 0x0886E36C-0x0886E578 | 1 function (loop over 2 slots, bit table at +0x5C2) | 100 % |
+| `unit_0886E578` | 0x0886E578-0x0886E5BC | 1 small function (slot lookup) | 100 % |
+| `unit_0886E5BC` | 0x0886E5BC-0x0886E6A8 | 1 function (loop over 2 slots); optimized for speed | 100 % |
 | `unit_0886E6A8` | 0x0886E6A8-0x0886E6F4 | 1 small function | 100 % |
+| `unit_0886E6F4` | 0x0886E6F4-0x0886E828 | 1 function (sum over 4 objects); optimized for speed | 100 % |
+| `unit_0886E828` | 0x0886E828-0x0886E92C | 1 function (`switch` without `default`); optimized for speed | 100 % |
 | `unit_0886E92C` | 0x0886E92C-0x0886E978 | 1 small function | 100 % |
+| `unit_0886E978` | 0x0886E978-0x0886E9F4 | 1 small function (search loop written with labels) | 100 % |
+| `unit_0886E9F4` | 0x0886E9F4-0x0886F65C | 1 function (walks a list of 8-byte commands, role a hypothesis; compare-chain `switch`); optimized for speed | 100 % |
+| `unit_0886F65C` | 0x0886F65C-0x0886F78C | 1 function (two `switch` on an item byte) | 100 % |
 | `unit_0886F78C` | 0x0886F78C-0x0886F79C | 1 small function | 100 % |
+| `unit_0886F79C` | 0x0886F79C-0x0886F7FC | 1 small function (counter clamped to 300000) | 100 % |
+| `unit_0886F7FC` | 0x0886F7FC-0x0886F894 | 1 function (bit of a 64-bit mask from an `s16[35]` table owned as .data at 0x089A8288, 2 bytes of padding after it); optimized for speed | 100 % |
+| `unit_0886F894` | 0x0886F894-0x08870194 | 1 function (sorts slots, fills a text buffer; `volatile` slot pointers); optimized for speed | 100 % |
 | `unit_08870194` | 0x08870194-0x0887019C | 1 small function | 100 % |
 | `unit_0887019C` | 0x0887019C-0x088701D8 | 1 small function | 100 % |
 | `unit_088701D8` | 0x088701D8-0x08870264 | 1 function (sums an s16 table over a 0xFF-terminated byte list) | 100 % |
