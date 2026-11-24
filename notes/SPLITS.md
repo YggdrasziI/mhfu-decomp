@@ -424,13 +424,33 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0885148C` | 0x0885148C-0x088516A4 | section and entry lookup in the block at `D_089CC440`, 21 wrappers with a fixed section number | 23/23 functions, 100 % |
 | `unit_088516A4` | 0x088516A4-0x08851C3C | 3 functions (16-bit value of a 40-byte record by kind 0-5, from arguments, from a 0x8C-byte record, from the object at +0x4A0); jump tables 0x089313A8-0x089313F0 in the unit | 100 % |
 | `unit_08851C3C` | 0x08851C3C-0x08851D3C | 2 small functions | 100 % |
+| `unit_08851D3C` | 0x08851D3C-0x08851DBC | 1 small function (flag of a record, kind below 5) | 100 % |
+| `unit_08851DBC` | 0x08851DBC-0x08851E54 | 1 function (byte of a record when a call returns 1) | 100 % |
+| `unit_08851E54` | 0x08851E54-0x08851EC8 | 1 small function (byte of a record when a call returns 1) | 100 % |
+| `unit_08851EC8` | 0x08851EC8-0x08851F20 | 1 small function (first halfword of a 24- or 28-byte record) | 100 % |
+| `unit_08851F20` | 0x08851F20-0x08851F94 | 1 small function (first halfword of a 24- or 28-byte record) | 100 % |
+| `unit_08851F94` | 0x08851F94-0x08851FEC | 1 small function (first halfword of a 24- or 28-byte record) | 100 % |
+| `unit_08851FEC` | 0x08851FEC-0x0885205C | 1 small function (byte from a table of byte tables) | 100 % |
 | `unit_0885205C` | 0x0885205C-0x088520A8 | 1 byte table lookup | 100 % |
 | `unit_088520A8` | 0x088520A8-0x088520C8 | 1 entry getter | 100 % |
 | `unit_088520C8` | 0x088520C8-0x088520D0 | 1 small function | 100 % |
 | `unit_088520D0` | 0x088520D0-0x08852114 | 1 non-zero 16-bit counter | 100 % |
+| `unit_08852114` | 0x08852114-0x08852200 | 1 function (float key table ended by -1.0f, linear interpolation) | 100 % |
+| `unit_08852200` | 0x08852200-0x088522CC | 1 function (float key table ended by -1.0f, linear interpolation; one `volatile` field) | 100 % |
+| `unit_088522CC` | 0x088522CC-0x08852618 | 1 function (colour key table ended by -1, interpolation byte by byte) | 100 % |
+| `unit_08852618` | 0x08852618-0x088526B4 | 1 function (float key table ended by -1.0f, linear interpolation) | 100 % |
+| `unit_088526B4` | 0x088526B4-0x088526F8 | 1 small function (random float); optimized for speed | 100 % |
+| `unit_088526F8` | 0x088526F8-0x08852740 | 1 small function (random float); optimized for speed | 100 % |
+| `unit_08852954` | 0x08852954-0x08852A44 | 1 function (s16 table indexed by two bytes and a selector) | 100 % |
 | `unit_08852A44` | 0x08852A44-0x08852A50 | 1 small function | 100 % |
 | `unit_08852A50` | 0x08852A50-0x08852A60 | 1 small function | 100 % |
+| `unit_08852A60` | 0x08852A60-0x08852C20 | 1 function (copies a record into the block at +0x30); optimized for speed | 100 % |
+| `unit_08852C20` | 0x08852C20-0x08852DF8 | 1 function (copies 14 bytes, then three setter calls) | 100 % |
 | `unit_08852DF8` | 0x08852DF8-0x08852E38 | 1 slot scan | 100 % |
+| `unit_08852E38` | 0x08852E38-0x08852EE0 | 1 function (search in a table of 30 thresholds); optimized for speed | 100 % |
+| `unit_08852EE0` | 0x08852EE0-0x08852F1C | 1 small function (sets a flag of a 62-bit array) | 100 % |
+| `unit_08852F58` | 0x08852F58-0x08852FA0 | 1 small function (counts the flags of a 62-bit array) | 100 % |
+| `unit_08852FA0` | 0x08852FA0-0x08853004 | 1 small function (counts the first n flags); optimized for speed | 100 % |
 | `unit_08853004` | 0x08853004-0x088530C4 | 2 small functions | 100 % |
 | `unit_08854BAC` | 0x08854BAC-0x08854BEC | 1 small function | 100 % |
 | `unit_08854BEC` | 0x08854BEC-0x08854CCC | 2 small functions | 100 % |

@@ -2681,6 +2681,35 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   `beqzl` bottom test: `if (c) do { ... } while (c);` (func_088511B4).
 - Constants of a ternary built in `v0` then `andi s1, v0, 0xFFFF`: cast
   each one, `t = c ? (u16)A : (u16)B;` (func_088511B4).
+- `addu v0, v0, s0` (scaled index first) on a table read where every sum
+  order gives the base first: cast the index term to a pointer and the base
+  to an integer, `*(s16 *)((char *)(i * 12) + (s32)p + K)` (func_08851DBC).
+- The same argument masked again at each call: `s32` parameter, `u8`
+  callee parameters, no explicit cast (an explicit `(u8)` is shared once)
+  (func_08851E54). A call result passed to another call with `andi a1, v0,
+  0xFF`: the inner callee returns `s32` (func_08851E54).
+- A shared `sltu` after two branches that each load a halfword: assign an
+  `s32` local in both and `return v != 0;` once (func_08851D3C).
+- `and` operands swapped on a bit test where both written orders give the
+  same code: load the byte into its own local first, `b = p[(i >> 3) + K];
+  if (b & (1 << (i & 7)))` (func_08852F58, func_08852FA0).
+- `addiu a3, a0, K` then a field through `lui` + negative offset: a local
+  base pointer `q = arg0 + K` and one offset from it (func_08852E38). A
+  global pointer reused as a call argument instead of reloaded: read it
+  once into a local (func_08852C20).
+- Key tables ended by a marker, the copy of the last entry placed after the
+  loop: `while (1) { if (k->t == -1.0f) break; ... k++; }` (func_08852114,
+  func_08852618, func_088522CC). Float temporaries of an interpolation
+  swapped: the ratio in its own local first (func_08852618). A constant
+  stored at the top of every pass but hoisted by ours, even with
+  `opt_loop_invariants off`: a `volatile` field, said in the header
+  (func_08852200).
+- A redundant `ext` after an `and` mask: the shifted value in a `u8` local
+  (func_088522CC). A clean register rotation in a long function: drop the
+  locals holding loaded words and read the field at each use
+  (func_088522CC).
+- Index `sel + a * 68 + b * 4` shifted once: a flat array with the explicit
+  sum, not a 3-D array (func_08852954).
 
 ## Open symptoms
 
