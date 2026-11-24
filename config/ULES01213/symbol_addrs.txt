@@ -38,6 +38,11 @@ func_08890060 = 0x08890060; // type:func size:0x20
 func_0887142C = 0x0887142C; // type:func size:0x18
 func_08871444 = 0x08871444; // type:func size:0x88
 
+// func_0885115C is a tail call through a vtable (`jr $t9`, no `jr $ra`); the
+// code after it, at 0x088511B4, is a function of its own (called by func_0889D8A8)
+func_0885115C = 0x0885115C; // type:func size:0x58
+func_088511B4 = 0x088511B4; // type:func size:0xD8
+
 // func_08890494 is a thread entry ending in an infinite loop (no `jr $ra`); the
 // code after it, at 0x08890544, is a function of its own (called by func_0889064C)
 func_08890494 = 0x08890494; // type:func size:0xB0
