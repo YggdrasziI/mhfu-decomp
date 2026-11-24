@@ -2650,6 +2650,37 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   declaration and assignment order search: the speed setting
   (func_0886E5BC). `s32` return for an `s16` sum when the original ends
   with `seh v0` (func_0886E6F4).
+- A large compare constant built in `$at` (`lui at; ori at; sltu`) and built
+  again for the store: compare a local holding the new value with `> K-1`,
+  not the field again with `>= K` (func_08850FB8, func_0885058C); a clamp
+  keeps its two stores in `if`/`else` (func_0885058C).
+- An argument masked (`andi 0xFF`) for one use and passed raw to a callee:
+  `s32` parameter, `(u8)arg` only at the masked uses (func_08850078,
+  func_08850158). No `andi 0xFFFF` before a call on a `u16` counter: the
+  callee parameter is `u16` (func_08850E58, func_088507F4). A call result
+  masked `andi 0xFFFF` in the caller: the callee returns `s32`, assigned
+  to a `u16` local (func_08850158).
+- Table address computed before the int-to-float conversion: call result in
+  a `u32` local, then a pointer to the table element, then `(float)v * *p`
+  (func_08850078).
+- Accumulator and argument copy swapping saved registers in a loop over a
+  0xFF-terminated list: speed setting, `for (c = *p; c != 0xFF; c = *++p)`
+  and the accumulator set to 0 before the pointer load (func_088503F8,
+  func_0885048C).
+- Field copies whose last fields are all loaded then all stored: those
+  fields are one sub-structure copied by one assignment (func_08850910).
+- `beq` + `nop` to a `v0 = 1` block placed after a shared `return 0` whose
+  `b` slot is empty: `if (g) { if (a == x || a == y) goto found; } return 0;
+  found: return 1;` (func_08850C34).
+- A loop tested at the bottom on a value read from memory with its counter
+  checked in the middle (`slti at`, `beqz` to the exit): `while (c) { ...;
+  p++; i++; if (i >= N) break; }`; the order of the step statements sets
+  the registers of the stepped pointers (func_08851078). An inner loop with
+  a constant bound and a `break` rotated with a duplicated first load:
+  `j = 0; do { ... } while (j < N);` (func_0885128C). A top test with a
+  `beqzl` bottom test: `if (c) do { ... } while (c);` (func_088511B4).
+- Constants of a ternary built in `v0` then `andi s1, v0, 0xFFFF`: cast
+  each one, `t = c ? (u16)A : (u16)B;` (func_088511B4).
 
 ## Open symptoms
 

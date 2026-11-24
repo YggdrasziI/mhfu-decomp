@@ -392,15 +392,35 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0884FFE0` | 0x0884FFE0-0x08850010 | 1 small function | 100 % |
 | `unit_08850010` | 0x08850010-0x08850044 | 1 small function | 100 % |
 | `unit_08850044` | 0x08850044-0x08850078 | 1 small function | 100 % |
+| `unit_08850078` | 0x08850078-0x08850158 | 1 function (float table scaled by a call result) | 100 % |
+| `unit_08850158` | 0x08850158-0x08850238 | 1 function (float table scaled by a call result) | 100 % |
+| `unit_08850238` | 0x08850238-0x0885028C | 1 small function (unsigned value scaled by a float table) | 100 % |
 | `unit_0885028C` | 0x0885028C-0x088503F8 | 2 small functions | 100 % |
+| `unit_088503F8` | 0x088503F8-0x0885048C | 1 function (sum over a 0xFF-terminated byte list, capped at 9999); optimized for speed | 100 % |
+| `unit_0885048C` | 0x0885048C-0x08850520 | 1 function (sum over a 0xFF-terminated byte list, capped at 9999); optimized for speed | 100 % |
+| `unit_08850520` | 0x08850520-0x0885057C | 1 small function (sum of two calls, capped at 9999) | 100 % |
 | `unit_0885057C` | 0x0885057C-0x0885058C | 1 small function | 100 % |
+| `unit_0885058C` | 0x0885058C-0x088505E0 | 1 small function (counter capped at 9999999) | 100 % |
+| `unit_088505E0` | 0x088505E0-0x08850618 | 1 small function (sets a bit of a bit array) | 100 % |
+| `unit_08850648` | 0x08850648-0x088506A4 | 1 small function (clears a bit of a bit array) | 100 % |
+| `unit_088506A4` | 0x088506A4-0x08850704 | 1 small function (first free 12-byte entry); optimized for speed | 100 % |
 | `unit_08850704` | 0x08850704-0x08850724 | 1 entry test | 100 % |
+| `unit_08850724` | 0x08850724-0x088507F4 | 1 function (fills the first free 12-byte entry); optimized for speed | 100 % |
+| `unit_088507F4` | 0x088507F4-0x08850868 | 1 small function (clears a 12-byte entry) | 100 % |
 | `unit_08850868` | 0x08850868-0x08850910 | 1 function (stores an index by kind of a 12-byte entry); jump table 0x0893138C-0x089313A8 in the unit | 100 % |
+| `unit_08850910` | 0x08850910-0x08850C34 | 1 function (copies entries into six slots) | 100 % |
+| `unit_08850C34` | 0x08850C34-0x08850C9C | 1 small function (entry test written with a `goto`) | 100 % |
 | `unit_08850C9C` | 0x08850C9C-0x08850D04 | 1 small function | 100 % |
+| `unit_08850D04` | 0x08850D04-0x08850E58 | 1 function (checks five indexes against five tables) | 100 % |
+| `unit_08850E58` | 0x08850E58-0x08850EC4 | 1 small function (count over two ids) | 100 % |
 | `unit_08850EC4` | 0x08850EC4-0x08850EFC | 1 small function | 100 % |
 | `unit_08850EFC` | 0x08850EFC-0x08850FB8 | 1 function (value / 100 limited by func_08850E58, remainder kept); optimized for speed | 100 % |
+| `unit_08850FB8` | 0x08850FB8-0x0885100C | 1 small function (counter capped at 0x22550FF) | 100 % |
 | `unit_0885100C` | 0x0885100C-0x08851078 | 1 small function | 100 % |
+| `unit_08851078` | 0x08851078-0x08851144 | 1 function (copies up to 32 pairs); optimized for speed | 100 % |
 | `unit_08851144` | 0x08851144-0x0885115C | 1 small function | 100 % |
+| `unit_0885115C` | 0x0885115C-0x0885128C | 2 functions (`func_0885115C`, a tail call through a vtable, and `func_088511B4`); C++, `#pragma exceptions off` | 100 % |
+| `unit_0885128C` | 0x0885128C-0x0885148C | 1 function (flags from level thresholds, two nested loops) | 100 % |
 | `unit_0885148C` | 0x0885148C-0x088516A4 | section and entry lookup in the block at `D_089CC440`, 21 wrappers with a fixed section number | 23/23 functions, 100 % |
 | `unit_088516A4` | 0x088516A4-0x08851C3C | 3 functions (16-bit value of a 40-byte record by kind 0-5, from arguments, from a 0x8C-byte record, from the object at +0x4A0); jump tables 0x089313A8-0x089313F0 in the unit | 100 % |
 | `unit_08851C3C` | 0x08851C3C-0x08851D3C | 2 small functions | 100 % |
