@@ -2748,6 +2748,29 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   both address words: assign the cursor local after the test
   (func_0885658C; a second version of the packet helper of
   func_088F4210).
+- A compare chain branching to the shared `jr` with no value set: that
+  case returns the constant still in `v0` from an earlier compare, so
+  write the value it holds (func_08856CA0). A `b end; nop` fall-through
+  with `v0` already holding the first compare constant: `default: r = K;
+  break;` written after the cases, one `return r;` (func_08856D14).
+- Nested loops tested at the bottom with no guard: `do { } while`, and
+  `j = 0;` as the first statement of the outer body to get the `bnezl`
+  slot reset (func_08856E8C).
+- A call result turned into a flag (`sltu; xori; bnezl`) leaving a loop to
+  `return 1`: `if (!(f() != 0) == 0) return 1;` (func_088570D8). A chain of
+  `andi; sltu; beql` against a register holding 1: one `if (A == 1 || B ==
+  1 || C == 1)` with each test `(s32)((x & K) != 0) == 1` (func_08857A34).
+- A range guard with `bnezl v0 = 0`, then `beqz at`, and a separate
+  `return 0` block after a `b end`: `if (x >= A && x < B) { ...; return e;
+  } return 0;` (func_08857058). Two guards sharing one `return 0` block
+  placed before the body: `if (x == K || y >= N) return 0;`; `slti v0`
+  needs `y >= N`, not `y > N-1`; an `s32` local for a `u16` parameter,
+  cast `(u32)` only at the shift, gives `slti` with `srl` (func_08857C98).
+- A base built then `+1` added (`addiu t0, v0, 1`) instead of folded into
+  the constant: assign the base, then `a++;` before the loop, and step the
+  pointers in the `for` header (func_088574A4).
+- A 64-bit flag word whose low half is copied (`addu v1, v0, zero`): build
+  it with a 64-bit add, `lo + ((u64)hi << 32)` (func_08857D88).
 
 ## Open symptoms
 

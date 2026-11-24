@@ -489,21 +489,41 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08856B24` | 0x08856B24-0x08856BC8 | 1 function (random byte from a flag) | 100 % |
 | `unit_08856BC8` | 0x08856BC8-0x08856C94 | 2 small functions (C++) | 100 % |
 | `unit_08856C94` | 0x08856C94-0x08856CA0 | 1 small function | 100 % |
+| `unit_08856CA0` | 0x08856CA0-0x08856D14 | 1 small function (maps a byte 0-4 to a value, compare chain) | 100 % |
+| `unit_08856D14` | 0x08856D14-0x08856D60 | 1 small function (maps a byte to a value, compare chain with a default) | 100 % |
 | `unit_08856D60` | 0x08856D60-0x08856DA0 | 1 byte search | 100 % |
+| `unit_08856DA0` | 0x08856DA0-0x08856E34 | 1 function (searches a byte among 6 records of 0x8C bytes) | 100 % |
 | `unit_08856E34` | 0x08856E34-0x08856E8C | 1 small function (C++) | 100 % |
+| `unit_08856E8C` | 0x08856E8C-0x08856F04 | 1 small function (checks 50 flags of a bit array) | 100 % |
+| `unit_08856F04` | 0x08856F04-0x08856F7C | 1 small function (checks 25 flags of a bit array); optimized for speed | 100 % |
+| `unit_08856F7C` | 0x08856F7C-0x08856FF4 | 1 small function (checks 40 flags of a bit array); optimized for speed | 100 % |
 | `unit_08856FF4` | 0x08856FF4-0x08857058 | 1 small function | 100 % |
+| `unit_08857058` | 0x08857058-0x088570D8 | 1 small function (tests a flag of a bit array indexed by an id and a slot) | 100 % |
+| `unit_088570D8` | 0x088570D8-0x08857148 | 1 small function (any of 5 flags of an id set) | 100 % |
+| `unit_08857148` | 0x08857148-0x088571C8 | 1 small function (sets a flag of a bit array indexed by an id and a slot) | 100 % |
 | `unit_088571C8` | 0x088571C8-0x088571E8 | 1 bit test | 100 % |
 | `unit_088571E8` | 0x088571E8-0x088571F8 | 1 small function | 100 % |
 | `unit_088571F8` | 0x088571F8-0x08857294 | 1 small function | 100 % |
 | `unit_08857294` | 0x08857294-0x088572B0 | 1 small function | 100 % |
 | `unit_088572B0` | 0x088572B0-0x088572E8 | 1 small function | 100 % |
+| `unit_088572E8` | 0x088572E8-0x088574A4 | 1 function (copies bytes, float pairs and a word of a block) | 100 % |
+| `unit_088574A4` | 0x088574A4-0x08857558 | 1 function (compares two blocks byte by byte); optimized for speed | 100 % |
+| `unit_08857558` | 0x08857558-0x088575C0 | 1 small function (search among 24 slots) | 100 % |
+| `unit_088576BC` | 0x088576BC-0x088577E0 | 1 function (nested flag tests and calls) | 100 % |
 | `unit_088577E0` | 0x088577E0-0x088578A0 | 1 small function | 100 % |
+| `unit_088578A0` | 0x088578A0-0x0885793C | 1 small function (fixed sequence of flag calls) | 100 % |
+| `unit_0885793C` | 0x0885793C-0x088579BC | 1 small function (random choice between two call orders) | 100 % |
+| `unit_088579BC` | 0x088579BC-0x08857A34 | 1 small function (random choice, flag calls) | 100 % |
+| `unit_08857A34` | 0x08857A34-0x08857A80 | 1 small function (any of three flag bits) | 100 % |
 | `unit_08857A80` | 0x08857A80-0x08857C18 | 1 function (compares a 16-bit count with a level 0-14); jump table 0x089313F0-0x0893142C in the unit | 100 % |
 | `unit_08857C18` | 0x08857C18-0x08857C2C | 2 small functions | 100 % |
 | `unit_08857C2C` | 0x08857C2C-0x08857C38 | 1 small function | 100 % |
 | `unit_08857C38` | 0x08857C38-0x08857C98 | 1 small function | 100 % |
+| `unit_08857C98` | 0x08857C98-0x08857CF0 | 1 small function (tests a flag of a 0x4ED-bit set) | 100 % |
+| `unit_08857CF0` | 0x08857CF0-0x08857D2C | 1 small function (sets a flag of a 0x4ED-bit set) | 100 % |
 | `unit_08857D2C` | 0x08857D2C-0x08857D6C | 1 bit clear | 100 % |
 | `unit_08857D6C` | 0x08857D6C-0x08857D88 | 1 small function | 100 % |
+| `unit_08857D88` | 0x08857D88-0x08857E6C | 1 function (64-bit flag word mapped to a value) | 100 % |
 | `unit_08857E6C` | 0x08857E6C-0x08857E74 | 1 small function | 100 % |
 | `unit_08858008` | 0x08858008-0x08858010 | 1 small function | 100 % |
 | `unit_088588BC` | 0x088588BC-0x08858904 | 1 small function | 100 % |
