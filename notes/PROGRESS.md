@@ -39,6 +39,7 @@ Commits before `15e9c9d` (first units, from `unit_088A6024` on) were not measure
 | 2026-11-23 | `9ac6cce` | 585824 / 1089072 bytes (53.79 %) | 2518 / 3579 | 1847 | Region 0x08860000: 0x0886025C-0x08870194 matched but for VFPU code (128 functions; func_0886171C and func_0886477C linked although try_unit.py shows 99.83 / 99.81 %, their only differences being relocations of a spilled `lui`; func_0886AA28 (99.12 %), func_0886BEA4 (99.33 %) and func_0886C59C (99.61 %) left in assembly; func_0886F7FC owns its `s16[35]` initializer as .data) |
 | 2026-11-24 | `587993a` | 589856 / 1089072 bytes (54.16 %) | 2539 / 3580 | 1858 | Region 0x08850000, first batch: 0x08850078-0x0885148C (21 functions; func_0885115C split at its tail call, func_088511B4 now a function of its own; func_08850618 left in assembly) |
 | 2026-11-24 | `36ab30b` | 593796 / 1089072 bytes (54.52 %) | 2559 / 3580 | 1878 | Region 0x08850000, second batch: 0x08851D3C-0x08853004 (20 functions; func_08852200 needs one `volatile` field; func_08852F1C, func_08852740 and func_08852834 left in assembly) |
+| 2026-11-24 | `52ec086` | 603108 / 1089072 bytes (55.38 %) | 2578 / 3580 | 1897 | Region 0x08850000, third batch: 0x088530C4-0x08856BC8 (19 functions; func_088542EC needs C++; func_08855F98 left in assembly at 99.30 %, registers only) |
 
 From 2026-11-12 (`f84b2f1`) on, one row per day: the last commit recorded that
 day in `progress/ULES01213/history.csv`, which has every measured commit. Rows
