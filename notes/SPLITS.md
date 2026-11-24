@@ -452,6 +452,14 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08852F58` | 0x08852F58-0x08852FA0 | 1 small function (counts the flags of a 62-bit array) | 100 % |
 | `unit_08852FA0` | 0x08852FA0-0x08853004 | 1 small function (counts the first n flags); optimized for speed | 100 % |
 | `unit_08853004` | 0x08853004-0x088530C4 | 2 small functions | 100 % |
+| `unit_088530C4` | 0x088530C4-0x0885320C | 1 function (two search loops over records, two stack buffers); optimized for speed | 100 % |
+| `unit_0885320C` | 0x0885320C-0x088534E8 | 1 function (text search and copy, mode switch); optimized for speed | 100 % |
+| `unit_088534E8` | 0x088534E8-0x088538B4 | 1 function (character class test, switch of code points and three ranges) | 100 % |
+| `unit_088538B4` | 0x088538B4-0x08853ABC | 1 function (halfword character copy with case and code conversions); optimized for speed | 100 % |
+| `unit_08853ABC` | 0x08853ABC-0x08853C88 | 1 function (adds a count of an item to a list, cap 99); optimized for speed | 100 % |
+| `unit_08853C88` | 0x08853C88-0x08853E20 | 1 function (clears and initialises a large block, MAC address and clock) | 100 % |
+| `unit_08853E20` | 0x08853E20-0x088542EC | 1 function (ranks of 31 bit-field records from thresholds); optimized for speed | 100 % |
+| `unit_088542EC` | 0x088542EC-0x08854BAC | 1 function (stores a 0x1078-byte record in one of 96 slots); C++, optimized for speed | 100 % |
 | `unit_08854BAC` | 0x08854BAC-0x08854BEC | 1 small function | 100 % |
 | `unit_08854BEC` | 0x08854BEC-0x08854CCC | 2 small functions | 100 % |
 | `unit_08854CCC` | 0x08854CCC-0x08854D64 | 2 small functions | 100 % |
@@ -460,14 +468,25 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08854E44` | 0x08854E44-0x08854EB0 | 3 small functions | 100 % |
 | `unit_08854EB0` | 0x08854EB0-0x08854FCC | 3 small functions | 100 % |
 | `unit_08854FCC` | 0x08854FCC-0x08855038 | 3 small functions | 100 % |
+| `unit_08855038` | 0x08855038-0x08855160 | 1 function (chain of ten checks) | 100 % |
 | `unit_08855160` | 0x08855160-0x088551F0 | 1 function (checks a zero-ended list of 29 ids with func_0884FE80); initialised array 0x0899CBC0-0x0899CBFC (`.data`) in the unit | 100 % |
+| `unit_088551F0` | 0x088551F0-0x08855278 | 1 small function (sets a flag of a 64-bit field, then a call) | 100 % |
+| `unit_08855278` | 0x08855278-0x088552E0 | 1 small function (tests a flag of a 64-bit field) | 100 % |
+| `unit_088552E0` | 0x088552E0-0x088553DC | 1 function (counts entries of 11 lists ended by 0) | 100 % |
 | `unit_088553DC` | 0x088553DC-0x08855410 | 1 small function | 100 % |
 | `unit_08855410` | 0x08855410-0x08855428 | 1 small function | 100 % |
+| `unit_08855ED0` | 0x08855ED0-0x08855F98 | 1 function (five records copied from a call result) | 100 % |
+| `unit_088564F8` | 0x088564F8-0x08856550 | 1 small function (halfword selector mapped to a table value) | 100 % |
 | `unit_08856550` | 0x08856550-0x0885658C | 2 small functions | 100 % |
+| `unit_0885658C` | 0x0885658C-0x088567B4 | 1 function (display-list commands and one packet) | 100 % |
 | `unit_088567B4` | 0x088567B4-0x088567C8 | 1 small function | 100 % |
+| `unit_088567C8` | 0x088567C8-0x0885683C | 1 small function (flag test, then two calls) | 100 % |
 | `unit_0885683C` | 0x0885683C-0x08856884 | 1 state set with two calls | 100 % |
 | `unit_08856884` | 0x08856884-0x088568AC | 1 small function | 100 % |
 | `unit_088568AC` | 0x088568AC-0x08856920 | 1 small function | 100 % |
+| `unit_08856920` | 0x08856920-0x088569F8 | 1 function (search in 24 slots, value from a 24-byte table); optimized for speed | 100 % |
+| `unit_088569F8` | 0x088569F8-0x08856B24 | 1 function (counts over 24 slots) | 100 % |
+| `unit_08856B24` | 0x08856B24-0x08856BC8 | 1 function (random byte from a flag) | 100 % |
 | `unit_08856BC8` | 0x08856BC8-0x08856C94 | 2 small functions (C++) | 100 % |
 | `unit_08856C94` | 0x08856C94-0x08856CA0 | 1 small function | 100 % |
 | `unit_08856D60` | 0x08856D60-0x08856DA0 | 1 byte search | 100 % |

@@ -2710,6 +2710,44 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   (func_088522CC).
 - Index `sel + a * 68 + b * 4` shifted once: a flat array with the explicit
   sum, not a 3-D array (func_08852954).
+- A final `andi v0, v0, 0xFFFF` in the `jr ra` slot covering constant
+  return paths too: assign every path to a `u16` local and `return r;` once
+  from an `s32` function (func_088564F8).
+- Only the second-to-last check of a 0/1 chain inverted: write the last
+  check as `if (!(...)) return 0;` too, then `return 1;` (func_08855038).
+- A `switch` over consecutive cases that must stay a compare chain: an
+  `if (x != A && x != B && ...)` chain (func_088552E0). In a long compare
+  chain, a `beql K` with the body's first instruction in its slot marks the
+  first-compared (last in source) label of a group; its target may be the
+  join + 4 of another group (func_088534E8). A `default:` block with an
+  empty `jal` slot: add a case label to it, `case 0: default:`
+  (func_0885320C).
+- A destination `p2 + (p - p1)` emitting `sra`: use the byte difference
+  masked, `(u16 *)((char *)p2 + (((char *)p - (char *)p1) & ~1))`
+  (func_0885320C).
+- The same parameter masked once for the loop compare and again at each
+  later use: write the masks differently (`(u16)a` for one, `a & 0xFFFF`
+  for the other) (func_08856920), or index a typed struct array
+  (`((Info *)D)[a].f`) (func_088569F8), or an `s32` parameter with the mask
+  at each use and an `s32` callee parameter (func_08853ABC). An `seh` copy
+  of the counter at the loop top passed to a call: an `s16 j = i;` local
+  with an `s32` callee parameter (func_088569F8).
+- A field pointer kept in a register right after a read: assign the
+  pointer local after the read, not before (func_08853ABC).
+- An array element base recomputed with `lui` + `addu` at each access while
+  the offset is kept: index an array member of a large wrapper structure,
+  `((Big *)p)->rec[i].f` (func_08853E20). Each branch of an if/else chain
+  doing its own bit-field store: write the store in every branch, `= 0` in
+  the last one too (func_08853E20). A table byte loaded before a bit-field
+  store in the original but after it in ours: declare the table `const`
+  (func_08853E20).
+- A large record copy member by member (count-down loops per array,
+  unrolled by 2): one C++ structure assignment; two-word loads after a gap at
+  an 8-aligned offset are an `s64` member (func_088542EC).
+- A list cursor read after the bounds test and kept in one register for
+  both address words: assign the cursor local after the test
+  (func_0885658C; a second version of the packet helper of
+  func_088F4210).
 
 ## Open symptoms
 
