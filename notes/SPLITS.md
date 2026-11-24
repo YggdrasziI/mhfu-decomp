@@ -557,18 +557,35 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08859848` | 0x08859848-0x08859AE4 | 1 function (speed; chunk lookup in a `.TMH` header) | 100 % |
 | `unit_08859AE4` | 0x08859AE4-0x08859AF0 | 1 small function | 100 % |
 | `unit_08859AF0` | 0x08859AF0-0x08859B44 | 1 small function | 100 % |
+| `unit_08859C40` | 0x08859C40-0x08859D14 | 1 function (frees a block of the func_08859B44 heap, hypothesis) | 100 % |
 | `unit_0885A1B8` | 0x0885A1B8-0x0885A23C | 1 small function | 100 % |
+| `unit_0885A23C` | 0x0885A23C-0x0885A8E0 | 1 function (two switches); jump table 0x08931450-0x08931474 (`.rodata`) in the unit | 100 % |
 | `unit_0885A8E0` | 0x0885A8E0-0x0885A8F0 | 1 small function | 100 % |
 | `unit_0885A8F0` | 0x0885A8F0-0x0885A934 | 1 small function | 100 % |
 | `unit_0885A934` | 0x0885A934-0x0885A95C | 1 small function | 100 % |
+| `unit_0885A95C` | 0x0885A95C-0x0885A994 | 1 small function | 100 % |
 | `unit_0885A994` | 0x0885A994-0x0885AA20 | 1 small function | 100 % |
 | `unit_0885AA20` | 0x0885AA20-0x0885AA7C | 1 small function | 100 % |
 | `unit_0885AA7C` | 0x0885AA7C-0x0885AAEC | 1 small function | 100 % |
+| `unit_0885AAEC` | 0x0885AAEC-0x0885AC8C | 1 function (allocation through func_08859B44, inlined constructor) | 100 % |
 | `unit_0885AC8C` | 0x0885AC8C-0x0885ACA0 | 1 small function | 100 % |
 | `unit_0885ACA0` | 0x0885ACA0-0x0885ACA8 | 1 small function | 100 % |
+| `unit_0885AED0` | 0x0885AED0-0x0885AF28 | 1 small function (speed; 24-pair table search) | 100 % |
+| `unit_0885AF28` | 0x0885AF28-0x0885AFF8 | 1 function (speed, `opt_rebuildconditionals off`; 24-pair table search) | 100 % |
+| `unit_0885AFF8` | 0x0885AFF8-0x0885B048 | 1 small function | 100 % |
+| `unit_0885B048` | 0x0885B048-0x0885B160 | 1 function (speed; 0xAC-entry bitmap scan) | 100 % |
 | `unit_0885B160` | 0x0885B160-0x0885B21C | 1 small function | 100 % |
 | `unit_0885B21C` | 0x0885B21C-0x0885B3A0 | 1 small function | 100 % |
+| `unit_0885B5B8` | 0x0885B5B8-0x0885B718 | 1 function (10-byte entry lookup by id pair) | 100 % |
+| `unit_0885B718` | 0x0885B718-0x0885B7D0 | 1 function (bit test) | 100 % |
+| `unit_0885B7D0` | 0x0885B7D0-0x0885B82C | 1 small function (bit test) | 100 % |
+| `unit_0885B82C` | 0x0885B82C-0x0885B9E0 | 1 function (weighted random pick) | 100 % |
+| `unit_0885B9E0` | 0x0885B9E0-0x0885BB00 | 1 function (speed; slot count decrease) | 100 % |
+| `unit_0885BB00` | 0x0885BB00-0x0885BD0C | 1 function (speed, recursive; slot count decrease) | 100 % |
+| `unit_0885BD0C` | 0x0885BD0C-0x0885BDAC | 1 small function (speed; slot search) | 100 % |
 | `unit_0885BDAC` | 0x0885BDAC-0x0885BE08 | 1 small function | 100 % |
+| `unit_0885BE08` | 0x0885BE08-0x0885C0F0 | 1 function (speed); jump table 0x08931474-0x0893148C (`.rodata`) in the unit | 100 % |
+| `unit_0885C0F0` | 0x0885C0F0-0x0885C124 | 1 small function (bit set) | 100 % |
 | `unit_0885C124` | 0x0885C124-0x0885C13C | 1 small function | 100 % |
 | `unit_0885C580` | 0x0885C580-0x0885C5BC | 1 small function | 100 % |
 | `unit_0885C5BC` | 0x0885C5BC-0x0885C5DC | 2 small functions | 100 % |

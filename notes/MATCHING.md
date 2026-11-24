@@ -2801,6 +2801,37 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - C++ flag test keeping `andi 1; sltu; beqz`: `(bool)(x & 1) != 0`; `== 1`
   gives `li 1; bne` (func_088590B0).
 
+- A table at a large offset of a global block, `addu` base/offset and the
+  `bnel` compare both swapped in a speed loop, no sum order helping: the
+  block as a struct with the table as an array member after a pad
+  (`struct { char pad[0x3F28]; Pair e[24]; } *p`, `p->e[i].id`)
+  (func_0885AED0, func_0885AF28); loaded field on the left of `==`
+  (func_0885AF28).
+- A down-counting loop `addiu t1, -1; bnez t1` in speed mode: `unsigned int`
+  counter, `for (i = K; i != 0; i--, e++)`; an `s32` counter gives `bgtz`
+  (func_0885B048). The order of comma-separated `for` steps sets the order
+  of the `addiu`s (func_0885BD0C).
+- A `u8` parameter tested with a plain `bnez`: `if (!mode)`; `mode == 0`
+  adds an `andi` (func_0885B048). A `u8` result chosen by a byte compare,
+  `beql` with the other value in its slot: `switch (x) { case 1: m = 2;
+  break; default: m = 1; break; }` (func_0885B048).
+- An `s16` parameter extended at entry but subtracted raw: keep it `s16`,
+  `s16` locals, compound `-=` subtractions; `f -= x` also stores through
+  the computed field pointer (func_0885BB00). Two guards sharing one
+  `return 0` placed as `beql ... v0 = 0`: one `if (a == 0 || b == K)`
+  (func_0885B9E0).
+- A flag computed into the saved register of a later value: assign it to
+  that later value's local as a ternary `v = (a == 1) ? 1 : 0;`
+  (func_0885BE08). A search fallback computed into the argument register:
+  store it back into the parameter (`arg0 += 8; ... arg0 = (char *)n;`)
+  (func_08859C40). A pointer offset that must not fold:
+  `(char *)((s32)(p + 0x1C) - 0x1C)` (func_0885AAEC).
+- A guarded loop tested at the top and the bottom with invariants after the
+  guard: early return, then `if (n != 0) do { ... } while (n != 0);` with
+  `goto next` for skipped entries (func_0885B5B8). A struct copy from
+  separate `D_` symbols: one extern per field, assigned in the original
+  load order (func_0885A23C).
+
 ## Open symptoms
 
 - `$ra` saved at 0x0 (or under the other saved registers) and a call block
