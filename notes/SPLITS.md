@@ -525,17 +525,36 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08857D6C` | 0x08857D6C-0x08857D88 | 1 small function | 100 % |
 | `unit_08857D88` | 0x08857D88-0x08857E6C | 1 function (64-bit flag word mapped to a value) | 100 % |
 | `unit_08857E6C` | 0x08857E6C-0x08857E74 | 1 small function | 100 % |
+| `unit_08857E74` | 0x08857E74-0x08858008 | 1 function (value from a record and its 64-bit flag word) | 100 % |
 | `unit_08858008` | 0x08858008-0x08858010 | 1 small function | 100 % |
+| `unit_08858010` | 0x08858010-0x08858184 | 1 function (value from a record and its 64-bit flag word) | 100 % |
+| `unit_08858184` | 0x08858184-0x088581C0 | 1 small function (class 0/1/2 of a value) | 100 % |
+| `unit_088581C0` | 0x088581C0-0x0885821C | 1 small function (rank against five thresholds) | 100 % |
+| `unit_0885821C` | 0x0885821C-0x08858238 | 1 small function (float table read) | 100 % |
+| `unit_08858238` | 0x08858238-0x088585E8 | 1 function (fills a 0x88-byte record) | 100 % |
+| `unit_088585E8` | 0x088585E8-0x08858840 | 1 function (speed; three ranked slots sorted) | 100 % |
+| `unit_08858840` | 0x08858840-0x088588BC | 1 small function (dated record passed to func_08858904) | 100 % |
 | `unit_088588BC` | 0x088588BC-0x08858904 | 1 small function | 100 % |
+| `unit_08858904` | 0x08858904-0x08858BD8 | 1 function (10-entry history of 0x88-byte records) | 100 % |
+| `unit_08858BD8` | 0x08858BD8-0x08858E48 | 1 function (speed; history lookup) | 100 % |
+| `unit_08858E48` | 0x08858E48-0x08858F1C | 1 function (counter, record every 10th) | 100 % |
 | `unit_08858F1C` | 0x08858F1C-0x08858FF4 | 1 function (C++; replaces the id at +0x682 of D_08A62C7C when the new one comes earlier in a list of 19 ids); initialised array 0x0899CCFC-0x0899CD24 (`.data`) in the unit | 100 % |
+| `unit_08858FF4` | 0x08858FF4-0x088590B0 | 1 function (display and GE set-up) | 100 % |
+| `unit_088590B0` | 0x088590B0-0x08859174 | 1 function (C++; one-byte bool test) | 100 % |
 | `unit_08859174` | 0x08859174-0x08859188 | 1 small function | 100 % |
 | `unit_08859188` | 0x08859188-0x08859218 | 1 small function | 100 % |
 | `unit_08859218` | 0x08859218-0x08859224 | 1 small function | 100 % |
 | `unit_08859224` | 0x08859224-0x088592A8 | 1 small function | 100 % |
 | `unit_088592A8` | 0x088592A8-0x088592E4 | 1 small function | 100 % |
+| `unit_088592E4` | 0x088592E4-0x08859480 | 1 function (speed; display-list chain of 19 entries) | 100 % |
+| `unit_08859480` | 0x08859480-0x088596C8 | 1 function (speed; word copy into a display list) | 100 % |
+| `unit_088596C8` | 0x088596C8-0x08859728 | 1 small function (display-list patch) | 100 % |
 | `unit_08859728` | 0x08859728-0x08859768 | 1 display-list enqueue | 100 % |
+| `unit_08859768` | 0x08859768-0x088597BC | 1 small function (`sync` and 16 nops, then a flag) | 100 % |
 | `unit_088597BC` | 0x088597BC-0x088597FC | 1 function (waits for the flag D_08A62C45; two nops in the loop) | 100 % |
 | `unit_088597FC` | 0x088597FC-0x0885981C | 2 small functions | 100 % |
+| `unit_0885981C` | 0x0885981C-0x08859848 | 1 small function (doubling count, capped) | 100 % |
+| `unit_08859848` | 0x08859848-0x08859AE4 | 1 function (speed; chunk lookup in a `.TMH` header) | 100 % |
 | `unit_08859AE4` | 0x08859AE4-0x08859AF0 | 1 small function | 100 % |
 | `unit_08859AF0` | 0x08859AF0-0x08859B44 | 1 small function | 100 % |
 | `unit_0885A1B8` | 0x0885A1B8-0x0885A23C | 1 small function | 100 % |

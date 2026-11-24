@@ -2772,6 +2772,35 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - A 64-bit flag word whose low half is copied (`addu v1, v0, zero`): build
   it with a 64-bit add, `lo + ((u64)hi << 32)` (func_08857D88).
 
+- Threshold chains whose last compare is a `beql` with the default value in
+  its slot: `if / else if / else` assigning one result local, one `return`;
+  separate `return K;` add a `b` (func_088581C0, func_08858184). An early
+  value that must land in the saved result register: assign the local and
+  join the shared return (`if (...) r = ...; else {...} return r;`, or
+  `goto end;`) (func_08857E74, func_08858010).
+- Count-down `lb`/`sb` copy loops (2 bytes or 1 byte per pass) in speed or
+  size mode: structure assignment of a struct wrapping the `s8` array
+  (`struct { s8 b[27][2]; }`, `struct { s8 b[43]; }`); a float field copied
+  through a full `lui`/`ori` + `addu` address: one-member struct (or a union
+  `{ s32 i; f32 f; }` when it is also compared as an integer) assigned whole
+  (func_08858904, func_08858BD8).
+- Unrolled stores to a table at a large offset with the base stepped: array
+  member of a struct (`p->tbl[i]`), next addresses written from the stepped
+  pointer (`p + 2`), no chained local (func_088592E4). One loop left rolled
+  in a speed function: `s32` counter against a `u32` bound
+  (func_08859848).
+- `slt at` instead of `slt a0`/`v0` on an early return: try both operand
+  orders of the compare (`if (min > n) return;`, func_088585E8) and `x > 4`
+  for `x >= 5` (func_08858BD8, func_0885981C). A 0/1 flag stored with
+  `bnezl` and `sb zero` on the fall-through: zero case first, `if (!(x &
+  1)) f = 0; else f = 1;`; an explicit `andi 0xFF` before `addiu -1`:
+  `(u8)((p->f & 0xFF) - 1)` (func_08858238).
+- A `sync` and nop run: one `__asm__ volatile("sync
+ nop ...")` string
+  (func_08859768); `asm { nop; nop }` also works (func_088597BC).
+- C++ flag test keeping `andi 1; sltu; beqz`: `(bool)(x & 1) != 0`; `== 1`
+  gives `li 1; bne` (func_088590B0).
+
 ## Open symptoms
 
 - `$ra` saved at 0x0 (or under the other saved registers) and a call block

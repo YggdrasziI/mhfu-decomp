@@ -8,7 +8,8 @@ typedef signed char s8;
 extern s8 D_08A62C44;
 extern void sceKernelSleepThreadCB(void);
 
-void func_08859218(void) {
+/* arg0 is unused; func_088590B0 passes its own arg0. */
+void func_08859218(char *arg0) {
     D_08A62C44 = 0;
     sceKernelSleepThreadCB();
 }
