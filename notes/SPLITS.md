@@ -340,11 +340,31 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08841100` | 0x08841100-0x08841520 | 1 function (C++, speed: `switch` on the mode byte at +0x1E8, two VFPU sines in an `asm` block for pulsing alphas) | 100 % |
 | `unit_08841520` | 0x08841520-0x088415D0 | 1 small function | 100 % |
 | `unit_088415D0` | 0x088415D0-0x08841908 | 1 function, NonMatching (speed, 89.7 %: saved registers); draws up to five icons from D_0893ACD0 / D_0893ACE0, divisions by 7, a float scale | not linked |
+| `unit_08841908` | 0x08841908-0x08841AB4 | 1 function (C++, speed; four-slot list) | 100 % |
+| `unit_08841AB4` | 0x08841AB4-0x088421C4 | 1 function (C++, speed; panel drawing, 64-bit flag test) | 100 % |
+| `unit_088421C4` | 0x088421C4-0x088423E0 | 1 function (speed; icon row) | 100 % |
+| `unit_088423E0` | 0x088423E0-0x08842504 | 1 function (frame drawing through two tables) | 100 % |
+| `unit_08842504` | 0x08842504-0x08842628 | 1 function (frame drawing through two tables) | 100 % |
+| `unit_088428EC` | 0x088428EC-0x088429EC | 1 function (dispatch on flags) | 100 % |
 | `unit_088429EC` | 0x088429EC-0x08842BE4 | 1 function (speed; VFPU sine in an `asm` block, draws an item with a pulsing alpha); `.data` 0x0893B5D4-0x0893B5EC (the local s16[4][3] initializer) | 100 % |
+| `unit_08842BE4` | 0x08842BE4-0x08842D3C | 1 function (speed; coloured bars) | 100 % |
 | `unit_08842D3C` | 0x08842D3C-0x08842EE8 | 1 function (draws value / 10 as a number and value % 10 as icons spaced 0xE apart, or calls func_0882A9DC when the slot is 0xFF); optimized for speed | 100 % |
+| `unit_08842EE8` | 0x08842EE8-0x08842F70 | 1 small function | 100 % |
+| `unit_08842F70` | 0x08842F70-0x08843A7C | 1 function (C++, speed; HUD drawing) | 100 % |
+| `unit_08843A7C` | 0x08843A7C-0x0884424C | 1 function, NonMatching (speed, 99.12 %: bx/by saved registers swapped) | not linked |
+| `unit_08844304` | 0x08844304-0x08844390 | 1 small function (speed; float constant built inline) | 100 % |
 | `unit_08844390` | 0x08844390-0x088443EC | 1 small function | 100 % |
+| `unit_088443EC` | 0x088443EC-0x088444A4 | 1 function (one `||` chain) | 100 % |
+| `unit_088444A4` | 0x088444A4-0x08844578 | 1 function (state byte 0x5E7) | 100 % |
+| `unit_08844578` | 0x08844578-0x08844654 | 1 function | 100 % |
 | `unit_08844654` | 0x08844654-0x0884469C | 1 test on a call result | 100 % |
 | `unit_0884469C` | 0x0884469C-0x088446CC | 1 small function | 100 % |
+| `unit_088446CC` | 0x088446CC-0x08844744 | 1 small function (nested switches) | 100 % |
+| `unit_08844EA0` | 0x08844EA0-0x08844FC8 | 1 function (calls into 0x09xxxxxx code) | 100 % |
+| `unit_08845270` | 0x08845270-0x08845384 | 1 function | 100 % |
+| `unit_0884558C` | 0x0884558C-0x08845A34 | 1 function (sprite into the D_08A62C40 display list) | 100 % |
+| `unit_08845A34` | 0x08845A34-0x08845C68 | 1 function (C++; formatted text) | 100 % |
+| `unit_08845C68` | 0x08845C68-0x08845EA8 | 1 function, NonMatching (98.61 %: one prologue store scheduled earlier) | not linked |
 | `unit_0884860C` | 0x0884860C-0x08848630 | 2 small functions | 100 % |
 | `unit_08848630` | 0x08848630-0x088487B8 | 1 function (moves the index at +0x20 of D_08A62CB4 within (count - 1) / 10 + 1 values on input bits 0x80 / 0x20); optimized for speed | 100 % |
 | `unit_08848D30` | 0x08848D30-0x08848E04 | 1 small function (C++) | 100 % |

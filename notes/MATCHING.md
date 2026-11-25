@@ -2897,6 +2897,34 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   statement before the pointer set-up of a speed loop guard
   (func_0885F7D4).
 
+- A 64-bit flag test (`lw` at N+4, `andi 1`, `negu`, `subu`, `or`,
+  `sltu`): C++ `(bool)(*(u64 *)(p + N) & 0x100000000LL) != 0`; `& 1LL` on
+  N+4 swaps v0/v1 (func_08841AB4). An `sltu` flag on the first operand of
+  an `||` with `bnel`: C++ `(bool)x != 0`; `== true` drops it
+  (func_08841908).
+- A global's address kept in a saved register (`lui`/`addiu` in the
+  prologue) where ours folds `%lo(D+off)` at each use: `T *s = (T *)(s32)
+  &D_x;` (func_088423E0, func_08842504, func_0884558C). A byte argument
+  stored to a later stack argument slot in the wrong order: type that
+  callee parameter `u8` (func_088423E0, func_08842504).
+- `andi sX, zero, 0xFF` for a byte cleared with a sibling: `g = (u8)(b =
+  0);`; three locals copied from one constant: `r = g = b = 0xFF;`
+  (func_08842BE4). `seh` before `sra 1` on an `s16` parameter: `u = (s16)u
+  >> 1;` (func_0884558C).
+- A dead copy of the default block's first instruction after a `b`: a
+  `switch` whose case group ends in `return;` and whose `default:` holds
+  the rest as early returns (func_088428EC). One case-label group for all
+  values of a result (`case A: case B: case C: return 1;`): the compiler
+  gives the first its own `beql` (func_088446CC). `if (x != 0) return 1;
+  return 0;` for `beqzl` with the 0 in the slot (func_08844578). Several
+  tests leaving with `return 1`, only the first as `bnezl`: one `||` chain
+  (func_088443EC).
+- `sltu; xori 1; bnezl` to skip a loop body: `if ((c != 0) ^ 1) continue;`
+  (func_088421C4). A float -> `u16` conversion repeated per sum: `a1 +=
+  (u16)off;` on `u16` parameters (func_08842F70). A constant float product
+  used in many places: write it at each use, not in a local; the float
+  registers then land right (func_08843A7C, NonMatching).
+
 ## Open symptoms
 
 - `$ra` saved at 0x0 (or under the other saved registers) and a call block
