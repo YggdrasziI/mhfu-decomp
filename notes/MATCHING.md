@@ -2862,6 +2862,41 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   the `if`; `beqzl` to 0/1 at the end: `if (r->f) return 1; return 0;`
   (func_0885DFA0, speed).
 
+- Argument moves in the wrong order around a `mov.s $f12`: the float's
+  place in the callee's parameter list sets the order of the moves (it
+  goes to `$f12` wherever it is): `(s32, f32, s32, s32)` (func_0885FB54,
+  func_0885FA0C), floats before the last integer (func_0885FF5C). A
+  function that only sets `$f12`/`$f13` before its call passes its
+  integer arguments on: declare and forward them (func_0885F8E8).
+- A two-level table read (`tbl[kind]`, then a 40-byte record) with the
+  row word and the `idx * 40` term in swapped registers: two statements,
+  `rec = tbl[kind]; rec += idx;` (func_0885EAA4, func_0885F068,
+  func_0885F194, func_0885EBC8); for a single expression, `(T *)((s32)
+  tbl[k] + (s32)(i * K))` (func_0885EB34). `(u32)(k - 5) < 2` gives
+  `addiu -5; sltiu 2` (func_0885EB34).
+- `beqzl` on a raw `u8` register then `addiu -1`, no `andi`: `if (v) v--;`
+  (func_0885EF20). `slti at` for a bound: `x > 3`, not `x >= 4`
+  (func_0885E748, func_0885E878, func_0885EF20). `srl` of a `u16`
+  parameter: `(u32)x >> 1` (func_0885F290, func_0885F354). A large
+  constant added to a local pointer through `$at`: `p = (u8 *)(s32)(p + K)`
+  (func_0885F290).
+- A value shifted in the slot of the last `jal` and added after it:
+  `v >>= 1; v += f(); return v;` (func_0885ECF4, func_0885EBC8). Two
+  values tested with `beql 1 / bnel 5`: `if (t == 1 || t == 5) ... else
+  switch ...` (func_0885ECF4).
+- An unrolled clear loop (speed) building a large offset once in `$at`:
+  the arrays are struct members at that offset, `p->arr[i]`; loops whose
+  ranges join end to end are consecutive members (func_0885F434). An
+  unrolled copy keeping the base offsets in the loads: index the raw base,
+  `((f32 *)s)[i + 0x10] = ((f32 *)n)[i + 0x48]` (func_0885FA0C).
+- A tree walk using the argument register: walk with the parameter and
+  copy it into a `root` local; an inner loop tested at the top with
+  `beqzl`: `if (s != 0) do { ... } while (s != 0);` (func_0885F848). An
+  indexed struct array member (`p->ids[i]`) instead of a stepped pointer
+  keeps the fixed offset in the load (func_0885EA08). `i = 0;` as its own
+  statement before the pointer set-up of a speed loop guard
+  (func_0885F7D4).
+
 ## Open symptoms
 
 - `$ra` saved at 0x0 (or under the other saved registers) and a call block

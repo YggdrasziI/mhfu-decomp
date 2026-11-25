@@ -626,14 +626,40 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0885E2E4` | 0x0885E2E4-0x0885E348 | 1 small function | 100 % |
 | `unit_0885E348` | 0x0885E348-0x0885E3D4 | 1 small function (4-bit counter capped at 4) | 100 % |
 | `unit_0885E3D4` | 0x0885E3D4-0x0885E478 | 1 function (flag bits of a 12-byte entry) | 100 % |
+| `unit_0885E478` | 0x0885E478-0x0885E528 | 1 function (flag bits of a 12-byte entry) | 100 % |
+| `unit_0885E528` | 0x0885E528-0x0885E5C0 | 1 function (flag bit of a 12-byte entry) | 100 % |
+| `unit_0885E5C0` | 0x0885E5C0-0x0885E664 | 1 function (flag bits of a 12-byte entry) | 100 % |
 | `unit_0885E664` | 0x0885E664-0x0885E718 | 1 function; initialised array 0x089A5B80-0x089A5B90 (`.data`) in the unit; optimized for speed | 100 % |
+| `unit_0885E718` | 0x0885E718-0x0885E748 | 1 small function | 100 % |
+| `unit_0885E748` | 0x0885E748-0x0885E834 | 1 function (speed; sum over three ids) | 100 % |
+| `unit_0885E834` | 0x0885E834-0x0885E878 | 1 small function | 100 % |
+| `unit_0885E878` | 0x0885E878-0x0885E950 | 1 function (bit tests by kind) | 100 % |
+| `unit_0885E950` | 0x0885E950-0x0885E988 | 1 small function (speed; first free slot of three) | 100 % |
 | `unit_0885E988` | 0x0885E988-0x0885E9F8 | 1 small function | 100 % |
 | `unit_0885E9F8` | 0x0885E9F8-0x0885EA08 | 1 small function | 100 % |
+| `unit_0885EA08` | 0x0885EA08-0x0885EAA4 | 1 function (speed; ids expanded by count) | 100 % |
+| `unit_0885EAA4` | 0x0885EAA4-0x0885EB34 | 1 function (40-byte record value plus a capped level) | 100 % |
+| `unit_0885EB34` | 0x0885EB34-0x0885EBC8 | 1 function (byte of a record by kind) | 100 % |
+| `unit_0885EBC8` | 0x0885EBC8-0x0885ECF4 | 1 function (speed; 12-byte item copy, value sum) | 100 % |
+| `unit_0885ECF4` | 0x0885ECF4-0x0885EE48 | 1 function (speed; item value by kind) | 100 % |
 | `unit_0885EE48` | 0x0885EE48-0x0885EEA4 | 1 small function | 100 % |
 | `unit_0885EEA4` | 0x0885EEA4-0x0885EF20 | 1 small function | 100 % |
+| `unit_0885EF20` | 0x0885EF20-0x0885F068 | 1 function (maximum of record bytes, clamped) | 100 % |
+| `unit_0885F068` | 0x0885F068-0x0885F194 | 1 function (level against record thresholds) | 100 % |
+| `unit_0885F194` | 0x0885F194-0x0885F290 | 1 function (float value from two tables) | 100 % |
+| `unit_0885F290` | 0x0885F290-0x0885F354 | 1 function (sets a nibble in one of three tables) | 100 % |
+| `unit_0885F354` | 0x0885F354-0x0885F434 | 1 function (tests a nibble in one of three tables) | 100 % |
+| `unit_0885F434` | 0x0885F434-0x0885F7D4 | 1 function (speed; clears bits of three consecutive byte arrays) | 100 % |
+| `unit_0885F7D4` | 0x0885F7D4-0x0885F82C | 1 small function (speed; 10-byte record search) | 100 % |
 | `unit_0885F82C` | 0x0885F82C-0x0885F848 | 1 small function | 100 % |
+| `unit_0885F848` | 0x0885F848-0x0885F8E8 | 1 function (node tree walk, record pointers) | 100 % |
+| `unit_0885F8E8` | 0x0885F8E8-0x0885F928 | 1 small function (floats, passes three arguments on) | 100 % |
+| `unit_0885F928` | 0x0885F928-0x0885F9A0 | 1 function (node tree search by id) | 100 % |
 | `unit_0885F9A0` | 0x0885F9A0-0x0885FA0C | 1 small function | 100 % |
+| `unit_0885FA0C` | 0x0885FA0C-0x0885FB54 | 1 function (speed; recursive node update) | 100 % |
+| `unit_0885FB54` | 0x0885FB54-0x0885FBB4 | 1 small function | 100 % |
 | `unit_0885FBB4` | 0x0885FBB4-0x0885FBF4 | 1 lookup then call | 100 % |
+| `unit_0885FF5C` | 0x0885FF5C-0x0885FFBC | 1 small function | 100 % |
 | `unit_0886025C` | 0x0886025C-0x08860328 | 1 function, speed (maximum over two nested walks of variable-size records) | 100 % |
 | `unit_088606D0` | 0x088606D0-0x08860710 | 3 small functions | 100 % |
 | `unit_08860710` | 0x08860710-0x08860758 | 1 function with the shape of func_0884B010 | 100 % |
