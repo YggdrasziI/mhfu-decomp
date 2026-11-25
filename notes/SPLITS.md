@@ -587,9 +587,17 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0885BE08` | 0x0885BE08-0x0885C0F0 | 1 function (speed); jump table 0x08931474-0x0893148C (`.rodata`) in the unit | 100 % |
 | `unit_0885C0F0` | 0x0885C0F0-0x0885C124 | 1 small function (bit set) | 100 % |
 | `unit_0885C124` | 0x0885C124-0x0885C13C | 1 small function | 100 % |
+| `unit_0885C13C` | 0x0885C13C-0x0885C290 | 1 function (speed; wrapping 0xAC-entry pair table walk) | 100 % |
+| `unit_0885C290` | 0x0885C290-0x0885C33C | 1 function (speed; slot value lookup by id) | 100 % |
+| `unit_0885C33C` | 0x0885C33C-0x0885C3DC | 1 function (speed; slot value sum by id) | 100 % |
+| `unit_0885C3DC` | 0x0885C3DC-0x0885C498 | 1 function (speed; free room for an id) | 100 % |
+| `unit_0885C498` | 0x0885C498-0x0885C580 | 1 function (speed; room left under a cap of 99) | 100 % |
 | `unit_0885C580` | 0x0885C580-0x0885C5BC | 1 small function | 100 % |
 | `unit_0885C5BC` | 0x0885C5BC-0x0885C5DC | 2 small functions | 100 % |
 | `unit_0885C5DC` | 0x0885C5DC-0x0885C6F0 | 1 function (C++; Shell sort of {u16 key, s16 value} records, gap / 3); optimized for speed | 100 % |
+| `unit_0885C6F0` | 0x0885C6F0-0x0885C718 | 1 small function | 100 % |
+| `unit_0885C718` | 0x0885C718-0x0885C75C | 1 small function | 100 % |
+| `unit_0885C75C` | 0x0885C75C-0x0885C818 | 1 function (speed; 6-byte entries filled from two lookups) | 100 % |
 | `unit_0885C818` | 0x0885C818-0x0885C83C | 1 small function | 100 % |
 | `unit_0885C83C` | 0x0885C83C-0x0885C968 | 1 function (byte member of a record of one of seven tables, `include/unk_tables.h`); jump table 0x0893148C-0x089314A8 in the unit | 100 % |
 | `unit_0885C968` | 0x0885C968-0x0885CA50 | 1 function (dispatch to seven lookups on a byte); jump table 0x089314A8-0x089314C4 in the unit | 100 % |
@@ -598,14 +606,26 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0885CB98` | 0x0885CB98-0x0885CCD0 | 1 function (word member of a record of one of the seven tables); jump table 0x089314E0-0x089314FC in the unit | 100 % |
 | `unit_0885CCD0` | 0x0885CCD0-0x0885CCE8 | 1 small function | 100 % |
 | `unit_0885CCE8` | 0x0885CCE8-0x0885CD18 | 1 small function | 100 % |
+| `unit_0885CD18` | 0x0885CD18-0x0885CDB8 | 1 small function | 100 % |
 | `unit_0885CDB8` | 0x0885CDB8-0x0885CE00 | 1 small function | 100 % |
 | `unit_0885CE00` | 0x0885CE00-0x0885CE38 | 2 small functions | 100 % |
 | `unit_0885CE38` | 0x0885CE38-0x0885CF9C | 1 function (value of a kind-6 item from the tables D_08960BA4, D_08979448; base / 10 or / 15 added); optimized for speed | 100 % |
 | `unit_0885CF9C` | 0x0885CF9C-0x0885D134 | 1 function (sums the signed bytes of a 40-byte record that carry a given key, then three sub-entries, `include/unk_tables.h`); jump table 0x08931514-0x08931530 in the unit | 100 % |
+| `unit_0885D134` | 0x0885D134-0x0885D1D4 | 1 small function | 100 % |
+| `unit_0885D1D4` | 0x0885D1D4-0x0885D300 | 1 function (counts accepted items, `s8` product) | 100 % |
+| `unit_0885D300` | 0x0885D300-0x0885DB70 | 1 function (switch on 14 cases); jump table 0x08931530-0x08931568 (`.rodata`) in the unit | 100 % |
+| `unit_0885DB70` | 0x0885DB70-0x0885DBD0 | 1 small function (one-case switch) | 100 % |
+| `unit_0885DBD0` | 0x0885DBD0-0x0885DC30 | 1 small function (one-case switch) | 100 % |
 | `unit_0885DC30` | 0x0885DC30-0x0885DD38 | 1 function (low 4 bits of a 40-byte entry from one of five tables); jump table 0x08931568-0x08931584 in the unit | 100 % |
 | `unit_0885DD38` | 0x0885DD38-0x0885DD9C | 1 function (dispatch to two functions on a byte); jump table 0x08931584-0x089315A0 in the unit | 100 % |
 | `unit_0885DD9C` | 0x0885DD9C-0x0885DF38 | 1 function (tests a mask against a byte of a 40-byte entry from one of five tables); jump table 0x089315A0-0x089315BC in the unit | 100 % |
+| `unit_0885DF38` | 0x0885DF38-0x0885DFA0 | 1 small function | 100 % |
+| `unit_0885DFA0` | 0x0885DFA0-0x0885E244 | 1 function (speed; 0x1A-byte record requirements check) | 100 % |
 | `unit_0885E244` | 0x0885E244-0x0885E270 | 1 small function | 100 % |
+| `unit_0885E270` | 0x0885E270-0x0885E2E4 | 1 small function (`opt_rebuildconditionals off`) | 100 % |
+| `unit_0885E2E4` | 0x0885E2E4-0x0885E348 | 1 small function | 100 % |
+| `unit_0885E348` | 0x0885E348-0x0885E3D4 | 1 small function (4-bit counter capped at 4) | 100 % |
+| `unit_0885E3D4` | 0x0885E3D4-0x0885E478 | 1 function (flag bits of a 12-byte entry) | 100 % |
 | `unit_0885E664` | 0x0885E664-0x0885E718 | 1 function; initialised array 0x089A5B80-0x089A5B90 (`.data`) in the unit; optimized for speed | 100 % |
 | `unit_0885E988` | 0x0885E988-0x0885E9F8 | 1 small function | 100 % |
 | `unit_0885E9F8` | 0x0885E9F8-0x0885EA08 | 1 small function | 100 % |

@@ -2832,6 +2832,36 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   separate `D_` symbols: one extern per field, assigned in the original
   load order (func_0885A23C).
 
+- A `beql x, K` to a shared `return 0`, then a plain `bne` + `nop` on the
+  inner test where every `if` form gives `bnel`: a one-case `switch (x) {
+  case K: if (c) return v; break; } return 0;`; a `return 0` inside the
+  case gives `bnel` again (func_0885DB70, func_0885DBD0). A redundant `b`
+  to the next instruction after the last branch, the 0 in a `bnel` slot:
+  `if / else if / else` with a `return` in each branch (func_0885DF38).
+- A clamp `slti v1; bnezl` with `+1` in its slot, then `b` with the cap:
+  `if (n >= 4) n = 4; else n++;`; `n < 4 ? n + 1 : 4` gives `slti at;
+  beqzl`. The counter one `u16` local reused in the result, else the
+  final `andi`s swap (func_0885E348).
+- A `seh` right after an `lbu` that `(s16)*p` folds away: `(s16)(u16)*p`,
+  or `x = *p; x = (s16)x;`. Parameter saved registers in reverse order,
+  deaf to declaration order and copies: the speed setting fixed it
+  (func_0885C13C).
+- An output pointer copied to its saved register before the `blez` guard:
+  write `out[n].f = ...; n++;` and let the compiler step it (speed,
+  func_0885C75C). A constant built in `v0` then copied: chained
+  assignment `r = max = 99;` (func_0885C498).
+- An `s8` call result kept in a saved register with `move v0, s0` at the
+  return: the function returns `s32` (callers may declare `s8`), result
+  in an `s32` local, `(s8)r * n` for the redundant `seb` before `mult`
+  (func_0885D1D4). A missing `seh v0, v0` after a call added to an `s16`:
+  the callee returns `s32`, cast `(s16)` at each use; `xor; sltiu; beqz`
+  inside an `||`: `(s32)(a == b) == 0` (func_0885D300).
+- A loop pointer from a record base stepping by 4, fields at +4/+6:
+  `e = (Rec *)((char *)e + 4)`, `e->e[0].id`; `i = 0; e = r;` as separate
+  statements; a sum used after a flags test computed into a local before
+  the `if`; `beqzl` to 0/1 at the end: `if (r->f) return 1; return 0;`
+  (func_0885DFA0, speed).
+
 ## Open symptoms
 
 - `$ra` saved at 0x0 (or under the other saved registers) and a call block
