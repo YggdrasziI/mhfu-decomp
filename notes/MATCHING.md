@@ -2924,6 +2924,36 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   (u16)off;` on `u16` parameters (func_08842F70). A constant float product
   used in many places: write it at each use, not in a local; the float
   registers then land right (func_08843A7C, NonMatching).
+- Guards that branch with `bnel`/`beql` to a shared epilogue, the return
+  value in the slot: nested positive `if` blocks, each returning, the
+  fallback after the block (func_08849BCC). Several final tests sharing one
+  -1/0 block, the last one `bne` + `nop`: one `&&` chain, a void call
+  between two tests written as a comma expression `a == 0 && (f(x), g(x)
+  == 1)` (func_08849300). An early-out kept as `sltu` + `bnel`: `if
+  ((s32)((x & 0x200) != 0) == 0)` (func_088487B8).
+- `srl 5` on a byte index where ours gives `sra`: an `s32` local and
+  `bits[(u32)(u8)i >> 5] |= 1 << (i % 32);` (func_08847B74). `a + (u16 >>
+  1)` with `srl` and the `u16` loaded first: `h = (u32)g >> 1;` in its own
+  statement into an `s32` local (func_08849CAC).
+- Argument load order set by callee parameter types: a `u16` parameter
+  puts the first argument's global load before an `lhu` table read
+  (func_0884A72C); `s32` parameters for `u16` globals put the plain
+  global first argument last (func_088487B8); a `char *` parameter
+  without cast (func_088495AC).
+- A missing `andi 0xFFFF` before `seh` on a computed argument:
+  `(s16)(u16)(expr)`; one shared `seb` at a join for a 0/5 value passed as
+  `s8`: keep the local `s32` and write nested `if`/`else` (func_088474DC).
+  An `s8` local tested against zero: `if (x)` gives a plain `beqz`, `if (x
+  != 0)` adds `seb` and `beqzl` (func_088495AC).
+- C++ `static inline bool` helpers: `is_own(o) != 0` for `xor; sltiu;
+  beqzl`, `used(x) == 0` inside an `||` for `lbu; sltu; bnez`; `if (c >=
+  K)` rather than `if (c < K)` for `slti v1` with the value kept; a
+  variable holding the scaled offset `c = b * 4;` then `(char *)c + (s32)g
+  + off` for swapped saved registers (func_088476F4).
+- A colour word stored to the stack and read back byte by byte: a `u32`
+  local read as `((u8 *)&c)[0..2]` (func_088471D8). Loop and register order
+  of two zero-initialised locals follows the order of the assignments
+  (func_0884706C).
 
 ## Open symptoms
 

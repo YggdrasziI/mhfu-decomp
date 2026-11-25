@@ -365,14 +365,34 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0884558C` | 0x0884558C-0x08845A34 | 1 function (sprite into the D_08A62C40 display list) | 100 % |
 | `unit_08845A34` | 0x08845A34-0x08845C68 | 1 function (C++; formatted text) | 100 % |
 | `unit_08845C68` | 0x08845C68-0x08845EA8 | 1 function, NonMatching (98.61 %: one prologue store scheduled earlier) | not linked |
+| `unit_08846FAC` | 0x08846FAC-0x0884706C | 1 function (two frame pieces on a flag) | 100 % |
+| `unit_0884706C` | 0x0884706C-0x0884711C | 1 function (counts filled slots of 24) | 100 % |
+| `unit_0884711C` | 0x0884711C-0x088471D8 | 1 function (frame row through a table) | 100 % |
+| `unit_088471D8` | 0x088471D8-0x08847418 | 1 function (frame and coloured bar) | 100 % |
+| `unit_08847418` | 0x08847418-0x088474DC | 1 function (frame row through two tables) | 100 % |
+| `unit_088474DC` | 0x088474DC-0x088476F4 | 1 function (item line text) | 100 % |
+| `unit_088476F4` | 0x088476F4-0x08847B74 | 1 function (C++; slot list with ownership tests) | 100 % |
+| `unit_08847B74` | 0x08847B74-0x08847CB0 | 1 function (C++; bit set in a 256-bit mask) | 100 % |
 | `unit_0884860C` | 0x0884860C-0x08848630 | 2 small functions | 100 % |
 | `unit_08848630` | 0x08848630-0x088487B8 | 1 function (moves the index at +0x20 of D_08A62CB4 within (count - 1) / 10 + 1 values on input bits 0x80 / 0x20); optimized for speed | 100 % |
+| `unit_088487B8` | 0x088487B8-0x08848D30 | 1 function (speed; item list page and totals) | 100 % |
 | `unit_08848D30` | 0x08848D30-0x08848E04 | 1 small function (C++) | 100 % |
+| `unit_08848E04` | 0x08848E04-0x088490C8 | 1 function (C++; dispatch on byte 0x57C) | 100 % |
 | `unit_088490C8` | 0x088490C8-0x08849120 | 1 small function | 100 % |
 | `unit_08849120` | 0x08849120-0x08849300 | 2 functions (dispatch to 11 functions on a byte, one returning their result as 16 bits); jump tables 0x089311A0-0x089311FC in the unit | 100 % |
+| `unit_08849300` | 0x08849300-0x088493A4 | 1 function (C++; one `&&` chain) | 100 % |
 | `unit_088493A4` | 0x088493A4-0x08849404 | 1 small function | 100 % |
 | `unit_08849404` | 0x08849404-0x08849478 | 1 small function | 100 % |
+| `unit_08849478` | 0x08849478-0x0884953C | 1 function (menu line) | 100 % |
+| `unit_0884953C` | 0x0884953C-0x088495AC | 1 small function (state reset, `switch`) | 100 % |
+| `unit_088495AC` | 0x088495AC-0x08849848 | 1 function (input dispatch); jump table 0x089311FC-0x08931220 in the unit | 100 % |
 | `unit_08849B6C` | 0x08849B6C-0x08849BCC | 1 small function | 100 % |
+| `unit_08849BCC` | 0x08849BCC-0x08849CAC | 1 function (nested guards) | 100 % |
+| `unit_08849CAC` | 0x08849CAC-0x08849D7C | 1 function (centred text) | 100 % |
+| `unit_08849D7C` | 0x08849D7C-0x0884A66C | 1 function, NonMatching (speed, 98.68 %: saved registers permuted) | not linked |
+| `unit_0884A66C` | 0x0884A66C-0x0884A6CC | 1 small function (one of two format strings) | 100 % |
+| `unit_0884A6CC` | 0x0884A6CC-0x0884A72C | 1 small function (state reset, `switch`) | 100 % |
+| `unit_0884A72C` | 0x0884A72C-0x0884A958 | 1 function (timer and random float offset) | 100 % |
 | `unit_0884AF84` | 0x0884AF84-0x0884B010 | 1 small function | 100 % |
 | `unit_0884B010` | 0x0884B010-0x0884B058 | 1 function (stores a table address in the object, then a call when the flag is positive) | 100 % |
 | `unit_0884B058` | 0x0884B058-0x0884B0B4 | 1 small function | 100 % |
