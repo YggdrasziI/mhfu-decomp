@@ -1,6 +1,8 @@
 /* unit_088790F4: 0x088790F4-0x08879158 (ULES01213)
  *
  * Bounds (hypothesis): 1 function between code still in assembly.
+ *
+ * arg0 is unused: the callers pass D_08A62CB4 in $a0 (same code).
  */
 
 typedef short s16;
@@ -21,7 +23,7 @@ typedef struct {
 extern char *D_089CC438;
 extern Item D_0899D198[];
 
-s32 func_088790F4(void) {
+s32 func_088790F4(char *arg0) {
     Slot *s = (Slot *)(D_089CC438 + 0x390);
     s32 i;
     s32 sum = 0;

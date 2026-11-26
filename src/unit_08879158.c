@@ -1,6 +1,8 @@
 /* unit_08879158: 0x08879158-0x08879198 (ULES01213)
  *
  * Bounds (hypothesis): one function (sums 32 used values) between unrelated code.
+ *
+ * arg0 is unused: the callers pass D_08A62CB4 in $a0 (same code).
  */
 
 typedef unsigned char u8;
@@ -14,7 +16,7 @@ typedef struct {
 
 extern char *D_089CC438;
 
-int func_08879158(void) {
+int func_08879158(char *arg0) {
     Pair *p = (Pair *)(D_089CC438 + 0x390);
     int sum = 0;
     int i;
