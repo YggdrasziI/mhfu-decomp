@@ -51,14 +51,20 @@ compare in an array of structs).
 | 2026-11-11 | `mwccpsp_3.0.1` builds 121, 134, 139 | `-O4` | 3/7 (worse code for the byte test, the float compare and the switch) |
 | 2026-11-11 | `mwccpsp_3.0.1_219` | `-O4 -char unsigned` | breaks the float compare (`lb` becomes `lbu`): plain `char` is signed |
 | 2026-11-11 | `mwccpsp_3.0.1` builds 147 to 219 | `-O3`, `-O4`, `-O4,p`, `-O4,s`, `-O3,s`, `-opt full`, `-opt level=4,space`, `-g`, `-sdatathreshold 0` | **6/7** after the switch fix; still all identical |
+| 2026-11-26 | every `mwccpsp_3.0.1` build of the archive (121 to 219) | the build's flags (`-O4 -sdatathreshold 0 -inline bottomup`), then `-O3` and `-O4,p` with 219 | all 2083 linked game units recompiled, code and relocations compared with the matching objects (anonymous `@N` names ignored): **210: 2083/2083 identical**; 205: 172 differ, 201: 188, 192: 187, 180: 272, 151 and 147: 1389, 139: 1493, 134: 1521, 121: 1685; `-O3`: 114 differ; `-O4,p`: 22 differ |
 
 Findings so far:
 
 - The game's code is Metrowerks `mwccpsp` output: `addu $rd, $rs, $zero` moves,
   branch-likely with the delay slot filled, identical register use and scheduling
   on 5 of 7 functions.
-- Build 147 or later, optimisation `-O3` or higher (the probes do not separate the
-  builds from 147 on, nor `-O3` from `-O4`).
+- Build 210 or 219, `-O4` (2026-11-26 sweep over the matched units; superseded the
+  earlier "147 or later, `-O3` or higher"): every older build of the archive and
+  `-O3` give different code for tens to hundreds of matched units, builds 210 and
+  219 give the same code for all of them. The archive has no build between 210 and
+  219 nor after 219, so a build of that range not in the archive is not excluded.
+  Builds 147-151 also reject named VFPU constants (`vcst.s S001, VFPU_2_PI`) in
+  `asm` blocks; that is our syntax, not evidence about the game.
 - `switch` cases are compared in reverse source order: `func_08866284` compares
   with 2, 1, then 0, so its source lists `case 0`, `case 1`, `case 2` (matches).
 - `func_0880EDF8` (string length) still misses: same instructions, the loaded byte
@@ -386,6 +392,6 @@ compares each one with `BOOT.BIN`, relocated fields masked.
 
 ## Open questions
 
-- Exact build among 147-219 and whether `-O3` or `-O4`: needs probes that tell them
-  apart (larger functions, loops, inlining).
+- Build 210 or 219: no matched unit tells them apart yet; rerun the sweep as more
+  units match (code that 210 and 219 compile differently is the only test left).
 - Which parts are C++ (two functions proven, see C and C++), and which are C.
