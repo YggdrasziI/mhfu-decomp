@@ -298,15 +298,16 @@ segments:
       - [0x3BAA4, c, unit_0883D4F0]
       - [0x3BC20, c, unit_0883D66C]
       - [0x3BC84, c, unit_0883D6D0]
-      - [0x3C53C, asm, text_0883DF88]
+      - [0x3C53C, c, unit_0883DF88]
       - [0x3C9B4, c, unit_0883E400]
-      - [0x3CA6C, asm, text_0883E4B8]
+      - [0x3CA6C, cpp, unit_0883E4B8]
+      - [0x3CEDC, c, unit_0883E928]
       - [0x3D680, cpp, unit_0883F0CC]
-      - [0x3D824, asm, text_0883F270]
+      - [0x3D824, c, unit_0883F270]
       - [0x3DE68, c, unit_0883F8B4]
-      - [0x3DF3C, asm, text_0883F988]
+      - [0x3DF3C, c, unit_0883F988]
       - [0x3DFAC, c, unit_0883F9F8]
-      - [0x3E088, asm, text_0883FAD4]
+      - [0x3E088, c, unit_0883FAD4]
       - [0x3E2F8, c, unit_0883FD44]
       - [0x3E3A8, asm, text_0883FDF4]
       - [0x3EB00, c, unit_0884054C]
@@ -2408,9 +2409,10 @@ segments:
       - { start: 0x12F674, type: .rodata, name: unit_088375C8, linker_section_order: .data }
       - { start: 0x12F68C, type: .rodata, name: unit_088378A8, linker_section_order: .data }
       - { start: 0x12F6A4, type: .rodata, name: unit_08838AB4, linker_section_order: .data }
-      - [0x12F6D8, data, data_08931124]
+      - { start: 0x12F6D8, type: .rodata, name: unit_0883E928, linker_section_order: .data }
       - { start: 0x12F6F8, type: .rodata, name: unit_0883F0CC, linker_section_order: .data }
-      - [0x12F710, data, data_0893115C]
+      - { start: 0x12F710, type: .rodata, name: unit_0883FAD4, linker_section_order: .data }
+      - [0x12F73C, data, data_08931188]
       - { start: 0x12F754, type: .rodata, name: unit_08849120, linker_section_order: .data }
       - { start: 0x12F7B0, type: .rodata, name: unit_088495AC, linker_section_order: .data }
       - [0x12F7D4, data, data_08931220]
@@ -2515,8 +2517,12 @@ segments:
       - [0x1399B4, .data, unit_0883D290]
       - [0x1399C8, .data, unit_0883D6D0]
       - [0x1399E0, data, data_0893B42C]
+      - [0x1399E4, .data, unit_0883DF88]
+      - [0x139A00, data, data_0893B44C]
       - [0x139A28, .data, unit_0883E400]
       - [0x139A34, data, data_0893B480]
+      - [0x139A3C, .data, unit_0883E4B8]
+      - [0x139A50, data, data_0893B49C]
       - [0x139B88, .data, unit_088429EC]
       - [0x139BA0, data, data_0893B5EC]
       - [0x19B174, .data, unit_08855160]

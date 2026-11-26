@@ -390,10 +390,16 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0883D4F0` | 0x0883D4F0-0x0883D66C | 1 function (speed: `static inline` search and compare helpers) | 100 % |
 | `unit_0883D66C` | 0x0883D66C-0x0883D6D0 | 1 small function | 100 % |
 | `unit_0883D6D0` | 0x0883D6D0-0x0883DF88 | 1 function (speed, 0x8B8: screen drawing with 56 calls); `.data` 0x0893B414-0x0893B42C (an initialised local `u16 [6][2]`) in the unit | 100 % |
+| `unit_0883DF88` | 0x0883DF88-0x0883E400 | 1 function (speed: eight-row record list with page selection); `.data` 0x0893B430-0x0893B44C (three initialised locals: a style record and two fullwidth brackets) in the unit | 100 % |
 | `unit_0883E400` | 0x0883E400-0x0883E4B8 | 1 function (calls func_0882DCA0 with four values of its array, then prints a number); initialised array 0x0893B474-0x0893B480 (`.data`) in the unit | 100 % |
+| `unit_0883E4B8` | 0x0883E4B8-0x0883E928 | 1 function (C++, speed: state drawing, the frame record D_0893B0F4 copied whole from a global); `.data` 0x0893B488-0x0893B49C (an initialised local layout record) in the unit | 100 % |
+| `unit_0883E928` | 0x0883E928-0x0883F0CC | 1 function (`switch` on +0x52F with eight cases, shared countdown tail); jump table 0x08931124-0x08931144 in the unit | 100 % |
 | `unit_0883F0CC` | 0x0883F0CC-0x0883F270 | 1 function (three-step state at +0x1198, virtual calls; C++); jump table 0x08931144-0x0893115C in the unit | 100 % |
+| `unit_0883F270` | 0x0883F270-0x0883F8B4 | 1 function (input handling; three early returns joined in one `&&` guard) | 100 % |
 | `unit_0883F8B4` | 0x0883F8B4-0x0883F988 | 1 function (steps four s16 counters at +0x56C); optimized for speed | 100 % |
+| `unit_0883F988` | 0x0883F988-0x0883F9F8 | 1 small function (flag test, then one `&&` chain) | 100 % |
 | `unit_0883F9F8` | 0x0883F9F8-0x0883FAD4 | 1 small function | 100 % |
+| `unit_0883FAD4` | 0x0883FAD4-0x0883FD44 | 1 function (`switch` on +0x57D with eleven cases, an inner switch on 0 / 1); jump table 0x0893115C-0x08931188 in the unit | 100 % |
 | `unit_0883FD44` | 0x0883FD44-0x0883FDF4 | 1 small function | 100 % |
 | `unit_0884054C` | 0x0884054C-0x088405E4 | 1 function (forwards its argument / 1800 / 5 * 0x1555 to func_0882D470); optimized for speed | 100 % |
 | `unit_08840BC0` | 0x08840BC0-0x08840C24 | 1 small function | 100 % |

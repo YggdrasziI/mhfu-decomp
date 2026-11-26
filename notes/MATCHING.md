@@ -3135,6 +3135,32 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   later holds an `s16` coordinate (`lh`, `seh` after each add): the
   coordinate IS the reused `s32` parameter, `b = box.y; ... b = (s16)(b +
   box.h);` (func_0883A758).
+- Dead copies of branch-likely slot instructions left after each `b`,
+  unfilled `b` slots and plain `beqz` + `nop` all over a function, where ours
+  removes them: the original has a nested `if` inside a block ending in
+  `return;` that ours splits into early returns. Join consecutive early
+  returns into one guard, `if (f(a) == 0 && f(b) == 0 && f(c) == 0) { ... }
+  return;` (func_0883F270: 95.5 -> 100 %), `if (x <= 2 || x == 7) return;`
+  (func_0883E4B8). No pragma, flag or compiler build gives it.
+- A final call result tested with plain `beqz` + `nop`, then `b end` with
+  `v0 = 1` in its slot: one `&&` chain, `if (f() == 1 && g() != 0) return 1;
+  return 0;` (func_0883F988).
+- A byte compared first with 1, then with 0 (`beql`, then `beqzl`): `switch
+  (x) { case 0: ...; break; case 1: ...; break; }` with no `default`
+  (reverse comparison order) (func_0883FAD4).
+- A compare result kept in `v0` (`slt v0; bnel v0`) rather than `at`:
+  `if ((s32)(f() < x) == 0) { else-part } else { then-part }`
+  (func_0883E928). A value loaded into an argument register before a call
+  whose slot stays empty: the callee takes it as an argument (read its asm)
+  (func_0883E928).
+- A clamp `slti at; beqzl` with the constant in the slot: `n = x < K ? x :
+  K;` (`if (x > K - 1) x = K;` gives `bnez` + `nop`). A local struct store
+  scheduled before a parameter update in the same branch: assign the result
+  to a new local, not to the parameter (func_0883DF88).
+- A record read member by member from a global whose fields splat named
+  separately (`D_..F4`, `D_..F6`...): an extern `const` structure copied
+  whole in C++, `Frame f = D_X;`; the name-only differences resolve in the
+  report (func_0883E4B8).
 
 ## Open symptoms
 
