@@ -430,24 +430,48 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0884E5B4` | 0x0884E5B4-0x0884E72C | 2 functions (two thread bodies with no return; sizes in symbol_addrs.txt) | 100 % |
 | `unit_0884E72C` | 0x0884E72C-0x0884E788 | 1 small function (sceIoRead into the buffer at +0x9300) | 100 % |
 | `unit_0884E788` | 0x0884E788-0x0884E7FC | 1 small function | 100 % |
+| `unit_0884E7FC` | 0x0884E7FC-0x0884E858 | 1 small function (busy flag, then a request call) | 100 % |
 | `unit_0884E858` | 0x0884E858-0x0884E884 | 1 small function | 100 % |
 | `unit_0884E884` | 0x0884E884-0x0884E998 | 1 small function | 100 % |
 | `unit_0884E998` | 0x0884E998-0x0884EA1C | 1 small function | 100 % |
+| `unit_0884EA1C` | 0x0884EA1C-0x0884EB00 | 1 function (speed; byte table map, then an XOR per word) | 100 % |
 | `unit_0884EB00` | 0x0884EB00-0x0884EC3C | 1 small function | 100 % |
 | `unit_0884EC3C` | 0x0884EC3C-0x0884ECAC | 1 small function | 100 % |
 | `unit_0884ECAC` | 0x0884ECAC-0x0884ED24 | 1 small function | 100 % |
+| `unit_0884ED24` | 0x0884ED24-0x0884ED94 | 1 small function (speed; key lookup in 0x32D pairs) | 100 % |
 | `unit_0884ED94` | 0x0884ED94-0x0884EDC8 | 1 small function | 100 % |
+| `unit_0884EDC8` | 0x0884EDC8-0x0884EF0C | 1 function (C++; seek and read retried under a semaphore) | 100 % |
+| `unit_0884EF0C` | 0x0884EF0C-0x0884F0D8 | 1 function (C++; slot records in 0x20000-byte chunks) | 100 % |
+| `unit_0884F0D8` | 0x0884F0D8-0x0884F190 | 1 function (seek retried until it lands) | 100 % |
+| `unit_0884F190` | 0x0884F190-0x0884F244 | 1 function, NonMatching (97.33 %: drive wait guard `beqzl` instead of `beqz`) | not linked |
+| `unit_0884F244` | 0x0884F244-0x0884F2CC | 1 function (seek retried until it lands) | 100 % |
 | `unit_0884F2CC` | 0x0884F2CC-0x0884F2E0 | 1 small function | 100 % |
+| `unit_0884F2E0` | 0x0884F2E0-0x0884F3FC | 1 function (C++; module load and start, retried) | 100 % |
 | `unit_0884F3FC` | 0x0884F3FC-0x0884F440 | 1 comparison of a 20-byte entry | 100 % |
+| `unit_0884F440` | 0x0884F440-0x0884F510 | 1 function (C++; block and offset table of 0x1A01 entries) | 100 % |
 | `unit_0884F510` | 0x0884F510-0x0884F5F4 | 3 tests with a fallback call | 100 % |
 | `unit_0884F5F4` | 0x0884F5F4-0x0884F670 | 1 small function | 100 % |
+| `unit_0884F670` | 0x0884F670-0x0884F86C | 1 function (state from an error code) | 100 % |
 | `unit_0884F86C` | 0x0884F86C-0x0884F8D4 | 2 small functions | 100 % |
+| `unit_0884F8D4` | 0x0884F8D4-0x0884FA0C | 1 function (large object reset) | 100 % |
 | `unit_0884FA0C` | 0x0884FA0C-0x0884FA5C | 1 small function | 100 % |
 | `unit_0884FA5C` | 0x0884FA5C-0x0884FAC4 | 1 function (`switch` with two tests of the argument); jump table 0x08931374-0x0893138C in the unit | 100 % |
+| `unit_0884FAC4` | 0x0884FAC4-0x0884FAFC | 1 small function (sets a bit of a u16 array) | 100 % |
+| `unit_0884FAFC` | 0x0884FAFC-0x0884FB38 | 1 small function (clears a bit of a u16 array) | 100 % |
+| `unit_0884FB38` | 0x0884FB38-0x0884FB6C | 1 small function (tests a bit of a u16 array) | 100 % |
 | `unit_0884FB6C` | 0x0884FB6C-0x0884FBA4 | 1 small function | 100 % |
+| `unit_0884FBA4` | 0x0884FBA4-0x0884FC0C | 1 small function (counter clamped to 0..9999999) | 100 % |
+| `unit_0884FC0C` | 0x0884FC0C-0x0884FC74 | 1 small function (counter clamped to 0..9999999) | 100 % |
 | `unit_0884FC74` | 0x0884FC74-0x0884FC94 | 1 table lookup | 100 % |
 | `unit_0884FC94` | 0x0884FC94-0x0884FCB0 | 1 small function | 100 % |
+| `unit_0884FCB0` | 0x0884FCB0-0x0884FDC4 | 1 function (chain of eight bit tests) | 100 % |
+| `unit_0884FDC4` | 0x0884FDC4-0x0884FE10 | 1 small function (speed; index in a table ended by 0xEA60) | 100 % |
+| `unit_0884FE10` | 0x0884FE10-0x0884FE80 | 1 small function (sets a bit by table index) | 100 % |
+| `unit_0884FE80` | 0x0884FE80-0x0884FEEC | 1 small function (tests a bit by table index) | 100 % |
+| `unit_0884FEEC` | 0x0884FEEC-0x0884FF24 | 1 small function (u16 counter clamped to 9999) | 100 % |
 | `unit_0884FF24` | 0x0884FF24-0x0884FF4C | 2 small functions | 100 % |
+| `unit_0884FF4C` | 0x0884FF4C-0x0884FF80 | 1 small function (sum of two u16 counters, clamped) | 100 % |
+| `unit_0884FF80` | 0x0884FF80-0x0884FFB8 | 1 small function (u16 counter clamped to 9999) | 100 % |
 | `unit_0884FFB8` | 0x0884FFB8-0x0884FFE0 | 2 small functions | 100 % |
 | `unit_0884FFE0` | 0x0884FFE0-0x08850010 | 1 small function | 100 % |
 | `unit_08850010` | 0x08850010-0x08850044 | 1 small function | 100 % |

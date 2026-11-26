@@ -45,7 +45,8 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   `if (!(E)) return 0; return 1;` (func_08854D88, C++ and C) (`bool_returns`).
 - m2c's `goto block_N` of a merged tail: write the tail out in each branch, `else if`
   chained (`inline_gotos`).
-- Loop heads `beqz` vs `beqzl`: not solved (func_088C33E8).
+- Loop heads `beqz` vs `beqzl`: not solved (func_088C33E8; func_0884F190
+  97.33 %, the guard of a do-while drive wait).
 - A state tested against several values that all return 0, compared as
   `beql 6` / `beq 5` / `beqz` (one `b` to the rest): `switch (st) { case 0:
   case 5: return 0; case 6: return 0; }` (func_088A8988, 74 % → 95 %; the
@@ -2982,6 +2983,33 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   saved register: read it there as `*(char * volatile *)&D_x`
   (func_0884DBB8). `x / K - 1` subtracted from a field: fold the `- 1` into
   the local (`n = x / K - 1; f -= n;`) (func_0884E478).
+- A call result compared with a value in a saved register, operands
+  swapped (`beql s3, v0` for `beql v0, s3`): assign the result to a local
+  in its own statement, `r = f(); if (r == x) break;`; swapping the `==`
+  operands or assigning inside the condition does not move it
+  (func_0884F0D8, func_0884F244, func_0884EDC8). Same form for `bgezl sX`
+  with the move in its slot (func_0884F2E0).
+- A virtual call through `$t9` (`lw t9, 0(sX); lw t9, K(t9); jalr t9`):
+  only a C++ virtual method gives it, a C function pointer uses `$v0`
+  (func_0884EDC8, func_0884EF0C). In C++, `if (u8param)` avoids an extra
+  `addu v0, v0, zero` that `if (u8param != 0)` gives (func_0884EF0C).
+- One saved register per byte offset of a stepped buffer (`addiu s3, a1,
+  1` / `s2, a1, 2` / `s1, a1, 3`): one pointer local per offset, the
+  counter declared after them (func_0884EA1C, speed). A speed loop that
+  steps the plain base and keeps the table offset in the load: index an
+  array member of a struct placed after a pad, not `(T *)(p + K)`
+  (func_0884ED24).
+- A table word loaded before the branches of a signed `% 32`: read it
+  through a `volatile` pointer into a local (func_0884FE80). `andi 0xFFFF;
+  ext v1, 5, 16` for a word index: `(u16)((u32)idx >> 5)` (func_0884FE10).
+- Two `bnel` on the same flag (`li v0, 1` in the first slot) and an empty
+  `b` slot after the `return 1` block: `if (X != 0 || (X == 0 && f() ==
+  0)) return 1; return 0;` (func_0884E7FC).
+- The counter's `addu v0, zero, zero` before a loop guard `beq`, the
+  pointer's `addiu %lo` in its slot: `i = 0;` as its own statement before
+  a `for` that sets the pointer (func_0884FDC4, speed). A retry loop whose
+  `b` back edge carries the field reload: load it before the loop and
+  again as the last statement of the body (func_0884F190).
 
 ## Open symptoms
 
@@ -2990,8 +3018,6 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   (0x088972A0-0x08897E1C, notes/SPLITS.md).
 - Two part pointers in swapped saved registers after the D_09A4F0D0
   lookup (func_088DC1F0, 99.78 %).
-- Register-only differences (result kept in `$v0` then copied to a saved
-  register: func_0884FDC4; see func_088C3948 in "Calls and allocation").
 - Two saved registers swapped (masked index and count) whatever the
   declaration order: func_088D7AD8 (99.58 %).
 - Scheduling: a load placed before / after an index computation (func_088307BC,
