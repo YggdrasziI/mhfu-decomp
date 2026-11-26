@@ -8,6 +8,6 @@ typedef int s32;
 extern s32 D_09A0B540;
 extern void func_08898748(s32, s32);
 
-void func_088BA860(void) {
+void func_088BA860(char *arg0) {
     func_08898748(D_09A0B540, 0x19);
 }
