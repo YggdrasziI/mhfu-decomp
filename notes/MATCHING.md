@@ -3034,6 +3034,44 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   other branch: read it there through a bit-field member of a union
   (func_0883185C). `bne` with the else value in its slot: `n = 0x100; if
   (fmt == 4) n = 0x10;` (func_0883185C, func_088314A0).
+- A doubly negated bit test kept as `andi; sltu; xori 1; sltiu 1`, two of
+  them joined by `bnez` before one `beql` that picks a constant: materialise
+  the flag in an `s32` local with an unsigned compare, `c = (u32)(((x & K)
+  != 0) ^ 1) < 1; if (!c) c = (u32)(((x & L) != 0) ^ 1) < 1; idx = c ? 2 :
+  1;`. `!(...)` folds back to `sltu; xori`, `== 0` adds an `xor`, a direct
+  `||` becomes branches (func_08832884).
+- A loop whose accumulator add sits between the counter test and the branch
+  (`lh; i++; slti; addu; pointer steps; bnez` with `seh` in the slot): put
+  the accumulation in the `for` step, and order the step statements with the
+  counter last and the accumulator just before it, `ids++, m++, y += box.h,
+  i++` (func_08838E30; `i++, y += box.h` in func_08838F58). The loop form
+  (for / do / while) does not matter, the step order does.
+- A loop that steps a pointer into a stack buffer, bottom-tested with no
+  guard: `i = 0; p = buf; do { ...; i++; p++; } while (i < 6);` (a `for`
+  rotates it; `buf[i]` recomputes `sp + i` and shrinks the frame). Six `sb
+  zero` in descending order: six explicit statements, `buf[5] = 0;` first
+  (func_08838894).
+- A shared subexpression written as a local or inline changes where its
+  saved-register computation is scheduled against the argument loads of the
+  two calls that use it: try both forms per block (func_08832F20: inline in
+  the first block, locals assigned first in the second).
+- The bytes of a 32-bit argument reloaded from the caller's argument slot
+  before every call: a `u32` parameter read as `((u8 *)&c)[n]` at each use (a
+  by-value structure of four bytes gets cached in saved registers)
+  (func_08832940).
+- A call result converted and used in one expression, scheduled too early:
+  give it its own `s16` local as a separate statement, `w = f(...); x = box.x
+  + K - (w * 7 >> 1);` (func_08839824).
+- A byte argument loaded before the `jal` instead of in its slot: declare
+  that callee parameter `s32` rather than `u8` (func_08839688, as for `u16`).
+- A record copied to the stack in the middle of a function with unrolled
+  `lwc1` / `swc1` (speed mode), from data that sits among the unit's strings:
+  an initialised local declared in a nested block opened at that point,
+  `{ Box box = { ... }; Layout lay; ... }`; declared at function level the
+  copy moves to the prologue. The record is the unit's own `.data`
+  (func_088378A8). A whole-structure assignment from a global whose field
+  addresses splat named separately scores 99 % in `try_unit.py` and 100 % in
+  the report (func_08838640).
 - A call result compared with a value in a saved register, operands
   swapped (`beql s3, v0` for `beql v0, s3`): assign the result to a local
   in its own statement, `r = f(); if (r == x) break;`; swapping the `==`

@@ -323,9 +323,17 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08832204` | 0x08832204-0x08832228 | 1 small function | 100 % |
 | `unit_08832228` | 0x08832228-0x08832548 | 1 function (nine-piece frame) | 100 % |
 | `unit_08832548` | 0x08832548-0x08832684 | 1 function (sets the byte at +0x534 from a kind, calls, then sets it back from its old value); jump tables 0x08930BAC-0x08930BDC in the unit | 100 % |
+| `unit_08832684` | 0x08832684-0x08832838 | 1 function (five calls of func_0882BE60 with ids 0x105-0x107, sizes from D_08939DE4 and D_08939DF0) | 100 % |
 | `unit_08832838` | 0x08832838-0x08832884 | 1 flag test and clear with a call | 100 % |
+| `unit_08832884` | 0x08832884-0x08832940 | 1 function (formats a number and a text picked by two flag bits) | 100 % |
+| `unit_08832940` | 0x08832940-0x08832A9C | 1 function (four calls of func_0882C7B4 with id 0x109, colour bytes read from a 32-bit argument) | 100 % |
 | `unit_08832A9C` | 0x08832A9C-0x08832B98 | 1 small function | 100 % |
+| `unit_08832B98` | 0x08832B98-0x08832C60 | 1 function (fills a three-word command buffer and submits it) | 100 % |
 | `unit_08832C60` | 0x08832C60-0x08832CE4 | 1 small function | 100 % |
+| `unit_08832CE4` | 0x08832CE4-0x08832E34 | 1 function (func_0882C7B4, a number formatted into a 16-byte buffer, func_088915B0) | 100 % |
+| `unit_08832E34` | 0x08832E34-0x08832F20 | 1 function (func_0882DCA8, func_08832CE4, then a text through func_088915B0) | 100 % |
+| `unit_08832F20` | 0x08832F20-0x08833290 | 1 function (formatted text into a 16-byte buffer, two blocks of calls on bits 0 and 1 of a flags argument) | 100 % |
+| `unit_08834304` | 0x08834304-0x08834400 | 1 function (two-step state on the byte at +0x52C, then five calls) | 100 % |
 | `unit_08834400` | 0x08834400-0x0883448C | 1 small function | 100 % |
 | `unit_0883448C` | 0x0883448C-0x088344FC | 1 small function | 100 % |
 | `unit_088344FC` | 0x088344FC-0x08834548 | 1 two-way step on a byte field | 100 % |
@@ -340,10 +348,21 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08834D04` | 0x08834D04-0x08834D3C | 1 function (returns the halfword at +0x111E, or func_0884FB6C when the flag at +0x111D is clear) | 100 % |
 | `unit_08834D3C` | 0x08834D3C-0x08835098 | 1 function (C++, dispatch on a byte to 13 cases); jump table 0x08930F74-0x08930FA8 in the unit | 100 % |
 | `unit_08835098` | 0x08835098-0x088351F0 | 1 function (dispatch to 12 functions on a byte, 16-bit result); jump table 0x08930FA8-0x08930FDC in the unit | 100 % |
+| `unit_088351F0` | 0x088351F0-0x08835470 | 1 function (C++, `switch` on the first word of D_09B22D70: cases 0xC, 0, 0x16, 8, 0x14) | 100 % |
+| `unit_088375C8` | 0x088375C8-0x088378A8 | 1 function (`switch` on six kinds, text calls); jump table 0x089310C0-0x089310D8 in the unit | 100 % |
+| `unit_088378A8` | 0x088378A8-0x08837CA4 | 1 function (speed: sets the byte at +0x534 from six kinds, then a loop of func_0883B53C calls); jump table 0x089310D8-0x089310F0 and `.data` 0x0893B234-0x0893B248 (an initialised local record) in the unit | 100 % |
+| `unit_08837CA4` | 0x08837CA4-0x08837D54 | 1 function (tests two masks against the byte at +4 of a func_0885CA50 entry) | 100 % |
 | `unit_08837D54` | 0x08837D54-0x08838004 | 1 function (C++, speed): formats a number with one of three formats, then draws two items; `.data` 0x0893B270-0x0893B278 (the local `u16[4]` initializer) | 100 % |
 | `unit_088380B4` | 0x088380B4-0x08838458 | 1 function (an item count drawn with full-width parentheses); `.data` 0x0893B298-0x0893B2A0 (the two local `char[4]` initializers) | 100 % |
+| `unit_08838458` | 0x08838458-0x08838640 | 1 function (an id picked from D_09B04E48 on two flag pairs, text through func_08891474) | 100 % |
+| `unit_08838640` | 0x08838640-0x08838894 | 1 function (copies the 0x14-byte record at D_0893B32C, then func_0882FC50 / func_0882FB38 / func_08838894) | 100 % |
+| `unit_08838894` | 0x08838894-0x08838AB4 | 1 function (six-byte buffer filled from func_08826EF4, kinds 5 and 6 apart) | 100 % |
 | `unit_08838AB4` | 0x08838AB4-0x08838B08 | 1 function (`switch` on a byte argument); jump table 0x089310F0-0x08931124 in the unit | 100 % |
 | `unit_08838E0C` | 0x08838E0C-0x08838E30 | 1 small function | 100 % |
+| `unit_08838E30` | 0x08838E30-0x08838F58 | 1 function (C++: three-row loop over ids of D_09B052C8, func_08892148) | 100 % |
+| `unit_08838F58` | 0x08838F58-0x088392F4 | 1 function (speed: three-row loop of func_09C240A0 / func_08892148, then func_08833290) | 100 % |
+| `unit_08839688` | 0x08839688-0x08839824 | 1 function (two nested `switch` on the bytes at +0x57E / +0x57F) | 100 % |
+| `unit_08839824` | 0x08839824-0x08839B30 | 1 function (C++: func_0882FA24 / func_0882F580, a formatted text and func_08891474) | 100 % |
 | `unit_0883AB44` | 0x0883AB44-0x0883AB4C | 1 small function | 100 % |
 | `unit_0883AB4C` | 0x0883AB4C-0x0883AB8C | 1 forwarder with fixed arguments | 100 % |
 | `unit_0883AB8C` | 0x0883AB8C-0x0883ABE0 | 1 small function | 100 % |
