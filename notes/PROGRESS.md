@@ -51,6 +51,7 @@ Commits before `15e9c9d` (first units, from `unit_088A6024` on) were not measure
 | 2026-11-26 | `e74e289` | 661244 / 1089072 bytes (60.72 %) | 2761 / 3581 | 2079 | Region 0x08840000, fourth batch: 0x0884E7FC-0x0884FFB8 (23 of 24 functions; func_0884F190 NonMatching) |
 | 2026-11-26 | `bbfd3c5` | 664828 / 1089072 bytes (61.05 %) | 2765 / 3581 | 2083 | Region 0x08840000, retry of the leftovers: func_088415D0, func_08843A7C, func_0884424C, func_08845C68 (func_08849D7C 99.21 % and func_0884F190 97.33 % NonMatching) |
 | 2026-11-26 | `4e53c55` | 673636 / 1089072 bytes (61.85 %) | 2785 / 3581 | 2103 | Region 0x08830000, first batch: 0x08830078-0x08832548 (20 of 20 functions, one with its jump tables) |
+| 2026-11-26 | `2f16450` | 683124 / 1089072 bytes (62.73 %) | 2804 / 3581 | 2122 | Region 0x08830000, second batch: 0x08832684-0x08839B30 (19 of 20 functions; func_08833290 still in assembly, two units with their jump tables, one with an initialised local record) |
 
 From 2026-11-12 (`f84b2f1`) on, one row per day: the last commit recorded that
 day in `progress/ULES01213/history.csv`, which has every measured commit. Rows
