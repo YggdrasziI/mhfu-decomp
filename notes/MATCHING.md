@@ -3192,6 +3192,34 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   with `lui`/`ori` instead of read from `@N` data: speed mode (func_08821080).
 - `s16` increments: `yy += 16;` (no extra `seh`), and an `s16` reset from an
   `s32` (`yy = top;`) to keep the `seh` in the loop (func_0882148C).
+- Batch 40 (0x08822C58-0x0882693C). Two halfword out-parameters passed by
+  address at the wrong stack slots (2 or 4 bytes off), no declaration order
+  helping: one local `u16 ab[2]` or `struct { u16 w; u16 h; }`, pass the
+  member addresses (func_088262B0, func_088264F4). A sub-record address kept
+  in a saved register across a call (`addiu sX, base, K` in the `jal` slot)
+  that every form folds into the load: `#pragma opt_propagation off`, the
+  pointer assigned in the block that uses it (func_0882619C). Loop
+  invariants spilled to the stack before a loop (`(s16)x`, `x + 14`, `(s8)c`)
+  are the compiler's: write the expressions in the calls, no locals
+  (func_08822C58). Saved registers of a counter and a strength-reduced index
+  swapped in the second of two grid loops: the two nests share the column
+  counter and coordinate locals (func_0882545C; sharing beat one counter per
+  loop there). `D_089CC438 + 0x6AF14` built with `ori`: declare the global
+  `char *` so that it splits as `lui 0x7` / `-0x50EC` (func_08823B58,
+  func_088239FC). A byte tested then used with an extra `andi 0xFF`: read the
+  field twice, no `u8` local (func_08823174). A store of zero pulled into a
+  `b` slot (the original has a dead copy of the likely slot there): `u16`
+  store instead of `s16` (func_08825D38). A value minus a constant
+  recomputed at each use: its own new `s32` local (func_08825ADC). Ring
+  index `(start + i) % N` with `start` loaded after the guard: the whole
+  expression inside the loop, no second counter (func_08823AE4). `bgez`
+  with the zero return inline: wrap the body, `if (x >= 0) { ... } return
+  0;` (func_08823960). `beq` + `b` to a shared `return 0` after a
+  `bnezl`: `if (!(A != 0) && B != 1) return 0; return 1;` (func_088239FC).
+  If/else arms inverted (`beqzl` for `bnel`): flip the test and swap the
+  arms; `cur > 1` for `slti at` (func_0882675C). A two-halfword record copied
+  out with `lh`/`lh`, back by members, then one field reloaded: C++ `Pair
+  tmp = *src; *dst = tmp; f(tmp.a);` (func_08823E18).
 
 ## Open symptoms
 

@@ -290,16 +290,36 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08822990` | 0x08822990-0x088229B8 | 1 small function | 100 % |
 | `unit_088229B8` | 0x088229B8-0x08822BF4 | 1 function (speed: three loops sharing one counter) | 100 % |
 | `unit_08822BF4` | 0x08822BF4-0x08822C58 | 1 small function (counts non-zero bytes at a stride of 2) | 100 % |
+| `unit_08822C58` | 0x08822C58-0x08823174 | 1 function, speed (two loops of icon/text draws; declaration order sets the saved registers) | 100 % |
+| `unit_08823174` | 0x08823174-0x088232A0 | 1 function (three byte fields written to outputs, minus one) | 100 % |
+| `unit_088232A0` | 0x088232A0-0x08823960 | 1 function, speed (four bit scans by an inline helper; six colour locals in one assignment chain) | 100 % |
+| `unit_08823960` | 0x08823960-0x088239FC | 1 small function | 100 % |
+| `unit_088239FC` | 0x088239FC-0x08823A50 | 1 small function (two flag tests) | 100 % |
 | `unit_08823A50` | 0x08823A50-0x08823AE4 | 1 small function | 100 % |
+| `unit_08823AE4` | 0x08823AE4-0x08823B58 | 1 small function, speed (ring search over 20 records) | 100 % |
+| `unit_08823B58` | 0x08823B58-0x08823C84 | 1 function (first free record, kind byte picks the call) | 100 % |
+| `unit_08823C84` | 0x08823C84-0x08823CBC | 1 small function (counts set records) | 100 % |
 | `unit_08823CBC` | 0x08823CBC-0x08823DB0 | 1 function (calls func_0882DCA0 with four values of its array, then formats and prints a number); initialised array 0x08938614-0x08938620 (`.data`) in the unit | 100 % |
 | `unit_08823DB0` | 0x08823DB0-0x08823DEC | 1 small function | 100 % |
 | `unit_08823DEC` | 0x08823DEC-0x08823E18 | 1 small function | 100 % |
+| `unit_08823E18` | 0x08823E18-0x08824B14 | 1 function, C++ (menu state machine); jump table 0x08930A40-0x08930A5C in the unit | 100 % |
+| `unit_08824B14` | 0x08824B14-0x08825104 | 1 function, speed; jump tables 0x08930A5C-0x08930A94 and initialised array 0x08938650-0x08938654 (`.data`) in the unit | 100 % |
 | `unit_08825104` | 0x08825104-0x08825148 | 1 section-0 entry lookup through a table | 100 % |
+| `unit_08825148` | 0x08825148-0x0882545C | 1 function, NonMatching (99.70 %: saved registers of two locals swapped) | not linked |
+| `unit_0882545C` | 0x0882545C-0x08825ADC | 1 function, speed (grid of item slots with a cursor; both loop nests share the column counter) | 100 % |
+| `unit_08825ADC` | 0x08825ADC-0x08825D38 | 1 function (switch on the kind, table of u16 tables) | 100 % |
+| `unit_08825D38` | 0x08825D38-0x08825DA8 | 1 small function (flag and timer update) | 100 % |
 | `unit_08825DA8` | 0x08825DA8-0x08825E78 | 1 small function | 100 % |
 | `unit_08825E78` | 0x08825E78-0x08825EE8 | 1 small function | 100 % |
 | `unit_088260D4` | 0x088260D4-0x0882619C | 1 small function | 100 % |
+| `unit_0882619C` | 0x0882619C-0x088262B0 | 1 function (`#pragma opt_propagation off`: sub-record address kept in a saved register) | 100 % |
+| `unit_088262B0` | 0x088262B0-0x088264F4 | 1 function, speed (two halfword outputs as one `u16 ab[2]`) | 100 % |
+| `unit_088264F4` | 0x088264F4-0x08826688 | 1 function, speed (two halfword outputs as one local structure) | 100 % |
 | `unit_08826688` | 0x08826688-0x088266CC | 1 field reset | 100 % |
+| `unit_088266CC` | 0x088266CC-0x08826734 | 1 small function (tail call with one of two addresses) | 100 % |
 | `unit_08826734` | 0x08826734-0x0882675C | 1 small function | 100 % |
+| `unit_0882675C` | 0x0882675C-0x088268E0 | 1 function (cursor moved by four button bits) | 100 % |
+| `unit_088268E0` | 0x088268E0-0x0882693C | 1 small function | 100 % |
 | `unit_0882693C` | 0x0882693C-0x088269C0 | 1 small function | 100 % |
 | `unit_08826EEC` | 0x08826EEC-0x08826EF4 | 1 small function | 100 % |
 | `unit_08826F80` | 0x08826F80-0x08826FCC | 1 count of used slots, divided | 100 % |
