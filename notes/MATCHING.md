@@ -3244,6 +3244,26 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   (func_088291B4). Callers passing a register the callee never reads
   (func_0882747C, func_088275B0): the callee definition takes the extra
   unused argument (same code), the callers need it.
+- Batch 42 (0x088292AC-0x0882B94C). Global loads kept below byte stores to a
+  struct: declare the globals read in that block `const`, only those
+  (func_0882A43C, func_0882A660). Two global loads and a field load out of
+  order, no order or type helping: read the first global and the field
+  through `volatile` into locals (func_0882A28C). A shift or packed colour
+  repeated at several uses: the full expression at each use, no local
+  (func_0882A43C, func_0882B1CC). Stack slots of uninitialised 4-byte
+  structure locals loaded in the prologue: they are structure locals not set
+  on every path (func_088292AC). A call with no visible argument set-up: the
+  register still holds a constant from an earlier store (func_08829F04). A
+  stored word that looks like an earlier value: check for a `lui` reloading
+  the register (func_0882AC18). A `u16` local re-masked at a packed store:
+  explicit `& 0xFFFF` at the store (func_0882B624). A store order searched by
+  a hill-climb over statement swaps (func_0882AF70). A byte parameter of a
+  callee loaded after a global: the parameter `s32` (func_0882AD70). An
+  if/else ending in `return 1` / `return 0`: only the `return 0` paths in
+  the arms, one shared `return 1` (func_08829928). A call result compared
+  with a masked halfword: `r = f();` alone, `if (r != (u16)id)`
+  (func_08829A48). Draw-loop step `i++, y += h` with the counter first
+  (func_08829B58), the reverse of batch 36.
 
 ## Open symptoms
 

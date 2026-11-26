@@ -347,12 +347,32 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0882900C` | 0x0882900C-0x088290A4 | 1 small function | 100 % |
 | `unit_088290A4` | 0x088290A4-0x088291B4 | 1 function, speed (float constant built with `lui`/`ori`) | 100 % |
 | `unit_088291B4` | 0x088291B4-0x088292AC | 1 function, NonMatching (99.60 %: arg1 in s1 instead of s2; 99.84 % with func_08852F58 declared with one argument) | not linked |
+| `unit_088292AC` | 0x088292AC-0x088295C0 | 1 function (saves three keys, compacts and sorts a 24-entry table, finds the keys again) | 100 % |
+| `unit_088295C0` | 0x088295C0-0x08829674 | 1 small function (next used slot, wrapping at 24) | 100 % |
+| `unit_08829674` | 0x08829674-0x0882981C | 1 function (state byte from a flag word and func_0882981C) | 100 % |
+| `unit_0882981C` | 0x0882981C-0x088298E4 | 1 small function (two-pass search through func_08872DC4) | 100 % |
 | `unit_088298E4` | 0x088298E4-0x08829928 | 1 pointer chosen by a bool flag (C++) | 100 % |
+| `unit_08829928` | 0x08829928-0x08829A48 | 1 function (three guards, one shared `return 1`) | 100 % |
+| `unit_08829A48` | 0x08829A48-0x08829B58 | 1 function (two-pass check, `continue` paths) | 100 % |
+| `unit_08829B58` | 0x08829B58-0x08829E6C | 1 function, speed (draws a list box with up to four entries) | 100 % |
 | `unit_08829E6C` | 0x08829E6C-0x08829EEC | 1 small function | 100 % |
 | `unit_08829EEC` | 0x08829EEC-0x08829F04 | 2 small functions | 100 % |
+| `unit_08829F04` | 0x08829F04-0x0882A168 | 1 function (switch on three layouts filling slots from func_0882A248) | 100 % |
+| `unit_0882A168` | 0x0882A168-0x0882A248 | 1 function (runs six effect records through three handlers) | 100 % |
 | `unit_0882A248` | 0x0882A248-0x0882A28C | 1 free-slot search | 100 % |
+| `unit_0882A28C` | 0x0882A28C-0x0882A43C | 1 function (effect state machine, two `volatile` reads for the load order) | 100 % |
+| `unit_0882A43C` | 0x0882A43C-0x0882A660 | 1 function (effect state machine drawing a square and a diamond; some globals `const`) | 100 % |
+| `unit_0882A660` | 0x0882A660-0x0882A864 | 1 function (effect state machine; globals `const`) | 100 % |
+| `unit_0882A864` | 0x0882A864-0x0882A8B8 | 1 small function | 100 % |
 | `unit_0882A8B8` | 0x0882A8B8-0x0882A8FC | 1 state code from a byte field | 100 % |
+| `unit_0882A8FC` | 0x0882A8FC-0x0882A988 | 1 small function (two flag tests, clears three bytes) | 100 % |
 | `unit_0882A988` | 0x0882A988-0x0882A9DC | 1 small function (C++) | 100 % |
+| `unit_0882A9DC` | 0x0882A9DC-0x0882AC18 | 1 function (sprite of the D_089391A8 table, display-list packet) | 100 % |
+| `unit_0882AC18` | 0x0882AC18-0x0882AD70 | 1 function (sprite texture set-up and a short GE list) | 100 % |
+| `unit_0882AD70` | 0x0882AD70-0x0882AF70 | 1 function (coloured two-vertex sprite) | 100 % |
+| `unit_0882AF70` | 0x0882AF70-0x0882B1CC | 1 function, speed (sprite packet built on the stack) | 100 % |
+| `unit_0882B1CC` | 0x0882B1CC-0x0882B624 | 1 function (coloured quad, optional extra quad) | 100 % |
+| `unit_0882B624` | 0x0882B624-0x0882B94C | 1 function (5:5:5:1 coloured sprite with u/v mirroring) | 100 % |
 | `unit_0882DCA0` | 0x0882DCA0-0x0882DCB0 | 2 small functions | 100 % |
 | `unit_0882FD68` | 0x0882FD68-0x0882FDA4 | 1 small function | 100 % |
 | `unit_0882FDA4` | 0x0882FDA4-0x0882FE34 | 1 small function | 100 % |
