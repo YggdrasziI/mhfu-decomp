@@ -393,5 +393,7 @@ compares each one with `BOOT.BIN`, relocated fields masked.
 ## Open questions
 
 - Build 210 or 219: no matched unit tells them apart yet; rerun the sweep as more
-  units match (code that 210 and 219 compile differently is the only test left).
+  units match (code that 210 and 219 compile differently is the only test left):
+  `py -3.13 tools/common/compiler_sweep.py --compiler "mwccpsp_3.0.1_*"` after a
+  full build and `ninja report`.
 - Which parts are C++ (two functions proven, see C and C++), and which are C.
