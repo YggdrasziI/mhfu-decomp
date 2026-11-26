@@ -24,10 +24,33 @@ work targets the European one first.
 | `ULUS10391` | `f5cb0eaebbf5008bd8d486832229ae97a16bbee6` (886702080 bytes) | 1910332 bytes, SHA-1 `518673c61ef41b4906cedfbe93811d2a974be793` | same layout as `ULES01213`, `.text` 0x120 bytes longer |
 | `ULJM05500` | `951d1a360eec83af294a7a51ec4bba08f8633a6e` (895582208 bytes) | 1889772 bytes, SHA-1 `de96bd007ef69b59af9188bee5e7de53987ea2b6` | `.text` 0x1078E0 bytes, 33 import libraries (290 functions); `.data` starts at 0x0890D38C, not 8-aligned, so its first word is a separate splat piece |
 
-A Korean disc (ISO SHA-1 `8d48f800cbe735dab83b3f165101a6a2e3f31ba7`) carries the same
-disc ID `ULUS10391` and `DISC_VERSION 1.01`, with `PSP_SYSTEM_VER 5.50`. Its `BOOT.BIN`
-is all zeros and its `EBOOT.BIN` (1910672 bytes, same size as the US one) is
-encrypted differently: it can only be compared once `EBOOT.BIN` is decrypted.
+### Other discs (not build targets)
+
+Checked on 2026-11-26. Every `EBOOT.BIN` below, and those of the three versions above,
+is a `~PSP` file with tag `C0CB167C` that pspdecrypt 1.0 (`notes/REFERENCES.md`)
+decrypts; for the three versions the result is the `BOOT.BIN` of the same disc byte
+for byte.
+
+| Disc | ISO SHA-1 | Executable | Finding |
+|---|---|---|---|
+| Korea, `ULUS10391`, `DISC_VERSION 1.01`, `PSP_SYSTEM_VER 5.50` | `8d48f800cbe735dab83b3f165101a6a2e3f31ba7` | `BOOT.BIN` all zeros; `EBOOT.BIN` 1910672 bytes | decrypted `EBOOT.BIN` = US `BOOT.BIN` (SHA-1 `518673c6...`) |
+| USA "Beta" (2008-10-14), `ULUS10391`, `DISC_VERSION 1.00` | `5e3e7ec86adaa23f79e7239d4b12b63ce6e26f04` (886702080 bytes) | `BOOT.BIN` 1910332 bytes | `BOOT.BIN` and decrypted `EBOOT.BIN` = US `BOOT.BIN`; `USRDIR/DATA.BIN` has the US size (772732928 bytes) but another SHA-1 (`8475c3d7...` against `e7dad0e2...`), not comparable while encrypted |
+| Europe demo, `ULED01244` | `946341aef8a2447424c08c1d5f4e66278edadd3d` (300613632 bytes) | `BOOT.BIN` all zeros; decrypted `EBOOT.BIN` 1307940 bytes, SHA-1 `67aaed5eed8cd45c6927b5eac753024495d41f13` | see below |
+| USA demo, `ULUS90003` | `aab45708b61852778038e8539aaa5af547bf3776` (300613632 bytes) | `BOOT.BIN` all zeros; decrypted `EBOOT.BIN` 1307940 bytes, SHA-1 `dfc88f350a67445471d241ed45aa05ab85033b45` | 278 bytes differ from the Europe demo |
+
+The demo executable is a subset of the retail build, not an earlier or unoptimized
+one, and gives no names:
+
+- same `.comment` (`MW MIPS C Compiler (2.4.1.01)`), no symbol table, same module name
+  `MonsterHunterPortable2ndG`; `.text` 0x08804000 (0xAF880 bytes), `.data` 0x088B519C;
+- of the 3383 functions of `ULES01213` of 8 instructions or more, 2449 are found
+  identical in the Europe demo (jump targets and the immediates of `lui`, `addiu`,
+  `ori` and memory accesses masked; 266 of them at more than one address); they cover
+  88.6 % of the demo's `.text`. The remaining 11.4 % has not been examined;
+- 56 program headers instead of 300: the overlay slots are `show_select_task.ovl`,
+  `game_task.ovl`, `demo_sub.ovl`, `game_sub.ovl`, 17 `emXX.ovl`, 33 `stageNNN.ovl` and
+  `debug.elf`, all names that the retail executables have too;
+- no readable string that the retail executables lack, besides the disc IDs.
 
 ## Target (ULES01213)
 

@@ -20,6 +20,9 @@
 - [PPSSPP](https://github.com/hrydgard/ppsspp): runtime debugging, HLE NID tables,
   reference for the PSP loader and `~PSP` decryption (GPL-2.0-or-later: behaviour
   only, no code copied).
+- [pspdecrypt](https://github.com/John-K/pspdecrypt) 1.0 (GPL-3.0): decrypts `~PSP`
+  executables (`EBOOT.BIN`). Run as a program on local files, never stored in the
+  repository; used for the disc cross-checks of `SPEC.md`.
 
 ## Reference projects
 
