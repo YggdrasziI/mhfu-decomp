@@ -201,18 +201,33 @@ segments:
       - [0x24D10, c, unit_0882675C]
       - [0x24E94, c, unit_088268E0]
       - [0x24EF0, c, unit_0882693C]
-      - [0x24F74, asm, text_088269C0]
+      - [0x24F74, cpp, unit_088269C0]
       - [0x254A0, c, unit_08826EEC]
-      - [0x254A8, asm, text_08826EF4]
+      - [0x254A8, c, unit_08826EF4]
       - [0x25534, c, unit_08826F80]
-      - [0x25580, asm, text_08826FCC]
+      - [0x25580, c, unit_08826FCC]
+      - [0x25748, c, unit_08827194]
+      - [0x25A30, c, unit_0882747C]
+      - [0x25B64, cpp, unit_088275B0]
+      - [0x25D00, c, unit_0882774C]
+      - [0x25D90, cpp, unit_088277DC]
+      - [0x25ECC, c, unit_08827918]
+      - [0x26088, c, unit_08827AD4]
+      - [0x261A8, c, unit_08827BF4]
+      - [0x267E0, cpp, unit_0882822C]
       - [0x26AD8, c, unit_08828524]
       - [0x26C0C, c, unit_08828658]
-      - [0x26C98, asm, text_088286E4]
+      - [0x26C98, c, unit_088286E4]
+      - [0x26D38, c, unit_08828784]
       - [0x26E38, cpp, unit_08828884]
-      - [0x26EEC, asm, text_08828938]
+      - [0x26EEC, c, unit_08828938]
+      - [0x274A0, c, unit_08828EEC]
+      - [0x274C8, c, unit_08828F14]
+      - [0x274F0, c, unit_08828F3C]
       - [0x275C0, c, unit_0882900C]
-      - [0x27658, asm, text_088290A4]
+      - [0x27658, c, unit_088290A4]
+      - [0x27768, asm, text_088291B4]
+      - [0x27860, asm, text_088292AC]
       - [0x27E98, cpp, unit_088298E4]
       - [0x27EDC, asm, text_08829928]
       - [0x28420, c, unit_08829E6C]
@@ -2431,10 +2446,11 @@ segments:
       - [0x12EFE8, data, data_08930A34]
       - { start: 0x12EFF4, type: .rodata, name: unit_08823E18, linker_section_order: .data }
       - { start: 0x12F010, type: .rodata, name: unit_08824B14, linker_section_order: .data }
-      - [0x12F048, data, data_08930A94]
+      - { start: 0x12F048, type: .rodata, name: unit_08827BF4, linker_section_order: .data }
       - { start: 0x12F070, type: .rodata, name: unit_08828524, linker_section_order: .data }
       - { start: 0x12F0AC, type: .rodata, name: unit_08828658, linker_section_order: .data }
-      - [0x12F0C4, data, data_08930B10]
+      - { start: 0x12F0C4, type: .rodata, name: unit_08828938, linker_section_order: .data }
+      - [0x12F0E0, data, data_08930B2C]
       - { start: 0x12F130, type: .rodata, name: unit_0883185C, linker_section_order: .data }
       - { start: 0x12F160, type: .rodata, name: unit_08832548, linker_section_order: .data }
       - [0x12F190, data, data_08930BDC]

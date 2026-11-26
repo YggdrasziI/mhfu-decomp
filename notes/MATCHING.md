@@ -3220,6 +3220,30 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   arms; `cur > 1` for `slti at` (func_0882675C). A two-halfword record copied
   out with `lh`/`lh`, back by members, then one field reloaded: C++ `Pair
   tmp = *src; *dst = tmp; f(tmp.a);` (func_08823E18).
+- Batch 41 (0x088269C0-0x088292AC). A clamped field written and read again
+  through `0(reg)` with `beqz` for `beqzl`: a real `s16` member of a struct,
+  `p->f62E`, not a raw offset (func_088277DC). `mult` operands swapped with
+  a call result: the result in its own local as a separate statement
+  (func_08827AD4). `sll 3` where the original has `addu v0, a0, a0; sll 2`:
+  `k = k + k;` as its own statement (func_088290A4). A constant inner count
+  in the wrong register, no declaration order helping: `for (j = 5; j > 0;
+  j--)` or `j = 5;` right before the `do` (func_0882774C). Chained stores
+  run from the last name to the first: write the chain in reverse field
+  order (func_08827194). `lh`/`lh`/`lh` then three `sh`: one three-member
+  struct copy (func_08826FCC). An unrolled clear loop counting down by 8:
+  stepped pointer, `for (k = N; k > 0; k--)` (func_08826FCC). A `u8` flag as
+  a ternary gives `beqzl` + `andi`: `if (x == 0) f = 1; else f = 2;`
+  (func_08826EF4). `y += step;` before the exit test for an `addu` in a plain
+  `beqz` slot (func_08827918). A `beql` with the value in its slot then a
+  plain `beq` to the same body: a group of case labels (func_0882822C); a
+  `bool` return keeps a compared 1 apart from the returned 1 (C++). Only one
+  branch into a shared `return 1` becomes branch-likely: route the other
+  cases through it too (`if (f() >= 0) break; return 0;`, func_088269C0). An
+  `lh` value kept for an `s32` argument with an extra `seh`: `s32` local
+  (func_08828784). A returned `s8` with an extra `seb`: `s8` return type
+  (func_088291B4). Callers passing a register the callee never reads
+  (func_0882747C, func_088275B0): the callee definition takes the extra
+  unused argument (same code), the callers need it.
 
 ## Open symptoms
 

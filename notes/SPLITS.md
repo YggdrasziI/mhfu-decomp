@@ -321,12 +321,32 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0882675C` | 0x0882675C-0x088268E0 | 1 function (cursor moved by four button bits) | 100 % |
 | `unit_088268E0` | 0x088268E0-0x0882693C | 1 small function | 100 % |
 | `unit_0882693C` | 0x0882693C-0x088269C0 | 1 small function | 100 % |
+| `unit_088269C0` | 0x088269C0-0x08826EEC | 1 function, C++ (one virtual call; switch of about 40 labels to one shared return) | 100 % |
 | `unit_08826EEC` | 0x08826EEC-0x08826EF4 | 1 small function | 100 % |
+| `unit_08826EF4` | 0x08826EF4-0x08826F80 | 1 small function (flag test on a looked-up record) | 100 % |
 | `unit_08826F80` | 0x08826F80-0x08826FCC | 1 count of used slots, divided | 100 % |
+| `unit_08826FCC` | 0x08826FCC-0x08827194 | 1 function, speed (fills and sorts the 54-entry table at +0x684) | 100 % |
+| `unit_08827194` | 0x08827194-0x0882747C | 1 function (compares the six values of two records) | 100 % |
+| `unit_0882747C` | 0x0882747C-0x088275B0 | 1 function (six flags from func_0885CF9C; arg3 unused, passed by its caller) | 100 % |
+| `unit_088275B0` | 0x088275B0-0x0882774C | 1 function, C++ (sorted insert by record assignment; arg3 unused, passed by its caller) | 100 % |
+| `unit_0882774C` | 0x0882774C-0x088277DC | 1 small function, speed (five slots of five records) | 100 % |
+| `unit_088277DC` | 0x088277DC-0x08827918 | 1 function, C++ (three virtual calls; clamped field as a struct member) | 100 % |
+| `unit_08827918` | 0x08827918-0x08827AD4 | 1 function, speed (multi-line text centred) | 100 % |
+| `unit_08827AD4` | 0x08827AD4-0x08827BF4 | 1 function (multi-line text drawn line by line) | 100 % |
+| `unit_08827BF4` | 0x08827BF4-0x0882822C | 1 function, speed; jump table 0x08930A94-0x08930ABC in the unit | 100 % |
+| `unit_0882822C` | 0x0882822C-0x08828524 | 1 function, C++ (`bool` return, compare chain with case groups) | 100 % |
 | `unit_08828524` | 0x08828524-0x08828658 | 1 function (searches up to 5 bytes of a table row for a class of 15 values); jump table 0x08930ABC-0x08930AF8 in the unit | 100 % |
 | `unit_08828658` | 0x08828658-0x088286E4 | 1 function (maps a byte 17-22 to a signed amount); jump table 0x08930AF8-0x08930B10 in the unit | 100 % |
+| `unit_088286E4` | 0x088286E4-0x08828784 | 1 small function | 100 % |
+| `unit_08828784` | 0x08828784-0x08828884 | 1 function (looks up two entries, stores the result) | 100 % |
 | `unit_08828884` | 0x08828884-0x08828938 | 1 small function (C++) | 100 % |
+| `unit_08828938` | 0x08828938-0x08828EEC | 1 function (switch on a state byte); jump table 0x08930B10-0x08930B2C in the unit | 100 % |
+| `unit_08828EEC` | 0x08828EEC-0x08828F14 | 1 small function | 100 % |
+| `unit_08828F14` | 0x08828F14-0x08828F3C | 1 small function | 100 % |
+| `unit_08828F3C` | 0x08828F3C-0x0882900C | 1 function (early returns -1/0/1/2) | 100 % |
 | `unit_0882900C` | 0x0882900C-0x088290A4 | 1 small function | 100 % |
+| `unit_088290A4` | 0x088290A4-0x088291B4 | 1 function, speed (float constant built with `lui`/`ori`) | 100 % |
+| `unit_088291B4` | 0x088291B4-0x088292AC | 1 function, NonMatching (99.60 %: arg1 in s1 instead of s2; 99.84 % with func_08852F58 declared with one argument) | not linked |
 | `unit_088298E4` | 0x088298E4-0x08829928 | 1 pointer chosen by a bool flag (C++) | 100 % |
 | `unit_08829E6C` | 0x08829E6C-0x08829EEC | 1 small function | 100 % |
 | `unit_08829EEC` | 0x08829EEC-0x08829F04 | 2 small functions | 100 % |
