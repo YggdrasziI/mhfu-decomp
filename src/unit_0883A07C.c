@@ -5,11 +5,17 @@
  * Optimized for speed (pointer-stepped copy loops). Records are copied field
  * by field with the 3-halfword tail as one sub-structure assignment.
  *
- * NonMatching: func_0883A07C 97.79 %. Only the argument loads of the two
- * func_08831338 calls of case 1 are scheduled differently: the original loads
- * the set fields (a1, a2) before the globals and computes (i + 1) after the
- * sub-record load; ours loads the globals first (and the fifth argument of the
- * first call with lh instead of lhu).
+ * D_0893B3C4 is read as u16 (lhu) by the func_08831338 calls and as s16 (lh)
+ * in the sums: a u16 array with (s16) casts in the sums. With an s16 array the
+ * conversion to the u16 parameter made the scheduler hoist both %hi loads of
+ * the first call (lui v1 / lui v0 instead of v0 twice).
+ *
+ * NonMatching: func_0883A07C 98.03 %. Left: in the first func_08831338 call
+ * ours sets a0 and t3 (0xFF) first and loads a1 after a3 (original: sw zero,
+ * a1, a3, a2, a0, t0, t2, t3 in the delay slot); in the loop call ours computes
+ * (i + 1) first into a0 and passes a1 with andi 0xFF (original: t3 first,
+ * (i + 1) into v1 after the sub-record load, seh a1). The second parameter as
+ * u8 scores better than s16 (97.21 %), which gives the seh but not the order.
  */
 
 #pragma optimize_for_size off
@@ -76,7 +82,7 @@ extern s32 D_09A4F0C4;
 extern u16 D_0893B3BC;
 extern u16 D_0893B3BE;
 extern s32 D_0893B3C0;
-extern s16 D_0893B3C4[2];
+extern u16 D_0893B3C4[2];
 extern u16 D_0893B3C8;
 extern s16 D_0893B3CA;
 extern s16 D_0893B3CC;
@@ -97,7 +103,7 @@ extern int func_088911A0(char *, char *);
 extern void func_0881B384(char *, s16, s16, Rec *);
 extern void func_08891474(char *, s16, s16, char *, ...);
 extern void func_0881B7F0(char *, char *, Rec *, s16, s16, s16);
-extern void func_08831338(char *, s16, s16, u16, s32, s32, s32, s32, s32);
+extern void func_08831338(char *, u8, s16, s32, u16, s32, s32, s32, s32);
 extern char *func_0885C968(char *, u8, u16);
 extern void func_088920A8(char *, s16, s16, char *, ...);
 extern char *func_088DCEBC(s32, s32);
@@ -148,13 +154,13 @@ void func_0883A07C(char *arg0, s32 arg1, char *arg2) {
         break;
     case 1:
         func_08831338(arg0, set->main.b, set->main.c, D_0893B3C4[0], D_0893B3C4[1], D_0893B3C8, D_0893B3C8, 0xFF, 0);
-        func_088920A8(D_08A631A8, D_0893B3C4[0] + D_0893B3CC, D_0893B3C4[1] + D_0893B3CE, func_0885151C(D_089CC438, D_089AC8E0),
+        func_088920A8(D_08A631A8, (s16)D_0893B3C4[0] + D_0893B3CC, (s16)D_0893B3C4[1] + D_0893B3CE, func_0885151C(D_089CC438, D_089AC8E0),
                       func_0885C968(D_08A62C54, set->main.b, set->main.c));
         for (i = 0; i < 5; i++) {
-            func_08831338(arg0, D_0893AEB8[i], set->sub[D_0893AEB8[i]].c, D_0893B3C4[0], (u16)(D_0893B3C4[1] + (i + 1) * D_0893B3CA),
+            func_08831338(arg0, D_0893AEB8[i], set->sub[D_0893AEB8[i]].c, D_0893B3C4[0], (i + 1) * D_0893B3CA + (s16)D_0893B3C4[1],
                           D_0893B3C8, D_0893B3C8, 0xFF, 0);
             k = D_0893AEB8[i];
-            func_088920A8(D_08A631A8, D_0893B3C4[0] + D_0893B3CC, D_0893B3C4[1] + D_0893B3CE + D_0893B3CA * (i + 1), func_0885151C(D_089CC438, D_089AC8E0),
+            func_088920A8(D_08A631A8, (s16)D_0893B3C4[0] + D_0893B3CC, (s16)D_0893B3C4[1] + D_0893B3CE + D_0893B3CA * (i + 1), func_0885151C(D_089CC438, D_089AC8E0),
                           func_0885C968(D_08A62C54, k, set->sub[k].c));
         }
         cur = (Set *)(D_089CC438 + 0x4A0);

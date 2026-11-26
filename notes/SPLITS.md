@@ -366,7 +366,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08839824` | 0x08839824-0x08839B30 | 1 function (C++: func_0882FA24 / func_0882F580, a formatted text and func_08891474) | 100 % |
 | `unit_08839B30` | 0x08839B30-0x08839F64 | 1 function (C++: state switch on +0x57E / +0x57F, error-code chain, `(bool)(x & 1) == 1`) | 100 % |
 | `unit_08839F64` | 0x08839F64-0x0883A07C | 1 function (speed: state switch; 6-byte key search over the 0xC8-byte records at D_09A0B544 + 0x57C, then func_0883A07C) | 100 % |
-| `unit_0883A07C` | 0x0883A07C-0x0883A758 | 1 function, NonMatching (speed, 97.8 %: argument loads of the two func_08831338 calls of case 1 scheduled differently) | not linked |
+| `unit_0883A07C` | 0x0883A07C-0x0883A758 | 1 function, NonMatching (speed, 98.0 %: argument loads of the two func_08831338 calls of case 1 scheduled differently) | not linked |
 | `unit_0883A758` | 0x0883A758-0x0883A8A4 | 1 function (speed: two drawing loops, the `s32` parameter reused as an `s16` coordinate) | 100 % |
 | `unit_0883A8A4` | 0x0883A8A4-0x0883AB44 | 1 function (speed: `switch` on +0x57E without `default`, 6-byte key search) | 100 % |
 | `unit_0883AB44` | 0x0883AB44-0x0883AB4C | 1 small function | 100 % |
