@@ -296,12 +296,32 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0882DCA0` | 0x0882DCA0-0x0882DCB0 | 2 small functions | 100 % |
 | `unit_0882FD68` | 0x0882FD68-0x0882FDA4 | 1 small function | 100 % |
 | `unit_0882FDA4` | 0x0882FDA4-0x0882FE34 | 1 small function | 100 % |
+| `unit_08830078` | 0x08830078-0x0883029C | 1 function (speed; text box with two table views of one record array) | 100 % |
+| `unit_0883029C` | 0x0883029C-0x08830354 | 1 small function (sprite id from a kind and an id, two tables) | 100 % |
 | `unit_08830354` | 0x08830354-0x088303A0 | 1 colour lookup through two tables | 100 % |
 | `unit_088303A0` | 0x088303A0-0x088303B8 | 1 small function | 100 % |
 | `unit_088303B8` | 0x088303B8-0x088303E8 | 1 small function | 100 % |
+| `unit_088303E8` | 0x088303E8-0x08830550 | 1 function (combines two lookups of func_08830550) | 100 % |
+| `unit_08830550` | 0x08830550-0x088306DC | 1 function (lookup with a switch on the kind) | 100 % |
 | `unit_088306DC` | 0x088306DC-0x08830728 | 1 reset (bytes, clear, copy) | 100 % |
 | `unit_08830728` | 0x08830728-0x088307BC | 1 small function | 100 % |
+| `unit_088307BC` | 0x088307BC-0x08830850 | 1 small function (queue push of a 36-byte entry, sibling of func_08830728) | 100 % |
+| `unit_08830850` | 0x08830850-0x0883095C | 1 function (queue push with an allocated copy) | 100 % |
+| `unit_0883095C` | 0x0883095C-0x08830D3C | 1 function (text layout and dispatch, inline helper) | 100 % |
+| `unit_08830D3C` | 0x08830D3C-0x08830F74 | 1 function (speed, `opt_rebuildconditionals off`; text lines) | 100 % |
 | `unit_08830F74` | 0x08830F74-0x08830FAC | 1 small function | 100 % |
+| `unit_08830FAC` | 0x08830FAC-0x0883104C | 1 small function (two-piece draw) | 100 % |
+| `unit_0883104C` | 0x0883104C-0x08831188 | 1 function (C++; state switch with virtual calls) | 100 % |
+| `unit_08831188` | 0x08831188-0x08831274 | 1 function (C++; state switch with virtual calls) | 100 % |
+| `unit_08831274` | 0x08831274-0x08831338 | 1 function (list walk ended by 0xFFFF) | 100 % |
+| `unit_08831338` | 0x08831338-0x08831418 | 1 function (`opt_propagation off`; icon drawn from a stack record) | 100 % |
+| `unit_08831418` | 0x08831418-0x088314A0 | 1 small function (icon drawn from a stack record) | 100 % |
+| `unit_088314A0` | 0x088314A0-0x0883185C | 1 function (speed; GE command block, inline push helper) | 100 % |
+| `unit_0883185C` | 0x0883185C-0x08831CB0 | 1 function (two switches); jump tables 0x08930B7C-0x08930BAC in the unit | 100 % |
+| `unit_08831CB0` | 0x08831CB0-0x08831F3C | 1 function (two quads in a display list); func_08831F3C after it stays in assembly (VFPU) | 100 % |
+| `unit_08831FF8` | 0x08831FF8-0x08832204 | 1 function (switch without default on a lookup result) | 100 % |
+| `unit_08832204` | 0x08832204-0x08832228 | 1 small function | 100 % |
+| `unit_08832228` | 0x08832228-0x08832548 | 1 function (nine-piece frame) | 100 % |
 | `unit_08832548` | 0x08832548-0x08832684 | 1 function (sets the byte at +0x534 from a kind, calls, then sets it back from its old value); jump tables 0x08930BAC-0x08930BDC in the unit | 100 % |
 | `unit_08832838` | 0x08832838-0x08832884 | 1 flag test and clear with a call | 100 % |
 | `unit_08832A9C` | 0x08832A9C-0x08832B98 | 1 small function | 100 % |

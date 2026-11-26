@@ -3003,6 +3003,37 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   inline instead of through a local that lives across the next call, drop
   no-op casts on arguments, reuse locals across cases, block-scoped
   declarations, then a scripted search (func_08849D7C 98.68 % -> 99.21 %).
+- A near-identical matched sibling is the best draft: func_088307BC and
+  func_08830850 (left in earlier sessions with a scheduling gap and two
+  swapped prologue copies) matched at once in the style of func_08830728
+  (`E36` struct-array casts for 36-byte entries, the global reloaded at
+  each use).
+- `negu; sll 1; addu` with the operands swapped: subtract the value twice,
+  `w - k - k` (`w - k * 2` gives `sll; subu`) (func_08832228).
+- `beql x, A` with the body in its slot, then `bne x, B` with the body
+  copied: one `||` condition, `if (c == A || c == B) ... else if (c == C)`
+  (func_0883095C). A ternary whose constants come out swapped: write the
+  `== 0` compare, `x == 0 ? K1 : K2` (func_0883029C).
+- A compare computed in the prologue into a saved register and passed to a
+  later call: a local initialised at its declaration under `#pragma
+  opt_propagation off` (func_08831338). A stack record passed by address 8
+  bytes too high: make it 12 bytes (func_08831338, func_08831418).
+- A `u16` parameter masked once before the first `jal` and again later:
+  copy it into an `s32` local as the first statement, `(u16)x` at the uses
+  that re-mask (func_08831CB0). A call result masked `andi 0xFFFF` at each
+  use: an `s32` local and `(u16)r & K` per use (func_088303E8).
+- A byte local spilled to the stack (`sb`, then `lb; addu a1`) with every
+  saved register in use: speed mode, a `u8` local passed to an `s8`
+  parameter (func_08830078). `x -= 15;` on an `s16` local avoids the `seh`
+  of `x = x - 15;` (func_08830078).
+- A field read several times in one block where ours shares one load: a
+  local for the first use, `*(volatile s32 *)&field` for a read that must
+  stay separate; a copy pointer kept as `addiu v0, sp, K; addiu t3, v0, 4`:
+  `src = &hdr->n1; src++;` as two statements (func_088314A0).
+- A field loaded once before a branch but reloaded after a call in the
+  other branch: read it there through a bit-field member of a union
+  (func_0883185C). `bne` with the else value in its slot: `n = 0x100; if
+  (fmt == 4) n = 0x10;` (func_0883185C, func_088314A0).
 - A call result compared with a value in a saved register, operands
   swapped (`beql s3, v0` for `beql v0, s3`): assign the result to a local
   in its own statement, `r = f(); if (r == x) break;`; swapping the `==`
