@@ -364,12 +364,32 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08838F58` | 0x08838F58-0x088392F4 | 1 function (speed: three-row loop of func_09C240A0 / func_08892148, then func_08833290) | 100 % |
 | `unit_08839688` | 0x08839688-0x08839824 | 1 function (two nested `switch` on the bytes at +0x57E / +0x57F) | 100 % |
 | `unit_08839824` | 0x08839824-0x08839B30 | 1 function (C++: func_0882FA24 / func_0882F580, a formatted text and func_08891474) | 100 % |
+| `unit_08839B30` | 0x08839B30-0x08839F64 | 1 function (C++: state switch on +0x57E / +0x57F, error-code chain, `(bool)(x & 1) == 1`) | 100 % |
+| `unit_08839F64` | 0x08839F64-0x0883A07C | 1 function (speed: state switch; 6-byte key search over the 0xC8-byte records at D_09A0B544 + 0x57C, then func_0883A07C) | 100 % |
+| `unit_0883A07C` | 0x0883A07C-0x0883A758 | 1 function, NonMatching (speed, 97.8 %: argument loads of the two func_08831338 calls of case 1 scheduled differently) | not linked |
+| `unit_0883A758` | 0x0883A758-0x0883A8A4 | 1 function (speed: two drawing loops, the `s32` parameter reused as an `s16` coordinate) | 100 % |
+| `unit_0883A8A4` | 0x0883A8A4-0x0883AB44 | 1 function (speed: `switch` on +0x57E without `default`, 6-byte key search) | 100 % |
 | `unit_0883AB44` | 0x0883AB44-0x0883AB4C | 1 small function | 100 % |
 | `unit_0883AB4C` | 0x0883AB4C-0x0883AB8C | 1 forwarder with fixed arguments | 100 % |
 | `unit_0883AB8C` | 0x0883AB8C-0x0883ABE0 | 1 small function | 100 % |
+| `unit_0883ABE0` | 0x0883ABE0-0x0883AE3C | 1 function (record from func_0889D7E8 copied into the object, call results in their own locals) | 100 % |
+| `unit_0883AE3C` | 0x0883AE3C-0x0883B190 | 1 function (speed: two search loops, one pointer and one counter per loop) | 100 % |
+| `unit_0883B190` | 0x0883B190-0x0883B3D4 | 1 function (`switch` on +0x57E, one shared `return b & ~0x2000`) | 100 % |
+| `unit_0883B3D4` | 0x0883B3D4-0x0883B498 | 1 function (speed: n-th qualifying 0xC8-byte record) | 100 % |
+| `unit_0883B498` | 0x0883B498-0x0883B53C | 1 function (speed: index of the record with a given 6-byte key, -1 if none) | 100 % |
+| `unit_0883B53C` | 0x0883B53C-0x0883B870 | 1 function (record drawing, colour from a flag and a kind byte) | 100 % |
+| `unit_0883B870` | 0x0883B870-0x0883BA38 | 1 function (two nested loops over a flat `u16` table, four `const` globals) | 100 % |
+| `unit_0883BA38` | 0x0883BA38-0x0883BB10 | 1 function (two byte locals on the stack, signed `% 4` on a byte) | 100 % |
+| `unit_0883BB10` | 0x0883BB10-0x0883D0EC | 1 function (C++, speed, 0x15DC: state machine; 0x70-byte record swap copied member by member) | 100 % |
 | `unit_0883D0EC` | 0x0883D0EC-0x0883D184 | 1 small function | 100 % |
+| `unit_0883D184` | 0x0883D184-0x0883D274 | 1 function (speed: insert into a five-entry list, shift down when full) | 100 % |
 | `unit_0883D274` | 0x0883D274-0x0883D290 | 1 small function | 100 % |
+| `unit_0883D290` | 0x0883D290-0x0883D3D4 | 1 function (speed: five-entry list drawing); `.data` 0x0893B400-0x0893B414 (an initialised local `Box`) in the unit | 100 % |
+| `unit_0883D3D4` | 0x0883D3D4-0x0883D40C | 1 small function (one `||` chain on a global state) | 100 % |
+| `unit_0883D40C` | 0x0883D40C-0x0883D4F0 | 1 function (one `||` guard, then a record update) | 100 % |
+| `unit_0883D4F0` | 0x0883D4F0-0x0883D66C | 1 function (speed: `static inline` search and compare helpers) | 100 % |
 | `unit_0883D66C` | 0x0883D66C-0x0883D6D0 | 1 small function | 100 % |
+| `unit_0883D6D0` | 0x0883D6D0-0x0883DF88 | 1 function (speed, 0x8B8: screen drawing with 56 calls); `.data` 0x0893B414-0x0893B42C (an initialised local `u16 [6][2]`) in the unit | 100 % |
 | `unit_0883E400` | 0x0883E400-0x0883E4B8 | 1 function (calls func_0882DCA0 with four values of its array, then prints a number); initialised array 0x0893B474-0x0893B480 (`.data`) in the unit | 100 % |
 | `unit_0883F0CC` | 0x0883F0CC-0x0883F270 | 1 function (three-step state at +0x1198, virtual calls; C++); jump table 0x08931144-0x0893115C in the unit | 100 % |
 | `unit_0883F8B4` | 0x0883F8B4-0x0883F988 | 1 function (steps four s16 counters at +0x56C); optimized for speed | 100 % |

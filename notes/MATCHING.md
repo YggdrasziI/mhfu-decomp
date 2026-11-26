@@ -3099,6 +3099,42 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   a `for` that sets the pointer (func_0884FDC4, speed). A retry loop whose
   `b` back edge carries the field reload: load it before the loop and
   again as the last statement of the body (func_0884F190).
+- A switch whose other values return what the shared return returns: no
+  `default:` at all (`default: return x;` adds `b` / `nop` blocks)
+  (func_0883A8A4). In an if-chain where `x == A || x == B` with consecutive
+  constants becomes a range test (`addiu; sltiu 2`) but the original has
+  `beql x, A` into the next body: `else if (x == A) { goto L; } else if (x
+  == B) { L: body; }` (func_08839B30).
+- `bgtzl` where ours has `blezl`, the `> 0` block after the other one:
+  `if (x <= 0) { other } else { then }` (func_0883B190).
+- A halfword field loaded after a `mult` where the original loads it after
+  a global and before the product's use: type the field `s16`, cast `(u16)`
+  at the use (`lhu` and the order both right) (func_0883D290).
+- A guard pair where the second `return 0` is `addu v0, zero, zero; b end;
+  nop` with the slot left empty: one `||` guard, `if (p == 0 || f() == -1)
+  return 0;` (func_0883D40C, func_0883D4F0; func_0883BB10 with a shared
+  `ok = 0` block).
+- Prologue saves interleaved with the loads of a group of globals passed to
+  one call: declare ALL of them `const` (half of them is not enough); the
+  callee parameter types then set the argument load order (func_0883B870).
+- An invariant `x + K` hoisted into a saved register but masked inside the
+  loop: a `u32` local, `xx = xb + K; xx &= 0xFFFF;` in the loop body; when
+  the masked value must survive a call, copy it to a `u16` and make the call
+  its own statement (func_0883D6D0).
+- A record copied member by member in a given load/store order: the order
+  follows the struct grouping (`u8 x[3]` for three `lbu` then three `sb`,
+  separate members for a delayed last store, plain `f32` members rather than
+  a sub-struct); in C++ `a = *p;` copies by members where `Rec a = *p;`
+  copies by words (func_0883BB10). A 6-byte tail copied as `lh`x3 / `sh`x3:
+  that tail as a sub-structure, the rest field by field (func_0883A07C).
+- Saved registers of parameters and locals permuted in a call-heavy function
+  with two loops, no declaration order helping in size mode: speed mode,
+  then the declaration-order search (func_0883AE3C: 5040 orders, several at
+  100 % only in speed mode).
+- A parameter copied to a saved register, used once, and that register
+  later holds an `s16` coordinate (`lh`, `seh` after each add): the
+  coordinate IS the reused `s32` parameter, `b = box.y; ... b = (s16)(b +
+  box.h);` (func_0883A758).
 
 ## Open symptoms
 
