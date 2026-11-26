@@ -48,6 +48,11 @@ func_088511B4 = 0x088511B4; // type:func size:0xD8
 func_08890494 = 0x08890494; // type:func size:0xB0
 func_08890544 = 0x08890544; // type:func size:0x6C
 
+// func_0884E5B4 is a thread entry ending in an infinite loop (no `jr $ra`); the
+// code after it, at 0x0884E678, is another thread entry (created by func_0884D878)
+func_0884E5B4 = 0x0884E5B4; // type:func size:0xC4
+func_0884E678 = 0x0884E678; // type:func size:0xB4
+
 // func_088C6ADC ends with a jump through a pointer (`jr $t9`); the `return 0` after it,
 // at 0x088C6AF0, is a function of its own (an entry of the vtable D_089BACDC)
 func_088C6ADC = 0x088C6ADC; // type:func size:0x14

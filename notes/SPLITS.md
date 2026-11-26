@@ -393,23 +393,43 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0884A66C` | 0x0884A66C-0x0884A6CC | 1 small function (one of two format strings) | 100 % |
 | `unit_0884A6CC` | 0x0884A6CC-0x0884A72C | 1 small function (state reset, `switch`) | 100 % |
 | `unit_0884A72C` | 0x0884A72C-0x0884A958 | 1 function (timer and random float offset) | 100 % |
+| `unit_0884A958` | 0x0884A958-0x0884AAD0 | 1 function (speed; nested switches, scaled drawing) | 100 % |
+| `unit_0884AAD0` | 0x0884AAD0-0x0884AB78 | 1 small function (scaled sprite, tail call) | 100 % |
+| `unit_0884AB78` | 0x0884AB78-0x0884AC20 | 1 small function (scaled sprite, tail call) | 100 % |
+| `unit_0884AC20` | 0x0884AC20-0x0884AE14 | 1 function (two rotated sprites) | 100 % |
+| `unit_0884AE14` | 0x0884AE14-0x0884AF84 | 1 function (mirrored sprite rows) | 100 % |
 | `unit_0884AF84` | 0x0884AF84-0x0884B010 | 1 small function | 100 % |
 | `unit_0884B010` | 0x0884B010-0x0884B058 | 1 function (stores a table address in the object, then a call when the flag is positive) | 100 % |
 | `unit_0884B058` | 0x0884B058-0x0884B0B4 | 1 small function | 100 % |
 | `unit_0884B0B4` | 0x0884B0B4-0x0884B19C | 1 small function | 100 % |
 | `unit_0884B19C` | 0x0884B19C-0x0884B234 | 1 small function | 100 % |
 | `unit_0884B234` | 0x0884B234-0x0884B284 | 1 small function | 100 % |
+| `unit_0884B284` | 0x0884B284-0x0884BB00 | 1 function (speed; GE command words, fog) | 100 % |
+| `unit_0884BB00` | 0x0884BB00-0x0884BB58 | 1 small function (clears 20 bucket lists) | 100 % |
+| `unit_0884C128` | 0x0884C128-0x0884C22C | 1 function (GE command list on the stack) | 100 % |
 | `unit_0884C22C` | 0x0884C22C-0x0884C7C0 | 1 small function | 100 % |
 | `unit_0884C7C0` | 0x0884C7C0-0x0884C89C | 1 small function | 100 % |
+| `unit_0884C89C` | 0x0884C89C-0x0884C914 | 1 small function | 100 % |
+| `unit_0884C914` | 0x0884C914-0x0884C9B8 | 1 function (closes a GE list) | 100 % |
 | `unit_0884CB24` | 0x0884CB24-0x0884CBD8 | 1 small function | 100 % |
+| `unit_0884CBD8` | 0x0884CBD8-0x0884CDBC | 1 function (inserts a node in one of 20 depth buckets) | 100 % |
+| `unit_0884CDBC` | 0x0884CDBC-0x0884CDE4 | 1 small function | 100 % |
 | `unit_0884D06C` | 0x0884D06C-0x0884D0FC | 1 small function | 100 % |
 | `unit_0884D0FC` | 0x0884D0FC-0x0884D158 | 1 small function | 100 % |
 | `unit_0884D158` | 0x0884D158-0x0884D2F8 | 2 small functions | 100 % |
+| `unit_0884D2F8` | 0x0884D2F8-0x0884D754 | 1 function (colour fade packet) | 100 % |
 | `unit_0884D754` | 0x0884D754-0x0884D790 | 1 small function | 100 % |
 | `unit_0884D790` | 0x0884D790-0x0884D804 | 2 small functions | 100 % |
 | `unit_0884D804` | 0x0884D804-0x0884D878 | 1 small function | 100 % |
+| `unit_0884D878` | 0x0884D878-0x0884DBA8 | 1 function (UMD, file and thread set-up) | 100 % |
 | `unit_0884DBA8` | 0x0884DBA8-0x0884DBB8 | 1 small function | 100 % |
+| `unit_0884DBB8` | 0x0884DBB8-0x0884DE34 | 1 function (two switches); jump table 0x08931340-0x08931374 in the unit | 100 % |
 | `unit_0884DE34` | 0x0884DE34-0x0884DE3C | 1 small function | 100 % |
+| `unit_0884DE3C` | 0x0884DE3C-0x0884E478 | 1 function (C++; loader thread state machine) | 100 % |
+| `unit_0884E478` | 0x0884E478-0x0884E5B4 | 1 function (C++, speed; ring of 0x80 slots) | 100 % |
+| `unit_0884E5B4` | 0x0884E5B4-0x0884E72C | 2 functions (two thread bodies with no return; sizes in symbol_addrs.txt) | 100 % |
+| `unit_0884E72C` | 0x0884E72C-0x0884E788 | 1 small function (sceIoRead into the buffer at +0x9300) | 100 % |
+| `unit_0884E788` | 0x0884E788-0x0884E7FC | 1 small function | 100 % |
 | `unit_0884E858` | 0x0884E858-0x0884E884 | 1 small function | 100 % |
 | `unit_0884E884` | 0x0884E884-0x0884E998 | 1 small function | 100 % |
 | `unit_0884E998` | 0x0884E998-0x0884EA1C | 1 small function | 100 % |

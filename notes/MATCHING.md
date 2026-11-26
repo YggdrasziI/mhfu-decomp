@@ -2954,6 +2954,34 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   local read as `((u8 *)&c)[0..2]` (func_088471D8). Loop and register order
   of two zero-initialised locals follows the order of the assignments
   (func_0884706C).
+- A float -> unsigned conversion (`0x4F000000` compare, `sub.s`, `or
+  0x8000`): an explicit `(u32)` cast of the float expression (func_0884AC20,
+  func_0884AAD0, func_0884AB78). An `sltu` kept before a plain `beqz` on a
+  byte flag: `if ((s32)(x != 0) != 0)` (func_0884C89C). `andi; sltu; xori
+  1; bnez` for a bit-clear loop test: `while (((x & K) != 0) ^ 1)`
+  (func_0884D878).
+- Retry loops not rotated (test at the top, `b` back): `while (1) { if
+  (f() >= 0) break; delay(); }` (func_0884D878). A comparison emitted twice,
+  `bnel` then a `bne` that is never taken: `if (r != x) goto fail;` then `if
+  (r == x) { ... }` (func_0884DE3C).
+- Dead copies of each case's first instruction after `beql` into a switch:
+  nest the later switch and the code after it inside the case group of the
+  earlier guard switch, ending the cases with `break;` (func_0884A958).
+- `c.eq.s d, zero; bc1tl; mov.s d, one`: `d = d ? d : 1.0f;` (func_0884B284).
+  A stack temporary 4 bytes too high: make it an 8-byte struct; the source
+  position of a struct copy sets its float register (func_0884B284).
+  Stack offsets too low for a buffer a callee reads whole: declare it larger
+  than used (`cmd[16]` for 12 words) (func_0884C128).
+- A global byte table reloaded after stores through a kept address: take a
+  pointer local `np = &D_x[i];` and read `*np` at each use; a product by
+  `-1.0f` in the wrong float register: `t = sum; d = t; d *= -1.0f;`
+  (func_0884CBD8). A ratio converted before the divisor load: `t =
+  ++e->timer; t /= e->duration;`, a `u8` difference assigned between the
+  two statements (func_0884D2F8).
+- A global reloaded with `lui`/`lw` for one argument while a copy sits in a
+  saved register: read it there as `*(char * volatile *)&D_x`
+  (func_0884DBB8). `x / K - 1` subtracted from a field: fold the `- 1` into
+  the local (`n = x / K - 1; f -= n;`) (func_0884E478).
 
 ## Open symptoms
 
