@@ -10,7 +10,7 @@ extern char D_089BAAA8;
 extern char D_089BAC20;
 extern int func_0890BFA4(char **);
 
-char *func_0884F86C(void) {
+char *func_0884F86C(char *arg0) {
     return &D_0899A1DC;
 }
 
