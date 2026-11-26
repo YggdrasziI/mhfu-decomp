@@ -266,10 +266,30 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0881E8F8` | 0x0881E8F8-0x0881E92C | 1 small function | 100 % |
 | `unit_0881EAF8` | 0x0881EAF8-0x0881EB60 | 1 small function | 100 % |
 | `unit_0881ED64` | 0x0881ED64-0x0881EE84 | 1 function (C++; fills a 12-byte record from one of six sources); jump table 0x089309BC-0x089309D4 in the unit | 100 % |
+| `unit_08820B74` | 0x08820B74-0x08820DBC | 1 function (`switch` on six button codes, clamps); jump table 0x08930A1C-0x08930A34 in the unit | 100 % |
+| `unit_08820DBC` | 0x08820DBC-0x08820FB4 | 1 function (picks one of 13 strings from a kind and flags) | 100 % |
+| `unit_08820FB4` | 0x08820FB4-0x08821080 | 1 function (colour as a byte union, item drawing) | 100 % |
+| `unit_08821080` | 0x08821080-0x088213E4 | 1 function (speed: seven-row table drawing, colour union) | 100 % |
+| `unit_088213E4` | 0x088213E4-0x0882148C | 1 small function (counter up / down from three button tests, clamped) | 100 % |
+| `unit_0882148C` | 0x0882148C-0x08821774 | 1 function (speed: two pair lists compared and drawn) | 100 % |
+| `unit_08821774` | 0x08821774-0x08821828 | 1 function (speed: collects up to nine (id, value) pairs) | 100 % |
+| `unit_08821828` | 0x08821828-0x08821890 | 1 small function (pair list lookup, three-way compare) | 100 % |
+| `unit_08821890` | 0x08821890-0x08821924 | 1 function (C++, speed: six 12-byte records copied by structure assignment) | 100 % |
+| `unit_08821924` | 0x08821924-0x08821A10 | 1 function (five records copied back, then three calls) | 100 % |
+| `unit_08821A10` | 0x08821A10-0x08821ADC | 1 function (12-byte record copy with a 3 x s16 sub-structure) | 100 % |
+| `unit_08821ADC` | 0x08821ADC-0x08821B58 | 1 small function (one record copied from an indexed entry) | 100 % |
 | `unit_08821B58` | 0x08821B58-0x08821BD4 | 1 small function | 100 % |
+| `unit_08821BD4` | 0x08821BD4-0x08821CA8 | 1 function (record copy, then item state calls) | 100 % |
+| `unit_08821CA8` | 0x08821CA8-0x08821D48 | 1 function (speed: clears entries that fail func_08826EF4) | 100 % |
+| `unit_08821D48` | 0x08821D48-0x0882217C | 1 function (two-colour stages through `static inline` helpers) | 100 % |
+| `unit_0882217C` | 0x0882217C-0x08822210 | 1 small function (one of three strings drawn) | 100 % |
+| `unit_08822210` | 0x08822210-0x0882232C | 1 function (row of icons, `s32` coordinate narrowed at its uses) | 100 % |
 | `unit_0882232C` | 0x0882232C-0x08822594 | 1 function, speed; draws a header, then one line per entry with func_08892148 | 100 % |
+| `unit_08822594` | 0x08822594-0x088226F0 | 1 function (speed: six flag entries drawn with a colour each) | 100 % |
 | `unit_088226F0` | 0x088226F0-0x08822990 | 1 function (sibling of func_0882232C: compares two values from func_088DA398 and draws one line) | 100 % |
 | `unit_08822990` | 0x08822990-0x088229B8 | 1 small function | 100 % |
+| `unit_088229B8` | 0x088229B8-0x08822BF4 | 1 function (speed: three loops sharing one counter) | 100 % |
+| `unit_08822BF4` | 0x08822BF4-0x08822C58 | 1 small function (counts non-zero bytes at a stride of 2) | 100 % |
 | `unit_08823A50` | 0x08823A50-0x08823AE4 | 1 small function | 100 % |
 | `unit_08823CBC` | 0x08823CBC-0x08823DB0 | 1 function (calls func_0882DCA0 with four values of its array, then formats and prints a number); initialised array 0x08938614-0x08938620 (`.data`) in the unit | 100 % |
 | `unit_08823DB0` | 0x08823DB0-0x08823DEC | 1 small function | 100 % |

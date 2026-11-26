@@ -3161,6 +3161,37 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   separately (`D_..F4`, `D_..F6`...): an extern `const` structure copied
   whole in C++, `Frame f = D_X;`; the name-only differences resolve in the
   report (func_0883E4B8).
+- An early-return block inside a loop joined through an extra `negu; b end;
+  nop` block where the original has `b end` with the computation in its
+  slot: one result local set by `if / else` in the loop and in the tail,
+  `goto end;`, one `end: return r;` (func_08821828).
+- `k == 6 || k == 5` folded to a range test (`addiu -5; sltiu 2`) where the
+  original has two `beq`: `switch (k) { case 5: case 6: ... }`; the case
+  bodies follow source order while the compares are reversed
+  (func_08820DBC). `return r == 0 ? B : A;` for `bnezl` with A in the slot.
+- An `s8` local passed with a plain `addu aN, sX, zero` where ours adds
+  `seb`: the callee parameter is `s8` (func_08822594); a spilled `s8` loaded
+  `lb v0` then moved where ours loads `lb a1`: the callee parameter is
+  `s32` (func_08821D48, func_0882148C).
+- A byte parameter masked again in each block with the masks in the wrong
+  argument registers: `s32` parameter written `(flag & 0xFF)` at each use,
+  not `(u8)flag` (func_08821D48). Several locals set to one constant: one
+  assignment chain `a = b = c = 10;`; its order with the declaration order
+  sets which locals are spilled (func_08821D48).
+- A field address computed into a saved register in a delay slot and
+  stored through `0(sX)` later: a pointer local to that field (func_08821CA8).
+- Stepped pointers that start at the bare arguments with the full offsets in
+  the loads: step raw `char *` copies by `sizeof(Rec)` and cast `(Rec *)(s +
+  off)` in the body (func_08821924). `addu` base/index swapped on an element
+  address that no sum form fixes: type the parameter as a wrapper struct
+  (pad, array member) and take `&p->ent[idx]` once (func_08821ADC).
+- Loop set-up instructions out of order (the scale of a two-level table
+  index scheduled late): split the pointer, `p = tbl[k]; p += idx * K;`,
+  then search the ASSIGNMENT order of the set-up statements, `i = 7;` out of
+  the `for` header (func_08821080: 95.0 -> 100 %). A float constant built
+  with `lui`/`ori` instead of read from `@N` data: speed mode (func_08821080).
+- `s16` increments: `yy += 16;` (no extra `seh`), and an `s16` reset from an
+  `s32` (`yy = top;`) to keep the `seh` in the loop (func_0882148C).
 
 ## Open symptoms
 
