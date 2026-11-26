@@ -333,6 +333,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08832CE4` | 0x08832CE4-0x08832E34 | 1 function (func_0882C7B4, a number formatted into a 16-byte buffer, func_088915B0) | 100 % |
 | `unit_08832E34` | 0x08832E34-0x08832F20 | 1 function (func_0882DCA8, func_08832CE4, then a text through func_088915B0) | 100 % |
 | `unit_08832F20` | 0x08832F20-0x08833290 | 1 function (formatted text into a 16-byte buffer, two blocks of calls on bits 0 and 1 of a flags argument) | 100 % |
+| `unit_08833290` | 0x08833290-0x08834304 | 1 function, NonMatching (speed, 99.95 %: two argument loads of the first func_0882DCB0 call swapped); four initialised locals at 0x089387A4-0x08938850 go to the unit once it matches | not linked |
 | `unit_08834304` | 0x08834304-0x08834400 | 1 function (two-step state on the byte at +0x52C, then five calls) | 100 % |
 | `unit_08834400` | 0x08834400-0x0883448C | 1 small function | 100 % |
 | `unit_0883448C` | 0x0883448C-0x088344FC | 1 small function | 100 % |
