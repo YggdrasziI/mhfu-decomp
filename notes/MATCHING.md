@@ -2924,7 +2924,7 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   (func_088421C4). A float -> `u16` conversion repeated per sum: `a1 +=
   (u16)off;` on `u16` parameters (func_08842F70). A constant float product
   used in many places: write it at each use, not in a local; the float
-  registers then land right (func_08843A7C, NonMatching).
+  registers then land right (func_08843A7C).
 - Guards that branch with `bnel`/`beql` to a shared epilogue, the return
   value in the slot: nested positive `if` blocks, each returning, the
   fallback after the block (func_08849BCC). Several final tests sharing one
@@ -2983,6 +2983,26 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   saved register: read it there as `*(char * volatile *)&D_x`
   (func_0884DBB8). `x / K - 1` subtracted from a field: fold the `- 1` into
   the local (`n = x / K - 1; f -= n;`) (func_0884E478).
+- Two values computed in a call's arguments and kept for later, in swapped
+  saved registers whatever the declaration order: pass plain expressions to
+  the call, then assign the locals from the same expressions after it, in
+  the order of the registers wanted (common subexpressions; func_08843A7C
+  99.12 % -> 100 %).
+- A `trunc.w.s` placed after two unsigned conversions while the `add.s` it
+  reads stays early: `f32 w = expr;`, then the `u32` locals, then `s32 i =
+  w;` under `#pragma opt_propagation off` (func_0884424C 82.91 % -> 100 %).
+- One prologue `sw sN` scheduled before the first `lui` of a global in
+  ours, after it in the original (`lui; sw s0; lhu`): declare that global
+  (or its group) `const`; declaring every global `const` adds a saved
+  register (func_08845C68 98.61 % -> 100 %).
+- A value loaded once and used in two blocks, in the wrong temporary: drop
+  its local and write the load at each use (still loaded once). Saved
+  registers swapped between two loops: a separate counter for the second
+  loop (func_088415D0, with `opt_rebuildconditionals off`, 89.85 % -> 100 %).
+- Saved registers rotated in a large call-heavy function: pass call results
+  inline instead of through a local that lives across the next call, drop
+  no-op casts on arguments, reuse locals across cases, block-scoped
+  declarations, then a scripted search (func_08849D7C 98.68 % -> 99.21 %).
 - A call result compared with a value in a saved register, operands
   swapped (`beql s3, v0` for `beql v0, s3`): assign the result to a local
   in its own statement, `r = f(); if (r == x) break;`; swapping the `==`
@@ -3020,8 +3040,10 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   lookup (func_088DC1F0, 99.78 %).
 - Two saved registers swapped (masked index and count) whatever the
   declaration order: func_088D7AD8 (99.58 %).
-- Scheduling: a load placed before / after an index computation (func_088307BC,
-  func_0884424C `trunc.w.s`).
+- Scheduling: a load placed before / after an index computation (func_088307BC).
+- One block of a large speed function: a byte load in `a3` instead of `a2`
+  and a constant argument set before a `subu` instead of in the `jal` slot
+  (func_08849D7C, 99.21 %, case 0).
 - Unfilled `jal` delay slot (func_08813CF8; func_088A812C 99.29 %: the
   `addu a1` goes into the slot of the func_088AAD58 call, with an extern or
   a static callee alike).

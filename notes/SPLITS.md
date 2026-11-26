@@ -339,7 +339,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08840BC0` | 0x08840BC0-0x08840C24 | 1 small function | 100 % |
 | `unit_08841100` | 0x08841100-0x08841520 | 1 function (C++, speed: `switch` on the mode byte at +0x1E8, two VFPU sines in an `asm` block for pulsing alphas) | 100 % |
 | `unit_08841520` | 0x08841520-0x088415D0 | 1 small function | 100 % |
-| `unit_088415D0` | 0x088415D0-0x08841908 | 1 function, NonMatching (speed, 89.7 %: saved registers); draws up to five icons from D_0893ACD0 / D_0893ACE0, divisions by 7, a float scale | not linked |
+| `unit_088415D0` | 0x088415D0-0x08841908 | 1 function (speed, `opt_rebuildconditionals off`); draws up to five icons from D_0893ACD0 / D_0893ACE0, divisions by 7, a float scale | 100 % |
 | `unit_08841908` | 0x08841908-0x08841AB4 | 1 function (C++, speed; four-slot list) | 100 % |
 | `unit_08841AB4` | 0x08841AB4-0x088421C4 | 1 function (C++, speed; panel drawing, 64-bit flag test) | 100 % |
 | `unit_088421C4` | 0x088421C4-0x088423E0 | 1 function (speed; icon row) | 100 % |
@@ -351,7 +351,8 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08842D3C` | 0x08842D3C-0x08842EE8 | 1 function (draws value / 10 as a number and value % 10 as icons spaced 0xE apart, or calls func_0882A9DC when the slot is 0xFF); optimized for speed | 100 % |
 | `unit_08842EE8` | 0x08842EE8-0x08842F70 | 1 small function | 100 % |
 | `unit_08842F70` | 0x08842F70-0x08843A7C | 1 function (C++, speed; HUD drawing) | 100 % |
-| `unit_08843A7C` | 0x08843A7C-0x0884424C | 1 function, NonMatching (speed, 99.12 %: bx/by saved registers swapped) | not linked |
+| `unit_08843A7C` | 0x08843A7C-0x0884424C | 1 function (speed; HUD drawing) | 100 % |
+| `unit_0884424C` | 0x0884424C-0x08844304 | 1 small function (`opt_propagation off`; 4-byte colour by value) | 100 % |
 | `unit_08844304` | 0x08844304-0x08844390 | 1 small function (speed; float constant built inline) | 100 % |
 | `unit_08844390` | 0x08844390-0x088443EC | 1 small function | 100 % |
 | `unit_088443EC` | 0x088443EC-0x088444A4 | 1 function (one `||` chain) | 100 % |
@@ -364,7 +365,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08845270` | 0x08845270-0x08845384 | 1 function | 100 % |
 | `unit_0884558C` | 0x0884558C-0x08845A34 | 1 function (sprite into the D_08A62C40 display list) | 100 % |
 | `unit_08845A34` | 0x08845A34-0x08845C68 | 1 function (C++; formatted text) | 100 % |
-| `unit_08845C68` | 0x08845C68-0x08845EA8 | 1 function, NonMatching (98.61 %: one prologue store scheduled earlier) | not linked |
+| `unit_08845C68` | 0x08845C68-0x08845EA8 | 1 function (first globals `const`) | 100 % |
 | `unit_08846FAC` | 0x08846FAC-0x0884706C | 1 function (two frame pieces on a flag) | 100 % |
 | `unit_0884706C` | 0x0884706C-0x0884711C | 1 function (counts filled slots of 24) | 100 % |
 | `unit_0884711C` | 0x0884711C-0x088471D8 | 1 function (frame row through a table) | 100 % |
@@ -389,7 +390,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08849B6C` | 0x08849B6C-0x08849BCC | 1 small function | 100 % |
 | `unit_08849BCC` | 0x08849BCC-0x08849CAC | 1 function (nested guards) | 100 % |
 | `unit_08849CAC` | 0x08849CAC-0x08849D7C | 1 function (centred text) | 100 % |
-| `unit_08849D7C` | 0x08849D7C-0x0884A66C | 1 function, NonMatching (speed, 98.68 %: saved registers permuted) | not linked |
+| `unit_08849D7C` | 0x08849D7C-0x0884A66C | 1 function, NonMatching (speed, 99.21 %: one block of case 0 scheduled differently) | not linked |
 | `unit_0884A66C` | 0x0884A66C-0x0884A6CC | 1 small function (one of two format strings) | 100 % |
 | `unit_0884A6CC` | 0x0884A6CC-0x0884A72C | 1 small function (state reset, `switch`) | 100 % |
 | `unit_0884A72C` | 0x0884A72C-0x0884A958 | 1 function (timer and random float offset) | 100 % |

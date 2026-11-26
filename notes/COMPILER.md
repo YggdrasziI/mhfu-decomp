@@ -242,6 +242,13 @@ The text functions func_08892708 and func_08894F7C (0x0889) need it too,
 together with the speed setting: there it keeps a 0/1 `if (x == K)` result
 as branches instead of `xori`/`sltiu`.
 
+`#pragma no_branch_likely on` exists (string in the 3.0.1 build 219 executable):
+it turns every `beql`/`bnel` of the function into a plain branch and a `nop`, and
+applies to the whole function (switching it mid-function has no effect). No unit
+needs it so far (func_0884F190 needs `beqz` at one place and `beql` at another).
+`#pragma opt_propagation off` (copy propagation) is used by func_0884424C and
+func_088DC1F0.
+
 mwccpsp calls `__extendsfdf2`, `__muldf3`, `__adddf3` and `__truncdfsf2` for
 `(double) f`, `d * d`, `d + d` and `(float) d`; func_088A7E44 calls 0x08905294,
 0x08905B10, 0x08905AA4 and 0x089066E0 at those places, so these addresses carry the

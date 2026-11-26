@@ -1,17 +1,13 @@
 /* unit_08843A7C: 0x08843A7C-0x0884424C (ULES01213)
  *
  * Bounds (hypothesis): 1 function between code still in assembly.
- *
- * NonMatching: func_08843A7C 99.12 % (speed). bx and by take s7/s6 instead
- * of s6/s7, and the 0xA0 stack argument is stored before the subu. Tried:
- * every declaration position of bx/by, ~3000 random declaration orders,
- * statement and type forms (see notes/SPLITS.md). A permuter candidate.
  */
 
 /* func_08843A7C (ULES01213), 0x08843A7C-0x0884424C
  *
- * NonMatching: 99.12 %. Only bx/by swap saved registers (s6/s7) and the
- * store of the 0xA0 stack argument moves around them.
+ * The call passes the two base coordinates as plain expressions; bx and by
+ * are assigned from the same expressions after the call (common
+ * subexpressions), bx first.
  *
  * Optimized for speed: float constants are built with lui/ori.
  */
@@ -109,7 +105,9 @@ void func_08843A7C(char *arg0, s16 arg1, s16 arg2, f32 scale) {
     } else {
         dx = 5.0f * scale * (ox - ix);
     }
-    func_0884558C(arg0, bx = arg1 - dx, by = arg2 - (s16)(5.0f * scale * (oy - iy)), (s32)(152.0f * scale), (s32)(152.0f * scale), ix, iy, ix2, iy2, 0xA0);
+    func_0884558C(arg0, arg1 - dx, arg2 - (s16)(5.0f * scale * (oy - iy)), (s32)(152.0f * scale), (s32)(152.0f * scale), ix, iy, ix2, iy2, 0xA0);
+    bx = arg1 - dx;
+    by = arg2 - (s16)(5.0f * scale * (oy - iy));
     func_08832B98(arg0, 1);
     if (*(u8 *)(arg0 + 0x578) == (u8)func_088446CC(arg0, *D_09CE470C[*(s32 *)(D_09A4F060 + 0x284) * 2])) {
         fx = 150.0f * (base + *(f32 *)(arg0 + 0x564) * D_0893897C[idx * 2]) - ix;

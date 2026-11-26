@@ -3,16 +3,16 @@
  * Bounds (hypothesis): 1 function between code still in assembly
  * (unit_08841520 and text_08841908).
  *
- * Optimized for speed: the divisions by 7 are multiplications.
+ * Optimized for speed: the divisions by 7 are multiplications. Built with
+ * `opt_rebuildconditionals off` (notes/COMPILER.md): with the option on,
+ * the colour pointer and the counter take other registers.
  *
- * NonMatching: func_088415D0 89.7 %. The instructions match but the saved
- * registers do not: the original keeps arg0 in $s0 (then x, x + off, the
- * table pointer and i in $s1-$s4), ours in $s4; a few temporaries
- * follow (colour pointer in $t3). Tried: local copy of arg0 (first or last),
- * u8 *, C++, per-loop counters, declaration orders (pairwise search).
+ * splat named D_0893ACD0 + 2 on its own (D_0893ACD2): the first loop's
+ * pointer starts from that name so the relocation names the same symbol.
  */
 
 #pragma optimize_for_size off
+#pragma opt_rebuildconditionals off
 
 typedef int s32;
 typedef unsigned int u32;
@@ -21,6 +21,7 @@ typedef unsigned char u8;
 typedef unsigned short u16;
 
 extern s16 D_0893ACD0[];
+extern s16 D_0893ACD2[];
 extern u8 D_0893ACE0[][4];
 
 extern s32 func_0882AF70(char *, u16, u16, u16, u16, s32);
@@ -29,18 +30,19 @@ extern void func_0882C11C(char *, u16, u16, s32, s32, u8, u8, u8, s32, s32);
 extern void func_0882BE60(char *, u16, u16, u16, u16, u8, u8, u8, s32);
 
 void func_088415D0(char *arg0) {
-    s32 i;
-    s32 off;
+    u8 id;
     s16 x;
     s32 n;
-    s32 m;
-    u8 id;
     u8 *col;
-    float f;
     u16 w;
     u16 h;
-    s16 y;
+    s32 i;
     s32 alpha;
+    float f;
+    s16 *p;
+    s32 j;
+    s32 off;
+    s16 y;
 
     func_0882AF70(arg0, 0x76, 0x1E, 0x80, 0x10, 0x178);
     func_0882A9DC(arg0, 0x78, 0x1E, 0x179);
@@ -48,18 +50,18 @@ void func_088415D0(char *arg0) {
     n = *(u8 *)(arg0 + 0x11A5);
     if (n > 0) {
         off = (s16) ((n * -24) / 7) + 0x96;
-        for (i = 1; i < 5; i++) {
+        i = 1;
+        for (p = D_0893ACD2; i < 5; i++, p++) {
             id = *(u8 *)(arg0 + 0x11A6 + i);
             if (id == 0) {
                 break;
             }
             x += 0x18;
+            y = p[0] + (*(u8 *)(arg0 + 0x11A5) * (p[-1] - p[0])) / 7;
             off += 0x18;
-            m = *(u8 *)(arg0 + 0x11A5);
-            y = D_0893ACD0[i] + (m * (D_0893ACD0[i - 1] - D_0893ACD0[i])) / 7;
             col = D_0893ACE0[id];
             if (i == 4) {
-                alpha = (u8) ((m * 255) / 7);
+                alpha = (u8) ((*(u8 *)(arg0 + 0x11A5) * 255) / 7);
             } else {
                 alpha = 0xFF;
             }
@@ -79,13 +81,14 @@ void func_088415D0(char *arg0) {
         func_0882BE60(arg0, x, y, w, h, col[0], col[1], col[2], 0x177);
         return;
     }
-    for (i = 0; i < 4; i++) {
-        id = *(u8 *)(arg0 + 0x11A6 + i);
+    for (j = 0; j < 4; j++) {
+        id = *(u8 *)(arg0 + 0x11A6 + j);
         if (id == 0) {
             break;
         }
+        y = D_0893ACD0[j];
         col = D_0893ACE0[id];
-        func_0882BE60(arg0, x, D_0893ACD0[i], 0xC, 0x10, col[0], col[1], col[2], 0x177);
+        func_0882BE60(arg0, x, y, 0xC, 0x10, col[0], col[1], col[2], 0x177);
         x += 0x18;
     }
 }

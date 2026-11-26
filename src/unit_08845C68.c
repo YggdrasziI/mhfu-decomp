@@ -2,10 +2,9 @@
  *
  * Bounds (hypothesis): 1 function between code still in assembly.
  *
- * NonMatching: func_08845C68 98.61 %. Only the prologue store `sw s0` is
- * scheduled before the first `lui` of D_0893B654 (after it in the
- * original). Tried: all 120 declaration orders, flag types and forms,
- * pragmas (opt_* and speed), -O3, -O4,p, C++.
+ * D_0893B654-D_0893B65A are declared `const`: their loads then do not wait
+ * for the prologue stores, and the first `lui` is scheduled before `sw s0`.
+ * Declaring the other globals `const` as well breaks the match.
  */
 
 typedef int s32;
@@ -14,7 +13,7 @@ typedef short s16;
 typedef unsigned char u8;
 typedef unsigned short u16;
 
-extern u16 D_0893B654, D_0893B656, D_0893B658, D_0893B65A;
+extern const u16 D_0893B654, D_0893B656, D_0893B658, D_0893B65A;
 extern u16 D_0893B660, D_0893B662, D_0893B664, D_0893B666;
 extern u16 D_0893B668, D_0893B66A, D_0893B66C, D_0893B66E;
 extern u16 D_0893B670, D_0893B672, D_0893B674, D_0893B676;
