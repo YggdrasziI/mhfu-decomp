@@ -21,7 +21,7 @@ typedef struct {
 
 extern char *D_089CC438;
 
-void func_0885F434(void) {
+void func_0885F434(char *arg0) {
     S *p = (S *)(D_089CC438 + 0x4A0);
     s32 i;
 

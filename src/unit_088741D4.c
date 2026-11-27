@@ -11,7 +11,7 @@ extern s32 D_09A4F0C4;
 extern char *func_088DCEBC(s32, u8);
 extern void memcpy(void *, void *, s32);
 
-void func_088741D4(void) {
+void func_088741D4(char *arg0) {
     char *p = func_088DCEBC(D_09A4F0C4, *(u8 *)(D_089CC438 + 0x28));
     memcpy(D_089CC438 + 0x43C8, p + 0x568, 0x60);
 }

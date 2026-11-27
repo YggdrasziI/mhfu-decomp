@@ -15,7 +15,7 @@ typedef struct {
 
 extern char *D_089CC438;
 
-void func_088739A4(void) {
+void func_088739A4(char *arg0) {
     Pair *p = (Pair *)(D_089CC438 + 0x390);
     s32 i;
 

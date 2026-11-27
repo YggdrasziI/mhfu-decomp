@@ -79,7 +79,7 @@ void func_088C14C8(char *arg0, s32 arg1) {
     *(u8 *)(D_08A62C64 + 0x17) = 1;
 }
 
-void func_088C1694(char *arg0) {
+void func_088C1694(char *arg0, s32 arg1) {
     s32 temp_a1;
 
     memset(arg0 + 0x18, 0, 0x600);

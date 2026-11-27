@@ -12,7 +12,7 @@ extern int memcpy(char *, char *, s32);
 extern int func_088D893C(s32);
 extern s32 func_088DCEBC(s32, u8);
 
-void func_0887EA88(void) {
+void func_0887EA88(char *arg0) {
     s32 temp_s2;
     char *temp_s0;
     char *temp_s1;
