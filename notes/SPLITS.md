@@ -2612,9 +2612,17 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0890CB64` | 0x0890CB64-0x0890CBC0 | 1 small function | 100 % |
 | `unit_0890CBC0` | 0x0890CBC0-0x0890CD14 | 1 function (C++; owns jtbl_089331DC) | 100 % |
 | `unit_0890CD14` | 0x0890CD14-0x0890D4C4 | 1 function (speed, opt_propagation off; owns jtbl_0893321C) | 100 % |
+| `unit_0890D4C4` | 0x0890D4C4-0x0890D7BC | 1 function (steps an action record; owns jtbl_0893325C) | 100 % |
 | `unit_0890D7BC` | 0x0890D7BC-0x0890D950 | 1 function (binary search of an address in 12-byte range records, then walks a list read with func_0890C3F4); optimized for speed | 100 % |
 | `unit_0890D950` | 0x0890D950-0x0890D95C | 1 small function | 100 % |
+| `unit_0890DA3C` | 0x0890DA3C-0x0890DA8C | 1 function (chains two or three func_0890C3F4 reads) | 100 % |
+| `unit_0890DA8C` | 0x0890DA8C-0x0890DB28 | 1 function (finds the entry of D_09A5F120 holding an address) | 100 % |
+| `unit_0890DB28` | 0x0890DB28-0x0890DB88 | 1 function (fills a free entry of D_09A5F120) | 100 % |
+| `unit_0890DB88` | 0x0890DB88-0x0890DC24 | 1 function (decodes a record header into a context) | 100 % |
+| `unit_0890DC24` | 0x0890DC24-0x0890DD9C | 1 function (speed, opt_unroll_loops off: restores saved words) | 100 % |
+| `unit_0890DD9C` | 0x0890DD9C-0x0890DE0C | 1 function (cache flush, clear, then func_0890C2FC) | 100 % |
 | `unit_0890DE0C` | 0x0890DE0C-0x0890DE14 | 1 small function | 100 % |
+| `unit_0890DE14` | 0x0890DE14-0x0890DE38 | 1 function (opt_common_subs off: tail call to func_0890C2FC) | 100 % |
 
 ## Method
 

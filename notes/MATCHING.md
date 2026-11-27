@@ -3482,6 +3482,19 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   the compiler shares with the loop test: one `volatile` read (last resort).
   A pragma that fixes constant hoisting may hide a shape difference: fix the
   shape first.
+- C++ runtime, second batch (2026-11-27, 0x0890D4C4-0x0890DE14, 8 linked,
+  written from the assembly only). The same global address passed twice
+  with both `lui`/`addiu` pairs kept: `#pragma opt_common_subs off`
+  (func_0890DE14). Copy loops unrolled by 8 under the speed setting:
+  `#pragma opt_unroll_loops off` with it (func_0890DC24). A compare landing
+  in `v0` instead of `$at` before `bnez`: the loaded value on the left,
+  `x <= arg1` (func_0890DA8C). The last computed value in `v0` at `jr ra`:
+  check the callers; returning it can be needed (func_0890D4C4) or harmful
+  (func_0890DB88 is `void`). A null test as `sltu; xori 1; bnezl`:
+  `((a != 0) ^ 1) || ...`. Left in assembly: func_0890D95C (restores every
+  saved register and jumps through `a2`, with a trapping `sub` mwccpsp never
+  emits) and `__throw` (stores every saved register into a stack record
+  before a call that does not return): hand-written routines.
 
 ## Open symptoms
 

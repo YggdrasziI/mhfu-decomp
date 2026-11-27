@@ -2559,19 +2559,19 @@ segments:
       - [0x10B118, c, unit_0890CB64]
       - [0x10B174, cpp, unit_0890CBC0]
       - [0x10B2C8, c, unit_0890CD14]
-      - [0x10BA78, asm, text_0890D4C4]
+      - [0x10BA78, c, unit_0890D4C4]
       - [0x10BD70, c, unit_0890D7BC]
       - [0x10BF04, c, unit_0890D950]
       - [0x10BF10, asm, text_0890D95C]
       - [0x10BF74, asm, text_0890D9C0]
-      - [0x10BFF0, asm, text_0890DA3C]
-      - [0x10C040, asm, text_0890DA8C]
-      - [0x10C0DC, asm, text_0890DB28]
-      - [0x10C13C, asm, text_0890DB88]
-      - [0x10C1D8, asm, text_0890DC24]
-      - [0x10C350, asm, text_0890DD9C]
+      - [0x10BFF0, c, unit_0890DA3C]
+      - [0x10C040, c, unit_0890DA8C]
+      - [0x10C0DC, c, unit_0890DB28]
+      - [0x10C13C, c, unit_0890DB88]
+      - [0x10C1D8, c, unit_0890DC24]
+      - [0x10C350, c, unit_0890DD9C]
       - [0x10C3C0, c, unit_0890DE0C]
-      - [0x10C3C8, asm, text_0890DE14]
+      - [0x10C3C8, c, unit_0890DE14]
       - [0x10C3EC, asm, scestub]          # .sceStub.text (system imports)
       - [0x10CC6C, rodata, lib]           # .lib.ent*, .lib.stub*
       - [0x10CF34, rodata, sceresident]   # .rodata.sceModuleInfo, .rodata.sceResident
@@ -2715,7 +2715,8 @@ segments:
       - { start: 0x131750, type: .rodata, name: unit_0890C6C8, linker_section_order: .data }
       - { start: 0x131790, type: .rodata, name: unit_0890CBC0, linker_section_order: .data }
       - { start: 0x1317D0, type: .rodata, name: unit_0890CD14, linker_section_order: .data }
-      - [0x131810, data, data_0893325C]
+      - { start: 0x131810, type: .rodata, name: unit_0890D4C4, linker_section_order: .data }
+      - [0x131850, data, data_0893329C]
       - [0x136AA8, .data, unit_088172D8]
       - [0x136AF4, data, data_08938540]
       - [0x136BC8, .data, unit_08823CBC]
