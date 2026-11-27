@@ -3458,9 +3458,12 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   passed by address is larger than the callee uses, or a case's first
   output is a two-word array (func_0890C564, func_0890CD14). `p + 4` kept
   in a saved register: `#pragma opt_propagation off` (func_0890CD14).
-  Not linked: a C++ class with an inline destructor matches the function
-  but also emits an out-of-line destructor calling `operator delete`, so
-  the unit does not link (func_0890BEC0).
+  A C++ class with an inline destructor matched func_0890BEC0 but also
+  emitted an out-of-line destructor calling `operator delete` (absent from
+  the binary), even with `#pragma exceptions off`. The linked form is C: a
+  stack record with `volatile` fields, written and re-read where the
+  original does, plus `opt_propagation off` (a test on a register known to
+  be 0 stays a `sltu`) and `opt_loop_invariants off` (no hoisted -1).
 - C++ exceptions (2026-11-27). A small `$fp` frame with a dead
   `jal X; addiu a0, fp, 0x18` after the branch to the epilogue, then
   `b .`: a C++ function with `throw()` under `#pragma exceptions on`, and X

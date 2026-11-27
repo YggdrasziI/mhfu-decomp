@@ -2592,6 +2592,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08906744` | 0x08906744-0x0890682C | 2 small functions | 100 % |
 | `unit_0890BE00` | 0x0890BE00-0x0890BE54 | 2 small functions | 100 % |
 | `unit_0890BE54` | 0x0890BE54-0x0890BEC0 | 1 function (speed: calls a destructor with -1 on each element of an array, from the end) | 100 % |
+| `unit_0890BEC0` | 0x0890BEC0-0x0890BFA4 | 1 function (speed: constructs n elements, destroys them on early exit) | 100 % |
 | `unit_0890BFA4` | 0x0890BFA4-0x0890BFE0 | 1 function (C++, `throw()`) | 100 % |
 | `unit_0890BFE0` | 0x0890BFE0-0x0890C200 | 1 function (compares two type strings) | 100 % |
 | `unit_0890C200` | 0x0890C200-0x0890C224 | 1 function (C++: calls the function pointer D_089B9260) | 100 % |
