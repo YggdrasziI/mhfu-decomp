@@ -70,6 +70,7 @@ Commits before `15e9c9d` (first units, from `unit_088A6024` on) were not measure
 | 2026-11-27 | `2f3ddce` | 855716 / 1089072 bytes (78.57 %) | 3049 / 3581 | 2367 | C++ runtime 0x0890BE54-0x0890CD14 (15 of 20 functions) |
 | 2026-11-27 | `29c52ff` | 856228 / 1089072 bytes (78.62 %) | 3051 / 3581 | 2369 | C++ exception runtime names, 2 functions |
 | 2026-11-27 | `607011e` | 856772 / 1089072 bytes (78.67 %) | 3052 / 3581 | 2370 | func_0890BFE0, rewritten from the assembly |
+| 2026-11-27 | `986b579` | 858544 / 1089072 bytes (78.83 %) | 3060 / 3581 | 2378 | C++ runtime 0x0890D4C4-0x0890DE38 (8 of 10 functions) |
 
 From 2026-11-12 (`f84b2f1`) on, one row per day: the last commit recorded that
 day in `progress/ULES01213/history.csv`, which has every measured commit. Rows
