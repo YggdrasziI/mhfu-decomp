@@ -394,8 +394,11 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0882F580` | 0x0882F580-0x0882F9A8 | 1 function, speed and `opt_loop_invariants off` (menu window; owns the jump tables jtbl_08930B44 and jtbl_08930B60) | 100 % |
 | `unit_0882F9A8` | 0x0882F9A8-0x0882FA24 | 1 small function (box from a template, then func_0882F580) | 100 % |
 | `unit_0882FA24` | 0x0882FA24-0x0882FB38 | 1 function (box layout from a template) | 100 % |
+| `unit_0882FB38` | 0x0882FB38-0x0882FC50 | 1 function (box decorations: title, `"%d/%d"` counter) | 100 % |
+| `unit_0882FC50` | 0x0882FC50-0x0882FD68 | 1 function (box frame by style, compare-chain switch, optional text) | 100 % |
 | `unit_0882FD68` | 0x0882FD68-0x0882FDA4 | 1 small function | 100 % |
 | `unit_0882FDA4` | 0x0882FDA4-0x0882FE34 | 1 small function | 100 % |
+| `unit_0882FE34` | 0x0882FE34-0x08830078 | 1 function (textured sprite between two func_08832B98 calls) | 100 % |
 | `unit_08830078` | 0x08830078-0x0883029C | 1 function (speed; text box with two table views of one record array) | 100 % |
 | `unit_0883029C` | 0x0883029C-0x08830354 | 1 small function (sprite id from a kind and an id, two tables) | 100 % |
 | `unit_08830354` | 0x08830354-0x088303A0 | 1 colour lookup through two tables | 100 % |

@@ -3285,6 +3285,14 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   through one inline: one struct and one inline per type (func_0882E86C).
   Colour bytes that splat names one by one (`D_0893AA5C`, `D_0893AA5D`,
   `D_0893AA5E`): three `u8` externs.
+- Region 0x08820000, last three (0x0882FB38-0x08830078). A `u16` parameter
+  masked in place with no visible use: it is an extra variadic argument,
+  read the format string (`"%d/%d"`, func_0882FB38); `#pragma
+  opt_dead_assignments off` jumping up is a probe for such a hidden use. A
+  global loaded as first argument too early: the call inside the
+  expression, not in a local (func_0882FB38). Parameter saved registers
+  rotated with declaration order of no effect: move the statements that
+  use them (func_0882FE34).
 
 ## Open symptoms
 
