@@ -15,7 +15,7 @@ typedef struct {
     DtorFn dtor;
 } Rec;
 
-void func_0890C52C(Rec *r) {
+void __end__catch(Rec *r) {
     void *o = r->obj;
     if (o != 0) {
         if (r->dtor != 0) {

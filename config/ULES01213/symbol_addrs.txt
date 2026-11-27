@@ -4,6 +4,13 @@
 __ptmf_scall = 0x0890C370; // type:func size:0x34
 __ptmf_cmpr = 0x0890C3A4; // type:func size:0x34
 __ptmf_test = 0x0890C3D8; // type:func size:0x1C
+// mwccpsp 3.0.1 (C++, `#pragma exceptions on`) calls these names: `__unexpected`
+// from the handler of a `throw()` function, `__end__catch` at the end of a
+// `catch` block, `__throw` for `throw;` and `throw x;`. The calls sit at the
+// same places in func_0890BFA4 and __unexpected itself.
+__end__catch = 0x0890C52C; // type:func
+__unexpected = 0x0890C9A0; // type:func
+__throw = 0x0890D9C0; // type:func
 // `pmf = 0` copies its three words from this name (12 bytes of .bss, read by
 // func_08865CEC and func_088868AC only, never written)
 __ptmf_null = 0x09A5F114; // size:0xC

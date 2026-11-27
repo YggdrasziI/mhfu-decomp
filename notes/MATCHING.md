@@ -3460,9 +3460,19 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   in a saved register: `#pragma opt_propagation off` (func_0890CD14).
   Not linked: a C++ class with an inline destructor matches the function
   but also emits an out-of-line destructor calling `operator delete`, so
-  the unit does not link (func_0890BEC0); functions using `throw()` or
-  `try`/`catch` (func_0890BFA4, func_0890C9A0) need the runtime names
-  `__unexpected`, `__end__catch`, `__throw` and their exception tables.
+  the unit does not link (func_0890BEC0).
+- C++ exceptions (2026-11-27). A small `$fp` frame with a dead
+  `jal X; addiu a0, fp, 0x18` after the branch to the epilogue, then
+  `b .`: a C++ function with `throw()` under `#pragma exceptions on`, and X
+  is `__unexpected` (func_0890BFA4). A `$fp` frame, `sw sp` into a stack
+  record after the prologue, a `b` over a block and a call reached by both
+  paths: `try { } catch (...) { }`; the caught object is reached with
+  `#pragma exception_magic` and `__exception_magic`; the compiler calls
+  `__end__catch` at the end of the catch (__unexpected). The original keeps
+  no exception tables: no word of BOOT.BIN points to these functions and
+  the `.exception` records are nowhere in it, so the `.exceptix` and
+  `.exception` sections of the objects are discarded at link, as for the
+  other C++ units.
 
 ## Open symptoms
 

@@ -2592,6 +2592,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08906744` | 0x08906744-0x0890682C | 2 small functions | 100 % |
 | `unit_0890BE00` | 0x0890BE00-0x0890BE54 | 2 small functions | 100 % |
 | `unit_0890BE54` | 0x0890BE54-0x0890BEC0 | 1 function (speed: calls a destructor with -1 on each element of an array, from the end) | 100 % |
+| `unit_0890BFA4` | 0x0890BFA4-0x0890BFE0 | 1 function (C++, `throw()`) | 100 % |
 | `unit_0890C200` | 0x0890C200-0x0890C224 | 1 function (C++: calls the function pointer D_089B9260) | 100 % |
 | `unit_0890C224` | 0x0890C224-0x0890C248 | 1 function (C++: calls the function pointer D_089B925C) | 100 % |
 | `unit_0890C248` | 0x0890C248-0x0890C26C | 1 function (C++: calls the function pointer D_089B925C) | 100 % |
@@ -2603,9 +2604,10 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0890C3D8` | 0x0890C3D8-0x0890C3F4 | 1 function (`__ptmf_test`: tests a 3-word record for zero) | 100 % |
 | `unit_0890C3F4` | 0x0890C3F4-0x0890C490 | 1 function (reads an unsigned value stored on 1 to 4 bytes) | 100 % |
 | `unit_0890C490` | 0x0890C490-0x0890C52C | 1 function (reads a signed value stored on 1 to 4 bytes) | 100 % |
-| `unit_0890C52C` | 0x0890C52C-0x0890C564 | 1 function (calls the destructor of a 12-byte record with -1) | 100 % |
+| `unit_0890C52C` | 0x0890C52C-0x0890C564 | 1 function (`__end__catch`: calls the destructor of a 12-byte record with -1) | 100 % |
 | `unit_0890C564` | 0x0890C564-0x0890C6C8 | 1 function | 100 % |
 | `unit_0890C6C8` | 0x0890C6C8-0x0890C9A0 | 1 function (C++, speed; owns jtbl_0893319C) | 100 % |
+| `unit_0890C9A0` | 0x0890C9A0-0x0890CB64 | 1 function (`__unexpected`: C++, `try`/`catch`) | 100 % |
 | `unit_0890CB64` | 0x0890CB64-0x0890CBC0 | 1 small function | 100 % |
 | `unit_0890CBC0` | 0x0890CBC0-0x0890CD14 | 1 function (C++; owns jtbl_089331DC) | 100 % |
 | `unit_0890CD14` | 0x0890CD14-0x0890D4C4 | 1 function (speed, opt_propagation off; owns jtbl_0893321C) | 100 % |
