@@ -228,15 +228,19 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08812B1C` | 0x08812B1C-0x08812B9C | 1 small function | 100 % |
 | `unit_08812B9C` | 0x08812B9C-0x08812BD0 | 1 small function | 100 % |
 | `unit_08812BD0` | 0x08812BD0-0x08812DB8 | 1 function (compare-chain switch, calls tested as flags) | 100 % |
+| `unit_08812DB8` | 0x08812DB8-0x08812F18 | 1 function (speed; sine and distance in VFPU blocks) | 100 % |
 | `unit_08812F18` | 0x08812F18-0x08812F64 | 1 small function | 100 % |
 | `unit_08812F64` | 0x08812F64-0x08812F90 | 1 small function | 100 % |
 | `unit_08812F90` | 0x08812F90-0x08813158 | 3 small functions | 100 % |
 | `unit_08813158` | 0x08813158-0x08813188 | 1 small function | 100 % |
 | `unit_08813188` | 0x08813188-0x088131B8 | 1 small function (C++) | 100 % |
 | `unit_088131B8` | 0x088131B8-0x088131FC | 1 field update guarded by a bool comparison (C++) | 100 % |
+| `unit_088131FC` | 0x088131FC-0x08813320 | 1 function (opt_propagation off; one lv.q/sv.q copy) | 100 % |
 | `unit_08813320` | 0x08813320-0x08813388 | 1 small function | 100 % |
+| `unit_08813388` | 0x08813388-0x08813498 | 1 function (two VFPU distances) | 100 % |
 | `unit_08813498` | 0x08813498-0x088134C0 | 1 small function (C++, `bool` return) | 100 % |
 | `unit_088134C0` | 0x088134C0-0x088134E8 | 1 small function (`opt_common_subs off`) | 100 % |
+| `unit_088134E8` | 0x088134E8-0x08813558 | 1 function (two lv.q/sv.q copies, then a record update) | 100 % |
 | `unit_08813558` | 0x08813558-0x08813560 | 1 small function | 100 % |
 | `unit_08813560` | 0x08813560-0x08813574 | 1 small function | 100 % |
 | `unit_08813574` | 0x08813574-0x08813594 | 1 function (flag set once) | 100 % |
@@ -258,14 +262,31 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08814048` | 0x08814048-0x08814080 | 1 small function (C++) | 100 % |
 | `unit_08814080` | 0x08814080-0x088140C4 | 1 small function | 100 % |
 | `unit_088140C4` | 0x088140C4-0x08814104 | 2 vector copies | 100 % |
+| `unit_08814104` | 0x08814104-0x08814114 | 1 function (one lv.q/sv.q copy) | 100 % |
+| `unit_08814114` | 0x08814114-0x08814268 | 1 function (speed; closest of three entries by VFPU distance) | 100 % |
+| `unit_08814268` | 0x08814268-0x088144B4 | 1 function (VFPU vectors, two look-at matrices and their inverses) | 100 % |
+| `unit_088144B4` | 0x088144B4-0x088145C4 | 1 function (projection matrix, VFPU sine and cosine) | 100 % |
+| `unit_088145C4` | 0x088145C4-0x08814674 | 1 function (VFPU matrix normalisation) | 100 % |
+| `unit_08814674` | 0x08814674-0x088147C8 | 1 function (speed; VFPU transform and divide) | 100 % |
+| `unit_088147C8` | 0x088147C8-0x08814984 | 1 function (speed; VFPU arc tangent to a 16-bit angle) | 100 % |
 | `unit_08814984` | 0x08814984-0x08814A14 | 1 small function | 100 % |
 | `unit_08814A14` | 0x08814A14-0x08814BE0 | 1 function, speed (relocates the offsets of a loaded block) | 100 % |
 | `unit_08814BE0` | 0x08814BE0-0x08814D84 | 1 function (clears a block header; pointer local for the field at +0x30) | 100 % |
 | `unit_08814D84` | 0x08814D84-0x08814E18 | 1 function (copies four halfwords from D_08A62C68 or clears them, one `||` guard) | 100 % |
+| `unit_08814E18` | 0x08814E18-0x08815004 | 1 function (six VFPU copies, flags, timers) | 100 % |
 | `unit_08815004` | 0x08815004-0x08815024 | 1 small function (byte store through a pointer local, `(x >= 0) ? x : 0xFF`) | 100 % |
 | `unit_08815024` | 0x08815024-0x08815108 | 1 function, speed (search of an entry list) | 100 % |
+| `unit_08815108` | 0x08815108-0x08815260 | 1 function (speed; VFPU dot product in a loop) | 100 % |
 | `unit_08815260` | 0x08815260-0x08815348 | 1 function (four side tests on the XZ plane, difference locals reassigned per test) | 100 % |
 | `unit_08815348` | 0x08815348-0x08815384 | 1 small function | 100 % |
+| `unit_08815384` | 0x08815384-0x08815700 | 1 function (speed; VFPU transform, arc tangent, rotations) | 100 % |
+| `unit_08815700` | 0x08815700-0x088158D8 | 1 function (VFPU look-at matrix) | 100 % |
+| `unit_088158D8` | 0x088158D8-0x08815964 | 1 function (VFPU vector set and copies) | 100 % |
+| `unit_08815964` | 0x08815964-0x08815D64 | 1 function (speed, VFPU rotations and arc tangent) | 100 % |
+| `unit_08815D64` | 0x08815D64-0x08815D84 | 1 function (two lv.q/sv.q copies) | 100 % |
+| `unit_08815D84` | 0x08815D84-0x08815E28 | 1 function (VFPU direction transform) | 100 % |
+| `unit_08815E28` | 0x08815E28-0x08815E9C | 1 function (VFPU triangle normal) | 100 % |
+| `unit_08815E9C` | 0x08815E9C-0x08816060 | 1 function (VFPU sine and cosine, four calls) | 100 % |
 | `unit_08816060` | 0x08816060-0x088160F0 | 2 small functions | 100 % |
 | `unit_088160F0` | 0x088160F0-0x08816264 | 1 function (plane tests of a transformed point) | 100 % |
 | `unit_08816264` | 0x08816264-0x0881629C | 1 small function | 100 % |
@@ -314,6 +335,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0881B5C4` | 0x0881B5C4-0x0881B5F8 | 1 small function (forwarder with a zeroed 6-byte buffer) | 100 % |
 | `unit_0881B5F8` | 0x0881B5F8-0x0881B7F0 | 1 function, speed (draws 6 entries of a record) | 100 % |
 | `unit_0881B7F0` | 0x0881B7F0-0x0881B9A0 | 1 function, speed (draws the distinct bytes of a list; inline search helper) | 100 % |
+| `unit_0881B9A0` | 0x0881B9A0-0x0881BF80 | 1 function (speed, opt_strength_reduction off; VFPU sine, grid drawing) | 100 % |
 | `unit_0881BF80` | 0x0881BF80-0x0881C098 | 1 function (cursor by halves, wraps) | 100 % |
 | `unit_0881C098` | 0x0881C098-0x0881C1C8 | 1 function (cursor by pages of 8) | 100 % |
 | `unit_0881C1C8` | 0x0881C1C8-0x0881C240 | 1 small function (cursor and width) | 100 % |

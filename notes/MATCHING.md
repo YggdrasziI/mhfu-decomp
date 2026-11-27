@@ -3498,6 +3498,31 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   saved register and jumps through `a2`, with a trapping `sub` mwccpsp never
   emits) and `__throw` (stores every saved register into a stack record
   before a call that does not return): hand-written routines.
+- VFPU batch (2026-11-27, 0x08812DB8-0x0881B9A0, 22 of 22). VFPU code is
+  written as `asm { }` blocks with pointer locals as base registers. The
+  registers of those pointers follow, depending on the function: the
+  ORDER OF THEIR ASSIGNMENTS (func_088145C4, func_088131FC), their
+  declaration order inside a nested block or the loop body, initialised at
+  declaration (func_08815108, func_08814114), or the parameter order of the
+  inline helper holding the block (`(src, dst)` vs `(dst, src)`,
+  func_08814268, func_08814E18). A helper that must return a float AND get
+  its parameter registers: an inner void helper with an out pointer inside
+  an outer inline returning by value (func_08813388). Stack locals: the
+  first declared gets the highest slot; a 16-byte buffer for `lv.q` needs
+  `__attribute__((aligned(16)))`; inline helpers put their temporaries in
+  the lowest slots, inline blocks written in the function keep the
+  declaration order (func_08815E9C). Four `lv.s S000..S003` from stack
+  slots: an inline `vec_set(dst, x, y, z, w)` taking the floats by value;
+  arguments are evaluated right to left, constant members stored w, z, y,
+  x (func_08815700, func_08815384). Float constants built with `lui`/`ori`
+  instead of `@N`: the speed setting. A float parameter scaled by a
+  constant with swapped `mul.s` operands: `p *= K;` (func_088144B4). A
+  near-zero float test turned into a `u8` flag: write it in the function,
+  not in an inline predicate (func_08814674). A 16-bit angle offset
+  coalesced into the base register: keep the masked base in an `s32` and
+  write `(float)((dir + 0x4000) & 0xFFFF)` (func_08815964). Locals reused
+  across loops the way the original registers show: an allocation by
+  variable, beyond any declaration order (func_0881B9A0).
 
 ## Open symptoms
 
