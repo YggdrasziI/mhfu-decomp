@@ -300,3 +300,6 @@ D_089B2B30 = 0x089B2B30; // size:0x4
 // array from its start and as tx / ty / dy words from +6
 D_089B4E10 = 0x089B4E10; // size:0x6
 D_089B4E16 = 0x089B4E16; // size:0x12
+// corner table of func_0882D220 (4 pairs of floats), read by a loop over
+// its elements: one symbol, not four
+D_08938718 = 0x08938718; // size:0x20

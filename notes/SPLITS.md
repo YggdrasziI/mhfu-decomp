@@ -406,6 +406,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08825D38` | 0x08825D38-0x08825DA8 | 1 small function (flag and timer update) | 100 % |
 | `unit_08825DA8` | 0x08825DA8-0x08825E78 | 1 small function | 100 % |
 | `unit_08825E78` | 0x08825E78-0x08825EE8 | 1 small function | 100 % |
+| `unit_08825EE8` | 0x08825EE8-0x088260D4 | 1 function (speed; VFPU sine, two calls and a coloured box) | 100 % |
 | `unit_088260D4` | 0x088260D4-0x0882619C | 1 small function | 100 % |
 | `unit_0882619C` | 0x0882619C-0x088262B0 | 1 function (`#pragma opt_propagation off`: sub-record address kept in a saved register) | 100 % |
 | `unit_088262B0` | 0x088262B0-0x088264F4 | 1 function, speed (two halfword outputs as one `u16 ab[2]`) | 100 % |
@@ -476,6 +477,8 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0882C7B4` | 0x0882C7B4-0x0882CC9C | 1 function (mirrored sprite; owns the jump table jtbl_08930B2C) | 100 % |
 | `unit_0882CC9C` | 0x0882CC9C-0x0882CF58 | 1 function, NonMatching (97.46 %: three stores and two loads scheduled differently) | not linked |
 | `unit_0882CF58` | 0x0882CF58-0x0882D220 | 1 function (textured four-vertex packet) | 100 % |
+| `unit_0882D220` | 0x0882D220-0x0882D470 | 1 function (speed; VFPU sine and cosine, rotated quad from a 4-corner table) | 100 % |
+| `unit_0882D470` | 0x0882D470-0x0882D6F0 | 1 function (speed, opt_propagation off; VFPU sine and cosine, rotated quad) | 100 % |
 | `unit_0882D6F0` | 0x0882D6F0-0x0882D8DC | 1 function (untextured 5:5:5:1 rectangle) | 100 % |
 | `unit_0882D8DC` | 0x0882D8DC-0x0882DAC0 | 1 function (flat RGBA rectangle) | 100 % |
 | `unit_0882DAC0` | 0x0882DAC0-0x0882DCA0 | 1 function (5:5:5:1 line) | 100 % |
@@ -485,7 +488,10 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0882E2C0` | 0x0882E2C0-0x0882E53C | 1 function (table entry through func_0882C11C, compare-chain switch) | 100 % |
 | `unit_0882E53C` | 0x0882E53C-0x0882E604 | 1 small function (rectangle filled with a table colour) | 100 % |
 | `unit_0882E604` | 0x0882E604-0x0882E6F0 | 1 small function (record D_08939850 drawn twice) | 100 % |
+| `unit_0882E6F0` | 0x0882E6F0-0x0882E7B4 | 1 function (speed; VFPU sine pulse) | 100 % |
+| `unit_0882E7B4` | 0x0882E7B4-0x0882E86C | 1 function (speed; VFPU sine pulse colour) | 100 % |
 | `unit_0882E86C` | 0x0882E86C-0x0882F4A4 | 1 function, NonMatching (99.66 %: registers of the last of eight inlined submits) | not linked |
+| `unit_0882F4A4` | 0x0882F4A4-0x0882F580 | 1 function (speed; VFPU sine pulse alpha) | 100 % |
 | `unit_0882F580` | 0x0882F580-0x0882F9A8 | 1 function, speed and `opt_loop_invariants off` (menu window; owns the jump tables jtbl_08930B44 and jtbl_08930B60) | 100 % |
 | `unit_0882F9A8` | 0x0882F9A8-0x0882FA24 | 1 small function (box from a template, then func_0882F580) | 100 % |
 | `unit_0882FA24` | 0x0882FA24-0x0882FB38 | 1 function (box layout from a template) | 100 % |
@@ -517,6 +523,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088314A0` | 0x088314A0-0x0883185C | 1 function (speed; GE command block, inline push helper) | 100 % |
 | `unit_0883185C` | 0x0883185C-0x08831CB0 | 1 function (two switches); jump tables 0x08930B7C-0x08930BAC in the unit | 100 % |
 | `unit_08831CB0` | 0x08831CB0-0x08831F3C | 1 function (two quads in a display list); func_08831F3C after it stays in assembly (VFPU) | 100 % |
+| `unit_08831F3C` | 0x08831F3C-0x08831FF8 | 1 function (speed; VFPU sine pulse alpha) | 100 % |
 | `unit_08831FF8` | 0x08831FF8-0x08832204 | 1 function (switch without default on a lookup result) | 100 % |
 | `unit_08832204` | 0x08832204-0x08832228 | 1 small function | 100 % |
 | `unit_08832228` | 0x08832228-0x08832548 | 1 function (nine-piece frame) | 100 % |
@@ -548,11 +555,13 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08834D3C` | 0x08834D3C-0x08835098 | 1 function (C++, dispatch on a byte to 13 cases); jump table 0x08930F74-0x08930FA8 in the unit | 100 % |
 | `unit_08835098` | 0x08835098-0x088351F0 | 1 function (dispatch to 12 functions on a byte, 16-bit result); jump table 0x08930FA8-0x08930FDC in the unit | 100 % |
 | `unit_088351F0` | 0x088351F0-0x08835470 | 1 function (C++, `switch` on the first word of D_09B22D70: cases 0xC, 0, 0x16, 8, 0x14) | 100 % |
+| `unit_08835470` | 0x08835470-0x08835F7C | 1 function (speed, opt_propagation off; owns jtbl_08930FDC and jtbl_08931000) | 100 % |
 | `unit_08835F7C` | 0x08835F7C-0x088375C8 | 1 function (36-case message switch; owns jtbl_08931018 and jtbl_089310A8) | 100 % |
 | `unit_088375C8` | 0x088375C8-0x088378A8 | 1 function (`switch` on six kinds, text calls); jump table 0x089310C0-0x089310D8 in the unit | 100 % |
 | `unit_088378A8` | 0x088378A8-0x08837CA4 | 1 function (speed: sets the byte at +0x534 from six kinds, then a loop of func_0883B53C calls); jump table 0x089310D8-0x089310F0 and `.data` 0x0893B234-0x0893B248 (an initialised local record) in the unit | 100 % |
 | `unit_08837CA4` | 0x08837CA4-0x08837D54 | 1 function (tests two masks against the byte at +4 of a func_0885CA50 entry) | 100 % |
 | `unit_08837D54` | 0x08837D54-0x08838004 | 1 function (C++, speed): formats a number with one of three formats, then draws two items; `.data` 0x0893B270-0x0893B278 (the local `u16[4]` initializer) | 100 % |
+| `unit_08838004` | 0x08838004-0x088380B4 | 1 function (speed; VFPU sine pulse colour) | 100 % |
 | `unit_088380B4` | 0x088380B4-0x08838458 | 1 function (an item count drawn with full-width parentheses); `.data` 0x0893B298-0x0893B2A0 (the two local `char[4]` initializers) | 100 % |
 | `unit_08838458` | 0x08838458-0x08838640 | 1 function (an id picked from D_09B04E48 on two flag pairs, text through func_08891474) | 100 % |
 | `unit_08838640` | 0x08838640-0x08838894 | 1 function (copies the 0x14-byte record at D_0893B32C, then func_0882FC50 / func_0882FB38 / func_08838894) | 100 % |
@@ -561,6 +570,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08838E0C` | 0x08838E0C-0x08838E30 | 1 small function | 100 % |
 | `unit_08838E30` | 0x08838E30-0x08838F58 | 1 function (C++: three-row loop over ids of D_09B052C8, func_08892148) | 100 % |
 | `unit_08838F58` | 0x08838F58-0x088392F4 | 1 function (speed: three-row loop of func_09C240A0 / func_08892148, then func_08833290) | 100 % |
+| `unit_088392F4` | 0x088392F4-0x08839688 | 1 function (VFPU identity matrix, list drawing) | 100 % |
 | `unit_08839688` | 0x08839688-0x08839824 | 1 function (two nested `switch` on the bytes at +0x57E / +0x57F) | 100 % |
 | `unit_08839824` | 0x08839824-0x08839B30 | 1 function (C++: func_0882FA24 / func_0882F580, a formatted text and func_08891474) | 100 % |
 | `unit_08839B30` | 0x08839B30-0x08839F64 | 1 function (C++: state switch on +0x57E / +0x57F, error-code chain, `(bool)(x & 1) == 1`) | 100 % |
@@ -600,8 +610,14 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0883F9F8` | 0x0883F9F8-0x0883FAD4 | 1 small function | 100 % |
 | `unit_0883FAD4` | 0x0883FAD4-0x0883FD44 | 1 function (`switch` on +0x57D with eleven cases, an inner switch on 0 / 1); jump table 0x0893115C-0x08931188 in the unit | 100 % |
 | `unit_0883FD44` | 0x0883FD44-0x0883FDF4 | 1 small function | 100 % |
+| `unit_0883FDF4` | 0x0883FDF4-0x08840338 | 1 function (speed; VFPU sine, four gauges) | 100 % |
+| `unit_08840338` | 0x08840338-0x0884054C | 1 function (speed; VFPU sine, fades) | 100 % |
 | `unit_0884054C` | 0x0884054C-0x088405E4 | 1 function (forwards its argument / 1800 / 5 * 0x1555 to func_0882D470); optimized for speed | 100 % |
+| `unit_088405E4` | 0x088405E4-0x08840BC0 | 1 function (C++, speed; VFPU sine, virtual call, gauges) | 100 % |
 | `unit_08840BC0` | 0x08840BC0-0x08840C24 | 1 small function | 100 % |
+| `unit_08840C24` | 0x08840C24-0x08840E30 | 1 function (speed; VFPU cosine colour) | 100 % |
+| `unit_08840E30` | 0x08840E30-0x08840F30 | 1 function (speed; VFPU cosine colour) | 100 % |
+| `unit_08840F30` | 0x08840F30-0x08841100 | 1 function (speed; VFPU cosine colour) | 100 % |
 | `unit_08841100` | 0x08841100-0x08841520 | 1 function (C++, speed: `switch` on the mode byte at +0x1E8, two VFPU sines in an `asm` block for pulsing alphas) | 100 % |
 | `unit_08841520` | 0x08841520-0x088415D0 | 1 small function | 100 % |
 | `unit_088415D0` | 0x088415D0-0x08841908 | 1 function (speed, `opt_rebuildconditionals off`); draws up to five icons from D_0893ACD0 / D_0893ACE0, divisions by 7, a float scale | 100 % |
@@ -610,6 +626,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088421C4` | 0x088421C4-0x088423E0 | 1 function (speed; icon row) | 100 % |
 | `unit_088423E0` | 0x088423E0-0x08842504 | 1 function (frame drawing through two tables) | 100 % |
 | `unit_08842504` | 0x08842504-0x08842628 | 1 function (frame drawing through two tables) | 100 % |
+| `unit_08842628` | 0x08842628-0x088428EC | 1 function (speed; VFPU identity matrix, projected markers) | 100 % |
 | `unit_088428EC` | 0x088428EC-0x088429EC | 1 function (dispatch on flags) | 100 % |
 | `unit_088429EC` | 0x088429EC-0x08842BE4 | 1 function (speed; VFPU sine in an `asm` block, draws an item with a pulsing alpha); `.data` 0x0893B5D4-0x0893B5EC (the local s16[4][3] initializer) | 100 % |
 | `unit_08842BE4` | 0x08842BE4-0x08842D3C | 1 function (speed; coloured bars) | 100 % |
@@ -626,6 +643,8 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08844654` | 0x08844654-0x0884469C | 1 test on a call result | 100 % |
 | `unit_0884469C` | 0x0884469C-0x088446CC | 1 small function | 100 % |
 | `unit_088446CC` | 0x088446CC-0x08844744 | 1 small function (nested switches) | 100 % |
+| `unit_08844744` | 0x08844744-0x08844A78 | 1 function (speed; VFPU rotation and transform) | 100 % |
+| `unit_08844A78` | 0x08844A78-0x08844EA0 | 1 function (C++, speed; VFPU sine colours) | 100 % |
 | `unit_08844EA0` | 0x08844EA0-0x08844FC8 | 1 function (calls into 0x09xxxxxx code) | 100 % |
 | `unit_08845270` | 0x08845270-0x08845384 | 1 function | 100 % |
 | `unit_0884558C` | 0x0884558C-0x08845A34 | 1 function (sprite into the D_08A62C40 display list) | 100 % |

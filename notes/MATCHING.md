@@ -3523,6 +3523,22 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   write `(float)((dir + 0x4000) & 0xFFFF)` (func_08815964). Locals reused
   across loops the way the original registers show: an allocation by
   variable, beyond any declaration order (func_0881B9A0).
+- VFPU batch 2 (2026-11-27, 0x08825EE8-0x08844A78, 19 of 20). A constant
+  table read by a loop that the speed setting unrolls, which splat split
+  into one symbol per element: one sized symbol (`D_08938718`, size 0x20,
+  func_0882D220). A VFPU helper result reloaded right after its block: 
+  `opt_propagation off` (func_0882D470). A float converted to unsigned with
+  a doubled `c.le.s` against 0x4F000000: assign it to a `u16` local and
+  pass the local (func_0883FDF4). Argument loads kept below the stores of
+  the stack arguments: declare those globals `const` (func_0883FDF4). A
+  colour word stored to its stack slot after the call: a `u8 r, g, b, a`
+  struct local written as `*(s32 *)&c = f();` (func_08844744). A global
+  address kept unfolded and not hoisted: `opt_propagation off` plus an
+  explicit `p = &D_x;` before each use (func_08835470). A selector
+  extended into `a1` before a switch: a case passes it as the second
+  argument of a call (func_088405E4). Left in assembly: func_08838B08
+  (96.66 %, vertex block registers and order, best order found only by a
+  random search).
 
 ## Open symptoms
 
