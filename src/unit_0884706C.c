@@ -21,7 +21,7 @@ extern char *D_08A62C50;
 extern Pair *func_08856884(char *, s32);
 extern u8 *func_0885C580(char *, s32);
 
-s16 func_0884706C(void) {
+s16 func_0884706C(char *arg0) {
     s16 i;
     s16 n;
 
