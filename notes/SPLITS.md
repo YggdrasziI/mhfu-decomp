@@ -646,7 +646,9 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08844744` | 0x08844744-0x08844A78 | 1 function (speed; VFPU rotation and transform) | 100 % |
 | `unit_08844A78` | 0x08844A78-0x08844EA0 | 1 function (C++, speed; VFPU sine colours) | 100 % |
 | `unit_08844EA0` | 0x08844EA0-0x08844FC8 | 1 function (calls into 0x09xxxxxx code) | 100 % |
+| `unit_08844FC8` | 0x08844FC8-0x08845270 | 1 function (speed; VFPU rotation, transformed quad) | 100 % |
 | `unit_08845270` | 0x08845270-0x08845384 | 1 function | 100 % |
+| `unit_08845384` | 0x08845384-0x0884558C | 1 function (speed; VFPU square root, four corner sprites) | 100 % |
 | `unit_0884558C` | 0x0884558C-0x08845A34 | 1 function (sprite into the D_08A62C40 display list) | 100 % |
 | `unit_08845A34` | 0x08845A34-0x08845C68 | 1 function (C++; formatted text) | 100 % |
 | `unit_08845C68` | 0x08845C68-0x08845EA8 | 1 function (first globals `const`) | 100 % |
@@ -659,6 +661,8 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088474DC` | 0x088474DC-0x088476F4 | 1 function (item line text) | 100 % |
 | `unit_088476F4` | 0x088476F4-0x08847B74 | 1 function (C++; slot list with ownership tests) | 100 % |
 | `unit_08847B74` | 0x08847B74-0x08847CB0 | 1 function (C++; bit set in a 256-bit mask) | 100 % |
+| `unit_08847CB0` | 0x08847CB0-0x0884853C | 1 function (speed; VFPU square root, list of entries) | 100 % |
+| `unit_0884853C` | 0x0884853C-0x0884860C | 1 function (speed; VFPU square root) | 100 % |
 | `unit_0884860C` | 0x0884860C-0x08848630 | 2 small functions | 100 % |
 | `unit_08848630` | 0x08848630-0x088487B8 | 1 function (moves the index at +0x20 of D_08A62CB4 within (count - 1) / 10 + 1 values on input bits 0x80 / 0x20); optimized for speed | 100 % |
 | `unit_088487B8` | 0x088487B8-0x08848D30 | 1 function (speed; item list page and totals) | 100 % |
@@ -672,6 +676,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08849478` | 0x08849478-0x0884953C | 1 function (menu line) | 100 % |
 | `unit_0884953C` | 0x0884953C-0x088495AC | 1 small function (state reset, `switch`) | 100 % |
 | `unit_088495AC` | 0x088495AC-0x08849848 | 1 function (input dispatch); jump table 0x089311FC-0x08931220 in the unit | 100 % |
+| `unit_08849848` | 0x08849848-0x08849B6C | 1 function (speed; VFPU sine, text rows) | 100 % |
 | `unit_08849B6C` | 0x08849B6C-0x08849BCC | 1 small function | 100 % |
 | `unit_08849BCC` | 0x08849BCC-0x08849CAC | 1 function (nested guards) | 100 % |
 | `unit_08849CAC` | 0x08849CAC-0x08849D7C | 1 function (centred text) | 100 % |
@@ -692,14 +697,17 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0884B234` | 0x0884B234-0x0884B284 | 1 small function | 100 % |
 | `unit_0884B284` | 0x0884B284-0x0884BB00 | 1 function (speed; GE command words, fog) | 100 % |
 | `unit_0884BB00` | 0x0884BB00-0x0884BB58 | 1 small function (clears 20 bucket lists) | 100 % |
+| `unit_0884BB58` | 0x0884BB58-0x0884C128 | 1 function (C++, speed; VFPU identity, display list and virtual calls) | 100 % |
 | `unit_0884C128` | 0x0884C128-0x0884C22C | 1 function (GE command list on the stack) | 100 % |
 | `unit_0884C22C` | 0x0884C22C-0x0884C7C0 | 1 small function | 100 % |
 | `unit_0884C7C0` | 0x0884C7C0-0x0884C89C | 1 small function | 100 % |
 | `unit_0884C89C` | 0x0884C89C-0x0884C914 | 1 small function | 100 % |
 | `unit_0884C914` | 0x0884C914-0x0884C9B8 | 1 function (closes a GE list) | 100 % |
+| `unit_0884C9B8` | 0x0884C9B8-0x0884CB24 | 1 function (VFPU vector set) | 100 % |
 | `unit_0884CB24` | 0x0884CB24-0x0884CBD8 | 1 small function | 100 % |
 | `unit_0884CBD8` | 0x0884CBD8-0x0884CDBC | 1 function (inserts a node in one of 20 depth buckets) | 100 % |
 | `unit_0884CDBC` | 0x0884CDBC-0x0884CDE4 | 1 small function | 100 % |
+| `unit_0884CDE4` | 0x0884CDE4-0x0884D06C | 1 function (VFPU identity and matrix products, display list) | 100 % |
 | `unit_0884D06C` | 0x0884D06C-0x0884D0FC | 1 small function | 100 % |
 | `unit_0884D0FC` | 0x0884D0FC-0x0884D158 | 1 small function | 100 % |
 | `unit_0884D158` | 0x0884D158-0x0884D2F8 | 2 small functions | 100 % |
@@ -812,6 +820,8 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08852618` | 0x08852618-0x088526B4 | 1 function (float key table ended by -1.0f, linear interpolation) | 100 % |
 | `unit_088526B4` | 0x088526B4-0x088526F8 | 1 small function (random float); optimized for speed | 100 % |
 | `unit_088526F8` | 0x088526F8-0x08852740 | 1 small function (random float); optimized for speed | 100 % |
+| `unit_08852740` | 0x08852740-0x08852834 | 1 function (speed; VFPU cross products) | 100 % |
+| `unit_08852834` | 0x08852834-0x08852954 | 1 function (VFPU row lengths) | 100 % |
 | `unit_08852954` | 0x08852954-0x08852A44 | 1 function (s16 table indexed by two bytes and a selector) | 100 % |
 | `unit_08852A44` | 0x08852A44-0x08852A50 | 1 small function | 100 % |
 | `unit_08852A50` | 0x08852A50-0x08852A60 | 1 small function | 100 % |
@@ -883,6 +893,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088572E8` | 0x088572E8-0x088574A4 | 1 function (copies bytes, float pairs and a word of a block) | 100 % |
 | `unit_088574A4` | 0x088574A4-0x08857558 | 1 function (compares two blocks byte by byte); optimized for speed | 100 % |
 | `unit_08857558` | 0x08857558-0x088575C0 | 1 small function (search among 24 slots) | 100 % |
+| `unit_088575C0` | 0x088575C0-0x088576BC | 1 function (VFPU normalize and dot product) | 100 % |
 | `unit_088576BC` | 0x088576BC-0x088577E0 | 1 function (nested flag tests and calls) | 100 % |
 | `unit_088577E0` | 0x088577E0-0x088578A0 | 1 small function | 100 % |
 | `unit_088578A0` | 0x088578A0-0x0885793C | 1 small function (fixed sequence of flag calls) | 100 % |
@@ -1036,14 +1047,23 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0885FA0C` | 0x0885FA0C-0x0885FB54 | 1 function (speed; recursive node update) | 100 % |
 | `unit_0885FB54` | 0x0885FB54-0x0885FBB4 | 1 small function | 100 % |
 | `unit_0885FBB4` | 0x0885FBB4-0x0885FBF4 | 1 lookup then call | 100 % |
+| `unit_0885FBF4` | 0x0885FBF4-0x0885FC9C | 1 function (VFPU matrix copy, tree walk) | 100 % |
+| `unit_0885FC9C` | 0x0885FC9C-0x0885FE44 | 1 function (VFPU matrix blend, tree walk) | 100 % |
+| `unit_0885FE44` | 0x0885FE44-0x0885FF5C | 1 function (VFPU basis from two vectors) | 100 % |
 | `unit_0885FF5C` | 0x0885FF5C-0x0885FFBC | 1 small function | 100 % |
+| `unit_0885FFBC` | 0x0885FFBC-0x0886005C | 1 function (VFPU vector difference) | 100 % |
+| `unit_0886005C` | 0x0886005C-0x0886025C | 1 function (VFPU scale and rotation matrix) | 100 % |
 | `unit_0886025C` | 0x0886025C-0x08860328 | 1 function, speed (maximum over two nested walks of variable-size records) | 100 % |
+| `unit_08860328` | 0x08860328-0x0886053C | 1 function (C++; VFPU matrix products, virtual calls) | 100 % |
+| `unit_0886053C` | 0x0886053C-0x08860648 | 1 function (VFPU matrix product, tree walk) | 100 % |
+| `unit_08860648` | 0x08860648-0x088606D0 | 1 function (VFPU matrix product, tree walk) | 100 % |
 | `unit_088606D0` | 0x088606D0-0x08860710 | 3 small functions | 100 % |
 | `unit_08860710` | 0x08860710-0x08860758 | 1 function with the shape of func_0884B010 | 100 % |
 | `unit_08860758` | 0x08860758-0x08860760 | 1 small function | 100 % |
 | `unit_08860760` | 0x08860760-0x08860768 | 1 small function | 100 % |
 | `unit_08860768` | 0x08860768-0x088607A8 | 1 small function | 100 % |
 | `unit_088607A8` | 0x088607A8-0x088607F8 | 1 small function | 100 % |
+| `unit_088607F8` | 0x088607F8-0x08860848 | 1 function (VFPU vector copy) | 100 % |
 | `unit_08860848` | 0x08860848-0x08860A04 | 1 function (three float vectors from a live table or from defaults) | 100 % |
 | `unit_08860A04` | 0x08860A04-0x08860A78 | 1 function (clear, then three default vectors) | 100 % |
 | `unit_08860A78` | 0x08860A78-0x08860B24 | 1 function (three vectors copied from a source or set to defaults) | 100 % |

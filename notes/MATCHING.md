@@ -3539,6 +3539,20 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   argument of a call (func_088405E4). Left in assembly: func_08838B08
   (96.66 %, vertex block registers and order, best order found only by a
   random search).
+- VFPU batch 3 (2026-11-27, 0x08844FC8-0x088607F8, 20 of 20). Base
+  registers of a 3-pointer asm block in an inline helper: the helper's
+  parameter order sets them and may be neither (dst, a, b) nor (a, b, dst);
+  try all six orders (func_088575C0, func_0885FC9C, func_08860648). Two
+  constants of a chain loaded too early: one statement per multiply
+  (func_0884853C). A `u16` parameter masked in place before its first `u16`
+  use: a `u16` local assigned there (func_08845384). Display-list words
+  `*++p = v` evaluate the value first: `p = D; D = p + 1; p[1] = v;`
+  (func_0884CDE4). An integer parameter moved after the float ones: put it
+  after them in the definition (func_08844FC8, func_0885FC9C). A width
+  passed twice whose conversion comes too early: `f(.., w, w = s, ..)`,
+  arguments are evaluated right to left (func_08847CB0). Float values
+  stored after an asm block: read them into locals before it; the register
+  order follows the assignment order (func_0886005C).
 
 ## Open symptoms
 
