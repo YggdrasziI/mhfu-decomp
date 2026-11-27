@@ -10,7 +10,7 @@ typedef int s32;
 extern s32 D_089CC438;
 extern char *D_08A62D8C;
 extern s8 func_088291B4(char *, s8, s32);
-extern s32 func_08852F58(s32, s32);
+extern s32 func_08852F58(s32);
 extern s32 func_08883988(void *, s32, s32, s32, s32, s32, s32, s32, u8);
 
 void func_088260D4(char *arg0, s32 arg1) {
@@ -21,7 +21,7 @@ void func_088260D4(char *arg0, s32 arg1) {
 
     temp_a1 = *(s32 *)(arg0 + 0x5E8);
     *(s32 *)(arg0 + 0x5E8) = (s32) (temp_a1 & ~4);
-    if (func_08852F58(D_089CC438, temp_a1) != 0) {
+    if (func_08852F58(D_089CC438) != 0) {
         temp_a0 = arg1 & 0xFFFF;
         if (temp_a0 & 0xA0) {
             if (!(temp_a0 & 0x80)) {

@@ -9,7 +9,7 @@ typedef int s32;
 typedef unsigned int u32;
 typedef unsigned char u8;
 
-s32 func_08852F58(char *arg0, s32 arg1) {
+s32 func_08852F58(char *arg0) {
     s32 n;
     u32 i;
     u32 b;
