@@ -802,6 +802,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088552E0` | 0x088552E0-0x088553DC | 1 function (counts entries of 11 lists ended by 0) | 100 % |
 | `unit_088553DC` | 0x088553DC-0x08855410 | 1 small function | 100 % |
 | `unit_08855410` | 0x08855410-0x08855428 | 1 small function | 100 % |
+| `unit_08855428` | 0x08855428-0x08855ED0 | 1 function (24 blocks calling func_0884FAC4 or func_0884FAFC from the value of func_088900C4) | 100 % |
 | `unit_08855ED0` | 0x08855ED0-0x08855F98 | 1 function (five records copied from a call result) | 100 % |
 | `unit_088564F8` | 0x088564F8-0x08856550 | 1 small function (halfword selector mapped to a table value) | 100 % |
 | `unit_08856550` | 0x08856550-0x0885658C | 2 small functions | 100 % |
@@ -1284,6 +1285,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08874454` | 0x08874454-0x08874A94 | 1 function (builds lists of entries from several tables) | 100 % |
 | `unit_08874A94` | 0x08874A94-0x08874AB0 | 1 small function | 100 % |
 | `unit_08874AB0` | 0x08874AB0-0x08874C58 | 1 function (copies item pairs into 30 slots and returns their total value) | 100 % |
+| `unit_08874C58` | 0x08874C58-0x08876574 | 1 function (36-state switch; speed; owns jtbl_08931734) | 100 % |
 | `unit_08876574` | 0x08876574-0x088765C0 | 1 small function | 100 % |
 | `unit_088765C0` | 0x088765C0-0x08876710 | 1 function (adds a value twice by state) | 100 % |
 | `unit_08876710` | 0x08876710-0x08876AA8 | 1 function (switch on a state; jump table 0x089317C4-0x089317E0 in the unit) | 100 % |
@@ -2219,6 +2221,13 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088BA704` | 0x088BA704-0x088BA760 | 1 small function | 100 % |
 | `unit_088BA760` | 0x088BA760-0x088BA860 | 1 small function | 100 % |
 | `unit_088BA860` | 0x088BA860-0x088BA870 | 1 small function | 100 % |
+| `unit_088BA870` | 0x088BA870-0x088BBE58 | 1 function (C++, menu state switch; owns jtbl_089321DC) | 100 % |
+| `unit_088BBE58` | 0x088BBE58-0x088BC7F0 | 1 function (C++, menu state switch; owns jtbl_0893222C) | 100 % |
+| `unit_088BC7F0` | 0x088BC7F0-0x088BD75C | 1 function (slot menu state switch; speed; owns jtbl_08932258) | 100 % |
+| `unit_088BD75C` | 0x088BD75C-0x088BE550 | 1 function (C++, menu state switch; owns jtbl_08932280) | 100 % |
+| `unit_088BE550` | 0x088BE550-0x088BEEC0 | 1 function (menu state switch; speed; owns jtbl_089322B8) | 100 % |
+| `unit_088BEEC0` | 0x088BEEC0-0x088BF26C | 1 function (menu state switch) | 100 % |
+| `unit_088BF26C` | 0x088BF26C-0x088BF858 | 1 function (menu state switch) | 100 % |
 | `unit_088BF858` | 0x088BF858-0x088BFA68 | 1 small function | 100 % |
 | `unit_088BFA68` | 0x088BFA68-0x088BFBEC | 1 small function | 100 % |
 | `unit_088BFBEC` | 0x088BFBEC-0x088BFCF0 | 1 small function | 100 % |
@@ -2242,6 +2251,8 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088C13E8` | 0x088C13E8-0x088C1430 | 1 small function | 100 % |
 | `unit_088C1430` | 0x088C1430-0x088C14C8 | 1 small function (C++) | 100 % |
 | `unit_088C14C8` | 0x088C14C8-0x088C1828 | 2 small functions | 100 % |
+| `unit_088C1828` | 0x088C1828-0x088C2168 | 1 function (slot menu state switch; speed; owns jtbl_089322E8) | 100 % |
+| `unit_088C2168` | 0x088C2168-0x088C2B54 | 1 function (slot menu state switch; speed; owns jtbl_0893230C) | 100 % |
 | `unit_088C2B54` | 0x088C2B54-0x088C2B94 | 1 function (seeds a keystream state) | 100 % |
 | `unit_088C2B94` | 0x088C2B94-0x088C2BE0 | 1 function (steps a keystream state) | 100 % |
 | `unit_088C2BE0` | 0x088C2BE0-0x088C2CE0 | 1 function (decodes and checks a save block) | 100 % |
@@ -2289,6 +2300,11 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088C7774` | 0x088C7774-0x088C77D8 | 1 small function | 100 % |
 | `unit_088C77D8` | 0x088C77D8-0x088C7814 | 1 small function | 100 % |
 | `unit_088C7814` | 0x088C7814-0x088C7914 | 2 small functions | 100 % |
+| `unit_088C7914` | 0x088C7914-0x088C7CDC | 1 function (C++, vtable method of D_089BACDC; speed, opt_loop_invariants off) | 100 % |
+| `unit_088C7CDC` | 0x088C7CDC-0x088C8114 | 1 function (C++, vtable method of D_089BACDC; speed, opt_loop_invariants off; owns jtbl_08932330) | 100 % |
+| `unit_088C8760` | 0x088C8760-0x088C88FC | 1 function (vtable method of D_089BACDC: texture offset GE commands) | 100 % |
+| `unit_088C9380` | 0x088C9380-0x088C95B0 | 1 function (vtable method of D_089BACDC: texture offset GE commands) | 100 % |
+| `unit_088CA100` | 0x088CA100-0x088CA2D8 | 1 function (vtable method of D_089BACDC: blink state) | 100 % |
 | `unit_088CA2D8` | 0x088CA2D8-0x088CA2E0 | 1 small function | 100 % |
 | `unit_088CA2E0` | 0x088CA2E0-0x088CA39C | 1 small function | 100 % |
 | `unit_088CA39C` | 0x088CA39C-0x088CA508 | 1 function (C++; registers the 0x20-byte records of a list) | 100 % |
@@ -2307,6 +2323,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088CB32C` | 0x088CB32C-0x088CB364 | 1 small function | 100 % |
 | `unit_088CB364` | 0x088CB364-0x088CB46C | 1 function (C++; state from a flag and clock values) | 100 % |
 | `unit_088CB46C` | 0x088CB46C-0x088CB474 | 1 small function | 100 % |
+| `unit_088CBBAC` | 0x088CBBAC-0x088CBD20 | 1 function (interpolates two colours byte by byte) | 100 % |
 | `unit_088CC0E4` | 0x088CC0E4-0x088CC128 | 1 small function | 100 % |
 | `unit_088CC128` | 0x088CC128-0x088CC190 | 1 function (copies three words from a stream) | 100 % |
 | `unit_088CC190` | 0x088CC190-0x088CC478 | 2 small functions | 100 % |

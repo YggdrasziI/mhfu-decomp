@@ -3399,6 +3399,25 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   func_08825148); with `#pragma schedule off` the loop head of
   func_088FD170 gets the original registers (a common-subexpression pass
   runs after colouring).
+- Batch 48 (2026-11-27, 17 of 17, 0x08855428-0x088CBBAC). Menu state
+  switches: several arms jumping to one shared `r = 0` block (`beqz` + `nop`,
+  no `beqzl` slot copies): the choice code as a `static inline` helper with
+  `return 2;` / `return 1;` inside and one final `return 0;`
+  (func_088BF26C, func_088BEEC0, func_088BBE58, func_088BE550, ...); a case
+  ending with `b` to the shared tail: `break;`, not `return r;`; a result
+  constant in a `jal` slot: assign it before the call; `ret = 0;` as the
+  first statement when it sits in the first `jal` slot (func_088BE550). A
+  value left in `a1` and only compared: the last callee takes it as a second
+  argument (func_088BFE54). Slot records 0x6B100 apart: `(s32)(i * K) +
+  (char *)p + off` when `(char *)(i * K) + (s32)p` leaves the `addu`
+  operands swapped, or a slot struct of that size (func_088C2168,
+  func_088BC7F0). A `u8` inline predicate tested `== 0` adds `andi 0xFF`:
+  `!pred(...)`. A `for` whose bound is a call under the speed setting
+  hoists `self + K` into an extra saved register: `#pragma
+  opt_loop_invariants off` (func_088C7914, func_088C7CDC). `/ 100` as a
+  `div` where the original multiplies: speed setting (func_08874C58). Two
+  word ORs (`lw` x4, `or`, `sw`, `or`, `sw`): one `u64` compound `|=`
+  (func_08874C58).
 
 ## Open symptoms
 
