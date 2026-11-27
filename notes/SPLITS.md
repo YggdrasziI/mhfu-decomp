@@ -373,7 +373,27 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0882AF70` | 0x0882AF70-0x0882B1CC | 1 function, speed (sprite packet built on the stack) | 100 % |
 | `unit_0882B1CC` | 0x0882B1CC-0x0882B624 | 1 function (coloured quad, optional extra quad) | 100 % |
 | `unit_0882B624` | 0x0882B624-0x0882B94C | 1 function (5:5:5:1 coloured sprite with u/v mirroring) | 100 % |
+| `unit_0882B94C` | 0x0882B94C-0x0882BBE8 | 1 function (coloured sprite, func_0882B1CC without its second quad) | 100 % |
+| `unit_0882BBE8` | 0x0882BBE8-0x0882BE60 | 1 function (sprite with a colour read as four bytes) | 100 % |
+| `unit_0882BE60` | 0x0882BE60-0x0882C11C | 1 function, speed (func_0882AF70 with a 5:5:5:1 colour) | 100 % |
+| `unit_0882C11C` | 0x0882C11C-0x0882C3D0 | 1 function (sprite of size (w, h) with an RGBA colour) | 100 % |
+| `unit_0882C3D0` | 0x0882C3D0-0x0882C7B4 | 1 function (part of a sprite, compare-chain switch on the slice) | 100 % |
+| `unit_0882C7B4` | 0x0882C7B4-0x0882CC9C | 1 function (mirrored sprite; owns the jump table jtbl_08930B2C) | 100 % |
+| `unit_0882CC9C` | 0x0882CC9C-0x0882CF58 | 1 function, NonMatching (97.46 %: three stores and two loads scheduled differently) | not linked |
+| `unit_0882CF58` | 0x0882CF58-0x0882D220 | 1 function (textured four-vertex packet) | 100 % |
+| `unit_0882D6F0` | 0x0882D6F0-0x0882D8DC | 1 function (untextured 5:5:5:1 rectangle) | 100 % |
+| `unit_0882D8DC` | 0x0882D8DC-0x0882DAC0 | 1 function (flat RGBA rectangle) | 100 % |
+| `unit_0882DAC0` | 0x0882DAC0-0x0882DCA0 | 1 function (5:5:5:1 line) | 100 % |
 | `unit_0882DCA0` | 0x0882DCA0-0x0882DCB0 | 2 small functions | 100 % |
+| `unit_0882DCB0` | 0x0882DCB0-0x0882E0D0 | 1 function (nine-piece frame) | 100 % |
+| `unit_0882E0D0` | 0x0882E0D0-0x0882E2C0 | 1 function (table entry with a colour, optional marker) | 100 % |
+| `unit_0882E2C0` | 0x0882E2C0-0x0882E53C | 1 function (table entry through func_0882C11C, compare-chain switch) | 100 % |
+| `unit_0882E53C` | 0x0882E53C-0x0882E604 | 1 small function (rectangle filled with a table colour) | 100 % |
+| `unit_0882E604` | 0x0882E604-0x0882E6F0 | 1 small function (record D_08939850 drawn twice) | 100 % |
+| `unit_0882E86C` | 0x0882E86C-0x0882F4A4 | 1 function, NonMatching (99.66 %: registers of the last of eight inlined submits) | not linked |
+| `unit_0882F580` | 0x0882F580-0x0882F9A8 | 1 function, speed and `opt_loop_invariants off` (menu window; owns the jump tables jtbl_08930B44 and jtbl_08930B60) | 100 % |
+| `unit_0882F9A8` | 0x0882F9A8-0x0882FA24 | 1 small function (box from a template, then func_0882F580) | 100 % |
+| `unit_0882FA24` | 0x0882FA24-0x0882FB38 | 1 function (box layout from a template) | 100 % |
 | `unit_0882FD68` | 0x0882FD68-0x0882FDA4 | 1 small function | 100 % |
 | `unit_0882FDA4` | 0x0882FDA4-0x0882FE34 | 1 small function | 100 % |
 | `unit_08830078` | 0x08830078-0x0883029C | 1 function (speed; text box with two table views of one record array) | 100 % |

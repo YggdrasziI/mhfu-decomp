@@ -3264,6 +3264,27 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   with a masked halfword: `r = f();` alone, `if (r != (u16)id)`
   (func_08829A48). Draw-loop step `i++, y += h` with the counter first
   (func_08829B58), the reverse of batch 36.
+- Batch 43 (0x0882B94C-0x0882FB38). A neighbour of the same shape: start
+  from its matched file, inline helper and pragma included (func_0882B94C,
+  func_0882BBE8, func_0882BE60). Table bytes loaded once before an if/else
+  between two calls: read them into locals before the `if` (func_0882E0D0).
+  Sums kept in saved registers across a run of calls: `s32` locals assigned
+  where the original first computes them, the reloaded field written again
+  at each use (func_0882DCB0). A constant count propagated into an inline
+  helper test lands in the wrong register: its store first among the
+  stores (func_0882CF58, func_0882DAC0, func_0882CC9C). A packed colour
+  scheduled too early: chained into its first use, `pkt.w[0] = col = ...`
+  (func_0882D8DC). Operands of an `or` swapped: the other operand in its own
+  `u32` local defined before the colour (func_0882BE60). A flag `p != 0` in
+  the wrong register: computed later, after the plain copies
+  (func_0882FA24). A byte parameter masked into another register: `s32`
+  parameter, `arg1 = (u8)arg1;` alone (func_0882E53C). A stack halfword
+  parameter used as `lh` and `lhu`: `u16` parameter, `(s16)` at the signed
+  uses (func_0882E2C0). A range test recomputed in a speed-mode loop:
+  `#pragma opt_loop_invariants off` (func_0882F580). Several packet types
+  through one inline: one struct and one inline per type (func_0882E86C).
+  Colour bytes that splat names one by one (`D_0893AA5C`, `D_0893AA5D`,
+  `D_0893AA5E`): three `u8` externs.
 
 ## Open symptoms
 

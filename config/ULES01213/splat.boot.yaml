@@ -253,9 +253,34 @@ segments:
       - [0x29524, c, unit_0882AF70]
       - [0x29780, c, unit_0882B1CC]
       - [0x29BD8, c, unit_0882B624]
-      - [0x29F00, asm, text_0882B94C]
+      - [0x29F00, c, unit_0882B94C]
+      - [0x2A19C, c, unit_0882BBE8]
+      - [0x2A414, c, unit_0882BE60]
+      - [0x2A6D0, c, unit_0882C11C]
+      - [0x2A984, c, unit_0882C3D0]
+      - [0x2AD68, c, unit_0882C7B4]
+      - [0x2B250, asm, text_0882CC9C]
+      - [0x2B50C, c, unit_0882CF58]
+      - [0x2B7D4, asm, text_0882D220]
+      - [0x2BA24, asm, text_0882D470]
+      - [0x2BCA4, c, unit_0882D6F0]
+      - [0x2BE90, c, unit_0882D8DC]
+      - [0x2C074, c, unit_0882DAC0]
       - [0x2C254, c, unit_0882DCA0]
-      - [0x2C264, asm, text_0882DCB0]
+      - [0x2C264, c, unit_0882DCB0]
+      - [0x2C684, c, unit_0882E0D0]
+      - [0x2C874, c, unit_0882E2C0]
+      - [0x2CAF0, c, unit_0882E53C]
+      - [0x2CBB8, c, unit_0882E604]
+      - [0x2CCA4, asm, text_0882E6F0]
+      - [0x2CD68, asm, text_0882E7B4]
+      - [0x2CE20, asm, text_0882E86C]
+      - [0x2DA58, asm, text_0882F4A4]
+      - [0x2DB34, c, unit_0882F580]
+      - [0x2DF5C, c, unit_0882F9A8]
+      - [0x2DFD8, c, unit_0882FA24]
+      - [0x2E0EC, asm, text_0882FB38]
+      - [0x2E204, asm, text_0882FC50]
       - [0x2E31C, c, unit_0882FD68]
       - [0x2E358, c, unit_0882FDA4]
       - [0x2E3E8, asm, text_0882FE34]
@@ -2465,7 +2490,9 @@ segments:
       - { start: 0x12F070, type: .rodata, name: unit_08828524, linker_section_order: .data }
       - { start: 0x12F0AC, type: .rodata, name: unit_08828658, linker_section_order: .data }
       - { start: 0x12F0C4, type: .rodata, name: unit_08828938, linker_section_order: .data }
-      - [0x12F0E0, data, data_08930B2C]
+      - { start: 0x12F0E0, type: .rodata, name: unit_0882C7B4, linker_section_order: .data }
+      - { start: 0x12F0F8, type: .rodata, name: unit_0882F580, linker_section_order: .data }
+      - [0x12F130, data, data_08930B7C]
       - { start: 0x12F130, type: .rodata, name: unit_0883185C, linker_section_order: .data }
       - { start: 0x12F160, type: .rodata, name: unit_08832548, linker_section_order: .data }
       - [0x12F190, data, data_08930BDC]
