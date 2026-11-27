@@ -285,3 +285,11 @@ jpeg_free_large = 0x088EF36C; // type:func
 // float read by func_088B97BC (lwc1 at 0x2B34 off 0x089B0000); without this
 // name the word stays inside D_089B2B32
 D_089B2B34 = 0x089B2B34;
+
+// {u16, u16} pair copied whole by func_088B8A58 (lh at +0 and +2)
+D_089B2B30 = 0x089B2B30; // size:0x4
+
+// layout table of func_088C05FC (2 records of 12 bytes): read as a const
+// array from its start and as tx / ty / dy words from +6
+D_089B4E10 = 0x089B4E10; // size:0x6
+D_089B4E16 = 0x089B4E16; // size:0x12

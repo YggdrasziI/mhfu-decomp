@@ -3419,6 +3419,33 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   word ORs (`lw` x4, `or`, `sw`, `or`, `sw`): one `u64` compound `|=`
   (func_08874C58).
 
+- Retry of the leftovers (2026-11-27, 12 of 19 to 100 %). A bit test
+  `(w & (1 << n)) != 0` with the `and` operands swapped: the loaded word or
+  byte in its own local first (func_08850618, func_08852F1C); a byte at
+  `base + K + idx` with swapped `addu` operands: `((u8 *)(base + K))[idx]`
+  (func_08852F1C). A loop value rotating through the wrong registers when
+  no declaration order helps: reuse an earlier local whose live range is
+  over (func_0886C59C), or pass the counter to a later callee whose
+  definition takes it (func_0885ACA8). A field load hoisted to the top of
+  a block: `#pragma opt_propagation off`, the field in a local assigned
+  where it is used (func_0886BEA4). A pointer chosen by a flag with the
+  index in the wrong argument register: plain if/else under `#pragma
+  opt_rebuildconditionals off` and the index computation in a `static
+  inline` helper with early returns (func_088727CC). A stack argument store
+  (`sw zero, 0(sp)`) scheduled before table loads: the table `const`, read
+  through pointers inside the loop, plus a non-const view of the same
+  memory for later reloads (func_088C05FC). Speed mode that unrolls clear
+  or copy loops: add `#pragma opt_unroll_loops off` (func_08855F98,
+  func_088B8A58). Two halfword globals copied to the stack as one pair: a
+  whole `{u16, u16}` struct copy, with the pair sized in symbol_addrs.txt
+  (func_088B8A58). A word table copied to the stack with `lwc1`/`swc1`
+  from symbols splat names one by one: a union of `extern float` members
+  assigned one by one before the loop (func_08855F98). An `s16` parameter
+  re-extended after a loop: an `s32` parameter with `(s16)` at each use
+  (func_0885B3A0, NonMatching). Narrow parameters (`u16`, `s16`, `u8`) take
+  the lowest saved registers before pointers and ints; a `void *` parameter
+  copied into a `char *` local moves that one ahead (func_0881EE84).
+
 ## Open symptoms
 
 - One inlined copy of a helper coloured differently from its identical
@@ -3434,18 +3461,6 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - A test against the constant 1 (`addiu v1, zero, 1` after the `andi`,
   `bnel a0, v1`): ours branches with `beqzl` for every `== 1` form
   (func_088D168C, 98.79 %).
-- A stack argument store (`sw zero, 0(sp)`) scheduled first in a call's
-  code; the original stores it after the fifth argument's loads. Only a
-  function-level local reassigned elsewhere moves it, and that breaks
-  other orders (func_088C05FC, 93.54 %).
 - `t->tbl[t->idx]` address computed in $v0 where the original uses the
   register of the result (a1), and the following clear() counter in a2
   instead of v0 (func_088A2498, 99.87 %).
-- A pointer chosen by a flag (`bnezl` with the other address in its slot)
-  and the call result, index and pointer in other registers than the
-  original (func_088727CC, assembly): the plain `if (f == 0) p = tbl; else
-  p = alt;` gives the layout but not the colouring (95.30 %, all 5040
-  declaration orders alike); a pre-assigned `p = alt; if (f == 0) p = tbl;`
-  or a `switch` gives the colouring but `bnez` or an extra `xor` / `sltiu`
-  (98.67 %, 97.61 %). Loading the rank byte into its local before the
-  else-if tests fixes the rank register in those forms.

@@ -338,7 +338,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0881EC2C` | 0x0881EC2C-0x0881ECDC | 1 function (stack buffer passed to two calls) | 100 % |
 | `unit_0881ECDC` | 0x0881ECDC-0x0881ED64 | 1 small function (C++, flag bit 0x40 at +0x528) | 100 % |
 | `unit_0881ED64` | 0x0881ED64-0x0881EE84 | 1 function (C++; fills a 12-byte record from one of six sources); jump table 0x089309BC-0x089309D4 in the unit | 100 % |
-| `unit_0881EE84` | 0x0881EE84-0x08820B74 | 1 function, NonMatching (97.83 %: scheduling and registers in about 20 blocks; speed, opt_propagation off) | not linked |
+| `unit_0881EE84` | 0x0881EE84-0x08820B74 | 1 function, NonMatching (99.08 %: px / item2 saved registers swapped; speed, opt_propagation off) | not linked |
 | `unit_08820B74` | 0x08820B74-0x08820DBC | 1 function (`switch` on six button codes, clamps); jump table 0x08930A1C-0x08930A34 in the unit | 100 % |
 | `unit_08820DBC` | 0x08820DBC-0x08820FB4 | 1 function (picks one of 13 strings from a kind and flags) | 100 % |
 | `unit_08820FB4` | 0x08820FB4-0x08821080 | 1 function (colour as a byte union, item drawing) | 100 % |
@@ -526,6 +526,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08834D3C` | 0x08834D3C-0x08835098 | 1 function (C++, dispatch on a byte to 13 cases); jump table 0x08930F74-0x08930FA8 in the unit | 100 % |
 | `unit_08835098` | 0x08835098-0x088351F0 | 1 function (dispatch to 12 functions on a byte, 16-bit result); jump table 0x08930FA8-0x08930FDC in the unit | 100 % |
 | `unit_088351F0` | 0x088351F0-0x08835470 | 1 function (C++, `switch` on the first word of D_09B22D70: cases 0xC, 0, 0x16, 8, 0x14) | 100 % |
+| `unit_08835F7C` | 0x08835F7C-0x088375C8 | 1 function (36-case message switch; owns jtbl_08931018 and jtbl_089310A8) | 100 % |
 | `unit_088375C8` | 0x088375C8-0x088378A8 | 1 function (`switch` on six kinds, text calls); jump table 0x089310C0-0x089310D8 in the unit | 100 % |
 | `unit_088378A8` | 0x088378A8-0x08837CA4 | 1 function (speed: sets the byte at +0x534 from six kinds, then a loop of func_0883B53C calls); jump table 0x089310D8-0x089310F0 and `.data` 0x0893B234-0x0893B248 (an initialised local record) in the unit | 100 % |
 | `unit_08837CA4` | 0x08837CA4-0x08837D54 | 1 function (tests two masks against the byte at +4 of a func_0885CA50 entry) | 100 % |
@@ -608,6 +609,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0884558C` | 0x0884558C-0x08845A34 | 1 function (sprite into the D_08A62C40 display list) | 100 % |
 | `unit_08845A34` | 0x08845A34-0x08845C68 | 1 function (C++; formatted text) | 100 % |
 | `unit_08845C68` | 0x08845C68-0x08845EA8 | 1 function (first globals `const`) | 100 % |
+| `unit_08845EA8` | 0x08845EA8-0x08846FAC | 1 function (speed; owns jtbl_08931188 and the initialised local D_0893B6D0) | 100 % |
 | `unit_08846FAC` | 0x08846FAC-0x0884706C | 1 function (two frame pieces on a flag) | 100 % |
 | `unit_0884706C` | 0x0884706C-0x0884711C | 1 function (counts filled slots of 24) | 100 % |
 | `unit_0884711C` | 0x0884711C-0x088471D8 | 1 function (frame row through a table) | 100 % |
@@ -729,6 +731,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0885057C` | 0x0885057C-0x0885058C | 1 small function | 100 % |
 | `unit_0885058C` | 0x0885058C-0x088505E0 | 1 small function (counter capped at 9999999) | 100 % |
 | `unit_088505E0` | 0x088505E0-0x08850618 | 1 small function (sets a bit of a bit array) | 100 % |
+| `unit_08850618` | 0x08850618-0x08850648 | 1 function (tests a bit of the set at +0x6ADE8) | 100 % |
 | `unit_08850648` | 0x08850648-0x088506A4 | 1 small function (clears a bit of a bit array) | 100 % |
 | `unit_088506A4` | 0x088506A4-0x08850704 | 1 small function (first free 12-byte entry); optimized for speed | 100 % |
 | `unit_08850704` | 0x08850704-0x08850724 | 1 entry test | 100 % |
@@ -776,6 +779,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08852DF8` | 0x08852DF8-0x08852E38 | 1 slot scan | 100 % |
 | `unit_08852E38` | 0x08852E38-0x08852EE0 | 1 function (search in a table of 30 thresholds); optimized for speed | 100 % |
 | `unit_08852EE0` | 0x08852EE0-0x08852F1C | 1 small function (sets a flag of a 62-bit array) | 100 % |
+| `unit_08852F1C` | 0x08852F1C-0x08852F58 | 1 function (tests a bit of the set at +0x44AC, ids below 62) | 100 % |
 | `unit_08852F58` | 0x08852F58-0x08852FA0 | 1 small function (counts the flags of a 62-bit array) | 100 % |
 | `unit_08852FA0` | 0x08852FA0-0x08853004 | 1 small function (counts the first n flags); optimized for speed | 100 % |
 | `unit_08853004` | 0x08853004-0x088530C4 | 2 small functions | 100 % |
@@ -804,6 +808,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08855410` | 0x08855410-0x08855428 | 1 small function | 100 % |
 | `unit_08855428` | 0x08855428-0x08855ED0 | 1 function (24 blocks calling func_0884FAC4 or func_0884FAFC from the value of func_088900C4) | 100 % |
 | `unit_08855ED0` | 0x08855ED0-0x08855F98 | 1 function (five records copied from a call result) | 100 % |
+| `unit_08855F98` | 0x08855F98-0x088564F8 | 1 function (speed, opt_unroll_loops off: fills four grids with weighted picks) | 100 % |
 | `unit_088564F8` | 0x088564F8-0x08856550 | 1 small function (halfword selector mapped to a table value) | 100 % |
 | `unit_08856550` | 0x08856550-0x0885658C | 2 small functions | 100 % |
 | `unit_0885658C` | 0x0885658C-0x088567B4 | 1 function (display-list commands and one packet) | 100 % |
@@ -886,6 +891,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08859AE4` | 0x08859AE4-0x08859AF0 | 1 small function | 100 % |
 | `unit_08859AF0` | 0x08859AF0-0x08859B44 | 1 small function | 100 % |
 | `unit_08859C40` | 0x08859C40-0x08859D14 | 1 function (frees a block of the func_08859B44 heap, hypothesis) | 100 % |
+| `unit_08859D14` | 0x08859D14-0x0885A1B8 | 1 function, NonMatching (99.26 %: one load in a0 instead of v1) | not linked |
 | `unit_0885A1B8` | 0x0885A1B8-0x0885A23C | 1 small function | 100 % |
 | `unit_0885A23C` | 0x0885A23C-0x0885A8E0 | 1 function (two switches); jump table 0x08931450-0x08931474 (`.rodata`) in the unit | 100 % |
 | `unit_0885A8E0` | 0x0885A8E0-0x0885A8F0 | 1 small function | 100 % |
@@ -898,12 +904,14 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0885AAEC` | 0x0885AAEC-0x0885AC8C | 1 function (allocation through func_08859B44, inlined constructor) | 100 % |
 | `unit_0885AC8C` | 0x0885AC8C-0x0885ACA0 | 1 small function | 100 % |
 | `unit_0885ACA0` | 0x0885ACA0-0x0885ACA8 | 1 small function | 100 % |
+| `unit_0885ACA8` | 0x0885ACA8-0x0885AED0 | 1 function (speed) | 100 % |
 | `unit_0885AED0` | 0x0885AED0-0x0885AF28 | 1 small function (speed; 24-pair table search) | 100 % |
 | `unit_0885AF28` | 0x0885AF28-0x0885AFF8 | 1 function (speed, `opt_rebuildconditionals off`; 24-pair table search) | 100 % |
 | `unit_0885AFF8` | 0x0885AFF8-0x0885B048 | 1 small function | 100 % |
 | `unit_0885B048` | 0x0885B048-0x0885B160 | 1 function (speed; 0xAC-entry bitmap scan) | 100 % |
 | `unit_0885B160` | 0x0885B160-0x0885B21C | 1 small function | 100 % |
 | `unit_0885B21C` | 0x0885B21C-0x0885B3A0 | 1 small function | 100 % |
+| `unit_0885B3A0` | 0x0885B3A0-0x0885B5B8 | 1 function, NonMatching (speed, 99.44 %: s0 / s1 swapped in the second loop) | not linked |
 | `unit_0885B5B8` | 0x0885B5B8-0x0885B718 | 1 function (10-byte entry lookup by id pair) | 100 % |
 | `unit_0885B718` | 0x0885B718-0x0885B7D0 | 1 function (bit test) | 100 % |
 | `unit_0885B7D0` | 0x0885B7D0-0x0885B82C | 1 small function (bit test) | 100 % |
@@ -1146,6 +1154,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0886A7D8` | 0x0886A7D8-0x0886A87C | 1 function (C++, `bool` result) | 100 % |
 | `unit_0886A87C` | 0x0886A87C-0x0886A8AC | 1 small function | 100 % |
 | `unit_0886A8AC` | 0x0886A8AC-0x0886AA28 | 1 function (C++, one virtual call) | 100 % |
+| `unit_0886AA28` | 0x0886AA28-0x0886AB7C | 1 function, NonMatching (C++, 99.12 %: the flag register) | not linked |
 | `unit_0886AB7C` | 0x0886AB7C-0x0886AD0C | 1 function | 100 % |
 | `unit_0886AD0C` | 0x0886AD0C-0x0886AD58 | 1 small function | 100 % |
 | `unit_0886AD58` | 0x0886AD58-0x0886AEEC | 1 function (clamp to 9999, record lookups) | 100 % |
@@ -1162,11 +1171,13 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0886BD84` | 0x0886BD84-0x0886BE34 | 1 function (loop over 2 entries) | 100 % |
 | `unit_0886BE34` | 0x0886BE34-0x0886BE50 | 1 small function | 100 % |
 | `unit_0886BE50` | 0x0886BE50-0x0886BEA4 | 1 small function | 100 % |
+| `unit_0886BEA4` | 0x0886BEA4-0x0886BF28 | 1 function (C++, opt_propagation off) | 100 % |
 | `unit_0886BF28` | 0x0886BF28-0x0886BFBC | 1 function (word list copied to bytes) | 100 % |
 | `unit_0886BFBC` | 0x0886BFBC-0x0886C008 | 1 small function | 100 % |
 | `unit_0886C008` | 0x0886C008-0x0886C1E0 | 1 function (two search loops) | 100 % |
 | `unit_0886C1E0` | 0x0886C1E0-0x0886C218 | 1 small function | 100 % |
 | `unit_0886C218` | 0x0886C218-0x0886C59C | 1 function (`switch` with `default` first, clears 5 slots); optimized for speed | 100 % |
+| `unit_0886C59C` | 0x0886C59C-0x0886C768 | 1 function (speed; search loops) | 100 % |
 | `unit_0886C768` | 0x0886C768-0x0886C8AC | 1 function (sums over 4 objects, `switch`); optimized for speed | 100 % |
 | `unit_0886C8AC` | 0x0886C8AC-0x0886C914 | 1 small function (message 9) | 100 % |
 | `unit_0886C914` | 0x0886C914-0x0886CA74 | 1 function (loop over 2 entries); optimized for speed | 100 % |
@@ -1250,6 +1261,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08872444` | 0x08872444-0x0887265C | 1 function (walks 14-byte records ending at id 0xFF, random rolls against thresholds) | 100 % |
 | `unit_0887265C` | 0x0887265C-0x0887276C | 1 function (weighted random pick over a 0xFFFF-terminated table) | 100 % |
 | `unit_0887276C` | 0x0887276C-0x088727CC | 1 function (index of a byte in an 8-byte table) | 100 % |
+| `unit_088727CC` | 0x088727CC-0x08872980 | 1 function (opt_rebuildconditionals off; rank chosen by an inline helper) | 100 % |
 | `unit_08872980` | 0x08872980-0x08872AAC | 1 function (picks a table entry by rank and slot) | 100 % |
 | `unit_08872AAC` | 0x08872AAC-0x08872B2C | 1 function, C++ (sends a 12-byte message through func_088AB514) | 100 % |
 | `unit_08872B2C` | 0x08872B2C-0x08872B40 | 1 small function | 100 % |
@@ -2198,6 +2210,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088B89A8` | 0x088B89A8-0x088B89B0 | 1 small function | 100 % |
 | `unit_088B89B0` | 0x088B89B0-0x088B8A0C | 1 small function | 100 % |
 | `unit_088B8A0C` | 0x088B8A0C-0x088B8A58 | 1 small function | 100 % |
+| `unit_088B8A58` | 0x088B8A58-0x088B96D8 | 1 function (speed, opt_unroll_loops off: GE display-list builder) | 100 % |
 | `unit_088B96D8` | 0x088B96D8-0x088B97A0 | 1 function (switch setting flag bits) | 100 % |
 | `unit_088B97A0` | 0x088B97A0-0x088B97BC | 1 small function | 100 % |
 | `unit_088B97BC` | 0x088B97BC-0x088B9884 | 1 function (constructor shape), C++ | 100 % |
@@ -2209,6 +2222,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088B9BF8` | 0x088B9BF8-0x088B9DA8 | 1 function (same shape as unit_088B996C), C++ | 100 % |
 | `unit_088B9DA8` | 0x088B9DA8-0x088B9E34 | 1 small function | 100 % |
 | `unit_088B9E34` | 0x088B9E34-0x088B9E90 | 1 small function | 100 % |
+| `unit_088B9E90` | 0x088B9E90-0x088BA0BC | 1 function (C++, state machine; owns jtbl_089321C0) | 100 % |
 | `unit_088BA0BC` | 0x088BA0BC-0x088BA148 | 1 small function | 100 % |
 | `unit_088BA148` | 0x088BA148-0x088BA1A4 | 1 small function | 100 % |
 | `unit_088BA1A4` | 0x088BA1A4-0x088BA2A0 | 1 small function | 100 % |
@@ -2241,7 +2255,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088C0468` | 0x088C0468-0x088C0554 | 1 function (seals and writes the save image) | 100 % |
 | `unit_088C0554` | 0x088C0554-0x088C0594 | 1 function (save image identity check) | 100 % |
 | `unit_088C0594` | 0x088C0594-0x088C05FC | 1 small function | 100 % |
-| `unit_088C05FC` | 0x088C05FC-0x088C0940 | 1 function, NonMatching (speed, 93.5 %: scheduling of a stack argument store); a bar, five gauges and five text lines from the layout table D_089B4E10 | not linked |
+| `unit_088C05FC` | 0x088C05FC-0x088C0940 | 1 function (speed; const layout table read through pointers; owns the initialised local D_089B4E28); a bar, five gauges and five text lines from the layout table D_089B4E10 | 100 % |
 | `unit_088C0940` | 0x088C0940-0x088C0BBC | 1 function (speed: three records 0x6B100 apart, each drawn with a time split by 60 and its box from D_089B2DF0) | 100 % |
 | `unit_088C0BBC` | 0x088C0BBC-0x088C0E58 | 1 function (speed: sibling of func_088C0940, records 0x15000 apart behind the pointer at +0x950) | 100 % |
 | `unit_088C0E58` | 0x088C0E58-0x088C1178 | 1 function (C++, speed: state machine on the word at +0x998; copies one record per slot into D_089CC438 + 0x30, two virtual calls) | 100 % |
