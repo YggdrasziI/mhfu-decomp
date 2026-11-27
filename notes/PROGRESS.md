@@ -75,6 +75,7 @@ Commits before `15e9c9d` (first units, from `unit_088A6024` on) were not measure
 | 2026-11-27 | `e6ba807` | 867608 / 1089072 bytes (79.66 %) | 3083 / 3581 | 2401 | VFPU 0x08812DB8-0x0881B9A0 (22 of 22 functions) |
 | 2026-11-27 | `aa8051c` | 881256 / 1089072 bytes (80.92 %) | 3102 / 3581 | 2420 | VFPU 0x08825EE8-0x08844A78 (19 of 20 functions) |
 | 2026-11-27 | `a1868fe` | 891500 / 1089072 bytes (81.86 %) | 3122 / 3581 | 2440 | VFPU 0x08844FC8-0x088607F8 (20 of 20 functions) |
+| 2026-11-27 | `8b9d231` | 898996 / 1089072 bytes (82.55 %) | 3142 / 3581 | 2460 | VFPU 0x08860EC0-0x08865648 (20 of 20 functions) |
 
 From 2026-11-12 (`f84b2f1`) on, one row per day: the last commit recorded that
 day in `progress/ULES01213/history.csv`, which has every measured commit. Rows
