@@ -3311,6 +3311,30 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   by 8 in speed mode: `for (i = n; i > 0; i--)` with its own counter
   (func_08814A14). A float field set by `lui`/`ori` into an integer
   register: an `s32` store of the bit pattern (func_08814BE0).
+- Batch 45 (0x08814D84-0x08818950). `bltzl x` to the next instruction with
+  the replacement in its slot: `x = (x >= 0) ? x : K;`; a base offset kept
+  as its own `addiu`: pointer local assigned first, `p = arg0 + 0xB0;`
+  (func_08815004). A `beql x, K` with the equal value in the slot:
+  `(x != K) ? A : B` (func_08818028). A byte loaded twice (loop test and
+  call argument): speed setting + `#pragma opt_common_subs off`, or
+  `volatile` reads (func_088169FC); a string pointer reloaded for guard,
+  body and bottom test: `volatile` pointer parameter (func_08816818). Loop
+  tested at the top on a count and at the bottom on a call result: `if (c
+  != 0) do { if (n <= 0) break; ... } while (c != 0);` (func_08816730,
+  func_08816638). `*--q = v;` scheduled too early: `q--; *q = v;`
+  (func_08816508). `or` operands swapped on `((c & m) << 6) | b`: `c &= m;
+  c = (c << 6) | b;` (func_08816460). Range chains sharing one return
+  block: inclusive bounds, `c <= 0x7F || (c >= 0xA0 && c <= 0xDF) || c >=
+  0xFD` (func_0881629C); `0xF4 < c` for the `sltiu at` order
+  (func_08816460). Float side tests with permuted registers: difference
+  locals reassigned before each test in one order (func_08815260). `k = k
+  + k;` before the store it must precede (func_08816BE4). A byte kept in
+  two saved registers: `s32` local, a `u8` copy for the tests, `(n &
+  0xFF)` at the other use (func_08818264). `beql x, 2` then `b`: one-case
+  `switch` with `default:`; guardless bottom-tested search loop: `do {
+  ... } while (i < N);` (func_088172D8). A call result masked into `a2`
+  and only tested after: an extra argument of the next call
+  (func_08816638).
 
 ## Open symptoms
 

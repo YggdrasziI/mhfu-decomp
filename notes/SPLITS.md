@@ -261,19 +261,39 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08814984` | 0x08814984-0x08814A14 | 1 small function | 100 % |
 | `unit_08814A14` | 0x08814A14-0x08814BE0 | 1 function, speed (relocates the offsets of a loaded block) | 100 % |
 | `unit_08814BE0` | 0x08814BE0-0x08814D84 | 1 function, NonMatching (99.84 %: register of one stored address) | not linked |
+| `unit_08814D84` | 0x08814D84-0x08814E18 | 1 function (copies four halfwords from D_08A62C68 or clears them, one `||` guard) | 100 % |
+| `unit_08815004` | 0x08815004-0x08815024 | 1 small function (byte store through a pointer local, `(x >= 0) ? x : 0xFF`) | 100 % |
+| `unit_08815024` | 0x08815024-0x08815108 | 1 function, speed (search of an entry list) | 100 % |
+| `unit_08815260` | 0x08815260-0x08815348 | 1 function (four side tests on the XZ plane, difference locals reassigned per test) | 100 % |
 | `unit_08815348` | 0x08815348-0x08815384 | 1 small function | 100 % |
 | `unit_08816060` | 0x08816060-0x088160F0 | 2 small functions | 100 % |
+| `unit_088160F0` | 0x088160F0-0x08816264 | 1 function (plane tests of a transformed point) | 100 % |
 | `unit_08816264` | 0x08816264-0x0881629C | 1 small function | 100 % |
+| `unit_0881629C` | 0x0881629C-0x08816460 | 1 function (decodes one Shift-JIS character, hypothesis) | 100 % |
+| `unit_08816460` | 0x08816460-0x08816508 | 1 function (decodes one UTF-8 character) | 100 % |
+| `unit_08816508` | 0x08816508-0x088165FC | 1 function, speed (encodes a code point as UTF-8) | 100 % |
+| `unit_088165FC` | 0x088165FC-0x08816638 | 1 small function (table lookup, 0x3F for zero) | 100 % |
+| `unit_08816638` | 0x08816638-0x08816730 | 1 function, speed (string conversion through func_0881629C / func_08816508) | 100 % |
+| `unit_08816730` | 0x08816730-0x088167D4 | 1 function (decodes a string into a u16 buffer) | 100 % |
 | `unit_088167D4` | 0x088167D4-0x088167EC | 2 small functions | 100 % |
 | `unit_088167EC` | 0x088167EC-0x088167F4 | 1 small function | 100 % |
 | `unit_088167F4` | 0x088167F4-0x08816818 | 1 function (16-bit string length) | 100 % |
+| `unit_08816818` | 0x08816818-0x08816900 | 1 function, speed (search of a u16 string in another; `volatile` pointer parameter) | 100 % |
 | `unit_08816900` | 0x08816900-0x08816930 | 1 small function | 100 % |
 | `unit_08816930` | 0x08816930-0x088169FC | 1 small function | 100 % |
+| `unit_088169FC` | 0x088169FC-0x08816A60 | 1 small function, speed + `opt_common_subs off` (string length by character) | 100 % |
 | `unit_08816A60` | 0x08816A60-0x08816AE4 | 1 small function | 100 % |
 | `unit_08816AE4` | 0x08816AE4-0x08816B64 | 2 functions with the shape of func_088129B8 | 100 % |
 | `unit_08816B64` | 0x08816B64-0x08816B6C | 1 small function | 100 % |
 | `unit_08816B6C` | 0x08816B6C-0x08816BE4 | 1 small function | 100 % |
+| `unit_08816BE4` | 0x08816BE4-0x08816F24 | 1 function (state reset: flag words, halfword fields) | 100 % |
 | `unit_08816F24` | 0x08816F24-0x088172D8 | 1 function (C++, speed: nested `switch` on the state bytes at +0x585, +0x588 and +0x589, draws boxes through func_0882F580 and func_088197A0) | 100 % |
+| `unit_088172D8` | 0x088172D8-0x08818028 | 1 function (C++, draws a 7-entry panel; owns jtbl_08930968 and the initialised locals 0x089384F4-0x08938540) | 100 % |
+| `unit_08818028` | 0x08818028-0x088180CC | 1 small function (draws a text entry) | 100 % |
+| `unit_088180CC` | 0x088180CC-0x08818264 | 1 function (nested `switch` on the state bytes at +0x57E / +0x57F) | 100 % |
+| `unit_08818264` | 0x08818264-0x088188A8 | 1 function (C++, box copied from D_0893B040, text and list) | 100 % |
+| `unit_088188A8` | 0x088188A8-0x088188B4 | 1 small function (forwarder to func_0881AAA4) | 100 % |
+| `unit_088188B4` | 0x088188B4-0x08818950 | 1 small function (draws a box and a label) | 100 % |
 | `unit_08818C94` | 0x08818C94-0x08818F74 | 1 function (C++, speed: draws a 6-entry list with marks, page from the byte at +0x57D divided by 6; calls func_0883488C in the other mode) | 100 % |
 | `unit_088198E4` | 0x088198E4-0x08819CF8 | 1 function, speed; draws an 8-row page of a list with a colour per row | 100 % |
 | `unit_0881A8E0` | 0x0881A8E0-0x0881A8F8 | 1 small function | 100 % |
