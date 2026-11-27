@@ -3,9 +3,9 @@
  * Builds a packet from the queued entries of a store and sends it to every
  * other peer (same scheme as func_088A7860).
  *
- * NonMatching (99.29 %): the original leaves the delay slot of the
- * func_088AAD58 call empty (`addu a1, s2` before the `jal`, then `nop`);
- * ours fills it with the `addu a1`.
+ * The peer state test is a `switch` whose cases 0 and 6 `break`: the
+ * `if (st != 6 && st != 0)` form fills the empty `jal` slot of the
+ * func_088AAD58 call with the `addu a1`.
  */
 
 #pragma optimize_for_size off
@@ -23,6 +23,7 @@ extern void func_088A84B4(Session *, s32, u8);
 extern s32 func_088A8048(Session *, char *, s32, s32);
 extern char D_09A11F76[];
 
+
 /* `len = 6; dst = ...; pkt[2] = ...` in this order schedules the setup; the
  * entry length goes through an `s32` local cast `(u8)` at the copy (`andi`). */
 s32 func_088A812C(Session *arg0, Store *g, s32 arg2) {
@@ -35,7 +36,6 @@ s32 func_088A812C(Session *arg0, Store *g, s32 arg2) {
     s32 i;
     s32 len;
     u8 *pkt;
-    u8 st;
     u8 t[4];
     u8 type;
     char *dst;
@@ -99,8 +99,11 @@ s32 func_088A812C(Session *arg0, Store *g, s32 arg2) {
     len = pkt[0];
     for (i = 0; i < arg0->count; i++) {
         if (i != arg0->self) {
-            st = arg0->unk68[i];
-            if (st != 6 && st != 0) {
+            switch (arg0->unk68[i]) {
+            case 0:
+            case 6:
+                break;
+            default:
                 ret = func_088AAD58(arg0->unk8[i], pkt, (s16) len);
                 if (ret != len) {
                     func_088A84B4(arg0, (u8) i, 6);

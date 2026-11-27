@@ -260,7 +260,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088140C4` | 0x088140C4-0x08814104 | 2 vector copies | 100 % |
 | `unit_08814984` | 0x08814984-0x08814A14 | 1 small function | 100 % |
 | `unit_08814A14` | 0x08814A14-0x08814BE0 | 1 function, speed (relocates the offsets of a loaded block) | 100 % |
-| `unit_08814BE0` | 0x08814BE0-0x08814D84 | 1 function, NonMatching (99.84 %: register of one stored address) | not linked |
+| `unit_08814BE0` | 0x08814BE0-0x08814D84 | 1 function (clears a block header; pointer local for the field at +0x30) | 100 % |
 | `unit_08814D84` | 0x08814D84-0x08814E18 | 1 function (copies four halfwords from D_08A62C68 or clears them, one `||` guard) | 100 % |
 | `unit_08815004` | 0x08815004-0x08815024 | 1 small function (byte store through a pointer local, `(x >= 0) ? x : 0xFF`) | 100 % |
 | `unit_08815024` | 0x08815024-0x08815108 | 1 function, speed (search of an entry list) | 100 % |
@@ -297,7 +297,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08818C94` | 0x08818C94-0x08818F74 | 1 function (C++, speed: draws a 6-entry list with marks, page from the byte at +0x57D divided by 6; calls func_0883488C in the other mode) | 100 % |
 | `unit_08818F74` | 0x08818F74-0x0881908C | 1 function (draws a box and a label, flag test on +0xF7A57C) | 100 % |
 | `unit_0881908C` | 0x0881908C-0x08819128 | 1 small function (picks the entry id, tail call to func_08819128) | 100 % |
-| `unit_08819128` | 0x08819128-0x08819450 | 1 function, NonMatching (98.84 %: saved registers of an s16 copy and an index swapped) | not linked |
+| `unit_08819128` | 0x08819128-0x08819450 | 1 function (draws an entry for a kind and id) | 100 % |
 | `unit_08819450` | 0x08819450-0x088197A0 | 1 function, speed (draws an item entry with its counts) | 100 % |
 | `unit_088197A0` | 0x088197A0-0x088198E4 | 1 function, speed (copies the non-empty entries of a list, then func_088198E4) | 100 % |
 | `unit_088198E4` | 0x088198E4-0x08819CF8 | 1 function, speed; draws an 8-row page of a list with a colour per row | 100 % |
@@ -419,7 +419,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08828F3C` | 0x08828F3C-0x0882900C | 1 function (early returns -1/0/1/2) | 100 % |
 | `unit_0882900C` | 0x0882900C-0x088290A4 | 1 small function | 100 % |
 | `unit_088290A4` | 0x088290A4-0x088291B4 | 1 function, speed (float constant built with `lui`/`ori`) | 100 % |
-| `unit_088291B4` | 0x088291B4-0x088292AC | 1 function, NonMatching (99.60 %: arg1 in s1 instead of s2; 99.84 % with func_08852F58 declared with one argument) | not linked |
+| `unit_088291B4` | 0x088291B4-0x088292AC | 1 function (index step with wrap, `s32` parameter reused) | 100 % |
 | `unit_088292AC` | 0x088292AC-0x088295C0 | 1 function (saves three keys, compacts and sorts a 24-entry table, finds the keys again) | 100 % |
 | `unit_088295C0` | 0x088295C0-0x08829674 | 1 small function (next used slot, wrapping at 24) | 100 % |
 | `unit_08829674` | 0x08829674-0x0882981C | 1 function (state byte from a flag word and func_0882981C) | 100 % |
@@ -1877,7 +1877,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088A8018` | 0x088A8018-0x088A8028 | 1 small function | 100 % |
 | `unit_088A8028` | 0x088A8028-0x088A8048 | 1 setter | 100 % |
 | `unit_088A8048` | 0x088A8048-0x088A812C | 1 function (appends a headed record to the store) | 100 % |
-| `unit_088A812C` | 0x088A812C-0x088A84B4 | 1 function (builds a packet from the store entries and sends it to the other peers) | NonMatching (99.29 %) |
+| `unit_088A812C` | 0x088A812C-0x088A84B4 | 1 function (builds a packet from the store entries and sends it to the other peers) | 100 % |
 | `unit_088A84B4` | 0x088A84B4-0x088A8570 | 1 function (peer state change with callbacks) | 100 % |
 | `unit_088A8570` | 0x088A8570-0x088A85F4 | 1 small function | 100 % |
 | `unit_088A85F4` | 0x088A85F4-0x088A874C | 5 functions (append to a store, four packet builders ending in it) | 100 % |
@@ -2374,7 +2374,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088D72A4` | 0x088D72A4-0x088D773C | 1 function, C++; adds to the count of a pair and reports the outcome | 100 % |
 | `unit_088D773C` | 0x088D773C-0x088D777C | 1 small function | 100 % |
 | `unit_088D777C` | 0x088D777C-0x088D7AD8 | 2 functions (C++: removal from the object's own pairs at +0x568; transfer to the four pairs at +0x542) | 100 % |
-| `unit_088D7AD8` | 0x088D7AD8-0x088D7D6C | 1 function, NonMatching (C++, 99.6 %: two saved registers swapped); steps a pair index to the next usable pair | not linked |
+| `unit_088D7AD8` | 0x088D7AD8-0x088D7D6C | 1 function (C++, speed); steps a pair index to the next usable pair | 100 % |
 | `unit_088D7D6C` | 0x088D7D6C-0x088D8000 | 3 functions (C++: bit masks built from func_088D6A1C tests) | 100 % |
 | `unit_088D8000` | 0x088D8000-0x088D81E4 | 1 function (C++: refreshes level, count and capacity of the selected pair) | 100 % |
 | `unit_088D81E4` | 0x088D81E4-0x088D81F0 | 1 small function | 100 % |
@@ -2429,7 +2429,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088DBE80` | 0x088DBE80-0x088DBEE0 | 1 small function | 100 % |
 | `unit_088DBEE0` | 0x088DBEE0-0x088DC1C8 | 3 functions (C++: two drivers stepping a per-slot sequence over four slots; the two-step sequence sending pairs of 16-bit values to func_08880A70) | 100 % |
 | `unit_088DC1C8` | 0x088DC1C8-0x088DC1F0 | 2 small functions | 100 % |
-| `unit_088DC1F0` | 0x088DC1F0-0x088DC40C | 1 function, NonMatching (C++, speed, 99.8 %: two saved registers swapped); sets up an object from the four parts of a resource | not linked |
+| `unit_088DC1F0` | 0x088DC1F0-0x088DC40C | 1 function (C++, speed); sets up an object from the four parts of a resource | 100 % |
 | `unit_088DC40C` | 0x088DC40C-0x088DC6E8 | 2 functions (C++, speed: tree of 0x250-byte nodes built from resource data; identity matrix, VFPU) | 100 % |
 | `unit_088DC6E8` | 0x088DC6E8-0x088DC720 | 6 accessors | 100 % |
 | `unit_088DC720` | 0x088DC720-0x088DC748 | 1 small function | 100 % |
@@ -2501,7 +2501,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088EF488` | 0x088EF488-0x088EF4A8 | 4 empty callbacks | 100 % |
 | `unit_088EF4A8` | 0x088EF4A8-0x088EF55C | 1 small function | 100 % |
 | `unit_088EF55C` | 0x088EF55C-0x088EF9C8 | 4 functions: a JPEG image decoded into a texture by a thread of its own (IJG library); speed setting | 100 % |
-| `unit_088EF9C8` | 0x088EF9C8-0x088EFB18 | 1 function, NonMatching (98.8 %: saved registers): starts the on-screen keyboard | not linked |
+| `unit_088EF9C8` | 0x088EF9C8-0x088EFB18 | 1 function (speed): starts the on-screen keyboard | 100 % |
 | `unit_088EFB18` | 0x088EFB18-0x088EFC04 | 1 function: state of the on-screen keyboard | 100 % |
 | `unit_088EFC04` | 0x088EFC04-0x088EFC14 | 2 small functions | 100 % |
 | `unit_088EFC14` | 0x088EFC14-0x088EFF1C | 1 function (C++, speed; VFPU: two matrices of an object from its scale and local matrix, turned for the ids 0x21-0x24, passed on by virtual calls) | 100 % |

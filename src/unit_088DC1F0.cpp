@@ -2,8 +2,6 @@
  *
  * Bounds (hypothesis): 1 function between unit_088DC1C8 and unit_088DC40C.
  *
- * NonMatching, 99.78 %: the code stays in the assembly piece text_088DC1F0.
- *
  * Sets up the object `arg1` from the resource of entry 8 of the table of
  * D_09A4F0D0 (parts 0-3 of func_088B89B0): copies part 1 into memory of
  * func_08866B8C (DMA copy) for func_08862510, builds the node tree of part
@@ -15,40 +13,8 @@
  * `#pragma opt_propagation off`, an index local `idx = 8` shared by both
  * lookups and an inline helper without a copy of its index. The saved
  * registers come from the locals shared across roles (all `s32`) and their
- * declaration order (scripted search).
- *
- * Gap: the two part-1 pointers (of the first and of the second lookup) are
- * in `$s3` / `$s4`, the original has them in `$s4` / `$s3`. Not fixed by
- * any role assignment or declaration order tried, by inline helpers for
- * the second load or the DMA copy, nor by the other optimizer pragmas.
- *
- * Optimized for speed, as its neighbour unit_088DC40C (not checked apart).
- */
-
-/* unit_088DC1F0: 0x088DC1F0-0x088DC40C (ULES01213)
- *
- * Bounds (hypothesis): 1 function between unit_088DC1C8 and unit_088DC40C.
- *
- * NonMatching, 95.2 %: the code stays in the assembly piece text_088DC1F0.
- *
- * Sets up the object `arg1` from the resource of entry 8 of the table of
- * D_09A4F0D0 (parts 0-3 of func_088B89B0): copies part 1 into memory of
- * func_08866B8C (DMA copy) for func_08862510, builds the node tree of part
- * 0 (func_088DC40C, 0x250 bytes a node), passes part 2 to func_088626D0 and
- * keeps part 3 at +0x1AC.
- *
- * Gaps: the original keeps the index 8 of the lookup in `$a0` and builds
- * the offset from it (`li a0, 8`; `li v0, 0x10`; `addu v0, v0, a0`; `sll
- * s1, v0, 2`), keeps that offset in `$s1` for the second lookup and loads
- * the table pointer into `$v1` first; ours folds the offset into the two
- * loads (`lhu v0, 0x60(v1)`). The saved registers of the first part differ
- * after that. Same lookup, same registers as in func_088DB608 (`$v1` table,
- * `$a0` index). Tried for the lookup: an inline function on a stepped
- * pointer, on the table indexed twice, on an address local, a member
- * function, a `u8` index, an index local, an index from an inline
- * function (sum, conditional, `switch`), a `static const` or `static`
- * index, a volatile index, a counted loop, and two-level inlining
- * (`#pragma inline_bottom_up on`).
+ * declaration order: `part` (first part-1 pointer, `$s4`) declared before
+ * `part2` (second part-1 pointer, `$s3`).
  *
  * Optimized for speed, as its neighbour unit_088DC40C (not checked apart).
  */
@@ -104,8 +70,8 @@ static inline s32 entry_value(Entry *tbl, s32 i) {
 }
 
 void func_088DC1F0(s32 arg0, char *arg1) {
-    s32 part2;
     s32 part;
+    s32 part2;
     s32 dst;
     s32 res2;
     s32 size;

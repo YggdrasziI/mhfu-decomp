@@ -3375,25 +3375,43 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   pointer parameter (func_0881EB60). A large function where declaration
   order changes nothing: `#pragma opt_propagation off` (func_0881EE84,
   +5 points, NonMatching).
+- Retry of 2026-11-27 (7 of 15 NonMatching units above 98 % matched). An
+  unfilled `jal` slot inside a guarded block: the guard as a `switch` with
+  the excluded values in an empty `case A: case B: break;` group and the
+  body in `default:` (func_088A812C). A field address `p + K` in the wrong
+  register and its store out of order: a pointer local initialised at its
+  declaration at the top, used for the member stores too (`q[i]`)
+  (func_08814BE0). An `s8` value kept in its parameter register with `seb`
+  only at the tests: `s32` parameter reused as the variable, `(s8)` at each
+  use with a `seb`, `s32` return when the return has none (func_088291B4).
+  Saved registers swapped in older units: rerun a hill-climb over
+  declarations under the current flags, one adjacent swap was enough
+  (func_088DC1F0). An `s16` position copied after a call swapped with an
+  index: plain `s16` locals and explicit `s32` copies right after the call,
+  in register order (func_08819128). Index and count swapped with no
+  declaration order helping: reuse the index local for an earlier test of
+  the parameter, speed setting, guarded `do/while` written as a `for`
+  (func_088D7AD8). A global-address pointer local swapped with a later
+  local: the first use after the branch as the cast `(T *)(s32)&D_x`, and
+  the branch that sets the other local as a `switch` (func_088EF9C8).
+  Found while failing: the saved register a value gets follows the
+  instruction count before scheduling, not declaration order (toy tests on
+  func_08825148); with `#pragma schedule off` the loop head of
+  func_088FD170 gets the original registers (a common-subexpression pass
+  runs after colouring).
 
 ## Open symptoms
 
+- One inlined copy of a helper coloured differently from its identical
+  copies (the last `submitL` of func_0882E86C, 99.66 %); func_088F4518
+  shows the compiler does it, no source lever found.
 - `$ra` saved at 0x0 (or under the other saved registers) and a call block
   after `jr $ra` reached by `j`: not mwccpsp code, leave it in assembly
   (0x088972A0-0x08897E1C, notes/SPLITS.md).
-- Two part pointers in swapped saved registers after the D_09A4F0D0
-  lookup (func_088DC1F0, 99.78 %).
-- Two saved registers swapped (masked index and count) whatever the
-  declaration order: func_088D7AD8 (99.58 %).
 - Scheduling: a load placed before / after an index computation (func_088307BC).
 - One block of a large speed function: a byte load in `a3` instead of `a2`
   and a constant argument set before a `subu` instead of in the `jal` slot
   (func_08849D7C, 99.21 %, case 0).
-- Unfilled `jal` delay slot (func_08813CF8; func_088A812C 99.29 %: the
-  `addu a1` goes into the slot of the func_088AAD58 call, with an extern or
-  a static callee alike).
-- Two saved registers swapped (a pointer to a global in `$s0`, the last
-  argument in `$s1`) whatever the declaration order: func_088EF9C8.
 - A test against the constant 1 (`addiu v1, zero, 1` after the `andi`,
   `bnel a0, v1`): ours branches with `beqzl` for every `== 1` form
   (func_088D168C, 98.79 %).

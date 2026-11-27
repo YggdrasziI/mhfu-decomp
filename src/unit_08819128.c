@@ -6,10 +6,8 @@
 /* func_08819128: draw an entry for a kind and id (a record box for kind 1
  * above 0x18, else a text box picked from the flags at 0x528).
  *
- * NonMatching (98.84 %): only the saved registers of the copy of p.x and of
- * j are swapped (s2/s3) after the first call. The s16 pair is a local
- * structure: its members get the `seh` copies after the call that plain s16
- * locals never get. */
+ * The s16 position is copied into s32 locals after the first call, y first
+ * then x, then j: that order gives the saved registers of the original. */
 
 typedef unsigned char u8;
 typedef signed char s8;
@@ -41,41 +39,39 @@ extern void func_088920A8(char *, s16, s16, char *, ...);
 extern char *func_09A7B790(s32, u16);
 extern void func_0882FC50(char *, u16 *, char *, s32);
 
-typedef struct XY {
-    s16 x;
-    s16 y;
-} XY;
-
 void func_08819128(char *arg0, u8 kind, u16 id, s32 arg3) {
     u8 *rec;
     char *s;
     u16 *box;
-    XY p;
+    s16 px;
+    s16 py;
     s32 by;
+    s32 bx;
     s32 flags;
     s32 j;
 
     if (kind < 8 && id != 0xFFFF) {
         if (kind == 1 && id > 0x18) {
             flags = *(s32 *)(arg0 + 0x528);
-            p.x = 0x48;
-            p.y = 0x28;
+            px = 0x48;
+            py = 0x28;
             if (flags & 0x200) {
-                p.y += 0x60;
+                py += 0x60;
             } else if (flags & 0x800) {
-                p.x += 0x90;
-                p.y += 0xA0;
+                px += 0x90;
+                py += 0xA0;
             }
-            func_0882DCA0(arg0, p.x, p.y, 0x100, 0x40, 0xFF);
-            by = p.y;
+            func_0882DCA0(arg0, px, py, 0x100, 0x40, 0xFF);
+            by = py;
+            bx = px;
             j = id - 0x18;
-            func_08819450(arg0, j, (s16)(p.x + 0x30), (s16)(by + 9), arg3);
+            func_08819450(arg0, j, (s16)(bx + 0x30), (s16)(by + 9), arg3);
             rec = D_0899D198[j];
-            func_0882E2C0(arg0, j, p.x + 0xA, by + 8, 0x20, 0x20, 1, 0xFF);
+            func_0882E2C0(arg0, j, bx + 0xA, by + 8, 0x20, 0x20, 1, 0xFF);
             func_08890E38(D_08A631A8, func_088303A0(arg0, rec[2]));
             func_08890DE8(D_08A631A8, 0xC, 0xC);
             s = func_0885151C(D_089CC438, D_089AC864);
-            func_088920A8(D_08A631A8, p.x + 8, by + 0x2A, s, rec[2] + 1);
+            func_088920A8(D_08A631A8, bx + 8, by + 0x2A, s, rec[2] + 1);
             func_08890E38(D_08A631A8, 0);
         } else {
             flags = *(s32 *)(arg0 + 0x528);

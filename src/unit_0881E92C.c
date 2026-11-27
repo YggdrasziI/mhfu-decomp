@@ -18,7 +18,7 @@ typedef int s32;
 extern s32 D_08A62D8C;
 extern void func_0881C2E4(char *, u8 *, u16, u8);
 extern s32 func_088262B0(char *);
-extern s8 func_088291B4(char *, s8, s32);
+extern s32 func_088291B4(char *, s8, s32);
 extern void func_08883988(s32, s32, s32, s32, s32, s32, s32, s32, s32);
 extern void func_0882619C(char *, u16);
 extern void func_088260D4(char *, u16);

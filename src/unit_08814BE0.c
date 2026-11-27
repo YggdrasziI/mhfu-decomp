@@ -2,8 +2,8 @@
  *
  * Bounds (hypothesis): 1 function between code still in assembly.
  *
- * NonMatching (99.84 %): the 0x28 store is written before the 0x24 store;
- * the original keeps the 0x24 store first and puts p + 0x30 in a2, not a1.
+ * p + 0x30 is a local (u8 *q) declared right after p and used for the byte
+ * stores at 0x30-0x35; it gives the a2 register and the 0x24/0x28 order.
  */
 
 typedef unsigned char u8;
@@ -34,6 +34,7 @@ extern f32 D_08933B98;
 
 void func_08814BE0(char *arg0) {
     char *p = *(char **)(arg0 + 0xAAC);
+    u8 *q = (u8 *)p + 0x30;
 
     *(s16 *)(p + 0x0) = 0x102;
     *(s16 *)(p + 0x2) = 0;
@@ -47,14 +48,14 @@ void func_08814BE0(char *arg0) {
     *(s32 *)(p + 0x18) = 20000;
     *(s32 *)(p + 0x1C) = 0;
     *(s32 *)(p + 0x20) = 0;
-    *(char **)(p + 0x28) = p + 0x30;
     *(s32 *)(p + 0x24) = 0;
-    *(u8 *)(p + 0x30) = 0;
-    *(u8 *)(p + 0x31) = 0;
-    *(u8 *)(p + 0x32) = 0;
-    *(u8 *)(p + 0x33) = 2;
-    *(u8 *)(p + 0x34) = 0;
-    *(u8 *)(p + 0x35) = 0;
+    *(u8 **)(p + 0x28) = q;
+    q[0] = 0;
+    q[1] = 0;
+    q[2] = 0;
+    q[3] = 2;
+    q[4] = 0;
+    q[5] = 0;
     *(f32 *)(p + 0x38) = 400.0f;
     *(f32 *)(p + 0x3C) = 2400.0f;
     *(f32 *)(p + 0x40) = 1.0f;

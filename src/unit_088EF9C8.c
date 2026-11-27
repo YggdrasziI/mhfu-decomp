@@ -1,4 +1,4 @@
-/* unit_088EF9C8: 0x088EF9C8-0x088EFB18 (ULES01213), NonMatching
+/* unit_088EF9C8: 0x088EF9C8-0x088EFB18 (ULES01213)
  *
  * Bounds (hypothesis): 1 function between unit_088EF55C and unit_088EFB18.
  * Starts the system's on-screen keyboard (unit_088EFB18 follows its state).
@@ -35,26 +35,30 @@ extern void *memset(void *, s32, s32);
 extern void func_088DD638(u16 *, s32, void *);
 extern s32 sceUtilityOskInitStart(void *);
 
-/* 98.81 %: the parameter block pointer is in $s0 and arg3 / type in $s1 in the
- * original, the other way round here. Tried: declaration orders, the pointer
- * set in its declaration or after the first calls, set through an integer
- * cast, no pointer local, other types for type and the arguments.
- * The field pointer set through an integer cast keeps it in one register
- * ($v1); a plain `&D_09A521B4` is folded into every store. */
+/* The parameter block pointer is set through an integer cast and memset gets
+ * its own cast copy of the address, not the local: with the local passed, or a
+ * plain `&D_09A521E8`, the pointer and arg3 / type swap $s0 and $s1. The type
+ * is a `switch` (an if/else gives the same registers swapped; `type = 1; if`
+ * gives the right registers but a plain `beq`). The field pointer set through
+ * an integer cast keeps it in one register ($v1); a plain `&D_09A521B4` is
+ * folded into every store. */
 s32 func_088EF9C8(void *arg0, u8 arg1, u16 arg2, void *arg3) {
     OskParams *params;
     OskData *data;
     s32 type;
 
-    params = &D_09A521E8;
+    params = (OskParams *)(s32)&D_09A521E8;
     memset(D_09A52228, 0, 0x202);
     func_088DD638(D_09A52228, 0x202, arg3);
-    if (arg1 != 4) {
-        type = 0xD;
-    } else {
+    switch (arg1) {
+    case 4:
         type = 1;
+        break;
+    default:
+        type = 0xD;
+        break;
     }
-    memset(params, 0, 0x40);
+    memset((OskParams *)(s32)&D_09A521E8, 0, 0x40);
     params->w[0] = 0x40;
     params->w[1] = 1;
     params->w[2] = 1;

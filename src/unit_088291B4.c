@@ -1,11 +1,6 @@
 /* unit_088291B4: 0x088291B4-0x088292AC (ULES01213)
  *
  * Bounds (hypothesis): 1 function between code still in assembly.
- *
- * NonMatching: func_088291B4 99.84 %. Left: arg1 in s1 instead of s2
- * (func_08852F58 takes one argument: the parameter moves come out in the
- * original order); every declaration order, loop form and opt pragma was
- * tried for the s1/s2 swap.
  */
 
 typedef int s32;
@@ -16,38 +11,37 @@ extern char *D_089CC438;
 extern s32 func_08852F58(char *);
 extern s32 func_08852F1C(char *, u8);
 
-s8 func_088291B4(s32 arg0, s32 arg1, s32 arg2) {
-    s8 idx;
+s32 func_088291B4(s32 arg0, s32 arg1, s32 arg2) {
     s32 i;
     s8 dir;
 
     if (func_08852F58(D_089CC438) != 0) {
         if ((s8)arg1 < 0) {
-            idx = 0;
+            arg1 = 0;
         } else {
-            idx = arg1 + arg2;
-            if (idx > 61) {
-                idx = 0;
+            arg1 = (s8)(arg1 + arg2);
+            if (arg1 > 61) {
+                arg1 = 0;
             }
-            if (idx < 0) {
-                idx = 61;
+            if ((s8)arg1 < 0) {
+                arg1 = 61;
             }
         }
         dir = arg2;
         i = 62;
         do {
-            if (!(func_08852F1C(D_089CC438, idx) != 0) == 0) {
-                return idx;
+            if (!(func_08852F1C(D_089CC438, arg1) != 0) == 0) {
+                return arg1;
             }
             if (dir >= 0) {
-                idx++;
-                if (idx > 61) {
-                    idx = 0;
+                arg1 = (s8)(arg1 + 1);
+                if (arg1 > 61) {
+                    arg1 = 0;
                 }
-            } else if (idx <= 0) {
-                idx = 61;
+            } else if ((s8)arg1 <= 0) {
+                arg1 = 61;
             } else {
-                idx--;
+                arg1 = (s8)(arg1 - 1);
             }
             i--;
         } while (i > 0);

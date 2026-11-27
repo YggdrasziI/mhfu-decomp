@@ -9,7 +9,7 @@ typedef int s32;
 
 extern s32 D_089CC438;
 extern char *D_08A62D8C;
-extern s8 func_088291B4(char *, s8, s32);
+extern s32 func_088291B4(char *, s8, s32);
 extern s32 func_08852F58(s32);
 extern s32 func_08883988(void *, s32, s32, s32, s32, s32, s32, s32, u8);
 
