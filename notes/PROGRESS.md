@@ -66,6 +66,7 @@ Commits before `15e9c9d` (first units, from `unit_088A6024` on) were not measure
 | 2026-11-27 | `558c19f` | 791444 / 1089072 bytes (72.67 %) | 2998 / 3581 | 2316 | Region 0x08811C84, last batch: 0x0881C398-0x08820B74 (12 of 13 functions) |
 | 2026-11-27 | `8761a3f` | 795360 / 1089072 bytes (73.03 %) | 3005 / 3581 | 2323 | Retry of the NonMatching units above 98 % (7 of 15 functions) |
 | 2026-11-27 | `60fd437` | 833744 / 1089072 bytes (76.56 %) | 3022 / 3581 | 2340 | Leftovers of 0x08855428-0x088CBBAC (17 of 17 functions) |
+| 2026-11-27 | `eccd77f` | 851464 / 1089072 bytes (78.18 %) | 3034 / 3581 | 2352 | Retry of the leftovers (12 of 19 functions) |
 
 From 2026-11-12 (`f84b2f1`) on, one row per day: the last commit recorded that
 day in `progress/ULES01213/history.csv`, which has every measured commit. Rows
