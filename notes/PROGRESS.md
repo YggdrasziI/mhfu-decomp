@@ -61,6 +61,7 @@ Commits before `15e9c9d` (first units, from `unit_088A6024` on) were not measure
 | 2026-11-27 | `0135a77` | 755100 / 1089072 bytes (69.33 %) | 2925 / 3581 | 2243 | Region 0x08820000, fifth batch: 0x0882B94C-0x0882FB38 (18 of 20 functions) |
 | 2026-11-27 | `3486bf5` | 756240 / 1089072 bytes (69.44 %) | 2928 / 3581 | 2246 | Region 0x08820000, last three: 0x0882FB38-0x08830078 (3 of 3 functions) |
 | 2026-11-27 | `287d405` | 762496 / 1089072 bytes (70.01 %) | 2947 / 3581 | 2265 | Region 0x08811C84, first batch: 0x08811C84-0x08814D84 (19 of 20 functions) |
+| 2026-11-27 | `eba6ebe` | 771760 / 1089072 bytes (70.86 %) | 2967 / 3581 | 2285 | Region 0x08811C84, second batch: 0x08814D84-0x08818950 (20 of 20 functions) |
 
 From 2026-11-12 (`f84b2f1`) on, one row per day: the last commit recorded that
 day in `progress/ULES01213/history.csv`, which has every measured commit. Rows
