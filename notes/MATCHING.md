@@ -3473,6 +3473,15 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   the `.exception` records are nowhere in it, so the `.exceptix` and
   `.exception` sections of the objects are discarded at link, as for the
   other C++ units.
+- func_0890BFE0 (2026-11-27, written from the assembly only). Branches to a
+  shared body with the other path falling through: `switch (*a) { case
+  '*': case '!': ... }` and the rest after the switch (an `||` gives the
+  opposite sense). A rotated loop guarded by `bnel` to a shared `return 0`:
+  `if (c == *q) do { } while (...); return 0;`. A `seb` only in the sum of a
+  digit loop: an `s32` local, `(char)e` in the arithmetic. A reload that
+  the compiler shares with the loop test: one `volatile` read (last resort).
+  A pragma that fixes constant hoisting may hide a shape difference: fix the
+  shape first.
 
 ## Open symptoms
 
