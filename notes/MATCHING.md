@@ -3358,6 +3358,23 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   local `struct { s16 x, y; }` (func_08819128, NonMatching). A caller
   passing no second argument to func_08852F58: its definition takes one
   (the second was a pass-through of whatever `a1` held).
+- Batch 47 (0x0881C398-0x08820B74). A local reset in a `jal` slot: `x = 0;`
+  before the call, as the first statement of its block (func_0881E92C,
+  func_0881CB2C); a flag set in the slot: assign it before the call
+  (func_0881C5D8). A `u16` copy of an `s32` parameter whose mask must not
+  be shared with later `(u16)pad & K` tests: initialise it at its
+  declaration after a call (func_0881DB5C). A switch on `-1..5` needs its
+  empty cases listed (`case -1: case 4: break;`) to get a jump table
+  (func_0881DB5C). One shared assignment for two failing tests, `if (e == 0
+  || e[0xBF] == 5) ok = 0; else ok = f() == 0;`, for a `b` with an empty
+  slot; outer switch without `default:`; an 8-byte record copy as one
+  assignment of `struct { struct { s8 c[6]; } n; struct { u8 a, b; } m; }`;
+  a two-element swap: read the first element's fields before taking the
+  second's address (func_0881CB2C). `x--;` rather than `x = x - 1;` for a
+  stray `seh` on an `s16` local (func_0881C68C). `u8 *` for `lbu` on a
+  pointer parameter (func_0881EB60). A large function where declaration
+  order changes nothing: `#pragma opt_propagation off` (func_0881EE84,
+  +5 points, NonMatching).
 
 ## Open symptoms
 

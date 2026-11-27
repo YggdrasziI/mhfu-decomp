@@ -319,13 +319,26 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0881C1C8` | 0x0881C1C8-0x0881C240 | 1 small function (cursor and width) | 100 % |
 | `unit_0881C240` | 0x0881C240-0x0881C2E4 | 1 small function | 100 % |
 | `unit_0881C2E4` | 0x0881C2E4-0x0881C398 | 1 function (cursor up / down with wrap, returns 1 when moved) | 100 % |
+| `unit_0881C398` | 0x0881C398-0x0881C45C | 1 function (cursor by pages with wrap, as func_0881C2E4) | 100 % |
+| `unit_0881C45C` | 0x0881C45C-0x0881C520 | 1 function (cursor by pages with wrap, as func_0881C2E4) | 100 % |
+| `unit_0881C520` | 0x0881C520-0x0881C5D8 | 1 small function (toggles a flag byte, sound) | 100 % |
+| `unit_0881C5D8` | 0x0881C5D8-0x0881C68C | 1 small function (toggles and returns a flag, sound) | 100 % |
+| `unit_0881C68C` | 0x0881C68C-0x0881C884 | 1 function (grid cursor with wrap) | 100 % |
 | `unit_0881C884` | 0x0881C884-0x0881C944 | 1 small function (C++) | 100 % |
+| `unit_0881C944` | 0x0881C944-0x0881CA34 | 1 function (C++, three checks then flag stores) | 100 % |
 | `unit_0881CA34` | 0x0881CA34-0x0881CAC8 | 1 small function (C++) | 100 % |
 | `unit_0881CAC8` | 0x0881CAC8-0x0881CB0C | 1 reset (call, byte and flag clear) | 100 % |
 | `unit_0881CB0C` | 0x0881CB0C-0x0881CB2C | 1 function (clears flags) | 100 % |
+| `unit_0881CB2C` | 0x0881CB2C-0x0881DB5C | 1 function (C++, menu input handler, nested compare-chain switches) | 100 % |
+| `unit_0881DB5C` | 0x0881DB5C-0x0881E8F8 | 1 function (menu input handler; owns jtbl_08930984 and jtbl_089309A0) | 100 % |
 | `unit_0881E8F8` | 0x0881E8F8-0x0881E92C | 1 small function | 100 % |
+| `unit_0881E92C` | 0x0881E92C-0x0881EAF8 | 1 function (nested `switch` on the state bytes at +0x57E / +0x57F) | 100 % |
 | `unit_0881EAF8` | 0x0881EAF8-0x0881EB60 | 1 small function | 100 % |
+| `unit_0881EB60` | 0x0881EB60-0x0881EC2C | 1 function (byte cursor with wrap) | 100 % |
+| `unit_0881EC2C` | 0x0881EC2C-0x0881ECDC | 1 function (stack buffer passed to two calls) | 100 % |
+| `unit_0881ECDC` | 0x0881ECDC-0x0881ED64 | 1 small function (C++, flag bit 0x40 at +0x528) | 100 % |
 | `unit_0881ED64` | 0x0881ED64-0x0881EE84 | 1 function (C++; fills a 12-byte record from one of six sources); jump table 0x089309BC-0x089309D4 in the unit | 100 % |
+| `unit_0881EE84` | 0x0881EE84-0x08820B74 | 1 function, NonMatching (97.83 %: scheduling and registers in about 20 blocks; speed, opt_propagation off) | not linked |
 | `unit_08820B74` | 0x08820B74-0x08820DBC | 1 function (`switch` on six button codes, clamps); jump table 0x08930A1C-0x08930A34 in the unit | 100 % |
 | `unit_08820DBC` | 0x08820DBC-0x08820FB4 | 1 function (picks one of 13 strings from a kind and flags) | 100 % |
 | `unit_08820FB4` | 0x08820FB4-0x08821080 | 1 function (colour as a byte union, item drawing) | 100 % |

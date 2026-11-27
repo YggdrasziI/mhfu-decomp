@@ -185,17 +185,24 @@ segments:
       - [0x1A77C, c, unit_0881C1C8]
       - [0x1A7F4, c, unit_0881C240]
       - [0x1A898, c, unit_0881C2E4]
-      - [0x1A94C, asm, text_0881C398]
+      - [0x1A94C, c, unit_0881C398]
+      - [0x1AA10, c, unit_0881C45C]
+      - [0x1AAD4, c, unit_0881C520]
+      - [0x1AB8C, c, unit_0881C5D8]
+      - [0x1AC40, c, unit_0881C68C]
       - [0x1AE38, cpp, unit_0881C884]
-      - [0x1AEF8, asm, text_0881C944]
+      - [0x1AEF8, cpp, unit_0881C944]
       - [0x1AFE8, cpp, unit_0881CA34]
       - [0x1B07C, c, unit_0881CAC8]
       - [0x1B0C0, c, unit_0881CB0C]
-      - [0x1B0E0, asm, text_0881CB2C]
+      - [0x1B0E0, cpp, unit_0881CB2C]
+      - [0x1C110, c, unit_0881DB5C]
       - [0x1CEAC, c, unit_0881E8F8]
-      - [0x1CEE0, asm, text_0881E92C]
+      - [0x1CEE0, c, unit_0881E92C]
       - [0x1D0AC, c, unit_0881EAF8]
-      - [0x1D114, asm, text_0881EB60]
+      - [0x1D114, c, unit_0881EB60]
+      - [0x1D1E0, c, unit_0881EC2C]
+      - [0x1D290, cpp, unit_0881ECDC]
       - [0x1D318, cpp, unit_0881ED64]
       - [0x1D438, asm, text_0881EE84]
       - [0x1F128, c, unit_08820B74]
@@ -2535,7 +2542,7 @@ segments:
       - { start: 0x10EEDC, type: .rodata, name: unit_08813E90, linker_section_order: .data }
       - [0x10EF1C, data, data_08910968]
       - { start: 0x12EF1C, type: .rodata, name: unit_088172D8, linker_section_order: .data }
-      - [0x12EF38, data, data_08930984]
+      - { start: 0x12EF38, type: .rodata, name: unit_0881DB5C, linker_section_order: .data }
       - { start: 0x12EF70, type: .rodata, name: unit_0881ED64, linker_section_order: .data }
       - [0x12EF88, data, data_089309D4]
       - { start: 0x12EFD0, type: .rodata, name: unit_08820B74, linker_section_order: .data }
