@@ -2,10 +2,16 @@
  *
  * Bounds (hypothesis): 1 function between code still in assembly.
  *
- * NonMatching: func_0881EE84 97.83 %. Left: scheduling and register
- * allocation in about 20 small blocks (prologue parameter moves, two spill
- * slots swapped, extra u16 masks of py, a u8 flag in case 4/5). Speed
- * setting and opt_propagation off needed; declaration order has no effect.
+ * NonMatching: func_0881EE84 99.08 %. Left: the saved registers of px and
+ * item2 are swapped (s1/s2) through the whole function, three registers of
+ * kind 4/5 (rec, mask, add, all) follow from it, the prologue spill slots
+ * of arg7 * 4 and sy0 are swapped (0x74/0x70), and the kind 3 case 5/6 call
+ * sets a1 before a0. The px/item2 order did not move with declaration
+ * order, local copies of item2 (any type), param types, variable merging,
+ * pragmas or flags. The stack slots of the byte/halfword locals follow
+ * declaration order: default's own dval first, txt at function level, and
+ * kind 0's spx is sx0 reused (a split web goes last). arg0 goes through a
+ * void * copy to get s0.
  * Owns jtbl_089309D4, jtbl_089309F0 and the initialised local D_089385B8
  * once it matches.
  */
@@ -123,20 +129,23 @@ extern u32 func_088D7DE8(s32);
 extern u8 func_088D6A1C(s32, s32);
 extern void func_08821924(char *, s32);
 extern void func_08890DFC(char *, s16, s16);
-extern void func_08821D48(char *, s16, s16, u8 *, u32, u32, s32, s32);
+extern void func_08821D48(char *, s16, s16, u8 *, u32, u32, s32, u8);
 extern void func_0882232C(char *, u8 *, s32, u8 *, u16, u16);
 extern s32 func_088D7F34(s32);
 extern void func_08822594(char *, u8 *, u16, u16, s32);
 extern void func_08822C58(char *, u8 *, u16, u16, u8, s32);
 
-void func_0881EE84(char *arg0, u8 *item, u16 px, u16 py, s32 flags, u8 *item2, s32 arg6, s32 arg7)
+void func_0881EE84(void *a0v, u8 *item, u16 px, u16 py, s32 flags, u8 *item2, s32 arg6, s32 arg7)
 {
+    char *arg0 = a0v;
     s16 sx0;
     s16 sy0;
     s16 offs[7] = { 0, 0, 0, 0, 0, -8, 0 };
     s32 sel;
     char *str;
     u8 kind;
+    u32 dval;
+    u32 dval2;
     u8 rarity;
     u8 cat;
     u8 cat2;
@@ -146,6 +155,7 @@ void func_0881EE84(char *arg0, u8 *item, u16 px, u16 py, s32 flags, u8 *item2, s
     s8 base;
     u16 *ids;
     s8 *colp;
+    char *txt;
     s8 col[8];
 
     sel = *(s32 *)(D_08A631A0 + 0xF7A574);
@@ -182,7 +192,6 @@ void func_0881EE84(char *arg0, u8 *item, u16 px, u16 py, s32 flags, u8 *item2, s
     py = sy0 + 8;
     switch (kind) {
     case 0: {
-        s16 spx;
         u16 x16;
         u16 y16;
         u32 val;
@@ -190,8 +199,8 @@ void func_0881EE84(char *arg0, u8 *item, u16 px, u16 py, s32 flags, u8 *item2, s
         u8 *rec;
         u8 *rec2;
 
-        spx = px;
-        func_08820FB4(arg0, item, spx, (s16)py, flags & 0xFF);
+        sx0 = px;
+        func_08820FB4(arg0, item, sx0, (s16)py, flags & 0xFF);
         y16 = py;
         x16 = px;
         func_088920A8(D_08A631A8, x16 + 0x1C, y16 + 4, func_0885151C(D_089CC438, D_089AC954[0]), hl,
@@ -354,7 +363,7 @@ void func_0881EE84(char *arg0, u8 *item, u16 px, u16 py, s32 flags, u8 *item2, s
                 }
                 func_088232A0(arg0, item, x16 + 0x8C, y2, item2);
                 ids = D_089AC904;
-                col[3] = col[2] = col[1] = col[0] = dim;
+                col[3] = dim; col[2] = dim; col[1] = dim; col[0] = dim;
                 colp = col;
                 if (bits != 0) {
                     if (bits & 1) {
@@ -381,7 +390,7 @@ void func_0881EE84(char *arg0, u8 *item, u16 px, u16 py, s32 flags, u8 *item2, s
             s16 xx;
 
             rec = func_0885CA50(D_08A62C54, item);
-            val = (u16)func_0885EAA4(D_08A62C54, item);
+            dval = (u16)func_0885EAA4(D_08A62C54, item);
             col[6] = base;
             col[5] = base;
             col[4] = base;
@@ -391,10 +400,10 @@ void func_0881EE84(char *arg0, u8 *item, u16 px, u16 py, s32 flags, u8 *item2, s
             col[0] = base;
             if (item2 != 0 && item[1] == item2[1]) {
                 rec2 = func_0885CA50(D_08A62C54, item2);
-                val2 = (u16)func_0885EAA4(D_08A62C54, item2);
-                if (val2 < val) {
+                dval2 = (u16)func_0885EAA4(D_08A62C54, item2);
+                if (dval2 < dval) {
                     col[0] = 4;
-                } else if (val < val2) {
+                } else if (dval < dval2) {
                     col[0] = 2;
                 }
                 if (*(u16 *)(item2 + 4) < *(u16 *)(item + 4)) {
@@ -431,7 +440,7 @@ void func_0881EE84(char *arg0, u8 *item, u16 px, u16 py, s32 flags, u8 *item2, s
             cx = x16 + 0x4D;
             c = cx;
             yy = py;
-            func_088915B0(D_08A631A8, c, yy, col[0], D_08938594, val);
+            func_088915B0(D_08A631A8, c, yy, col[0], D_08938594, dval);
             y1 = yy + 0x10;
             func_088915B0(D_08A631A8, c, y1, col[2], D_08938594, ((s8 *)rec)[0xD]);
             y2 = yy + 0x20;
@@ -442,12 +451,12 @@ void func_0881EE84(char *arg0, u8 *item, u16 px, u16 py, s32 flags, u8 *item2, s
             func_088915B0(D_08A631A8, c, yy, col[1], D_08938594, *(u16 *)(item + 4) + 1);
             func_088915B0(D_08A631A8, c, y1, col[3], D_08938594, ((s8 *)rec)[0xE]);
             func_088915B0(D_08A631A8, c, y2, col[5], D_08938594, ((s8 *)rec)[0x11]);
-            func_08890E38(D_08A631A8, dim);
             ids = D_089385D4;
-            func_08891474(D_08A631A8, spx, yy, D_08938478, func_0885151C(D_089CC438, D_089AC89C));
-            func_08891474(D_08A631A8, spx, y1, D_08938478, func_0885151C(D_089CC438, D_089AC8A0));
-            func_08891474(D_08A631A8, spx, y2, D_08938478, func_0885151C(D_089CC438, D_089AC8A4));
-            func_08891474(D_08A631A8, spx, y3, D_08938478, func_0885151C(D_089CC438, D_089AC8A8));
+            func_08890E38(D_08A631A8, dim);
+            func_08891474(D_08A631A8, sx0, yy, D_08938478, func_0885151C(D_089CC438, D_089AC89C));
+            func_08891474(D_08A631A8, sx0, y1, D_08938478, func_0885151C(D_089CC438, D_089AC8A0));
+            func_08891474(D_08A631A8, sx0, y2, D_08938478, func_0885151C(D_089CC438, D_089AC8A4));
+            func_08891474(D_08A631A8, sx0, y3, D_08938478, func_0885151C(D_089CC438, D_089AC8A8));
             x2 = px;
             xx = (u16)(x2 + 0x46);
             func_08891474(D_08A631A8, xx, yy, D_08938478, func_0885151C(D_089CC438, D_089AC8AA));
@@ -466,11 +475,10 @@ void func_0881EE84(char *arg0, u8 *item, u16 px, u16 py, s32 flags, u8 *item2, s
         }
         }
         func_08890E38(D_08A631A8, dim);
-        func_08831274(arg0, spx, py, ids, 0x10, colp);
+        func_08831274(arg0, sx0, py, ids, 0x10, colp);
         break;
     }
     case 1: {
-        char *txt;
         u16 x16;
         u16 y16;
         u16 yb;
@@ -482,7 +490,7 @@ void func_0881EE84(char *arg0, u8 *item, u16 px, u16 py, s32 flags, u8 *item2, s
 
         spx = px;
         y16 = py;
-        func_08820FB4(arg0, item, spx, y16 + 0xA, flags & 0xFF);
+        func_08820FB4(arg0, item, spx, (s16)(y16 + 0xA), flags & 0xFF);
         yb = y16 + 0x30;
         ids = D_089AC8F4;
         switch (item[1]) {
@@ -516,8 +524,6 @@ void func_0881EE84(char *arg0, u8 *item, u16 px, u16 py, s32 flags, u8 *item2, s
         x16 = px;
         func_08892148(D_08A631A8, x16 + 0x1C, py, base, D_08938478, txt);
         if (*(u16 *)(item + 2) != 0) {
-            u16 yb2;
-
             switch (item[1]) {
             case 5:
             case 6:
@@ -542,23 +548,15 @@ void func_0881EE84(char *arg0, u8 *item, u16 px, u16 py, s32 flags, u8 *item2, s
                 }
                 break;
             }
-            {
-                s32 w = func_08890E48(D_08A631A8, func_0885151C(D_089CC438, D_089AC8EC[0]));
-                func_08891474(D_08A631A8, x16 + w * 7, syb, D_08938478,
-                              func_0885151C(D_089CC438, D_089AC944[sub]));
-            }
-            yb2 = yb;
-            yc = yb2 + 0x10;
+            yc = func_08890E48(D_08A631A8, func_0885151C(D_089CC438, D_089AC8EC[0]));
+            func_08891474(D_08A631A8, x16 + yc * 7, syb, D_08938478,
+                          func_0885151C(D_089CC438, D_089AC944[sub]));
+            yc = yb + 0x10;
             func_088915B0(D_08A631A8, x16 + 0x38, yc, hl, D_08938548, rarity + 1);
-            yb = yb2;
         } else {
-            u16 yb2;
-
             func_08891474(D_08A631A8, x16 + 0x70, syb, D_08938478, func_0885151C(D_089CC438, D_089AC95E));
-            yb2 = yb;
-            yc = yb2 + 0x10;
+            yc = yb + 0x10;
             func_08891474(D_08A631A8, x16 + 0x38, yc, D_08938478, func_0885151C(D_089CC438, D_089AC95E));
-            yb = yb2;
         }
         func_088226F0(arg0, arg6, item, x16 + 0x70, yc, item2);
         func_088229B8(arg0, item, px, yb + 0x20, noHl != 0);
@@ -575,8 +573,7 @@ void func_0881EE84(char *arg0, u8 *item, u16 px, u16 py, s32 flags, u8 *item2, s
         yb = py + 0x10;
         if ((s32)((*(s32 *)(D_089CC438 + 0x6AF14) & 1) != 0) == 1) {
             if (item != 0) {
-                switch (item[1]) {
-                default:
+                if (item[1] != 6 && item[1] != 5) {
                     if (func_08826EF4(arg0, arg6, item) == 0) {
                         return;
                     }
@@ -588,8 +585,7 @@ void func_0881EE84(char *arg0, u8 *item, u16 px, u16 py, s32 flags, u8 *item2, s
                     }
                     func_08838894(arg0, arg6, item, sx, yb);
                     return;
-                case 5:
-                case 6:
+                } else {
                     if (func_08821B58(arg0, arg6 + 0x4E8, item) != 0) {
                         goto fallback;
                     }
@@ -622,7 +618,7 @@ void func_0881EE84(char *arg0, u8 *item, u16 px, u16 py, s32 flags, u8 *item2, s
         u32 all;
         u32 mask;
         u32 add;
-        s32 flag;
+        u8 flag;
         s16 sy;
         s16 sx;
         u16 yy;
@@ -659,7 +655,7 @@ void func_0881EE84(char *arg0, u8 *item, u16 px, u16 py, s32 flags, u8 *item2, s
             y4 = yy + 0x40;
             func_08821D48(arg0, sx, y4, rec, all, add, 3, flag);
             func_08821D48(arg0, sx, yy + 0x50, rec, all, add, 4, flag);
-            px += D_089385CA[arg7 * 2];
+            px = px + D_089385CA[arg7 * 2];
             func_088920A8(D_08A631A8, px + 0x2A, sy, D_08938478, func_0885151C(D_089CC438, D_089AC962));
             sx = px;
             func_08821D48(arg0, sx, y1, rec, all, add, 5, flag);
