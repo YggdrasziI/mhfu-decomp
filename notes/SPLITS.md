@@ -295,10 +295,30 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088188A8` | 0x088188A8-0x088188B4 | 1 small function (forwarder to func_0881AAA4) | 100 % |
 | `unit_088188B4` | 0x088188B4-0x08818950 | 1 small function (draws a box and a label) | 100 % |
 | `unit_08818C94` | 0x08818C94-0x08818F74 | 1 function (C++, speed: draws a 6-entry list with marks, page from the byte at +0x57D divided by 6; calls func_0883488C in the other mode) | 100 % |
+| `unit_08818F74` | 0x08818F74-0x0881908C | 1 function (draws a box and a label, flag test on +0xF7A57C) | 100 % |
+| `unit_0881908C` | 0x0881908C-0x08819128 | 1 small function (picks the entry id, tail call to func_08819128) | 100 % |
+| `unit_08819128` | 0x08819128-0x08819450 | 1 function, NonMatching (98.84 %: saved registers of an s16 copy and an index swapped) | not linked |
+| `unit_08819450` | 0x08819450-0x088197A0 | 1 function, speed (draws an item entry with its counts) | 100 % |
+| `unit_088197A0` | 0x088197A0-0x088198E4 | 1 function, speed (copies the non-empty entries of a list, then func_088198E4) | 100 % |
 | `unit_088198E4` | 0x088198E4-0x08819CF8 | 1 function, speed; draws an 8-row page of a list with a colour per row | 100 % |
+| `unit_08819CF8` | 0x08819CF8-0x08819E10 | 1 function (draws a marker from three halfword tables) | 100 % |
+| `unit_08819E10` | 0x08819E10-0x0881A30C | 1 function (draws a box, a text and a record from D_08930BDC) | 100 % |
+| `unit_0881A30C` | 0x0881A30C-0x0881A7A4 | 1 function, speed (draws two boxes and a list) | 100 % |
+| `unit_0881A7A4` | 0x0881A7A4-0x0881A8E0 | 1 function (range test, two func_0882A9DC calls) | 100 % |
 | `unit_0881A8E0` | 0x0881A8E0-0x0881A8F8 | 1 small function | 100 % |
 | `unit_0881A8F8` | 0x0881A8F8-0x0881A9D8 | 1 function (C++; prints a time / 30 as two numbers, / 60 and the rest); optimized for speed | 100 % |
+| `unit_0881A9D8` | 0x0881A9D8-0x0881AAA4 | 1 function, speed (prints a value with a row of stars) | 100 % |
+| `unit_0881AAA4` | 0x0881AAA4-0x0881B384 | 1 function, speed (draws a status panel; divisions by 3 and 100) | 100 % |
+| `unit_0881B384` | 0x0881B384-0x0881B408 | 1 small function (draws an item name) | 100 % |
+| `unit_0881B408` | 0x0881B408-0x0881B5C4 | 1 function, speed (draws a list of 5 rows) | 100 % |
+| `unit_0881B5C4` | 0x0881B5C4-0x0881B5F8 | 1 small function (forwarder with a zeroed 6-byte buffer) | 100 % |
+| `unit_0881B5F8` | 0x0881B5F8-0x0881B7F0 | 1 function, speed (draws 6 entries of a record) | 100 % |
+| `unit_0881B7F0` | 0x0881B7F0-0x0881B9A0 | 1 function, speed (draws the distinct bytes of a list; inline search helper) | 100 % |
+| `unit_0881BF80` | 0x0881BF80-0x0881C098 | 1 function (cursor by halves, wraps) | 100 % |
+| `unit_0881C098` | 0x0881C098-0x0881C1C8 | 1 function (cursor by pages of 8) | 100 % |
+| `unit_0881C1C8` | 0x0881C1C8-0x0881C240 | 1 small function (cursor and width) | 100 % |
 | `unit_0881C240` | 0x0881C240-0x0881C2E4 | 1 small function | 100 % |
+| `unit_0881C2E4` | 0x0881C2E4-0x0881C398 | 1 function (cursor up / down with wrap, returns 1 when moved) | 100 % |
 | `unit_0881C884` | 0x0881C884-0x0881C944 | 1 small function (C++) | 100 % |
 | `unit_0881CA34` | 0x0881CA34-0x0881CAC8 | 1 small function (C++) | 100 % |
 | `unit_0881CAC8` | 0x0881CAC8-0x0881CB0C | 1 reset (call, byte and flag clear) | 100 % |

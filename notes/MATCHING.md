@@ -3335,6 +3335,29 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   ... } while (i < N);` (func_088172D8). A call result masked into `a2`
   and only tested after: an extra argument of the next call
   (func_08816638).
+- Batch 46 (0x08818F74-0x0881C398). `if (A || B) v = K1; else if (C || D)
+  v = K2;` for `beql x, K, end` with the body in the slot on the first term
+  and a copied body + `b` on the second (func_0881908C). A field tested then
+  read again (`lhu` twice) in a copy loop: `volatile` on the test only;
+  count-down loop ending in `bnez`: `u32` counter (func_088197A0). `sltiu`
+  on a `u16` field: `unsigned int` local; `slti at` vs `v0` set per bound
+  (`n >= 9`, `v > 11999`) (func_0881A9D8). A `u8` 0/1 flag: if/else on the
+  negated condition; `v <= r->hi ? A : B` keeps the original `bnezl`
+  (func_0881A7A4). Raw parameter register in a sum after a masked compare:
+  `u8` parameter, not `s32` with casts; flags `s32` with `(u16)` at each
+  use (func_0881C098). Only the tested table `const` for a prologue `sw`
+  after its load (func_08819CF8); only the table whose load must cross the
+  `sw zero, 0(sp)` `const` (func_0881B408). Two call results kept on the
+  stack: a local array `char *ss[2]` (func_0881A30C). `mult` operands
+  swapped on a table element times a call result: the table read inline,
+  no pointer local (func_0881AAA4). Inner search loop with every register
+  shifted after an `andi` copy: `static inline` helper with an `s32` byte
+  parameter cast at the compare (func_0881B7F0). A masked loop index left
+  in `a2` before a call that sets `a0`/`a1`: the callee takes it as a third
+  argument (func_0881B5F8). `seh` copies of an s16 pair after a call: a
+  local `struct { s16 x, y; }` (func_08819128, NonMatching). A caller
+  passing no second argument to func_08852F58: its definition takes one
+  (the second was a pass-through of whatever `a1` held).
 
 ## Open symptoms
 
