@@ -3445,6 +3445,24 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   (func_0885B3A0, NonMatching). Narrow parameters (`u16`, `s16`, `u8`) take
   the lowest saved registers before pointers and ints; a `void *` parameter
   copied into a `char *` local moves that one ahead (func_0881EE84).
+- C++ runtime, first batch (2026-11-27, 0x0890BE54-0x0890CD14, 15 linked).
+  A function that only calls a function pointer and keeps its frame
+  (`jalr`, no tail `jr`): C++, which makes no tail call (func_0890C200,
+  func_0890C224, func_0890C248). An `or` chain with swapped operands: one
+  accumulator, `x = A; x |= B; x |= C;` (`__ptmf_cmpr`, `__ptmf_test`).
+  Bytes loaded in the `bnel` slots of a chain of length tests: each byte
+  in a `u32` local just before its test (func_0890C3F4, func_0890C490). A
+  stack structure copy whose loads and stores interleave: make it a member
+  of the structure whose address is passed to a callee (func_0890CBC0,
+  func_0890C6C8). A stack slot or frame 4 to 16 bytes short: the structure
+  passed by address is larger than the callee uses, or a case's first
+  output is a two-word array (func_0890C564, func_0890CD14). `p + 4` kept
+  in a saved register: `#pragma opt_propagation off` (func_0890CD14).
+  Not linked: a C++ class with an inline destructor matches the function
+  but also emits an out-of-line destructor calling `operator delete`, so
+  the unit does not link (func_0890BEC0); functions using `throw()` or
+  `try`/`catch` (func_0890BFA4, func_0890C9A0) need the runtime names
+  `__unexpected`, `__end__catch`, `__throw` and their exception tables.
 
 ## Open symptoms
 
