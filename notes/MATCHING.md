@@ -3293,6 +3293,24 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   expression, not in a local (func_0882FB38). Parameter saved registers
   rotated with declaration order of no effect: move the statements that
   use them (func_0882FE34).
+- Batch 44 (0x08811C84-0x08814D84, lower edge of the Metrowerks region). A
+  call result tested as a flag with an `andi 0xFF`: callee returns `s32`,
+  test `(u8)f()` (func_08812BD0). A guarded call with a `nop` in its `jal`
+  slot and a `beql` to the epilogue: `switch (x) { case K: break; default:
+  f(); }` (func_08813CF8). A returned 1 kept apart from a compared 1: C++
+  `bool` return (func_08813498) or `#pragma opt_common_subs off` with a
+  result local (func_088134C0). A field reloaded in every case arm before a
+  shared use: assign it to a local inside each case (func_0881263C). An
+  `andi 0xFF` after `lbu`: `s32` local, `(u8)x & 2` at the test
+  (func_08812264). A pointer to a struct field in a saved register: a
+  separate pointer local, `p[1] = ...` (func_08812144). Dead copies of
+  branch-likely slots kept after every `b`: one guard joined with `||`
+  before a `return;` (func_08813594, as func_0883F270). Pointer advance
+  `base + K + idx * S` with the constant in its own register: integer sum
+  `(T *)((s32)p->arr + idx * S)` (func_08814A14). Count-down loop unrolled
+  by 8 in speed mode: `for (i = n; i > 0; i--)` with its own counter
+  (func_08814A14). A float field set by `lui`/`ori` into an integer
+  register: an `s32` store of the bit pattern (func_08814BE0).
 
 ## Open symptoms
 

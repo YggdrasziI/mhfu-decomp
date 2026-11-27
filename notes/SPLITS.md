@@ -209,14 +209,25 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 
 | Unit | Range | Content | Status |
 |---|---|---|---|
+| `unit_08811C84` | 0x08811C84-0x08811E18 | 1 function, speed (manager set-up: EDRAM address and size, 46 slots, four func_08811E18 calls) | 100 % |
+| `unit_08811E18` | 0x08811E18-0x08812144 | 1 function (allocation by type; owns the jump table jtbl_08910894) | 100 % |
+| `unit_08812144` | 0x08812144-0x08812264 | 1 function (frees an entry) | 100 % |
+| `unit_08812264` | 0x08812264-0x08812308 | 1 small function (one shared call after an if/else) | 100 % |
 | `unit_08812308` | 0x08812308-0x08812338 | 1 small function | 100 % |
+| `unit_08812338` | 0x08812338-0x088123C8 | 1 small function (search of a run of clear bits) | 100 % |
+| `unit_088123C8` | 0x088123C8-0x0881246C | 1 small function (first clear bit, set) | 100 % |
+| `unit_0881246C` | 0x0881246C-0x088124D8 | 1 small function (clears the bit of an offset) | 100 % |
 | `unit_088124D8` | 0x088124D8-0x088125A4 | 2 small functions | 100 % |
+| `unit_088125A4` | 0x088125A4-0x08812610 | 1 small function (copies a 24-byte record) | 100 % |
 | `unit_08812610` | 0x08812610-0x0881263C | 1 small function | 100 % |
+| `unit_0881263C` | 0x0881263C-0x08812938 | 1 function (texture command list on the stack) | 100 % |
 | `unit_08812938` | 0x08812938-0x088129B8 | 1 small function | 100 % |
 | `unit_088129B8` | 0x088129B8-0x088129F8 | 1 function (calls func_0890BFA4 on the object when the flag is positive, returns it) | 100 % |
 | `unit_088129F8` | 0x088129F8-0x08812A08 | 1 small function | 100 % |
+| `unit_08812A08` | 0x08812A08-0x08812B1C | 1 function (two vectors from globals, constants, three calls) | 100 % |
 | `unit_08812B1C` | 0x08812B1C-0x08812B9C | 1 small function | 100 % |
 | `unit_08812B9C` | 0x08812B9C-0x08812BD0 | 1 small function | 100 % |
+| `unit_08812BD0` | 0x08812BD0-0x08812DB8 | 1 function (compare-chain switch, calls tested as flags) | 100 % |
 | `unit_08812F18` | 0x08812F18-0x08812F64 | 1 small function | 100 % |
 | `unit_08812F64` | 0x08812F64-0x08812F90 | 1 small function | 100 % |
 | `unit_08812F90` | 0x08812F90-0x08813158 | 3 small functions | 100 % |
@@ -224,14 +235,21 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08813188` | 0x08813188-0x088131B8 | 1 small function (C++) | 100 % |
 | `unit_088131B8` | 0x088131B8-0x088131FC | 1 field update guarded by a bool comparison (C++) | 100 % |
 | `unit_08813320` | 0x08813320-0x08813388 | 1 small function | 100 % |
+| `unit_08813498` | 0x08813498-0x088134C0 | 1 small function (C++, `bool` return) | 100 % |
+| `unit_088134C0` | 0x088134C0-0x088134E8 | 1 small function (`opt_common_subs off`) | 100 % |
 | `unit_08813558` | 0x08813558-0x08813560 | 1 small function | 100 % |
 | `unit_08813560` | 0x08813560-0x08813574 | 1 small function | 100 % |
 | `unit_08813574` | 0x08813574-0x08813594 | 1 function (flag set once) | 100 % |
+| `unit_08813594` | 0x08813594-0x08813B34 | 1 function (C++, switch on a menu id; one `||` guard before a `return`) | 100 % |
 | `unit_08813B34` | 0x08813B34-0x08813B3C | 1 small function | 100 % |
+| `unit_08813B3C` | 0x08813B3C-0x08813C8C | 1 function (compare-chain switch to func_08813560) | 100 % |
 | `unit_08813C8C` | 0x08813C8C-0x08813CC8 | 1 small function | 100 % |
 | `unit_08813CC8` | 0x08813CC8-0x08813CF8 | 1 small function | 100 % |
+| `unit_08813CF8` | 0x08813CF8-0x08813D40 | 1 small function (`switch` with one `break` case) | 100 % |
+| `unit_08813D40` | 0x08813D40-0x08813D9C | 1 small function (switch on an id) | 100 % |
 | `unit_08813D9C` | 0x08813D9C-0x08813DAC | 1 small function | 100 % |
 | `unit_08813DAC` | 0x08813DAC-0x08813DD8 | 1 small function | 100 % |
+| `unit_08813DD8` | 0x08813DD8-0x08813E10 | 1 small function (`||` test returning 2) | 100 % |
 | `unit_08813E10` | 0x08813E10-0x08813E20 | 2 small functions | 100 % |
 | `unit_08813E20` | 0x08813E20-0x08813E70 | 1 function (flag and a 26-case `switch`); jump table 0x089108C0-0x08910928 in the unit | 100 % |
 | `unit_08813E70` | 0x08813E70-0x08813E90 | 1 small function | 100 % |
@@ -241,6 +259,8 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08814080` | 0x08814080-0x088140C4 | 1 small function | 100 % |
 | `unit_088140C4` | 0x088140C4-0x08814104 | 2 vector copies | 100 % |
 | `unit_08814984` | 0x08814984-0x08814A14 | 1 small function | 100 % |
+| `unit_08814A14` | 0x08814A14-0x08814BE0 | 1 function, speed (relocates the offsets of a loaded block) | 100 % |
+| `unit_08814BE0` | 0x08814BE0-0x08814D84 | 1 function, NonMatching (99.84 %: register of one stored address) | not linked |
 | `unit_08815348` | 0x08815348-0x08815384 | 1 small function | 100 % |
 | `unit_08816060` | 0x08816060-0x088160F0 | 2 small functions | 100 % |
 | `unit_08816264` | 0x08816264-0x0881629C | 1 small function | 100 % |
