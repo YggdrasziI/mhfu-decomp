@@ -8,28 +8,28 @@ text{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,san
 </style>
 <rect class="bg" x="0.5" y="0.5" width="759" height="349" rx="6"/>
 <text class="t b" x="16" y="34">Monster Hunter Freedom Unite (ULES01213)</text>
-<text class="m" x="744" y="34" text-anchor="end">commit 3486bf5</text>
+<text class="m" x="744" y="34" text-anchor="end">commit 287d405</text>
 <text class="t" x="16" y="60">Code</text>
 <rect class="track" x="186" y="49" width="300" height="12" rx="3"/>
-<rect class="fuzzy" x="186" y="49" width="218.2" height="12" rx="2"/>
-<rect class="perfect" x="186" y="49" width="208.3" height="12" rx="2"/>
-<rect class="linked" x="186" y="49" width="207.9" height="12" rx="2"/>
-<text class="t" x="674" y="60" text-anchor="end">756,240 / 1,089,072 bytes</text>
-<text class="m" x="744" y="60" text-anchor="end">69.44 %</text>
+<rect class="fuzzy" x="186" y="49" width="220.1" height="12" rx="2"/>
+<rect class="perfect" x="186" y="49" width="210.0" height="12" rx="2"/>
+<rect class="linked" x="186" y="49" width="209.7" height="12" rx="2"/>
+<text class="t" x="674" y="60" text-anchor="end">762,496 / 1,089,072 bytes</text>
+<text class="m" x="744" y="60" text-anchor="end">70.01 %</text>
 <text class="t" x="16" y="86">Data</text>
 <rect class="track" x="186" y="75" width="300" height="12" rx="3"/>
-<rect class="fuzzy" x="186" y="75" width="1.9" height="12" rx="2"/>
-<rect class="perfect" x="186" y="75" width="1.9" height="12" rx="2"/>
-<rect class="linked" x="186" y="75" width="1.9" height="12" rx="2"/>
-<text class="t" x="674" y="86" text-anchor="end">5,020 / 773,540 bytes</text>
+<rect class="fuzzy" x="186" y="75" width="2.0" height="12" rx="2"/>
+<rect class="perfect" x="186" y="75" width="2.0" height="12" rx="2"/>
+<rect class="linked" x="186" y="75" width="2.0" height="12" rx="2"/>
+<text class="t" x="674" y="86" text-anchor="end">5,064 / 773,540 bytes</text>
 <text class="m" x="744" y="86" text-anchor="end">0.65 %</text>
 <text class="t" x="16" y="112">Functions</text>
 <rect class="track" x="186" y="101" width="300" height="12" rx="3"/>
-<rect class="fuzzy" x="186" y="101" width="245.3" height="12" rx="2"/>
-<rect class="perfect" x="186" y="101" width="245.3" height="12" rx="2"/>
-<rect class="linked" x="186" y="101" width="245.1" height="12" rx="2"/>
-<text class="t" x="674" y="112" text-anchor="end">2,928 / 3,581</text>
-<text class="m" x="744" y="112" text-anchor="end">81.76 %</text>
+<rect class="fuzzy" x="186" y="101" width="246.9" height="12" rx="2"/>
+<rect class="perfect" x="186" y="101" width="246.9" height="12" rx="2"/>
+<rect class="linked" x="186" y="101" width="246.7" height="12" rx="2"/>
+<text class="t" x="674" y="112" text-anchor="end">2,947 / 3,581</text>
+<text class="m" x="744" y="112" text-anchor="end">82.30 %</text>
 <text class="t b" x="16" y="146">Code by region</text>
 <text class="t" x="16" y="172">C library</text>
 <rect class="track" x="186" y="161" width="300" height="12" rx="3"/>
@@ -37,11 +37,11 @@ text{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,san
 <text class="m" x="744" y="172" text-anchor="end">0.00 %</text>
 <text class="t" x="16" y="198">Game (Metrowerks)</text>
 <rect class="track" x="186" y="187" width="300" height="12" rx="3"/>
-<rect class="fuzzy" x="186" y="187" width="239.6" height="12" rx="2"/>
-<rect class="perfect" x="186" y="187" width="228.7" height="12" rx="2"/>
-<rect class="linked" x="186" y="187" width="228.3" height="12" rx="2"/>
-<text class="t" x="674" y="198" text-anchor="end">755,576 / 991,232 bytes</text>
-<text class="m" x="744" y="198" text-anchor="end">76.23 %</text>
+<rect class="fuzzy" x="186" y="187" width="241.6" height="12" rx="2"/>
+<rect class="perfect" x="186" y="187" width="230.6" height="12" rx="2"/>
+<rect class="linked" x="186" y="187" width="230.2" height="12" rx="2"/>
+<text class="t" x="674" y="198" text-anchor="end">761,832 / 991,232 bytes</text>
+<text class="m" x="744" y="198" text-anchor="end">76.86 %</text>
 <text class="t" x="16" y="224">VFPU code (unidentified)</text>
 <rect class="track" x="186" y="213" width="300" height="12" rx="3"/>
 <text class="t" x="674" y="224" text-anchor="end">0 / 11,432 bytes</text>
