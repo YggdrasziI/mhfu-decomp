@@ -3553,6 +3553,31 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   arguments are evaluated right to left (func_08847CB0). Float values
   stored after an asm block: read them into locals before it; the register
   order follows the assignment order (func_0886005C).
+- VFPU batch 4 (2026-11-27, 0x08860EC0-0x08865648, 20 of 20). A float
+  parameter whose slot lands below a local matrix when its address is taken
+  in the function: pass it to an inline helper and take the address there
+  (func_08865480), or declare the matrix `aligned(16)` (func_08865530). A
+  float array next to an aligned matrix ignores declaration order until it
+  is itself an aligned struct (func_088652DC). Frame 16 bytes too large with
+  a gap above a copy at sp+0: a 16-byte aligned 4-float local of which only
+  x, y, z are copied (func_08861E9C). A zeroed `sv.q` inside a stack matrix
+  clears its last row (func_08863B70). Float locals loaded early into the
+  wrong registers: permute their assignment statements, declaration order
+  does not matter (func_08865044). `vfim.s` takes a float literal (`2.0`);
+  an integer is the raw half-float bits (func_08862FE0). Register numbering
+  shifted across a loop: the derived index `k = i * 3` as `u32` with an
+  `s32` counter (func_08861184). A redundant `(u32)` cast around a shift
+  moves the `sll` before the load of the other `or` operand (func_08861184).
+  In a speed loop, one array must keep its `sll` index while another is
+  stepped: cast the `u32` counter to `s32` in the multiply that stays
+  (func_08865648). The next 0x40-byte element as `(char *)&a[i] + 0x40`,
+  not `&a[i + 1]` (func_0886423C). A struct start missing from the delay
+  slot of a second guard: split `p && (p->f & M)` into nested ifs with the
+  assignment between (func_088633CC). A parameter copied into its saved
+  register too early: take it as `void *` and assign it to a typed local at
+  its first use (func_088623DC). Case bodies of a switch in code layout
+  order; cases that load all their angles first go through inline helpers
+  taking the floats (func_08861E9C).
 
 ## Open symptoms
 

@@ -1070,6 +1070,8 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08860B24` | 0x08860B24-0x08860C54 | 1 function (three vectors, a switch on the kind for fixed ones) | 100 % |
 | `unit_08860C54` | 0x08860C54-0x08860CB0 | 1 function (three default vectors) | 100 % |
 | `unit_08860CB0` | 0x08860CB0-0x08860EC0 | 1 function (colour eased towards a float target, written as bytes) | 100 % |
+| `unit_08860EC0` | 0x08860EC0-0x08861184 | 1 function (VFPU transform, display-list light words) | 100 % |
+| `unit_08861184` | 0x08861184-0x088614DC | 1 function (VFPU transform, display-list light words) | 100 % |
 | `unit_088614DC` | 0x088614DC-0x0886159C | 1 small function | 100 % |
 | `unit_0886159C` | 0x0886159C-0x088615E4 | 1 function with the shape of func_0884B010 | 100 % |
 | `unit_088615E4` | 0x088615E4-0x08861604 | 1 table-address initialiser | 100 % |
@@ -1079,10 +1081,14 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0886171C` | 0x0886171C-0x08861C7C | 1 function, speed (GE commands for the materials of one part) | 100 % |
 | `unit_08861C7C` | 0x08861C7C-0x08861D7C | 1 small function | 100 % |
 | `unit_08861D7C` | 0x08861D7C-0x08861E9C | 1 small function | 100 % |
+| `unit_08861E9C` | 0x08861E9C-0x08862354 | 1 function (VFPU scale, rotation by order, translation); jump table 0x089315BC-0x089315DC in the unit | 100 % |
+| `unit_08862354` | 0x08862354-0x088623DC | 1 function (VFPU scale matrix product) | 100 % |
+| `unit_088623DC` | 0x088623DC-0x08862510 | 1 function (speed; VFPU vector set, entry copy) | 100 % |
 | `unit_08862510` | 0x08862510-0x08862518 | 1 small function | 100 % |
 | `unit_08862518` | 0x08862518-0x088626D0 | 1 function, speed (eight GE texture words per entry) | 100 % |
 | `unit_088626D0` | 0x088626D0-0x088626DC | 1 small function | 100 % |
 | `unit_088626DC` | 0x088626DC-0x088626E4 | 1 small function | 100 % |
+| `unit_088626E4` | 0x088626E4-0x08862710 | 1 small function (VFPU identity) | 100 % |
 | `unit_08862710` | 0x08862710-0x08862768 | 4 small functions | 100 % |
 | `unit_08862768` | 0x08862768-0x088627AC | 1 small function (entry address) | 100 % |
 | `unit_088627AC` | 0x088627AC-0x088627B4 | 1 small function | 100 % |
@@ -1095,15 +1101,22 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08862E00` | 0x08862E00-0x08862E54 | 1 small function (sets or clears bit 1 of an entry) | 100 % |
 | `unit_08862E54` | 0x08862E54-0x08862E64 | 1 small function | 100 % |
 | `unit_08862E64` | 0x08862E64-0x08862FE0 | 1 function (GE state words from a flag word) | 100 % |
+| `unit_08862FE0` | 0x08862FE0-0x088630D0 | 1 function (VFPU float arithmetic) | 100 % |
 | `unit_088630D0` | 0x088630D0-0x08863198 | 1 function (key lookup then interpolation) | 100 % |
 | `unit_08863198` | 0x08863198-0x088632D8 | 1 function, speed (channel values of an animation header) | 100 % |
+| `unit_088632D8` | 0x088632D8-0x088633CC | 1 function (VFPU rotation and translation) | 100 % |
+| `unit_088633CC` | 0x088633CC-0x0886364C | 1 function (speed, no unrolling; VFPU scale, rotation, translation) | 100 % |
 | `unit_0886364C` | 0x0886364C-0x08863668 | 1 small function | 100 % |
 | `unit_08863668` | 0x08863668-0x088637C4 | 1 function (key search by time from a hint index) | 100 % |
 | `unit_088637C4` | 0x088637C4-0x08863B70 | 1 function, speed (timers of the animation slots) | 100 % |
+| `unit_08863B70` | 0x08863B70-0x08863D58 | 1 function (VFPU blend and transform) | 100 % |
 | `unit_08863D58` | 0x08863D58-0x08863DF4 | 1 small function | 100 % |
 | `unit_08863DF4` | 0x08863DF4-0x08863E70 | 1 function (starts or stops one animation slot) | 100 % |
+| `unit_08863E70` | 0x08863E70-0x088640F8 | 1 function (speed; VFPU vector clear, entry set-up) | 100 % |
+| `unit_088640F8` | 0x088640F8-0x088641C0 | 1 function (C++, speed; VFPU identity, virtual calls) | 100 % |
 | `unit_088641C0` | 0x088641C0-0x0886421C | 1 small function | 100 % |
 | `unit_0886421C` | 0x0886421C-0x0886423C | 1 element address | 100 % |
+| `unit_0886423C` | 0x0886423C-0x088642FC | 1 function (VFPU vector clear) | 100 % |
 | `unit_088642FC` | 0x088642FC-0x08864348 | 1 small function | 100 % |
 | `unit_08864348` | 0x08864348-0x08864408 | 1 function (time inside a slot range, with wrap) | 100 % |
 | `unit_08864408` | 0x08864408-0x08864440 | 1 small function (time before a slot start) | 100 % |
@@ -1117,8 +1130,15 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088646B4` | 0x088646B4-0x088646F0 | 1 small function | 100 % |
 | `unit_088646F0` | 0x088646F0-0x0886477C | 1 small function | 100 % |
 | `unit_0886477C` | 0x0886477C-0x08865044 | 1 function, speed (GE commands of one model group) | 100 % |
+| `unit_08865044` | 0x08865044-0x08865254 | 1 function (VFPU transform, scale, rotation) | 100 % |
 | `unit_08865254` | 0x08865254-0x088652DC | 1 function (record lookup by id % 1000); optimized for speed | 100 % |
+| `unit_088652DC` | 0x088652DC-0x088653D0 | 1 function (C++; VFPU scale and matrix product) | 100 % |
+| `unit_088653D0` | 0x088653D0-0x08865480 | 1 function (VFPU Z rotation) | 100 % |
+| `unit_08865480` | 0x08865480-0x08865530 | 1 function (VFPU X rotation) | 100 % |
+| `unit_08865530` | 0x08865530-0x088655E0 | 1 function (VFPU Y rotation) | 100 % |
+| `unit_088655E0` | 0x088655E0-0x088655F8 | 1 small function (VFPU identity) | 100 % |
 | `unit_088655F8` | 0x088655F8-0x08865648 | 1 small function, speed (three angles to floats) | 100 % |
+| `unit_08865648` | 0x08865648-0x0886574C | 1 function (C++, speed; VFPU vector add, virtual call) | 100 % |
 | `unit_0886574C` | 0x0886574C-0x08865810 | 1 function, C++, speed (slots of each part through a virtual call) | 100 % |
 | `unit_08865810` | 0x08865810-0x08865934 | 1 function, C++, speed (starts the animation of each part) | 100 % |
 | `unit_08865934` | 0x08865934-0x08865A24 | 1 small function (C++) | 100 % |

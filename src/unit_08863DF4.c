@@ -10,7 +10,7 @@ typedef short s16;
 typedef int s32;
 typedef unsigned int u32;
 
-extern void func_08863D58(char *, s32, s32);
+extern void func_08863D58(char *, s32, s32, float);
 extern void func_08863E70(char *, s32, s32, s32, s32);
 
 void func_08863DF4(char *arg0, s32 arg1, u32 arg2, s32 arg3, float arg4) {
@@ -18,7 +18,7 @@ void func_08863DF4(char *arg0, s32 arg1, u32 arg2, s32 arg3, float arg4) {
         arg2 = 0;
     }
     if (arg2 == 0) {
-        func_08863D58(arg0, arg1, arg3);
+        func_08863D58(arg0, arg1, arg3, arg4);
     } else if (arg1 != 0) {
         func_08863E70(arg0, arg1, (s32)arg4, arg2, arg3);
     } else {

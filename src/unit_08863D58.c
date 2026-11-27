@@ -9,16 +9,16 @@ typedef unsigned short u16;
 typedef int s32;
 
 extern void func_0885F9A0(s32, s32, s32, s32);
-extern void func_0886423C(char *, s32, s32);
+extern void func_0886423C(char *, s32, s32, float);
 
-void func_08863D58(char *arg0, s32 arg1, s32 arg2) {
+void func_08863D58(char *arg0, s32 arg1, s32 arg2, float arg3) {
     s32 var_s1;
     char *var_s0;
 
     if (arg1 != 0) {
         ((s8 *)((char *)arg0 + 0x128))[arg2] = 0;
         ((s16 *)((char *)arg0 + 0x130))[arg2] = 0;
-        func_0886423C(arg0, arg1, arg2);
+        func_0886423C(arg0, arg1, arg2, arg3);
         var_s1 = 0;
         if ((s32) *(u16 *)(arg0 + 0x120) > 0) {
             var_s0 = arg0;
