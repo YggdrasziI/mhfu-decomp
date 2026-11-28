@@ -1621,21 +1621,34 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0888A73C` | 0x0888A73C-0x0888A8C0 | 1 function (speed; VFPU Y rotation of two table vectors) | 100 % |
 | `unit_0888A8C0` | 0x0888A8C0-0x0888AF68 | 1 function (speed; VFPU blends and normalize); jump table 0x08931984-0x0893199C in the unit | 100 % |
 | `unit_0888AF68` | 0x0888AF68-0x0888AFEC | 1 function (eased ratio by mode, through func_08897D4C(t, 2.25f)) | 100 % |
+| `unit_0888AFEC` | 0x0888AFEC-0x0888B1C0 | 1 function (speed; state switch, VFPU copies) | 100 % |
+| `unit_0888B1C0` | 0x0888B1C0-0x0888B600 | 1 function (command list interpreter, VFPU copies); jump table 0x0893199C-0x08931A54 in the unit | 100 % |
+| `unit_0888B600` | 0x0888B600-0x0888B6AC | 1 function (VFPU scales between three calls) | 100 % |
+| `unit_0888B6AC` | 0x0888B6AC-0x0888B7FC | 1 function (VFPU transform of a point by kind) | 100 % |
 | `unit_0888B7FC` | 0x0888B7FC-0x0888B884 | 1 function (calls func_0888C3AC, then func_0888B600 with a scaled float) | 100 % |
+| `unit_0888B884` | 0x0888B884-0x0888B994 | 1 function (speed; nearest entry by VFPU distance) | 100 % |
 | `unit_0888B994` | 0x0888B994-0x0888BB40 | 1 function (checks a key array through func_0888BC40 and func_0888BB40) | 100 % |
 | `unit_0888BB40` | 0x0888BB40-0x0888BC40 | 1 function (first float of an array clamped to a limit, else the smallest overshoot) | 100 % |
+| `unit_0888BC40` | 0x0888BC40-0x0888C294 | 1 function (speed; VFPU dot products, polynomial root selection) | 100 % |
 | `unit_0888C294` | 0x0888C294-0x0888C318 | 1 function (clamped linear interpolation) | 100 % |
 | `unit_0888C318` | 0x0888C318-0x0888C344 | 1 function (interpolation of two adjacent floats) | 100 % |
 | `unit_0888C344` | 0x0888C344-0x0888C3AC | 1 function (interpolated s16 angle scaled by 2*pi/65536) | 100 % |
 | `unit_0888C3AC` | 0x0888C3AC-0x0888C794 | 1 function (cubic segment coefficients from a key array; three calls to func_0888C794) | 100 % |
 | `unit_0888C794` | 0x0888C794-0x0888C9F8 | 1 function (tridiagonal solver, hypothesis from the code shape) | 100 % |
 | `unit_0888C9F8` | 0x0888C9F8-0x0888CC10 | 1 function (state switch, searches a 6-byte entry table) | 100 % |
+| `unit_0888CC10` | 0x0888CC10-0x0888D004 | 1 function (speed; key table interpolation, VFPU rotation) | 100 % |
 | `unit_0888D004` | 0x0888D004-0x0888D0A8 | 1 function (copies two halfwords by state) | 100 % |
+| `unit_0888D0A8` | 0x0888D0A8-0x0888D1BC | 1 function (VFPU transform of a point by kind) | 100 % |
 | `unit_0888D1BC` | 0x0888D1BC-0x0888D2B4 | 1 function (raises or lowers a float, clamped to 0-300) | 100 % |
+| `unit_0888D2B4` | 0x0888D2B4-0x0888D36C | 1 function (VFPU distance of a hit point) | 100 % |
+| `unit_0888D36C` | 0x0888D36C-0x0888D600 | 1 function (speed; VFPU arc tangent of a direction) | 100 % |
 | `unit_0888D600` | 0x0888D600-0x0888D708 | 1 function, C++ (chain of state tests) | 100 % |
 | `unit_0888D708` | 0x0888D708-0x0888D734 | 1 small function | 100 % |
 | `unit_0888D734` | 0x0888D734-0x0888D888 | 1 function (switch on a state byte after two float compares) | 100 % |
 | `unit_0888D888` | 0x0888D888-0x0888D958 | 1 function (returns a code from three tests) | 100 % |
+| `unit_0888D958` | 0x0888D958-0x0888DA60 | 1 function (speed; VFPU rotation matrix from two angles) | 100 % |
+| `unit_0888DA60` | 0x0888DA60-0x0888DD14 | 1 function (speed; iterative polynomial root search, VFPU abs) | 100 % |
+| `unit_0888DD14` | 0x0888DD14-0x0888E1C8 | 1 function (speed; polynomial roots, VFPU sqrt, sin, cos, arc tangent) | 100 % |
 | `unit_0888E1C8` | 0x0888E1C8-0x0888E1F8 | 1 small function | 100 % |
 | `unit_0888E1F8` | 0x0888E1F8-0x0888E218 | 1 dot product (x, z) | 100 % |
 | `unit_0888E218` | 0x0888E218-0x0888E28C | 1 function (searches a 20-slot table) | 100 % |
@@ -1644,7 +1657,14 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0888E350` | 0x0888E350-0x0888E3DC | 1 function (searches a 16-pair table, then a switch) | 100 % |
 | `unit_0888E3DC` | 0x0888E3DC-0x0888E494 | 1 function (quadratic ease-in-out, hypothesis) | 100 % |
 | `unit_0888E494` | 0x0888E494-0x0888E5B8 | 1 function (chain of tests) | 100 % |
+| `unit_0888E5B8` | 0x0888E5B8-0x0888E634 | 1 function (VFPU copy, height test) | 100 % |
 | `unit_0888E634` | 0x0888E634-0x0888E788 | 1 function (product of two squared distances, scaled) | 100 % |
+| `unit_0888E788` | 0x0888E788-0x0888E8E8 | 1 function (VFPU transform by kind); jump table 0x08931A54-0x08931A6C in the unit | 100 % |
+| `unit_0888E8E8` | 0x0888E8E8-0x0888EA44 | 1 function (VFPU transform by kind) | 100 % |
+| `unit_0888EA44` | 0x0888EA44-0x0888EAF8 | 1 function (VFPU copies by mask) | 100 % |
+| `unit_0888EAF8` | 0x0888EAF8-0x0888F6A0 | 1 function (speed; VFPU blends, cross products, transforms); jump table 0x08931A6C-0x08931A84 and initialised vector 0x089AD220-0x089AD230 in the unit | 100 % |
+| `unit_0888F6A0` | 0x0888F6A0-0x0888FACC | 1 function (speed; VFPU inverse, normalize, cross product, arc tangent) | 100 % |
+| `unit_0888FACC` | 0x0888FACC-0x0888FBD4 | 1 function (VFPU dot product tests) | 100 % |
 | `unit_0888FBD4` | 0x0888FBD4-0x0888FCE4 | 1 function, C++ (bool tests, stores a call result) | 100 % |
 | `unit_0888FCE4` | 0x0888FCE4-0x0888FD38 | 1 function (angle difference range test) | 100 % |
 | `unit_0888FD38` | 0x0888FD38-0x0888FDFC | 1 function, C++ (loop that never returns: 11 calls and a virtual call per pass) | 100 % |

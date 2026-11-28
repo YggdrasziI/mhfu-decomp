@@ -3603,6 +3603,31 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   `add.s` operands: `a = x - g; a = a + K;` (func_088851C8). Left
   NonMatching: func_08886E50 (99.15 %, slots of 4-byte aggregates, which
   always land above the inline temporaries).
+- VFPU batch 6 (2026-11-28, 0x0888AFEC-0x0888FACC, 20 of 20). A callee
+  that reads `$a2` the caller never sets: the caller passes the value it
+  holds there as a third argument (func_0888B1C0 calls func_0888E788 and
+  func_0888E8E8 with the command pointer; 99.17 % to 100 %). A shared
+  `return 1` loaded early so an increment moves to another register:
+  `goto` a label on a later case's `return 1;` (func_0888AFEC). A store of
+  the switch value plus one reloads the byte: switch on a `u8` copy and
+  store `copy + 1` (func_0888AFEC). `c.nge.s; bc1tl` into the body:
+  plain early return `if (a >= b) return 0;` (func_0888FACC); `c.ngt.s;
+  bc1fl` to the `>` body with `<=` falling through: nested negated tests
+  with else arms (func_0888BC40); `c.nge.s; nop; bc1t` with a nop slot:
+  new locals assigned in both arms of the `if` (func_0888DA60). `bc1fl`
+  into the body and a `b` epilogue: the function returns the float call
+  result on both paths (func_0888E5B8). Switch code blocks follow source
+  order: write cases in the address order of the jump table targets
+  (func_0888E788). Base and index loads of a table element swapped: base
+  into a pointer local of a nested block, then index (func_0888E788,
+  func_0888E8E8, func_0888EAF8). Lerp operands swapped: one statement per
+  step on a reused local (func_0888CC10); a float constant hoisted to a
+  saved register: `k = C; k *= c;` and negate at each use (func_0888F6A0).
+  An inline helper's `return expr;` scheduled early after an asm block:
+  assign to a local, then return (func_0888BC40). A rolled inline clear
+  rebuilt each pass: `opt_loop_invariants off` and an explicit guard with
+  the asm bases set inside it (func_0888B884). A `blez` with an `addiu` in
+  its slot: read the tested halfwords through struct members (func_0888B1C0).
 
 ## Open symptoms
 
