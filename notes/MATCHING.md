@@ -3628,6 +3628,37 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   rebuilt each pass: `opt_loop_invariants off` and an explicit guard with
   the asm bases set inside it (func_0888B884). A `blez` with an `addiu` in
   its slot: read the tested halfwords through struct members (func_0888B1C0).
+- VFPU batch 7 (2026-11-28, 0x088949EC-0x088CBD20, 20 of 20; 16 vtable
+  methods of D_089BACDC). Floats loaded before a `vmidt.q` / `sv.q` block
+  in reverse order (z, y, x) and stored to the matrix after it: read them
+  into locals before the asm helper, assigned z, y, x (a nested block
+  helps), then store (eight functions, e.g. func_088C8E5C, func_088C9060,
+  func_088C96F8); passing them as parameters of an inline
+  `mtx_translate(dst, x, y, z)` does the same (func_088C8360). A
+  `lui 0x3F80` kept from before the block: `f32 one = 1.0f;` assigned
+  before the helper call (func_088C9988). A frame 0x10 too large with a
+  vector right after a 0x30-byte matrix written as four rows: one struct of
+  `f32 m[12]` (aligned 16) and an unaligned 3-float vector
+  (func_088C83F0). Do not write the `nop` between `vmul.s` and `vsin.s`:
+  the assembler adds it, and a written one moves the scheduling after the
+  block (func_088949EC, 88.32 % to 100 %); operand and result slots
+  swapped: copy the parameter into a local declared after the result. A
+  float spilled to the stack across a call: compute into the union local
+  and reuse it, `a.f = ...; a.f = a.f - f(a.f);` (func_088C9B00). One
+  product as its own statement into a new local recolours the float
+  registers of the whole function (func_088C9D9C); a `u16` sum through a
+  `u16` local before its mask (func_088C9D9C). `x == A || x == B` that
+  must give `beq; beq; b`: `switch` with the two labels grouped in reverse
+  compare order and `default:` (func_088CB004). `bnezl` into the body:
+  `if (a == 0) { return X; } else { body }` with the explicit `else`;
+  `c.ngt.s` min update: `if (best > d)` (func_088C7424). A `beql` that
+  reloads a halfword then `not`: ternary at the assignment
+  (func_088C8AE0). A 4-byte union returned by value (`lw`/`sw` copy, hidden
+  result pointer in `$a0`): declare and define the callee returning the
+  union (func_088CBBAC now `Color func_088CBBAC(...)`, func_088CB474);
+  display-list words: `*D = v; D++;` per word. Asm base registers swapped
+  on one call of a helper: output pointer last in the helper's parameters
+  (func_088C75D4); loop bound `i <= 3` for `slti at`.
 
 ## Open symptoms
 

@@ -1742,6 +1742,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08894754` | 0x08894754-0x08894874 | 1 function (converts a string to u16 character codes) | 100 % |
 | `unit_08894874` | 0x08894874-0x08894988 | 1 small function | 100 % |
 | `unit_08894988` | 0x08894988-0x088949EC | 1 function (maps 0-5 to 9-14); jump table 0x08931DAC-0x08931DC4 in the unit | 100 % |
+| `unit_088949EC` | 0x088949EC-0x08894B00 | 1 function (speed; VFPU sine in an `asm` block, colour argument of func_08890C94) | 100 % |
 | `unit_08894B00` | 0x08894B00-0x08894B0C | 1 small function | 100 % |
 | `unit_08894B0C` | 0x08894B0C-0x08894EE4 | 1 function (parses a text control code) | 100 % |
 | `unit_08894EE4` | 0x08894EE4-0x08894F7C | 1 function (formats one control-code value into a buffer) | 100 % |
@@ -2431,14 +2432,30 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088C70D8` | 0x088C70D8-0x088C7130 | 1 function (reserves a 16-byte aligned block from a buffer) | 100 % |
 | `unit_088C7130` | 0x088C7130-0x088C7184 | 1 small function | 100 % |
 | `unit_088C7184` | 0x088C7184-0x088C7424 | 5 functions (C++; list unlink, key lookup, vtable tail calls, area containing a point) | 100 % |
+| `unit_088C7424` | 0x088C7424-0x088C75D4 | 1 function (speed; VFPU square root, nearest area record of a point) | 100 % |
+| `unit_088C75D4` | 0x088C75D4-0x088C7764 | 1 function (speed; VFPU vector normalise, minimum of four distances) | 100 % |
 | `unit_088C7764` | 0x088C7764-0x088C7774 | 1 small function | 100 % |
 | `unit_088C7774` | 0x088C7774-0x088C77D8 | 1 small function | 100 % |
 | `unit_088C77D8` | 0x088C77D8-0x088C7814 | 1 small function | 100 % |
 | `unit_088C7814` | 0x088C7814-0x088C7914 | 2 small functions | 100 % |
 | `unit_088C7914` | 0x088C7914-0x088C7CDC | 1 function (C++, vtable method of D_089BACDC; speed, opt_loop_invariants off) | 100 % |
 | `unit_088C7CDC` | 0x088C7CDC-0x088C8114 | 1 function (C++, vtable method of D_089BACDC; speed, opt_loop_invariants off; owns jtbl_08932330) | 100 % |
+| `unit_088C8114` | 0x088C8114-0x088C8360 | 1 function (vtable method of D_089BACDC; speed; VFPU rotation matrix from a clock phase) | 100 % |
+| `unit_088C8360` | 0x088C8360-0x088C83F0 | 1 function (vtable method of D_089BACDC; VFPU identity matrix with a translation) | 100 % |
+| `unit_088C83F0` | 0x088C83F0-0x088C859C | 1 function (vtable method of D_089BACDC; VFPU translation and one axis rotation) | 100 % |
+| `unit_088C859C` | 0x088C859C-0x088C8760 | 1 function (vtable method of D_089BACDC; VFPU scale, translation and one axis rotation) | 100 % |
 | `unit_088C8760` | 0x088C8760-0x088C88FC | 1 function (vtable method of D_089BACDC: texture offset GE commands) | 100 % |
+| `unit_088C88FC` | 0x088C88FC-0x088C8AE0 | 1 function (vtable method of D_089BACDC; speed; VFPU sine texture offset GE commands) | 100 % |
+| `unit_088C8AE0` | 0x088C8AE0-0x088C8E5C | 1 function (vtable method of D_089BACDC; speed; texture offsets and VFPU rotation) | 100 % |
+| `unit_088C8E5C` | 0x088C8E5C-0x088C9060 | 1 function (vtable method of D_089BACDC; texture offsets and VFPU translation matrix) | 100 % |
+| `unit_088C9060` | 0x088C9060-0x088C9380 | 1 function (vtable method of D_089BACDC; texture offsets and VFPU rotation matrix) | 100 % |
 | `unit_088C9380` | 0x088C9380-0x088C95B0 | 1 function (vtable method of D_089BACDC: texture offset GE commands) | 100 % |
+| `unit_088C95B0` | 0x088C95B0-0x088C96F8 | 1 function (vtable method of D_089BACDC; box test, VFPU translation matrix) | 100 % |
+| `unit_088C96F8` | 0x088C96F8-0x088C9834 | 1 function (vtable method of D_089BACDC; speed; VFPU sine offset translation) | 100 % |
+| `unit_088C9834` | 0x088C9834-0x088C9988 | 1 function (vtable method of D_089BACDC; speed; VFPU sine scale matrix) | 100 % |
+| `unit_088C9988` | 0x088C9988-0x088C9B00 | 1 function (vtable method of D_089BACDC; speed; VFPU distance test, translation matrix) | 100 % |
+| `unit_088C9B00` | 0x088C9B00-0x088C9D9C | 1 function (vtable method of D_089BACDC; speed; texture offsets, VFPU Y rotation) | 100 % |
+| `unit_088C9D9C` | 0x088C9D9C-0x088CA100 | 1 function (vtable method of D_089BACDC; speed; VFPU sine angle, axis rotation) | 100 % |
 | `unit_088CA100` | 0x088CA100-0x088CA2D8 | 1 function (vtable method of D_089BACDC: blink state) | 100 % |
 | `unit_088CA2D8` | 0x088CA2D8-0x088CA2E0 | 1 small function | 100 % |
 | `unit_088CA2E0` | 0x088CA2E0-0x088CA39C | 1 small function | 100 % |
@@ -2455,10 +2472,13 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088CACCC` | 0x088CACCC-0x088CACD4 | 1 small function | 100 % |
 | `unit_088CACD4` | 0x088CACD4-0x088CAF4C | 2 functions (C++; GE commands around a draw, kind switch) | 100 % |
 | `unit_088CAF4C` | 0x088CAF4C-0x088CAF54 | 1 small function | 100 % |
+| `unit_088CB004` | 0x088CB004-0x088CB32C | 1 function (C++, vtable method of D_089BACDC; virtual calls, VFPU vectors, list walk) | 100 % |
 | `unit_088CB32C` | 0x088CB32C-0x088CB364 | 1 small function | 100 % |
 | `unit_088CB364` | 0x088CB364-0x088CB46C | 1 function (C++; state from a flag and clock values) | 100 % |
 | `unit_088CB46C` | 0x088CB46C-0x088CB474 | 1 small function | 100 % |
+| `unit_088CB474` | 0x088CB474-0x088CBBAC | 1 function (vtable method of D_089BACDC; speed; VFPU atan2, four colour lerps, GE vertex packet) | 100 % |
 | `unit_088CBBAC` | 0x088CBBAC-0x088CBD20 | 1 function (interpolates two colours byte by byte) | 100 % |
+| `unit_088CBD20` | 0x088CBD20-0x088CC0E4 | 1 function (speed; VFPU sine alpha, GE commands) | 100 % |
 | `unit_088CC0E4` | 0x088CC0E4-0x088CC128 | 1 small function | 100 % |
 | `unit_088CC128` | 0x088CC128-0x088CC190 | 1 function (copies three words from a stream) | 100 % |
 | `unit_088CC190` | 0x088CC190-0x088CC478 | 2 small functions | 100 % |
