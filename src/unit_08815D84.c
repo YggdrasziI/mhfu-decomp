@@ -11,7 +11,7 @@ typedef struct Mtx {
     float m[16];
 } __attribute__((aligned(16))) Mtx;
 
-extern void func_08897DE0(Vec *out, Vec *v);
+extern void func_08897DE0(Vec *out, Vec *v, float angle);
 extern void func_08897D7C(Mtx *out, Vec *q);
 
 void func_08815D84(Vec *arg0, Vec *arg1, Vec *arg2, float arg3) {
@@ -25,7 +25,7 @@ void func_08815D84(Vec *arg0, Vec *arg1, Vec *arg2, float arg3) {
     v.y = arg2->y - arg1->y;
     v.z = arg2->z - arg1->z;
     v.w = 1.0f;
-    func_08897DE0(&q, &v);
+    func_08897DE0(&q, &v, arg3);
     func_08897D7C(&m, &q);
     v.x = 0.0f;
     v.y = 1.0f;
