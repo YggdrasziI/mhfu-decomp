@@ -3578,6 +3578,31 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   its first use (func_088623DC). Case bodies of a switch in code layout
   order; cases that load all their angles first go through inline helpers
   taking the floats (func_08861E9C).
+- VFPU batch 5 (2026-11-28, 0x08865E78-0x0888A8C0, 19 of 20). A
+  `bc1fl` to the shared exit with the store in its slot: write the positive
+  test first and the early return in the else arm (func_08884CE4,
+  func_08884E44, func_08885088). A stack float written by an asm block is
+  reloaded at each use: copy it once into a second local (func_08885088).
+  A `u16` converted with `andi; mtc1; cvt.s.w`: `(f32)(s32)(u16)x` or
+  `(f32)(x & 0xFFFF)`, `(f32)(u16)x` takes the unsigned path (func_0888A73C,
+  func_08886B68, func_088883C0). `1.0f / 9` kept as a division after a
+  store of 9: divide by the field read back (func_088883C0). Dead copies of
+  branch-likely delay-slot instructions after each `b` stay when the
+  function has an `if` whose join is an explicit `return;`
+  (func_0888A8C0). A large asm helper left as a call inside a mid-level
+  inline of a very large function: call it directly or one level down
+  (func_08888B98). Inline temporaries get their stack slots by inline
+  depth, nested ones lowest (func_08888B98, func_08886E50). A field read in
+  a loop test and reused after the loop, where the original reloads it:
+  read it through another type at the later use (func_0886789C). Compare
+  chain without a table: `||` chain or if/else chain, not a `switch`
+  (func_088849B4, func_08886E50); a byte tested against 1 then 0 with a
+  `b` to the tail: `switch` with `default: goto` (func_08889CAC). A call
+  result copied to a saved register before a `beqz`: the call as its own
+  statement in a nested `if` (func_08883384). `(x - g) + K` with swapped
+  `add.s` operands: `a = x - g; a = a + K;` (func_088851C8). Left
+  NonMatching: func_08886E50 (99.15 %, slots of 4-byte aggregates, which
+  always land above the inline temporaries).
 
 ## Open symptoms
 

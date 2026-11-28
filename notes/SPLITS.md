@@ -1159,10 +1159,13 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08865DC4` | 0x08865DC4-0x08865DD4 | 1 small function | 100 % |
 | `unit_08865DD4` | 0x08865DD4-0x08865E40 | 1 small function (step from a float and a count) | 100 % |
 | `unit_08865E40` | 0x08865E40-0x08865E78 | 2 small functions | 100 % |
+| `unit_08865E78` | 0x08865E78-0x08865E94 | 1 small function (VFPU vector add) | 100 % |
+| `unit_08865E94` | 0x08865E94-0x08865EC0 | 1 small function (VFPU vector adds) | 100 % |
 | `unit_08865EC0` | 0x08865EC0-0x08865F24 | 1 small function | 100 % |
 | `unit_08865F24` | 0x08865F24-0x08865F68 | 1 small function | 100 % |
 | `unit_08865F68` | 0x08865F68-0x08865F8C | 1 small function | 100 % |
 | `unit_08865F8C` | 0x08865F8C-0x08866050 | 1 small function | 100 % |
+| `unit_08866050` | 0x08866050-0x08866284 | 1 function (C++; VFPU distance, zone selection, virtual calls) | 100 % |
 | `unit_08866284` | 0x08866284-0x088662B8 | one function (switch on a byte field) | 100 % |
 | `unit_088662B8` | 0x088662B8-0x088664A8 | 1 small function | 100 % |
 | `unit_088664A8` | 0x088664A8-0x088664F8 | 1 small function | 100 % |
@@ -1190,6 +1193,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088673CC` | 0x088673CC-0x088675BC | 1 function, C++ (slot state machine, virtual calls) | 100 % |
 | `unit_088675BC` | 0x088675BC-0x088676D8 | 1 function (frees one slot) | 100 % |
 | `unit_088676D8` | 0x088676D8-0x0886789C | 1 function (model loaded into a slot) | 100 % |
+| `unit_0886789C` | 0x0886789C-0x08867B34 | 1 function (C++, speed; node set-up from file blocks, VFPU identity) | 100 % |
 | `unit_08867B34` | 0x08867B34-0x08867D10 | 1 function (model loaded into a slot) | 100 % |
 | `unit_08867D10` | 0x08867D10-0x08867EC8 | 1 function (model loaded into a slot) | 100 % |
 | `unit_08867EC8` | 0x08867EC8-0x08867F34 | 1 small function | 100 % |
@@ -1207,10 +1211,12 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08868CE8` | 0x08868CE8-0x08868E54 | 1 function (fills a parameter block; `switch` compares) | 100 % |
 | `unit_08868E54` | 0x08868E54-0x08868F0C | 1 function (bounded u16 text copy) | 100 % |
 | `unit_08868F0C` | 0x08868F0C-0x08868F50 | 1 small function | 100 % |
+| `unit_08868F50` | 0x08868F50-0x08869424 | 1 function (speed; stick input, VFPU arc tangent) | 100 % |
 | `unit_08869424` | 0x08869424-0x08869504 | 1 function (maps a kind to one of 14 saturating byte counters); jump table 0x0893165C-0x089316DC in the unit | 100 % |
 | `unit_08869504` | 0x08869504-0x08869564 | 1 small function | 100 % |
 | `unit_08869564` | 0x08869564-0x08869570 | 1 small function | 100 % |
 | `unit_08869570` | 0x08869570-0x088695F4 | 1 small function | 100 % |
+| `unit_088695F4` | 0x088695F4-0x08869750 | 1 function (speed; nearest table entry, VFPU distance) | 100 % |
 | `unit_08869750` | 0x08869750-0x08869774 | 1 small function | 100 % |
 | `unit_08869774` | 0x08869774-0x088697D4 | 1 small function | 100 % |
 | `unit_088697D4` | 0x088697D4-0x08869880 | 1 function (id lookup in a 16-byte table) | 100 % |
@@ -1528,16 +1534,23 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08883268` | 0x08883268-0x0888334C | 3 small functions | 100 % |
 | `unit_0888334C` | 0x0888334C-0x08883374 | 1 small function | 100 % |
 | `unit_08883374` | 0x08883374-0x08883384 | 1 small function | 100 % |
+| `unit_08883384` | 0x08883384-0x088838B0 | 1 function (VFPU normalize, arc tangent, scale) | 100 % |
 | `unit_088838B0` | 0x088838B0-0x08883988 | 1 function (forwards to func_0887FFE8 with its last argument * n / 100); optimized for speed | 100 % |
 | `unit_08883988` | 0x08883988-0x08883B54 | 2 small functions | 100 % |
 | `unit_08883B54` | 0x08883B54-0x08883DE4 | 1 function (speed: looks an entry up with func_088840A8, then calls func_088800C0 or func_088838B0 depending on func_0887FBBC) | 100 % |
 | `unit_08883DE4` | 0x08883DE4-0x08883FF0 | 1 function (same shape as func_08883B54) | 100 % |
 | `unit_08883FF0` | 0x08883FF0-0x088840A8 | 1 function (two branches on a mode, one call each) | 100 % |
+| `unit_088840A8` | 0x088840A8-0x088846F4 | 1 function (C++, speed; VFPU distances, entry search); jump table 0x08931954-0x0893196C in the unit | 100 % |
 | `unit_088846F4` | 0x088846F4-0x08884748 | 1 small function | 100 % |
 | `unit_08884748` | 0x08884748-0x0888491C | 1 function (stores its last argument at +0x562438, then calls func_088801E8 or func_088801A0 with arg7 * r / 100); optimized for speed | 100 % |
 | `unit_0888491C` | 0x0888491C-0x088849B4 | 1 function (forwards nine arguments, one through func_088855D0) | 100 % |
+| `unit_088849B4` | 0x088849B4-0x08884C9C | 1 function (speed; VFPU distance, kind table) | 100 % |
 | `unit_08884C9C` | 0x08884C9C-0x08884CD4 | 1 small function | 100 % |
 | `unit_08884CD4` | 0x08884CD4-0x08884CE4 | 1 small function | 100 % |
+| `unit_08884CE4` | 0x08884CE4-0x08884E44 | 1 function (speed; VFPU distance) | 100 % |
+| `unit_08884E44` | 0x08884E44-0x08885088 | 1 function (speed; VFPU distance and cosine) | 100 % |
+| `unit_08885088` | 0x08885088-0x088851C8 | 1 function (speed; VFPU distance, clamp) | 100 % |
+| `unit_088851C8` | 0x088851C8-0x08885494 | 1 function (speed; VFPU normalize, arc tangent, angle wrap) | 100 % |
 | `unit_08885494` | 0x08885494-0x088854A0 | 1 small function | 100 % |
 | `unit_088854A0` | 0x088854A0-0x088854C4 | 1 small function | 100 % |
 | `unit_088854C4` | 0x088854C4-0x088854D0 | 1 small function | 100 % |
@@ -1588,9 +1601,14 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088868A0` | 0x088868A0-0x088868AC | 1 small function | 100 % |
 | `unit_088868AC` | 0x088868AC-0x08886B2C | 1 function (sets a member function pointer by state; C++, jump table) | 100 % |
 | `unit_08886B2C` | 0x08886B2C-0x08886B68 | 1 small function (C++) | 100 % |
+| `unit_08886B68` | 0x08886B68-0x08886E50 | 1 function (speed; VFPU rotation and transform) | 100 % |
+| `unit_08886E50` | 0x08886E50-0x088883B8 | 1 function, NonMatching (speed, 99.15 %: stack slots of the 4-byte angle triple and the inline temporaries above it) | not linked |
 | `unit_088883B8` | 0x088883B8-0x088883C0 | 1 small function | 100 % |
+| `unit_088883C0` | 0x088883C0-0x08888B84 | 1 function (speed; VFPU rotation, blend, transform) | 100 % |
 | `unit_08888B84` | 0x08888B84-0x08888B98 | 1 small function | 100 % |
+| `unit_08888B98` | 0x08888B98-0x08889C90 | 1 function (speed; camera, VFPU arc tangent, rotations, blend) | 100 % |
 | `unit_08889C90` | 0x08889C90-0x08889CAC | 1 small function | 100 % |
+| `unit_08889CAC` | 0x08889CAC-0x0888A164 | 1 function (speed; VFPU matrix product and transform) | 100 % |
 | `unit_0888A164` | 0x0888A164-0x0888A190 | 1 small function | 100 % |
 | `unit_0888A190` | 0x0888A190-0x0888A1D0 | 1 small function | 100 % |
 | `unit_0888A1D0` | 0x0888A1D0-0x0888A1FC | 1 small function | 100 % |
@@ -1600,6 +1618,8 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_0888A49C` | 0x0888A49C-0x0888A538 | 1 function (ratio of two floats of a table entry) | 100 % |
 | `unit_0888A538` | 0x0888A538-0x0888A668 | 1 function (moves a cursor towards a table entry) | 100 % |
 | `unit_0888A668` | 0x0888A668-0x0888A73C | 1 function (stores one of two float constants) | 100 % |
+| `unit_0888A73C` | 0x0888A73C-0x0888A8C0 | 1 function (speed; VFPU Y rotation of two table vectors) | 100 % |
+| `unit_0888A8C0` | 0x0888A8C0-0x0888AF68 | 1 function (speed; VFPU blends and normalize); jump table 0x08931984-0x0893199C in the unit | 100 % |
 | `unit_0888AF68` | 0x0888AF68-0x0888AFEC | 1 function (eased ratio by mode, through func_08897D4C(t, 2.25f)) | 100 % |
 | `unit_0888B7FC` | 0x0888B7FC-0x0888B884 | 1 function (calls func_0888C3AC, then func_0888B600 with a scaled float) | 100 % |
 | `unit_0888B994` | 0x0888B994-0x0888BB40 | 1 function (checks a key array through func_0888BC40 and func_0888BB40) | 100 % |
