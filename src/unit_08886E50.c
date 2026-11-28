@@ -5,13 +5,9 @@
 
 /* func_08886E50: VFPU asm blocks (notes/COMPILER.md, "VFPU in asm blocks").
  *
- * NonMatching (99.15 %): the code is the same except for the stack slots of the
- * 4-byte objects. The original puts the angle triple {0, +0x82, 0} (one stored
- * copy) and 16 unused bytes below the inline temporaries (0x160-0x17B); here the
- * caller's Ang and the by-value parameter copy of mtx_rot_ang are both stored and
- * sit above them, which shifts the sqrt / lerp / atan2 / rotation slots by 0xC and
- * reorders the stores around the matrix set-up.
- */
+ * The angle triple is a 16-byte aligned local passed by address to the
+ * conversion helper; the helper converts the x angle into its own float local
+ * first, which delays the stores of the triple as in the original. */
 
 #pragma optimize_for_size off
 
@@ -136,7 +132,7 @@ typedef struct {
 
 typedef struct {
     s32 x, y, z;
-} Ang;
+} __attribute__((aligned(16))) Ang;
 
 extern G *D_089CBBE4;
 extern char *D_089CC438;
@@ -389,11 +385,13 @@ static inline s32 angle_of(Vec *a, Vec *b) {
 }
 
 
-static inline void mtx_rot_ang(Mtx *m, Ang a) {
+static inline void mtx_rot_ang(Mtx *m, Ang *a) {
     Vec rad;
-    rad.x = 9.58738019e-05f * (f32)(a.x & 0xFFFF);
-    rad.y = 9.58738019e-05f * (f32)(a.y & 0xFFFF);
-    rad.z = 9.58738019e-05f * (f32)(a.z & 0xFFFF);
+    f32 fx;
+    fx = (f32)(a->x & 0xFFFF);
+    rad.x = 9.58738019e-05f * fx;
+    rad.y = 9.58738019e-05f * (f32)(a->y & 0xFFFF);
+    rad.z = 9.58738019e-05f * (f32)(a->z & 0xFFFF);
     rad.w = 0.0f;
     mtx_identity(m);
     mtx_rot_xyz(m, rad.x, rad.y, rad.z);
@@ -603,10 +601,10 @@ void func_08886E50(Obj *arg0) {
     }
     c->unk50.x = pl->unk200.x;
     c->unk50.z = pl->unk200.z;
+    ang.z = 0;
     ang.x = 0;
     ang.y = c->unk82;
-    ang.z = 0;
-    mtx_rot_ang(&m, ang);
+    mtx_rot_ang(&m, &ang);
     vec_tfm3(&tmp, &m, &res);
     c->unk40.x = c->unk50.x + res.x;
     c->unk40.y = pl->unk200.y + res.y;

@@ -372,8 +372,9 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   **) (e + (s32) blk) + (s32) blk` (func_088C03CC).
 - `memset` size as `unsigned int` in the prototype (func_088AD1EC).
 - `(bool) (x & K)` tested `!= 0` rather than `== 1`: the id is read first
-  and the large offset stays split `lui 7` / `lw -0x50EC` (func_088D168C,
-  NonMatching).
+  and the large offset stays split `lui 7` / `lw -0x50EC` (func_088D168C;
+  its `== 1` test was later matched with `opt_common_subs off`, retry of
+  2026-11-28).
 
 - `sltiu` where ours gives `slti`: make the compared parameter unsigned
   (func_088A4654, `unsigned int` length).
@@ -3536,9 +3537,8 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   address kept unfolded and not hoisted: `opt_propagation off` plus an
   explicit `p = &D_x;` before each use (func_08835470). A selector
   extended into `a1` before a switch: a case passes it as the second
-  argument of a call (func_088405E4). Left in assembly: func_08838B08
-  (96.66 %, vertex block registers and order, best order found only by a
-  random search).
+  argument of a call (func_088405E4). func_08838B08 (96.66 % then,
+  vertex block registers and order) matched in the retry of 2026-11-28.
 - VFPU batch 3 (2026-11-27, 0x08844FC8-0x088607F8, 20 of 20). Base
   registers of a 3-pointer asm block in an inline helper: the helper's
   parameter order sets them and may be neither (dst, a, b) nor (a, b, dst);
@@ -3600,9 +3600,9 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   `b` to the tail: `switch` with `default: goto` (func_08889CAC). A call
   result copied to a saved register before a `beqz`: the call as its own
   statement in a nested `if` (func_08883384). `(x - g) + K` with swapped
-  `add.s` operands: `a = x - g; a = a + K;` (func_088851C8). Left
-  NonMatching: func_08886E50 (99.15 %, slots of 4-byte aggregates, which
-  always land above the inline temporaries).
+  `add.s` operands: `a = x - g; a = a + K;` (func_088851C8).
+  func_08886E50 (99.15 % then, slots of 4-byte aggregates) matched in the
+  retry of 2026-11-28.
 - VFPU batch 6 (2026-11-28, 0x0888AFEC-0x0888FACC, 20 of 20). A callee
   that reads `$a2` the caller never sets: the caller passes the value it
   holds there as a third argument (func_0888B1C0 calls func_0888E788 and
@@ -3660,6 +3660,30 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   on one call of a helper: output pointer last in the helper's parameters
   (func_088C75D4); loop bound `i <= 3` for `slti at`.
 
+- Retry of 2026-11-28 (4 of 4: func_08838B08, func_08886E50,
+  func_088CAF54, func_088D168C). A `(s32)(... != 0) == 1` flag test whose
+  operand loads come in the wrong order with swapped registers (`bnel a0,
+  v1` against a loaded 1, ours `beqzl`): `#pragma opt_common_subs off`,
+  then write by hand what the original still shares: chained assignments
+  for a repeated constant (`s.x = s.y = s.z = 1.0f;`), pointer locals for
+  repeated addresses, an inline member whose locals take a repeated value
+  in one chained assignment (func_088D168C). A 4-byte aggregate passed by
+  value to an inline helper is stored twice (caller local and parameter
+  copy): align it 16 and pass it by address; member stores scheduled right
+  after their loads: convert the helper's first member into its own local
+  as the first statement, order the caller's member stores as the
+  original (func_08886E50, a 216-variant scripted sweep). Saved registers
+  of masked byte values rotated: `s32` locals set by a chained
+  assignment, then `v += d; v &= 0xFF;` as two statements; `(u16)` of a
+  `s16` parameter taken from its `seh` copy: `s32 xs = x;` first; of two
+  packed colours, the one written `c = a << 24; ...; c |= rgb;` gets its
+  shift late and the one written as a single expression early
+  (func_08838B08: statement order found by a dependency-aware search scored
+  with objdiff plus a register-exact comparison of the block; a plain line
+  shuffle produced wrong code that still scored well). A pointer-to-member
+  constant copied from data in C++: one `struct { f32 v[3]; }` assignment;
+  three float members copy member by member (func_088CAF54).
+
 ## Open symptoms
 
 - One inlined copy of a helper coloured differently from its identical
@@ -3672,9 +3696,6 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
 - One block of a large speed function: a byte load in `a3` instead of `a2`
   and a constant argument set before a `subu` instead of in the `jal` slot
   (func_08849D7C, 99.21 %, case 0).
-- A test against the constant 1 (`addiu v1, zero, 1` after the `andi`,
-  `bnel a0, v1`): ours branches with `beqzl` for every `== 1` form
-  (func_088D168C, 98.79 %).
 - `t->tbl[t->idx]` address computed in $v0 where the original uses the
   register of the result (a1), and the following clear() counter in a2
   instead of v0 (func_088A2498, 99.87 %).

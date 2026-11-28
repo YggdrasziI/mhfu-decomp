@@ -567,6 +567,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_08838640` | 0x08838640-0x08838894 | 1 function (copies the 0x14-byte record at D_0893B32C, then func_0882FC50 / func_0882FB38 / func_08838894) | 100 % |
 | `unit_08838894` | 0x08838894-0x08838AB4 | 1 function (six-byte buffer filled from func_08826EF4, kinds 5 and 6 apart) | 100 % |
 | `unit_08838AB4` | 0x08838AB4-0x08838B08 | 1 function (`switch` on a byte argument); jump table 0x089310F0-0x08931124 in the unit | 100 % |
+| `unit_08838B08` | 0x08838B08-0x08838E0C | 1 function (speed; alpha-gradient quad, VFPU sine) | 100 % |
 | `unit_08838E0C` | 0x08838E0C-0x08838E30 | 1 small function | 100 % |
 | `unit_08838E30` | 0x08838E30-0x08838F58 | 1 function (C++: three-row loop over ids of D_09B052C8, func_08892148) | 100 % |
 | `unit_08838F58` | 0x08838F58-0x088392F4 | 1 function (speed: three-row loop of func_09C240A0 / func_08892148, then func_08833290) | 100 % |
@@ -1602,7 +1603,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088868AC` | 0x088868AC-0x08886B2C | 1 function (sets a member function pointer by state; C++, jump table) | 100 % |
 | `unit_08886B2C` | 0x08886B2C-0x08886B68 | 1 small function (C++) | 100 % |
 | `unit_08886B68` | 0x08886B68-0x08886E50 | 1 function (speed; VFPU rotation and transform) | 100 % |
-| `unit_08886E50` | 0x08886E50-0x088883B8 | 1 function, NonMatching (speed, 99.15 %: stack slots of the 4-byte angle triple and the inline temporaries above it) | not linked |
+| `unit_08886E50` | 0x08886E50-0x088883B8 | 1 function (speed; VFPU blocks, aligned angle triple passed by address) | 100 % |
 | `unit_088883B8` | 0x088883B8-0x088883C0 | 1 small function | 100 % |
 | `unit_088883C0` | 0x088883C0-0x08888B84 | 1 function (speed; VFPU rotation, blend, transform) | 100 % |
 | `unit_08888B84` | 0x08888B84-0x08888B98 | 1 small function | 100 % |
@@ -2472,6 +2473,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088CACCC` | 0x088CACCC-0x088CACD4 | 1 small function | 100 % |
 | `unit_088CACD4` | 0x088CACD4-0x088CAF4C | 2 functions (C++; GE commands around a draw, kind switch) | 100 % |
 | `unit_088CAF4C` | 0x088CAF4C-0x088CAF54 | 1 small function | 100 % |
+| `unit_088CAF54` | 0x088CAF54-0x088CB004 | 1 function (C++, vtable method of D_089BACDC; virtual call, pointer-to-member constant at 0x089B5374 copied) | 100 % |
 | `unit_088CB004` | 0x088CB004-0x088CB32C | 1 function (C++, vtable method of D_089BACDC; virtual calls, VFPU vectors, list walk) | 100 % |
 | `unit_088CB32C` | 0x088CB32C-0x088CB364 | 1 small function | 100 % |
 | `unit_088CB364` | 0x088CB364-0x088CB46C | 1 function (C++; state from a flag and clock values) | 100 % |
@@ -2507,7 +2509,7 @@ All in the Metrowerks regions; bounds are hypotheses until neighbours are split.
 | `unit_088CF2C8` | 0x088CF2C8-0x088D08D4 | 1 function (C++, speed, `#pragma inline_depth(2)`; bone animation records of a model, `switch` on 20 record kinds: rotations, scales, translations, key frames; VFPU `asm` blocks) | 100 % |
 | `unit_088D08D4` | 0x088D08D4-0x088D1398 | 1 function (C++, speed; material animation records of one model part, `switch` on 8 record kinds, VFPU sine) | 100 % |
 | `unit_088D1398` | 0x088D1398-0x088D168C | 2 functions (C++, speed; key-frame tables interpolated at the current animation frame, VFPU vector) | 100 % |
-| `unit_088D168C` | 0x088D168C-0x088D18F0 | 1 function, NonMatching (C++, speed, 98.8 %: a test against 1 branches on zero); places an effect by animation id | not linked |
+| `unit_088D168C` | 0x088D168C-0x088D18F0 | 1 function (C++, speed, opt_common_subs off; places an effect by animation id) | 100 % |
 | `unit_088D18F0` | 0x088D18F0-0x088D1DD0 | 4 functions (C++, speed; effect drawn from a matrix, effect id by animation frame, level from the value at +0x672, state by action) | 100 % |
 | `unit_088D1DD0` | 0x088D1DD0-0x088D1E40 | 1 small function (C++) | 100 % |
 | `unit_088D1E40` | 0x088D1E40-0x088D2674 | 1 function (speed; timed events of an animation by the id at +0x684, 25-case `switch` compiled as a chain) | 100 % |
