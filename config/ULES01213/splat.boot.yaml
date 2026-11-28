@@ -532,7 +532,7 @@ segments:
       - [0x48120, c, unit_08849B6C]
       - [0x48180, c, unit_08849BCC]
       - [0x48260, c, unit_08849CAC]
-      - [0x48330, asm, text_08849D7C]
+      - [0x48330, c, unit_08849D7C]
       - [0x48C20, c, unit_0884A66C]
       - [0x48C80, c, unit_0884A6CC]
       - [0x48CE0, c, unit_0884A72C]
@@ -589,7 +589,7 @@ segments:
       - [0x4D37C, cpp, unit_0884EDC8]
       - [0x4D4C0, cpp, unit_0884EF0C]
       - [0x4D68C, c, unit_0884F0D8]
-      - [0x4D744, asm, text_0884F190]
+      - [0x4D744, c, unit_0884F190]
       - [0x4D7F8, c, unit_0884F244]
       - [0x4D880, c, unit_0884F2CC]
       - [0x4D894, cpp, unit_0884F2E0]
@@ -796,7 +796,7 @@ segments:
       - [0x580A4, c, unit_08859AF0]
       - [0x580F8, asm, text_08859B44]
       - [0x581F4, c, unit_08859C40]
-      - [0x582C8, asm, text_08859D14]
+      - [0x582C8, c, unit_08859D14]
       - [0x5876C, c, unit_0885A1B8]
       - [0x587F0, c, unit_0885A23C]
       - [0x58E94, c, unit_0885A8E0]
@@ -816,7 +816,7 @@ segments:
       - [0x595FC, c, unit_0885B048]
       - [0x59714, c, unit_0885B160]
       - [0x597D0, c, unit_0885B21C]
-      - [0x59954, asm, text_0885B3A0]
+      - [0x59954, c, unit_0885B3A0]
       - [0x59B6C, c, unit_0885B5B8]
       - [0x59CCC, c, unit_0885B718]
       - [0x59D84, c, unit_0885B7D0]
@@ -2670,13 +2670,14 @@ segments:
       - { start: 0x12F73C, type: .rodata, name: unit_08845EA8, linker_section_order: .data }
       - { start: 0x12F754, type: .rodata, name: unit_08849120, linker_section_order: .data }
       - { start: 0x12F7B0, type: .rodata, name: unit_088495AC, linker_section_order: .data }
-      - [0x12F7D4, data, data_08931220]
+      - { start: 0x12F7D4, type: .rodata, name: unit_08849D7C, linker_section_order: .data }
+      - [0x12F7EC, data, data_08931238]
       - { start: 0x12F8F4, type: .rodata, name: unit_0884DBB8, linker_section_order: .data }
       - { start: 0x12F928, type: .rodata, name: unit_0884FA5C, linker_section_order: .data }
       - { start: 0x12F940, type: .rodata, name: unit_08850868, linker_section_order: .data }
       - { start: 0x12F95C, type: .rodata, name: unit_088516A4, linker_section_order: .data }
       - { start: 0x12F9A4, type: .rodata, name: unit_08857A80, linker_section_order: .data }
-      - [0x12F9E0, data, data_0893142C]
+      - { start: 0x12F9E0, type: .rodata, name: unit_08859D14, linker_section_order: .data }
       - { start: 0x12FA04, type: .rodata, name: unit_0885A23C, linker_section_order: .data }
       - { start: 0x12FA28, type: .rodata, name: unit_0885BE08, linker_section_order: .data }
       - { start: 0x12FA40, type: .rodata, name: unit_0885C83C, linker_section_order: .data }
@@ -2802,6 +2803,8 @@ segments:
       - [0x139BA0, data, data_0893B5EC]
       - [0x139C84, .data, unit_08845EA8]
       - [0x139C98, data, data_0893B6E4]
+      - [0x139D14, .data, unit_08849D7C]
+      - [0x139D34, data, data_0893B780]
       - [0x19B174, .data, unit_08855160]
       - [0x19B1B0, data, data_0899CBFC]
       - [0x19B2B0, .data, unit_08858F1C]

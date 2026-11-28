@@ -2,12 +2,9 @@
  *
  * Bounds (hypothesis): 1 function between code still in assembly.
  *
- * NonMatching: 99.21 %. Saved registers now all match; the only real
- * difference left is in case 0: the byte read at +0x781 goes to a3 instead
- * of a2 and the 0x70 argument is set before the subtraction instead of in
- * the jal delay slot (3 lines). Owns jtbl_08931220 (6 words) and the
- * initialised locals D_0893B760 and D_0893B770 (s16[7] each) once it
- * matches.
+ * Matches except for the names of the jump table and of the two initialised
+ * locals (jtbl_08931220, 6 words; D_0893B760 and D_0893B770, s16[7] each),
+ * which this unit owns once it is linked.
  */
 
 /* func_08849D7C (ULES01213), piece text_08849D7C, 0x08849D7C-0x0884A66C.
@@ -15,9 +12,9 @@
  * Optimized for speed (loop guards, loop shapes).
  * Colouring: one counter for the three loops and the final x position, one
  * y for cases 1 and 2, the call result of func_09A63198 passed inline and
- * the second loop indexed by i * 4 (no separate offset local). The
- * case-0 a2/a3 difference was not fixed by any expression, type, scope or
- * inline-helper form tried.
+ * the second loop indexed by i * 4 (no separate offset local). Case 0: the
+ * byte at +0x781 is read into an `s8` local and used as `(u8) b`, which puts
+ * it in a2 and keeps the 0x70 argument in the jal delay slot.
  */
 
 #pragma optimize_for_size off
@@ -109,8 +106,10 @@ void func_08849D7C(char *arg0) {
                     func_0884A66C(arg0, (u16)(*(u16 *)((char *)(*(u8 *)(*(char **)(g0 + 0x720) + 0x1E8) * 2) + (s32)g0 + 0x29C) +
                                               *(u16 *)((char *)(*(u8 *)(*(char **)(g0 + 0x720) + 0x1E8) * 2) + (s32)g0 + 0x350)), 0);
                 } else {
-                    a0 = *(u8 *)(g0 + 0x781);
-                    a0 = (s32)a0 - *(s8 *)(*(char **)(g0 + 0x768) + 4);
+                    {
+                        s8 b = *(u8 *)(g0 + 0x781);
+                        a0 = (u8)b - *(s8 *)(*(char **)(g0 + 0x768) + 4);
+                    }
                     func_08890DFC(D_08A631A8, 0x188, 0x70);
                     func_0884A66C(arg0, a0, 0);
                     func_08891474(D_08A631A8, 0xFC, 0x80, func_09A63198(D_09A44C5C, D_089B5592), func_0885151C(D_089CC438, D_089AC710[v0]));

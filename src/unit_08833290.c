@@ -13,6 +13,13 @@
  * The row at +0x40 keeps its x in an s32 local (`xs`), which is what gives
  * its registers; the y of the two last loops is `yb + row * 0x10`, reduced by
  * the compiler to a stepped value.
+ *
+ * NonMatching, 99.95 %: before the first func_0882DCB0 call, the reload of
+ * arg1 (`lhu a1, 0x62(sp)`) comes after the load of a[0][0] (`lhu a3,
+ * 0xf8(sp)`) in ours, before it in the original; the other differing lines
+ * are the names of the four initialised locals. Tried (2026-11-28): locals
+ * for both values, callee parameter types (384 combinations), local types,
+ * pragmas, flags, a declaration-order search under the current flags.
  */
 
 #pragma optimize_for_size off

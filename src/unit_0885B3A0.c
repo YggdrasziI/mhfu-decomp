@@ -1,10 +1,11 @@
 /* unit_0885B3A0: 0x0885B3A0-0x0885B5B8 (ULES01213)
  *
  * Bounds (hypothesis): 1 function between code still in assembly.
- * NonMatching: compiled for the report only, the code stays in assembly.
  */
 
-/* func_0885B3A0: NonMatching (99.44 %: in the second loop's inner part the group count and the entry pointer have s0 / s1 swapped). */
+/* func_0885B3A0: one `void *` local holds the group range pointer of both
+ * loops and the entry pointer of the second loop (it sets the s0 / s1 choice
+ * of the second loop). */
 
 #pragma optimize_for_size off
 
@@ -33,17 +34,17 @@ extern s32 func_088DCEBC(s32, u8);
 extern u8 func_0885B160(s32, s32, Entry *, s32);
 
 s32 func_0885B3A0(s32 arg0, s32 arg1, s32 arg2, s32 mode) {
+    void *p;
     s32 a;
     Entry *e;
-    s32 n;
     s32 i;
-    Range *r;
+    s32 n;
 
     a = (s16)arg1;
-    r = &D_089A4E88[a];
-    n = r->count;
+    p = &D_089A4E88[a];
+    n = ((Range *)p)->count;
     if (n != 0) {
-        e = &D_089A47D0[r->start];
+        e = &D_089A47D0[((Range *)p)->start];
         for (; n > 0; n--, e++) {
             switch (mode) {
             case 1:
@@ -62,26 +63,26 @@ s32 func_0885B3A0(s32 arg0, s32 arg1, s32 arg2, s32 mode) {
         }
     }
     for (i = 0; i < (s16)arg1; i++) {
-        r = &D_089A4E88[i];
-        n = r->count;
+        p = &D_089A4E88[i];
+        n = ((Range *)p)->count;
         if (n == 0) {
             continue;
         }
-        e = &D_089A47D0[r->start];
-        for (; n > 0; n--, e++) {
-            if (e->id != (s16)arg1) {
+        p = &D_089A47D0[((Range *)p)->start];
+        for (; n > 0; n--, p = (Entry *)p + 1) {
+            if (((Entry *)p)->id != (s16)arg1) {
                 continue;
             }
             switch (mode) {
             case 1:
                 return 1;
             case 0:
-                if (func_0885B160(arg0, func_088DCEBC(D_09A4F0C4, *(u8 *)(D_089CC438 + 0x28)), e, arg2) == 1) {
+                if (func_0885B160(arg0, func_088DCEBC(D_09A4F0C4, *(u8 *)(D_089CC438 + 0x28)), p, arg2) == 1) {
                     return 1;
                 }
                 break;
             case -1:
-                if (!(e->flags & 1)) {
+                if (!(((Entry *)p)->flags & 1)) {
                     return 1;
                 }
                 break;

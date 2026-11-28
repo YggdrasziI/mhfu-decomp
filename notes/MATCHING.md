@@ -45,8 +45,10 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   `if (!(E)) return 0; return 1;` (func_08854D88, C++ and C) (`bool_returns`).
 - m2c's `goto block_N` of a merged tail: write the tail out in each branch, `else if`
   chained (`inline_gotos`).
-- Loop heads `beqz` vs `beqzl`: not solved (func_088C33E8; func_0884F190
-  97.33 %, the guard of a do-while drive wait).
+- Loop heads `beqz` vs `beqzl`: mwccpsp copies a target's first
+  instruction into one branch only; when the wrong branch takes it, check
+  the signedness of the compared values (func_0884F190: `r == size` with
+  `size` an `s32` parameter, not `u32`; matched 2026-11-28).
 - A state tested against several values that all return 0, compared as
   `beql 6` / `beq 5` / `beqz` (one `b` to the rest): `switch (st) { case 0:
   case 5: return 0; case 6: return 0; }` (func_088A8988, 74 % → 95 %; the
@@ -3443,7 +3445,7 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   from symbols splat names one by one: a union of `extern float` members
   assigned one by one before the loop (func_08855F98). An `s16` parameter
   re-extended after a loop: an `s32` parameter with `(s16)` at each use
-  (func_0885B3A0, NonMatching). Narrow parameters (`u16`, `s16`, `u8`) take
+  (func_0885B3A0). Narrow parameters (`u16`, `s16`, `u8`) take
   the lowest saved registers before pointers and ints; a `void *` parameter
   copied into a `char *` local moves that one ahead (func_0881EE84).
 - C++ runtime, first batch (2026-11-27, 0x0890BE54-0x0890CD14, 15 linked).
@@ -3684,6 +3686,29 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   constant copied from data in C++: one `struct { f32 v[3]; }` assignment;
   three float members copy member by member (func_088CAF54).
 
+- Retry of the NonMatching units (2026-11-28, 13 units): 4 matched, 4
+  improved. Two volatile stack halfwords after an escaping buffer: their
+  own `volatile u16 pos[2]` (not a member of the buffer's struct), stored
+  through `pp = &pos[1]; pp[-1] = a; pp[0] = b;` (func_08859D14). A byte
+  load in the wrong argument register with a constant scheduled into its
+  shadow: `s8 b = *(u8 *)p;` then `(u8)b` at the use (func_08849D7C, found
+  on a small test file with only the case-0 branches). Counter and entry
+  pointer of the second of two loops in swapped saved registers: one
+  untyped `void *` local for the first loop's range pointer and the second
+  loop's range and entry pointers (func_0885B3A0, scripted search over
+  roles). A stack argument store scheduled after register moves the
+  original keeps last: declare `const` the global loaded before it, and
+  read it as `*(T *)&G` where it must be reloaded (func_0883A07C, 99.27 %).
+  A destination pointer in a new register next to a struct copy: block copy
+  through a one-member wrapper from a `char *` local `e = base + i * 4`
+  (func_088FD170, 99.88 %; the block copy uses `lh` where the original
+  copies members). Argument registers set in the wrong order around an
+  `addiu` of an int parameter: make the callee parameter a pointer and pass
+  `(u8 *)param + K` (func_0881EE84, 99.46 %). Still NonMatching after it:
+  func_08833290 99.95 %, func_088A2498 99.92 %, func_08825148 99.70 %,
+  func_0882E86C 99.66 % (last of eight inlined blocks coloured
+  differently), func_0886AA28 99.12 %, func_0882CC9C 97.46 %.
+
 ## Open symptoms
 
 - One inlined copy of a helper coloured differently from its identical
@@ -3693,9 +3718,6 @@ mwccpsp lays basic blocks out in source order; m2c often writes them the other w
   after `jr $ra` reached by `j`: not mwccpsp code, leave it in assembly
   (0x088972A0-0x08897E1C, notes/SPLITS.md).
 - Scheduling: a load placed before / after an index computation (func_088307BC).
-- One block of a large speed function: a byte load in `a3` instead of `a2`
-  and a constant argument set before a `subu` instead of in the `jal` slot
-  (func_08849D7C, 99.21 %, case 0).
 - `t->tbl[t->idx]` address computed in $v0 where the original uses the
-  register of the result (a1), and the following clear() counter in a2
-  instead of v0 (func_088A2498, 99.87 %).
+  register of the result (a1) (func_088A2498, 99.92 %; the clear() counter
+  now in v0 with the clear written out on its own `char *q; u32 k;`).

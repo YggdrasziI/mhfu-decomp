@@ -9,8 +9,12 @@
  * func_088A2498 is NonMatching (99.87 %): thread loop; optional per-sample
  * gain limiter on a double-buffered s16 block, then func_08897AE0 with values
  * scaled by func_0880816C / func_088084C4 of the same angle-like argument.
- * Remaining: the t->unk98[t->unk28] address temporaries use v0 instead of
- * a1, and the clear() counter a2 instead of v0.
+ * The byte clear of cnt is written out with its own q/k locals after the
+ * buffer and u assignments (this moves the counter to v0; 99.92 %).
+ * Remaining (99.92 %): the t->unk98[t->unk28] address temporaries use v0
+ * instead of a1 (the register of the result). Tried: statement orders,
+ * declaration orders and levels, index/pointer forms, inline helpers,
+ * register keyword, parameter reuse, every opt_* pragma on/off.
  *
  * func_088A2A78: the state-3 decode step is an inline helper that writes the
  * result through a pointer. Jump table jtbl_08931F50 (6 words) is the switch
@@ -177,6 +181,8 @@ s32 func_088A2498(s32 arg0, Mixer **arg1) {
             func_08897A08(t->unk24, t->unk88);
             if (D_09A0DB44 & 2) {
                 s32 cnt[2];
+                char *q;
+                u32 k;
                 U *u;
                 s16 *buf;
                 s32 i;
@@ -186,9 +192,7 @@ s32 func_088A2498(s32 arg0, Mixer **arg1) {
                 float g3, g1, g2, g0;
                 float v3, v0, v1, v2;
 
-                u = &t->unk150;
-                buf = (s16 *)t->unk98[t->unk28];
-                clear((char *)cnt, 8);
+                buf = (s16 *)t->unk98[t->unk28]; u = &t->unk150; q = (char *)cnt; k = 8; if (q != 0) do { *q = 0; k--; q++; } while (k != 0);
                 hi = u->unk44;
                 lo = u->unk40;
                 top = u->unk4C;

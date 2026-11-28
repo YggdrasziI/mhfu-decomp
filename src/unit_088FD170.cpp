@@ -1,14 +1,17 @@
 /* unit_088FD170: 0x088FD170-0x089015F8 (ULES01213), NonMatching
  *
  * Bounds (hypothesis): 1 function.
- * NonMatching, 99.82 %: the code stays in the assembly piece text_088FD170.
- * Gap: the loop that copies the entries of D_089B8770 to arg0 + 0xBC28 uses
- * one register too many (t2/t3; the original keeps the destination in t0)
- * and hoists the address of the count at arg0 + 0xC2B0 above the byte
- * stores. Tried: seven forms of the bit test, four destination forms, a
- * destination local, field-by-field copy, an inline helper, pointer and
- * `continue` loops, five forms of the count increment, 50 declaration
- * orders.
+ * NonMatching, 99.88 %: the code stays in the assembly piece text_088FD170.
+ * Gap: the entry copy to arg0 + 0xBC28 is a block copy here (lh, lh, sh,
+ * sh); the original copies it member by member (lhu/sh, lbu, lbu, sb, sb).
+ * Every register and the count addressing match. A member-by-member C++
+ * copy (Entry assignment) gives the right loads but one register more and
+ * the count address hoisted (99.82 %); `e = arg0 + COUNT * 4;` with an
+ * Entry assignment to `e + 0xBC28` folds the offsets (99.83 %). Tried:
+ * bit test forms, destination forms, inline helpers, operator= and
+ * set() members, per-member copies (the id load is shared with the test),
+ * wrapper structures, pointer loops, count forms, pragmas, 50 declaration
+ * orders. A C build gives the same 99.88 % (block copy).
  *
  * Recomputes the bit set at D_089CC438 + 0x479C (0x1A2 bits): sets each bit
  * whose condition holds (func_08850044 / func_08854BEC / func_08854C5C /
@@ -19,8 +22,8 @@
  * entries of D_089B8770 whose bit is set to arg0 + 0xBC28 (count at
  * arg0 + 0xC2B0) and fills the rest of the 0x1A2 entries with id 0x1A2.
  *
- * C++ (the 4-byte entry is copied member by member, the two bytes as a
- * sub-structure). Optimized for speed: unrolled sums, the last loop is
+ * C++ (the original copies the 4-byte entry member by member, the two bytes
+ * as a sub-structure). Optimized for speed: unrolled sums, the last loop is
  * unrolled by 8. One variable (sum) holds every sum and count, as in the
  * original register allocation.
  */
@@ -43,6 +46,10 @@ typedef struct {
         u8 b;
     } ab;
 } Entry;
+
+typedef struct {
+    Entry e;
+} Slot;
 
 typedef struct {
     char pad[0xBC28];
@@ -534,8 +541,8 @@ void func_088FD170(char *arg0) {
     COUNT = 0;
     for (i = 0; i < 0x1A2; i++) {
         if (test_flag(D_089CC438, D_089B8770[i].id)) {
-            Entry *d = &((Obj *)arg0)->list[COUNT];
-            *d = D_089B8770[i];
+            e = arg0 + COUNT * 4;
+            *(Slot *)(e + 0xBC28) = *(Slot *)&D_089B8770[i];
             COUNT = COUNT + 1;
         }
     }

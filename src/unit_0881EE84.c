@@ -2,16 +2,21 @@
  *
  * Bounds (hypothesis): 1 function between code still in assembly.
  *
- * NonMatching: func_0881EE84 99.08 %. Left: the saved registers of px and
- * item2 are swapped (s1/s2) through the whole function, three registers of
- * kind 4/5 (rec, mask, add, all) follow from it, the prologue spill slots
- * of arg7 * 4 and sy0 are swapped (0x74/0x70), and the kind 3 case 5/6 call
- * sets a1 before a0. The px/item2 order did not move with declaration
- * order, local copies of item2 (any type), param types, variable merging,
- * pragmas or flags. The stack slots of the byte/halfword locals follow
- * declaration order: default's own dval first, txt at function level, and
- * kind 0's spx is sx0 reused (a split web goes last). arg0 goes through a
- * void * copy to get s0.
+ * NonMatching: func_0881EE84 99.46 %. Left: the saved registers of px and
+ * item2 are swapped (s1/s2) through the whole function (and so in kind 4/5
+ * mask/flag take s2 instead of s1), and the prologue spill slots of
+ * arg7 * 4 and sy0 are swapped (0x74/0x70). The px/item2 order did not move
+ * with declaration order (function or block level, random searches), local
+ * copies of item2 or px (any type, any position), param types, inline
+ * helpers for the kinds, statement orders, or pragmas. The spill slots follow
+ * the definition order before scheduling: an explicit `a7off = arg7 * 4`
+ * before `sy0 = py` gives the right slots but schedules the sy0 store after
+ * the switch value (99.44 %). The stack slots of the byte/halfword locals
+ * follow declaration order: default's own dval first, txt at function
+ * level, and kind 0's spx is sx0 reused (a split web goes last). arg0 goes
+ * through a void * copy to get s0. Kind 4/5's rec is declared first (it
+ * takes the last saved register of that block). func_08821B58 takes a
+ * `u8 *` second argument: with `(u8 *)arg6 + 0x4E8` a0 is set before a1.
  * Owns jtbl_089309D4, jtbl_089309F0 and the initialised local D_089385B8
  * once it matches.
  */
@@ -120,7 +125,7 @@ extern void func_088226F0(char *, s32, u8 *, u16, u16, u8 *);
 extern void func_088229B8(char *, u8 *, u16, u16, u8);
 extern void func_0882148C(char *, u8 *, s16, s16, u8 *, u8);
 extern u8 func_08826EF4(char *, s32, u8 *);
-extern u8 func_08821B58(char *, s32, u8 *);
+extern u8 func_08821B58(char *, u8 *, u8 *);
 extern void func_08838894(char *, s32, u8 *, s16, s16);
 extern void func_0881B5C4(char *, s32, s16, s16);
 extern void func_08821890(char *, s32);
@@ -580,13 +585,13 @@ void func_0881EE84(void *a0v, u8 *item, u16 px, u16 py, s32 flags, u8 *item2, s3
                     if (noHl != 0) {
                         return;
                     }
-                    if (func_08821B58(arg0, arg6 + item[1] * 12 + 0x4F4, item) != 0) {
+                    if (func_08821B58(arg0, (u8 *)arg6 + item[1] * 12 + 0x4F4, item) != 0) {
                         goto fallback;
                     }
                     func_08838894(arg0, arg6, item, sx, yb);
                     return;
                 } else {
-                    if (func_08821B58(arg0, arg6 + 0x4E8, item) != 0) {
+                    if (func_08821B58(arg0, (u8 *)arg6 + 0x4E8, item) != 0) {
                         goto fallback;
                     }
                     func_08838894(arg0, arg6, item, sx, yb);
@@ -615,6 +620,7 @@ void func_0881EE84(void *a0v, u8 *item, u16 px, u16 py, s32 flags, u8 *item2, s3
     }
     case 4:
     case 5: {
+        u8 *rec;
         u32 all;
         u32 mask;
         u32 add;
@@ -626,7 +632,6 @@ void func_0881EE84(void *a0v, u8 *item, u16 px, u16 py, s32 flags, u8 *item2, s3
         s32 y2;
         s32 y3;
         s32 y4;
-        u8 *rec;
 
         func_08821890(arg0, arg6);
         func_08821A10(arg0, arg6, item);
